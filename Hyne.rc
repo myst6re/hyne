@@ -1,0 +1,25 @@
+IDI_ICON1               ICON    DISCARDABLE     "images/hyne.ico"
+
+#include <windows.h>
+#include "Parameters.h"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION     RC_PRODUCT_VERSION
+PRODUCTVERSION  RC_PRODUCT_VERSION
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040C04E4"
+        BEGIN
+            VALUE "CompanyName",        RC_COMPANY_NAME_STR
+            VALUE "FileDescription",    RC_FILE_DESCRIPTION_STR
+            VALUE "ProductName",        PROG_NAME
+			VALUE "FileVersion",        PROG_VERSION
+            VALUE "ProductVersion",     PROG_VERSION
+        END
+    END
+	BLOCK "VarFileInfo"
+	    BEGIN
+	        VALUE "Translation", 0x40C, 1252
+	    END
+END
