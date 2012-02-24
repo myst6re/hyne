@@ -30,7 +30,7 @@ class Savecard : public QListWidget
 
 public:
 	enum Type {
-		Pc, Ps, Vgs, Gme, Vmp, Psv, PcDir
+		Pc, Ps, Vgs, Gme, Vmp, Psv, PcDir, Unknown
 	};
 
 	Savecard(const QString &chemin, QWidget *parent=0, bool slot=false);
@@ -73,6 +73,7 @@ private:
 	bool ps();
 	bool ps3();
 	bool pc();
+	bool getFormatFromRaw();
 	void directory();
 	void addSave(const QByteArray &data=QByteArray(), const QByteArray &header=QByteArray());
 	QByteArray header(QFile *srcFile, Type newType, bool saveAs, bool *abort);

@@ -47,7 +47,7 @@ Savecard::Savecard(const QString &chemin, QWidget *parent, bool slot)
 		}
 		else if(extension == "mcr" || extension == "ddf" || extension == "mc"
 		   || extension == "mcd"|| extension == "mci" || extension == "ps"
-		   || extension == "psm")
+		   || extension == "psm" || extension == "vm1")
 		{
 			_type = Ps;
 			_ok = ps();
@@ -77,9 +77,13 @@ Savecard::Savecard(const QString &chemin, QWidget *parent, bool slot)
 		}
 		else
 		{
-			QMessageBox::warning(this, tr("Erreur"), tr("Fichier de type inconnu"));
-			_ok = false;
-			return;
+			QMessageBox::StandardButton rep = QMessageBox::question(this, tr("Erreur"), tr("Fichier de type inconnu.\nVoulez-vous l'analyser pour obtenir le bon format ?"), QMessageBox::Yes | QMessageBox::No);
+			if(rep != QMessageBox::Yes) {
+				_ok = false;
+				return;
+			}
+
+			_ok = getFormatFromRaw();
 		}
 
 		if(_ok && (extension == "psv" || extension == "vmp"))
@@ -87,7 +91,7 @@ Savecard::Savecard(const QString &chemin, QWidget *parent, bool slot)
 	}
 	connect(&fileWatcher, SIGNAL(fileChanged(QString)), SLOT(notifyFileChanged(QString)));
 
-	compare(saves.at(9)->save(), saves.at(10)->save());
+//	compare(saves.at(9)->save(), saves.at(10)->save());
 //	compare(saves.at(10)->save(), saves.at(11)->save());
 }
 
@@ -300,6 +304,59 @@ bool Savecard::pc()
 //		fileWatcher.addPath(_path);
 
 	return true;
+}
+
+bool Savecard::getFormatFromRaw()
+{
+	QFile f(_path);
+	start = 0;
+
+	if(!f.exists() || !f.open(QIODevice::ReadOnly))
+		return false;
+
+	QByteArray data = f.read(10000);
+
+	int indexMC = data.indexOf("MC");
+	if(indexMC != -1) { // Maybe Memory Card format
+		start = indexMC;
+		switch(indexMC) {
+		case 0:
+			_type = Ps;
+			break;
+		case 64:
+			_type = Vgs;
+			break;
+		case 128:
+			_type = Vmp;
+			break;
+		case 3904:
+			_type = Gme;
+			break;
+		default:
+			_type = Unknown;
+			break;
+		}
+		return ps();
+	} else { // Maybe PC format
+		// compressed?
+		quint32 lzsSize;
+		memcpy(&lzsSize, data.constData(), 4);
+		if(lzsSize + 4 == f.size()) {
+			data = LZS::decompress(data.mid(4), 2);
+			if(data.indexOf("SC") == 0) {
+				_type = Pc;
+				return pc();
+			}
+			return false;
+		}
+
+		if(data.indexOf("VSP") == 1) {
+			_type = Psv;
+			return ps3();
+		}
+	}
+
+	return false;
 }
 
 void Savecard::directory()
@@ -619,6 +676,10 @@ QByteArray Savecard::header(QFile *srcFile, Type newType, bool saveAs, bool *abo
 			//Unknown crc
 			return QByteArray("\x00\x50\x4d\x56\x80", 5).append(QByteArray(123, '\x00'));
 		}
+	}
+	else if(newType==_type)
+	{
+		return srcFile->read(start);
 	}
 	else
 		return QByteArray();

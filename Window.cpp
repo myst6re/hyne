@@ -236,7 +236,7 @@ void Window::open(OpenType slot)
 			path = Config::value("loadPath");
 		else if(!path.isEmpty())
 			path.append("/Save");
-		path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path, tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.psv save?? *.mem *.vgs *.vmp);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard (*.psv);;Tous les fichiers (*)"));
+		path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path, tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard (*.psv);;Tous les fichiers (*)"));
 		if(path.isNull())		return;
 
 		int index = path.lastIndexOf('/');
@@ -313,7 +313,7 @@ void Window::reload()
 bool Window::saveAs()
 {
 	QString types, path, selectedFilter,
-			ps = tr("PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm)"),
+			ps = tr("PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1)"),
 			vgs = tr("VGS memorycard (*.vgs *.mem)"),
 			gme = tr("GME memorycard (*.gme)"),
 			vmp = tr("PSN memorycard (*.vmp)"),
