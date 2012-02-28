@@ -97,23 +97,13 @@ Window::Window()
 	actionFont->setChecked(!Config::value("font").isEmpty());
 	
 	menuLang = menu->addMenu(tr("&Langues"));
-		QDir dir(qApp->applicationDirPath());
-		QStringList stringList = dir.entryList(QStringList("hyne_*.qm"), QDir::Files, QDir::Name);
-		action = menuLang->addAction("Français");
-		action->setData("fr");
+	foreach(const QString &str, availableLanguages()) {
+		action = menuLang->addAction(str.left(str.lastIndexOf("|")));
+		QString lang = str.mid(str.lastIndexOf("|")+1);
+		action->setData(lang);
 		action->setCheckable(true);
-		action->setChecked(Config::value("lang")=="fr");
-
-		QTranslator translator;
-		foreach(QString str, stringList) {
-			translator.load(str, qApp->applicationDirPath());
-			action = menuLang->addAction(translator.translate("Window", "Français", "Your translation language"));
-			str = str.mid(5);
-			str = str.left(str.size()-3);
-			action->setData(str);
-			action->setCheckable(true);
-			action->setChecked(Config::value("lang")==str);
-		}
+		action->setChecked(Config::value("lang")==lang);
+	}
 	connect(menuLang, SIGNAL(triggered(QAction*)), SLOT(changeLanguage(QAction*)));
 	
 	/* MENU '?' */
@@ -522,6 +512,51 @@ void Window::font(bool font)
 	{
 		saves->updateSaveWidgets();
 	}
+}
+
+QStringList Window::availableLanguages()
+{
+	QDir dir(qApp->applicationDirPath());
+	QStringList languages, stringList = dir.entryList(QStringList("hyne_*.qm"), QDir::Files, QDir::Name);
+
+	languages.append("Français|fr");
+
+	QTranslator translator;
+	foreach(QString str, stringList) {
+		translator.load(str, qApp->applicationDirPath());
+		QString lang = translator.translate("Window", "Français", "Your translation language");
+
+		str = str.mid(5);
+		languages.append(lang + "|" + str.left(str.size()-3));
+	}
+
+	return languages;
+}
+
+QString Window::chooseLangDialog()
+{
+	const QString chooseStr("Choose your language");
+	QDialog *dialog = new QDialog();
+	dialog->setWindowTitle(chooseStr);
+	QLabel *label = new QLabel(chooseStr + ":", dialog);
+	QComboBox *comboBox = new QComboBox(dialog);
+	foreach(const QString &str, availableLanguages())
+		comboBox->addItem(str.left(str.lastIndexOf("|")), str.mid(str.lastIndexOf("|")+1));
+
+	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal, dialog);
+
+	QGridLayout *layout = new QGridLayout(dialog);
+	layout->addWidget(label, 0, 0);
+	layout->addWidget(comboBox, 0, 1);
+	layout->addWidget(buttonBox, 1, 0, 1, 2);
+
+	connect(buttonBox, SIGNAL(accepted()), dialog, SLOT(accept()));
+
+	if(dialog->exec() == QDialog::Accepted) {
+		return comboBox->itemData(comboBox->currentIndex()).toString();
+	}
+
+	return QString();
 }
 
 void Window::changeLanguage(QAction *action)

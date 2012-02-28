@@ -23,22 +23,22 @@ QStringList Config::recentFiles;
 QSettings *Config::settings = 0;
 QString Config::_ff8Path;
 
-quint32 Config::sec(const quint32 &time, const int freq_value)
+quint32 Config::sec(quint32 time, int freq_value)
 {
 	return time%freq(freq_value);
 }
 
-quint32 Config::min(const quint32 &time, const int freq_value)
+quint32 Config::min(quint32 time, int freq_value)
 {
 	return (time/freq(freq_value))%60;
 }
 
-quint32 Config::hour(const quint32 &time, const int freq_value)
+quint32 Config::hour(quint32 time, int freq_value)
 {
 	return time/(60*freq(freq_value));
 }
 
-quint32 Config::time(const quint32 &hour, const quint32 &min, const quint32 &sec, const int freq_value)
+quint32 Config::time(quint32 hour, quint32 min, quint32 sec, int freq_value)
 {
 	int f = freq(freq_value);
 	return sec + min*f + hour*f*60;

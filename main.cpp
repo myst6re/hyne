@@ -28,9 +28,18 @@ int main(int argc, char *argv[])
 	Config::set();
 
 	QTranslator translator;
-	QString lang = Config::value("lang", QLocale::system().name().toLower());
+	QString lang = QLocale::system().name().toLower();
+	lang = Config::value("lang", lang.left(lang.indexOf("_")));
 	if(translator.load("hyne_" + lang, app.applicationDirPath())) {
 		app.installTranslator(&translator);
+	} else if(lang != "fr") {
+		lang = Window::chooseLangDialog();
+		if(translator.load("hyne_" + lang, app.applicationDirPath())) {
+			app.installTranslator(&translator);
+			Config::setValue("lang", lang);
+		} else {
+			Config::setValue("lang", "fr");
+		}
 	} else {
 		Config::setValue("lang", "fr");
 	}

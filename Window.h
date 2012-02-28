@@ -36,7 +36,8 @@ public:
 	~Window();
 
 	void openFile(const QString &path);
-
+	static QString chooseLangDialog();
+	static QStringList availableLanguages();
 public slots:
 	void editView(SaveData *saveData);
 

@@ -29,10 +29,10 @@ public:
 	static QVariant valueVar(const QString &key, const QVariant &defaultValue=QVariant());
 	static void setValue(const QString &key, const QVariant &value);
 	static void sync();
-	static quint32 sec(const quint32 &time, const int freq_value);
-	static quint32 min(const quint32 &time, const int freq_value);
-	static quint32 hour(const quint32 &time, const int freq_value);
-	static quint32 time(const quint32 &hour, const quint32 &min, const quint32 &sec, const int freq_value);
+	static quint32 sec(quint32 time, int freq_value);
+	static quint32 min(quint32 time, int freq_value);
+	static quint32 hour(quint32 time, int freq_value);
+	static quint32 time(quint32 hour, quint32 min, quint32 sec, int freq_value);
 	static bool mode();
 	static int freq(const int freq_value=0);
 	static bool freq_auto();
