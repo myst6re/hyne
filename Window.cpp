@@ -536,7 +536,7 @@ QStringList Window::availableLanguages()
 QString Window::chooseLangDialog()
 {
 	const QString chooseStr("Choose your language");
-	QDialog *dialog = new QDialog();
+	QDialog *dialog = new QDialog(0, Qt::Dialog | Qt::WindowCloseButtonHint);
 	dialog->setWindowTitle(chooseStr);
 	QLabel *label = new QLabel(chooseStr + ":", dialog);
 	QComboBox *comboBox = new QComboBox(dialog);
