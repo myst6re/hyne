@@ -101,7 +101,11 @@ void Config::saveRecentFiles()
 
 void Config::set()
 {
+#ifdef Q_WS_WIN
 	settings = new QSettings(QString("%1/%2.ini").arg(qApp->applicationDirPath(), PROG_NAME), QSettings::IniFormat);
+#else
+	settings = new QSettings(PROG_NAME);
+#endif
 }
 
 bool Config::mode()

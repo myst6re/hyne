@@ -585,7 +585,7 @@ void Window::about()
 	
 	QLabel image(&about);
 	image.setPixmap(QPixmap(":/images/about.png"));
-	image.move(about.width()-20-image.sizeHint().height(), 49);
+	image.move(about.width()-20-image.sizeHint().height(), 80);
 	
 	QLabel desc1(PROG_FULLNAME, &about);
 	desc1.setFont(font);
@@ -594,7 +594,10 @@ void Window::about()
 
 	font.setPointSize(8);
 
-	QLabel desc2(tr("Par myst6re\nmyst6re@gmail.com\n\n75% modifiable\n\nMerci à :\n - Qhimm\n - Cyberman\n - sithlord48\n - Aladore384\n\nTraducteurs :\n - Anglais : myst6re, Vgr\n - Japonais : Asa"), &about);
+	QLabel desc2(tr("Par myst6re<br/><a href=\"https://sourceforge.net/projects/hyne/\">https://sourceforge.net/projects/hyne/</a><br/><br/>75% modifiable<br/><br/>Merci à :<br/> - Qhimm<br/> - Cyberman<br/> - sithlord48<br/> - Aladore384<br/><br/>Traducteurs :<br/> - Anglais : myst6re, Vgr<br/> - Japonais : Asa"), &about);
+	desc2.setTextInteractionFlags(Qt::LinksAccessibleByMouse | Qt::LinksAccessibleByKeyboard);
+	desc2.setTextFormat(Qt::RichText);
+	desc2.setOpenExternalLinks(true);
 	desc2.move(9, 24);
 	desc2.setFont(font);
 

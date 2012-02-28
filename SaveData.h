@@ -15,6 +15,10 @@
  ** You should have received a copy of the GNU General Public License
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
+/****************************************************************************
+ ** Part of this code was written by Qhimm in its Griever program.
+ ** Source code available at http://qhimm.com/
+ ****************************************************************************/
 
 #ifndef DEF_SAVEDATA
 #define DEF_SAVEDATA
