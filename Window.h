@@ -25,6 +25,7 @@
 #include "Parameters.h"
 #include "SelectSavesDialog.h"
 #include "StartWidget.h"
+#include "NewFileWizard.h"
 
 class Window : public QWidget
 {
@@ -43,6 +44,7 @@ public slots:
 
 private slots:
 	void saveView();
+	void newFile();
 	void slot1();
 	void slot2();
 	void open(OpenType=File);

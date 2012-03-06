@@ -37,24 +37,25 @@ Window::Window()
 
 	bool isInstalled = !Config::ff8Path().isEmpty();
 	
+	menu->addAction(tr("&Nouveau..."), this, SLOT(newFile()), QKeySequence::New);
 	menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("&Ouvrir..."), this, SLOT(open()), QKeySequence::Open);
 	actionReload = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_BrowserReload), tr("&Recharger depuis le disque"), this, SLOT(reload()), QKeySequence::Refresh);
 	actionReload->setEnabled(false);
 	actionSaveAs = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton), tr("E&xporter..."), this, SLOT(saveAs()), QKeySequence::SaveAs);
 	actionSaveAs->setEnabled(false);
 	menu->addSeparator();
-	actionProperties = menu->addAction(tr("Propriétés..."), this, SLOT(properties()));
+	actionProperties = menu->addAction(tr("&Propriétés..."), this, SLOT(properties()));
 	actionProperties->setEnabled(false);
-	actionSorting = menu->addAction(tr("Modifier l'ordre des saves..."), this, SLOT(sorting()));
+	actionSorting = menu->addAction(tr("&Modifier l'ordre des saves..."), this, SLOT(sorting()));
 	actionSorting->setEnabled(false);
-	action = menu->addAction(QIcon(":/images/ff8.png"), tr("Lancer Final Fantasy VIII"), this, SLOT(runFF8()), Qt::Key_F8);
+	action = menu->addAction(QIcon(":/images/ff8.png"), tr("&Lancer Final Fantasy VIII"), this, SLOT(runFF8()), Qt::Key_F8);
 	action->setShortcutContext(Qt::ApplicationShortcut);
 	action->setEnabled(isInstalled);
 	addAction(action);
-	action = menu->addAction(tr("Plein écran"), this, SLOT(fullScreen()), Qt::Key_F11);
+	action = menu->addAction(tr("Pl&ein écran"), this, SLOT(fullScreen()), Qt::Key_F11);
 	action->setShortcutContext(Qt::ApplicationShortcut);
 	addAction(action);
-	menuRecent = menu->addMenu(tr("&Ouverts récemment"));
+	menuRecent = menu->addMenu(tr("O&uverts récemment"));
 	fillMenuRecent();
 	connect(menuRecent, SIGNAL(triggered(QAction*)), SLOT(openRecentFile(QAction*)));
 	menu->addSeparator();
@@ -73,26 +74,26 @@ Window::Window()
 	
 	menu = menuBar->addMenu(tr("&Paramètres"));
 	
-	actionMode = menu->addAction(tr("Mode Avancé"), this, SLOT(mode(bool)));
+	actionMode = menu->addAction(tr("&Mode Avancé"), this, SLOT(mode(bool)));
 	actionMode->setCheckable(true);
 	actionMode->setChecked(Config::mode());
 	
-	menuFrame = menu->addMenu(tr("Images par seconde"));
-		action = menuFrame->addAction(tr("Auto"));
+	menuFrame = menu->addMenu(tr("&Images par seconde"));
+		action = menuFrame->addAction(tr("&Auto"));
 		action->setCheckable(true);
 		action->setChecked(Config::freq_auto());
 		action->setData(0);
-		action = menuFrame->addAction(tr("NTSC/PC (60 images/s)"));
+		action = menuFrame->addAction(tr("&NTSC/PC (60 images/s)"));
 		action->setCheckable(true);
 		action->setChecked(Config::freq()==60);
 		action->setData(60);
-		action = menuFrame->addAction(tr("PAL (50 images/s)"));
+		action = menuFrame->addAction(tr("&PAL (50 images/s)"));
 		action->setCheckable(true);
 		action->setChecked(Config::freq()==50);
 		action->setData(50);
 	connect(menuFrame, SIGNAL(triggered(QAction*)), SLOT(changeFrame(QAction*)));
 	
-	actionFont = menu->addAction(tr("Police haute résolution"), this, SLOT(font(bool)));
+	actionFont = menu->addAction(tr("&Police haute résolution"), this, SLOT(font(bool)));
 	actionFont->setCheckable(true);
 	actionFont->setChecked(!Config::value("font").isEmpty());
 	
@@ -196,6 +197,12 @@ void Window::setTitle(const bool editor)
 				   (Data::currentPath.isEmpty() ? QString() : " - "%Data::currentPath) %
 				   (editor ? tr(" - save %1").arg(currentSaveEdited+1, 2, 10, QChar('0')) : QString())
 				   );
+}
+
+void Window::newFile()
+{
+	NewFileWizard wizard(this);
+	wizard.exec();
 }
 
 void Window::slot1()

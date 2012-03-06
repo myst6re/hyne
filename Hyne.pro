@@ -42,7 +42,8 @@ HEADERS += PageWidgets/ConfigEditor.h \
     PageWidgets/WorldmapEditor.h \
 	MapWidget.h \
     PageWidgets/FieldEditor.h \
-    StartWidget.h
+    StartWidget.h \
+    NewFileWizard.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
 	PageWidgets/MiscEditor.cpp \
 	PageWidgets/GfEditor.cpp \
@@ -77,7 +78,8 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/WorldmapEditor.cpp \
 	MapWidget.cpp \
     PageWidgets/FieldEditor.cpp \
-    StartWidget.cpp
+    StartWidget.cpp \
+    NewFileWizard.cpp
 RESOURCES += \
 	Hyne.qrc
 TRANSLATIONS += hyne_en.ts \
