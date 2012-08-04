@@ -1,0 +1,29 @@
+hyne (1.6_package0) natty; urgency=low
+
+  * synced to 1.6 
+
+ -- Chris Rizzitello <sithlord48@gmail.com>  Fri, 3 Feb 2012 19:01:32 -0400
+
+hyne (1.5.1) natty; urgency=low
+
+  * synced to 1.5.1 
+
+ -- Chris Rizzitello <sithlord48@gmail.com>  Sat, 24 Sep 2011 11:20:39 -0400
+
+hyne (1.5-package1) natty; urgency=low
+
+  * Fixed Missing Desktop file 
+
+ -- Chris Rizzitello <sithlord48@gmail.com>  Tue, 20 Sep 2011 21:43:09 -0400
+
+hyne (1.5) lucid; urgency=low
+
+  * Synced To hyne 1.5  
+
+ -- Chris Rizzitello <sithlord48@gmail.com>  Tue, 20 Sep 2011 18:47:09 -0400
+
+hyne (1.4-package1) lucid; urgency=low
+
+  * Initial packaging 
+
+ -- Chris Rizzitello <sithlord48@gmail.com>  Fri, 03 Jun 2011 20:59:26 -0400

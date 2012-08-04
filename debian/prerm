@@ -1,0 +1,5 @@
+#!/bin/sh
+if [ -f /usr/bin/hyne ];then
+  rm /usr/bin/hyne 
+else exit 0
+fi
