@@ -48,8 +48,6 @@ class Data
 public:
 	static void load();
 
-	static QString currentPath;
-
 	static const quint8 apsTab[116];
 	static const quint8 innateAbilities[16][22];
 	static QString getCardsLocation(int i);

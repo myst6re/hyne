@@ -22,7 +22,6 @@
 
 #include "Data.h"
 
-QString Data::currentPath = QString();
 QStringList Data::abilities;
 QStringList Data::magic;
 QStringList Data::items;

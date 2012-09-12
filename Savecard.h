@@ -24,6 +24,8 @@
 #include "SaveWidget.h"
 #include "HeaderDialog.h"
 
+class SaveWidget;
+
 class Savecard : public QListWidget
 {
 	Q_OBJECT

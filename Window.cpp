@@ -118,7 +118,7 @@ Window::Window()
 	blackView->setFrameShape(QFrame::NoFrame);
 //	blackView->setAlignment(Qt::AlignCenter);
 //	blackView->setWidget(new StartWidget(blackView));
-	
+
 	editor = new Editor(this);
 	editor->hide();
 
@@ -198,7 +198,7 @@ void Window::dropEvent(QDropEvent *event)
 void Window::setTitle(const bool editor)
 {
 	setWindowTitle(PROG_FULLNAME %
-				   (Data::currentPath.isEmpty() ? QString() : " - [*]"%Data::currentPath) %
+				   (!isOpen ? QString() : " - [*]" % saves->path()) %
 				   (editor ? tr(" - save %1").arg(currentSaveEdited+1, 2, 10, QChar('0')) : QString())
 				   );
 }
@@ -338,8 +338,6 @@ void Window::setIsOpen(bool open)
 		actionClose->setEnabled(true);
 		actionReload->setEnabled(true);
 
-		Data::currentPath = saves->path();
-
 		setTitle();
 	} else {
 		stackedLayout->setCurrentWidget(blackView);
@@ -359,8 +357,6 @@ void Window::setIsOpen(bool open)
 		actionClose->setEnabled(false);
 		actionReload->setEnabled(false);
 
-		Data::currentPath = QString();
-
 		setTitle();
 		setModified(false);
 	}
@@ -376,8 +372,7 @@ void Window::openRecentFile(QAction *action)
 
 void Window::reload()
 {
-	QString curPath = Data::currentPath;
-	openFile(curPath);
+	if(isOpen)	openFile(saves->path());
 }
 
 bool Window::saveAs()
@@ -474,6 +469,8 @@ bool Window::saveAs(Savecard::Type newType, const QString &path)
 		}
 	}
 
+	setTitle();
+
 	return true;
 }
 
@@ -569,7 +566,6 @@ void Window::save()
 	if(!hasPath || type == Savecard::Vmp || type == Savecard::Psv) {
 		saved = saveAs();
 		if(!hasPath && saved) {
-			Data::currentPath = saves->path();
 			setTitle();
 		}
 	} else {

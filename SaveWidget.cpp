@@ -18,8 +18,8 @@
 
 #include "SaveWidget.h"
 
-SaveWidget::SaveWidget(SaveData *saveData, QWidget *parent)
-	: QWidget(parent), saveData(saveData), saved(false), hovered(false)
+SaveWidget::SaveWidget(SaveData *saveData, Savecard *savecard, QWidget *parent)
+	: QWidget(parent), saveData(saveData), _savecard(savecard), saved(false), hovered(false)
 {
 	connect(saveData->saveIcon(), SIGNAL(nextIcon(QPixmap)), SLOT(refreshIcon()));
 }
@@ -39,6 +39,11 @@ void SaveWidget::setSaved()
 void SaveWidget::setSaveData(SaveData *saveData)
 {
 	this->saveData = saveData;
+}
+
+void SaveWidget::setSavecard(Savecard *savecard)
+{
+	_savecard = savecard;
 }
 
 QSize SaveWidget::sizeHint() const
@@ -110,8 +115,8 @@ void SaveWidget::exportPC()
 
 	if(Config::value("savePath").isEmpty())
 	{
-		index = Data::currentPath.lastIndexOf('/');
-		if(index != -1)		path = Data::currentPath.left(index+1);
+		index = _savecard->path().lastIndexOf('/');
+		if(index != -1)		path = _savecard->path().left(index+1);
 	}
 	else
 	{

@@ -21,16 +21,20 @@
 
 #include <QtGui>
 #include "SaveData.h"
+#include "Savecard.h"
 #include "HeaderDialog.h"
+
+class Savecard;
 
 class SaveWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	SaveWidget(SaveData *saveData, QWidget *parent=0);
+	SaveWidget(SaveData *saveData, Savecard *savecard, QWidget *parent=0);
 	void hideCursor();
 	void setSaved();
 	void setSaveData(SaveData *saveData);
+	void setSavecard(Savecard *savecard);
 	virtual QSize sizeHint() const;
 	virtual QSize minimumSizeHint() const;
 	static void drawFrame(QPainter *painter, int width, int height);
@@ -40,6 +44,7 @@ private:
 	static void colors(QImage *image, int color);
 
 	SaveData *saveData;
+	Savecard *_savecard;
 	bool saved, hovered;
 public slots:
 	void properties();

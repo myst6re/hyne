@@ -22,7 +22,7 @@ Savecard::Savecard(const QString &chemin, QWidget *parent, bool slot)
 	: QListWidget(parent), _ok(true), _hasPath(true), start(0), notify(true), _isModified(false)
 {
 	setWidget();
-	
+
 	if(slot)
 	{
 		setPath(chemin + "/");
@@ -253,7 +253,7 @@ void Savecard::moveCursor(int row)
 	for(int i=0 ; i<row ; ++i) {
 		saveWidget(i)->hideCursor();
 	}
-	
+
 	for(int i=row+1 ; i<count() ; ++i) {
 		saveWidget(i)->hideCursor();
 	}
