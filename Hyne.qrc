@@ -118,5 +118,6 @@
         <file>images/sp.png</file>
         <file>images/uk.png</file>
         <file>images/cards.png</file>
+        <file>data/newGame</file>
     </qresource>
 </RCC>

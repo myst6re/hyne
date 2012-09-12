@@ -41,7 +41,9 @@ Window::Window()
 	menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("&Ouvrir..."), this, SLOT(open()), QKeySequence::Open);
 	actionReload = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_BrowserReload), tr("&Recharger depuis le disque"), this, SLOT(reload()), QKeySequence::Refresh);
 	actionReload->setEnabled(false);
-	actionSaveAs = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton), tr("E&xporter..."), this, SLOT(saveAs()), QKeySequence::SaveAs);
+	actionSave = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton), tr("&Enregistrer"), this, SLOT(save()), QKeySequence::Save);
+	actionSave->setEnabled(false);
+	actionSaveAs = menu->addAction(tr("E&xporter..."), this, SLOT(saveAs()), QKeySequence::SaveAs);
 	actionSaveAs->setEnabled(false);
 	menu->addSeparator();
 	actionProperties = menu->addAction(tr("&Propriétés..."), this, SLOT(properties()));
@@ -52,7 +54,7 @@ Window::Window()
 	action->setShortcutContext(Qt::ApplicationShortcut);
 	action->setEnabled(isInstalled);
 	addAction(action);
-	action = menu->addAction(tr("Pl&ein écran"), this, SLOT(fullScreen()), Qt::Key_F11);
+	action = menu->addAction(tr("Ple&in écran"), this, SLOT(fullScreen()), Qt::Key_F11);
 	action->setShortcutContext(Qt::ApplicationShortcut);
 	addAction(action);
 	menuRecent = menu->addMenu(tr("O&uverts récemment"));
@@ -120,8 +122,8 @@ Window::Window()
 	editor = new Editor(this);
 	editor->hide();
 
-	connect(editor, SIGNAL(accepted()), SLOT(save()));
-	connect(editor, SIGNAL(rejected()), SLOT(cancel()));
+	connect(editor, SIGNAL(accepted()), SLOT(saveView()));
+	connect(editor, SIGNAL(rejected()), SLOT(saveView()));
 	
 	stackedLayout = new QStackedLayout;
 	stackedLayout->addWidget(blackView);
@@ -154,9 +156,11 @@ void Window::showEvent(QShowEvent *)
 void Window::closeEvent(QCloseEvent *event)
 {
 	if(stackedLayout->currentWidget()==editor) {
-		cancel();
+		saveView();
 		event->ignore();
 	}
+	else if(!closeFile(true))
+		event->ignore();
 	else
 		event->accept();
 }
@@ -194,15 +198,49 @@ void Window::dropEvent(QDropEvent *event)
 void Window::setTitle(const bool editor)
 {
 	setWindowTitle(PROG_FULLNAME %
-				   (Data::currentPath.isEmpty() ? QString() : " - "%Data::currentPath) %
+				   (Data::currentPath.isEmpty() ? QString() : " - [*]"%Data::currentPath) %
 				   (editor ? tr(" - save %1").arg(currentSaveEdited+1, 2, 10, QChar('0')) : QString())
 				   );
 }
 
+void Window::setModified(bool modified)
+{
+	setWindowModified(modified);
+	actionSave->setEnabled(modified);
+}
+
 void Window::newFile()
 {
-	NewFileWizard wizard(this);
-	wizard.exec();
+	QDialog dialog(this, Qt::Dialog | Qt::WindowCloseButtonHint);
+	dialog.setWindowTitle(tr("Nouveau"));
+
+	QRadioButton oneSave(tr("1 sauvegarde"), &dialog);
+	QRadioButton multiSaves(tr("15 sauvegardes"), &dialog);
+	multiSaves.setChecked(true);
+	QDialogButtonBox buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, &dialog);
+
+	QGridLayout layout(&dialog);
+	layout.addWidget(&oneSave, 0, 0);
+	layout.addWidget(&multiSaves, 0, 1);
+	layout.addWidget(&buttonBox, 1, 0, 1, 2);
+
+	connect(&buttonBox, SIGNAL(accepted()), &dialog, SLOT(accept()));
+	connect(&buttonBox, SIGNAL(rejected()), &dialog, SLOT(reject()));
+
+	if(dialog.exec() == QDialog::Accepted) {
+		if(!closeFile())	return;
+
+		saves = new Savecard(oneSave.isChecked() ? 1 : 15, this);
+
+		if(!saves->ok())
+		{
+			closeFile();
+		}
+		else
+		{
+			setIsOpen(true);
+		}
+	}
 }
 
 void Window::slot1()
@@ -245,53 +283,89 @@ void Window::open(OpenType slot)
 	openFile(path);
 }
 
-void Window::closeFile()
+bool Window::closeFile(bool quit)
 {
-	stackedLayout->setCurrentWidget(blackView);
-    editor->hide();
-	if(this->isOpen)
-    {
-		isOpen = false;
-		delete saves;
-    }
-    currentSaveEdited = 0;
-    actionClose->setEnabled(false);
-    actionSaveAs->setEnabled(false);
-	actionProperties->setEnabled(false);
-	actionSorting->setEnabled(false);
-	actionReload->setEnabled(false);
-	Data::currentPath = QString();
-	setTitle();
+	if(isOpen && saves->isModified()) {
+		QMessageBox::StandardButton b = QMessageBox::question(this, tr("Enregistrer ?"), tr("Voulez-vous enregistrer '%1' avant de fermer ?").arg(saves->type()==Savecard::PcDir ? tr("fente") : saves->name()), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+		switch(b) {
+		case QMessageBox::Yes:
+			save();
+			break;
+		case QMessageBox::Cancel:
+			return false;
+		default:
+			break;
+		}
+	}
+
+	if(quit)	return true;
+
+	setIsOpen(false);
+
+	return true;
 }
 
 void Window::openFile(const QString &path)
 {
+	if(!closeFile())	return;
+
 	QString cleanPath = QDir::cleanPath(path);
-	closeFile();
 	saves = new Savecard(cleanPath, this, this->isPCSlot);
 
-	Data::currentPath = cleanPath;
-
-	this->isOpen = true;
-
 	if(!saves->ok())
+	{
 		closeFile();
+	}
 	else
 	{
+		setIsOpen(true);
+
+		if(!isPCSlot) {
+			Config::addRecentFile(saves->path());
+			fillMenuRecent();
+		}
+	}
+}
+
+void Window::setIsOpen(bool open)
+{
+	if(open) {
 		stackedLayout->addWidget(saves);
 		stackedLayout->setCurrentWidget(saves);
 		actionSaveAs->setEnabled(true);
 		actionProperties->setEnabled(true);
-		actionSorting->setEnabled(!saves->isOneSaveType());
+		actionSorting->setEnabled(saves->count() > 1);
 		actionClose->setEnabled(true);
 		actionReload->setEnabled(true);
-		setTitle();
 
-		if(!isPCSlot) {
-			Config::addRecentFile(cleanPath);
-			fillMenuRecent();
+		Data::currentPath = saves->path();
+
+		setTitle();
+	} else {
+		stackedLayout->setCurrentWidget(blackView);
+		editor->hide();
+
+		if(isOpen)
+		{
+			isOpen = false;
+			delete saves;
 		}
+
+		currentSaveEdited = 0;
+
+		actionSaveAs->setEnabled(false);
+		actionProperties->setEnabled(false);
+		actionSorting->setEnabled(false);
+		actionClose->setEnabled(false);
+		actionReload->setEnabled(false);
+
+		Data::currentPath = QString();
+
+		setTitle();
+		setModified(false);
 	}
+
+	isOpen = open;
 }
 
 void Window::openRecentFile(QAction *action)
@@ -303,7 +377,6 @@ void Window::openRecentFile(QAction *action)
 void Window::reload()
 {
 	QString curPath = Data::currentPath;
-	closeFile();
 	openFile(curPath);
 }
 
@@ -350,38 +423,49 @@ bool Window::saveAs()
 	int index = path.lastIndexOf('/');
 	Config::setValue("savePath", index == -1 ? path : path.left(index));
 
-	return saveAs(type, newType, path);
+	return saveAs(newType, path);
 }
 
-bool Window::saveAll()
+bool Window::saveAs(Savecard::Type newType, const QString &path)
 {
-	return saveAs(saves->type(), saves->type(), saves->path());
-}
+	Savecard::Type type = saves->type();
 
-bool Window::saveAs(Savecard::Type type, Savecard::Type newType, const QString &path)
-{
-	if(newType != Savecard::Pc)
-	{
-		if(type == Savecard::PcDir) {
-			if(newType == Savecard::PcDir) {
-				saves->saveDir();
-			}
-			else {
+	if(type == newType) {
+		switch(type) {
+		case Savecard::Pc:
+			saves->saveOne(0, path);
+			break;
+		case Savecard::PcDir:
+			saves->saveDir();
+			break;
+		case Savecard::Psv:
+		case Savecard::Ps:
+		case Savecard::Vgs:
+		case Savecard::Gme:
+		case Savecard::Vmp:
+		case Savecard::Unknown:
+			saves->save(path, newType);
+			break;
+		case Savecard::Undefined:
+			qWarning() << "not possible case";
+			return false;
+		}
+	} else {
+		if(newType != Savecard::Pc)
+		{
+			if(type == Savecard::PcDir || type == Savecard::Undefined) {
 				QList<int> selected_files = selectSavesDialog(true);
 				if(selected_files.isEmpty())	return false;
 				saves->save2PS(selected_files, path, newType);
 			}
+			else if(type == Savecard::Pc || type == Savecard::Psv)
+				saves->save2PS(QList<int>() << 0, path, newType);
+			else
+				saves->save(path, newType);
 		}
-		else if(type == Savecard::Pc || (type == Savecard::Psv && newType != Savecard::Psv))
-			saves->save2PS(QList<int>() << 0, path, newType);
-		else
-			saves->save(path, newType);
-	}
-	else
-	{
-		if(type == Savecard::Pc)
-			saves->saveOne(0, path);
-		else {
+		else // saveOne (PC)
+		{
+			// Need selection by user
 			QList<int> selected_files = selectSavesDialog();
 			if(selected_files.isEmpty())	return false;
 			int id = selected_files.first();
@@ -407,13 +491,20 @@ void Window::sorting()
 
 	if(dialog->exec() == QDialog::Accepted) {
 		saves->setSlotOrder(dialog->order());
-		saveAll();
+		setModified(saves->isModified());
 	}
 }
 
 QList<int> Window::selectSavesDialog(bool multiSelection)
 {
-	if(saves->isOneSaveType())	 return QList<int>() << 0;
+	if(saves->count() <= 15 && saves->count() > 0) {
+		QList<int> ids;
+		for(int i=0 ; i<saves->count() ; ++i) {
+			ids.append(i);
+		}
+		return ids;
+	}
+
 	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), multiSelection, this);
 
 	if(dialog->exec() == QDialog::Accepted) {
@@ -450,36 +541,45 @@ void Window::saveView()
 	menuBar->show();
 	setWindowIcon(QIcon(":/images/hyne.png"));
 	setTitle();
+	setModified(saves->isModified());
+	saves->updateSaveWidget(currentSaveEdited);
 }
 
 void Window::save()
 {
-	bool saved = true;
+//	bool saved = true;
 
-	if(this->isPCSlot)
-	{
-		saves->saveDir(currentSaveEdited);
+//	if(this->isPCSlot)
+//	{
+//		saves->saveDir(currentSaveEdited);
+//	}
+//	else
+//	{
+//		Savecard::Type type = saves->type();
+//		if(type == Savecard::Vmp || type == Savecard::Psv)
+//			saved = saveAs();
+//		else if(type == Savecard::Pc)
+//			saves->saveOne(0);
+//		else
+//			saves->save();
+//	}
+	bool saved = true, hasPath = saves->hasPath();
+	Savecard::Type type = saves->type();
+
+	if(!hasPath || type == Savecard::Vmp || type == Savecard::Psv) {
+		saved = saveAs();
+		if(!hasPath && saved) {
+			Data::currentPath = saves->path();
+			setTitle();
+		}
+	} else {
+		saved = saveAs(type, saves->path());
 	}
-	else
-	{
-		Savecard::Type type = saves->type();
-		if(type == Savecard::Vmp || type == Savecard::Psv)
-			saved = saveAs();
-		else if(type == Savecard::Pc)
-			saves->saveOne(0);
-		else
-			saves->save();
-	}
+
 	if(saved) {
-		saveView();
-		saves->updateSaveWidget(currentSaveEdited, true);
+		setModified(false);
+		saves->setModified(false);
 	}
-}
-
-void Window::cancel()
-{
-	saveView();
-	saves->updateSaveWidget(currentSaveEdited);
 }
 
 void Window::mode(bool mode)
@@ -606,7 +706,7 @@ void Window::restartNow()
 
 void Window::runFF8()
 {
-	if(!QProcess::startDetached("\"" % Config::ff8Path() % "/FF8.exe\"")) {
+	if(!QProcess::startDetached("\"" % Config::ff8Path() % "/FF8.exe\"", QStringList(), Config::ff8Path())) {
 		QMessageBox::warning(this, tr("Erreur"), tr("Final Fantasy VIII n'a pas pu être lancé.\n%1").arg(Config::ff8Path() % "/FF8.exe"));
 	}
 }

@@ -42,7 +42,7 @@ struct GFORCES//68
 	quint16 KOs;
 	quint8 learning;
 	quint32 forgotten : 24;// 22 + 2 inused
-};
+}__attribute__((__packed__));
 
 struct PERSONNAGES//152
 {
@@ -85,14 +85,14 @@ struct PERSONNAGES//152
 	quint8 u4;
 	quint8 status;
 	quint8 u5;// padding ?
-};
+}__attribute__((__packed__));
 
 struct SHOP//20
 {
 	quint8 items[16];
 	quint8 visited;
 	quint8 u1[3];// padding ?
-};
+}__attribute__((__packed__));
 
 struct CONFIG//20
 {
@@ -124,7 +124,7 @@ struct CONFIG//20
 	quint8 u4;
 	quint8 u5;
 	quint8 START;
-};
+}__attribute__((__packed__));
 
 struct MISC1//32
 {
@@ -135,7 +135,7 @@ struct MISC1//32
 	quint16 u2;// (START) 0000 0000 0010 0000 -> (CD3) 0000 0011 0010 0000 -> (CD4) 0000 0111 0010 0000
 	quint32 gils;
 	quint32 dream_gils;
-};
+}__attribute__((__packed__));
 
 struct LIMITB//16
 {
@@ -146,13 +146,13 @@ struct LIMITB//16
 	quint8 angel_completed;
 	quint8 angel_known;
 	quint8 angel_pts[8];
-};
+}__attribute__((__packed__));
 
-struct OBJETS//428
+struct ITEMS//428
 {
 	quint8 battle_order[32];
 	quint16 items[198];
-};
+}__attribute__((__packed__));
 
 struct MISC2//144
 {
@@ -160,9 +160,9 @@ struct MISC2//144
 	quint32 countdown;
 	// Battle vars (75)
 	quint32 u1;
-	quint32 combats_gagnes;
+	quint32 victory_count;
 	quint16 u2;
-	quint16 combats_fuis;
+	quint16 battle_escaped;
 	quint32 u3;
 	quint32 tomberry_vaincus;
 	quint32 tomberry_sr_vaincu;
@@ -182,15 +182,16 @@ struct MISC2//144
 	// pos=100
 	quint32 u5;
 	quint8 party[4];// party[3] always=255
-	quint8 u6[6];
+	quint8 u6[4];
+	quint16 module;// 1=field, 2=worldmap, 3=battle
 	quint16 location;
 	quint16 location_last;
-	qint16 x[3];// maybe coord x (party1, party2, party3)
-	qint16 y[3];// maybe coord y (party1, party2, party3)
-	qint16 z[3];// maybe coord z (party1, party2, party3)
-	quint8 id[3];// maybe id (party1, party2, party3)
-	quint8 u8[5];
-};
+	qint16 x[3];// coord x (party1, party2, party3)
+	qint16 y[3];// coord y (party1, party2, party3)
+	qint16 id[3];// triangle (party1, party2, party3)
+	quint8 dir[3];// direction (party1, party2, party3)
+	quint8 u7[5];
+}__attribute__((__packed__));
 
 struct MISC3//256
 {
@@ -213,7 +214,7 @@ struct MISC3//256
 	quint16 last_field_id;
 	quint8 current_car_rent;
 	quint8 music_util;
-	quint8 savepoint_util;
+	quint8 move_find_ondine;
 	quint8 u6[15];// 0 ?
 	quint32 u7;// start with 0x00000018 (18 <=> 0001 1000 : SARALYOFF | 0 <=> 0000 0000 : SARALYON)
 	quint32 u8;// start with 0xffffffff
@@ -227,7 +228,7 @@ struct MISC3//256
 	quint8 uC[2];
 	quint8 battle_off;
 	quint8 uD[48];
-};
+}__attribute__((__packed__));
 
 struct FIELD//1024
 {
@@ -252,7 +253,7 @@ struct FIELD//1024
 	quint8 u4[3];
 	quint16 timber_maniacs;
 	quint8 u7[974];//			(4285=tt club cc|4286=tt victory count BGU)
-};
+}__attribute__((__packed__));
 
 struct WORLDMAP//128
 {
@@ -287,7 +288,7 @@ struct WORLDMAP//128
 	 * [7] => ??? (temp var)
 	 */
 	quint8 u6[2];
-};
+}__attribute__((__packed__));
 
 struct WORLDMAP_PC//26 (padding 8)
 {
@@ -310,7 +311,7 @@ struct WORLDMAP_PC//26 (padding 8)
 	 * [7] => ??? (temp var)
 	 */
 	quint8 u6[2];
-};
+}__attribute__((__packed__));
 
 struct TTCARDS//128
 {
@@ -323,7 +324,7 @@ struct TTCARDS//128
 	quint16 tt_egality_count;
 	quint16 u2;
 	quint32 u3;
-};
+}__attribute__((__packed__));
 
 struct CHOCOBO//64
 {
@@ -338,7 +339,7 @@ struct CHOCOBO//64
 	quint8 u2[31];
 	quint8 boko_attack;// star count (chocobraise | chocoflammes | chocométéore | grochocobo)
 	quint8 u3[18];
-};
+}__attribute__((__packed__));
 
 /*
   A chercher :
@@ -355,14 +356,14 @@ struct MAIN//4944 (~4242 used)
 	CONFIG config;//			(pos=3168)		[20/20 editable]
 	MISC1 misc1;//				(pos=3188)		[32/32 editable]
 	LIMITB limitb;//			(pos=3220)		[16/16 editable]
-	OBJETS objets;//			(pos=3236)		[428/428 editable]
+	ITEMS items;//				(pos=3236)		[428/428 editable]
 	MISC2 misc2;//				(pos=3664)		[104/144 editable]
 	MISC3 misc3;//				(pos=3808)		[138/256 editable]
 	FIELD field;//				(pos=4064)		[30/1024 editable] (702 unused)
 	WORLDMAP worldmap;//		(pos=5088)		[13/128 editable]
 	TTCARDS ttcards;//			(pos=5216)		[128/128 editable]
 	CHOCOBO chocobo;//			(pos=5344)		[8/64 editable]
-};
+}__attribute__((__packed__));
 
 struct HEADER//76	(pos=388)		[58+18(auto)/76 editable]
 {
@@ -380,7 +381,7 @@ struct HEADER//76	(pos=388)		[58+18(auto)/76 editable]
 	char boko[12];
 	quint32 disc;// auto
 	quint32 curSave;
-};
+}__attribute__((__packed__));
 
 #include "FF8Text.h"
 #include "SaveIcon.h"
@@ -391,11 +392,13 @@ class SaveData
 {
 public:
 	SaveData();
-	SaveData(int id, const QByteArray &data, const QByteArray &MC, bool isVmp);
-	QByteArray save();
+	SaveData(int id, const QByteArray &data, const QByteArray &MCHeader, bool isVmp);
+	void open(const QByteArray &data, const QByteArray &MCHeader);
+	QByteArray save() const;
+	void remove();
 	QString perso(quint8 id) const;
 	QString getShortDescription() const;
-	bool exportPC(const QString &path);
+	bool exportPC(const QString &path) const;
 	void restore();
 	const QByteArray &MCHeader() const;
 	char MCHeaderCountry() const;
@@ -403,15 +406,16 @@ public:
 	QString MCHeaderId() const;
 	QByteArray saveMCHeader();// with xor byte
 	static QByteArray emptyMCHeader();
-	const QByteArray &header();
+	const QByteArray &header() const;
 	void setMCHeader(const QByteArray &);
 	void setMCHeader(bool exists, char country, const QString &code, const QString &id);
 	QPixmap icon(bool chocobo_world_icon=false) const;
-	SaveIcon *saveIcon();
+	const SaveIcon *saveIcon() const;
 	const HEADER &descData() const;
-	void setDescData(const HEADER &);
 	const MAIN &mainData() const;
-	void setMainData(const MAIN &);
+	void setSaveData(const HEADER &, const MAIN &);
+	bool isModified() const;
+	void setModified(bool modified);
 	int freqValue() const;
 	int id() const;
 	void setId(int id);
@@ -422,10 +426,9 @@ public:
 	bool hasMCHeader() const;
 	bool isJp() const;
 	bool isVmp() const;
-	void setVmp(bool isVmp);
 	static quint8 xorByte(const char *data);
 private:
-	bool load(const QByteArray &);
+	bool setData(const QByteArray &data);
 	static quint16 calcChecksum(const char *data);
 	static const quint16 crcTab[256];
 
@@ -437,6 +440,7 @@ private:
 	int _freqValue, _id;
 	bool _isFF8, _isDelete, _isTheLastEdited;
 	bool _isVmp;
+	bool _isModified;
 	QByteArray _saveData;
 };
 

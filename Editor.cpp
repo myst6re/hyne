@@ -33,9 +33,9 @@ Editor::Editor(QWidget *parent)
 					<< tr("Triple Triad") << tr("Sources") << tr("Combats") << tr("Terrain") << tr("Mappemonde") << tr("Chocobo World")
 					<< tr("Divers") << tr("Configuration") << tr("HexaEdit"));
 
-	QPushButton *apply = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton), tr("&Sauver"), this);
-	QPushButton *cancel = new QPushButton(tr("Annuler"), this);
-	apply->setShortcut(QKeySequence::Save);
+	QPushButton *apply = new QPushButton(/*QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton),*/ tr("&OK"), this);
+	apply->setDefault(true);
+	QPushButton *cancel = new QPushButton(tr("&Annuler"), this);
 	
 	stackedLayout = new QStackedLayout;
 	
@@ -123,8 +123,7 @@ void Editor::save()
 		}
 	}
 
-	saveData->setMainData(copy);
-	saveData->setDescData(descCopy);
+	saveData->setSaveData(descCopy, copy);
 
 	emit accepted();
 }

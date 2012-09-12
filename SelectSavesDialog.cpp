@@ -58,7 +58,7 @@ SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, QWidget
 	msg->setText(tr("Déplacez les éléments à la souris pour modifier l'ordre des saves."));
 	list->setDragDropMode(QAbstractItemView::InternalMove);
 
-	QPushButton *ok = new QPushButton(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton), tr("OK"), this);
+	QPushButton *ok = new QPushButton(/*QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton),*/ tr("OK"), this);
 	connect(ok, SIGNAL(released()), SLOT(accept()));
 
 	QVBoxLayout *layout = new QVBoxLayout(this);

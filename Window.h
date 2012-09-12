@@ -25,7 +25,6 @@
 #include "Parameters.h"
 #include "SelectSavesDialog.h"
 #include "StartWidget.h"
-#include "NewFileWizard.h"
 
 class Window : public QWidget
 {
@@ -34,25 +33,24 @@ public:
 	enum OpenType { File, Slot1, Slot2 };
 
 	explicit Window();
-	~Window();
+	virtual ~Window();
 
 	void openFile(const QString &path);
 	static QString chooseLangDialog();
 	static QStringList availableLanguages();
 public slots:
 	void editView(SaveData *saveData);
-
+	void setModified(bool modified=true);
 private slots:
 	void saveView();
 	void newFile();
 	void slot1();
 	void slot2();
 	void open(OpenType=File);
-	void closeFile();
+	bool closeFile(bool quit=false);
 	void reload();
 	void openRecentFile(QAction*);
 	void save();
-	void cancel();
 	bool saveAs();
 	void properties();
 	void sorting();
@@ -65,8 +63,8 @@ private slots:
 	void about();
 
 private:
-	bool saveAll();
-	bool saveAs(Savecard::Type type, Savecard::Type newType, const QString &path);
+	void setIsOpen(bool open);
+	bool saveAs(Savecard::Type newType, const QString &path);
 	void fillMenuRecent();
 	void restartNow();
 
@@ -74,7 +72,7 @@ private:
 	QList<int> selectSavesDialog(bool multiSelection=false);
 	
 	QMenuBar *menuBar;
-	QAction *actionReload, *actionSaveAs, *actionProperties, *actionSorting, *actionClose, *actionMode, *actionFont;
+	QAction *actionReload, *actionSave, *actionSaveAs, *actionProperties, *actionSorting, *actionClose, *actionMode, *actionFont;
 	QMenu *menuRecent, *menuFrame, *menuLang;
 	QStackedLayout *stackedLayout;
 	Savecard *saves;

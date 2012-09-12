@@ -19,19 +19,26 @@
 #include "SaveData.h"
 
 SaveData::SaveData()
-	: _id(0), _isFF8(false), _isDelete(false), _isTheLastEdited(false), _isVmp(false)
+	: _freqValue(60), _id(0), _isFF8(false), _isDelete(false), _isTheLastEdited(false), _isVmp(false), _isModified(false)
 {
 }
 
 SaveData::SaveData(int id, const QByteArray &data, const QByteArray &MCHeader, bool isVmp)
-	: _id(id), _isFF8(false), _isDelete(false), _isTheLastEdited(false), _isVmp(isVmp)
+	: _freqValue(60), _id(id), _isFF8(false), _isDelete(false), _isTheLastEdited(false), _isVmp(isVmp), _isModified(false)
 {
+	open(data, MCHeader);
+}
+
+void SaveData::open(const QByteArray &data, const QByteArray &MCHeader)
+{
+	_isDelete = _isFF8 = false;
+
 	setMCHeader(MCHeader);
 	if(data.isEmpty())	_isDelete = true;
 
 	if(data.size() >= FF8SAVE_SIZE && data.startsWith("SC"))
 	{
-		_isFF8 = load(data);
+		_isFF8 = setData(data);
 
 		if(_isFF8 || !_isDelete) {
 			_header = data.left(96);
@@ -54,6 +61,14 @@ SaveData::SaveData(int id, const QByteArray &data, const QByteArray &MCHeader, b
 	if(!_isFF8) {
 		_saveData = !_isDelete ? data.mid(96+_icon.save().size()) : data;
 	}
+
+	_isModified = false;
+}
+
+void SaveData::remove()
+{
+	open(QByteArray(), hasMCHeader() ? emptyMCHeader() : QByteArray());
+	_isModified = true;
 }
 
 const QByteArray &SaveData::MCHeader() const
@@ -94,12 +109,15 @@ QByteArray SaveData::emptyMCHeader()
 
 void SaveData::setMCHeader(const QByteArray &MCHeader)
 {
-	_MCHeader = MCHeader;
+	if(_MCHeader != MCHeader) {
+		_isModified = true;
+		_MCHeader = MCHeader;
+	}
 
 	if(hasMCHeader()) {
-		if(!_isVmp)
+		if(!_isVmp) {
 			_isDelete = (quint8)MCHeader.at(0) >> 4 != 0x5;// 0xa1-0xa2-0xa3 : deleted | 0xa0 : formated | 0x51 : has data
-		else
+		}else
 			_isDelete = false;
 		_freqValue = MCHeaderCountry()==COUNTRY_EU ? 50 : 60;
 	}
@@ -147,7 +165,7 @@ void SaveData::setMCHeader(bool exists, char country, const QString &code, const
 	setMCHeader(_MCHeader);// update infos
 }
 
-const QByteArray &SaveData::header()
+const QByteArray &SaveData::header() const
 {
 	return _header;
 }
@@ -157,7 +175,7 @@ QPixmap SaveData::icon(bool chocobo_world_icon) const
 	return _icon.icon(chocobo_world_icon);
 }
 
-SaveIcon *SaveData::saveIcon()
+const SaveIcon *SaveData::saveIcon() const
 {
 	return &_icon;
 }
@@ -167,19 +185,56 @@ const HEADER &SaveData::descData() const
 	return _descData;
 }
 
-void SaveData::setDescData(const HEADER &descData)
-{
-	_descData = descData;
-}
-
 const MAIN &SaveData::mainData() const
 {
 	return _mainData;
 }
 
-void SaveData::setMainData(const MAIN &data)
+void SaveData::setSaveData(const HEADER &descData, const MAIN &data)
 {
-	_mainData = data;
+	if(memcmp(&descData, &_descData, sizeof(HEADER)) != 0 || memcmp(&data, &_mainData, sizeof(MAIN)) != 0) {
+		_isModified = true;
+		_descData = descData;
+		_mainData = data;
+
+		// Update descData
+
+		quint8 leader;
+		quint8 perso1 = _mainData.misc1.party[0];
+		quint8 perso2 = _mainData.misc1.party[1];
+		quint8 perso3 = _mainData.misc1.party[2];
+
+		if(perso1 != 0xFF && perso1 < 8)
+			leader = perso1;
+		else if(perso2 != 0xFF && perso2 < 8)
+			leader = perso2;
+		else if(perso3 != 0xFF && perso3 < 8)
+			leader = perso3;
+		else
+			leader = 0;
+		if(perso1 != 0xFF && perso1 < 8)	perso1 = _mainData.persos[perso1].ID;
+		if(perso2 != 0xFF && perso2 < 8)	perso2 = _mainData.persos[perso2].ID;
+		if(perso3 != 0xFF && perso3 < 8)	perso3 = _mainData.persos[perso3].ID;
+
+		_descData.party[0] = perso1;
+		_descData.party[1] = perso2;
+		_descData.party[2] = perso3;
+
+		_descData.nivLeader = _mainData.persos[leader].exp/1000 + 1;
+		_descData.hpLeader = _mainData.persos[leader].current_HPs;
+		_descData.gils = _mainData.misc2.dream & 1 ? _mainData.misc1.dream_gils : _mainData.misc1.gils;
+		_descData.time = _mainData.misc2.game_time;
+	}
+}
+
+bool SaveData::isModified() const
+{
+	return _isModified;
+}
+
+void SaveData::setModified(bool modified)
+{
+	_isModified = modified;
 }
 
 int SaveData::freqValue() const
@@ -222,7 +277,7 @@ bool SaveData::hasMCHeader() const
 	return !_MCHeader.isEmpty();
 }
 
-bool SaveData::exportPC(const QString &path)
+bool SaveData::exportPC(const QString &path) const
 {
 	QFile fic(path);
 	if(!fic.open(QIODevice::WriteOnly))	return false;
@@ -239,6 +294,7 @@ bool SaveData::exportPC(const QString &path)
 
 void SaveData::restore()
 {
+	_isModified = true;
 	_isDelete = false;
 	_MCHeader.replace(0, 10, QByteArray("\x51\x00\x00\x00\x00\x20\x00\x00\xff\xff", 10));
 	_MCHeader.replace(28, 99, QByteArray(99, '\x00'));
@@ -258,7 +314,7 @@ QString SaveData::getShortDescription() const
 	return QString();
 }
 
-bool SaveData::load(const QByteArray &data)
+bool SaveData::setData(const QByteArray &data)
 {
 	const char *access_data = data.constData();
 	//ff8
@@ -283,43 +339,14 @@ bool SaveData::load(const QByteArray &data)
 	return true;
 }
 
-QByteArray SaveData::save()
+QByteArray SaveData::save() const
 {
 	QByteArray ret;
 
 	if(!_isFF8) {
 		ret.append(_header).append(_icon.save()).append(_saveData);
-
-		if(ret.size()!=SAVE_SIZE)	qWarning() << "Error saved save size" << ret.size() << SAVE_SIZE;
-
-		return ret;
+		return ret.leftJustified(SAVE_SIZE, '\x00', true);
 	}
-
-	quint8 leader;
-	quint8 perso1 = _mainData.misc1.party[0];
-	quint8 perso2 = _mainData.misc1.party[1];
-	quint8 perso3 = _mainData.misc1.party[2];
-	
-	if(perso1 != 0xFF && perso1 < 8)
-		leader = perso1;
-	else if(perso2 != 0xFF && perso2 < 8)
-		leader = perso2;
-	else if(perso3 != 0xFF && perso3 < 8)
-		leader = perso3;
-	else
-		leader = 0;
-	if(perso1 != 0xFF && perso1 < 8)	perso1 = _mainData.persos[perso1].ID;
-	if(perso2 != 0xFF && perso2 < 8)	perso2 = _mainData.persos[perso2].ID;
-	if(perso3 != 0xFF && perso3 < 8)	perso3 = _mainData.persos[perso3].ID;
-
-	_descData.party[0] = perso1;
-	_descData.party[1] = perso2;
-	_descData.party[2] = perso3;
-	
-	_descData.nivLeader = _mainData.persos[leader].exp/1000 + 1;
-	_descData.hpLeader = _mainData.persos[leader].current_HPs;
-	_descData.gils = _mainData.misc2.dream & 1 ? _mainData.misc1.dream_gils : _mainData.misc1.gils;
-	_descData.time = _mainData.misc2.game_time;
 
 	quint16 checksum = calcChecksum((char *)&_mainData);//On calcule le checksum à partir de la partie gf
 
@@ -352,11 +379,6 @@ bool SaveData::isJp() const
 bool SaveData::isVmp() const
 {
 	return _isVmp;
-}
-
-void SaveData::setVmp(bool isVmp)
-{
-	_isVmp = isVmp;
 }
 
 QString SaveData::perso(quint8 index) const

@@ -181,7 +181,7 @@ void ItemEditor::fillPage()
 	int i;
 	for(i=0 ; i<198 ; ++i)
 	{
-		itemID = data->objets.items[i] & 0xFF;
+		itemID = data->items.items[i] & 0xFF;
 
 		if(itemID != 0)		items.append(itemID);
 		
@@ -192,7 +192,7 @@ void ItemEditor::fillPage()
 		standardItem->setIcon(itemID == 0 ? QIcon() : QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(itemID))));
 		items.append(standardItem);
 		
-		standardItem = new QStandardItem(QString::number(data->objets.items[i] >> 8));
+		standardItem = new QStandardItem(QString::number(data->items.items[i] >> 8));
 		standardItem->setData(SPINBOX_256, Qt::UserRole);
 		items.append(standardItem);
 		itemE_model->appendRow(items);
@@ -205,7 +205,7 @@ void ItemEditor::fillPage()
 	for(itemID=0 ; itemID<32 ; ++itemID)
 	{
 		// (pos, id)
-		battle_order.insert(data->objets.battle_order[itemID], itemID+1);
+		battle_order.insert(data->items.battle_order[itemID], itemID+1);
 	}
 
 	foreach(int itemID2, battle_order)
@@ -237,14 +237,14 @@ void ItemEditor::savePage()
 
 	for(i=0 ; i<198 ; ++i)
 	{
-		data->objets.items[i] = (quint8)itemE_model->item(i, 0)->data().toInt();
-		data->objets.items[i] |= (quint8)itemE_model->item(i, 1)->text().toUInt() << 8;
+		data->items.items[i] = (quint8)itemE_model->item(i, 0)->data().toInt();
+		data->items.items[i] |= (quint8)itemE_model->item(i, 1)->text().toUInt() << 8;
 	}
 
 	for(int pos=0 ; pos<32 ; ++pos)
 	{
 		itemID = battle_itemE_list->item(pos)->data(Qt::UserRole).toInt()-1;
-		data->objets.battle_order[itemID] = pos;
+		data->items.battle_order[itemID] = pos;
 	}
 
 	quint32 unlocked_weapons=0;
@@ -292,7 +292,7 @@ void ItemEditor::sortByType()
 	{
 		itemID = it.key();
 		if(itemID == 256)		itemID = 0;
-		data->objets.items[i++] = itemID | (it.value() << 8);
+		data->items.items[i++] = itemID | (it.value() << 8);
 		++it;
 	}
 
@@ -317,7 +317,7 @@ void ItemEditor::sortByAlpha()
 	i = 0;
 	foreach(quint16 value, items)
 	{
-		data->objets.items[i++] = value;
+		data->items.items[i++] = value;
 	}
 
 	fillPage();

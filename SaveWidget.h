@@ -45,6 +45,8 @@ public slots:
 	void properties();
 private slots:
 	void exportPC();
+	void newGame();
+	void removeSave();
 	void refreshIcon();
 signals:
 	void released(SaveData *saveData);

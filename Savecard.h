@@ -30,17 +30,18 @@ class Savecard : public QListWidget
 
 public:
 	enum Type {
-		Pc, Ps, Vgs, Gme, Vmp, Psv, PcDir, Unknown
+		Pc, Ps, Vgs, Gme, Vmp, Psv, PcDir, Unknown, Undefined
 	};
 
 	Savecard(const QString &chemin, QWidget *parent=0, bool slot=false);
-	~Savecard();
+	Savecard(int saveCount, QWidget *parent=0);
+	virtual ~Savecard();
 
 	void updateSaveWidget(int saveID, bool saved=false, bool allUpdate=false);
 	void updateSaveWidgets();
 	const QList<SaveData *> &getSaves() const;
-	void saveOne(qint8 num, QString path=QString());
-	void save2PS(QList<int> ids, const QString &path, Type newType);
+	bool saveOne(qint8 num, QString path=QString());
+	bool save2PS(QList<int> ids, const QString &path, Type newType);
 	void saveDir();
 	void saveDir(quint8);
 
@@ -53,12 +54,14 @@ public:
 	void setName(const QString &name);
 	bool ok() const;
 	Type type() const;
+	bool hasPath() const;
 	bool isOneSaveType() const;
+	bool isModified() const;
+	void setModified(bool modified);
 	void setSlotOrder(const QList<int> &order);
 	static void compare(const QByteArray &oldData, const QByteArray &newData);
-	
-public slots:
-	void save(const QString &saveAs=QString(), Type newType=Pc);
+
+	bool save(const QString &saveAs=QString(), Type newType=Pc);
 
 private slots:
 	void moveCursor(int);
@@ -68,8 +71,11 @@ private:
 	QString _path;
 	bool _ok;
 	Type _type;
+	bool _hasPath;
 
+	void setWidget();
 	void setPath(const QString &path);
+	void setType(Type type);
 	bool ps();
 	bool ps3();
 	bool pc();
@@ -83,6 +89,7 @@ private:
 	QFileSystemWatcher fileWatcher;
 	bool notify;
 	QList<SaveData *> saves;
+	bool _isModified;
 };
 
 #endif

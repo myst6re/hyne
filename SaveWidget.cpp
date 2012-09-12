@@ -83,12 +83,14 @@ void SaveWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void SaveWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-	if(saveData->isDelete()) return;
-
 	QMenu menu(this);
-	if(saveData->isFF8())
+	if(!saveData->isDelete() && saveData->isFF8())
 		menu.addAction(tr("Exporter en sauv. PC..."), this, SLOT(exportPC()));
-	menu.addAction(tr("Propriétés..."), this, SLOT(properties()));
+	menu.addAction(tr("Nouvelle partie"), this, SLOT(newGame()));
+	if(!saveData->isDelete()) {
+		menu.addAction(tr("Vider"), this, SLOT(removeSave()));
+		menu.addAction(tr("Propriétés..."), this, SLOT(properties()));
+	}
 	menu.exec(event->globalPos());
 }
 
@@ -116,7 +118,7 @@ void SaveWidget::exportPC()
 		path = Config::value("savePath") % "/";
 	}
 
-	path = QFileDialog::getSaveFileName(this, tr("Enregistrer sous"), path % QString("save%1").arg(saveData->id()+1, 2, 10, QChar('0')), tr("FF8 PC save (*)"));
+	path = QFileDialog::getSaveFileName(this, tr("Exporter"), path % QString("save%1").arg(saveData->id()+1, 2, 10, QChar('0')), tr("FF8 PC save (*)"));
 	if(path.isEmpty())		return;
 	
 	index = path.lastIndexOf('/');
@@ -124,6 +126,56 @@ void SaveWidget::exportPC()
 	
 	if(!saveData->exportPC(path))
 		QMessageBox::warning(this, tr("Échec"), tr("Enregistrement échoué, vérifiez que le fichier cible n'est pas utilisé."));
+}
+
+void SaveWidget::newGame()
+{
+	if(!saveData->isDelete()) {
+		QMessageBox::StandardButton b = QMessageBox::question(this, tr("Nouvelle partie"), tr("Tout le contenu de la sauvegarde sera remplacé par une nouvelle partie.\nContinuer ?"), QMessageBox::Yes | QMessageBox::No);
+		if(b != QMessageBox::Yes) {
+			return;
+		}
+	}
+
+	QFile newGameFile(":/data/newGame");
+	if(!newGameFile.open(QIODevice::ReadOnly)) {
+		qWarning() << "failed to open data/newGame" << newGameFile.errorString();
+		return;
+	}
+
+	if(saveData->hasMCHeader() && (!saveData->isFF8() || saveData->isDelete())) {
+		HeaderDialog dialog(saveData, this, HeaderDialog::RestoreView);
+		if(dialog.exec()==QDialog::Accepted)
+		{
+			saveData->restore();
+		}
+		else
+		{
+			return;
+		}
+	}
+
+	saveData->open(newGameFile.readAll(), saveData->MCHeader());
+	saveData->setModified(true);
+	emit changed();
+	newGameFile.close();
+
+	update();
+}
+
+void SaveWidget::removeSave()
+{
+	if(!saveData->isDelete()) {
+		QMessageBox::StandardButton b = QMessageBox::question(this, tr("Vider"), tr("Tout le contenu de la sauvegarde sera vidé.\nContinuer ?"), QMessageBox::Yes | QMessageBox::No);
+		if(b != QMessageBox::Yes) {
+			return;
+		}
+	}
+
+	saveData->remove();
+	emit changed();
+
+	update();
 }
 
 void SaveWidget::properties()
@@ -233,7 +285,7 @@ void SaveWidget::paintEvent(QPaintEvent *)
 	if(!saveData->isFF8() && !saveData->isDelete()) {
 		painter.drawPixmap(72, 43, saveData->icon());
 	}
-	if(saveData->isFF8() && saved) {
+	if(saveData->isFF8() && saved) { //TODO: remove
 		painter.drawPixmap(692, 3, QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton).pixmap(16));
 	}
 	if(hovered) {

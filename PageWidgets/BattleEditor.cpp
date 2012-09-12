@@ -162,8 +162,8 @@ void BattleEditor::buildWidget()
 
 void BattleEditor::fillPage()
 {
-	battlewinE->setValue(data->misc2.combats_gagnes);
-	battleescE->setValue(data->misc2.combats_fuis);
+	battlewinE->setValue(data->misc2.victory_count);
+	battleescE->setValue(data->misc2.battle_escaped);
 	monsterkillsE->setValue(data->misc3.monster_kills);
 	tombyE->setValue(data->misc2.tomberry_vaincus);
 	tombySrE->setChecked(data->misc2.tomberry_sr_vaincu & 1);
@@ -185,9 +185,9 @@ void BattleEditor::fillPage()
 
 void BattleEditor::savePage()
 {
-	data->misc2.combats_gagnes				= battlewinE->value();
+	data->misc2.victory_count				= battlewinE->value();
 	data->misc3.victory_count				= battlewinE->value();
-	data->misc2.combats_fuis				= battleescE->value();
+	data->misc2.battle_escaped				= battleescE->value();
 	data->misc3.battle_escaped				= battleescE->value();
 	data->misc3.monster_kills				= monsterkillsE->value();
 	data->misc2.tomberry_vaincus			= tombyE->value();

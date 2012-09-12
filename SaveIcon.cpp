@@ -62,7 +62,7 @@ QPixmap SaveIcon::icon(bool chocobo_world_icon) const
 		for(i=0 ; i<16 ; ++i)
 		{
 			memcpy(&color, access_data, 2);
-			colors.append(qRgb((color & 31)*COEFF_COLOR, (color>>5 & 31)*COEFF_COLOR, (color>>10 & 31)*COEFF_COLOR));
+			colors.append(qRgb(qRound((color & 31)*COEFF_COLOR), qRound((color>>5 & 31)*COEFF_COLOR), qRound((color>>10 & 31)*COEFF_COLOR)));
 			access_data += 2;
 		}
 
