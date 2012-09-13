@@ -26,6 +26,7 @@ class ConfigEditor : public PageWidget
 	Q_OBJECT
 public:
 	explicit ConfigEditor(QWidget *parent=0);
+	inline QString name() { return tr("Configuration"); }
 	void updateMode(bool mode);
 public slots:
 	void fillPage();

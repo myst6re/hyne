@@ -26,6 +26,7 @@ class GfEditor : public PageWidget
 	Q_OBJECT
 public:
 	explicit GfEditor(QWidget *parent=0);
+	inline QString name() { return tr("G-Forces"); }
 	void updateMode(bool mode);
 public slots:
 	void fillPage();

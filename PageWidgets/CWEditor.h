@@ -27,6 +27,7 @@ class CWEditor : public PageWidget
 	Q_OBJECT
 public:
 	explicit CWEditor(QWidget *parent=0);
+	inline QString name() { return tr("Chocobo World"); }
 public slots:
 	void fillPage();
 	void savePage();

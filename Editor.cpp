@@ -29,9 +29,6 @@ Editor::Editor(QWidget *parent)
 	liste->setUniformItemSizes(true);
 	liste->setFixedWidth(96);
 	liste->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	liste->addItems(QStringList() << tr("G-Forces") << tr("Personnages") << tr("Objets") << tr("Boutiques")
-					<< tr("Triple Triad") << tr("Sources") << tr("Combats") << tr("Terrain") << tr("Mappemonde") << tr("Chocobo World")
-					<< tr("Divers") << tr("Configuration") << tr("HexaEdit"));
 
 	QPushButton *apply = new QPushButton(/*QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton),*/ tr("&OK"), this);
 	apply->setDefault(true);
@@ -56,9 +53,13 @@ Editor::Editor(QWidget *parent)
 	stackedLayout->addWidget(new FieldEditor(this));
 	stackedLayout->addWidget(new WorldmapEditor(this));
 	stackedLayout->addWidget(new CWEditor(this));
+	stackedLayout->addWidget(new PartyEditor(this));
 	stackedLayout->addWidget(new MiscEditor(this));
 	stackedLayout->addWidget(new ConfigEditor(this));
 	stackedLayout->addWidget(allEditor = new AllEditor(this));
+
+	for(int i=0 ; i<stackedLayout->count() ; ++i)
+		liste->addItem(((PageWidget *)stackedLayout->widget(i))->name());
 
 	liste->item(liste->count()-1)->setHidden(!Config::mode());
 

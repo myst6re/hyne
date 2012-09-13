@@ -34,6 +34,8 @@
 #define BOKO		14
 #define ANGELO		15
 
+#define MAP_COUNT	982
+
 #include <QtCore>
 #include <QComboBox>
 
@@ -73,6 +75,10 @@ public:
 	static void fillAbilities(QComboBox *comboBox, const QMap<int, QIcon> &icons);
 	static qint8 abilityType(quint8 abilityID);
 	static quint8 itemType(quint8 itemID);
+
+	static QStringList maplist();
+private:
+	static const char *_maplist[MAP_COUNT];
 };
 
 #endif

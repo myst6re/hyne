@@ -78,6 +78,8 @@ void CWEditor::buildWidget()
 	grid->addWidget(maxHpE, 2, 3);
 //	grid->addWidget(questGroupE, 3, 0, 1, 4);
 	grid->setRowStretch(3, 1);
+	grid->setColumnStretch(1, 1);
+	grid->setColumnStretch(3, 1);
 	grid->setContentsMargins(QMargins());
 }
 

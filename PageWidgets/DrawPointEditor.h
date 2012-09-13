@@ -32,6 +32,7 @@ class DrawPointEditor : public PageWidget
 	Q_OBJECT
 public:
 	explicit DrawPointEditor(QWidget *parent=0);
+	inline QString name() { return tr("Sources"); }
 public slots:
 	void fillPage();
 	void savePage();

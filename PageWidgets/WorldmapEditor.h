@@ -27,6 +27,7 @@ class WorldmapEditor : public PageWidget
 	Q_OBJECT
 public:
 	explicit WorldmapEditor(QWidget *parent=0);
+	inline QString name() { return tr("Mappemonde"); }
 public slots:
 	void fillPage();
 	void savePage();

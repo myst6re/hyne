@@ -131,7 +131,7 @@ struct MISC1//32
 	quint8 party[4];// party[3] always=255
 	quint32 unlocked_weapons;
 	char griever[12];
-	quint16 u1;// always 7966 ?
+	quint16 u1;// always 7966?
 	quint16 u2;// (START) 0000 0000 0010 0000 -> (CD3) 0000 0011 0010 0000 -> (CD4) 0000 0111 0010 0000
 	quint32 gils;
 	quint32 dream_gils;
@@ -188,7 +188,7 @@ struct MISC2//144
 	quint16 location_last;
 	qint16 x[3];// coord x (party1, party2, party3)
 	qint16 y[3];// coord y (party1, party2, party3)
-	qint16 id[3];// triangle (party1, party2, party3)
+	quint16 id[3];// triangle (party1, party2, party3)
 	quint8 dir[3];// direction (party1, party2, party3)
 	quint8 u7[5];
 }__attribute__((__packed__));
@@ -207,27 +207,39 @@ struct MISC3//256
 	quint16 kills[8];// squall-zell-irvine-quistis-rinoa-selphie-seifer-edea
 	quint16 ko[8];// squall-zell-irvine-quistis-rinoa-selphie-seifer-edea
 	quint8 u5[8];// 0 ?
-	quint32 monster_kills;
+	quint32 monster_kills; // var68
 	quint32 gils;
 	quint32 dream_gils;
 	quint32 current_frame;
 	quint16 last_field_id;
 	quint8 current_car_rent;
 	quint8 music_util;
-	quint8 move_find_ondine;
+	quint8 move_find_ondine; // var88
 	quint8 u6[15];// 0 ?
-	quint32 u7;// start with 0x00000018 (18 <=> 0001 1000 : SARALYOFF | 0 <=> 0000 0000 : SARALYON)
-	quint32 u8;// start with 0xffffffff
-	quint32 u9;// 0xffffffff ?
+	quint32 u7;// var104 start with 0x00000018 (18 <=> 0001 1000: SARALYOFF & SARALYDISPOFF | 8 <=> 0000 1000: SARALYDISPON | 0 <=> 0000 0000: SARALYON)
+	// 1024 <=> 0000 0100 ...: MUSICLOAD | 512 <=> 0000 0010 ...: PHSPOWER (0)
+	quint32 music_related;// start with 0xffffffff
+	quint32 u8;// 0xffffffff ?
 	quint8 draw_points[64];// 32 field, 32 worldmap
-	quint32 steps2;
-	quint16 uA;// start with 0xffff
-	quint8 uB[17];
-	quint8 battle_music;
-	quint8 disc;
-	quint8 uC[2];
-	quint8 battle_off;
-	quint8 uD[48];
+	quint16 steps2;
+	quint16 battle_mode; // var182
+	quint16 u9;// var184 start with 0xffff
+	quint8 uA[11];
+	quint8 music_volume; // var197
+	quint8 uB;
+	quint8 music_played; // var199
+	quint8 uC;
+	quint8 music_is_played; // var201
+	quint8 uD[2];
+	quint8 battle_music; // var204
+	quint8 disc; // var205
+	quint8 uE;
+	quint8 music_is_loaded; // var207
+	quint8 battle_off; // var208
+	quint8 save_enabled; // var209 (1: save enabled, 2: PHS enabled)
+	quint8 uF[3];
+	quint8 music_loaded; // var213
+	quint8 uG[42];
 }__attribute__((__packed__));
 
 struct FIELD//1024

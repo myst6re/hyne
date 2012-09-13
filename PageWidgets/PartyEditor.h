@@ -16,38 +16,27 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_OBJETEDITOR
-#define DEF_OBJETEDITOR
+#ifndef DEF_PARTYEDITOR
+#define DEF_PARTYEDITOR
 
-#include "SpinBoxDelegate.h"
 #include "PageWidget.h"
 
-class ItemEditor : public PageWidget
+class PartyEditor : public PageWidget
 {
 	Q_OBJECT
 public:
-	explicit ItemEditor(QWidget *parent=0);
-	inline QString name() { return tr("Objets"); }
+	explicit PartyEditor(QWidget *parent=0);
+	inline QString name() { return tr("Équipe"); }
 public slots:
 	void fillPage();
 	void savePage();
-private slots:
-	void allItems();
-	void sortByType();
-	void sortByAlpha();
-	void selectAllWeapons(bool);
-	void selectAllTimberManiacs(bool select);
 protected:
 	void buildWidget();
 private:
-	QWidget *buildPage1();
-	QWidget *buildPage2();
-	QWidget *buildPage3();
-
-	QTreeView *itemE_view;
-	QStandardItemModel *itemE_model;
-	QListWidget *battle_itemE_list;
-	QTreeWidget *weaponsE_list, *timbermaniacsE_list;
+	QList<QComboBox *> partyE, partySortE;
+	QCheckBox *dreamE;
+	QList<QSpinBox *> xE, yE, idE, dirE;
+	QComboBox *moduleE, *mapE, *lastMapE;
 };
 
-#endif
+#endif // DEF_PARTYEDITOR

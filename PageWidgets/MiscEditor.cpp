@@ -65,39 +65,6 @@ void MiscEditor::buildWidget()
 QWidget *MiscEditor::buildPage1()
 {
 	QWidget *ret = new QWidget(this);
-	
-	QGroupBox *partyGBE = new QGroupBox(tr("Équipe"), ret);
-	QGridLayout *partyGBL = new QGridLayout(partyGBE);
-	partyGBL->addWidget(new QLabel(tr("Menus :")), 0, 0);
-	partyGBL->addWidget(new QLabel(tr("À l'écran :")), 1, 0);
-	QList<QIcon> icons;
-	int i, j;
-	for(j=0 ; j<11 ; ++j) {
-		icons.append(QIcon(QString(":/images/icons/perso%1.png").arg(j)));
-	}
-	QComboBox *comboBox;
-
-	for(i=0 ; i<3 ; ++i)
-	{
-		partyE.append(comboBox = new QComboBox(partyGBE));
-		comboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
-		comboBox->addItem("-", 255);
-		for(j=0 ; j<8 ; ++j) {
-			comboBox->addItem(icons.at(j), Data::names.at(j), j);
-		}
-		partyGBL->addWidget(comboBox, 0, i+1);
-		
-		partySortE.append(comboBox = new QComboBox(partyGBE));
-		comboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
-		comboBox->addItem("-", 255);
-		for(j=0 ; j<11 ; ++j) {
-			comboBox->addItem(icons.at(j), Data::names.at(j), j);
-		}
-		partyGBL->addWidget(comboBox, 1, i+1);
-	}
-	
-	dreamE = new QCheckBox(tr("Seule l'équipe principale est visible (rêve avec Laguna)"), partyGBE);
-	partyGBL->addWidget(dreamE, 2, 0, 1, 4, Qt::AlignLeft);
 
 	QGroupBox *statsE = new QGroupBox(tr("Statistiques"), ret);
 	
@@ -189,7 +156,7 @@ QWidget *MiscEditor::buildPage1()
 	curSaveE->setDecimals(0);
 	curSaveE->setRange(0, MAX_INT32);
 	locationIDE = new QComboBox(headerE);
-	i=0;
+	int i=0;
 	foreach(const QString &loc, Data::locations)
 		locationIDE->addItem(loc, i++);
 
@@ -245,7 +212,6 @@ QWidget *MiscEditor::buildPage1()
 	unknownL->addWidget(unknown9E, 2, 3);
 	
 	QVBoxLayout *layout = new QVBoxLayout(ret);
-	layout->addWidget(partyGBE);
 	layout->addWidget(statsE);
 	layout->addWidget(headerE);
 	layout->addWidget(unknownE);
@@ -338,13 +304,6 @@ void MiscEditor::fillPage()
 	argentE->setValue(data->misc1.gils);
 	lagunaGilsE->setValue(data->misc1.dream_gils);
 	seedExpE->setValue(data->misc3.seedExp);
-
-	for(quint8 i=0 ; i<3 ; ++i)
-	{
-		setCurrentIndex(partyE.at(i), data->misc1.party[i]);
-		setCurrentIndex(partySortE.at(i), data->misc2.party[i]);
-	}
-	dreamE->setChecked(data->misc2.dream & 1);
 	
 	stepsE->setValue(data->misc3.steps);
 
@@ -363,8 +322,8 @@ void MiscEditor::fillPage()
 	unknown5E->setValue(data->misc2.u2);
 	unknown6E->setValue(data->misc2.u5);
 	unknown7E->setValue(data->misc3.u7);
-	unknown8E->setValue(data->misc3.u8);
-	unknown9E->setValue(data->misc3.u9);
+	unknown8E->setValue(data->misc3.music_related);
+	unknown9E->setValue(data->misc3.u8);
 
 	int i, j;
 	for(i=0 ; i<16 ; ++i) {
@@ -383,13 +342,6 @@ void MiscEditor::savePage()
 	data->misc3.dream_gils = lagunaGilsE->value();
 	data->misc2.game_time = Config::time(tempsHourE->value(), tempsMinE->value(), tempsSecE->value(), freq_value);
 	data->misc2.countdown = Config::time(countdownHourE->value(), countdownMinE->value(), countdownSecE->value(), freq_value);
-
-	for(quint8 i=0 ; i<3 ; ++i)
-	{
-		data->misc1.party[i] = partyE.at(i)->itemData(partyE.at(i)->currentIndex()).toUInt();
-		data->misc2.party[i] = partySortE.at(i)->itemData(partySortE.at(i)->currentIndex()).toUInt();
-	}
-	data->misc2.dream = dreamE->isChecked() | (data->misc2.dream & 0xFE);
 
 	data->misc3.seedExp = seedExpE->value();
 	
@@ -410,8 +362,8 @@ void MiscEditor::savePage()
 	data->misc2.u2 = unknown5E->value();
 	data->misc2.u5 = unknown6E->value();
 	data->misc3.u7 = unknown7E->value();
-	data->misc3.u8 = unknown8E->value();
-	data->misc3.u9 = unknown9E->value();
+	data->misc3.music_related = unknown8E->value();
+	data->misc3.u8 = unknown9E->value();
 
 	int i, j;
 	quint8 curTuto_info;

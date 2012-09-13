@@ -27,6 +27,7 @@ class AllEditor : public PageWidget
 	Q_OBJECT
 public:
 	explicit AllEditor(QWidget *parent=0);
+	inline QString name() { return tr("HexaEdit"); }
 public slots:
 	void fillPage();
 	void savePage();

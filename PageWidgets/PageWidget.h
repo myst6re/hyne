@@ -29,6 +29,7 @@ class PageWidget : public QWidget
 	Q_OBJECT
 public:
 	explicit PageWidget(QWidget *parent = 0);
+	virtual QString name()=0;
 	void load(MAIN *data, HEADER *descData, int freq_value, bool jp, bool pc);
 	void unload();
 	bool isLoaded() const;

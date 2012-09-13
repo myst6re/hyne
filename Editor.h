@@ -34,6 +34,7 @@
 #include "PageWidgets/ShopEditor.h"
 #include "PageWidgets/WorldmapEditor.h"
 #include "PageWidgets/FieldEditor.h"
+#include "PageWidgets/PartyEditor.h"
 
 class Editor : public QWidget
 {

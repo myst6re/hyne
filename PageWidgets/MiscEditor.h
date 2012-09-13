@@ -26,6 +26,7 @@ class MiscEditor : public PageWidget
 	Q_OBJECT
 public:
 	explicit MiscEditor(QWidget *parent=0);
+	inline QString name() { return tr("Divers"); }
 	void updateMode(bool mode);
 	void updateTime();
 public slots:
@@ -42,9 +43,6 @@ private:
 	QWidget *buildPage2();
 	// Page 1
 	QTabWidget *tabWidget;
-	// Party
-	QList<QComboBox *> partyE, partySortE;
-	QCheckBox *dreamE;
 	// Misc
 	QSpinBox *tempsSecE, *tempsMinE, *tempsHourE;
 	QSpinBox *countdownSecE, *countdownMinE, *countdownHourE;
