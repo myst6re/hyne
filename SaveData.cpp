@@ -350,7 +350,9 @@ QByteArray SaveData::save() const
 
 	quint16 checksum = calcChecksum((char *)&_mainData);//On calcule le checksum à partir de la partie gf
 
-	ret.append(_header.left(4));//SC+icon frames+slot count
+	ret.append("SC", 2);
+	ret.append(_header.at(2));// icon frames
+	ret.append('\x01');// slot count
 	ret.append("\x82\x65\x82\x65\x82\x57\x81\x6D", 8);// FF8[
 	ret.append(FF8Text::numToBiosText(_id+1, 2));// II
 	ret.append("\x81\x6E\x81\x5E", 4);// ]/
