@@ -35,7 +35,7 @@ public:
 		Pc, Ps, Vgs, Gme, Vmp, Psv, PcDir, Unknown, Undefined
 	};
 
-	Savecard(const QString &chemin, QWidget *parent=0, bool slot=false);
+	Savecard(const QString &path, QWidget *parent=0, bool slot=false);
 	Savecard(int saveCount, QWidget *parent=0);
 	virtual ~Savecard();
 
@@ -82,6 +82,8 @@ private:
 	bool ps3();
 	bool pc();
 	bool getFormatFromRaw();
+	bool sstate_ePSXe();
+	bool sstate_pSX();
 	void directory();
 	void addSave(const QByteArray &data=QByteArray(), const QByteArray &header=QByteArray());
 	QByteArray header(QFile *srcFile, Type newType, bool saveAs, bool *abort);

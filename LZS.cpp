@@ -32,46 +32,105 @@ qint32 LZS::lson[4097];//left & right children & parents -- These constitute bin
 qint32 LZS::rson[4353];
 qint32 LZS::dad[4097];
 unsigned char LZS::text_buf[4113];//ring buffer of size 4096, with extra 17 bytes to facilitate string comparison
+QByteArray LZS::result;
 
-QByteArray LZS::decompress(const QByteArray &data, int max)
+const QByteArray &LZS::decompress(const QByteArray &data, int max)
 {
-	const char *fileData = data.constData();
-	int curData=0, curResult=0, fileSize=data.size();
-	quint16 curBuff, adresse, premOctet=0;
-	quint8 i, length;
-	QByteArray result;
-	result.resize(max);
+	int curResult=0, fileSize=data.size(), sizeAlloc=max+10;
+	quint16 curBuff=4078, adresse, premOctet=0, i, length;
+	const quint8 *fileData = (const quint8 *)data.constData();
+	const quint8 *endFileData = &fileData[fileSize-1] + 1;
 
-	for(curBuff=0 ; curBuff<=4077 ; ++curBuff)
-		text_buf[curBuff] = '\x0';//Le buffer de 4096 octets est initialisé à 0
+	if(result.size() < sizeAlloc)
+		result.resize(sizeAlloc);
+
+	memset(text_buf, 0, 4078);//Le buffer de 4096 octets est initialisé à 0
 
 	forever
 	{
-		if(((premOctet >>= 1) & 256) == 0)
-			premOctet = (quint8)fileData[curData++] | 0xff00;//On récupère le premier octet puis on avance d'un octet
+		if(((premOctet >>= 1) & 256) == 0) {
+			premOctet = *fileData++ | 0xff00;//On récupère le premier octet puis on avance d'un octet
+		}
 
-		if(curData>=fileSize || curResult>=max) {
+		if(fileData >= endFileData || curResult >= max) {
+			result.truncate(curResult);
 			return result;//Fini !
 		}
 
 		if(premOctet & 1)
 		{
-			result[curResult++] = text_buf[curBuff] = fileData[curData++];//On récupère l'octet (qui n'est pas compressé) et on le sauvegarde dans la chaine finale (result) et dans le buffer. Et bien sûr on fait avancer les curseurs d'un octet.
-			curBuff = (curBuff+1) & 4095;//Le curseur du buffer doit toujours être entre 0 et 4095
+			result[curResult] = text_buf[curBuff] = *fileData++;//On récupère l'octet (qui n'est pas compressé) et on le sauvegarde dans la chaine finale (result) et dans le buffer. Et bien sûr on fait avancer les curseurs d'un octet.
+			curBuff = (curBuff + 1) & 4095;//Le curseur du buffer doit toujours être entre 0 et 4095
+			++curResult;
 		}
 		else
 		{
-			adresse = (quint8)fileData[curData];
-			++curData;
-			length = (quint8)fileData[curData];
-			adresse |= (length & 0xF0) << 4;//on récupère l'adresse dans les deux octets (qui sont "compressés")
-			length = (length & 0xF) + 2;
-			++curData;
+//			quint16 twoBytes = *((const quint16 *)fileData);
+//			adresse = (twoBytes & 0x00FF) | ((twoBytes & 0xF000) >> 4);
+//			length = ((twoBytes & 0x0F00) >> 8) + 2 + adresse;
+//			fileData += 2;
 
-			for(i=0 ; i<=length ; ++i)
+			adresse = *fileData++;
+			length = *fileData++;
+			adresse |= (length & 0xF0) << 4;//on récupère l'adresse dans les deux octets (qui sont "compressés")
+			length = (length & 0xF) + 2 + adresse;
+
+			for(i=adresse ; i<=length ; ++i)
 			{
-				result[curResult++] = text_buf[curBuff] = text_buf[(adresse+i) & 4095];//On va chercher l'octet (qui est décompressé) dans le buffer à l'adresse indiquée puis on le sauvegarde dans la chaine finale et le buffer.
-				curBuff = (curBuff+1) & 4095;
+				result[curResult] = text_buf[curBuff] = text_buf[i & 4095];//On va chercher l'octet (qui est décompressé) dans le buffer à l'adresse indiquée puis on le sauvegarde dans la chaine finale et le buffer.
+				curBuff = (curBuff + 1) & 4095;
+				++curResult;
+			}
+		}
+	}
+}
+
+const QByteArray &LZS::decompressAll(const QByteArray &data)
+{
+	int curResult=0, fileSize=data.size(), sizeAlloc=fileSize*5;
+	quint16 curBuff=4078, adresse, premOctet=0, i, length;
+	const quint8 *fileData = (const quint8 *)data.constData();
+	const quint8 *endFileData = &fileData[fileSize-1] + 1;
+
+	if(result.size() < sizeAlloc)
+		result.resize(sizeAlloc);
+
+	memset(text_buf, 0, 4078);//Le buffer de 4096 octets est initialisé à 0
+
+	forever
+	{
+		if(((premOctet >>= 1) & 256) == 0) {
+			premOctet = *fileData++ | 0xff00;//On récupère le premier octet puis on avance d'un octet
+		}
+
+		if(fileData >= endFileData) {
+			result.truncate(curResult);
+			return result;//Fini !
+		}
+
+		if(premOctet & 1)
+		{
+			result[curResult] = text_buf[curBuff] = *fileData++;//On récupère l'octet (qui n'est pas compressé) et on le sauvegarde dans la chaine finale (result) et dans le buffer. Et bien sûr on fait avancer les curseurs d'un octet.
+			curBuff = (curBuff + 1) & 4095;//Le curseur du buffer doit toujours être entre 0 et 4095
+			++curResult;
+		}
+		else
+		{
+//			quint16 twoBytes = *((const quint16 *)fileData);
+//			adresse = (twoBytes & 0x00FF) | ((twoBytes & 0xF000) >> 4);
+//			length = ((twoBytes & 0x0F00) >> 8) + 2 + adresse;
+//			fileData += 2;
+
+			adresse = *fileData++;
+			length = *fileData++;
+			adresse |= (length & 0xF0) << 4;//on récupère l'adresse dans les deux octets (qui sont "compressés")
+			length = (length & 0xF) + 2 + adresse;
+
+			for(i=adresse ; i<=length ; ++i)
+			{
+				result[curResult] = text_buf[curBuff] = text_buf[i & 4095];//On va chercher l'octet (qui est décompressé) dans le buffer à l'adresse indiquée puis on le sauvegarde dans la chaine finale et le buffer.
+				curBuff = (curBuff + 1) & 4095;
+				++curResult;
 			}
 		}
 	}
@@ -82,7 +141,7 @@ void LZS::InsertNode(qint32 r)
 	/* Inserts string of length 18, text_buf[r..r+18-1], into one of the trees (text_buf[r]'th tree) and returns the longest-match position and length via the global variables match_position and match_length.
 	If match_length = 18, then removes the old node in favor of the new one, because the old one will be deleted sooner.
 	Note r plays double role, as tree node and position in buffer. */
-	
+
 	qint32 i, p, cmp;
 	unsigned char *key;
 
@@ -121,7 +180,7 @@ void LZS::InsertNode(qint32 r)
 				return;
 			}
 		}
-		
+
 		for(i=1 ; i<18 ; i++)
 		{
 			if((cmp = key[i] - text_buf[p + i]) != 0)	break;
@@ -175,7 +234,7 @@ void LZS::DeleteNode(qint32 p)//deletes node p from tree
 				q = rson[q];
 			}
 			while(rson[q] != 4096);
-			
+
 			rson[dad[q]] = lson[q];
 			dad[lson[q]] = dad[q];
 			lson[q] = lson[p];
@@ -185,7 +244,7 @@ void LZS::DeleteNode(qint32 p)//deletes node p from tree
 		dad[rson[p]] = q;
 	}
 	dad[q] = dad[p];
-	
+
 	if(rson[dad[p]] == p)
 	{
 		rson[dad[p]] = q;
@@ -197,31 +256,29 @@ void LZS::DeleteNode(qint32 p)//deletes node p from tree
 	dad[p] = 4096;
 }
 
-QByteArray LZS::compress(const QByteArray &fileData)
-{	
-	qint32 i, c, len, r, s, last_match_length, code_buf_ptr, curData = 0, size = fileData.size();
+const QByteArray &LZS::compress(const QByteArray &fileData)
+{
+	int i, c, len, r, s, last_match_length, code_buf_ptr,
+			curResult = 0, sizeData = fileData.size(), sizeAlloc = sizeData / 2;
 	unsigned char code_buf[17], mask;
-	QByteArray result;
-	
+	const char *fileConstData = fileData.constData();
+	const char *fileConstDataEnd = &fileConstData[sizeData-1] + 1;
+
+	if(result.size() < sizeAlloc) {
+		result.resize(sizeAlloc);
+	}
+
 	/* quint32
 		textsize = 0,//text size counter
 		codesize = 0;//code size counter */
-		
-	// QString aff="";
 
 	//initialize trees
 	/* For i = 0 to 4095, rson[i] and lson[i] will be the right and left children of node i. These nodes need not be initialized.
 	Also, dad[i] is the parent of node i. These are initialized to 4096 which stands for 'not used.'
 	For i = 0 to 255, rson[4097 + i] is the root of the tree for strings that begin with character i. These are initialized to 4096. Note there are 256 trees. */
-	
-	for(i=4097 ; i<=4352 ; ++i)
-	{
-		rson[i] = 4096;
-	}
-	for(i=0 ; i<4096 ; ++i)
-	{
-		dad[i] = 4096;
-	}
+
+	for(i=4097 ; i<=4352 ; ++i)	rson[i] = 4096;
+	for(i=0 ; i<4096 ; ++i)	dad[i] = 4096;
 
 	code_buf[0] = 0;//code_buf[1..16] saves eight units of code, and code_buf[0] works as eight flags, "1" representing that the unit is an unencoded letter (1 byte), "0" a position-and-length pair (2 bytes). Thus, eight units require at most 16 bytes of code.
 
@@ -230,31 +287,28 @@ QByteArray LZS::compress(const QByteArray &fileData)
 	s = 0;
 	r = 4078;
 
-	for(i=s ; i<r ; ++i)
-	{
-		text_buf[i] = '\x0';//Clear the buffer with  any character that will appear often.
-	}
+//	for(i=s ; i<r ; ++i)
+//		text_buf[i] = '\x0';//Clear the buffer with  any character that will appear often.
+	memset(text_buf, 0, r);
 
-	for(len=0 ; len<18 && curData<size ; ++len)
-	{
-		text_buf[r + len] = fileData.at(curData++);//Read 18 bytes into the last 18 bytes of the buffer
+	for(len=0 ; len<18 && fileConstData<fileConstDataEnd ; ++len) {
+		text_buf[r + len] = *fileConstData++;//Read 18 bytes into the last 18 bytes of the buffer
 	}
-	if(len == 0)	return QByteArray();//text of size zero
+	if(/* (textsize =  */len/* ) */ == 0) {
+		result.clear();
+		return result;//text of size zero
+	}
 
 	for(i=1 ; i<=18 ; ++i)
-	{
 		InsertNode(r - i);//Insert the 18 strings, each of which begins with one or more 'space' characters.  Note the order in which these strings are inserted.  This way, degenerate trees will be less likely to occur.
-	}
-	
+
 	InsertNode(r);//Finally, insert the whole string just read.  The global variables match_length and match_position are set.
 
 	do
 	{
 		if(match_length > len)
-		{
 			match_length = len;//match_length may be spuriously long near the end of text.
-		}
-		
+
 		if(match_length <= 2)
 		{
 			match_length = 1;//Not long enough match.  Send one byte.
@@ -266,30 +320,27 @@ QByteArray LZS::compress(const QByteArray &fileData)
 			code_buf[code_buf_ptr++] = (unsigned char) match_position;
 			code_buf[code_buf_ptr++] = (unsigned char) (((match_position >> 4) & 0xf0) | (match_length - (2 + 1)));//Send position and length pair. Note match_length > 2.
 		}
-		
+
 		if((mask <<= 1) == 0)//Shift mask left one bit.
 		{
-			for(i=0 ; i<code_buf_ptr ; ++i)//Send at most 8 units of
-			{
-				result.append(code_buf[i]);//code together
-			}
-			// codesize += code_buf_ptr;
+//			for(i=0 ; i<code_buf_ptr ; ++i)//Send at most 8 units of
+//				result.append(code_buf[i]);//code together
+			result.replace(curResult, code_buf_ptr, (char *)code_buf, code_buf_ptr);
+			curResult += code_buf_ptr;
 			code_buf[0] = 0;
 			code_buf_ptr = mask = 1;
 		}
-		
+
 		last_match_length = match_length;
-		for(i=0 ; i < last_match_length && curData<size ; ++i)
+		for(i=0 ; i < last_match_length && fileConstData<fileConstDataEnd ; ++i)
 		{
-			c = fileData.at(curData++);
+			c = *fileConstData++;
 			DeleteNode(s);//Delete old strings and
 			text_buf[s] = c;//read new bytes
-			
+
 			if(s < 17)
-			{
 				text_buf[s + 4096] = c;//If the position is near the end of buffer, extend the buffer to make string comparison easier.
-			}
-			
+
 			s = (s + 1) & (4095);
 			r = (r + 1) & (4095);
 			//Since this is a ring buffer, increment the position modulo 4096.
@@ -302,9 +353,7 @@ QByteArray LZS::compress(const QByteArray &fileData)
 			s = (s + 1) & (4095);
 			r = (r + 1) & (4095);
 			if(--len)
-			{
 				InsertNode(r);//buffer may not be empty.
-			}
 		}
 
 	}
@@ -312,12 +361,11 @@ QByteArray LZS::compress(const QByteArray &fileData)
 
 	if(code_buf_ptr > 1)//Send remaining code.
 	{
-		for(i = 0; i < code_buf_ptr ; ++i)
-		{
-			result.append(code_buf[i]);
-		}
-		// codesize += code_buf_ptr;
+//		for(i = 0; i < code_buf_ptr ; ++i)
+//			result.append(code_buf[i]);
+		result.replace(curResult, code_buf_ptr, (char *)code_buf, code_buf_ptr);
+		curResult += code_buf_ptr;
 	}
-	
+	result.truncate(curResult);
 	return result;
 }

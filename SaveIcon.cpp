@@ -42,9 +42,9 @@ void SaveIcon::setAll(const QByteArray &data, quint8 nbFrames)
 	}
 }
 
-const QByteArray &SaveIcon::save() const
+QByteArray SaveIcon::save() const
 {
-	return data;
+	return data.leftJustified(288, '\0', true);
 }
 
 QPixmap SaveIcon::icon(bool chocobo_world_icon) const

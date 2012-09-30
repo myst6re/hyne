@@ -243,16 +243,6 @@ void Window::newFile()
 	}
 }
 
-void Window::slot1()
-{
-	open(Slot1);
-}
-
-void Window::slot2()
-{
-	open(Slot2);
-}
-
 void Window::open(OpenType slot)
 {
 	QString path = Config::ff8Path();
@@ -271,7 +261,8 @@ void Window::open(OpenType slot)
 			path = Config::value("loadPath");
 		else if(!path.isEmpty())
 			path.append("/Save");
-		path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path, tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard (*.psv);;Tous les fichiers (*)"));
+		path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path,
+											tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard (*.psv);;Save state (*.000 *.001 *.002 *.003 *.004);;Tous les fichiers (*)"));
 		if(path.isNull())		return;
 
 		int index = path.lastIndexOf('/');
@@ -309,8 +300,7 @@ void Window::openFile(const QString &path)
 {
 	if(!closeFile())	return;
 
-	QString cleanPath = QDir::cleanPath(path);
-	saves = new Savecard(cleanPath, this, this->isPCSlot);
+	saves = new Savecard(path, this, this->isPCSlot);
 
 	if(!saves->ok())
 	{
@@ -319,6 +309,7 @@ void Window::openFile(const QString &path)
 	else
 	{
 		setIsOpen(true);
+		setModified(saves->isModified());
 
 		if(!isPCSlot) {
 			Config::addRecentFile(saves->path());
@@ -330,6 +321,7 @@ void Window::openFile(const QString &path)
 void Window::setIsOpen(bool open)
 {
 	if(open) {
+		isOpen = true;
 		stackedLayout->addWidget(saves);
 		stackedLayout->setCurrentWidget(saves);
 		actionSaveAs->setEnabled(true);
@@ -360,8 +352,6 @@ void Window::setIsOpen(bool open)
 		setTitle();
 		setModified(false);
 	}
-
-	isOpen = open;
 }
 
 void Window::openRecentFile(QAction *action)

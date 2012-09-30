@@ -17,22 +17,23 @@
  ****************************************************************************/
 
 #include "Savecard.h"
+#include "GZIP.h"
 
-Savecard::Savecard(const QString &chemin, QWidget *parent, bool slot)
-	: QListWidget(parent), _ok(true), _hasPath(true), start(0), notify(true), _isModified(false)
+Savecard::Savecard(const QString &path, QWidget *parent, bool slot) :
+	QListWidget(parent), _ok(true), _hasPath(true), start(0), notify(true), _isModified(false)
 {
 	setWidget();
 
 	if(slot)
 	{
-		setPath(chemin + "/");
+		setPath(QDir::fromNativeSeparators(QDir::cleanPath(path)) + "/");
 		setType(PcDir);
 
 		directory();
 	}
 	else
 	{
-		setPath(chemin);
+		setPath(QDir::fromNativeSeparators(QDir::cleanPath(path)));
 		QString extension = this->extension();
 
 		if(extension.isEmpty())
@@ -66,6 +67,19 @@ Savecard::Savecard(const QString &chemin, QWidget *parent, bool slot)
 		{
 			setType(Psv);
 			_ok = ps3();
+			if(!_ok) {
+				_ok = sstate_pSX();
+				setType(Undefined);
+			}
+		}
+		else if(extension == "000"
+				|| extension == "001"
+				|| extension == "002"
+				|| extension == "003"
+				|| extension == "004")
+		{
+			_ok = sstate_ePSXe();
+			setType(Undefined);
 		}
 		else
 		{
@@ -78,20 +92,19 @@ Savecard::Savecard(const QString &chemin, QWidget *parent, bool slot)
 			_ok = getFormatFromRaw();
 		}
 
-		if(_ok && (extension == "psv" || extension == "vmp"))
+		if(_ok && (_type == Psv || _type == Vmp))
 			QMessageBox::information(this, tr("Sauvegarde hasardeuse"), tr("Le format %1 est protégé, l'enregistrement sera partiel et risque de ne pas fonctionner.").arg(extension));
 	}
 	connect(&fileWatcher, SIGNAL(fileChanged(QString)), SLOT(notifyFileChanged(QString)));
 
-//	compare(saves.at(9)->save(), saves.at(10)->save());
+//	compare(saves.at(0)->save(), saves.at(1)->save());
 //	compare(saves.at(10)->save(), saves.at(11)->save());
 }
 
-Savecard::Savecard(int saveCount, QWidget *parent)
-	: QListWidget(parent), _ok(true), _hasPath(false), start(0), notify(true), _isModified(false)
+Savecard::Savecard(int saveCount, QWidget *parent) :
+	QListWidget(parent), _ok(true), _hasPath(false), start(0), notify(true), _isModified(false)
 {
 	setWidget();
-	setPath(tr("Sans nom"));
 	setType(Undefined);
 
 	for(int i=0 ; i<saveCount ; ++i) {
@@ -167,6 +180,12 @@ void Savecard::setType(Type type)
 		break;
 	case Vmp:
 		start = 128;
+		break;
+	case Undefined:
+		start = 0;
+		_hasPath = false;
+		setPath(tr("Sans nom"));
+		setModified(true);
 		break;
 	default:
 		start = 0;
@@ -329,6 +348,12 @@ bool Savecard::ps3()
 		QMessageBox::warning(this, tr("Erreur"), tr("Le fichier est protégé en lecture."));
 		return false;
 	}
+
+	// Check format
+	fic.seek(1);
+	if(QString(fic.peek(3)) != "VSP" && QString(fic.peek(6)) == "RS2CPU")
+		return false;
+
 	if(fic.size() < 8324)
 	{
 		QMessageBox::warning(this, tr("Erreur"), tr("Fichier invalide"));
@@ -402,8 +427,8 @@ bool Savecard::getFormatFromRaw()
 		quint32 lzsSize;
 		memcpy(&lzsSize, data.constData(), 4);
 		if(lzsSize + 4 == f.size()) {
-			data = LZS::decompress(data.mid(4), 2);
-			if(data.indexOf("SC") == 0) {
+			const QByteArray &unLzsed = LZS::decompress(data.mid(4), 2);
+			if(unLzsed.startsWith("SC")) {
 				_type = Pc;
 				return pc();
 			}
@@ -417,6 +442,56 @@ bool Savecard::getFormatFromRaw()
 	}
 
 	return false;
+}
+
+bool Savecard::sstate_ePSXe()
+{
+	QTemporaryFile temp;
+	if(!temp.open()) {
+		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de créer le fichier temporaire."));
+		return false;
+	}
+	if(!GZIP::decompress(_path, temp.fileName())) {
+		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de décompresser le fichier."));
+		return false;
+	}
+	temp.seek(7);
+	QString serial(temp.read(11));
+
+	qDebug() << serial;
+
+	temp.seek(0x779CC);
+	QByteArray data;
+	data.append("SC");
+	data.append(QByteArray(0x180, '\0'));
+	data.append(temp.read(0x139E));
+
+	if(data.size() != 0x139E + 0x182)	return false;
+
+	addSave(data);
+
+	return true;
+}
+
+bool Savecard::sstate_pSX()
+{
+	QFile f(_path);
+	if(!f.open(QIODevice::ReadOnly)) {
+		QMessageBox::warning(this, tr("Erreur"), tr("Le fichier est protégé en lecture."));
+		return false;
+	}
+
+	f.seek(0x77AC2);
+	QByteArray data;
+	data.append("SC");
+	data.append(QByteArray(0x180, '\0'));
+	data.append(f.read(0x139E));
+
+	if(data.size() != 0x139E + 0x182)	return false;
+
+	addSave(data);
+
+	return true;
 }
 
 void Savecard::directory()
@@ -693,6 +768,9 @@ bool Savecard::save2PS(QList<int> ids, const QString &path, Type newType)
 		_hasPath = true;
 		setPath(path);
 		setType(newType);
+		for(i=saves.size() ; i<15 ; ++i) {
+			addSave();
+		}
 		foreach(SaveData *save, saves) {
 			if(save->isFF8()) {
 				save->setMCHeader(MCHeader);

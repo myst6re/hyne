@@ -32,9 +32,10 @@
 class LZS
 {
 public:
-	static QByteArray decompress(const QByteArray &fileData, int max);
-	static QByteArray compress(const QByteArray &fileData);
-	
+	static const QByteArray &decompress(const QByteArray &fileData, int max);
+	static const QByteArray &decompressAll(const QByteArray &fileData);
+	static const QByteArray &compress(const QByteArray &fileData);
+
 private:
 	static void InsertNode(qint32 r);
 	static void DeleteNode(qint32 p);

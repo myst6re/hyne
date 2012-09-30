@@ -44,8 +44,8 @@ public slots:
 private slots:
 	void saveView();
 	void newFile();
-	void slot1();
-	void slot2();
+	inline void slot1() { open(Slot1); }
+	inline void slot2() { open(Slot2); }
 	void open(OpenType=File);
 	bool closeFile(bool quit=false);
 	void reload();

@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2012 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2012 Arzel Jérôme <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -15,30 +15,18 @@
  ** You should have received a copy of the GNU General Public License
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
+#ifndef GZIP_H
+#define GZIP_H
 
-#ifndef DEF_SAVEICON
-#define DEF_SAVEICON
+#include <QtCore>
 
-#include <QtGui>
-#define COEFF_COLOR	8.2258064516129032258064516129032 // 255/31
-
-class SaveIcon : public QObject
+class GZIP
 {
-	Q_OBJECT
 public:
-	SaveIcon();
-	SaveIcon(const QByteArray &data, quint8 nbFrames=1);
-	void setAll(const QByteArray &data, quint8 nbFrames=1);
-	QByteArray save() const;
-	QPixmap icon(bool chocobo_world_icon=false) const;
-signals:
-	void nextIcon(const QPixmap &);
-private slots:
-	void nextFrame();
-private:
-	QByteArray data;
-	quint8 nbFrames, curFrame;
-	static QTimer timer;
+	static QByteArray decompress(const QByteArray &data, int decSize);
+	static QByteArray compress(const QByteArray &ungzip);
+	static bool decompress(const QString &pathFrom, const QString &pathTo);
+	static bool compress(const QString &pathFrom, const QString &pathTo);
 };
 
-#endif
+#endif // GZIP_H
