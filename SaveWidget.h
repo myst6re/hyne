@@ -22,7 +22,6 @@
 #include <QtGui>
 #include "SaveData.h"
 #include "Savecard.h"
-#include "HeaderDialog.h"
 
 class Savecard;
 
@@ -45,7 +44,11 @@ private:
 
 	SaveData *saveData;
 	Savecard *_savecard;
+	int mouseMove;
 	bool saved, hovered;
+	bool blackView, hasDragEvent;
+	QByteArray lastDropData;
+	bool lastIsExternal;
 public slots:
 	void properties();
 private slots:
@@ -53,16 +56,24 @@ private slots:
 	void newGame();
 	void removeSave();
 	void refreshIcon();
+	void emitDropped();
 signals:
 	void released(SaveData *saveData);
 	void entered(int id);
 	void changed();
+	void dragged(int id);
+	void dropped(int id, const QByteArray &data, bool isExternal);
 protected:
 	virtual void paintEvent(QPaintEvent *event);
 	virtual void enterEvent(QEvent *event);
+	virtual void mousePressEvent(QMouseEvent *event);
+	virtual void mouseMoveEvent(QMouseEvent *event);
 	virtual void mouseReleaseEvent(QMouseEvent *event);
 	virtual void contextMenuEvent(QContextMenuEvent *event);
 	virtual void changeEvent(QEvent *event);
+	virtual void dragEnterEvent(QDragEnterEvent *event);
+	virtual void dragLeaveEvent(QDragLeaveEvent *event);
+	virtual void dropEvent(QDropEvent *event);
 };
 
 #endif

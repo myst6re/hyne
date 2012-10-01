@@ -167,8 +167,9 @@ void Window::closeEvent(QCloseEvent *event)
 
 void Window::dragEnterEvent(QDragEnterEvent *event)
 {
-	if(stackedLayout->currentWidget()==blackView
-	   || stackedLayout->currentWidget()==saves)
+	if(event->mimeData()->hasUrls() &&
+			(stackedLayout->currentWidget()==blackView
+			 || stackedLayout->currentWidget()==saves))
 		event->acceptProposedAction();
 }
 
@@ -231,6 +232,7 @@ void Window::newFile()
 		if(!closeFile())	return;
 
 		saves = new Savecard(oneSave.isChecked() ? 1 : 15, this);
+		connect(saves, SIGNAL(modified()), SLOT(setModified()));
 
 		if(!saves->ok())
 		{
@@ -262,7 +264,7 @@ void Window::open(OpenType slot)
 		else if(!path.isEmpty())
 			path.append("/Save");
 		path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path,
-											tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard (*.psv);;Save state (*.000 *.001 *.002 *.003 *.004);;Tous les fichiers (*)"));
+											tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;Tous les fichiers (*)"));
 		if(path.isNull())		return;
 
 		int index = path.lastIndexOf('/');
@@ -301,6 +303,7 @@ void Window::openFile(const QString &path)
 	if(!closeFile())	return;
 
 	saves = new Savecard(path, this, this->isPCSlot);
+	connect(saves, SIGNAL(modified()), SLOT(setModified()));
 
 	if(!saves->ok())
 	{
@@ -338,7 +341,7 @@ void Window::setIsOpen(bool open)
 		if(isOpen)
 		{
 			isOpen = false;
-			delete saves;
+			saves->deleteLater();
 		}
 
 		currentSaveEdited = 0;
@@ -362,7 +365,9 @@ void Window::openRecentFile(QAction *action)
 
 void Window::reload()
 {
-	if(isOpen)	openFile(saves->path());
+	if(isOpen) {
+		openFile(QString(saves->path()));
+	}
 }
 
 bool Window::saveAs()

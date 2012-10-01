@@ -68,12 +68,16 @@ public:
 private slots:
 	void moveCursor(int);
 	void notifyFileChanged(const QString &path);
-
+	void setDragStart(int saveID);
+	void swapDraggedAndDropped(int saveID, const QByteArray &mimeData, bool isExternal);
+signals:
+	void modified();
 private:
 	QString _path;
 	bool _ok;
 	Type _type;
 	bool _hasPath;
+	int _dragStart;
 
 	void setWidget();
 	void setPath(const QString &path);
@@ -94,6 +98,9 @@ private:
 	bool notify;
 	QList<SaveData *> saves;
 	bool _isModified;
+protected:
+	virtual void dragEnterEvent(QDragEnterEvent *event);
+	virtual void dragMoveEvent(QDragMoveEvent *event);
 };
 
 #endif

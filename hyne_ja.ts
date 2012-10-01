@@ -45,6 +45,11 @@
         <translatorcomment>Chocobo World</translatorcomment>
         <translation>おでかけチョコボ</translation>
     </message>
+    <message>
+        <location filename="PageWidgets/AllEditor.h" line="30"/>
+        <source>HexaEdit</source>
+        <translation type="unfinished">バイナリ編集</translation>
+    </message>
 </context>
 <context>
     <name>BattleEditor</name>
@@ -153,6 +158,11 @@
         <translatorcomment>Scanned Once</translatorcomment>
         <translation>ライブラで確認済み</translation>
     </message>
+    <message>
+        <location filename="PageWidgets/BattleEditor.h" line="29"/>
+        <source>Combats</source>
+        <translation type="unfinished">バトル</translation>
+    </message>
 </context>
 <context>
     <name>CWEditor</name>
@@ -235,6 +245,11 @@
         <source>HP max :</source>
         <translatorcomment>HP max:</translatorcomment>
         <translation>最大 HP :</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/CWEditor.h" line="30"/>
+        <source>Chocobo World</source>
+        <translation type="unfinished">おでかけチョコボ</translation>
     </message>
 </context>
 <context>
@@ -480,6 +495,11 @@
         <translatorcomment>Left joystick: car FWD/BACK | Right joystick: walk</translatorcomment>
         <translation>左スティック 乗り物の前進/後退|右スティック 歩く/方向転換(乗り物)</translation>
     </message>
+    <message>
+        <location filename="PageWidgets/ConfigEditor.h" line="29"/>
+        <source>Configuration</source>
+        <translation type="unfinished">コンフィグ</translation>
+    </message>
 </context>
 <context>
     <name>DrawPointEditor</name>
@@ -566,98 +586,98 @@
         <translatorcomment>Completely empty</translatorcomment>
         <translation>ドロー済み (回復なし)</translation>
     </message>
+    <message>
+        <location filename="PageWidgets/DrawPointEditor.h" line="35"/>
+        <source>Sources</source>
+        <translation type="unfinished">ドローポイント</translation>
+    </message>
 </context>
 <context>
     <name>Editor</name>
     <message>
-        <location filename="Editor.cpp" line="36"/>
         <source>&amp;Sauver</source>
         <translatorcomment>&amp;Save</translatorcomment>
-        <translation>保存(&amp;S)</translation>
+        <translation type="obsolete">保存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="37"/>
         <source>Annuler</source>
         <translatorcomment>Cancel</translatorcomment>
-        <translation>キャンセル</translation>
+        <translation type="obsolete">キャンセル</translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="32"/>
         <source>Personnages</source>
         <translatorcomment>Characters</translatorcomment>
-        <translation>キャラクター</translation>
+        <translation type="obsolete">キャラクター</translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="32"/>
         <source>Objets</source>
         <translatorcomment>Items</translatorcomment>
-        <translation>アイテム</translation>
+        <translation type="obsolete">アイテム</translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="32"/>
         <source>Boutiques</source>
         <translatorcomment>Shops</translatorcomment>
-        <translation>ショップ呼び出し</translation>
+        <translation type="obsolete">ショップ呼び出し</translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="33"/>
         <source>Triple Triad</source>
         <translatorcomment>Triple Triad</translatorcomment>
-        <translation>カード</translation>
+        <translation type="obsolete">カード</translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="33"/>
         <source>Sources</source>
         <translatorcomment>Draw points</translatorcomment>
-        <translation>ドローポイント</translation>
+        <translation type="obsolete">ドローポイント</translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="33"/>
         <source>Combats</source>
         <translatorcomment>Battle</translatorcomment>
-        <translation>バトル</translation>
+        <translation type="obsolete">バトル</translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="33"/>
         <source>Terrain</source>
         <translatorcomment>Field</translatorcomment>
-        <translation>フィールドマップ</translation>
+        <translation type="obsolete">フィールドマップ</translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="34"/>
         <source>Divers</source>
         <translatorcomment>Miscellaneous</translatorcomment>
-        <translation>その他</translation>
+        <translation type="obsolete">その他</translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="34"/>
         <source>Configuration</source>
         <translatorcomment>Configuration</translatorcomment>
-        <translation>コンフィグ</translation>
+        <translation type="obsolete">コンフィグ</translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="33"/>
         <source>Chocobo World</source>
         <translatorcomment>Chocobo World</translatorcomment>
-        <translation>おでかけチョコボ</translation>
+        <translation type="obsolete">おでかけチョコボ</translation>
+    </message>
+    <message>
+        <source>Mappemonde</source>
+        <translatorcomment>Worldmap</translatorcomment>
+        <translation type="obsolete">ワールドマップ</translation>
+    </message>
+    <message>
+        <source>HexaEdit</source>
+        <translatorcomment>HexaEdit</translatorcomment>
+        <translation type="obsolete">バイナリ編集</translation>
+    </message>
+    <message>
+        <source>G-Forces</source>
+        <translatorcomment>G-Forces</translatorcomment>
+        <translation type="obsolete">Ｇ．Ｆ．</translation>
     </message>
     <message>
         <location filename="Editor.cpp" line="33"/>
-        <source>Mappemonde</source>
-        <translatorcomment>Worldmap</translatorcomment>
-        <translation>ワールドマップ</translation>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="34"/>
-        <source>HexaEdit</source>
-        <translatorcomment>HexaEdit</translatorcomment>
-        <translation>バイナリ編集</translation>
-    </message>
-    <message>
-        <location filename="Editor.cpp" line="32"/>
-        <source>G-Forces</source>
-        <translatorcomment>G-Forces</translatorcomment>
-        <translation>Ｇ．Ｆ．</translation>
+        <location filename="Editor.cpp" line="35"/>
+        <source>&amp;Annuler</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -692,6 +712,11 @@
         <location filename="PageWidgets/FieldEditor.cpp" line="77"/>
         <source>???</source>
         <translation>？？？</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/FieldEditor.h" line="29"/>
+        <source>Terrain</source>
+        <translation type="unfinished">フィールドマップ</translation>
     </message>
 </context>
 <context>
@@ -857,6 +882,11 @@
         <translatorcomment>Remove</translatorcomment>
         <translation>削除</translation>
     </message>
+    <message>
+        <location filename="PageWidgets/GfEditor.h" line="29"/>
+        <source>G-Forces</source>
+        <translation type="unfinished">Ｇ．Ｆ．</translation>
+    </message>
 </context>
 <context>
     <name>HeaderDialog</name>
@@ -993,6 +1023,7 @@
     <name>ItemEditor</name>
     <message>
         <location filename="PageWidgets/ItemEditor.cpp" line="29"/>
+        <location filename="PageWidgets/ItemEditor.h" line="30"/>
         <source>Objets</source>
         <translatorcomment>Items</translatorcomment>
         <translation>アイテム</translation>
@@ -1166,6 +1197,7 @@
     <name>MiscEditor</name>
     <message>
         <location filename="PageWidgets/MiscEditor.cpp" line="58"/>
+        <location filename="PageWidgets/MiscEditor.h" line="29"/>
         <source>Divers</source>
         <translatorcomment>Miscellaneous</translatorcomment>
         <translation>その他</translation>
@@ -1177,818 +1209,901 @@
         <translation>チュートリアル</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="69"/>
         <source>Équipe</source>
         <translatorcomment>Party</translatorcomment>
-        <translation>パーティ</translation>
+        <translation type="obsolete">パーティ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="71"/>
         <source>Menus :</source>
         <translatorcomment>Menus:</translatorcomment>
-        <translation>メニュー :</translation>
+        <translation type="obsolete">メニュー :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="72"/>
         <source>À l&apos;écran :</source>
         <translatorcomment>Field:</translatorcomment>
-        <translation>フィールド :</translation>
+        <translation type="obsolete">フィールド :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="99"/>
         <source>Seule l&apos;équipe principale est visible (rêve avec Laguna)</source>
         <translatorcomment>Party isolated (dream world)</translatorcomment>
-        <translation>パーティ分離 (夢の世界)</translation>
+        <translation type="obsolete">パーティ分離 (夢の世界)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="102"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="69"/>
         <source>Statistiques</source>
         <translatorcomment>Statistics</translatorcomment>
         <translation>統計</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="133"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="100"/>
         <source>Temps :</source>
         <translatorcomment>Time:</translatorcomment>
         <translation>時間 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="136"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="103"/>
         <source>Compte à rebours :</source>
         <translatorcomment>Countdown:</translatorcomment>
         <translation>カウントダウン :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="166"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="133"/>
         <source>Argent :</source>
         <translatorcomment>Gil:</translatorcomment>
         <translation>ギル :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="168"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="135"/>
         <source>Argent Laguna :</source>
         <translatorcomment>Gil Laguna:</translatorcomment>
         <translation>ラグナの所持ギル :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="170"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="137"/>
         <source>Nombre de pas :</source>
         <translatorcomment>Number of steps:</translatorcomment>
         <translation>歩いた距離 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="172"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="139"/>
         <source>Niveau Seed :</source>
         <translatorcomment>Seed level:</translatorcomment>
         <translation>SeeD レベル :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="174"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="141"/>
         <source>EXP Seed :</source>
         <translatorcomment>Seed EXP:</translatorcomment>
         <translation>SeeD EXP :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="176"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="143"/>
         <source>Niveau test Seed :</source>
         <translatorcomment>SeeD test level:</translatorcomment>
         <translation>SeeD 筆記試験レベル :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="180"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="147"/>
         <source>Current Movie Frame :</source>
         <translatorcomment>Current Movie Frame :</translatorcomment>
         <translation>ムービー フレーム :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="178"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="145"/>
         <source>Dernier écran visité :</source>
         <translatorcomment>Last visited field:</translatorcomment>
         <translation>最後のフィールドマップ :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="183"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="150"/>
         <source>En-tête</source>
         <translatorcomment>Header</translatorcomment>
         <translation>ヘッダー</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="197"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="164"/>
         <source>Compteur :</source>
         <translatorcomment>Counter:</translatorcomment>
         <translation>カウンター :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="199"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="166"/>
         <source>Curseur :</source>
         <translatorcomment>Cursor:</translatorcomment>
         <translation>カーソル :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="201"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="168"/>
         <source>Lieu :</source>
         <translatorcomment>Location:</translatorcomment>
         <translation>ロケーション名 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="203"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="170"/>
         <source>HP max leader (inutilisé) :</source>
         <translatorcomment>HP max leader (unused):</translatorcomment>
         <translation>リーダーの最大ＨＰ (未使用) :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="206"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="173"/>
         <source>Inconnu</source>
         <translatorcomment>Unknown</translatorcomment>
         <translation>不明</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="230"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="197"/>
         <source>Inconnu 1 :</source>
         <translatorcomment>Unknown 1:</translatorcomment>
         <translation>詳細不明 1 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="232"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="199"/>
         <source>Inconnu 2 :</source>
         <translatorcomment>Unknown 2:</translatorcomment>
         <translation>詳細不明 2 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="234"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="201"/>
         <source>Inconnu 3 :</source>
         <translatorcomment>Unknown 3:</translatorcomment>
         <translation>詳細不明 3 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="236"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="203"/>
         <source>Inconnu 4 :</source>
         <translatorcomment>Unknown 4:</translatorcomment>
         <translation>詳細不明 4 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="238"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="205"/>
         <source>Inconnu 5 :</source>
         <translatorcomment>Unknown 5:</translatorcomment>
         <translation>詳細不明 5 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="240"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="207"/>
         <source>Inconnu 6 :</source>
         <translatorcomment>Unknown 6:</translatorcomment>
         <translation>詳細不明 6 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="242"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="209"/>
         <source>Inconnu 7 :</source>
         <translatorcomment>Unknown 7:</translatorcomment>
         <translation>詳細不明 7 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="244"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="211"/>
         <source>Inconnu 8 :</source>
         <translatorcomment>Unknown 8:</translatorcomment>
         <translation>詳細不明 8 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="266"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="232"/>
         <source>Catégorie</source>
         <translatorcomment>Category</translatorcomment>
         <translation>メニュー</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="272"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="238"/>
         <source>Lieux/Mine de souffre</source>
         <translation>地名/炎の洞窟</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="272"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="238"/>
         <source>Lieux/Dollet</source>
         <translation>地名/ドール</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="272"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="238"/>
         <source>Lieux/Timber</source>
         <translation>地名/ティンバー</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="273"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="239"/>
         <source>Lieux/Chaîne TV Timber</source>
         <translation>地名/ティンバーのTV局</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="273"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="239"/>
         <source>Lieux/Galbadia</source>
         <translation>地名/ガルバディア</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="273"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="239"/>
         <source>Lieux/Tombe du roi inconnu</source>
         <translation>地名/名もなき王の墓</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="274"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="240"/>
         <source>Lieux/Winhill</source>
         <translation>地名/ウィンヒル</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="274"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="240"/>
         <source>Lieux/Prison du désert</source>
         <translation>地名/D地区収容所</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="274"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="240"/>
         <source>Lieux/Base des missiles</source>
         <translation>地名/ミサイル基地</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="275"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="241"/>
         <source>Lieux/Aqueduc d&apos;Horizon</source>
         <translation>地名/ホライズン・ブリッジ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="275"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="241"/>
         <source>Lieux/Horizon</source>
         <translation>地名/フィッシャーマンズ・ホライズン</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="275"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="241"/>
         <source>Lieux/Trabia</source>
         <translation>地名/トラビア</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="276"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="242"/>
         <source>Lieux/Esthar(1)</source>
         <translation>地名/エスタ(1)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="276"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="242"/>
         <source>Lieux/Esthar(2)</source>
         <translation>地名/エスタ(2)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="276"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="242"/>
         <source>Lieux/Esthar(3)</source>
         <translation>地名/エスタ(3)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="277"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="243"/>
         <source>Lieux/Station balnéaire</source>
         <translation>地名/海岸駅</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="277"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="243"/>
         <source>Lieux/Salt Lake</source>
         <translation>地名/大塩湖</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="277"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="243"/>
         <source>Lieux/Lune</source>
         <translation>地名/月</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="278"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="244"/>
         <source>Lieux/Labo de Deep Sea</source>
         <translation>地名/海洋探査人工島</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="278"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="244"/>
         <source>Lieux/Fouilles de Deep Sea</source>
         <translation>地名/大海のよどみ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="278"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="244"/>
         <source>Termes/Compression Temporelle</source>
         <translation>用語/時間圧縮</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="279"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="245"/>
         <source>Termes/Origine de la BGU</source>
         <translation>用語/ガーデンの真実</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="279"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="245"/>
         <source>Termes/Ondes hertziennes(1)</source>
         <translation>用語/電波しょうがい(1)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="279"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="245"/>
         <source>Termes/Ondes hertziennes(2)</source>
         <translation>用語/電波しょうがい(2)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="280"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="246"/>
         <source>Termes/Larme sélénite</source>
         <translation>用語/月のなみだ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="280"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="246"/>
         <source>Termes/Centra</source>
         <translation>用語/セントラ文明</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="280"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="246"/>
         <source>Termes/Compteur Geyser</source>
         <translation>用語/オダイン・グッズ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="281"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="247"/>
         <source>Termes/Mages et sorcières</source>
         <translation>用語/魔女</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="281"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="247"/>
         <source>Termes/Pouvoirs magiques</source>
         <translation>用語/魔女の力と器</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="281"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="247"/>
         <source>Termes/Monolithe</source>
         <translation>用語/大石柱</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="282"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="248"/>
         <source>Termes/Lunatic Pandora</source>
         <translation>用語/ルナティックパンドラ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="282"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="248"/>
         <source>Termes/Tears Point</source>
         <translation>用語/ティアーズ・ポイント</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="282"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="248"/>
         <source>Termes/Sanctuaire d&apos;Adel</source>
         <translation>用語/アデル・セメタリー</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="283"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="249"/>
         <source>Termes/L&apos;Hydre</source>
         <translation>用語/飛空艇ラグナロク</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="283"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="249"/>
         <source>Termes/Niveau MD</source>
         <translation>用語/ＭＤ層</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="283"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="249"/>
         <source>Termes/Refuge de Centra</source>
         <translation>用語/セントラ・シェルター</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="284"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="250"/>
         <source>Termes/Timber Maniacs</source>
         <translation>用語/ティンバー・マニアックス社</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="284"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="250"/>
         <source>Termes/Eyes On Me</source>
         <translation>用語/アイズ・オン・ミー</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="284"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="250"/>
         <source>Personnages/Dr. Geyser</source>
         <translation>人物/オダイン博士</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="285"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="251"/>
         <source>Personnages/Hyne</source>
         <translation>人物/大いなるハイン</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="285"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="251"/>
         <source>Personnages/Seeds Blancs</source>
         <translation>人物/白いSeeD</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="285"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="251"/>
         <source>Personnages/Moomba</source>
         <translation>人物/ムンバ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="286"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="252"/>
         <source>Personnages/Tribu Shumi</source>
         <translation>人物/シュミ族</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="286"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="252"/>
         <source>Personnages/Chocobo</source>
         <translation>人物/チョコボ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="286"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="252"/>
         <source>Personnages/Maire Dobe</source>
         <translation>人物/ドーブ駅長</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="287"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="253"/>
         <source>Zell</source>
         <translation>ゼル</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="287"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="253"/>
         <source>Quistis</source>
         <translation>キスティス</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="287"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="253"/>
         <source>Seifer</source>
         <translation>サイファー</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="288"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="254"/>
         <source>Selphie</source>
         <translation>セルフィー</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="288"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="254"/>
         <source>Linoa</source>
         <translation>リノア</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="288"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="254"/>
         <source>Irvine</source>
         <translation>アーヴァイン</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="289"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="255"/>
         <source>Edea</source>
         <translation>イデア</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="289"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="255"/>
         <source>Laguna</source>
         <translation>ラグナ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="289"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="255"/>
         <source>Kiros</source>
         <translation>キロス</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="290"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="256"/>
         <source>Ward</source>
         <translation>ウォード</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="290"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="256"/>
         <source>Linoa 2 (Canonisation)</source>
         <translation>リノア 2 (ヴァリー)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="290"/>
-        <location filename="PageWidgets/MiscEditor.cpp" line="291"/>
-        <location filename="PageWidgets/MiscEditor.cpp" line="295"/>
-        <location filename="PageWidgets/MiscEditor.cpp" line="314"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="256"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="257"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="261"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="280"/>
         <source>Inutilisé</source>
         <translatorcomment>Unused</translatorcomment>
         <translation>未使用</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="291"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="257"/>
         <source>Termes/Réincarnation occulte</source>
         <translation>用語/魔女の力のけいしょう</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="291"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="257"/>
         <source>Rapport de combat</source>
         <translation>戦闘レポート</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="292"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="258"/>
         <source>Rapport Perso</source>
         <translation>キャラレポート</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="292"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="258"/>
         <source>Rapport G-Force</source>
         <translation>G.F.レポート</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="292"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="258"/>
         <source>Actions/Association G-Force (inutilisé)</source>
         <translation>オンライン・ヘルプ/GF ジャンクション</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="293"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="259"/>
         <source>Actions/Association magique</source>
         <translation>オンライン・ヘルプ/魔法ジャンクション</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="293"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="259"/>
         <source>Actions/Association élémentale</source>
         <translation>オンライン・ヘルプ/属性ジャンクション</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="293"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="259"/>
         <source>Actions/Association mentale</source>
         <translation>オンライン・ヘルプ/STジャンクション</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="294"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="260"/>
         <source>Actions/Tutorial G-Forces</source>
         <translation>オンライン・ヘルプ/GF の説明</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="294"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="260"/>
         <source>Actions/Écran situation Squall</source>
         <translation>オンライン・ヘルプ/スコールのステータス画面</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="294"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="260"/>
         <source>Actions/Écran situation Zell</source>
         <translation>オンライン・ヘルプ/ゼルのステータス画面</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="295"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="261"/>
         <source>Actions/Écran situation Linoa</source>
         <translation>オンライン・ヘルプ/リノアのステータス画面</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="295"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="261"/>
         <source>Actions/Intervertir</source>
         <translation>オンライン・ヘルプ/いれかえ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="296"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="262"/>
         <source>Minimog</source>
         <translation>コモーグリ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="296"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="262"/>
         <source>Rapport G-Force/Golgotha</source>
         <translation>G.F. レポート/ケツァクウァトル</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="296"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="262"/>
         <source>Rapport G-Force/Shiva</source>
         <translation>G.F. レポート/シヴァ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="297"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="263"/>
         <source>Rapport G-Force/Ifrit</source>
         <translation>G.F. レポート/イフリート</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="297"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="263"/>
         <source>Rapport G-Force/Ondine</source>
         <translation>G.F. レポート/セイレーン</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="297"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="263"/>
         <source>Rapport G-Force/Taurus</source>
         <translation>G.F. レポート/ブラザーズ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="298"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="264"/>
         <source>Rapport G-Force/Nosferatu</source>
         <translation>G.F. レポート/ディアボロス</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="298"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="264"/>
         <source>Rapport G-Force/Ahuri</source>
         <translation>G.F. レポート/カーバンクル</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="298"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="264"/>
         <source>Rapport G-Force/Leviathan</source>
         <translation>G.F. レポート/リヴァイアサン</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="299"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="265"/>
         <source>Rapport G-Force/Zéphyr</source>
         <translation>G.F. レポート/パンデモニウム</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="299"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="265"/>
         <source>Rapport G-Force/Cerberus</source>
         <translation>G.F. レポート/ケルベロス</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="299"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="265"/>
         <source>Rapport G-Force/Alexander</source>
         <translation>G.F. レポート/アレクサンダー</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="300"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="266"/>
         <source>Rapport G-Force/Helltrain</source>
         <translation>G.F. レポート/グラシャラボラス</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="300"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="266"/>
         <source>Rapport G-Force/Bahamut</source>
         <translation>G.F. レポート/バハムート</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="300"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="266"/>
         <source>Rapport G-Force/Pampa</source>
         <translation>G.F. レポート/サボテンダー</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="301"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="267"/>
         <source>Rapport G-Force/Tomberry</source>
         <translation>G.F. レポート/トンベリ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="301"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="267"/>
         <source>Rapport G-Force/Orbital</source>
         <translation>G.F. レポート/エデン</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="301"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="267"/>
         <source>Créa-Mgi-Cél</source>
         <translation>雷魔法精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="302"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="268"/>
         <source>Créa-Mgi-Cél 2</source>
         <translation>雷魔法精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="302"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="268"/>
         <source>Créa-Mgi-Gla</source>
         <translation>冷気魔法精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="302"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="268"/>
         <source>Créa-Mgi-Gla 2</source>
         <translation>冷気魔法精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="303"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="269"/>
         <source>Créa-Mgi-Inc</source>
         <translation>炎魔法精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="303"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="269"/>
         <source>Créa-Mgi-Inc 2</source>
         <translation>炎魔法精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="303"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="269"/>
         <source>Créa-Mgi-Méd</source>
         <translation>生命魔法精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="304"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="270"/>
         <source>Créa-Mgi-Méd 2</source>
         <translation>生命魔法精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="304"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="270"/>
         <source>Créa-Mgi-Temp</source>
         <translation>時空魔法精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="304"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="270"/>
         <source>Créa-Mgi-Temp 2</source>
         <translation>時空魔法精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="305"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="271"/>
         <source>Créa-Mgi-Mtl</source>
         <translation>ST魔法精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="305"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="271"/>
         <source>Créa-Mgi-Mtl 2</source>
         <translation>ST魔法精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="305"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="271"/>
         <source>Créa-Mgi-Pro</source>
         <translation>サポート魔法精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="306"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="272"/>
         <source>Créa-Mgi-Pro 2</source>
         <translation>サポート魔法精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="306"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="272"/>
         <source>Créa-Mgi-Tab</source>
         <translation>禁断魔法精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="306"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="272"/>
         <source>Créa-Mgi-Tab 2</source>
         <translation>禁断魔法精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="307"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="273"/>
         <source>Créa-Mgi-Thér</source>
         <translation>回復薬精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="307"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="273"/>
         <source>Créa-Mgi-Thér 2</source>
         <translation>回復薬精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="307"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="273"/>
         <source>Créa-Mgi-Ana</source>
         <translation>ST薬精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="308"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="274"/>
         <source>Créa-Mgi-Ana 2</source>
         <translation>ST薬精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="308"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="274"/>
         <source>Créa-balles</source>
         <translation>弾薬精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="308"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="274"/>
         <source>Créa-balles 2</source>
         <translation>弾薬精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="309"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="275"/>
         <source>Créa-outils</source>
         <translation>道具精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="309"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="275"/>
         <source>Créa-outils 2</source>
         <translation>道具精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="309"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="275"/>
         <source>Créa-Thér-Tab</source>
         <translation>禁断薬精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="310"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="276"/>
         <source>Créa-Thér-Tab 2</source>
         <translation>禁断薬精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="310"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="276"/>
         <source>Créa-Thér-GF</source>
         <translation>GF回復薬精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="310"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="276"/>
         <source>Créa-Thér-GF 2</source>
         <translation>GF回復薬精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="311"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="277"/>
         <source>Créa-Capa-GF</source>
         <translation>GF能力薬精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="311"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="277"/>
         <source>Créa-Capa-GF 2</source>
         <translation>GF能力薬精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="311"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="277"/>
         <source>Créa-Mgi-Plus</source>
         <translation>中クラス魔法精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="312"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="278"/>
         <source>Créa-Mgi-Plus 2</source>
         <translation>中クラス魔法精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="312"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="278"/>
         <source>Thér-Niv +</source>
         <translation>薬レベルアップ</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="312"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="278"/>
         <source>Thér-Niv + 2</source>
         <translation>薬レベルアップ 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="313"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="279"/>
         <source>Freud</source>
         <translation>リボン</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="313"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="279"/>
         <source>Créa-Mgi-Max</source>
         <translation>上クラス魔法精製</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="313"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="279"/>
         <source>Créa-Mgi-Max 2</source>
         <translation>上クラス魔法精製 2</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="314"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="280"/>
         <source>Diplôme Minotaure</source>
         <translation>オメガのあかし</translation>
     </message>
     <message>
-        <location filename="PageWidgets/MiscEditor.cpp" line="323"/>
+        <location filename="PageWidgets/MiscEditor.cpp" line="289"/>
         <source>Sélectionner tout</source>
         <translation>すべてチェック</translation>
+    </message>
+</context>
+<context>
+    <name>PartyEditor</name>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="29"/>
+        <location filename="PageWidgets/PartyEditor.h" line="29"/>
+        <source>Équipe</source>
+        <translation type="unfinished">パーティ</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="31"/>
+        <source>Menus :</source>
+        <translation type="unfinished">メニュー :</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="32"/>
+        <source>À l&apos;écran :</source>
+        <translation type="unfinished">フィールド :</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="59"/>
+        <source>Seule l&apos;équipe principale est visible (rêve avec Laguna)</source>
+        <translation type="unfinished">パーティ分離 (夢の世界)</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="62"/>
+        <source>Position</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="66"/>
+        <source>X :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="67"/>
+        <source>Y :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="68"/>
+        <source>Triangle ID :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="69"/>
+        <source>Direction :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="72"/>
+        <source>Membre %1 :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="92"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="93"/>
+        <source>Terrain</source>
+        <translation type="unfinished">フィールドマップ</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="94"/>
+        <source>Mappemonde</source>
+        <translation type="unfinished">ワールドマップ</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="95"/>
+        <source>Combat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="113"/>
+        <source>Terrain courant</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="115"/>
+        <source>Terrain précédent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="143"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="150"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="157"/>
+        <source>Inconnu (%1)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2460,4668 +2575,4672 @@
         <translatorcomment>Qty</translatorcomment>
         <translation>個数</translation>
     </message>
+    <message>
+        <location filename="PageWidgets/PersoEditor.h" line="30"/>
+        <source>Personnages</source>
+        <translation type="unfinished">キャラクター</translation>
+    </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="Data.cpp" line="53"/>
+        <location filename="Data.cpp" line="56"/>
         <source>Vgr-A</source>
         <translatorcomment>Str-J</translatorcomment>
         <translation>力J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="53"/>
+        <location filename="Data.cpp" line="56"/>
         <source>Dfs-A</source>
         <translatorcomment>Vit-J</translatorcomment>
         <translation>体力J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="53"/>
+        <location filename="Data.cpp" line="56"/>
         <source>Mgi-A</source>
         <translatorcomment>Mag-J</translatorcomment>
         <translation>魔力J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="53"/>
+        <location filename="Data.cpp" line="56"/>
         <source>Psy-A</source>
         <translatorcomment>Spr-J</translatorcomment>
         <translation>精神J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="53"/>
+        <location filename="Data.cpp" line="56"/>
         <source>HP-A</source>
         <translatorcomment>HP-J</translatorcomment>
         <translation>HPJ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="54"/>
+        <location filename="Data.cpp" line="57"/>
         <source>Vts-A</source>
         <translatorcomment>Spd-J</translatorcomment>
         <translation>早さJ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="54"/>
+        <location filename="Data.cpp" line="57"/>
         <source>Esq-A</source>
         <translatorcomment>Eva-J</translatorcomment>
         <translation>回避J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="54"/>
+        <location filename="Data.cpp" line="57"/>
         <source>Prc-A</source>
         <translatorcomment>Hit-J</translatorcomment>
         <translation>命中J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="54"/>
+        <location filename="Data.cpp" line="57"/>
         <source>Chc-A</source>
         <translatorcomment>Luck-J</translatorcomment>
         <translation>運J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="54"/>
+        <location filename="Data.cpp" line="57"/>
         <source>Atq-Élé-A</source>
         <translatorcomment>Elem-Atk-J</translatorcomment>
         <translation>属性攻撃J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="55"/>
+        <location filename="Data.cpp" line="58"/>
         <source>Atq-Mtl-A</source>
         <translatorcomment>ST-Atk-J</translatorcomment>
         <translation>ST攻撃J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="55"/>
+        <location filename="Data.cpp" line="58"/>
         <source>Déf-Élé-A</source>
         <translatorcomment>Elem-Def-J</translatorcomment>
         <translation>属性防御J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="55"/>
+        <location filename="Data.cpp" line="58"/>
         <source>Déf-Mtl-A</source>
         <translatorcomment>ST-Def-J</translatorcomment>
         <translation>ST防御J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="55"/>
+        <location filename="Data.cpp" line="58"/>
         <source>Déf-ÉléX2</source>
         <translatorcomment>Elem-Defx2</translatorcomment>
         <translation>属性防御Jx2</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="55"/>
+        <location filename="Data.cpp" line="58"/>
         <source>Déf-ÉléX4</source>
         <translatorcomment>Elem-Defx4</translatorcomment>
         <translation>属性防御Jx4</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="56"/>
+        <location filename="Data.cpp" line="59"/>
         <source>Déf-Mtl-Ax2</source>
         <translatorcomment>ST-Def-Jx2</translatorcomment>
         <translation>ST防御Jx2</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="56"/>
+        <location filename="Data.cpp" line="59"/>
         <source>Déf-Mtl-Ax4</source>
         <translatorcomment>ST-Def-Jx4</translatorcomment>
         <translation>ST防御Jx4</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="56"/>
+        <location filename="Data.cpp" line="59"/>
         <source>CapacitéX3</source>
         <translatorcomment>Abilityx3</translatorcomment>
         <translation>アビリティx3</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="56"/>
+        <location filename="Data.cpp" line="59"/>
         <source>CapacitéX4</source>
         <translatorcomment>Abilityx4</translatorcomment>
         <translation>アビリティx4</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="56"/>
+        <location filename="Data.cpp" line="59"/>
         <source>Magie</source>
         <translatorcomment>Magic</translatorcomment>
         <translation>まほう</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="57"/>
+        <location filename="Data.cpp" line="60"/>
         <source>G-Force</source>
         <translatorcomment>GF</translatorcomment>
         <translation>Ｇ．Ｆ．</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="57"/>
+        <location filename="Data.cpp" line="60"/>
         <source>Voler</source>
         <translatorcomment>Draw</translatorcomment>
         <translation>ドロー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="57"/>
+        <location filename="Data.cpp" line="60"/>
         <source>Objets</source>
         <translatorcomment>Item</translatorcomment>
         <translation>アイテム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="57"/>
+        <location filename="Data.cpp" line="60"/>
         <source>Carte</source>
         <translatorcomment>Card</translatorcomment>
         <translation>カード</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="58"/>
+        <location filename="Data.cpp" line="61"/>
         <source>Châtiment</source>
         <translatorcomment>Doom</translatorcomment>
         <translation>しのせんこく</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="58"/>
+        <location filename="Data.cpp" line="61"/>
         <source>Mad Rush</source>
         <translatorcomment>Mad Rush</translatorcomment>
         <translation>とつげき</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="58"/>
+        <location filename="Data.cpp" line="61"/>
         <source>Traitement</source>
         <translatorcomment>Treatment</translatorcomment>
         <translation>ちりょう</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="58"/>
+        <location filename="Data.cpp" line="61"/>
         <source>Défense</source>
         <translatorcomment>Defend</translatorcomment>
         <translation>ぼうぎょ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="58"/>
+        <location filename="Data.cpp" line="61"/>
         <source>Combustion</source>
         <translatorcomment>Darkside</translatorcomment>
         <translation>あんこく</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="59"/>
+        <location filename="Data.cpp" line="62"/>
         <source>Arnica</source>
         <translatorcomment>Recover</translatorcomment>
         <translation>かいふく</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="59"/>
+        <location filename="Data.cpp" line="62"/>
         <source>Phagocyte</source>
         <translatorcomment>Absorb</translatorcomment>
         <translation>すいとる</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="59"/>
+        <location filename="Data.cpp" line="62"/>
         <source>Ranimer</source>
         <translatorcomment>Revive</translatorcomment>
         <translation>そせい</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="59"/>
+        <location filename="Data.cpp" line="62"/>
         <source>Nv Moins</source>
         <translatorcomment>LV Down</translatorcomment>
         <translation>レベルダウン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="59"/>
+        <location filename="Data.cpp" line="62"/>
         <source>Nv Plus</source>
         <translatorcomment>LV Up</translatorcomment>
         <translation>レベルアップ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="60"/>
+        <location filename="Data.cpp" line="63"/>
         <source>Kamikaze</source>
         <translatorcomment>Kamikaze</translatorcomment>
         <translation>じばく</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="60"/>
+        <location filename="Data.cpp" line="63"/>
         <source>Cannibale</source>
         <translatorcomment>Devour</translatorcomment>
         <translation>たべる</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="60"/>
+        <location filename="Data.cpp" line="63"/>
         <source>Mini Kikou</source>
         <translatorcomment>MiniMog</translatorcomment>
         <translation>コモーグリ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="60"/>
+        <location filename="Data.cpp" line="63"/>
         <source>HP+20%</source>
         <translatorcomment>HP+20%</translatorcomment>
         <translation>HP+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="60"/>
+        <location filename="Data.cpp" line="63"/>
         <source>HP+40%</source>
         <translatorcomment>HP+40%</translatorcomment>
         <translation>HP+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="61"/>
+        <location filename="Data.cpp" line="64"/>
         <source>HP+80%</source>
         <translatorcomment>HP+80%</translatorcomment>
         <translation>HP+80%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="61"/>
+        <location filename="Data.cpp" line="64"/>
         <source>Vgr+20%</source>
         <translatorcomment>Str+20%</translatorcomment>
         <translation>力+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="61"/>
+        <location filename="Data.cpp" line="64"/>
         <source>Vgr+40%</source>
         <translatorcomment>Str+40%</translatorcomment>
         <translation>力+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="61"/>
+        <location filename="Data.cpp" line="64"/>
         <source>Vgr+60%</source>
         <translatorcomment>Str+60%</translatorcomment>
         <translation>力+60%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="61"/>
+        <location filename="Data.cpp" line="64"/>
         <source>Dfs+20%</source>
         <translatorcomment>Vit+20%</translatorcomment>
         <translation>体力+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="62"/>
+        <location filename="Data.cpp" line="65"/>
         <source>Dfs+40%</source>
         <translatorcomment>Vit+40%</translatorcomment>
         <translation>体力+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="62"/>
+        <location filename="Data.cpp" line="65"/>
         <source>Dfs+60%</source>
         <translatorcomment>Vit+60%</translatorcomment>
         <translation>体力+60%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="62"/>
+        <location filename="Data.cpp" line="65"/>
         <source>Mgi+20%</source>
         <translatorcomment>Mag+20%</translatorcomment>
         <translation>魔力+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="62"/>
+        <location filename="Data.cpp" line="65"/>
         <source>Mgi+40%</source>
         <translatorcomment>Mag+40%</translatorcomment>
         <translation>魔力+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="62"/>
+        <location filename="Data.cpp" line="65"/>
         <source>Mgi+60%</source>
         <translatorcomment>Mag+60%</translatorcomment>
         <translation>魔力+60%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="63"/>
+        <location filename="Data.cpp" line="66"/>
         <source>Psy+20%</source>
         <translatorcomment>Spr+20%</translatorcomment>
         <translation>精神+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="63"/>
+        <location filename="Data.cpp" line="66"/>
         <source>Psy+40%</source>
         <translatorcomment>Spr+40%</translatorcomment>
         <translation>精神+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="63"/>
+        <location filename="Data.cpp" line="66"/>
         <source>Psy+60%</source>
         <translatorcomment>Spr+60%</translatorcomment>
         <translation>精神+60%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="63"/>
+        <location filename="Data.cpp" line="66"/>
         <source>Vit+20%</source>
         <translatorcomment>Spd+20%</translatorcomment>
         <translation>早さ+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="63"/>
+        <location filename="Data.cpp" line="66"/>
         <source>Vit+40%</source>
         <translatorcomment>Spd+40%</translatorcomment>
         <translation>早さ+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="64"/>
+        <location filename="Data.cpp" line="67"/>
         <source>Esq+30%</source>
         <translatorcomment>Eva+30%</translatorcomment>
         <translation>回避+30%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="64"/>
+        <location filename="Data.cpp" line="67"/>
         <source>Chc+50%</source>
         <translatorcomment>Luck+50%</translatorcomment>
         <translation>運+50%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="64"/>
+        <location filename="Data.cpp" line="67"/>
         <source>Piller</source>
         <translatorcomment>Mug</translatorcomment>
         <translation>ぶんどる</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="64"/>
+        <location filename="Data.cpp" line="67"/>
         <source>Schweitzer</source>
         <translatorcomment>Med Data</translatorcomment>
         <translation>くすりのちしき</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="64"/>
+        <location filename="Data.cpp" line="67"/>
         <source>Amorce</source>
         <translatorcomment>Counter</translatorcomment>
         <translation>カウンター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="65"/>
+        <location filename="Data.cpp" line="68"/>
         <source>Backlash</source>
         <translatorcomment>Return Damage</translatorcomment>
         <translation>ダメージがえし</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="65"/>
+        <location filename="Data.cpp" line="68"/>
         <source>Empathie</source>
         <translatorcomment>Cover</translatorcomment>
         <translation>かばう</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="65"/>
+        <location filename="Data.cpp" line="68"/>
         <source>Genki</source>
         <translatorcomment>Initiative</translatorcomment>
         <translation>さきがけ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="65"/>
+        <location filename="Data.cpp" line="68"/>
         <source>Atlas-HP</source>
         <translatorcomment>Move-HP Up</translatorcomment>
         <translation>歩くとHP回復</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="66"/>
+        <location filename="Data.cpp" line="69"/>
         <source>Auto-Carapace</source>
         <translatorcomment>Auto-Protect</translatorcomment>
         <translation>オートプロテス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="67"/>
+        <location filename="Data.cpp" line="70"/>
         <source>Auto-Blindage</source>
         <translatorcomment>Auto-Shell</translatorcomment>
         <translation>オートシェル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="67"/>
+        <location filename="Data.cpp" line="70"/>
         <source>Auto-Boomerang</source>
         <translatorcomment>Auto-Reflect</translatorcomment>
         <translation>オートリフレク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="67"/>
+        <location filename="Data.cpp" line="70"/>
         <source>Auto-Booster</source>
         <translatorcomment>Auto-Haste</translatorcomment>
         <translation>オートヘイスト</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="67"/>
+        <location filename="Data.cpp" line="70"/>
         <source>Auto-Potion</source>
         <translatorcomment>Auto-Potion</translatorcomment>
         <translation>オートポーション</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="67"/>
+        <location filename="Data.cpp" line="70"/>
         <source>DoublEco</source>
         <translatorcomment>Expendx2-1</translatorcomment>
         <translation>ダブル消費1</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="68"/>
+        <location filename="Data.cpp" line="71"/>
         <source>TriplEco</source>
         <translatorcomment>Expendx3-1</translatorcomment>
         <translation>トリプル消費1</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="68"/>
+        <location filename="Data.cpp" line="71"/>
         <source>Prudence</source>
         <translatorcomment>Alert</translatorcomment>
         <translation>けいかい</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="68"/>
+        <location filename="Data.cpp" line="71"/>
         <source>Clairvoyance</source>
         <translatorcomment>Move-Find</translatorcomment>
         <translation>隠しポイント発見</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="68"/>
+        <location filename="Data.cpp" line="71"/>
         <source>Mi-Combat</source>
         <translatorcomment>Enc-Half</translatorcomment>
         <translation>エンカウント半減</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="68"/>
+        <location filename="Data.cpp" line="71"/>
         <source>Freud</source>
         <comment>ability</comment>
         <translatorcomment>Ribbon</translatorcomment>
         <translation>リボン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="69"/>
+        <location filename="Data.cpp" line="72"/>
         <source>No-Combat</source>
         <translatorcomment>Enc-None</translatorcomment>
         <translation>エンカウントなし</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="69"/>
+        <location filename="Data.cpp" line="72"/>
         <source>Sensor</source>
         <translatorcomment>Rare Item</translatorcomment>
         <translation>レアアイテム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="69"/>
+        <location filename="Data.cpp" line="72"/>
         <source>Invoc+10%</source>
         <translatorcomment>SumMag+10%</translatorcomment>
         <translation>召喚魔法+10%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="69"/>
+        <location filename="Data.cpp" line="72"/>
         <source>Invoc+20%</source>
         <translatorcomment>SumMag+20%</translatorcomment>
         <translation>召喚魔法+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="69"/>
+        <location filename="Data.cpp" line="72"/>
         <source>Invoc+30%</source>
         <translatorcomment>SumMag+30%</translatorcomment>
         <translation>召喚魔法+30%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="70"/>
+        <location filename="Data.cpp" line="73"/>
         <source>Invoc+40%</source>
         <translatorcomment>SumMag+40%</translatorcomment>
         <translation>召喚魔法+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="70"/>
+        <location filename="Data.cpp" line="73"/>
         <source>HP-GF+10%</source>
         <translatorcomment>GFHP+10%</translatorcomment>
         <translation>GFHP+10%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="70"/>
+        <location filename="Data.cpp" line="73"/>
         <source>HP-GF+20%</source>
         <translatorcomment>GFHP+20%</translatorcomment>
         <translation>GFHP+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="70"/>
+        <location filename="Data.cpp" line="73"/>
         <source>HP-GF+30%</source>
         <translatorcomment>GFHP+30%</translatorcomment>
         <translation>GFHP+30%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="70"/>
+        <location filename="Data.cpp" line="73"/>
         <source>HP-GF+40%</source>
         <translatorcomment>GFHP+40%</translatorcomment>
         <translation>GFHP+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Turbo</source>
         <translatorcomment>Boost</translatorcomment>
         <translation>おうえん</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Souk</source>
         <translatorcomment>Haggle</translatorcomment>
         <translation>値切る</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Sentier</source>
         <translatorcomment>Sell-High</translatorcomment>
         <translation>高値で売る</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Connaisseur</source>
         <translatorcomment>Familiar</translatorcomment>
         <translation>顔なじみ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Boutiques</source>
         <translatorcomment>Call Shop</translatorcomment>
         <translation>ショップ呼び出し</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Bazars</source>
         <translatorcomment>Junk Shop</translatorcomment>
         <translation>ジャンク屋呼び出し</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Créa-Mgi-Cél</source>
         <translatorcomment>T Mag-RF</translatorcomment>
         <translation>雷魔法精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Créa-Mgi-Gla</source>
         <translatorcomment>I Mag-RF</translatorcomment>
         <translation>冷気魔法精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Créa-Mgi-Inc</source>
         <translatorcomment>F Mag-RF</translatorcomment>
         <translation>炎魔法精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Créa-Mgi-Méd</source>
         <translatorcomment>L Mag-RF</translatorcomment>
         <translation>生命魔法精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="76"/>
         <source>Créa-Mgi-Temp</source>
         <translatorcomment>Time Mag-RF</translatorcomment>
         <translation>時空魔法精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="76"/>
         <source>Créa-Mgi-Mtl</source>
         <translatorcomment>ST Mag-RF</translatorcomment>
         <translation>ST魔法精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="76"/>
         <source>Créa-Mgi-Pro</source>
         <translatorcomment>Supt Mag-RF</translatorcomment>
         <translation>サポート魔法精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="76"/>
         <source>Créa-Mgi-Tab</source>
         <translatorcomment>Forbid Mag-RF</translatorcomment>
         <translation>禁断魔法精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="76"/>
         <source>Créa-Mgi-Thér</source>
         <translatorcomment>Recov Med-RF</translatorcomment>
         <translation>回復薬精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="77"/>
         <source>Créa-Mgi-Ana</source>
         <translatorcomment>ST Med-RF</translatorcomment>
         <translation>ST薬精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="77"/>
         <source>Créa-Balles</source>
         <translatorcomment>Ammo-RF</translatorcomment>
         <translation>弾薬精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="77"/>
         <source>Créa-Outils</source>
         <translatorcomment>Tool-RF</translatorcomment>
         <translation>道具精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="77"/>
         <source>Créa-Thér-Tab</source>
         <translatorcomment>Forbid Med-RF</translatorcomment>
         <translation>禁断薬精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="77"/>
         <source>Créa-Thér-GF</source>
         <translatorcomment>GFRecov Med-RF</translatorcomment>
         <translation>GF回復薬精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="75"/>
+        <location filename="Data.cpp" line="78"/>
         <source>Créa-Capa-GF</source>
         <translatorcomment>GFAbl Med-RF</translatorcomment>
         <translation>GF能力薬精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="75"/>
+        <location filename="Data.cpp" line="78"/>
         <source>Créa-Mgi-Plus</source>
         <translatorcomment>Mid Mag-RF</translatorcomment>
         <translation>中クラス魔法精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="75"/>
+        <location filename="Data.cpp" line="78"/>
         <source>Créa-Mgi-Max</source>
         <translatorcomment>High Mag-RF</translatorcomment>
         <translation>上クラス魔法精製</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="75"/>
+        <location filename="Data.cpp" line="78"/>
         <source>Soins NV +</source>
         <translatorcomment>Med LV Up</translatorcomment>
         <translation>薬レベルアップ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="75"/>
+        <location filename="Data.cpp" line="78"/>
         <source>Mode Carte</source>
         <translatorcomment>Card Mod</translatorcomment>
         <translation>カード変化</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="77"/>
+        <location filename="Data.cpp" line="80"/>
         <source>Brasier</source>
         <translatorcomment>Fire</translatorcomment>
         <translation>ファイア</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="77"/>
+        <location filename="Data.cpp" line="80"/>
         <source>Brasier+</source>
         <translatorcomment>Fira</translatorcomment>
         <translation>ファイラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="77"/>
+        <location filename="Data.cpp" line="80"/>
         <source>BrasierX</source>
         <translatorcomment>Firaga</translatorcomment>
         <translation>ファイガ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="77"/>
+        <location filename="Data.cpp" line="80"/>
         <source>Glacier</source>
         <translatorcomment>Blizzard</translatorcomment>
         <translation>ブリザド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="77"/>
+        <location filename="Data.cpp" line="80"/>
         <source>Glacier+</source>
         <translatorcomment>Blizzara</translatorcomment>
         <translation>ブリザラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="78"/>
+        <location filename="Data.cpp" line="81"/>
         <source>GlacierX</source>
         <translatorcomment>Blizzaga</translatorcomment>
         <translation>ブリザガ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="78"/>
+        <location filename="Data.cpp" line="81"/>
         <source>Foudre</source>
         <translatorcomment>Thunder</translatorcomment>
         <translation>サンダー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="78"/>
+        <location filename="Data.cpp" line="81"/>
         <source>Foudre+</source>
         <translatorcomment>Thundara</translatorcomment>
         <translation>サンダラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="78"/>
+        <location filename="Data.cpp" line="81"/>
         <source>FoudreX</source>
         <translatorcomment>Thundaga</translatorcomment>
         <translation>サンダガ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="78"/>
+        <location filename="Data.cpp" line="81"/>
         <source>Rafale</source>
         <translatorcomment>Aero</translatorcomment>
         <translation>エアロ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="78"/>
+        <location filename="Data.cpp" line="81"/>
         <source>Cyanure</source>
         <translatorcomment>Bio</translatorcomment>
         <translation>バイオ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="79"/>
+        <location filename="Data.cpp" line="82"/>
         <source>Quart</source>
         <translatorcomment>Demi</translatorcomment>
         <translation>グラビデ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="79"/>
+        <location filename="Data.cpp" line="82"/>
         <source>Sidéral</source>
         <translatorcomment>Holy</translatorcomment>
         <translation>ホーリー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="79"/>
+        <location filename="Data.cpp" line="82"/>
         <source>Fournaise</source>
         <translatorcomment>Flare</translatorcomment>
         <translation>フレア</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="79"/>
+        <location filename="Data.cpp" line="82"/>
         <source>Météore</source>
         <translatorcomment>Meteor</translatorcomment>
         <translation>メテオ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="79"/>
+        <location filename="Data.cpp" line="82"/>
         <source>Quake</source>
         <translatorcomment>Quake</translatorcomment>
         <translation>クエイク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="79"/>
+        <location filename="Data.cpp" line="82"/>
         <source>Tornade</source>
         <translatorcomment>Tornado</translatorcomment>
         <translation>トルネド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="79"/>
+        <location filename="Data.cpp" line="82"/>
         <source>Ultima</source>
         <translatorcomment>Ultima</translatorcomment>
         <translation>アルテマ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Apocalypse</source>
         <translatorcomment>Apocalypse</translatorcomment>
         <translation>アポカリプス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Soin</source>
         <translatorcomment>Cure</translatorcomment>
         <translation>ケアル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Soin Max</source>
         <translatorcomment>Curaga</translatorcomment>
         <translation>ケアルガ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Vie</source>
         <translatorcomment>Life</translatorcomment>
         <translation>レイズ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Vie Max</source>
         <translatorcomment>Full-life</translatorcomment>
         <translation>アレイズ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Récup</source>
         <translatorcomment>Regen</translatorcomment>
         <translation>リジェネ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Esuna</source>
         <translatorcomment>Esuna</translatorcomment>
         <translation>エスナ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="84"/>
         <source>Anti-sort</source>
         <translatorcomment>Dispel</translatorcomment>
         <translation>デスペル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="84"/>
         <source>Carapace</source>
         <translatorcomment>Protect</translatorcomment>
         <translation>プロテス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="84"/>
         <source>Blindage</source>
         <translatorcomment>Shell</translatorcomment>
         <translation>シェル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="84"/>
         <source>Aura</source>
         <translatorcomment>Aura</translatorcomment>
         <translation>オーラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="84"/>
         <source>Double</source>
         <translatorcomment>Double</translatorcomment>
         <translation>ダブル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="84"/>
         <source>Triple</source>
         <translatorcomment>Triple</translatorcomment>
         <translation>トリプル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="84"/>
         <source>Booster</source>
         <translatorcomment>Haste</translatorcomment>
         <translation>ヘイスト</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Somni</source>
         <translatorcomment>Slow</translatorcomment>
         <translation>スロウ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Stop</source>
         <translatorcomment>Stop</translatorcomment>
         <translation>ストップ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Cécité</source>
         <translatorcomment>Blind</translatorcomment>
         <translation>ブライン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Folie</source>
         <translatorcomment>Confuse</translatorcomment>
         <translation>コンフュ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Morphée</source>
         <translatorcomment>Sleep</translatorcomment>
         <translation>スリプル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Aphasie</source>
         <translatorcomment>Silence</translatorcomment>
         <translation>サイレス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Mégalith</source>
         <translatorcomment>Break</translatorcomment>
         <translation>ブレイク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Ankou</source>
         <translatorcomment>Death</translatorcomment>
         <translation>デス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="86"/>
         <source>Saignée</source>
         <translatorcomment>Drain</translatorcomment>
         <translation>ドレイン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="86"/>
         <source>Supplice</source>
         <translatorcomment>Pain</translatorcomment>
         <translation>ペイン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="86"/>
         <source>Furie</source>
         <translatorcomment>Berserk</translatorcomment>
         <translation>バーサク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="86"/>
         <source>Décubitus</source>
         <translatorcomment>Float</translatorcomment>
         <translation>レビテト</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="86"/>
         <source>Zombie</source>
         <translatorcomment>Zombie</translatorcomment>
         <translation>ゾンビー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="86"/>
         <source>Meltdown</source>
         <translatorcomment>Meltdown</translatorcomment>
         <translation>メルトン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="86"/>
         <source>Scan</source>
         <translatorcomment>Scan</translatorcomment>
         <translation>ライブラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="86"/>
         <source>Joobu</source>
         <translatorcomment>Full-cure</translatorcomment>
         <translation>フルケア</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="84"/>
+        <location filename="Data.cpp" line="87"/>
         <source>Wall</source>
         <translatorcomment>Wall</translatorcomment>
         <translation>ウォール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="84"/>
+        <location filename="Data.cpp" line="87"/>
         <source>Arkange</source>
         <translatorcomment>Rapture</translatorcomment>
         <translation>レビテガ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="84"/>
+        <location filename="Data.cpp" line="87"/>
         <source>The End</source>
         <translatorcomment>The End</translatorcomment>
         <translation>ジエンド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="84"/>
+        <location filename="Data.cpp" line="87"/>
         <source>Percent</source>
         <translatorcomment>Percent</translatorcomment>
         <translation>パセント</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="84"/>
+        <location filename="Data.cpp" line="87"/>
         <source>Catastrophe</source>
         <translatorcomment>Catastrophe</translatorcomment>
         <translation>カタスト</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="86"/>
+        <location filename="Data.cpp" line="89"/>
         <source>Potion</source>
         <translatorcomment>Potion</translatorcomment>
         <translation>ポーション</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="86"/>
+        <location filename="Data.cpp" line="89"/>
         <source>Potion+</source>
         <translatorcomment>Potion+</translatorcomment>
         <translation>ポーション改</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="86"/>
+        <location filename="Data.cpp" line="89"/>
         <source>Hypra-Potion</source>
         <translatorcomment>Hi-Potion</translatorcomment>
         <translation>ハイポーション</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="86"/>
+        <location filename="Data.cpp" line="89"/>
         <source>Maxi potion</source>
         <translatorcomment>Hi-Potion+</translatorcomment>
         <translation>ハイポーション改</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="86"/>
+        <location filename="Data.cpp" line="89"/>
         <source>Potion totale</source>
         <translatorcomment>X-Potion</translatorcomment>
         <translation>エクスポーション</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="87"/>
+        <location filename="Data.cpp" line="90"/>
         <source>Méga potion</source>
         <translatorcomment>Mega-Potion</translatorcomment>
         <translation>メガポーション</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="87"/>
+        <location filename="Data.cpp" line="90"/>
         <source>MT-Psy</source>
         <translatorcomment>Phoenix Down</translatorcomment>
         <translation>フェニックスの尾</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="87"/>
+        <location filename="Data.cpp" line="90"/>
         <source>Maxi MT-Psy</source>
         <translatorcomment>Mega Phoenix</translatorcomment>
         <translation>メガフェニックス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="87"/>
+        <location filename="Data.cpp" line="90"/>
         <source>Elixir</source>
         <translatorcomment>Elixir</translatorcomment>
         <translation>エリクサー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="87"/>
+        <location filename="Data.cpp" line="90"/>
         <source>Mégalixir</source>
         <translatorcomment>Megalixir</translatorcomment>
         <translation>ラストエリクサー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="87"/>
+        <location filename="Data.cpp" line="90"/>
         <source>Antidote</source>
         <translatorcomment>Antidote</translatorcomment>
         <translation>毒消し</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="88"/>
+        <location filename="Data.cpp" line="91"/>
         <source>Défijeur</source>
         <translatorcomment>Soft</translatorcomment>
         <translation>金の針</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="88"/>
+        <location filename="Data.cpp" line="91"/>
         <source>Lasik</source>
         <translatorcomment>Eye Drops</translatorcomment>
         <translation>目薬</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="88"/>
+        <location filename="Data.cpp" line="91"/>
         <source>Bocca</source>
         <translatorcomment>Echo Screen</translatorcomment>
         <translation>山彦草</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="88"/>
+        <location filename="Data.cpp" line="91"/>
         <source>Eau bénite</source>
         <translatorcomment>Holy Water</translatorcomment>
         <translation>聖水</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="88"/>
+        <location filename="Data.cpp" line="91"/>
         <source>Remède</source>
         <translatorcomment>Remedy</translatorcomment>
         <translation>万能薬</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="88"/>
+        <location filename="Data.cpp" line="91"/>
         <source>Remède +</source>
         <translatorcomment>Remedy+</translatorcomment>
         <translation>万能薬改</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="89"/>
+        <location filename="Data.cpp" line="92"/>
         <source>1-20-Syble</source>
         <translatorcomment>Hero-trial</translatorcomment>
         <translation>英雄の薬試作型</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="89"/>
+        <location filename="Data.cpp" line="92"/>
         <source>Invulnérable</source>
         <translatorcomment>Hero</translatorcomment>
         <translation>英雄の薬</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="89"/>
+        <location filename="Data.cpp" line="92"/>
         <source>1-destructible</source>
         <translatorcomment>Holy War-trial</translatorcomment>
         <translation>聖戦の薬試作型</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="89"/>
+        <location filename="Data.cpp" line="92"/>
         <source>Croisade</source>
         <translatorcomment>Holy War</translatorcomment>
         <translation>聖戦の薬</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="89"/>
+        <location filename="Data.cpp" line="92"/>
         <source>Roc cosse</source>
         <translatorcomment>Shell Stone</translatorcomment>
         <translation>シェルストーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="90"/>
+        <location filename="Data.cpp" line="93"/>
         <source>Roc carapace</source>
         <translatorcomment>Protect Stone</translatorcomment>
         <translation>プロテスストーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="90"/>
+        <location filename="Data.cpp" line="93"/>
         <source>Roc d&apos;Aura</source>
         <translatorcomment>Aura Stone</translatorcomment>
         <translation>オーラストーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="90"/>
+        <location filename="Data.cpp" line="93"/>
         <source>Roc mortel</source>
         <translatorcomment>Death Stone</translatorcomment>
         <translation>デスストーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="90"/>
+        <location filename="Data.cpp" line="93"/>
         <source>Roc sacré</source>
         <translatorcomment>Holy Stone</translatorcomment>
         <translation>ホーリーストーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="90"/>
+        <location filename="Data.cpp" line="93"/>
         <source>Roc flamboyant</source>
         <translatorcomment>Flare Stone</translatorcomment>
         <translation>フレアストーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="91"/>
+        <location filename="Data.cpp" line="94"/>
         <source>Roc Météore</source>
         <translatorcomment>Meteor Stone</translatorcomment>
         <translation>メテオストーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="91"/>
+        <location filename="Data.cpp" line="94"/>
         <source>Roc Ultima</source>
         <translatorcomment>Ultima Stone</translatorcomment>
         <translation>アルテマストーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="91"/>
+        <location filename="Data.cpp" line="94"/>
         <source>ChocoLégume</source>
         <translatorcomment>Gysahl Greens</translatorcomment>
         <translation>ギサールの野菜</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="91"/>
+        <location filename="Data.cpp" line="94"/>
         <source>Pen Pal</source>
         <translatorcomment>Friendship</translatorcomment>
         <translation>ゆうじょうのあかし</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="92"/>
+        <location filename="Data.cpp" line="95"/>
         <source>Red Kross</source>
         <translatorcomment>Tent</translatorcomment>
         <translation>テント</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="92"/>
+        <location filename="Data.cpp" line="95"/>
         <source>Zoologie</source>
         <translatorcomment>Pet House</translatorcomment>
         <translation>ペットハウス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="92"/>
+        <location filename="Data.cpp" line="95"/>
         <source>Saindoux</source>
         <translatorcomment>Cottage</translatorcomment>
         <translation>コテージ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="92"/>
+        <location filename="Data.cpp" line="95"/>
         <source>Potion GF</source>
         <translatorcomment>G-Potion</translatorcomment>
         <translation>Ｇポーション</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="92"/>
+        <location filename="Data.cpp" line="95"/>
         <source>Potion GF +</source>
         <translatorcomment>G-Hi-Potion</translatorcomment>
         <translation>Ｇハイポーション</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="93"/>
+        <location filename="Data.cpp" line="96"/>
         <source>Mégapotion GF</source>
         <translatorcomment>G-Mega-Potion</translatorcomment>
         <translation>Ｇメガポーション</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="93"/>
+        <location filename="Data.cpp" line="96"/>
         <source>Sel marin</source>
         <translatorcomment>G-Returner</translatorcomment>
         <translation>Gリターナー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="93"/>
+        <location filename="Data.cpp" line="96"/>
         <source>Carte baptême</source>
         <translatorcomment>Rename Card</translatorcomment>
         <translation>リネームカード</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="93"/>
+        <location filename="Data.cpp" line="96"/>
         <source>Décapaciteur</source>
         <translatorcomment>Amnesia Greens</translatorcomment>
         <translation>忘れ草</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="93"/>
+        <location filename="Data.cpp" line="96"/>
         <source>Livret HP-A</source>
         <translatorcomment>HP-J Scroll</translatorcomment>
         <translation>ＨＰの書</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="94"/>
+        <location filename="Data.cpp" line="97"/>
         <source>Livret Vgr-A</source>
         <translatorcomment>Str-J Scroll</translatorcomment>
         <translation>力の書</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="94"/>
+        <location filename="Data.cpp" line="97"/>
         <source>Livret Dfs-A</source>
         <translatorcomment>Vit-J Scroll</translatorcomment>
         <translation>体力の書</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="94"/>
+        <location filename="Data.cpp" line="97"/>
         <source>Livret Mgi-A</source>
         <translatorcomment>Mag-J Scroll</translatorcomment>
         <translation>魔力の書</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="94"/>
+        <location filename="Data.cpp" line="97"/>
         <source>Livret Psy-A</source>
         <translatorcomment>Spr-J Scroll</translatorcomment>
         <translation>精神の書</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="94"/>
+        <location filename="Data.cpp" line="97"/>
         <source>Livret Vts-A</source>
         <translatorcomment>Spd-J Scroll</translatorcomment>
         <translation>早さの書</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="95"/>
+        <location filename="Data.cpp" line="98"/>
         <source>Livret Chc-A</source>
         <translatorcomment>Luck-J Scroll</translatorcomment>
         <translation>運の書</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="95"/>
+        <location filename="Data.cpp" line="98"/>
         <source>Shadow</source>
         <translatorcomment>Aegis Amulet</translatorcomment>
         <translation>エイジスの守り</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="95"/>
+        <location filename="Data.cpp" line="98"/>
         <source>Assaut Elé</source>
         <translatorcomment>Elem Atk</translatorcomment>
         <translation>エレメントアタック</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="95"/>
+        <location filename="Data.cpp" line="98"/>
         <source>Antichoc Elé</source>
         <translatorcomment>Elem Guard</translatorcomment>
         <translation>エレメントガード</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="95"/>
+        <location filename="Data.cpp" line="98"/>
         <source>Assaut Mtl</source>
         <translatorcomment>Status Atk</translatorcomment>
         <translation>ステータスアタック</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="96"/>
+        <location filename="Data.cpp" line="99"/>
         <source>Antichoc Mtl</source>
         <translatorcomment>Status Guard</translatorcomment>
         <translation>ステータスガード</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="96"/>
+        <location filename="Data.cpp" line="99"/>
         <source>Roc Rosette</source>
         <translatorcomment>Rosetta Stone</translatorcomment>
         <translation>ロゼッタ石</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="96"/>
+        <location filename="Data.cpp" line="99"/>
         <source>GrimoMagic</source>
         <translatorcomment>Magic Scroll</translatorcomment>
         <translation>魔法の書</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="96"/>
+        <location filename="Data.cpp" line="99"/>
         <source>GrimoForce</source>
         <translatorcomment>GF Scroll</translatorcomment>
         <translation>Ｇ．Ｆ．の書</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="96"/>
+        <location filename="Data.cpp" line="99"/>
         <source>GrimoVole</source>
         <translatorcomment>Draw Scroll</translatorcomment>
         <translation>ドローの書</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="97"/>
+        <location filename="Data.cpp" line="100"/>
         <source>GrimObjets</source>
         <translatorcomment>Item Scroll</translatorcomment>
         <translation>アイテムの書</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="97"/>
+        <location filename="Data.cpp" line="100"/>
         <source>Vegas Feel</source>
         <translatorcomment>Gambler Spirit</translatorcomment>
         <translation>勝負師の魂</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="97"/>
+        <location filename="Data.cpp" line="100"/>
         <source>Sanatorium</source>
         <translatorcomment>Healing Ring</translatorcomment>
         <translation>いやしの指輪</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="97"/>
+        <location filename="Data.cpp" line="100"/>
         <source>MétemPsy</source>
         <translatorcomment>Phoenix Spirit</translatorcomment>
         <translation>フェニックスの魂</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="97"/>
+        <location filename="Data.cpp" line="100"/>
         <source>Bandage</source>
         <translatorcomment>Med Kit</translatorcomment>
         <translation>救急セット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="97"/>
+        <location filename="Data.cpp" line="100"/>
         <source>Nova</source>
         <translatorcomment>Bomb Spirit</translatorcomment>
         <translation>ボムの魂</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="98"/>
+        <location filename="Data.cpp" line="101"/>
         <source>Régime</source>
         <translatorcomment>Hungry Cookpot</translatorcomment>
         <translation>食欲魔神のナベ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="98"/>
+        <location filename="Data.cpp" line="101"/>
         <source>Kikkou Mania</source>
         <translatorcomment>Mog&apos;s Amulet</translatorcomment>
         <translation>モグのお守り</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="98"/>
+        <location filename="Data.cpp" line="101"/>
         <source>Samâdhi</source>
         <translatorcomment>Steel Pipe</translatorcomment>
         <translation>鉄パイプ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="98"/>
+        <location filename="Data.cpp" line="101"/>
         <source>Zodiaque</source>
         <translatorcomment>Star Fragment</translatorcomment>
         <translation>星々のかけら</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="98"/>
+        <location filename="Data.cpp" line="101"/>
         <source>Nuclide</source>
         <translatorcomment>Energy Crystal</translatorcomment>
         <translation>エネルギー結晶体</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="98"/>
+        <location filename="Data.cpp" line="101"/>
         <source>Sacrum</source>
         <translatorcomment>Samantha Soul</translatorcomment>
         <translation>ソウルオブサマサ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="99"/>
+        <location filename="Data.cpp" line="102"/>
         <source>Billet</source>
         <translatorcomment>Healing Mail</translatorcomment>
         <translation>ヒーリングメイル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="99"/>
+        <location filename="Data.cpp" line="102"/>
         <source>Armure d&apos;or</source>
         <translatorcomment>Gold Armor</translatorcomment>
         <translation>ゴールドアーマー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="99"/>
+        <location filename="Data.cpp" line="102"/>
         <source>Cuirasse</source>
         <translatorcomment>Diamond Armor</translatorcomment>
         <translation>ダイヤアーマー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="99"/>
+        <location filename="Data.cpp" line="102"/>
         <source>Anneau Récup</source>
         <translatorcomment>Regen Ring</translatorcomment>
         <translation>復活の指輪</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="99"/>
+        <location filename="Data.cpp" line="102"/>
         <source>Alliance</source>
         <translatorcomment>Giant&apos;s Ring</translatorcomment>
         <translation>巨人の指輪</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="99"/>
+        <location filename="Data.cpp" line="102"/>
         <source>Vierge</source>
         <comment>item1</comment>
         <translatorcomment>Barrier</translatorcomment>
         <translation>バリアシステム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="100"/>
+        <location filename="Data.cpp" line="103"/>
         <source>Bague Gaêa</source>
         <translatorcomment>Gaea&apos;s Ring</translatorcomment>
         <translation>ガイアの指輪</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="100"/>
+        <location filename="Data.cpp" line="103"/>
         <source>Vitamine</source>
         <translatorcomment>Strength Love</translatorcomment>
         <translation>ちからだすき</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="100"/>
+        <location filename="Data.cpp" line="103"/>
         <source>Sagou</source>
         <translatorcomment>Power Wrist</translatorcomment>
         <translation>パワーリスト</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="100"/>
+        <location filename="Data.cpp" line="103"/>
         <source>Sagette</source>
         <translatorcomment>Hyper Wrist</translatorcomment>
         <translation>ハイパーリスト</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="100"/>
+        <location filename="Data.cpp" line="103"/>
         <source>Coquille</source>
         <translatorcomment>Turtle Shell</translatorcomment>
         <translation>カメのこうら</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="100"/>
+        <location filename="Data.cpp" line="103"/>
         <source>Halcyon</source>
         <translatorcomment>Orihalcon</translatorcomment>
         <translation>オリハルコン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="101"/>
+        <location filename="Data.cpp" line="104"/>
         <source>Adamantine</source>
         <translatorcomment>Adamantine</translatorcomment>
         <translation>アダマンタイン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="101"/>
+        <location filename="Data.cpp" line="104"/>
         <source>Obole</source>
         <translatorcomment>Rune Armlet</translatorcomment>
         <translation>ルーンの腕輪</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="101"/>
+        <location filename="Data.cpp" line="104"/>
         <source>Tao</source>
         <translatorcomment>Force Armlet</translatorcomment>
         <translation>フォースの腕輪</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="101"/>
+        <location filename="Data.cpp" line="104"/>
         <source>Lacan</source>
         <translatorcomment>Magic Armlet</translatorcomment>
         <translation>魔神の腕輪</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="101"/>
+        <location filename="Data.cpp" line="104"/>
         <source>Garcinord</source>
         <translatorcomment>Circlet</translatorcomment>
         <translation>サークレット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="101"/>
+        <location filename="Data.cpp" line="104"/>
         <source>Merlin</source>
         <translatorcomment>Hypno Crown</translatorcomment>
         <translation>ヒュプノクラウン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="102"/>
+        <location filename="Data.cpp" line="105"/>
         <source>Magax</source>
         <translatorcomment>Royal Crown</translatorcomment>
         <translation>ロイヤルクラウン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="102"/>
+        <location filename="Data.cpp" line="105"/>
         <source>Injection</source>
         <translatorcomment>Jet Engine</translatorcomment>
         <translation>ジェットエンジン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="102"/>
+        <location filename="Data.cpp" line="105"/>
         <source>SuperSonic</source>
         <translatorcomment>Rocket Engine</translatorcomment>
         <translation>ロケットエンジン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="102"/>
+        <location filename="Data.cpp" line="105"/>
         <source>Pied de biche</source>
         <translatorcomment>Moon Curtain</translatorcomment>
         <translation>月のカーテン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="102"/>
+        <location filename="Data.cpp" line="105"/>
         <source>Ecaille</source>
         <translatorcomment>Steel Curtain</translatorcomment>
         <translation>鉄のカーテン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="102"/>
+        <location filename="Data.cpp" line="105"/>
         <source>Tasmania</source>
         <translatorcomment>Glow Curtain</translatorcomment>
         <translation>光のカーテン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="103"/>
+        <location filename="Data.cpp" line="106"/>
         <source>Speedy</source>
         <translatorcomment>Accelerator</translatorcomment>
         <translation>加速装置</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="103"/>
+        <location filename="Data.cpp" line="106"/>
         <source>Réactor</source>
         <translatorcomment>Monk&apos;s Code</translatorcomment>
         <translation>モンクの心得</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="103"/>
+        <location filename="Data.cpp" line="106"/>
         <source>Protector</source>
         <translatorcomment>Knight&apos;s Code</translatorcomment>
         <translation>ナイトの心得</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="103"/>
+        <location filename="Data.cpp" line="106"/>
         <source>Pasteur</source>
         <translatorcomment>Doc&apos;s Code</translatorcomment>
         <translation>医術の心得</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="103"/>
+        <location filename="Data.cpp" line="106"/>
         <source>Manivelle</source>
         <translatorcomment>Hundred Needles</translatorcomment>
         <translation>１００本針</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="103"/>
+        <location filename="Data.cpp" line="106"/>
         <source>Trilogie</source>
         <translatorcomment>Three Stars</translatorcomment>
         <translation>スリースターズ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="104"/>
+        <location filename="Data.cpp" line="107"/>
         <source>Balles normales</source>
         <translatorcomment>Normal Ammo</translatorcomment>
         <translation>通常弾</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="104"/>
+        <location filename="Data.cpp" line="107"/>
         <source>Mitra-balles</source>
         <translatorcomment>Shotgun Ammo</translatorcomment>
         <translation>散弾</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="104"/>
+        <location filename="Data.cpp" line="107"/>
         <source>Dark balles</source>
         <translatorcomment>Dark Ammo</translatorcomment>
         <translation>暗黒弾</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="104"/>
+        <location filename="Data.cpp" line="107"/>
         <source>Balles foudre</source>
         <translatorcomment>Fire Ammo</translatorcomment>
         <translation>火炎弾</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="104"/>
+        <location filename="Data.cpp" line="107"/>
         <source>Freud</source>
         <comment>item</comment>
         <translatorcomment>Ribbon</translatorcomment>
         <translation>リボン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="105"/>
+        <location filename="Data.cpp" line="108"/>
         <source>Balles tornade</source>
         <translatorcomment>Demolition Ammo</translatorcomment>
         <translation>破壊弾</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="105"/>
+        <location filename="Data.cpp" line="108"/>
         <source>Balles véloces</source>
         <translatorcomment>Fast Ammo</translatorcomment>
         <translation>速射弾</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="105"/>
+        <location filename="Data.cpp" line="108"/>
         <source>Balles anti-char</source>
         <translatorcomment>AP Ammo</translatorcomment>
         <translation>徹甲弾</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="105"/>
+        <location filename="Data.cpp" line="108"/>
         <source>Balles Pulsar</source>
         <translatorcomment>Pulse Ammo</translatorcomment>
         <translation>波動弾</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="105"/>
+        <location filename="Data.cpp" line="108"/>
         <source>Caillou magik</source>
         <translatorcomment>M-Stone Piece</translatorcomment>
         <translation>魔石のかけら</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="106"/>
+        <location filename="Data.cpp" line="109"/>
         <source>Roc initiatique</source>
         <translatorcomment>Magic Stone</translatorcomment>
         <translation>魔石</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="106"/>
+        <location filename="Data.cpp" line="109"/>
         <source>Roc féerique</source>
         <translatorcomment>Wizard Stone</translatorcomment>
         <translation>魔導石</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="106"/>
+        <location filename="Data.cpp" line="109"/>
         <source>Tentacule</source>
         <translatorcomment>Ochu Tentacle</translatorcomment>
         <translation>オチューの触手</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="106"/>
+        <location filename="Data.cpp" line="109"/>
         <source>Onde bénite</source>
         <translatorcomment>Healing Water</translatorcomment>
         <translation>いやしの水</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="106"/>
+        <location filename="Data.cpp" line="109"/>
         <source>Plumage</source>
         <translatorcomment>Cockatrice Pinion</translatorcomment>
         <translation>コカトリスの羽</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="107"/>
+        <location filename="Data.cpp" line="110"/>
         <source>Poudre Zombie</source>
         <translatorcomment>Zombie Powder</translatorcomment>
         <translation>ゾンビパウダー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="107"/>
+        <location filename="Data.cpp" line="110"/>
         <source>Bottes de 7km</source>
         <translatorcomment>Lightweight</translatorcomment>
         <translation>ダッシュシューズ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="107"/>
+        <location filename="Data.cpp" line="110"/>
         <source>9 inch nail</source>
         <translatorcomment>Sharp Spike</translatorcomment>
         <translation>とがった爪</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="107"/>
+        <location filename="Data.cpp" line="110"/>
         <source>Enclume</source>
         <translatorcomment>Screw</translatorcomment>
         <translation>ネジ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="107"/>
+        <location filename="Data.cpp" line="110"/>
         <source>Cimeterre</source>
         <translatorcomment>Saw Blade</translatorcomment>
         <translation>ノコギリの刃</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="108"/>
+        <location filename="Data.cpp" line="111"/>
         <source>Corne</source>
         <translatorcomment>Mesmerize Blade</translatorcomment>
         <translation>メズマライズの刃</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="108"/>
+        <location filename="Data.cpp" line="111"/>
         <source>Sanguine</source>
         <translatorcomment>Vampire Fang</translatorcomment>
         <translation>吸血の牙</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="108"/>
+        <location filename="Data.cpp" line="111"/>
         <source>EuFurysant</source>
         <translatorcomment>Fury Fragment</translatorcomment>
         <translation>闘気のかけら</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="108"/>
+        <location filename="Data.cpp" line="111"/>
         <source>Epée trompeuse</source>
         <translatorcomment>Betrayal Sword</translatorcomment>
         <translation>味方殺しの剣</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="108"/>
+        <location filename="Data.cpp" line="111"/>
         <source>Poudre Morphée</source>
         <translatorcomment>Sleep Powder</translatorcomment>
         <translation>眠り粉</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="109"/>
+        <location filename="Data.cpp" line="112"/>
         <source>Anneau de vie</source>
         <translatorcomment>Life Ring</translatorcomment>
         <translation>命の指輪</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="109"/>
+        <location filename="Data.cpp" line="112"/>
         <source>Lochness</source>
         <translatorcomment>Dragon Fang</translatorcomment>
         <translation>竜の牙</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="109"/>
+        <location filename="Data.cpp" line="112"/>
         <source>U-Boat</source>
         <translatorcomment>Spider Web</translatorcomment>
         <translation>クモの糸</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="109"/>
+        <location filename="Data.cpp" line="112"/>
         <source>Etoile</source>
         <translatorcomment>Coral Fragment</translatorcomment>
         <translation>サンゴのかけら</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="109"/>
+        <location filename="Data.cpp" line="112"/>
         <source>Weirdo</source>
         <translatorcomment>Curse Spike</translatorcomment>
         <translation>呪いの爪</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="109"/>
+        <location filename="Data.cpp" line="112"/>
         <source>Gen-X</source>
         <translatorcomment>Black Hole</translatorcomment>
         <translation>ブラックホール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="110"/>
+        <location filename="Data.cpp" line="113"/>
         <source>Fluide</source>
         <translatorcomment>Water Crystal</translatorcomment>
         <translation>水の結晶</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="110"/>
+        <location filename="Data.cpp" line="113"/>
         <source>M-Double</source>
         <translatorcomment>Missile</translatorcomment>
         <translation>ミサイル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="110"/>
+        <location filename="Data.cpp" line="113"/>
         <source>House</source>
         <translatorcomment>Mystery Fluid</translatorcomment>
         <translation>謎の液体</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="110"/>
+        <location filename="Data.cpp" line="113"/>
         <source>Chevrotine</source>
         <translatorcomment>Running Fire</translatorcomment>
         <translation>牙式連発銃</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="110"/>
+        <location filename="Data.cpp" line="113"/>
         <source>Canicule</source>
         <translatorcomment>Inferno Fang</translatorcomment>
         <translation>火竜の牙</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="110"/>
+        <location filename="Data.cpp" line="113"/>
         <source>Germe</source>
         <translatorcomment>Malboro Tentacle</translatorcomment>
         <translation>モルボルの触手</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="111"/>
+        <location filename="Data.cpp" line="114"/>
         <source>Rhône</source>
         <translatorcomment>Whisper</translatorcomment>
         <translation>風のささやき</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="111"/>
+        <location filename="Data.cpp" line="114"/>
         <source>Rayon</source>
         <translatorcomment>Laser Cannon</translatorcomment>
         <translation>レーザーキャノン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="111"/>
+        <location filename="Data.cpp" line="114"/>
         <source>V-Choc</source>
         <translatorcomment>Power Generator</translatorcomment>
         <translation>高出力発生装置</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="111"/>
+        <location filename="Data.cpp" line="114"/>
         <source>H-Espace</source>
         <translatorcomment>Dark Matter</translatorcomment>
         <translation>ダークマター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="111"/>
+        <location filename="Data.cpp" line="114"/>
         <source>Hot Rock</source>
         <translatorcomment>Bomb Fragment</translatorcomment>
         <translation>ボムのかけら</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="111"/>
+        <location filename="Data.cpp" line="114"/>
         <source>Vierge</source>
         <comment>item2</comment>
         <translatorcomment>Barrier</translatorcomment>
         <translation>バリアシステム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="112"/>
+        <location filename="Data.cpp" line="115"/>
         <source>Molaire</source>
         <translatorcomment>Red Fang</translatorcomment>
         <translation>赤い牙</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="112"/>
+        <location filename="Data.cpp" line="115"/>
         <source>Blizzard</source>
         <translatorcomment>Arctic Wind</translatorcomment>
         <translation>南極の風</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="112"/>
+        <location filename="Data.cpp" line="115"/>
         <source>Nunatak</source>
         <translatorcomment>North Wind</translatorcomment>
         <translation>北極の風</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="112"/>
+        <location filename="Data.cpp" line="115"/>
         <source>Gemma Luce</source>
         <translatorcomment>Dynamo Stone</translatorcomment>
         <translation>ダイナモ石</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="112"/>
+        <location filename="Data.cpp" line="115"/>
         <source>Aigrette</source>
         <translatorcomment>Shear Feather</translatorcomment>
         <translation>風切り羽</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="112"/>
+        <location filename="Data.cpp" line="115"/>
         <source>Canine</source>
         <translatorcomment>Venom Fang</translatorcomment>
         <translation>毒の牙</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="113"/>
+        <location filename="Data.cpp" line="116"/>
         <source>Globe d&apos;acier</source>
         <translatorcomment>Steel Orb</translatorcomment>
         <translation>鉄球</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="113"/>
+        <location filename="Data.cpp" line="116"/>
         <source>Roc lunaire</source>
         <translatorcomment>Moon Stone</translatorcomment>
         <translation>月の石</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="113"/>
+        <location filename="Data.cpp" line="116"/>
         <source>Fémur</source>
         <translatorcomment>Dino Bone</translatorcomment>
         <translation>恐竜の骨</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="113"/>
+        <location filename="Data.cpp" line="116"/>
         <source>Aquilon</source>
         <translatorcomment>Windmill</translatorcomment>
         <translation>風車</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="113"/>
+        <location filename="Data.cpp" line="116"/>
         <source>Derme</source>
         <translatorcomment>Dragon Skin</translatorcomment>
         <translation>竜の皮</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="113"/>
+        <location filename="Data.cpp" line="116"/>
         <source>Zygène</source>
         <translatorcomment>Fish Fin</translatorcomment>
         <translation>サカナのヒレ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="114"/>
+        <location filename="Data.cpp" line="117"/>
         <source>Shark</source>
         <translatorcomment>Dragon Fin</translatorcomment>
         <translation>竜のウロコ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="114"/>
+        <location filename="Data.cpp" line="117"/>
         <source>Poudre Aphasie</source>
         <translatorcomment>Silence Powder</translatorcomment>
         <translation>沈黙の粉</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="114"/>
+        <location filename="Data.cpp" line="117"/>
         <source>Venin</source>
         <translatorcomment>Poison Powder</translatorcomment>
         <translation>毒の粉</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="114"/>
+        <location filename="Data.cpp" line="117"/>
         <source>Revenant</source>
         <translatorcomment>Dead Spirit</translatorcomment>
         <translation>死者の魂</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="114"/>
+        <location filename="Data.cpp" line="117"/>
         <source>Désosseur </source>
         <translatorcomment>Chef&apos;s Knife</translatorcomment>
         <translation>ほうちょう</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="114"/>
+        <location filename="Data.cpp" line="117"/>
         <source>Kaktos</source>
         <translatorcomment>Cactus Thorn</translatorcomment>
         <translation>サボテンのトゲ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="115"/>
+        <location filename="Data.cpp" line="118"/>
         <source>Roc Shaman</source>
         <translatorcomment>Shaman Stone</translatorcomment>
         <translation>賢者の石</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="115"/>
+        <location filename="Data.cpp" line="118"/>
         <source>Essence</source>
         <translatorcomment>Fuel</translatorcomment>
         <translation>燃料</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="115"/>
+        <location filename="Data.cpp" line="118"/>
         <source>Comtesse Cochon</source>
         <translatorcomment>Girl Net Door</translatorcomment>
         <translation>となりのカノジョ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="115"/>
+        <location filename="Data.cpp" line="118"/>
         <source>Missive d&apos;Edea</source>
         <translatorcomment>Sorceress&apos; Letter</translatorcomment>
         <translation>魔女のてがみ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="115"/>
+        <location filename="Data.cpp" line="118"/>
         <source>Collier Chocobo</source>
         <translatorcomment>Chocobo&apos;s Tag</translatorcomment>
         <translation>チョコボの名札</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="116"/>
+        <location filename="Data.cpp" line="119"/>
         <source>Collier chien</source>
         <translatorcomment>Pet Nametag</translatorcomment>
         <translation>ペットの名札</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="116"/>
+        <location filename="Data.cpp" line="119"/>
         <source>Bague du chef</source>
         <translatorcomment>Solomon Ring</translatorcomment>
         <translation>ソロモンの指輪</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="116"/>
+        <location filename="Data.cpp" line="119"/>
         <source>Aladore</source>
         <translatorcomment>Magical Lamp</translatorcomment>
         <translation>魔法のランプ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="65"/>
+        <location filename="Data.cpp" line="68"/>
         <source>Bonus HP</source>
         <comment>ability</comment>
         <translatorcomment>HP Bonus</translatorcomment>
         <translation>HPボーナス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="66"/>
+        <location filename="Data.cpp" line="69"/>
         <source>Bonus Vgr</source>
         <comment>ability</comment>
         <translatorcomment>Str Bonus</translatorcomment>
         <translation>力ボーナス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="66"/>
+        <location filename="Data.cpp" line="69"/>
         <source>Bonus Dfs</source>
         <comment>ability</comment>
         <translatorcomment>Vit Bonus</translatorcomment>
         <translation>体力ボーナス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="66"/>
+        <location filename="Data.cpp" line="69"/>
         <source>Bonus Mgi</source>
         <comment>ability</comment>
         <translatorcomment>Mag Bonus</translatorcomment>
         <translation>魔力ボーナス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="66"/>
+        <location filename="Data.cpp" line="69"/>
         <source>Bonus Psy</source>
         <comment>ability</comment>
         <translatorcomment>Spr Bonus</translatorcomment>
         <translation>精神ボーナス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="116"/>
+        <location filename="Data.cpp" line="119"/>
         <source>Bonus Hp</source>
         <comment>item</comment>
         <translatorcomment>HP Up</translatorcomment>
         <translation>ＨＰアップ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="116"/>
+        <location filename="Data.cpp" line="119"/>
         <source>Bonus Vgr</source>
         <comment>item</comment>
         <translatorcomment>Str Up</translatorcomment>
         <translation>パワーアップ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="117"/>
+        <location filename="Data.cpp" line="120"/>
         <source>Bonus Dfs</source>
         <comment>item</comment>
         <translatorcomment>Vit Up</translatorcomment>
         <translation>ガードアップ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="117"/>
+        <location filename="Data.cpp" line="120"/>
         <source>Bonus Mgi</source>
         <comment>item</comment>
         <translatorcomment>Mag Up</translatorcomment>
         <translation>マジックアップ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="117"/>
+        <location filename="Data.cpp" line="120"/>
         <source>Bonus Psy</source>
         <comment>item</comment>
         <translatorcomment>Spr Up</translatorcomment>
         <translation>マインドアップ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="117"/>
+        <location filename="Data.cpp" line="120"/>
         <source>Bonus Vts</source>
         <comment>item</comment>
         <translatorcomment>Spd Up</translatorcomment>
         <translation>スピードアップ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="117"/>
+        <location filename="Data.cpp" line="120"/>
         <source>Bonus Chc</source>
         <comment>item</comment>
         <translatorcomment>Luck Up</translatorcomment>
         <translation>ラックアップ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="118"/>
+        <location filename="Data.cpp" line="121"/>
         <source>Amour bestial</source>
         <translatorcomment>LuvLuv G</translatorcomment>
         <translation>ラブラブG</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="118"/>
+        <location filename="Data.cpp" line="121"/>
         <source>F.F.F. Fév</source>
         <translatorcomment>Weapons Mon 1st</translatorcomment>
         <translation>月刊武器 創刊号</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="118"/>
+        <location filename="Data.cpp" line="121"/>
         <source>F.F.F. Mar</source>
         <translatorcomment>Weapons Mon Mar</translatorcomment>
         <translation>月刊武器 3月号</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="118"/>
+        <location filename="Data.cpp" line="121"/>
         <source>F.F.F. Avr</source>
         <translatorcomment>Weapons Mon Apr</translatorcomment>
         <translation>月刊武器 4月号</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="118"/>
+        <location filename="Data.cpp" line="121"/>
         <source>F.F.F. Mai</source>
         <translatorcomment>Weapons Mon May</translatorcomment>
         <translation>月刊武器 5月号</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="119"/>
+        <location filename="Data.cpp" line="122"/>
         <source>F.F.F. Jun</source>
         <translatorcomment>Weapons Mon Jun</translatorcomment>
         <translation>月刊武器 6月号</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="119"/>
+        <location filename="Data.cpp" line="122"/>
         <source>F.F.F. Jul</source>
         <translatorcomment>Weapons Mon Jul</translatorcomment>
         <translation>月刊武器 7月号</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="119"/>
+        <location filename="Data.cpp" line="122"/>
         <source>F.F.F. Aoû</source>
         <translatorcomment>Weapons Mon Aug</translatorcomment>
         <translation>月刊武器 8月号</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="119"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Baston mag 1</source>
         <translatorcomment>Combat King 001</translatorcomment>
         <translation>格闘王 001</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="119"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Baston mag 2</source>
         <translatorcomment>Combat King 002</translatorcomment>
         <translation>格闘王 002</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="120"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Baston mag 3</source>
         <translatorcomment>Combat King 003</translatorcomment>
         <translation>格闘王 003</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="120"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Baston mag 4</source>
         <translatorcomment>Combat King 004</translatorcomment>
         <translation>格闘王 004</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="120"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Baston mag 5</source>
         <translatorcomment>Combat King 005</translatorcomment>
         <translation>格闘王 005</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="120"/>
+        <location filename="Data.cpp" line="123"/>
         <source>L&apos;A D bêtes 1</source>
         <translatorcomment>Pet Pals Vol.1</translatorcomment>
         <translation>ペット通信 Vol.1</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="120"/>
+        <location filename="Data.cpp" line="123"/>
         <source>L&apos;A D bêtes 2</source>
         <translatorcomment>Pet Pals Vol.2</translatorcomment>
         <translation>ペット通信 Vol.2</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="124"/>
         <source>L&apos;A D bêtes 3</source>
         <translatorcomment>Pet Pals Vol.3</translatorcomment>
         <translation>ペット通信 Vol.3</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="124"/>
         <source>L&apos;A D bêtes 4</source>
         <translatorcomment>Pet Pals Vol.4</translatorcomment>
         <translation>ペット通信 Vol.4</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="124"/>
         <source>L&apos;A D bêtes 5</source>
         <translatorcomment>Pet Pals Vol.5</translatorcomment>
         <translation>ペット通信 Vol.5</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="124"/>
         <source>L&apos;A D bêtes 6</source>
         <translatorcomment>Pet Pals Vol.6</translatorcomment>
         <translation>ペット通信 Vol.6</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Occult Fan I</source>
         <translatorcomment>Occult Fan I</translatorcomment>
         <translation>オカルトファン I</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Occult Fan II</source>
         <translatorcomment>Occult Fan II</translatorcomment>
         <translation>オカルトファン II</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Occult Fan III</source>
         <translatorcomment>Occult Fan III</translatorcomment>
         <translation>オカルトファン III</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Occult Fan IV</source>
         <translatorcomment>Occult Fan IV</translatorcomment>
         <translation>オカルトファン IV</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="144"/>
         <source>Pistolame</source>
         <translatorcomment>Revolver</translatorcomment>
         <translation>リボルバー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="144"/>
         <source>Nacre Blade</source>
         <translatorcomment>Shear Trigger</translatorcomment>
         <translation>キアストレート</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="144"/>
         <source>Dragon Blade</source>
         <translatorcomment>Cutting Trigger</translatorcomment>
         <translation>カッテングトリガー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="144"/>
         <source>Sabreur</source>
         <translatorcomment>Flame Saber</translatorcomment>
         <translation>フレイムタン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="144"/>
         <source>Katana</source>
         <translatorcomment>Twin Lance</translatorcomment>
         <translation>ランスオブスリット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="144"/>
         <source>Kendo</source>
         <translatorcomment>Punishment</translatorcomment>
         <translation>クライム＆ペナルティ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="144"/>
         <source>Lionheart</source>
         <translatorcomment>Lion Heart</translatorcomment>
         <translation>エンドオブハート</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="142"/>
+        <location filename="Data.cpp" line="145"/>
         <source>Metal Gloves</source>
         <translatorcomment>Metal Knuckle</translatorcomment>
         <translation>メタルナックル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="142"/>
+        <location filename="Data.cpp" line="145"/>
         <source>Maverick</source>
         <translatorcomment>Maverick</translatorcomment>
         <translation>マーベリック</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="142"/>
+        <location filename="Data.cpp" line="145"/>
         <source>Gauntlets</source>
         <translatorcomment>Gauntlet</translatorcomment>
         <translation>ガントレット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="142"/>
+        <location filename="Data.cpp" line="145"/>
         <source>Ehrgeiz</source>
         <translatorcomment>Ehrgeiz</translatorcomment>
         <translation>エアガイツ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="143"/>
+        <location filename="Data.cpp" line="146"/>
         <source>W.W.West</source>
         <translatorcomment>Valiant</translatorcomment>
         <translation>バリアント</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="143"/>
+        <location filename="Data.cpp" line="146"/>
         <source>Roosevelt</source>
         <translatorcomment>Ulysses</translatorcomment>
         <translation>ユリシーズ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="143"/>
+        <location filename="Data.cpp" line="146"/>
         <source>Bertha</source>
         <translatorcomment>Bismarck</translatorcomment>
         <translation>ビスマルク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="143"/>
+        <location filename="Data.cpp" line="146"/>
         <source>Steel Gun</source>
         <translatorcomment>Exeter</translatorcomment>
         <translation>エクゼター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="144"/>
+        <location filename="Data.cpp" line="147"/>
         <source>Gibet</source>
         <translatorcomment>Chain Whip</translatorcomment>
         <translation>チェーンウィップ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="144"/>
+        <location filename="Data.cpp" line="147"/>
         <source>Totally S.M.</source>
         <translatorcomment>Slaying Tail</translatorcomment>
         <translation>スレイプニルテイル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="144"/>
+        <location filename="Data.cpp" line="147"/>
         <source>Red Scorpio</source>
         <translatorcomment>Red Scorpion</translatorcomment>
         <translation>レッドスコルピオン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="144"/>
+        <location filename="Data.cpp" line="147"/>
         <source>Smiley</source>
         <translatorcomment>Save the Queen</translatorcomment>
         <translation>セイブ・ザ・クイーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="145"/>
+        <location filename="Data.cpp" line="148"/>
         <source>Rotator</source>
         <translatorcomment>Pinwheel</translatorcomment>
         <translation>円月輪</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="145"/>
+        <location filename="Data.cpp" line="148"/>
         <source>Walkyrie</source>
         <translatorcomment>Valkyrie</translatorcomment>
         <translation>ヴァルキリー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="145"/>
+        <location filename="Data.cpp" line="148"/>
         <source>Ninja Sun</source>
         <translatorcomment>Rising Sun</translatorcomment>
         <translation>ライジングサン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="145"/>
+        <location filename="Data.cpp" line="148"/>
         <source>Ptérodactyle</source>
         <translatorcomment>Cardinal</translatorcomment>
         <translation>カーディナル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="145"/>
+        <location filename="Data.cpp" line="148"/>
         <source>Tronçonneur</source>
         <translatorcomment>Shooting Star</translatorcomment>
         <translation>シューティングスター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="146"/>
+        <location filename="Data.cpp" line="149"/>
         <source>Nunchak Red</source>
         <translatorcomment>Flail</translatorcomment>
         <translation>フレイル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="146"/>
+        <location filename="Data.cpp" line="149"/>
         <source>Nunchak Blue</source>
         <translatorcomment>Morning Star</translatorcomment>
         <translation>モーニングスター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="146"/>
+        <location filename="Data.cpp" line="149"/>
         <source>Islam Star</source>
         <translatorcomment>Crescent Wish</translatorcomment>
         <translation>クレセントウィッシュ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="147"/>
+        <location filename="Data.cpp" line="150"/>
         <source>Hyperion</source>
         <translatorcomment>Hyperion</translatorcomment>
         <translation>ハイペリオン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="147"/>
+        <location filename="Data.cpp" line="150"/>
         <source>Nada</source>
         <translatorcomment>None</translatorcomment>
         <translation>なし</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="147"/>
+        <location filename="Data.cpp" line="150"/>
         <source>Kalachnikov</source>
         <translatorcomment>Machine Gun</translatorcomment>
         <translation>マシンガン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="147"/>
+        <location filename="Data.cpp" line="150"/>
         <source>Katal</source>
         <translatorcomment>Katal</translatorcomment>
         <translation>カタール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="147"/>
+        <location filename="Data.cpp" line="150"/>
         <source>Harpoon</source>
         <translatorcomment>Harpoon</translatorcomment>
         <translation>ハープーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="149"/>
-        <location filename="Data.cpp" line="190"/>
-        <location filename="Data.cpp" line="786"/>
+        <location filename="Data.cpp" line="152"/>
+        <location filename="Data.cpp" line="193"/>
+        <location filename="Data.cpp" line="789"/>
         <source>Squall</source>
         <translatorcomment>Squall</translatorcomment>
         <translation>スコール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="149"/>
-        <location filename="Data.cpp" line="189"/>
+        <location filename="Data.cpp" line="152"/>
+        <location filename="Data.cpp" line="192"/>
         <source>Zell</source>
         <translatorcomment>Zell</translatorcomment>
         <translation>ゼル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="149"/>
-        <location filename="Data.cpp" line="189"/>
+        <location filename="Data.cpp" line="152"/>
+        <location filename="Data.cpp" line="192"/>
         <source>Irvine</source>
         <translatorcomment>Irvine</translatorcomment>
         <translation>アーヴァイン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="149"/>
-        <location filename="Data.cpp" line="189"/>
+        <location filename="Data.cpp" line="152"/>
+        <location filename="Data.cpp" line="192"/>
         <source>Quistis</source>
         <translatorcomment>Quistis</translatorcomment>
         <translation>キスティス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="149"/>
-        <location filename="Data.cpp" line="190"/>
+        <location filename="Data.cpp" line="152"/>
+        <location filename="Data.cpp" line="193"/>
         <source>Linoa</source>
         <translatorcomment>Rinoa</translatorcomment>
         <translation>リノア</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="150"/>
-        <location filename="Data.cpp" line="189"/>
+        <location filename="Data.cpp" line="153"/>
+        <location filename="Data.cpp" line="192"/>
         <source>Selphie</source>
         <translatorcomment>Selphie</translatorcomment>
         <translation>セルフィー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="150"/>
-        <location filename="Data.cpp" line="190"/>
+        <location filename="Data.cpp" line="153"/>
+        <location filename="Data.cpp" line="193"/>
         <source>Seifer</source>
         <translatorcomment>Seifer</translatorcomment>
         <translation>サイファー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="150"/>
-        <location filename="Data.cpp" line="190"/>
+        <location filename="Data.cpp" line="153"/>
+        <location filename="Data.cpp" line="193"/>
         <source>Edea</source>
         <translatorcomment>Edea</translatorcomment>
         <translation>イデア</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="150"/>
-        <location filename="Data.cpp" line="189"/>
+        <location filename="Data.cpp" line="153"/>
+        <location filename="Data.cpp" line="192"/>
         <source>Laguna</source>
         <translatorcomment>Laguna</translatorcomment>
         <translation>ラグナ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="150"/>
-        <location filename="Data.cpp" line="189"/>
+        <location filename="Data.cpp" line="153"/>
+        <location filename="Data.cpp" line="192"/>
         <source>Kiros</source>
         <translatorcomment>Kiros</translatorcomment>
         <translation>キロス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="151"/>
-        <location filename="Data.cpp" line="188"/>
+        <location filename="Data.cpp" line="154"/>
+        <location filename="Data.cpp" line="191"/>
         <source>Ward</source>
         <translatorcomment>Ward</translatorcomment>
         <translation>ウォード</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="151"/>
+        <location filename="Data.cpp" line="154"/>
         <source>Cronos</source>
         <translatorcomment>Griever</translatorcomment>
         <translation>グリーヴァ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="151"/>
+        <location filename="Data.cpp" line="154"/>
         <source>MiniMog</source>
         <translatorcomment>MiniMog</translatorcomment>
         <translation>コモーグリ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="151"/>
+        <location filename="Data.cpp" line="154"/>
         <source>Angel</source>
         <translatorcomment>Angelo</translatorcomment>
         <translation>アンジェロ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="186"/>
+        <location filename="Data.cpp" line="189"/>
         <source>Shiva</source>
         <comment>card</comment>
         <translatorcomment>Shiva</translatorcomment>
         <translation>シヴァ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="186"/>
+        <location filename="Data.cpp" line="189"/>
         <source>Ifrit</source>
         <comment>card</comment>
         <translatorcomment>Ifrit</translatorcomment>
         <translation>イフリート</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="186"/>
+        <location filename="Data.cpp" line="189"/>
         <source>Ondine</source>
         <comment>card</comment>
         <translatorcomment>Siren</translatorcomment>
         <translation>セイレーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="186"/>
+        <location filename="Data.cpp" line="189"/>
         <source>Tauros</source>
         <comment>card</comment>
         <translatorcomment>Sacred</translatorcomment>
         <translation>セクレト</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="186"/>
+        <location filename="Data.cpp" line="189"/>
         <source>Taurux</source>
         <comment>card</comment>
         <translatorcomment>Minotaur</translatorcomment>
         <translation>ミノタウロス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="187"/>
+        <location filename="Data.cpp" line="190"/>
         <source>Ahuri</source>
         <comment>card</comment>
         <translatorcomment>Carbuncle</translatorcomment>
         <translation>カーバンクル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="187"/>
+        <location filename="Data.cpp" line="190"/>
         <source>Nosferatu</source>
         <comment>card</comment>
         <translatorcomment>Diablos</translatorcomment>
         <translation>ディアボロス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="187"/>
+        <location filename="Data.cpp" line="190"/>
         <source>Leviathan</source>
         <comment>card</comment>
         <translatorcomment>Leviathan</translatorcomment>
         <translation>リヴァイアサン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="187"/>
+        <location filename="Data.cpp" line="190"/>
         <source>Odin</source>
         <comment>card</comment>
         <translatorcomment>Odin</translatorcomment>
         <translation>オーディン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="187"/>
+        <location filename="Data.cpp" line="190"/>
         <source>Zéphyr</source>
         <comment>card</comment>
         <translatorcomment>Pandemona</translatorcomment>
         <translation>パンデモニウム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="188"/>
+        <location filename="Data.cpp" line="191"/>
         <source>Alexander</source>
         <comment>card</comment>
         <translatorcomment>Alexander</translatorcomment>
         <translation>アレクサンダー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="188"/>
+        <location filename="Data.cpp" line="191"/>
         <source>Phénix</source>
         <comment>card</comment>
         <translatorcomment>Phoenix</translatorcomment>
         <translation>フェニックス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="188"/>
+        <location filename="Data.cpp" line="191"/>
         <source>Bahamut</source>
         <comment>card</comment>
         <translatorcomment>Bahamut</translatorcomment>
         <translation>バハムート</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="188"/>
+        <location filename="Data.cpp" line="191"/>
         <source>Helltrain</source>
         <comment>card</comment>
         <translatorcomment>Doomtrain</translatorcomment>
         <translation>グラシャラボラス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="188"/>
+        <location filename="Data.cpp" line="191"/>
         <source>Orbital</source>
         <comment>card</comment>
         <translatorcomment>Eden</translatorcomment>
         <translation>エデン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="153"/>
+        <location filename="Data.cpp" line="156"/>
         <source>Golgotha</source>
         <comment>gf</comment>
         <translatorcomment>Quezacotl</translatorcomment>
         <translation>ケツァクウァトル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="177"/>
         <source>Berseker</source>
         <oldsource>Tomberry</oldsource>
         <translatorcomment>Death Claw</translatorcomment>
-        <translation>ワイルドフック</translation>
+        <translation type="obsolete">ワイルドフック</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="158"/>
+        <location filename="Data.cpp" line="161"/>
         <source>Top Punch</source>
         <translatorcomment>Punch Rush</translatorcomment>
         <translation>ラッシュパンチ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="78"/>
+        <location filename="Data.cpp" line="81"/>
         <source>H2o</source>
         <translation>ウォータ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Soin +</source>
         <translation>ケアルラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="84"/>
         <source>Boomrg</source>
         <translation>リフレク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Plaines d&apos;Arkland - Balamb</source>
         <comment>1</comment>
         <translatorcomment>Balamb- Alcauld Plains</translatorcomment>
         <translation>バラム・アルクラド平野</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Monts Gaulg - Balamb</source>
         <comment>2</comment>
         <translatorcomment>Balamb- Gaulg Mountains</translatorcomment>
         <translation>バラム・グアルグ山脈</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Baie de Rinaul - Balamb</source>
         <comment>3</comment>
         <translatorcomment>Balamb- Rinaul Coast</translatorcomment>
         <translation>バラム・リナール海岸</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Cap Raha - Balamb</source>
         <comment>4</comment>
         <translatorcomment>Balamb- Raha Cape</translatorcomment>
         <translation>バラム・ラハ岬</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Forêt de Rosfall - Timber</source>
         <comment>5</comment>
         <translatorcomment>Timber- Roshfall Forest</translatorcomment>
         <translation>ティンバー・ロスフォールの森</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Mandy Beach - Timber</source>
         <comment>6</comment>
         <translatorcomment>Timber- Mandy Beach</translatorcomment>
         <translation>ティンバー・マンデービーチ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Lac Obel - Timber</source>
         <comment>7</comment>
         <translatorcomment>Timber- Obel Lake</translatorcomment>
         <translation>ティンバー・オーベール湖</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Vallée de Lanker - Timber</source>
         <comment>8</comment>
         <translatorcomment>Timber- Lanker Plains</translatorcomment>
         <translation>ティンバー・ランカー平原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Ile Nantakhet - Timber</source>
         <comment>9</comment>
         <translatorcomment>Timber- Nanchucket Island</translatorcomment>
         <translation>ティンバー・ナンタケット島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Yaulny Canyon - Timber</source>
         <comment>10</comment>
         <translatorcomment>Timber- Yaulny Canyon</translatorcomment>
         <translation>ティンバー・ヤルニ渓谷</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Val Hasberry - Dollet</source>
         <comment>11</comment>
         <translatorcomment>Dollet- Hasberry Plains</translatorcomment>
         <translation>ドール・ヘスペリデス平原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Cap Holy Glory - Dollet</source>
         <comment>12</comment>
         <translatorcomment>Dollet- Holy Glory Cape</translatorcomment>
         <translation>ドール・ホーリーグローリー岬</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Longhorn Island - Dollet</source>
         <comment>13</comment>
         <translatorcomment>Dollet- Long Horn Island</translatorcomment>
         <translation>ドール・ロングホーン島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Péninsule Malgo - Dollet</source>
         <comment>14</comment>
         <translatorcomment>Dollet- Malgo Peninsula</translatorcomment>
         <translation>ドール・マルゴー半島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Plateau Monterosa - Galbadia</source>
         <comment>15</comment>
         <translatorcomment>Galbadia- Monterosa Plateau</translatorcomment>
         <translation>ガルバディア・モンテローザ高原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Lallapalooza Canyon - Galbadia</source>
         <comment>16</comment>
         <translatorcomment>Galbadia- Lallapalooza Canyon</translatorcomment>
         <translation>ガルバディア・ロラパルーザ渓谷</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Shenand Hill - Timber</source>
         <comment>17</comment>
         <translatorcomment>Timber- Shenand Hill</translatorcomment>
         <translation>ティンバー・シェナンドー丘陵</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Péninsule Gotland - Galbadia</source>
         <comment>18</comment>
         <translatorcomment>Galbadia- Gotland Peninsula</translatorcomment>
         <translation>ガルバディア・ゴートランド半島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Ile de l&apos;Enfer - Galbadia</source>
         <comment>19</comment>
         <translatorcomment>Island Closest to Hell</translatorcomment>
         <translation>ガルバディア・地獄に一番近い島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Plaine Galbadienne</source>
         <comment>20</comment>
         <translatorcomment>Great Plains of Galbadia</translatorcomment>
         <translation>ガルバディア大平原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Wilburn Hill - Galbadia</source>
         <comment>21</comment>
         <translatorcomment>Galbadia- Wilburn Hill</translatorcomment>
         <translation>ガルバディア・ウィルバーン丘陵</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Archipel Rem - Galbadia</source>
         <comment>22</comment>
         <translatorcomment>Galbadia- Rem Archipelago</translatorcomment>
         <translation>ガルバディア・レム諸島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Dingo Désert - Galbadia</source>
         <comment>23</comment>
         <translatorcomment>Galbadia- Dingo Desert</translatorcomment>
         <translation>ガルバディア・ディンゴー砂漠</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Cap Winhill</source>
         <comment>24</comment>
         <translatorcomment>Winhill- Winhill Bluffs</translatorcomment>
         <translation>ウィンヒル・ウィンヒル丘陵</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Archipel Humphrey - Winhill</source>
         <comment>25</comment>
         <translatorcomment>Winhill- Humphrey Archipelago</translatorcomment>
         <translation>ウィンヒル・ハンフリー諸島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Ile Winter - Trabia</source>
         <comment>26</comment>
         <translatorcomment>Trabia- Winter Island</translatorcomment>
         <translation>トラビア・ヴィンター島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Val de Solvard - Trabia</source>
         <comment>27</comment>
         <translatorcomment>Trabia- Sorbald Snowfield</translatorcomment>
         <translation>トラビア・ソルバールド雪原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Crête d&apos;Eldbeak - Trabia</source>
         <comment>28</comment>
         <translatorcomment>Trabia- Eldbeak Peninsula</translatorcomment>
         <translation>トラビア・エルドビーク半島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Plaine d&apos;Hawkind - Trabia</source>
         <comment>30</comment>
         <translatorcomment>Trabia- Hawkwind Plains</translatorcomment>
         <translation>トラビア・ホークウィンド平原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Atoll Albatross - Trabia</source>
         <comment>31</comment>
         <translatorcomment>Trabia- Albatross Archipelago</translatorcomment>
         <translation>トラビア・アルバトロス諸島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Vallon de Bika - Trabia</source>
         <comment>32</comment>
         <translatorcomment>Trabia- Bika Snowfield</translatorcomment>
         <translation>トラビア・ビッケ雪原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Péninsule Thor - Trabia</source>
         <comment>33</comment>
         <translatorcomment>Trabia- Thor Peninsula</translatorcomment>
         <translation>トラビア・トール半島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Crête d&apos;Heath - Trabia</source>
         <comment>35</comment>
         <translatorcomment>Trabia- Heath Peninsula</translatorcomment>
         <translation>トラビア・ヒアデス半島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Trabia Crater - Trabia</source>
         <comment>36</comment>
         <translatorcomment>Trabia- Trabia Crater</translatorcomment>
         <translation>トラビア・トラビアクレーター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Mont Vienne - Trabia</source>
         <comment>37</comment>
         <translatorcomment>Trabia- Vienne Mountains</translatorcomment>
         <translation>トラビア・ヴェーン山脈</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Plaine de Mordor - Esthar</source>
         <comment>38</comment>
         <translatorcomment>Esthar- Mordred Plains</translatorcomment>
         <translation>エスタ・モルドレット平原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Mont Nortes - Esthar</source>
         <comment>39</comment>
         <translatorcomment>Esthar- Nortes Mountains</translatorcomment>
         <translation>エスタ・ノルテス山脈</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Atoll Fulcura - Esthar</source>
         <comment>40</comment>
         <translatorcomment>Esthar- Fulcura Archipelago</translatorcomment>
         <translation>エスタ・フニクリフニクラ諸島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Forêt Grandidi - Esthar</source>
         <comment>41</comment>
         <translatorcomment>Esthar- Grandidi Forest</translatorcomment>
         <translation>エスタ・グランディディエリの森</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Iles Millefeuilles - Esthar</source>
         <comment>42</comment>
         <translatorcomment>Esthar- Millefeuille Archipelago</translatorcomment>
         <translation>エスタ・ミルフィーユ諸島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Grandes plaines d&apos;Esthar</source>
         <comment>43</comment>
         <translatorcomment>Great Plains of Esthar</translatorcomment>
         <translation>エスタ大平原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Esthar City</source>
         <comment>44</comment>
         <translatorcomment>Esthar City</translatorcomment>
         <translation>エスタシティ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Salt Lake - Esthar</source>
         <comment>45</comment>
         <translatorcomment>Esthar- Great Salt Lake</translatorcomment>
         <translation>エスタ・大塩湖</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Côte Ouest - Esthar</source>
         <comment>46</comment>
         <translatorcomment>Esthar- West Coast</translatorcomment>
         <translation>エスタ・ウェストコースト</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Mont Sollet - Esthar</source>
         <comment>47</comment>
         <translatorcomment>Esthar- Sollet Mountains</translatorcomment>
         <translation>エスタ・スール山脈</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Vallée d&apos;Abadan - Esthar</source>
         <comment>48</comment>
         <translatorcomment>Esthar- Abadan Plains</translatorcomment>
         <translation>エスタ・アバンダン平原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Ile Minde - Esthar</source>
         <comment>49</comment>
         <translatorcomment>Esthar- Minde Island</translatorcomment>
         <translation>エスタ・スカラマンガ島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Désert Kashkabald - Esthar</source>
         <comment>50</comment>
         <translatorcomment>Esthar- Kashkabald Desert</translatorcomment>
         <translation>エスタ・カシュクバール砂漠</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Ile Paradisiaque - Esthar</source>
         <comment>51</comment>
         <translatorcomment>Island Closest to Heaven</translatorcomment>
         <translation>エスタ・天国に一番近い島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Pic de Talle - Esthar</source>
         <comment>52</comment>
         <translatorcomment>Esthar- Talle Mountains</translatorcomment>
         <translation>エスタ・タル山脈</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Atoll Shalmal - Esthar</source>
         <comment>53</comment>
         <translatorcomment>Esthar- Shalmal Peninsula</translatorcomment>
         <translation>エスタ・シャルマール半島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Vallée de Lolestern - Centra</source>
         <comment>54</comment>
         <translatorcomment>Centra- Lolestern Plains</translatorcomment>
         <translation>セントラ・ロレスターン平原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Aiguille d&apos;Almage - Centra</source>
         <comment>55</comment>
         <translatorcomment>Centra- Almaj Mountains</translatorcomment>
         <translation>セントラ・アルマージ山脈</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Vallon Lenown - Centra</source>
         <comment>56</comment>
         <translatorcomment>Centra- Lenown Plains</translatorcomment>
         <translation>セントラ・レナーン平原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Cap de l&apos;espoir - Centra</source>
         <comment>57</comment>
         <translatorcomment>Centra- Cape of Good Hope</translatorcomment>
         <translation>セントラ・グッドホープ岬</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Mont Yorn - Centra</source>
         <comment>58</comment>
         <translatorcomment>Centra- Yorn Mountains</translatorcomment>
         <translation>セントラ・ヨーン山脈</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Ile Pampa - Esthar</source>
         <comment>59</comment>
         <translatorcomment>Esthar- Cactuar Island</translatorcomment>
         <translation>エスタ・サボテンダーアイランド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Val Serengetti - Centra</source>
         <comment>60</comment>
         <translatorcomment>Centra- Serengetti Plains</translatorcomment>
         <translation>セントラ・セレンゲッティ平原</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Péninsule Nectalle - Centra</source>
         <comment>61</comment>
         <translatorcomment>Centra- Nectar Peninsula</translatorcomment>
         <translation>セントラ・ネクタール半島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Centra Crater - Centra</source>
         <comment>62</comment>
         <translatorcomment>Centra- Centra Crater</translatorcomment>
         <translation>セントラ・セントラクレーター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Ile Poccarahi - Centra</source>
         <comment>63</comment>
         <translatorcomment>Centra- Poccarahi Island</translatorcomment>
         <translation>セントラ・ポッカラヒレリア島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Bibliothèque - BGU</source>
         <comment>64</comment>
         <translatorcomment>B-Garden- Library</translatorcomment>
         <translation>Ｂガーデン・図書館</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Entrée - BGU</source>
         <comment>65</comment>
         <translatorcomment>B-Garden- Front Gate</translatorcomment>
         <translation>バラムガーデン・正門</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Salle de cours - BGU</source>
         <comment>66</comment>
         <translatorcomment>B-Garden- Classroom</translatorcomment>
         <translation>Ｂガーデン・教室</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Cafétéria - BGU</source>
         <comment>67</comment>
         <translatorcomment>B-Garden- Cafeteria</translatorcomment>
         <translation>Ｂガーデン・学生食堂</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Niveau MD - BGU</source>
         <comment>68</comment>
         <translatorcomment>B-Garden- MD Level</translatorcomment>
         <translation>Ｂガーデン・ＭＤ層</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Hall 1er étage - BGU</source>
         <comment>69</comment>
         <translatorcomment>B-Garden- 2F Hallway</translatorcomment>
         <translation>Ｂガーデン・２階ろうか</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Hall - BGU</source>
         <comment>70</comment>
         <translatorcomment>B-Garden- Hall</translatorcomment>
         <translation>Ｂガーデン・ホール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Infirmerie - BGU</source>
         <comment>71</comment>
         <translatorcomment>B-Garden- Infirmary</translatorcomment>
         <translation>Ｂガーデン・保健室</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Dortoirs doubles - BGU</source>
         <comment>72</comment>
         <translatorcomment>B-Garden- Dormitory Double</translatorcomment>
         <translation>Ｂガーデン・学生寮大部屋</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Dortoirs simples - BGU</source>
         <comment>73</comment>
         <translatorcomment>B-Garden- Dormitory Single</translatorcomment>
         <translation>Ｂガーデン・学生寮個室</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Bureau proviseur - BGU</source>
         <comment>74</comment>
         <translatorcomment>B-Garden- Headmaster&apos;s Office</translatorcomment>
         <translation>Ｂガーデン・学園長室</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Parking - BGU</source>
         <comment>75</comment>
         <translatorcomment>B-Garden- Parking Lot</translatorcomment>
         <translation>Ｂガーデン・駐車場</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Salle de bal - BGU</source>
         <comment>76</comment>
         <translatorcomment>B-Garden- Ballroom</translatorcomment>
         <translation>Ｂガーデン・パーティ会場</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Campus - BGU</source>
         <comment>77</comment>
         <translatorcomment>B-Garden- Quad</translatorcomment>
         <translation>Ｂガーデン・校庭</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Serre de combat - BGU</source>
         <comment>78</comment>
         <translatorcomment>B-Garden- Training Center</translatorcomment>
         <translation>Ｂガーデン・訓練施設</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Zone secrète - BGU</source>
         <comment>79</comment>
         <translatorcomment>B-Garden- Secret Area</translatorcomment>
         <translation>Ｂガーデン・秘密の場所</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Corridor - BGU</source>
         <comment>80</comment>
         <translatorcomment>B-Garden- Hallway</translatorcomment>
         <translation>Ｂガーデン・ろうか</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Temple - BGU</source>
         <comment>81</comment>
         <translatorcomment>B-Garden- Master Room</translatorcomment>
         <translation>Ｂガーデン・マスタールーム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Pont - BGU</source>
         <comment>82</comment>
         <translatorcomment>B-Garden- Deck</translatorcomment>
         <translation>Ｂガーデン・デッキ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Villa Dincht - Balamb</source>
         <comment>83</comment>
         <translatorcomment>Balamb- The Dincht&apos;s</translatorcomment>
         <translation>バラム・ディン邸</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Hôtel - Balamb</source>
         <comment>84</comment>
         <translatorcomment>Balamb Hotel</translatorcomment>
         <translation>バラム・ホテル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Place centrale - Balamb</source>
         <comment>85</comment>
         <translatorcomment>Balamb- Town Square</translatorcomment>
         <translation>バラム・市街</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Place de la gare - Balamb</source>
         <comment>86</comment>
         <translatorcomment>Balamb- Station Yard</translatorcomment>
         <translation>バラム・駅構内</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Port - Balamb</source>
         <comment>87</comment>
         <translatorcomment>Balamb Harbor</translatorcomment>
         <translation>バラム・港</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Résidence - Balamb</source>
         <comment>88</comment>
         <translatorcomment>Balamb- Residence</translatorcomment>
         <translation>バラム・民家</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Train</source>
         <comment>89</comment>
         <translatorcomment>Train</translatorcomment>
         <translation>列車内</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Voiture</source>
         <comment>90</comment>
         <translatorcomment>Car</translatorcomment>
         <translation>車内</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Vaisseau</source>
         <comment>91</comment>
         <translatorcomment>Inside Ship</translatorcomment>
         <translation>上陸艇内</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Mine de souffre</source>
         <comment>92</comment>
         <translatorcomment>Fire Cavern</translatorcomment>
         <translation>炎の洞窟</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Place du village - Dollet</source>
         <comment>93</comment>
         <translatorcomment>Dollet- Town Square</translatorcomment>
         <translation>ドール・市街</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Zuma Beach</source>
         <comment>94</comment>
         <translatorcomment>Dollet- Lapin Beach</translatorcomment>
         <translation>ドール・ルプタンビーチ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Port - Dollet</source>
         <comment>95</comment>
         <translatorcomment>Dollet Harbor</translatorcomment>
         <translation>ドール・港</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Pub - Dollet</source>
         <comment>96</comment>
         <translatorcomment>Dollet Pub</translatorcomment>
         <translation>ドール・パブ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Hôtel - Dollet</source>
         <comment>97</comment>
         <translatorcomment>Dollet Hotel</translatorcomment>
         <translation>ドール・ホテル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Résidence - Dollet</source>
         <comment>98</comment>
         <translatorcomment>Dollet- Residence</translatorcomment>
         <translation>ドール・民家</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Tour satellite - Dollet</source>
         <comment>99</comment>
         <translatorcomment>Dollet- Comm Tower</translatorcomment>
         <translation>ドール・電波塔</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Refuge montagneux - Dollet</source>
         <comment>100</comment>
         <translatorcomment>Dollet- Mountain Hideout</translatorcomment>
         <translation>ドール・山間部</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Centre ville - Timber</source>
         <comment>101</comment>
         <translatorcomment>Timber- City Square</translatorcomment>
         <translation>ティンバー・市街</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Chaîne de TV - Timber</source>
         <comment>102</comment>
         <translatorcomment>Timber TV Station</translatorcomment>
         <translation>ティンバー・ＴＶ局</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Base des Hiboux - Timber</source>
         <comment>103</comment>
         <translatorcomment>Timber- Forest Owls&apos; Base</translatorcomment>
         <translation>ティンバー・森のフクロウアジト</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Pub - Timber</source>
         <comment>104</comment>
         <translatorcomment>Timber Pub</translatorcomment>
         <translation>ティンバー・パブ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Hôtel - Timber</source>
         <comment>105</comment>
         <translatorcomment>Timber Hotel</translatorcomment>
         <translation>ティンバー・ホテル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Train - Timber</source>
         <comment>106</comment>
         <translatorcomment>Timber- Train</translatorcomment>
         <translation>ティンバー・列車</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Résidence - Timber</source>
         <comment>107</comment>
         <translatorcomment>Timber- Residence</translatorcomment>
         <translation>ティンバー・民家</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Ecran géant - Timber</source>
         <comment>108</comment>
         <translatorcomment>Timber- TV Screen</translatorcomment>
         <translation>ティンバー・ＴＶ画面</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Centre de presse - Timber</source>
         <comment>109</comment>
         <translatorcomment>Timber- Editorial Department</translatorcomment>
         <translation>ティンバー・編集部</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Forêt de Timber</source>
         <comment>110</comment>
         <translatorcomment>Timber Forest</translatorcomment>
         <translation>ティンバーの森</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Entrée - Fac de Galbadia</source>
         <comment>111</comment>
         <translatorcomment>Galbadia Garden- Front Gate</translatorcomment>
         <translation>ガルバディアガーデン・正門</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Station Fac de Galbadia</source>
         <comment>112</comment>
         <translatorcomment>G-Garden- Station</translatorcomment>
         <translation>Ｇガーデン・駅</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Hall - Fac de Galbadia</source>
         <comment>113</comment>
         <translatorcomment>G-Garden- Hall</translatorcomment>
         <translation>Ｇガーデン・ホール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Corridor - Fac de Galbadia</source>
         <comment>114</comment>
         <translatorcomment>G-Garden- Hallway</translatorcomment>
         <translation>Ｇガーデン・ろうか</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Salle d&apos;attente - Fac Galbadia</source>
         <comment>115</comment>
         <translatorcomment>G-Garden- Reception Room</translatorcomment>
         <translation>Ｇガーデン・応接室</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Salle de cours - Fac Galbadia</source>
         <comment>116</comment>
         <translatorcomment>G-Garden- Classroom</translatorcomment>
         <translation>Ｇガーデン・教室</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Salle de réunion - Fac Galbadia</source>
         <comment>117</comment>
         <translatorcomment>G-Garden- Clubroom</translatorcomment>
         <translation>Ｇガーデン・部室</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Dortoirs - Fac de Galbadia</source>
         <comment>118</comment>
         <translatorcomment>G-Garden- Dormitory</translatorcomment>
         <translation>Ｇガーデン・学生寮</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Ascenseur - Fac de Galbadia</source>
         <comment>119</comment>
         <translatorcomment>G-Garden- Elevator Hall</translatorcomment>
         <translation>Ｇガーデン・エレベーターホール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Salle recteur - Fac Galbadia</source>
         <comment>120</comment>
         <translatorcomment>G-Garden- Master Room</translatorcomment>
         <translation>Ｇガーデン・マスタールーム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Auditorium - Fac de Galbadia</source>
         <comment>121</comment>
         <translatorcomment>G-Garden- Auditorium</translatorcomment>
         <translation>Ｇガーデン・大講堂</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Stade - Fac de Galbadia</source>
         <comment>122</comment>
         <translatorcomment>G-Garden- Athletic Track</translatorcomment>
         <translation>Ｇガーデン・グラウンド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Stand - Fac de Galbadia</source>
         <comment>123</comment>
         <translatorcomment>G-Garden- Stand</translatorcomment>
         <translation>Ｇガーデン・スタンド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>2nde entrée - Fac Galbadia</source>
         <comment>124</comment>
         <translatorcomment>G-Garden- Back Entrance</translatorcomment>
         <translation>Ｇガーデン・裏口</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Gymnase - Fac de Galbadia</source>
         <comment>125</comment>
         <translatorcomment>G-Garden- Gymnasium</translatorcomment>
         <translation>Ｇガーデン・体育館</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Palais président - Deling City</source>
         <comment>126</comment>
         <translatorcomment>Deling- Presidential Residence</translatorcomment>
         <translation>デリングシティ・大統領官邸</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Manoir Caraway - Deling City</source>
         <comment>127</comment>
         <translatorcomment>Deling City- Caraway&apos;s Mansion</translatorcomment>
         <translation>デリングシティ・カーウェイ邸</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Gare - Deling City</source>
         <comment>128</comment>
         <translatorcomment>Deling City- Station Yard</translatorcomment>
         <translation>デリングシティ・駅構内</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Place centrale - Deling City</source>
         <comment>129</comment>
         <translatorcomment>Deling City- City Square</translatorcomment>
         <translation>デリングシティ・市街</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Hôtel - Deling City</source>
         <comment>130</comment>
         <translatorcomment>Deling City- Hotel</translatorcomment>
         <translation>デリングシティ・ホテル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Bar - Deling City</source>
         <comment>131</comment>
         <translatorcomment>Deling City- Club</translatorcomment>
         <translation>デリングシティ・クラブ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Sortie - Deling City</source>
         <comment>132</comment>
         <translatorcomment>Deling City- Gateway</translatorcomment>
         <translation>デリングシティ・凱旋門</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Parade - Deling City</source>
         <comment>133</comment>
         <translatorcomment>Deling City- Parade</translatorcomment>
         <translation>デリングシティ・パレード</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Egout - Deling City</source>
         <comment>134</comment>
         <translatorcomment>Deling City- Sewer</translatorcomment>
         <translation>デリングシティ・地下水路</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Prison du désert - Galbadia</source>
         <comment>135</comment>
         <translatorcomment>Galbadia D-District Prison</translatorcomment>
         <translation>ガルバディアＤ地区収容所</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Désert</source>
         <comment>136</comment>
         <translatorcomment>Desert</translatorcomment>
         <translation>砂漠</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Base des missiles</source>
         <comment>137</comment>
         <translatorcomment>Galbadia Missile Base</translatorcomment>
         <translation>ガルバディア軍ミサイル基地</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Village de Winhill</source>
         <comment>138</comment>
         <translatorcomment>Winhill Village</translatorcomment>
         <translation>ウィンヒル・村</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Pub - Winhill</source>
         <comment>139</comment>
         <translatorcomment>Winhill Pub</translatorcomment>
         <translation>ウィンヒル・パブ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Maison vide - Winhill</source>
         <comment>140</comment>
         <translatorcomment>Winhill- Vacant House</translatorcomment>
         <translation>ウィンヒル・空き家</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Manoir - Winhill</source>
         <comment>141</comment>
         <translatorcomment>Winhill- Mansion</translatorcomment>
         <translation>ウィンヒル・やしき</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Résidence - Winhill</source>
         <comment>142</comment>
         <translatorcomment>Winhill- Residence</translatorcomment>
         <translation>ウィンヒル・民家</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Hôtel - Winhill</source>
         <comment>143</comment>
         <translatorcomment>Winhill- Hotel</translatorcomment>
         <translation>ウィンヒル・ホテル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Voiture - Winhill</source>
         <comment>144</comment>
         <translatorcomment>Winhill- Car</translatorcomment>
         <translation>ウィンヒル・車内</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Tombe du roi inconnu</source>
         <comment>145</comment>
         <translatorcomment>Tomb of the Unknown King</translatorcomment>
         <translation>名もなき王の墓</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Horizon</source>
         <comment>146</comment>
         <translatorcomment>Fishermans Horizon</translatorcomment>
         <translation>フィッシャーマンズ・ホライズン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Habitations - Horizon</source>
         <comment>147</comment>
         <translatorcomment>FH- Residential Area</translatorcomment>
         <translation>Ｆ．Ｈ．・居住区</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Ecrans solaires - Horizon</source>
         <comment>148</comment>
         <translatorcomment>FH- Sun Panel</translatorcomment>
         <translation>Ｆ．Ｈ．・ミラーパネル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Villa du maire - Horizon</source>
         <comment>149</comment>
         <translatorcomment>FH- Mayor&apos;s Residence</translatorcomment>
         <translation>Ｆ．Ｈ．・駅長邸</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Usine - Horizon</source>
         <comment>150</comment>
         <translatorcomment>FH- Factory</translatorcomment>
         <translation>Ｆ．Ｈ．・工場</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Salle des fêtes - Horizon</source>
         <comment>151</comment>
         <translatorcomment>FH- Festival Grounds</translatorcomment>
         <translation>Ｆ．Ｈ．・学園祭会場</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Hôtel - Horizon</source>
         <comment>152</comment>
         <translatorcomment>FH- Hotel</translatorcomment>
         <translation>Ｆ．Ｈ．・ホテル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Résidence - Horizon</source>
         <comment>153</comment>
         <translatorcomment>FH- Residence</translatorcomment>
         <translation>Ｆ．Ｈ．・民家</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Gare - Horizon</source>
         <comment>154</comment>
         <translatorcomment>FH- Station Yard</translatorcomment>
         <translation>Ｆ．Ｈ．・駅構内</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Aqueduc d&apos;Horizon</source>
         <comment>155</comment>
         <translatorcomment>FH- Horizon Bridge</translatorcomment>
         <translation>ホライズン・ブリッジ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Station balnéaire</source>
         <comment>156</comment>
         <translatorcomment>FH- Seaside Station</translatorcomment>
         <translation>海岸駅</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Salt Lake</source>
         <comment>157</comment>
         <translatorcomment>FH- Geat Salt Lake</translatorcomment>
         <translation>大塩湖</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Bâtiment mystérieux</source>
         <comment>158</comment>
         <translatorcomment>FH- Mystery Building</translatorcomment>
         <translation>なぞの建造物</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Esthar City</source>
         <comment>159</comment>
         <translatorcomment>Esthar- City</translatorcomment>
         <translation>エスタ・市街</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Laboratoire Geyser - Esthar</source>
         <comment>160</comment>
         <translatorcomment>Esthar- Odine&apos;s Laboratory</translatorcomment>
         <translation>エスタ・オダイン博士の研究所</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Aérodrome - Esthar</source>
         <comment>161</comment>
         <translatorcomment>Esthar- Airstation</translatorcomment>
         <translation>エスタ・エアステーション</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Lunatic Pandora approche</source>
         <comment>162</comment>
         <translatorcomment>Lunatic Pandora Approaching</translatorcomment>
         <translation>エスタ・大石柱接近</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Résidence président - Esthar</source>
         <comment>163</comment>
         <translatorcomment>Esthar- Presidential Palace</translatorcomment>
         <translation>エスタ・大統領官邸</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Hall - Résidence président</source>
         <comment>164</comment>
         <translatorcomment>Presidential Palace- Hall</translatorcomment>
         <translation>大統領官邸・ホール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Couloir - Résidence président</source>
         <comment>165</comment>
         <translatorcomment>Presidential Palace- Hallway</translatorcomment>
         <translation>大統領官邸・ろうか</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Bureau - Résidence président</source>
         <comment>166</comment>
         <translatorcomment>Presidential Palace- Office</translatorcomment>
         <translation>大統領官邸・大統領の部屋</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Accueil - Labo Geyser</source>
         <comment>167</comment>
         <translatorcomment>Dr. Odine&apos;s Laboratory- Lobby</translatorcomment>
         <translation>オダイン博士の研究所・ロビー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Laboratoire Geyser</source>
         <comment>168</comment>
         <translatorcomment>Dr. Odine&apos;s Laboratory- Lab</translatorcomment>
         <translation>オダイン博士の研究所・研究室</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Deleted</source>
         <comment>169</comment>
         <translatorcomment>Deleted 内部にあるだけ？</translatorcomment>
         <translation>さくじょされました</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Lunar Gate</source>
         <comment>170</comment>
         <translatorcomment>Lunar Gate</translatorcomment>
         <translation>ルナゲート</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Parvis - Lunar Gate</source>
         <comment>171</comment>
         <translatorcomment>Lunar Gate- Concourse</translatorcomment>
         <translation>ルナゲート・コンコース</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Glacière - Lunar gate</source>
         <comment>172</comment>
         <translatorcomment>Lunar Gate- Deep Freeze</translatorcomment>
         <translation>ルナゲート・フリージングルーム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Mausolée - Esthar</source>
         <comment>173</comment>
         <translatorcomment>Esthar Sorceress Memorial</translatorcomment>
         <translation>エスタ国立魔女記念館</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Entrée - Mausolée</source>
         <comment>174</comment>
         <translatorcomment>Sorceress Memorial- Entrance</translatorcomment>
         <translation>エスタ国立魔女記念館・入口</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Pod de confinement - Mausolée</source>
         <comment>175</comment>
         <translatorcomment>Sorceress Memorial- Pod</translatorcomment>
         <translation>エスタ国立魔女記念館・ポッド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Salle de contrôle - Mausolée</source>
         <comment>176</comment>
         <translatorcomment>Sorceress Memorial- Ctrl Room</translatorcomment>
         <translation>エスタ国立魔女記念館・制御室</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Tears Point</source>
         <comment>177</comment>
         <translatorcomment>Tears&apos; Point</translatorcomment>
         <translation>ティアーズポイント</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Labo Lunatic Pandora</source>
         <comment>178</comment>
         <translatorcomment>Lunatic Pandora Laboratory</translatorcomment>
         <translation>ルナティックパンドラ研究所</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Zone d&apos;atterrissage de secours</source>
         <comment>179</comment>
         <translatorcomment>Emergency Landing Zone</translatorcomment>
         <translation>不時着地点</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Zone d&apos;atterrissage officielle</source>
         <comment>180</comment>
         <translatorcomment>Spaceship Landing Zone</translatorcomment>
         <translation>飛空艇不時着地点</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Lunatic Pandora</source>
         <comment>181</comment>
         <translatorcomment>Lunatic Pandora</translatorcomment>
         <translation>ルナティックパンドラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Site des fouilles - Centra</source>
         <comment>182</comment>
         <translatorcomment>Centra- Excavation Site</translatorcomment>
         <translation>セントラ・発掘現場</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Orphelinat</source>
         <comment>183</comment>
         <translatorcomment>Edea&apos;s House</translatorcomment>
         <translation>イデアの家</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Salle de jeux - Orphelinat</source>
         <comment>184</comment>
         <translatorcomment>Edea&apos;s House- Playroom</translatorcomment>
         <translation>イデアの家・こども部屋</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Dortoir - Orphelinat</source>
         <comment>185</comment>
         <translatorcomment>Edea&apos;s House- Bedroom</translatorcomment>
         <translation>イデアの家・イデアの部屋</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Jardin - Orphelinat</source>
         <comment>186</comment>
         <translatorcomment>Edea&apos;s House- Backyard</translatorcomment>
         <translation>イデアの家・裏庭</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Front de mer - Orphelinat</source>
         <comment>187</comment>
         <translatorcomment>Edea&apos;s House- Oceanside</translatorcomment>
         <translation>イデアの家・海岸</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Champ - Orphelinat</source>
         <comment>188</comment>
         <translatorcomment>Edea&apos;s House- Flower Field</translatorcomment>
         <translation>イデアの家・花畑</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Ruines de Centra</source>
         <comment>189</comment>
         <translatorcomment>Centra Ruins</translatorcomment>
         <translation>セントラ遺跡</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Entrée - Fac de Trabia</source>
         <comment>190</comment>
         <translatorcomment>Trabia Garden- Front Gate</translatorcomment>
         <translation>トラビアガーデン・正門</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="138"/>
         <source>Cimetière - Fac de Trabia</source>
         <comment>191</comment>
         <translatorcomment>T-Garden- Cemetery</translatorcomment>
         <translation>Ｔガーデン・墓地</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Garage - Fac de Trabia</source>
         <comment>192</comment>
         <translatorcomment>T-Garden- Garage</translatorcomment>
         <translation>Ｔガーデン・ガレージ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Campus - Fac Trabia</source>
         <comment>193</comment>
         <translatorcomment>T-Garden- Festival Stage</translatorcomment>
         <translation>Ｔガーデン・学園祭ステージ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Amphithéatre - Fac de Trabia</source>
         <comment>194</comment>
         <translatorcomment>T-Garden- Classroom</translatorcomment>
         <translation>Ｔガーデン・教室</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Stade - Fac de Trabia</source>
         <comment>195</comment>
         <translatorcomment>T-Garden- Athletic Ground</translatorcomment>
         <translation>Ｔガーデン・グラウンド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Dôme mystérieux</source>
         <comment>196</comment>
         <translatorcomment>Mystery Dome</translatorcomment>
         <translation>なぞのドーム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Ville du désert - Shumi Village</source>
         <comment>197</comment>
         <translatorcomment>Shumi Village- Desert Village</translatorcomment>
         <translation>シュミ族の村・砂漠化村</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Ascenseur - Shumi Village</source>
         <comment>198</comment>
         <translatorcomment>Shumi Village- Elevator</translatorcomment>
         <translation>シュミ族の村・エレベーター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Shumi Village</source>
         <comment>199</comment>
         <translatorcomment>Shumi Village- Village</translatorcomment>
         <translation>シュミ族の村・村</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Habitation - Shumi Village</source>
         <comment>200</comment>
         <translatorcomment>Shumi Village- Residence</translatorcomment>
         <translation>シュミ族の村・民家</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Résidence - Shumi Village</source>
         <comment>201</comment>
         <translatorcomment>Shumi Village- Residence</translatorcomment>
         <translation>シュミ族の村・民家</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Habitat - Shumi Village</source>
         <comment>202</comment>
         <translatorcomment>Shumi Village- Residence</translatorcomment>
         <translation>シュミ族の村・民家</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Hôtel - Shumi Village</source>
         <comment>203</comment>
         <translatorcomment>Shumi Village- Hotel</translatorcomment>
         <translation>シュミ族の村・ホテル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Trabia canyon</source>
         <comment>204</comment>
         <translatorcomment>Trabia Canyon</translatorcomment>
         <translation>トラビア渓谷</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Vaisseau des Seeds blancs</source>
         <comment>205</comment>
         <translatorcomment>White SeeD Ship</translatorcomment>
         <translation>白いＳｅｅＤの船</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Navire des Seeds Blancs</source>
         <comment>206</comment>
         <translatorcomment>White SeeD Ship</translatorcomment>
         <translation>白いＳｅｅＤの船</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="139"/>
         <source>Cabine - Navire Seeds blancs</source>
         <comment>207</comment>
         <translatorcomment>White SeeD Ship- Cabin</translatorcomment>
         <translation>白いＳｅｅＤの船・キャビン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Cockpit - Hydre</source>
         <comment>208</comment>
         <translatorcomment>Ragnarok- Cockpit</translatorcomment>
         <translation>飛空艇ラグナロク・コクピット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Siège passager - Hydre</source>
         <comment>209</comment>
         <translatorcomment>Ragnarok- Passenger Seat</translatorcomment>
         <translation>飛空艇ラグナロク・客席</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Couloir - Hydre</source>
         <comment>210</comment>
         <translatorcomment>Ragnarok- Aisle</translatorcomment>
         <translation>飛空艇ラグナロク・通路</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Hangar - Hydre</source>
         <comment>211</comment>
         <translatorcomment>Ragnarok- Hangar</translatorcomment>
         <translation>飛空艇ラグナロク・ハンガー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Accès - Hydre</source>
         <comment>212</comment>
         <translatorcomment>Ragnarok- Entrance</translatorcomment>
         <translation>飛空艇ラグナロク・乗降口</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Air Room - Hydre</source>
         <comment>213</comment>
         <translatorcomment>Ragnarok- Air Room</translatorcomment>
         <translation>飛空艇ラグナロク・エアールーム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Salle de pression - Hydre</source>
         <comment>214</comment>
         <translatorcomment>Ragnarok- Space Hatch</translatorcomment>
         <translation>飛空艇ラグナロク・宇宙用ハッチ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Centre de recherches Deep Sea</source>
         <comment>215</comment>
         <translatorcomment>Deep Sea Research Center</translatorcomment>
         <translation>海洋探査人工島</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Laboratoire - Deep Sea</source>
         <comment>216</comment>
         <translatorcomment>Deep Sea Research Center- Lb</translatorcomment>
         <translation>海洋探査人工島・研究所</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Salle de travail - Deep Sea</source>
         <comment>217</comment>
         <translatorcomment>Deep Sea Research Center- Lv</translatorcomment>
         <translation>海洋探査人工島・作業区</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Fouilles - Deep Sea</source>
         <comment>218</comment>
         <translatorcomment>Deep Sea Deposit</translatorcomment>
         <translation>大海のよどみ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Salle de contrôle - Base lunaire</source>
         <comment>219</comment>
         <translatorcomment>Lunar Base- Control Room</translatorcomment>
         <translation>ルナサイドベース・制御室</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Centre médical - Base lunaire</source>
         <comment>220</comment>
         <translatorcomment>Lunar Base- Medical Room</translatorcomment>
         <translation>ルナサイドベース・医務室</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Pod - Base lunaire</source>
         <comment>221</comment>
         <translatorcomment>Lunar Base- Pod</translatorcomment>
         <translation>ルナサイドベース・ポッド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Dock - Base lunaire</source>
         <comment>222</comment>
         <translatorcomment>Lunar Base- Dock</translatorcomment>
         <translation>ルナサイドベース・ドック</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="137"/>
+        <location filename="Data.cpp" line="140"/>
         <source>Passage - Base lunaire</source>
         <comment>223</comment>
         <translatorcomment>Lunar Base- Passageway</translatorcomment>
         <translation>ルナサイドベース・通路</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Vestiaire - Base lunaire</source>
         <comment>224</comment>
         <translatorcomment>Lunar Base- Locker</translatorcomment>
         <translation>ルナサイドベース・ロッカー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Habitats - Base lunaire</source>
         <comment>225</comment>
         <translatorcomment>Lunar Base- Residential Zone</translatorcomment>
         <translation>ルナサイドベース・居住区</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Hyper Espace</source>
         <comment>226</comment>
         <translatorcomment>Outer Space</translatorcomment>
         <translation>宇宙空間</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Forêt Chocobo</source>
         <comment>227</comment>
         <translatorcomment>Chocobo Forest</translatorcomment>
         <translation>チョコボの森</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Jungle</source>
         <comment>228</comment>
         <translatorcomment>Wilderness</translatorcomment>
         <translation>荒野</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Citadelle d&apos;Ultimecia - Vestibule</source>
         <comment>229</comment>
         <translatorcomment>Ultimecia Castle- Hall</translatorcomment>
         <translation>アルティミシア城・ホール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Citadelle d&apos;Ultimecia - Hall</source>
         <comment>230</comment>
         <translatorcomment>Ultimecia Castle- Grand Hall</translatorcomment>
         <translation>アルティミシア城・大広間</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Citadelle d&apos;Ultimecia - Terrasse</source>
         <comment>231</comment>
         <translatorcomment>Ultimecia Castle- Terrace</translatorcomment>
         <translation>アルティミシア城・テラス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Citadelle d&apos;Ultimecia - Cave</source>
         <comment>232</comment>
         <translatorcomment>Ultimecia Castle- Wine Cellar</translatorcomment>
         <translation>アルティミシア城・ワインセラー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Citadelle d&apos;Ultimecia - Couloir</source>
         <comment>233</comment>
         <translatorcomment>Ultimecia Castle- Passageway</translatorcomment>
         <translation>アルティミシア城・通路</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Elévateur - Citadelle</source>
         <comment>234</comment>
         <translatorcomment>Ultimecia Castle- Elevator Hall</translatorcomment>
         <translation>アルティミシア城・昇降機ホール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Escalier - Citadelle d&apos;Ultimecia</source>
         <comment>235</comment>
         <translatorcomment>Ultimecia Castle- Stairway Hall</translatorcomment>
         <translation>アルティミシア城・階段ホール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Salle du trésor - Citadelle</source>
         <comment>236</comment>
         <translatorcomment>Ultimecia Castle- Treasure Rm</translatorcomment>
         <translation>アルティミシア城・宝物庫</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Salle de rangement - Citadelle</source>
         <comment>237</comment>
         <translatorcomment>Ultimecia Castle- Storage Room</translatorcomment>
         <translation>アルティミシア城・倉庫</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Citadelle d&apos;Ultimecia - Galerie</source>
         <comment>238</comment>
         <translatorcomment>Ultimecia Castle- Art Gallery</translatorcomment>
         <translation>アルティミシア城・画廊</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="138"/>
+        <location filename="Data.cpp" line="141"/>
         <source>Citadelle d&apos;Ultimecia - Ecluse</source>
         <comment>239</comment>
         <translatorcomment>Ultimecia Castle- Flood Gate</translatorcomment>
         <translation>アルティミシア城・水門</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="139"/>
+        <location filename="Data.cpp" line="142"/>
         <source>Citadelle - Armurerie</source>
         <comment>240</comment>
         <translatorcomment>Ultimecia Castle- Armory</translatorcomment>
         <translation>アルティミシア城・武器庫</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="139"/>
+        <location filename="Data.cpp" line="142"/>
         <source>Citadelle d&apos;Ultimecia - Prison</source>
         <comment>241</comment>
         <translatorcomment>Ultimecia Castle- Prison Cell</translatorcomment>
         <translation>アルティミシア城・牢獄</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="139"/>
+        <location filename="Data.cpp" line="142"/>
         <source>Citadelle d&apos;Ultimecia - Fossé</source>
         <comment>242</comment>
         <translatorcomment>Ultimecia Castle- Waterway</translatorcomment>
         <translation>アルティミシア城・水路</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="139"/>
+        <location filename="Data.cpp" line="142"/>
         <source>Citadelle d&apos;Ultimecia - Jardin</source>
         <comment>243</comment>
         <translatorcomment>Ultimecia Castle- Courtyard</translatorcomment>
         <translation>アルティミシア城・中庭</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="139"/>
+        <location filename="Data.cpp" line="142"/>
         <source>Citadelle d&apos;Ultimecia - Chapelle</source>
         <comment>244</comment>
         <translatorcomment>Ultimecia Castle- Chapel</translatorcomment>
         <translation>アルティミシア城・礼拝堂</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="139"/>
+        <location filename="Data.cpp" line="142"/>
         <source>Clocher - Citadelle d&apos;Ultimecia</source>
         <comment>245</comment>
         <translatorcomment>Ultimecia Castle- Clock Tower</translatorcomment>
         <translation>アルティミシア城・時計塔</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="139"/>
+        <location filename="Data.cpp" line="142"/>
         <source>Chambre d&apos;Ultimecia - Citadelle</source>
         <comment>246</comment>
         <translatorcomment>Ultimecia Castle- Master Room</translatorcomment>
         <translation>アルティミシア城・主の間</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="139"/>
+        <location filename="Data.cpp" line="142"/>
         <source>Citadelle d&apos;Ultimecia</source>
         <comment>248</comment>
         <translatorcomment>Ultimecia Castle</translatorcomment>
         <translation>アルティミシア城</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="139"/>
+        <location filename="Data.cpp" line="142"/>
         <source>Salle d&apos;initiation</source>
         <comment>249</comment>
         <translatorcomment>Commencement Room</translatorcomment>
         <translation>はじまりの部屋</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="139"/>
+        <location filename="Data.cpp" line="142"/>
         <source>Reine des cartes</source>
         <comment>250</comment>
         <translatorcomment>Queen</translatorcomment>
         <translation>クィーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="146"/>
+        <location filename="Data.cpp" line="149"/>
         <source>Sagaie</source>
         <translatorcomment>Strange Vision</translatorcomment>
         <translation>ゆめかまぼろしか</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="151"/>
+        <location filename="Data.cpp" line="154"/>
         <source>Boko</source>
         <translatorcomment>Boko</translatorcomment>
         <translation>コチョコボ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="158"/>
+        <location filename="Data.cpp" line="161"/>
         <source>Feinte</source>
         <translatorcomment>Booya</translatorcomment>
         <translation>ヘッドショック</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="158"/>
+        <location filename="Data.cpp" line="161"/>
         <source>Achille</source>
         <translatorcomment>Heel Drop</translatorcomment>
         <translation>かかと落とし</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="158"/>
+        <location filename="Data.cpp" line="161"/>
         <source>Forcing</source>
         <translatorcomment>Mach Kick</translatorcomment>
         <translation>マッハキック</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="158"/>
+        <location filename="Data.cpp" line="161"/>
         <source>Delphinium</source>
         <translatorcomment>Dolphin Blow</translatorcomment>
         <translation>ドルフィンブロウ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="159"/>
+        <location filename="Data.cpp" line="162"/>
         <source>Apesanteur</source>
         <translatorcomment>Meteor Strike</translatorcomment>
         <translation>メテオストライク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="159"/>
+        <location filename="Data.cpp" line="162"/>
         <source>Fahreinheit</source>
         <translatorcomment>Burning Rave</translatorcomment>
         <translation>バーニングレイヴ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="159"/>
+        <location filename="Data.cpp" line="162"/>
         <source>Stratosphère</source>
         <translatorcomment>Meteor Barret</translatorcomment>
         <translation>メテオバレット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="159"/>
+        <location filename="Data.cpp" line="162"/>
         <source>Trapèze</source>
         <translatorcomment>Different Beat</translatorcomment>
         <translation>ディファレントビート</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="159"/>
+        <location filename="Data.cpp" line="162"/>
         <source>Global Wave</source>
         <translatorcomment>My Final Heaven</translatorcomment>
         <translation>俺式ファイナルヘヴン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="161"/>
+        <location filename="Data.cpp" line="164"/>
         <source>Furioso</source>
         <translatorcomment>Normal Shot</translatorcomment>
         <translation>ノーマルショット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="161"/>
+        <location filename="Data.cpp" line="164"/>
         <source>Fluxion</source>
         <translatorcomment>Scatter Shot</translatorcomment>
         <translation>グレープショット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="161"/>
+        <location filename="Data.cpp" line="164"/>
         <source>Fracas</source>
         <translatorcomment>Dark Shot</translatorcomment>
         <translation>ダークショット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="161"/>
+        <location filename="Data.cpp" line="164"/>
         <source>Fusion</source>
         <translatorcomment>Flame Shot</translatorcomment>
         <translation>フレイムショット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="162"/>
+        <location filename="Data.cpp" line="165"/>
         <source>Barbacane</source>
         <translatorcomment>Canister Shot</translatorcomment>
         <translation>キャニスターショット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="162"/>
+        <location filename="Data.cpp" line="165"/>
         <source>Mach 4</source>
         <translatorcomment>Quick Shot</translatorcomment>
         <translation>クイックショット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="162"/>
+        <location filename="Data.cpp" line="165"/>
         <source>Apogée</source>
         <translatorcomment>Armor Shot</translatorcomment>
         <translation>アーマーショット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="162"/>
+        <location filename="Data.cpp" line="165"/>
         <source>Percuteur</source>
         <translatorcomment>Hyper Shot</translatorcomment>
         <translation>ハイパーショット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="164"/>
+        <location filename="Data.cpp" line="167"/>
         <source>Fovéa</source>
         <translatorcomment>Laser Eye</translatorcomment>
         <translation>メーザーアイ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="164"/>
+        <location filename="Data.cpp" line="167"/>
         <source>Ultra Waves</source>
         <translatorcomment>Ultra Waves</translatorcomment>
         <translation>超振動</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="164"/>
+        <location filename="Data.cpp" line="167"/>
         <source>Firmament</source>
         <translatorcomment>Electrocute</translatorcomment>
         <translation>電撃</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="164"/>
+        <location filename="Data.cpp" line="167"/>
         <source>Freak</source>
         <translatorcomment>LV?Death</translatorcomment>
         <translation>LV?デス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="165"/>
+        <location filename="Data.cpp" line="168"/>
         <source>Dégénérator</source>
         <translatorcomment>Degenerator</translatorcomment>
         <translation>デジョネーター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="165"/>
+        <location filename="Data.cpp" line="168"/>
         <source>Fréon</source>
         <translatorcomment>Aqua Breath</translatorcomment>
         <translation>アクアブレス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="165"/>
+        <location filename="Data.cpp" line="168"/>
         <source>Micro Missiles</source>
         <translatorcomment>Micro Missiles</translatorcomment>
         <translation>マイクロミサイル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="165"/>
+        <location filename="Data.cpp" line="168"/>
         <source>Acid</source>
         <translatorcomment>Acid</translatorcomment>
         <translation>溶解液</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="166"/>
+        <location filename="Data.cpp" line="169"/>
         <source>Mitraille</source>
         <translatorcomment>Gatling Gun</translatorcomment>
         <translation>ガトリング砲</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="166"/>
+        <location filename="Data.cpp" line="169"/>
         <source>Dead Heat</source>
         <translatorcomment>Fire Breath</translatorcomment>
         <translation>ファイヤーブレス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="166"/>
+        <location filename="Data.cpp" line="169"/>
         <source>Infection</source>
         <translatorcomment>Bad Breath</translatorcomment>
         <translation>くさい息</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="166"/>
+        <location filename="Data.cpp" line="169"/>
         <source>Mistral</source>
         <translatorcomment>White Wind</translatorcomment>
         <translation>ホワイトウインド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="167"/>
+        <location filename="Data.cpp" line="170"/>
         <source>Laser</source>
         <translatorcomment>Homing Laser</translatorcomment>
         <translation>ホーミングレーザー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="167"/>
+        <location filename="Data.cpp" line="170"/>
         <source>Mother</source>
         <translatorcomment>Mighty Guard</translatorcomment>
         <translation>マイティガード</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="167"/>
+        <location filename="Data.cpp" line="170"/>
         <source>Shockwave</source>
         <translatorcomment>Ray-Bomb</translatorcomment>
         <translation>レイ・ボム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="167"/>
+        <location filename="Data.cpp" line="170"/>
         <source>Outerspace</source>
         <translatorcomment>Shockwave Pulsar</translatorcomment>
         <translation>ショックウェーブパルサー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="169"/>
+        <location filename="Data.cpp" line="172"/>
         <source>Dingo</source>
         <translatorcomment>Rush</translatorcomment>
         <translation>ラッシュ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="169"/>
+        <location filename="Data.cpp" line="172"/>
         <source>Shepherd</source>
         <translatorcomment>Recover</translatorcomment>
         <translation>リカバー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="169"/>
+        <location filename="Data.cpp" line="172"/>
         <source>Dachshund</source>
         <translatorcomment>Reverse</translatorcomment>
         <translation>リバース</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="169"/>
+        <location filename="Data.cpp" line="172"/>
         <source>Borzoï</source>
         <translatorcomment>Search</translatorcomment>
         <translation>サーチ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="170"/>
+        <location filename="Data.cpp" line="173"/>
         <source>Laïka</source>
         <translatorcomment>Cannon</translatorcomment>
         <translation>キャノン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="170"/>
+        <location filename="Data.cpp" line="173"/>
         <source>Nordfolk</source>
         <translatorcomment>Strike</translatorcomment>
         <translation>ストライク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="170"/>
+        <location filename="Data.cpp" line="173"/>
         <source>Sélénium</source>
         <translatorcomment>Invincible Moon</translatorcomment>
         <translation>インビジブルムーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="170"/>
+        <location filename="Data.cpp" line="173"/>
         <source>Phantasm</source>
         <translatorcomment>Wishing Star</translatorcomment>
         <translation>ウィッシュスター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="172"/>
+        <location filename="Data.cpp" line="175"/>
         <source>Bogomile</source>
         <translatorcomment>Geezard</translatorcomment>
         <translation>ハウリザード</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="172"/>
+        <location filename="Data.cpp" line="175"/>
         <source>Fungus</source>
         <translatorcomment>Funguar</translatorcomment>
         <translation>フンゴオンゴ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="172"/>
+        <location filename="Data.cpp" line="175"/>
         <source>Elmidea</source>
         <translatorcomment>Bite Bug</translatorcomment>
         <translation>バイトバグ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="172"/>
+        <location filename="Data.cpp" line="175"/>
         <source>Nocturnus</source>
         <translatorcomment>Red Bat</translatorcomment>
         <translation>レッドマウス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="172"/>
+        <location filename="Data.cpp" line="175"/>
         <source>Incube</source>
         <translatorcomment>Blobra</translatorcomment>
         <translation>プリヌラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="172"/>
+        <location filename="Data.cpp" line="175"/>
         <source>Aphide</source>
         <translatorcomment>Gayla</translatorcomment>
         <translation>ゲイラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="173"/>
+        <location filename="Data.cpp" line="176"/>
         <source>Elastos</source>
         <translatorcomment>Gesper</translatorcomment>
         <translation>ゲスパー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="173"/>
+        <location filename="Data.cpp" line="176"/>
         <source>Diodon</source>
         <translatorcomment>フォカロルフェイク (カード), Fr: Diodon, En: Fastitocalon-F, 仏英正しい
 Phantom = Fastitocalon = フォカロル
@@ -7129,109 +7248,109 @@ Diodon = Fastitocalon-F = フォカロルフェイク</translatorcomment>
         <translation>フォカロルフェイク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="173"/>
+        <location filename="Data.cpp" line="176"/>
         <source>Carnidéa</source>
         <translatorcomment>Blood Soul</translatorcomment>
         <translation>ブラットソウル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="173"/>
+        <location filename="Data.cpp" line="176"/>
         <source>Larva</source>
         <translatorcomment>Caterchipillar</translatorcomment>
         <translation>ケダチク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="173"/>
+        <location filename="Data.cpp" line="176"/>
         <source>Gallus</source>
         <translatorcomment>Cockatrice</translatorcomment>
         <translation>コカトリス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="173"/>
+        <location filename="Data.cpp" line="176"/>
         <source>Orchida</source>
         <translatorcomment>Grat</translatorcomment>
         <translation>グラット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="174"/>
+        <location filename="Data.cpp" line="177"/>
         <source>Schizoïd</source>
         <translatorcomment>Buel</translatorcomment>
         <translation>ブエル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="174"/>
+        <location filename="Data.cpp" line="177"/>
         <source>Licorne</source>
         <translatorcomment>Mesmerize</translatorcomment>
         <translation>メズマライズ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="174"/>
+        <location filename="Data.cpp" line="177"/>
         <source>Koatl</source>
         <translatorcomment>Belhelmel</translatorcomment>
         <translation>ベルヘルメルヘル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="174"/>
+        <location filename="Data.cpp" line="177"/>
         <source>Malaku</source>
         <translatorcomment>Thrustaevis</translatorcomment>
         <translation>スラストエイビス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="174"/>
+        <location filename="Data.cpp" line="177"/>
         <source>Arconada</source>
         <translatorcomment>Anacondaur</translatorcomment>
         <translation>ヘッジヴァイパー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="174"/>
+        <location filename="Data.cpp" line="177"/>
         <source>Xylopode</source>
         <translatorcomment>Glacial Eye</translatorcomment>
         <translation>グヘイスアイ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="175"/>
+        <location filename="Data.cpp" line="178"/>
         <source>Formicide</source>
         <translatorcomment>Creeps</translatorcomment>
         <translation>クリープス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="175"/>
+        <location filename="Data.cpp" line="178"/>
         <source>Feng</source>
         <translatorcomment>Grendel</translatorcomment>
         <translation>グレンデル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="175"/>
+        <location filename="Data.cpp" line="178"/>
         <source>Héra</source>
         <translatorcomment>Jelleye</translatorcomment>
         <translation>ダブルハガー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="175"/>
+        <location filename="Data.cpp" line="178"/>
         <source>Selek</source>
         <translatorcomment>Grand Mantis</translatorcomment>
         <translation>グランデアーロ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="175"/>
+        <location filename="Data.cpp" line="178"/>
         <source>Weevil</source>
         <translatorcomment>Forbidden</translatorcomment>
         <translation>ライフフォビドン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="175"/>
+        <location filename="Data.cpp" line="178"/>
         <source>Scavenger</source>
         <translatorcomment>Armadodo</translatorcomment>
         <translation>エサンスーシ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="176"/>
+        <location filename="Data.cpp" line="179"/>
         <source>Adéphage</source>
         <translatorcomment>Tri-Face</translatorcomment>
         <translation>トライフェイス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="176"/>
+        <location filename="Data.cpp" line="179"/>
         <source>Phantom</source>
         <translatorcomment>フォカロル (カード), Fr: Phantom, En: Fastitocalon, 仏英正しい
 Phantom = Fastitocalon = フォカロル
@@ -7239,430 +7358,435 @@ Diodon = Fastitocalon-F = フォカロルフェイク</translatorcomment>
         <translation>フォカロル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="176"/>
+        <location filename="Data.cpp" line="179"/>
         <source>Satyrux</source>
         <translatorcomment>Snow Lion</translatorcomment>
         <translation>ゴージュシール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="176"/>
+        <location filename="Data.cpp" line="179"/>
         <source>Trogiidae</source>
         <translatorcomment>Ochu</translatorcomment>
         <translation>オチュー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="176"/>
+        <location filename="Data.cpp" line="179"/>
         <source>Barbarian</source>
         <translatorcomment>SAM08G</translatorcomment>
         <translation>SAM08G</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="177"/>
+        <location filename="Data.cpp" line="180"/>
         <source>Célébis</source>
         <translatorcomment>Abyss Worm</translatorcomment>
         <translation>アビスウォーム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="177"/>
+        <location filename="Data.cpp" line="180"/>
         <source>Eiffel</source>
         <translatorcomment>Turtapod</translatorcomment>
         <translation>グラナトゥム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="177"/>
+        <location filename="Data.cpp" line="180"/>
         <source>Cariatide</source>
         <translatorcomment>Vysage</translatorcomment>
         <translation>バイセージ・ハンズ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="177"/>
+        <location filename="Data.cpp" line="180"/>
         <source>Pampa</source>
         <comment>card</comment>
         <translatorcomment>Cactuar</translatorcomment>
         <translation>サボテンダー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="177"/>
+        <location filename="Data.cpp" line="180"/>
         <source>Tomberry</source>
         <comment>card</comment>
         <translatorcomment>Tonberry</translatorcomment>
         <translation>トンベリ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="178"/>
+        <location filename="Data.cpp" line="180"/>
+        <source>Berserker</source>
+        <translation type="unfinished">ワイルドフック</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="181"/>
         <source>T-rex</source>
         <translatorcomment>T-Rexaur</translatorcomment>
         <translation>アルケオダイノス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="178"/>
+        <location filename="Data.cpp" line="181"/>
         <source>Succube</source>
         <translatorcomment>Bomb</translatorcomment>
         <translation>ボム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="178"/>
+        <location filename="Data.cpp" line="181"/>
         <source>Tikal</source>
         <translatorcomment>Blitz</translatorcomment>
         <translation>ブリッツ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="178"/>
+        <location filename="Data.cpp" line="181"/>
         <source>Wendigo</source>
         <translatorcomment>Wendigo</translatorcomment>
         <translation>ウェンディゴ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="178"/>
+        <location filename="Data.cpp" line="181"/>
         <source>Marsupial</source>
         <translatorcomment>Torama</translatorcomment>
         <translation>クアール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="178"/>
+        <location filename="Data.cpp" line="181"/>
         <source>Draconus</source>
         <translatorcomment>Imp</translatorcomment>
         <translation>ガルキマセラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="179"/>
+        <location filename="Data.cpp" line="182"/>
         <source>Moloch</source>
         <translatorcomment>Blue Dragon</translatorcomment>
         <translation>ドラゴンイゾルデ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="179"/>
+        <location filename="Data.cpp" line="182"/>
         <source>Ao</source>
         <translatorcomment>Adamantoise</translatorcomment>
         <translation>アダマンタイマイ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="179"/>
+        <location filename="Data.cpp" line="182"/>
         <source>Polyphage</source>
         <translatorcomment>Hexadragon</translatorcomment>
         <translation>メルトドラゴン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="179"/>
+        <location filename="Data.cpp" line="182"/>
         <source>Ekarissor</source>
         <translatorcomment>Iron Giant</translatorcomment>
         <translation>鉄巨人</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="179"/>
+        <location filename="Data.cpp" line="182"/>
         <source>Kanibal</source>
         <translatorcomment>Behemoth</translatorcomment>
         <translation>ベヒーモス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="179"/>
+        <location filename="Data.cpp" line="182"/>
         <source>Chimaira</source>
         <translatorcomment>Chimera</translatorcomment>
         <translation>キマイラブレイン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="180"/>
+        <location filename="Data.cpp" line="183"/>
         <source>Koyo K</source>
         <translatorcomment>PuPu</translatorcomment>
         <translation>コヨコヨ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="180"/>
+        <location filename="Data.cpp" line="183"/>
         <source>Protesis</source>
         <translatorcomment>Elastoid</translatorcomment>
         <translation>インビンシブル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="180"/>
+        <location filename="Data.cpp" line="183"/>
         <source>Pikasso</source>
         <translatorcomment>GIM47N</translatorcomment>
         <translation>GIM47N</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="180"/>
+        <location filename="Data.cpp" line="183"/>
         <source>Xylomid</source>
         <translatorcomment>Malboro</translatorcomment>
         <translation>モルボル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="180"/>
+        <location filename="Data.cpp" line="183"/>
         <source>Griffon</source>
         <translatorcomment>Ruby Dragon</translatorcomment>
         <translation>ルブルムドラゴン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="180"/>
+        <location filename="Data.cpp" line="183"/>
         <source>Sulfor</source>
         <translatorcomment>Elnoyle</translatorcomment>
         <translation>エルノーイル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="181"/>
+        <location filename="Data.cpp" line="184"/>
         <source>Tomberry Sr</source>
         <translatorcomment>Tonberry King</translatorcomment>
         <translation>トンベリキング</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="181"/>
+        <location filename="Data.cpp" line="184"/>
         <source>Wedge/Biggs</source>
         <translatorcomment>Wedge, Biggs</translatorcomment>
         <translation>ウェッジ・ビッグス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="181"/>
+        <location filename="Data.cpp" line="184"/>
         <source>Fujin/Raijin</source>
         <translatorcomment>Fujin, Raijin</translatorcomment>
         <translation>風神・雷神</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="181"/>
+        <location filename="Data.cpp" line="184"/>
         <source>Sulfura</source>
         <translatorcomment>Elvoret</translatorcomment>
         <translation>エルヴィオレ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="181"/>
+        <location filename="Data.cpp" line="184"/>
         <source>Goliath</source>
         <translatorcomment>X-ATM092</translatorcomment>
         <translation>X-ATM092</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="182"/>
+        <location filename="Data.cpp" line="185"/>
         <source>Lygus</source>
         <translatorcomment>Granaldo</translatorcomment>
         <translation>グラナルド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="182"/>
+        <location filename="Data.cpp" line="185"/>
         <source>Écorché</source>
         <translatorcomment>Gerogero</translatorcomment>
         <translation>ナムタル・ウトク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="182"/>
+        <location filename="Data.cpp" line="185"/>
         <source>Iguanor</source>
         <translatorcomment>Iguion</translatorcomment>
         <translation>シュメルケ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="182"/>
+        <location filename="Data.cpp" line="185"/>
         <source>Hornet</source>
         <translatorcomment>Abadon</translatorcomment>
         <translation>アバドン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="182"/>
+        <location filename="Data.cpp" line="185"/>
         <source>Flotix</source>
         <translatorcomment>Trauma</translatorcomment>
         <translation>ドルメン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="182"/>
+        <location filename="Data.cpp" line="185"/>
         <source>Cyanide</source>
         <translatorcomment>Oilboyle</translatorcomment>
         <translation>オイルシッパー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="183"/>
+        <location filename="Data.cpp" line="186"/>
         <source>Shumi</source>
         <translatorcomment>Shumi</translatorcomment>
         <translation>シュミ族</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="183"/>
+        <location filename="Data.cpp" line="186"/>
         <source>Krystal</source>
         <translatorcomment>Krysta</translatorcomment>
         <translation>コキュートス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="183"/>
+        <location filename="Data.cpp" line="186"/>
         <source>Alienator</source>
         <translatorcomment>Propagator</translatorcomment>
         <translation>プロパゲーター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="183"/>
+        <location filename="Data.cpp" line="186"/>
         <source>Pampa Sr</source>
         <translatorcomment>Jumbo Cactuar</translatorcomment>
         <translation>ジャボテンダー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="183"/>
+        <location filename="Data.cpp" line="186"/>
         <source>Acron</source>
         <translatorcomment>Tri-Point</translatorcomment>
         <translation>トライエッジ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="183"/>
+        <location filename="Data.cpp" line="186"/>
         <source>Agamemnon</source>
         <translatorcomment>Gargantua</translatorcomment>
         <translation>ガルガンチュア</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="184"/>
+        <location filename="Data.cpp" line="187"/>
         <source>Anakronox</source>
         <translatorcomment>Mobile Type 8</translatorcomment>
         <translation>機動兵器8型BIS</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="184"/>
+        <location filename="Data.cpp" line="187"/>
         <source>Mithra</source>
         <translatorcomment>Sphinxara</translatorcomment>
         <translation>アンドロ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="184"/>
+        <location filename="Data.cpp" line="187"/>
         <source>Acarnan</source>
         <translatorcomment>Tiamat</translatorcomment>
         <translation>ティアマト</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="184"/>
+        <location filename="Data.cpp" line="187"/>
         <source>Omniborg</source>
         <translatorcomment>BGH251F2</translatorcomment>
         <translation>BGH251F2</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="184"/>
+        <location filename="Data.cpp" line="187"/>
         <source>Attila</source>
         <translatorcomment>Red Giant</translatorcomment>
         <translation>ウルフラマイター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="184"/>
+        <location filename="Data.cpp" line="187"/>
         <source>Fabryce</source>
         <translatorcomment>Catoblepas</translatorcomment>
         <translation>カトブレパス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="185"/>
+        <location filename="Data.cpp" line="188"/>
         <source>Monarch</source>
         <translatorcomment>Ultima Weapon</translatorcomment>
         <translation>アルテマウェポン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="192"/>
+        <location filename="Data.cpp" line="195"/>
         <source>Dummy</source>
         <comment>Ennemy</comment>
         <translation>ダミー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="192"/>
+        <location filename="Data.cpp" line="195"/>
         <source>ExoSkelet</source>
         <comment>Ennemy</comment>
         <translation>GIM52A</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="192"/>
+        <location filename="Data.cpp" line="195"/>
         <source>Incube</source>
         <comment>Ennemy</comment>
         <translation>プリヌラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="192"/>
+        <location filename="Data.cpp" line="195"/>
         <source>Malaku</source>
         <comment>Ennemy</comment>
         <translation>スラストエイビス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="193"/>
+        <location filename="Data.cpp" line="196"/>
         <source>Bogomile</source>
         <comment>Ennemy</comment>
         <translation>ハウリザード</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="193"/>
+        <location filename="Data.cpp" line="196"/>
         <source>Koatl</source>
         <comment>Ennemy</comment>
         <translation>ベルヘルメルヘル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="193"/>
+        <location filename="Data.cpp" line="196"/>
         <source>Xylopode</source>
         <comment>Ennemy</comment>
         <translation>グヘイスアイ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="193"/>
+        <location filename="Data.cpp" line="196"/>
         <source>Barbarian</source>
         <comment>Ennemy</comment>
         <translation>SAM08G</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="194"/>
+        <location filename="Data.cpp" line="197"/>
         <source>Pikasso</source>
         <comment>Ennemy</comment>
         <translation>GIM47N</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="194"/>
+        <location filename="Data.cpp" line="197"/>
         <source>Licorne</source>
         <comment>Ennemy</comment>
         <translation>メズマライズ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="194"/>
+        <location filename="Data.cpp" line="197"/>
         <source>Schizoïd</source>
         <comment>Ennemy</comment>
         <translation>ブエル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="194"/>
+        <location filename="Data.cpp" line="197"/>
         <source>Brahman</source>
         <comment>Ennemy</comment>
         <translatorcomment>Sphinxaur</translatorcomment>
         <translation>スフィンクス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="195"/>
+        <location filename="Data.cpp" line="198"/>
         <source>Shiva</source>
         <comment>Ennemy</comment>
         <translation>シヴァ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="195"/>
+        <location filename="Data.cpp" line="198"/>
         <source>Satyrux</source>
         <comment>Ennemy</comment>
         <translation>ゴージュシール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="195"/>
+        <location filename="Data.cpp" line="198"/>
         <source>Arconada</source>
         <comment>Ennemy</comment>
         <translation>ヘッジヴァイパー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="195"/>
+        <location filename="Data.cpp" line="198"/>
         <source>Orchida</source>
         <comment>Ennemy</comment>
         <translation>グラット</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="196"/>
+        <location filename="Data.cpp" line="199"/>
         <source>Gallus</source>
         <comment>Ennemy</comment>
         <translation>コカトリス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="196"/>
+        <location filename="Data.cpp" line="199"/>
         <source>Larva</source>
         <comment>Ennemy</comment>
         <translation>ケダチク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="196"/>
+        <location filename="Data.cpp" line="199"/>
         <source>Nocturnus</source>
         <comment>Ennemy</comment>
         <translation>レッドマウス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="196"/>
+        <location filename="Data.cpp" line="199"/>
         <source>Tikal</source>
         <comment>Ennemy</comment>
         <translation>ブリッツ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="197"/>
+        <location filename="Data.cpp" line="200"/>
         <source>Diodon</source>
         <comment>Ennemy</comment>
         <translatorcomment>フォカロル (ライブラ), Fastitocalon●
@@ -7671,7 +7795,7 @@ Diodon = Fastitocalon-F = フォカロルフェイク</translatorcomment>
         <translation>フォカロル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="197"/>
+        <location filename="Data.cpp" line="200"/>
         <source>Phantom</source>
         <comment>Ennemy</comment>
         <translatorcomment>フォカロルフェイク (ライブラ), Fastitocalon●
@@ -7680,895 +7804,895 @@ Diodon = Fastitocalon-F = フォカロルフェイク</translatorcomment>
         <translation>フォカロル（小）</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="197"/>
+        <location filename="Data.cpp" line="200"/>
         <source>Elastos</source>
         <comment>Ennemy</comment>
         <translation>ゲスパー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="197"/>
+        <location filename="Data.cpp" line="200"/>
         <source>Formicide</source>
         <comment>Ennemy</comment>
         <translation>クリープス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="198"/>
+        <location filename="Data.cpp" line="201"/>
         <source>Polyphage</source>
         <comment>Ennemy</comment>
         <translation>メルトドラゴン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="198"/>
+        <location filename="Data.cpp" line="201"/>
         <source>Carnidea</source>
         <comment>Ennemy</comment>
         <translation>ブラットソウル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="198"/>
+        <location filename="Data.cpp" line="201"/>
         <source>Protesis</source>
         <comment>Ennemy</comment>
         <translation>インビンシブル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="198"/>
+        <location filename="Data.cpp" line="201"/>
         <source>Scavenger</source>
         <comment>Ennemy</comment>
         <translation>エサンスーシ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="199"/>
+        <location filename="Data.cpp" line="202"/>
         <source>Elmidea</source>
         <comment>Ennemy</comment>
         <translation>バイトバグ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="199"/>
+        <location filename="Data.cpp" line="202"/>
         <source>Héra</source>
         <comment>Ennemy</comment>
         <translation>ダブルハガー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="199"/>
+        <location filename="Data.cpp" line="202"/>
         <source>Acron</source>
         <comment>Ennemy</comment>
         <translation>トライエッジ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="199"/>
+        <location filename="Data.cpp" line="202"/>
         <source>Eiffel</source>
         <comment>Ennemy</comment>
         <translation>グラナトゥム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="200"/>
+        <location filename="Data.cpp" line="203"/>
         <source>Wendigo</source>
         <comment>Ennemy</comment>
         <translation>ウェンディゴ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="200"/>
+        <location filename="Data.cpp" line="203"/>
         <source>Aphide</source>
         <comment>Ennemy</comment>
         <translation>ゲイラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="200"/>
+        <location filename="Data.cpp" line="203"/>
         <source>Ecorché</source>
         <comment>Ennemy</comment>
         <translation>ナムタル・ウトク</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="200"/>
+        <location filename="Data.cpp" line="203"/>
         <source>Berserker</source>
         <comment>Ennemy</comment>
         <translation>ワイルドフック</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="201"/>
+        <location filename="Data.cpp" line="204"/>
         <source>Adéphage</source>
         <comment>Ennemy</comment>
         <translation>トライフェイス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="201"/>
+        <location filename="Data.cpp" line="204"/>
         <source>Selek</source>
         <comment>Ennemy</comment>
         <translation>グランデアーロ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="201"/>
+        <location filename="Data.cpp" line="204"/>
         <source>Krystal</source>
         <comment>Ennemy</comment>
         <translation>コキュートス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="201"/>
+        <location filename="Data.cpp" line="204"/>
         <source>Gangrène</source>
         <comment>Ennemy</comment>
         <translation>ゴーマニ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="202"/>
+        <location filename="Data.cpp" line="205"/>
         <source>Fatima</source>
         <comment>Ennemy</comment>
         <translation>ドロマニ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="202"/>
+        <location filename="Data.cpp" line="205"/>
         <source>Moloch</source>
         <comment>Ennemy</comment>
         <translation>ドラゴンイゾルデ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="202"/>
+        <location filename="Data.cpp" line="205"/>
         <source>Weevil</source>
         <comment>Ennemy</comment>
         <translation>ライフフォビドン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="202"/>
+        <location filename="Data.cpp" line="205"/>
         <source>Succube</source>
         <comment>Ennemy</comment>
         <translation>ボム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="203"/>
+        <location filename="Data.cpp" line="206"/>
         <source>Célébis</source>
         <comment>Ennemy</comment>
         <translation>アビスウォーム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="203"/>
+        <location filename="Data.cpp" line="206"/>
         <source>Trogiidae</source>
         <comment>Ennemy</comment>
         <translation>オチュー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="203"/>
+        <location filename="Data.cpp" line="206"/>
         <source>Ao</source>
         <comment>Ennemy</comment>
         <translation>アダマンタイマイ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="203"/>
+        <location filename="Data.cpp" line="206"/>
         <source>Chimaira</source>
         <comment>Ennemy</comment>
         <translation>キマイラブレイン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="204"/>
+        <location filename="Data.cpp" line="207"/>
         <source>Xylomid</source>
         <comment>Ennemy</comment>
         <translation>モルボル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="204"/>
+        <location filename="Data.cpp" line="207"/>
         <source>Ekarissor</source>
         <comment>Ennemy</comment>
         <translation>鉄巨人</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="204"/>
+        <location filename="Data.cpp" line="207"/>
         <source>Kanibal</source>
         <comment>Ennemy</comment>
         <translation>ベヒーモス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="204"/>
+        <location filename="Data.cpp" line="207"/>
         <source>T-Rex</source>
         <comment>Ennemy</comment>
         <translation>アルケオダイノス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="205"/>
+        <location filename="Data.cpp" line="208"/>
         <source>Griffon</source>
         <comment>Ennemy</comment>
         <translation>ルブルムドラゴン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="205"/>
+        <location filename="Data.cpp" line="208"/>
         <source>Feng</source>
         <comment>Ennemy</comment>
         <translation>グレンデル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="205"/>
+        <location filename="Data.cpp" line="208"/>
         <source>Cariatide</source>
         <comment>Ennemy</comment>
         <translation>バイセージ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="205"/>
+        <location filename="Data.cpp" line="208"/>
         <source>Pampa</source>
         <comment>Ennemy</comment>
         <translation>サボテンダー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="206"/>
+        <location filename="Data.cpp" line="209"/>
         <source>Tomberry</source>
         <comment>Ennemy</comment>
         <translation>トンベリ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="206"/>
+        <location filename="Data.cpp" line="209"/>
         <source>Marsupial</source>
         <comment>Ennemy</comment>
         <translation>クアール</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="206"/>
+        <location filename="Data.cpp" line="209"/>
         <source>Fungus</source>
         <comment>Ennemy</comment>
         <translation>フンゴオンゴ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="206"/>
+        <location filename="Data.cpp" line="209"/>
         <source>Draconus</source>
         <comment>Ennemy</comment>
         <translation>ガルキマセラ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="207"/>
+        <location filename="Data.cpp" line="210"/>
         <source>Koyo K</source>
         <comment>Ennemy</comment>
         <translation>コヨコヨ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="207"/>
+        <location filename="Data.cpp" line="210"/>
         <source>Ifrit</source>
         <comment>Ennemy</comment>
         <translation>イフリート</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="207"/>
+        <location filename="Data.cpp" line="210"/>
         <source>Taurux</source>
         <comment>Ennemy</comment>
         <translation>ミノタウロス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="207"/>
+        <location filename="Data.cpp" line="210"/>
         <source>Tauros</source>
         <comment>Ennemy</comment>
         <translation>セクレト</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="208"/>
+        <location filename="Data.cpp" line="211"/>
         <source>Commandeur</source>
         <comment>Ennemy</comment>
         <translatorcomment>ミサイル基地●</translatorcomment>
         <translation>コマンドリーダー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="208"/>
+        <location filename="Data.cpp" line="211"/>
         <source>Cerbères</source>
         <comment>Ennemy</comment>
         <translation>ケルベロス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="208"/>
+        <location filename="Data.cpp" line="211"/>
         <source>Nosferatu</source>
         <comment>Ennemy</comment>
         <translation>ディアボロス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="208"/>
+        <location filename="Data.cpp" line="211"/>
         <source>Bahamut</source>
         <comment>Ennemy</comment>
         <translation>バハムート</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="209"/>
+        <location filename="Data.cpp" line="212"/>
         <source>Odyssey</source>
         <comment>Ennemy</comment>
         <translatorcomment>●「</translatorcomment>
         <translation>セルト・ヒサーリ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="209"/>
+        <location filename="Data.cpp" line="212"/>
         <source>Templier</source>
         <comment>Ennemy</comment>
         <translation>ガーデン教師</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="209"/>
+        <location filename="Data.cpp" line="212"/>
         <source>Odin</source>
         <comment>Ennemy</comment>
         <translation>オーディン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="209"/>
+        <location filename="Data.cpp" line="212"/>
         <source>Galbadien</source>
         <comment>Ennemy</comment>
         <translation>ガルバディア兵</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="210"/>
+        <location filename="Data.cpp" line="213"/>
         <source>Elite-T</source>
         <comment>Ennemy</comment>
         <translation>エリート兵</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="210"/>
-        <location filename="Data.cpp" line="225"/>
+        <location filename="Data.cpp" line="213"/>
+        <location filename="Data.cpp" line="228"/>
         <source>Wedge</source>
         <comment>Ennemy</comment>
         <translation>ウェッジ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="210"/>
-        <location filename="Data.cpp" line="225"/>
+        <location filename="Data.cpp" line="213"/>
+        <location filename="Data.cpp" line="228"/>
         <source>Biggs</source>
         <comment>Ennemy</comment>
         <translation>ビッグス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="210"/>
+        <location filename="Data.cpp" line="213"/>
         <source>Doublure</source>
         <comment>Ennemy</comment>
         <translation>デリング偽大統領</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="211"/>
+        <location filename="Data.cpp" line="214"/>
         <source>Trooper</source>
         <comment>Ennemy</comment>
         <translation>警備員</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="211"/>
+        <location filename="Data.cpp" line="214"/>
         <source>Norg</source>
         <comment>Ennemy</comment>
         <translation>ノーグ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="211"/>
+        <location filename="Data.cpp" line="214"/>
         <source>S-Borg</source>
         <comment>Ennemy</comment>
         <translatorcomment>●</translatorcomment>
         <translation>エスタ兵</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="211"/>
+        <location filename="Data.cpp" line="214"/>
         <source>T-Borg</source>
         <comment>Ennemy</comment>
         <translatorcomment>●</translatorcomment>
         <translation>エスタ兵 (ターミネーター)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="212"/>
+        <location filename="Data.cpp" line="215"/>
         <source>Tupolev</source>
         <comment>Ennemy</comment>
         <translatorcomment>●</translatorcomment>
         <translation>ソルト・ヒサーリ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="212"/>
+        <location filename="Data.cpp" line="215"/>
         <source>Spootnik</source>
         <comment>Ennemy</comment>
         <translatorcomment>●</translatorcomment>
         <translation>サグト・ヒサーリ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="213"/>
+        <location filename="Data.cpp" line="216"/>
         <source>Seifer (1)</source>
         <comment>Ennemy</comment>
         <translation>サイファー (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="213"/>
+        <location filename="Data.cpp" line="216"/>
         <source>Seifer (2)</source>
         <comment>Ennemy</comment>
         <translation>サイファー (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="213"/>
+        <location filename="Data.cpp" line="216"/>
         <source>Seifer (3)</source>
         <comment>Ennemy</comment>
         <translation>サイファー (3)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="212"/>
+        <location filename="Data.cpp" line="215"/>
         <source>Tomberry Sr</source>
         <comment>Ennemy</comment>
         <translation>トンベリキング</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="212"/>
+        <location filename="Data.cpp" line="215"/>
         <source>Gunblade (1)</source>
         <comment>Ennemy</comment>
         <translation>ガンブレード (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="213"/>
+        <location filename="Data.cpp" line="216"/>
         <source>Pampa Senior</source>
         <comment>Ennemy</comment>
         <translation>ジャボテンダー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="214"/>
+        <location filename="Data.cpp" line="217"/>
         <source>Edea (1)</source>
         <oldsource>Edea</oldsource>
         <comment>Ennemy</comment>
         <translation>イデア (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="214"/>
+        <location filename="Data.cpp" line="217"/>
         <source>Monarch</source>
         <comment>Ennemy</comment>
         <translation>アルテマウェポン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="214"/>
+        <location filename="Data.cpp" line="217"/>
         <source>Sulfura</source>
         <comment>Ennemy</comment>
         <translation>エルヴィオレ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="214"/>
+        <location filename="Data.cpp" line="217"/>
         <source>Alienator (violet)</source>
         <comment>Ennemy</comment>
         <translatorcomment>Propagator (purple)</translatorcomment>
         <translation>プロパゲーター (紫)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="215"/>
+        <location filename="Data.cpp" line="218"/>
         <source>Goliath</source>
         <comment>Ennemy</comment>
         <translation>X-ATM092</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="215"/>
+        <location filename="Data.cpp" line="218"/>
         <source>Iguanor</source>
         <comment>Ennemy</comment>
         <translation>シュメルケ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="215"/>
+        <location filename="Data.cpp" line="218"/>
         <source>Agamemnon</source>
         <comment>Ennemy</comment>
         <translation>ガルガンチュア</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="215"/>
+        <location filename="Data.cpp" line="218"/>
         <source>Lygus</source>
         <comment>Ennemy</comment>
         <translation>グラナルド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="216"/>
+        <location filename="Data.cpp" line="219"/>
         <source>Cujo</source>
         <comment>Ennemy</comment>
         <translation>ラルド</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="216"/>
+        <location filename="Data.cpp" line="219"/>
         <source>Cyanide</source>
         <comment>Ennemy</comment>
         <translation>オイルシッパー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="216"/>
+        <location filename="Data.cpp" line="219"/>
         <source>Alienator (vert)</source>
         <comment>Ennemy</comment>
         <translatorcomment>Propagator (green)</translatorcomment>
         <translation>プロパゲーター (緑)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="216"/>
+        <location filename="Data.cpp" line="219"/>
         <source>Alienator (jaune)</source>
         <comment>Ennemy</comment>
         <translatorcomment>Propagator (yellow)</translatorcomment>
         <translation>プロパゲーター (黄)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="217"/>
+        <location filename="Data.cpp" line="220"/>
         <source>Hornet</source>
         <comment>Ennemy</comment>
         <translatorcomment>バトルタブの表示に使用</translatorcomment>
         <translation>アバドン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="217"/>
+        <location filename="Data.cpp" line="220"/>
         <source>Edea (2)</source>
         <comment>Ennemy</comment>
         <translation>イデア (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="217"/>
+        <location filename="Data.cpp" line="220"/>
         <source>Omniborg (1)</source>
         <comment>Ennemy</comment>
         <translation>BGH251F2 (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="217"/>
+        <location filename="Data.cpp" line="220"/>
         <source>Omniborg (2)</source>
         <comment>Ennemy</comment>
         <translation>BGH251F2 (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="218"/>
+        <location filename="Data.cpp" line="221"/>
         <source>Anakronox</source>
         <comment>Ennemy</comment>
         <translation>機動兵器8型BIS</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="218"/>
+        <location filename="Data.cpp" line="221"/>
         <source>A-G Pod</source>
         <comment>Ennemy</comment>
         <translation>支援兵器Ｌ型</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="218"/>
+        <location filename="Data.cpp" line="221"/>
         <source>A-D Pod</source>
         <comment>Ennemy</comment>
         <translation>支援兵器Ｒ型</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="218"/>
+        <location filename="Data.cpp" line="221"/>
         <source>Hornet (zombie)</source>
         <comment>Ennemy</comment>
         <translation>アバドン (ゾンビ？)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="219"/>
+        <location filename="Data.cpp" line="222"/>
         <source>ParaBorg</source>
         <comment>Ennemy</comment>
         <translation>パラ・トルーパー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="219"/>
+        <location filename="Data.cpp" line="222"/>
         <source>Flotix</source>
         <comment>Ennemy</comment>
         <translation>ドルメン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="219"/>
+        <location filename="Data.cpp" line="222"/>
         <source>Bibendum</source>
         <comment>Ennemy</comment>
         <translation>アリニュメン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="219"/>
+        <location filename="Data.cpp" line="222"/>
         <source>Alienator (rouge)</source>
         <comment>Ennemy</comment>
         <translatorcomment>Propagator (red)</translatorcomment>
         <translation>プロパゲーター (赤)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="220"/>
+        <location filename="Data.cpp" line="223"/>
         <source>Adel</source>
         <comment>Ennemy</comment>
         <translation>アデル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="220"/>
+        <location filename="Data.cpp" line="223"/>
         <source>Nécromancienne (1)</source>
         <comment>Ennemy</comment>
         <translation>魔女 (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="221"/>
+        <location filename="Data.cpp" line="224"/>
         <source>Fujin (1)</source>
         <comment>Ennemy</comment>
         <translation>風神 (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="221"/>
+        <location filename="Data.cpp" line="224"/>
         <source>Nécromancienne (2)</source>
         <comment>Ennemy</comment>
         <translation>魔女 (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="221"/>
+        <location filename="Data.cpp" line="224"/>
         <source>Nécromancienne (3)</source>
         <comment>Ennemy</comment>
         <translation>魔女 (3)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="222"/>
+        <location filename="Data.cpp" line="225"/>
         <source>Raijin (1)</source>
         <comment>Ennemy</comment>
         <translation>雷神 (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="222"/>
+        <location filename="Data.cpp" line="225"/>
         <source>(Sans nom)</source>
         <comment>Ennemy</comment>
         <translation>(名称なし)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="222"/>
+        <location filename="Data.cpp" line="225"/>
         <source>Ultimecia (1)</source>
         <comment>Ennemy</comment>
         <translation>アルティミシア (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="222"/>
+        <location filename="Data.cpp" line="225"/>
         <source>Ultimecia (2)</source>
         <comment>Ennemy</comment>
         <translation>アルティミシア (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="223"/>
+        <location filename="Data.cpp" line="226"/>
         <source>Seifer (4)</source>
         <comment>Ennemy</comment>
         <translation>サイファー (4)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="223"/>
+        <location filename="Data.cpp" line="226"/>
         <source>Ultimecia (3)</source>
         <comment>Ennemy</comment>
         <translation>アルティミシア (3)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="223"/>
+        <location filename="Data.cpp" line="226"/>
         <source>Ultimecia (4)</source>
         <comment>Ennemy</comment>
         <translation>アルティミシア (4)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="225"/>
+        <location filename="Data.cpp" line="228"/>
         <source>Fujin (2)</source>
         <comment>Ennemy</comment>
         <translation>風神 (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="225"/>
+        <location filename="Data.cpp" line="228"/>
         <source>Raijin (2)</source>
         <comment>Ennemy</comment>
         <translation>雷神 (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="226"/>
+        <location filename="Data.cpp" line="229"/>
         <source>UFO (Mandy Beach)</source>
         <comment>Ennemy</comment>
         <translation>UFO (マンデービーチ)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="226"/>
+        <location filename="Data.cpp" line="229"/>
         <source>UFO (Winhill)</source>
         <comment>Ennemy</comment>
         <translation>UFO (ウィンヒル)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="226"/>
+        <location filename="Data.cpp" line="229"/>
         <source>UFO (Trabia)</source>
         <comment>Ennemy</comment>
         <translation>UFO (トラビア)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="226"/>
+        <location filename="Data.cpp" line="229"/>
         <source>UFO (Désert Kashkabald)</source>
         <comment>Ennemy</comment>
         <translation>UFO (カシュクバール砂漠)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="227"/>
+        <location filename="Data.cpp" line="230"/>
         <source>Gunblade (2)</source>
         <oldsource>Gunblade 2</oldsource>
         <comment>Ennemy</comment>
         <translation>ガンブレード (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="785"/>
+        <location filename="Data.cpp" line="788"/>
         <source>Utilisée</source>
         <translatorcomment>Used Up</translatorcomment>
         <translation>消滅</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="790"/>
+        <location filename="Data.cpp" line="793"/>
         <source> (carte %1)</source>
         <translation>(カード %1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="220"/>
+        <location filename="Data.cpp" line="223"/>
         <source>Minotaure</source>
         <comment>Ennemy</comment>
         <translation>オメガウェポン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="221"/>
+        <location filename="Data.cpp" line="224"/>
         <source>UFO</source>
         <comment>Ennemy</comment>
         <translation>ＵＦＯ？</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="223"/>
+        <location filename="Data.cpp" line="226"/>
         <source>Hélix</source>
         <comment>Ennemy</comment>
         <translation>ヘリックス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="223"/>
+        <location filename="Data.cpp" line="226"/>
         <source>Jason</source>
         <comment>Ennemy</comment>
         <translation>スラッパー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="224"/>
+        <location filename="Data.cpp" line="227"/>
         <source>Attila</source>
         <comment>Ennemy</comment>
         <translation>ウルフラマイター</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="224"/>
+        <location filename="Data.cpp" line="227"/>
         <source>Sulfor</source>
         <comment>Ennemy</comment>
         <translation>エルノーイル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="224"/>
+        <location filename="Data.cpp" line="227"/>
         <source>Acarnan</source>
         <comment>Ennemy</comment>
         <translation>ティアマト</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="224"/>
+        <location filename="Data.cpp" line="227"/>
         <source>Fabryce</source>
         <comment>Ennemy</comment>
         <translation>カトブレパス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="227"/>
+        <location filename="Data.cpp" line="230"/>
         <source>Soldat</source>
         <comment>Ennemy</comment>
         <translation>コマンド兵</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="91"/>
+        <location filename="Data.cpp" line="94"/>
         <source>Golgotha</source>
         <comment>item</comment>
         <translatorcomment>Phoenix Pinion</translatorcomment>
         <translation>フェニックスの羽</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="153"/>
+        <location filename="Data.cpp" line="156"/>
         <source>Shiva</source>
         <comment>gf</comment>
         <translatorcomment>Shiva</translatorcomment>
         <translation>シヴァ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="153"/>
+        <location filename="Data.cpp" line="156"/>
         <source>Ifrit</source>
         <comment>gf</comment>
         <translatorcomment>Ifrit</translatorcomment>
         <translation>イフリート</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="153"/>
+        <location filename="Data.cpp" line="156"/>
         <source>Ondine</source>
         <comment>gf</comment>
         <translatorcomment>Siren</translatorcomment>
         <translation>セイレーン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="154"/>
+        <location filename="Data.cpp" line="157"/>
         <source>Taurus</source>
         <comment>gf</comment>
         <translatorcomment>Brothers</translatorcomment>
         <translation>ブラザーズ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="154"/>
+        <location filename="Data.cpp" line="157"/>
         <source>Nosferatu</source>
         <comment>gf</comment>
         <translatorcomment>Diablos</translatorcomment>
         <translation>ディアボロス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="154"/>
+        <location filename="Data.cpp" line="157"/>
         <source>Ahuri</source>
         <comment>gf</comment>
         <translatorcomment>Carbuncle</translatorcomment>
         <translation>カーバンクル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="154"/>
+        <location filename="Data.cpp" line="157"/>
         <source>Leviathan</source>
         <comment>gf</comment>
         <translatorcomment>Leviathan</translatorcomment>
         <translation>リヴァイアサン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="155"/>
+        <location filename="Data.cpp" line="158"/>
         <source>Zéphyr</source>
         <comment>gf</comment>
         <translatorcomment>Pandemona</translatorcomment>
         <translation>パンデモニウム</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="155"/>
+        <location filename="Data.cpp" line="158"/>
         <source>Cerberus</source>
         <comment>gf</comment>
         <translatorcomment>Cerberus</translatorcomment>
         <translation>ケルベロス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="155"/>
+        <location filename="Data.cpp" line="158"/>
         <source>Alexander</source>
         <comment>gf</comment>
         <translatorcomment>Alexander</translatorcomment>
         <translation>アレクサンダー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="155"/>
+        <location filename="Data.cpp" line="158"/>
         <source>Helltrain</source>
         <comment>gf</comment>
         <translatorcomment>Doomtrain</translatorcomment>
         <translation>グラシャラボラス</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="156"/>
+        <location filename="Data.cpp" line="159"/>
         <source>Bahamut</source>
         <comment>gf</comment>
         <translatorcomment>Bahamut</translatorcomment>
         <translation>バハムート</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="156"/>
+        <location filename="Data.cpp" line="159"/>
         <source>Pampa</source>
         <comment>gf</comment>
         <translatorcomment>Cactuar</translatorcomment>
         <translation>サボテンダー</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="156"/>
+        <location filename="Data.cpp" line="159"/>
         <source>Tomberry</source>
         <comment>gf</comment>
         <translatorcomment>Tonberry</translatorcomment>
         <translation>トンベリ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="156"/>
+        <location filename="Data.cpp" line="159"/>
         <source>Orbital</source>
         <comment>gf</comment>
         <translatorcomment>Eden</translatorcomment>
         <translation>エデン</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="185"/>
+        <location filename="Data.cpp" line="188"/>
         <source>Grochocobo</source>
         <comment>card</comment>
         <translatorcomment>Chubby Chocobo</translatorcomment>
         <translation>デブチョコボ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="185"/>
+        <location filename="Data.cpp" line="188"/>
         <source>Angel</source>
         <comment>card</comment>
         <translatorcomment>Angelo</translatorcomment>
         <translation>アンジェロ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="185"/>
+        <location filename="Data.cpp" line="188"/>
         <source>Gilgamesh</source>
         <comment>card</comment>
         <translatorcomment>Gilgamesh</translatorcomment>
         <translation>ギルガメッシュ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="185"/>
+        <location filename="Data.cpp" line="188"/>
         <source>Minimog</source>
         <comment>card</comment>
         <translatorcomment>MiniMog</translatorcomment>
         <translation>コモーグリ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="185"/>
+        <location filename="Data.cpp" line="188"/>
         <source>Chicobo</source>
         <comment>card</comment>
         <translatorcomment>Chicobo</translatorcomment>
         <translation>コチョコボ</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="186"/>
+        <location filename="Data.cpp" line="189"/>
         <source>Golgotha</source>
         <comment>card</comment>
         <translatorcomment>Quezacotl</translatorcomment>
         <translation>ケツァクウァトル</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="187"/>
+        <location filename="Data.cpp" line="190"/>
         <source>Cerbères</source>
         <translatorcomment>Cerberus</translatorcomment>
         <translation>ケルベロス</translation>
@@ -8583,73 +8707,101 @@ Diodon = Fastitocalon-F = フォカロルフェイク</translatorcomment>
 <context>
     <name>SaveWidget</name>
     <message>
-        <location filename="SaveWidget.cpp" line="90"/>
+        <location filename="SaveWidget.cpp" line="93"/>
         <source>Exporter en sauv. PC...</source>
         <translatorcomment>Convert to PC Save...</translatorcomment>
         <translation>PC セーブに変換...</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="91"/>
+        <location filename="SaveWidget.cpp" line="94"/>
+        <location filename="SaveWidget.cpp" line="139"/>
+        <source>Nouvelle partie</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SaveWidget.cpp" line="96"/>
+        <location filename="SaveWidget.cpp" line="174"/>
+        <source>Vider</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SaveWidget.cpp" line="97"/>
         <source>Propriétés...</source>
         <translatorcomment>Properties...</translatorcomment>
         <translation>プロパティ...</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="119"/>
         <source>Enregistrer sous</source>
         <translatorcomment>Save As</translatorcomment>
-        <translation>名前を付けて保存</translation>
+        <translation type="obsolete">名前を付けて保存</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="119"/>
+        <location filename="SaveWidget.cpp" line="126"/>
         <source>FF8 PC save (*)</source>
         <translatorcomment>FF8 PC save (*)</translatorcomment>
         <translation>FF8 PC セーブ (*)</translation>
     </message>
     <message>
         <location filename="SaveWidget.cpp" line="126"/>
+        <source>Exporter</source>
+        <translation type="unfinished">エクスポート</translation>
+    </message>
+    <message>
+        <location filename="SaveWidget.cpp" line="133"/>
         <source>Échec</source>
         <translatorcomment>Failed</translatorcomment>
         <translation>失敗</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="126"/>
+        <location filename="SaveWidget.cpp" line="133"/>
         <source>Enregistrement échoué, vérifiez que le fichier cible n&apos;est pas utilisé.</source>
         <translatorcomment>Save failed, verify that the target file is not used.</translatorcomment>
         <translation>保存に失敗しました。ファイルが使用中でないか確認してください。</translation>
     </message>
     <message>
         <location filename="SaveWidget.cpp" line="139"/>
+        <source>Tout le contenu de la sauvegarde sera remplacé par une nouvelle partie.
+Continuer ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SaveWidget.cpp" line="174"/>
+        <source>Tout le contenu de la sauvegarde sera vidé.
+Continuer ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SaveWidget.cpp" line="196"/>
         <source>Sauvegarde supprimée</source>
         <translatorcomment>Save deleted</translatorcomment>
         <translation>削除済みのセーブ</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="139"/>
+        <location filename="SaveWidget.cpp" line="196"/>
         <source>Cette sauvegarde a été supprimée, voulez-vous tenter de la réparer ? (succès non garanti)</source>
         <translatorcomment>This save has been deleted, do you try to repair it? (Success not guaranteed)</translatorcomment>
         <translation>このセーブは削除されています。修復しますか？ (成功するとは限りません)</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="139"/>
+        <location filename="SaveWidget.cpp" line="196"/>
         <source>Oui</source>
         <translatorcomment>Yes</translatorcomment>
         <translation>はい</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="139"/>
+        <location filename="SaveWidget.cpp" line="196"/>
         <source>Non</source>
         <translatorcomment>No</translatorcomment>
         <translation>いいえ</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="186"/>
+        <location filename="SaveWidget.cpp" line="243"/>
         <source>NV%1</source>
         <translatorcomment>Lv.%1</translatorcomment>
         <translation>Lv.%1</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="216"/>
+        <location filename="SaveWidget.cpp" line="273"/>
         <source>Bloc Disponible</source>
         <translatorcomment>Unused Block</translatorcomment>
         <translation>未使用ファイルです</translation>
@@ -8658,102 +8810,120 @@ Diodon = Fastitocalon-F = フォカロルフェイク</translatorcomment>
 <context>
     <name>Savecard</name>
     <message>
-        <location filename="Savecard.cpp" line="86"/>
+        <location filename="Savecard.cpp" line="96"/>
         <source>Sauvegarde hasardeuse</source>
         <translatorcomment>Save hazardous</translatorcomment>
         <translation>ともかく保存</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="80"/>
-        <location filename="Savecard.cpp" line="226"/>
-        <location filename="Savecard.cpp" line="231"/>
-        <location filename="Savecard.cpp" line="236"/>
-        <location filename="Savecard.cpp" line="259"/>
-        <location filename="Savecard.cpp" line="264"/>
-        <location filename="Savecard.cpp" line="269"/>
-        <location filename="Savecard.cpp" line="350"/>
-        <location filename="Savecard.cpp" line="355"/>
-        <location filename="Savecard.cpp" line="361"/>
-        <location filename="Savecard.cpp" line="430"/>
-        <location filename="Savecard.cpp" line="436"/>
-        <location filename="Savecard.cpp" line="449"/>
-        <location filename="Savecard.cpp" line="468"/>
-        <location filename="Savecard.cpp" line="474"/>
-        <location filename="Savecard.cpp" line="487"/>
-        <location filename="Savecard.cpp" line="549"/>
-        <location filename="Savecard.cpp" line="555"/>
+        <location filename="Savecard.cpp" line="86"/>
+        <location filename="Savecard.cpp" line="310"/>
+        <location filename="Savecard.cpp" line="315"/>
+        <location filename="Savecard.cpp" line="320"/>
+        <location filename="Savecard.cpp" line="343"/>
+        <location filename="Savecard.cpp" line="348"/>
+        <location filename="Savecard.cpp" line="359"/>
+        <location filename="Savecard.cpp" line="451"/>
+        <location filename="Savecard.cpp" line="455"/>
+        <location filename="Savecard.cpp" line="480"/>
+        <location filename="Savecard.cpp" line="542"/>
+        <location filename="Savecard.cpp" line="547"/>
+        <location filename="Savecard.cpp" line="553"/>
+        <location filename="Savecard.cpp" line="622"/>
+        <location filename="Savecard.cpp" line="628"/>
+        <location filename="Savecard.cpp" line="643"/>
+        <location filename="Savecard.cpp" line="668"/>
+        <location filename="Savecard.cpp" line="674"/>
+        <location filename="Savecard.cpp" line="695"/>
+        <location filename="Savecard.cpp" line="757"/>
+        <location filename="Savecard.cpp" line="763"/>
         <source>Erreur</source>
         <oldsource>Error</oldsource>
         <translatorcomment>Error</translatorcomment>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="80"/>
         <source>Fichier de type inconnu</source>
         <translatorcomment>Unknow file type</translatorcomment>
-        <translation>詳細不明なファイル タイプ</translation>
+        <translation type="obsolete">詳細不明なファイル タイプ</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="86"/>
+        <location filename="Savecard.cpp" line="96"/>
         <source>Le format %1 est protégé, l&apos;enregistrement sera partiel et risque de ne pas fonctionner.</source>
         <translatorcomment>The format %1 is protected, save will be partial and might not work.</translatorcomment>
         <translation>%1 形式にはプロテクトがかけられています。不完全なセーブとなり、使用できなくなるかも知れません。</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="172"/>
+        <location filename="Savecard.cpp" line="187"/>
+        <source>Sans nom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Savecard.cpp" line="256"/>
         <source>Fichier supprimé</source>
         <translatorcomment>File removed</translatorcomment>
         <translation>ファイルの削除</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="172"/>
+        <location filename="Savecard.cpp" line="256"/>
         <source>Le fichier &apos;%1&apos; a été supprimé par un programme externe !</source>
         <translatorcomment>The file &apos;%1&apos; has been removed by another program!</translatorcomment>
         <translation>ファイルe &apos;%1&apos; は他のプログラムによって削除されました !</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="176"/>
+        <location filename="Savecard.cpp" line="260"/>
         <source>Fichier modifié</source>
         <translatorcomment>File modified</translatorcomment>
         <translation>ファイルの変更</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="176"/>
+        <location filename="Savecard.cpp" line="260"/>
         <source>Le fichier &apos;%1&apos; a été modifié par un programme externe.</source>
         <translatorcomment>The file &apos;%1&apos; has been modified by another program.</translatorcomment>
         <translation>ファイル &apos;%1&apos; は他のプログラムによって変更されました。</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="231"/>
-        <location filename="Savecard.cpp" line="264"/>
+        <location filename="Savecard.cpp" line="315"/>
+        <location filename="Savecard.cpp" line="348"/>
+        <location filename="Savecard.cpp" line="480"/>
         <source>Le fichier est protégé en lecture.</source>
         <translatorcomment>The file is read-protected.</translatorcomment>
         <translation>読み取り専用ファイル。</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="236"/>
+        <location filename="Savecard.cpp" line="320"/>
         <source>Fichier trop court</source>
         <translatorcomment>File too short</translatorcomment>
         <translation>ファイルが小さすぎます</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="269"/>
+        <location filename="Savecard.cpp" line="359"/>
         <source>Fichier invalide</source>
         <translatorcomment>Invalid file</translatorcomment>
         <translation>無効なファイル</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="361"/>
-        <location filename="Savecard.cpp" line="449"/>
-        <location filename="Savecard.cpp" line="487"/>
+        <location filename="Savecard.cpp" line="451"/>
+        <source>Impossible de créer le fichier temporaire.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Savecard.cpp" line="455"/>
+        <source>Impossible de décompresser le fichier.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Savecard.cpp" line="553"/>
+        <location filename="Savecard.cpp" line="643"/>
+        <location filename="Savecard.cpp" line="695"/>
         <source>Impossible de créer un fichier temporaire</source>
         <translatorcomment>Can not create temporary file</translatorcomment>
         <translation>一時ファイルが作成できません</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="430"/>
-        <location filename="Savecard.cpp" line="468"/>
-        <location filename="Savecard.cpp" line="549"/>
+        <location filename="Savecard.cpp" line="622"/>
+        <location filename="Savecard.cpp" line="668"/>
+        <location filename="Savecard.cpp" line="757"/>
         <source>Impossible de supprimer le fichier !
 %1
 Échec de la sauvegarde.
@@ -8768,26 +8938,26 @@ Verify that the file is not used by another program.</translatorcomment>
 他のプログラムがファイルを使用していないか確認してください。</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="629"/>
+        <location filename="Savecard.cpp" line="858"/>
         <source>Commentaire</source>
         <translatorcomment>Comment</translatorcomment>
         <translation>コメント</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="634"/>
+        <location filename="Savecard.cpp" line="863"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="635"/>
+        <location filename="Savecard.cpp" line="864"/>
         <source>Annuler</source>
         <translatorcomment>Cancel</translatorcomment>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="226"/>
-        <location filename="Savecard.cpp" line="259"/>
-        <location filename="Savecard.cpp" line="350"/>
+        <location filename="Savecard.cpp" line="310"/>
+        <location filename="Savecard.cpp" line="343"/>
+        <location filename="Savecard.cpp" line="542"/>
         <source>Le fichier n&apos;existe plus.
 %1</source>
         <translatorcomment>The file no longer exists.
@@ -8796,7 +8966,13 @@ Verify that the file is not used by another program.</translatorcomment>
 %1</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="355"/>
+        <location filename="Savecard.cpp" line="86"/>
+        <source>Fichier de type inconnu.
+Voulez-vous l&apos;analyser pour obtenir le bon format ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Savecard.cpp" line="547"/>
         <source>Le fichier est protégé en lecture.
 %1</source>
         <translatorcomment>The file is read-protected.
@@ -8805,9 +8981,9 @@ Verify that the file is not used by another program.</translatorcomment>
 %1</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="436"/>
-        <location filename="Savecard.cpp" line="474"/>
-        <location filename="Savecard.cpp" line="555"/>
+        <location filename="Savecard.cpp" line="628"/>
+        <location filename="Savecard.cpp" line="674"/>
+        <location filename="Savecard.cpp" line="763"/>
         <source>Échec de la sauvegarde.</source>
         <translation>保存に失敗しました。</translation>
     </message>
@@ -8965,6 +9141,11 @@ Verify that the file is not used by another program.</translatorcomment>
         <location filename="PageWidgets/ShopEditor.cpp" line="78"/>
         <source>Les valeurs concernant les objets semblent ne pas être utilisées par le jeu.</source>
         <translation>？マークのある項目はゲーム中では使用されていません。</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/ShopEditor.h" line="29"/>
+        <source>Boutiques</source>
+        <translation type="unfinished">ショップ呼び出し</translation>
     </message>
 </context>
 <context>
@@ -9333,6 +9514,11 @@ Verify that the file is not used by another program.</translatorcomment>
         <translatorcomment>Squall</translatorcomment>
         <translation>スコール</translation>
     </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.h" line="30"/>
+        <source>Triple Triad</source>
+        <translation type="unfinished">カード</translation>
+    </message>
 </context>
 <context>
     <name>Window</name>
@@ -9343,93 +9529,85 @@ Verify that the file is not used by another program.</translatorcomment>
         <translation>ファイル(&amp;F)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="40"/>
+        <location filename="Window.cpp" line="41"/>
         <source>&amp;Ouvrir...</source>
         <translatorcomment>&amp;Open...</translatorcomment>
         <translation>開く(&amp;O)...</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="46"/>
         <source>Propriétés...</source>
-        <translation>プロパティ...</translation>
+        <translation type="obsolete">プロパティ...</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="48"/>
         <source>Modifier l&apos;ordre des saves...</source>
         <translatorcomment>Modify the order of saves...</translatorcomment>
-        <translation>セーブの並び順を変更...</translation>
+        <translation type="obsolete">セーブの並び順を変更...</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="50"/>
         <source>Lancer Final Fantasy VIII</source>
-        <translation>Final Fantasy VIII を起動</translation>
+        <translation type="obsolete">Final Fantasy VIII を起動</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="54"/>
         <source>Plein écran</source>
-        <translation>フルスクリーン</translation>
+        <translation type="obsolete">フルスクリーン</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="57"/>
         <source>&amp;Ouverts récemment</source>
         <translatorcomment>&amp;Recent Files</translatorcomment>
-        <translation>最近使用したファイル(&amp;R)</translation>
+        <translation type="obsolete">最近使用したファイル(&amp;R)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="61"/>
+        <location filename="Window.cpp" line="64"/>
         <source>&amp;Fermer</source>
         <translatorcomment>&amp;Close</translatorcomment>
         <translation>閉じる(&amp;C)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="63"/>
+        <location filename="Window.cpp" line="66"/>
         <source>&amp;Quitter</source>
         <translatorcomment>&amp;Exit</translatorcomment>
         <translation>終了(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="67"/>
+        <location filename="Window.cpp" line="70"/>
         <source>Fente &amp;1</source>
         <translatorcomment>Slot &amp;1</translatorcomment>
         <translation>スロット &amp;1</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="69"/>
+        <location filename="Window.cpp" line="72"/>
         <source>Fente &amp;2</source>
         <translatorcomment>Slot &amp;2</translatorcomment>
         <translation>スロット &amp;2</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="74"/>
+        <location filename="Window.cpp" line="77"/>
         <source>&amp;Paramètres</source>
         <translatorcomment>&amp;Settings</translatorcomment>
         <translation>設定(&amp;S)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="76"/>
         <source>Mode Avancé</source>
         <translatorcomment>Advanced Mode</translatorcomment>
-        <translation>拡張モード</translation>
+        <translation type="obsolete">拡張モード</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="95"/>
         <source>Police haute résolution</source>
         <translatorcomment>High Res. font</translatorcomment>
-        <translation>高解像度フォント</translation>
+        <translation type="obsolete">高解像度フォント</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="99"/>
+        <location filename="Window.cpp" line="102"/>
         <source>&amp;Langues</source>
         <translatorcomment>&amp;Language</translatorcomment>
         <translation>表示言語(&amp;L)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="121"/>
+        <location filename="Window.cpp" line="114"/>
         <source>?</source>
         <translation>?</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="597"/>
         <source>Par myst6re
 myst6re@gmail.com
 
@@ -9458,7 +9636,7 @@ Merci à :
 Traducteurs :
  - Anglais : myst6re
  - Japonais : Asa</oldsource>
-        <translation>作者 : myst6re
+        <translation type="obsolete">作者 : myst6re
 myst6re@gmail.com
 
 編集可能 : 75%
@@ -9474,165 +9652,264 @@ myst6re@gmail.com
  - 日本語 : Asa (麻袋)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="239"/>
+        <location filename="Window.cpp" line="264"/>
         <source>Ouvrir</source>
         <translatorcomment>Open</translatorcomment>
         <translation>開く</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="239"/>
         <source>Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.psv save?? *.mem *.vgs *.vmp);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard (*.psv);;Tous les fichiers (*)</source>
         <translatorcomment>Compatible files (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.psv save?? *.mem *.vgs *.vmp);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard (*.psv);;All files (*)</translatorcomment>
-        <translation>対応可能なファイル (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.psv save?? *.mem *.vgs *.vmp);;FF8 PS MC ファイル (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm);;FF8 PC セーブ (save??);;FF8 vgs MC ファイル (*.mem *.vgs);;FF8 gme MC ファイル (*.gme);;FF8 PSN MC ファイル (*.vmp);;FF8 PS3 MC ファイル (*.psv);;すべてのファイル (*)</translation>
+        <translation type="obsolete">対応可能なファイル (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.psv save?? *.mem *.vgs *.vmp);;FF8 PS MC ファイル (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm);;FF8 PC セーブ (save??);;FF8 vgs MC ファイル (*.mem *.vgs);;FF8 gme MC ファイル (*.gme);;FF8 PSN MC ファイル (*.vmp);;FF8 PS3 MC ファイル (*.psv);;すべてのファイル (*)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="316"/>
         <source>PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm)</source>
         <translatorcomment>PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm)</translatorcomment>
-        <translation>PS MC ファイル (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm)</translation>
+        <translation type="obsolete">PS MC ファイル (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="317"/>
+        <location filename="Window.cpp" line="372"/>
         <source>VGS memorycard (*.vgs *.mem)</source>
         <oldsource>PS memorycard (*.mcr;*.ddf;*.mc;*.mcd;*.mci;*.ps;*.psm)</oldsource>
         <translatorcomment>VGS memorycard (*.vgs *.mem)</translatorcomment>
         <translation>VGS MC ファイル (*.vgs *.mem)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="320"/>
+        <location filename="Window.cpp" line="375"/>
         <source>FF8 PC save (*)</source>
         <oldsource>FF8 PC save (save??)</oldsource>
         <translatorcomment>FF8 PC save (*)</translatorcomment>
         <translation>FF8 PC セーブ (*)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="349"/>
+        <location filename="Window.cpp" line="404"/>
         <source>Les formats VMP et PSV sont protégés, l&apos;enregistrement sera partiel et risque de ne pas fonctionner.
 Continuer quand même ?</source>
         <translation>VMP 形式, PSV 形式にはプロテクトがかけられています。不完全なセーブとなり、使用できなくなるかも知れません。
 それでもかまいませんか？</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="568"/>
+        <location filename="Window.cpp" line="696"/>
         <source>Erreur</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="568"/>
+        <location filename="Window.cpp" line="696"/>
         <source>Final Fantasy VIII n&apos;a pas pu être lancé.
 %1</source>
         <translation>Final Fantasy VIII の起動に失敗しました。.
 %1</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="41"/>
+        <location filename="Window.cpp" line="42"/>
         <source>&amp;Recharger depuis le disque</source>
         <translatorcomment>&amp;Reload from Disk</translatorcomment>
         <translation>ファイルを再読み込み(&amp;R)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="43"/>
+        <location filename="Window.cpp" line="46"/>
         <source>E&amp;xporter...</source>
         <translatorcomment>E&amp;xport...</translatorcomment>
         <translation>エクスポート(&amp;X)...</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="80"/>
         <source>Images par seconde</source>
         <translatorcomment>FPS</translatorcomment>
-        <translation>FPS</translation>
+        <translation type="obsolete">FPS</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="81"/>
         <source>Auto</source>
         <translatorcomment>Auto</translatorcomment>
-        <translation>オート</translation>
+        <translation type="obsolete">オート</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="85"/>
         <source>NTSC/PC (60 images/s)</source>
         <translatorcomment>NTSC/PC (60 fps)</translatorcomment>
-        <translation>NTSC/PC (60 fps)</translation>
+        <translation type="obsolete">NTSC/PC (60 fps)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="89"/>
         <source>PAL (50 images/s)</source>
         <translatorcomment>PAL (50 fps)</translatorcomment>
-        <translation>PAL (50 fps)</translation>
+        <translation type="obsolete">PAL (50 fps)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="110"/>
+        <location filename="Window.cpp" line="620"/>
         <source>Français</source>
         <comment>Your translation language</comment>
         <translation>Japanese (日本語)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="207"/>
+        <location filename="Window.cpp" line="202"/>
         <source> - save %1</source>
         <translatorcomment> - save %1</translatorcomment>
         <translation>- セーブ %1</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="318"/>
+        <location filename="Window.cpp" line="44"/>
+        <source>&amp;Enregistrer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="49"/>
+        <source>&amp;Propriétés...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="51"/>
+        <source>&amp;Modifier l&apos;ordre des saves...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="53"/>
+        <source>&amp;Lancer Final Fantasy VIII</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="57"/>
+        <source>Ple&amp;in écran</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="60"/>
+        <source>O&amp;uverts récemment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="79"/>
+        <source>&amp;Mode Avancé</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="83"/>
+        <source>&amp;Images par seconde</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="84"/>
+        <source>&amp;Auto</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="88"/>
+        <source>&amp;NTSC/PC (60 images/s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="92"/>
+        <source>&amp;PAL (50 images/s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="98"/>
+        <source>&amp;Police haute résolution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="215"/>
+        <source>Nouveau</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="217"/>
+        <source>1 sauvegarde</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="218"/>
+        <source>15 sauvegardes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="265"/>
+        <source>Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard (*.psv);;Save state (*.000 *.001 *.002 *.003 *.004);;Tous les fichiers (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="280"/>
+        <source>Enregistrer ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="280"/>
+        <source>Voulez-vous enregistrer &apos;%1&apos; avant de fermer ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="280"/>
+        <source>fente</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="371"/>
+        <source>PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="373"/>
         <source>GME memorycard (*.gme)</source>
         <oldsource>VGS memorycard (*.vgs;*.mem)</oldsource>
         <translatorcomment>GME memorycard (*.gme)</translatorcomment>
         <translation>GME MC ファイル (*.gme)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="319"/>
+        <location filename="Window.cpp" line="374"/>
         <source>PSN memorycard (*.vmp)</source>
         <translation>PSN MC ファイル (*.vmp)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="321"/>
+        <location filename="Window.cpp" line="376"/>
         <source>PSN save (*.psv)</source>
         <translation>PSN セーブ (*.psv)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="337"/>
+        <location filename="Window.cpp" line="392"/>
         <source>Exporter</source>
         <translatorcomment>Export</translatorcomment>
         <translation>エクスポート</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="349"/>
+        <location filename="Window.cpp" line="404"/>
         <source>Sauvegarde hasardeuse</source>
         <translatorcomment>Save hazardous</translatorcomment>
         <translation>運まかせで保存</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="349"/>
+        <location filename="Window.cpp" line="404"/>
         <source>Oui</source>
         <translatorcomment>Yes</translatorcomment>
         <translation>はい</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="349"/>
+        <location filename="Window.cpp" line="404"/>
         <source>Non</source>
         <translatorcomment>No</translatorcomment>
         <translation>いいえ</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="433"/>
+        <location filename="Window.cpp" line="508"/>
         <source>%1 : %2</source>
         <translatorcomment>%1: %2</translatorcomment>
         <translation>%1 : %2</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="545"/>
+        <location filename="Window.cpp" line="673"/>
         <source>Paramètres modifiés</source>
         <translatorcomment>Settings changed</translatorcomment>
         <translation>設定の変更</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="546"/>
+        <location filename="Window.cpp" line="674"/>
         <source>Relancez le programme pour que les paramètres prennent effet.</source>
         <translatorcomment>Restart the program for the settings to take effect.</translatorcomment>
         <translation>設定の変更を有効化するためにプログラムを再起動してください。</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="608"/>
+        <location filename="Window.cpp" line="725"/>
+        <source>Par myst6re&lt;br/&gt;&lt;a href=&quot;https://sourceforge.net/projects/hyne/&quot;&gt;https://sourceforge.net/projects/hyne/&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;75% modifiable&lt;br/&gt;&lt;br/&gt;Merci à :&lt;br/&gt; - Qhimm&lt;br/&gt; - Cyberman&lt;br/&gt; - sithlord48&lt;br/&gt; - Aladore384&lt;br/&gt;&lt;br/&gt;Traducteurs :&lt;br/&gt; - Anglais : myst6re, Vgr&lt;br/&gt; - Japonais : Asa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="739"/>
         <source>Fermer</source>
         <translatorcomment>Close</translatorcomment>
         <translation>閉じる</translation>
@@ -9937,6 +10214,11 @@ Continuer quand même ?</source>
     <message>
         <source>Rot=</source>
         <translation type="obsolete">Rot=</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/WorldmapEditor.h" line="30"/>
+        <source>Mappemonde</source>
+        <translation type="unfinished">ワールドマップ</translation>
     </message>
 </context>
 </TS>

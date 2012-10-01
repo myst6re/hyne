@@ -368,7 +368,10 @@ QByteArray SaveData::save() const
 	ret.append((char *)&checksum, 2);
 	ret.append(QByteArray(2782,'\x00'));
 
-	if(ret.size()!=SAVE_SIZE)	qWarning() << "Error saved save size" << ret.size() << SAVE_SIZE;
+	if(ret.size()!=SAVE_SIZE) {
+		ret = ret.leftJustified(SAVE_SIZE, '\x00', true);
+		qWarning() << "Error saved save size" << ret.size() << SAVE_SIZE;
+	}
 	
 	return ret;
 }

@@ -17,11 +17,14 @@
  ****************************************************************************/
 
 #include "SaveWidget.h"
+#include "HeaderDialog.h"
 
-SaveWidget::SaveWidget(SaveData *saveData, Savecard *savecard, QWidget *parent)
-	: QWidget(parent), saveData(saveData), _savecard(savecard), saved(false), hovered(false)
+SaveWidget::SaveWidget(SaveData *saveData, Savecard *savecard, QWidget *parent) :
+	QWidget(parent), saveData(saveData), _savecard(savecard), mouseMove(0), saved(false), hovered(false),
+	blackView(false), hasDragEvent(false)
 {
 	connect(saveData->saveIcon(), SIGNAL(nextIcon(QPixmap)), SLOT(refreshIcon()));
+	setAcceptDrops(true);
 }
 
 void SaveWidget::hideCursor()
@@ -63,8 +66,65 @@ void SaveWidget::enterEvent(QEvent *)
 	update(width()/2 - 372, 16, 48, 30);
 }
 
+void SaveWidget::mousePressEvent(QMouseEvent *event)
+{
+	int xStart = width()/2 - 372 + 36;
+	int xEnd = xStart + 672;
+
+	if(event->x() < xStart || event->x() > xEnd) {
+		return;
+	}
+
+	if(event->button() == Qt::LeftButton) {
+		mouseMove = 1;
+	}
+}
+
+void SaveWidget::mouseMoveEvent(QMouseEvent *event)
+{
+	if(!mouseMove || !(event->buttons() & Qt::LeftButton))	return;
+
+	mouseMove = 2;
+
+	QDrag *drag = new QDrag(this);
+	QMimeData *mimeData = new QMimeData;
+	QRect rectWidget(QPoint((width() - 672)/2, 0), QSize(672, 106));
+
+	emit dragged(saveData->id());
+	mimeData->setData("application/ff8slot", saveData->save() + saveData->MCHeader());
+	drag->setMimeData(mimeData);
+	drag->setHotSpot(event->pos() - rectWidget.topLeft());
+	QPixmap pixmap(rectWidget.size());
+	hideCursor();
+	render(&pixmap, QPoint(), rectWidget);
+	drag->setPixmap(pixmap);
+
+	blackView = true;
+	update();
+	drag->exec();
+	blackView = false;
+}
+
 void SaveWidget::mouseReleaseEvent(QMouseEvent *event)
 {
+	if(blackView) {
+		blackView = false;
+		update();
+	}
+	if(mouseMove == 2) {
+		mouseMove = 0;
+		return;
+	} else {
+		mouseMove = 0;
+	}
+
+	int xStart = width()/2 - 372 + 36;
+	int xEnd = xStart + 672;
+
+	if(event->x() < xStart || event->x() > xEnd) {
+		return;
+	}
+
 	if(event->button() == Qt::LeftButton)
 	{
 		if(saveData->isFF8()) {
@@ -106,6 +166,40 @@ void SaveWidget::changeEvent(QEvent *event)
 	} else {
 		QWidget::changeEvent(event);
 	}
+}
+
+void SaveWidget::dragEnterEvent(QDragEnterEvent *event)
+{
+	if(event->mimeData()->hasFormat("application/ff8slot")) {
+		hasDragEvent = true;
+		update();
+		event->acceptProposedAction();
+	}
+}
+
+void SaveWidget::dragLeaveEvent(QDragLeaveEvent */*event*/)
+{
+	if(hasDragEvent) {
+		hasDragEvent = false;
+		update();
+	}
+}
+
+void SaveWidget::dropEvent(QDropEvent *event)
+{
+	if(hasDragEvent) {
+		hasDragEvent = false;
+		update();
+	}
+	event->acceptProposedAction();
+	lastDropData = event->mimeData()->data("application/ff8slot");
+	lastIsExternal = event->source() == 0;
+	QTimer::singleShot(0, this, SLOT(emitDropped()));
+}
+
+void SaveWidget::emitDropped()
+{
+	emit dropped(saveData->id(), lastDropData, lastIsExternal);
 }
 
 void SaveWidget::exportPC()
@@ -216,6 +310,7 @@ void SaveWidget::refreshIcon()
 void SaveWidget::paintEvent(QPaintEvent *)
 {
 	QPainter painter(this);
+	if(blackView)	return;
 	int xStart = width()/2 - 372;
 
 	painter.translate(xStart+36, 0);
@@ -295,6 +390,13 @@ void SaveWidget::paintEvent(QPaintEvent *)
 	}
 	if(hovered) {
 		painter.drawPixmap(0, 16, QPixmap(":/images/cursor.png"));
+	}
+
+	if(hasDragEvent) {
+		QPen pen(Qt::white, 3);
+		painter.setPen(pen);
+		painter.setBrush(QBrush());
+		painter.drawRect(36, 2, 672, 102);
 	}
 
 	painter.end();

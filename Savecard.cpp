@@ -18,9 +18,10 @@
 
 #include "Savecard.h"
 #include "GZIP.h"
+#include "Parameters.h"
 
 Savecard::Savecard(const QString &path, QWidget *parent, bool slot) :
-	QListWidget(parent), _ok(true), _hasPath(true), start(0), notify(true), _isModified(false)
+	QListWidget(parent), _ok(true), _hasPath(true), _dragStart(-1), start(0), notify(true), _isModified(false)
 {
 	setWidget();
 
@@ -102,7 +103,7 @@ Savecard::Savecard(const QString &path, QWidget *parent, bool slot) :
 }
 
 Savecard::Savecard(int saveCount, QWidget *parent) :
-	QListWidget(parent), _ok(true), _hasPath(false), start(0), notify(true), _isModified(false)
+	QListWidget(parent), _ok(true), _hasPath(false), _dragStart(-1), start(0), notify(true), _isModified(false)
 {
 	setWidget();
 	setType(Undefined);
@@ -125,6 +126,11 @@ void Savecard::setWidget()
 	setFrameShape(QFrame::NoFrame);
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setUniformItemSizes(true);
+	// Drag & drop
+//	setDragEnabled(true);
+//	setDragDropMode(QAbstractItemView::InternalMove);
+//	viewport()->setAcceptDrops(true);
+//	setDropIndicatorShown(true);
 }
 
 QString Savecard::dirname() const
@@ -520,6 +526,73 @@ void Savecard::addSave(const QByteArray &data, const QByteArray &header)
 	connect(saveWidget, SIGNAL(entered(int)), SLOT(moveCursor(int)));
 	connect(saveWidget, SIGNAL(released(SaveData*)), parent(), SLOT(editView(SaveData*)));
 	connect(saveWidget, SIGNAL(changed()), parent(), SLOT(setModified()));
+	connect(saveWidget, SIGNAL(dragged(int)), SLOT(setDragStart(int)));
+	connect(saveWidget, SIGNAL(dropped(int,QByteArray,bool)), SLOT(swapDraggedAndDropped(int,QByteArray,bool)));
+}
+
+void Savecard::setDragStart(int saveID)
+{
+	_dragStart = saveID;
+}
+
+void Savecard::swapDraggedAndDropped(int saveID, const QByteArray &mimeData, bool isExternal)
+{
+	if(_dragStart != saveID
+			&& saveID >=0 && saveID < saves.size()) {
+		if(!isExternal && _dragStart >= 0 && _dragStart < saves.size()) {
+			qDebug() << "Savecard::swapDraggedAndDropped" << _dragStart << saveID;
+			saves.swap(_dragStart, saveID);
+			SaveData *saveData = saves.at(_dragStart);
+			saveData->setId(_dragStart);
+			saveWidget(_dragStart)->setSaveData(saveData);
+			saveData = saves.at(saveID);
+			saveData->setId(saveID);
+			saveWidget(saveID)->setSaveData(saveData);
+			updateSaveWidget(_dragStart, false, true);
+			updateSaveWidget(saveID, false, true);
+
+			_isModified = true;
+			emit modified();
+		} else {
+			if(!mimeData.isEmpty()) {
+				SaveData *saveData = saves.at(saveID);
+
+				if(!saveData->isDelete()) {
+					QMessageBox::StandardButton answer = QMessageBox::question(this, tr("Écraser"), tr("Tout le contenu de la sauvegarde sera écrasé.\nContinuer ?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+					if(answer != QMessageBox::Yes) {
+						_dragStart = -1;
+						return;
+					}
+				}
+
+				qDebug() << "Savecard::swapDraggedAndDropped useMimeData" << saveID << mimeData.size();
+
+				if(mimeData.size() > SAVE_SIZE) {
+					saveData->open(mimeData.left(SAVE_SIZE), mimeData.mid(SAVE_SIZE));
+				} else if(mimeData.size() == SAVE_SIZE) {
+					saveData->open(mimeData, QByteArray());
+				}
+				updateSaveWidget(saveID, false, true);
+
+				_isModified = true;
+				emit modified();
+			}
+		}
+	}
+
+	_dragStart = -1;
+}
+
+void Savecard::dragEnterEvent(QDragEnterEvent *event)
+{
+	qDebug() << "dragEnterEvent";
+	if(event->mimeData()->hasFormat("application/ff8slot"))
+		event->acceptProposedAction();
+}
+
+void Savecard::dragMoveEvent(QDragMoveEvent *event)
+{
+	qDebug() << "dragMoveEvent";
 }
 
 const QList<SaveData *> &Savecard::getSaves() const
