@@ -70,6 +70,7 @@ private slots:
 	void notifyFileChanged(const QString &path);
 	void setDragStart(int saveID);
 	void swapDraggedAndDropped(int saveID, const QByteArray &mimeData, bool isExternal);
+	void scrollToDrag(int saveID, const QPoint &pos);
 signals:
 	void modified();
 private:
@@ -98,9 +99,6 @@ private:
 	bool notify;
 	QList<SaveData *> saves;
 	bool _isModified;
-protected:
-	virtual void dragEnterEvent(QDragEnterEvent *event);
-	virtual void dragMoveEvent(QDragMoveEvent *event);
 };
 
 #endif

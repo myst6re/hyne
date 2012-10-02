@@ -528,6 +528,7 @@ void Savecard::addSave(const QByteArray &data, const QByteArray &header)
 	connect(saveWidget, SIGNAL(changed()), parent(), SLOT(setModified()));
 	connect(saveWidget, SIGNAL(dragged(int)), SLOT(setDragStart(int)));
 	connect(saveWidget, SIGNAL(dropped(int,QByteArray,bool)), SLOT(swapDraggedAndDropped(int,QByteArray,bool)));
+	connect(saveWidget, SIGNAL(dragMoved(int,QPoint)), SLOT(scrollToDrag(int,QPoint)));
 }
 
 void Savecard::setDragStart(int saveID)
@@ -570,7 +571,17 @@ void Savecard::swapDraggedAndDropped(int saveID, const QByteArray &mimeData, boo
 				if(mimeData.size() > SAVE_SIZE) {
 					saveData->open(mimeData.left(SAVE_SIZE), mimeData.mid(SAVE_SIZE));
 				} else if(mimeData.size() == SAVE_SIZE) {
-					saveData->open(mimeData, QByteArray());
+					QByteArray MCHeader;
+					if(saveData->hasMCHeader()) {
+						HeaderDialog dialog(saveData, this, HeaderDialog::CreateView);
+
+						if(dialog.exec() != QDialog::Accepted) {
+							_dragStart = -1;
+							return;
+						}
+						MCHeader = saveData->MCHeader();
+					}
+					saveData->open(mimeData, MCHeader);
 				}
 				updateSaveWidget(saveID, false, true);
 
@@ -583,16 +594,24 @@ void Savecard::swapDraggedAndDropped(int saveID, const QByteArray &mimeData, boo
 	_dragStart = -1;
 }
 
-void Savecard::dragEnterEvent(QDragEnterEvent *event)
+void Savecard::scrollToDrag(int saveID, const QPoint &pos)
 {
-	qDebug() << "dragEnterEvent";
-	if(event->mimeData()->hasFormat("application/ff8slot"))
-		event->acceptProposedAction();
-}
+	QListWidgetItem *curItem = item(saveID);
+	if(!curItem)	return;
 
-void Savecard::dragMoveEvent(QDragMoveEvent *event)
-{
-	qDebug() << "dragMoveEvent";
+	QRect visualRect = visualItemRect(curItem);
+	const int locationHeight = visualRect.height() / 2;
+	const int posYInView = visualRect.top() + pos.y();
+
+	if(posYInView >= height() - locationHeight) {
+		const int posYInBottomLocation = locationHeight - (height() - posYInView);
+
+		verticalScrollBar()->setValue(verticalScrollBar()->value() + (verticalScrollBar()->maximum() / 15) * posYInBottomLocation / locationHeight);
+	} else if(posYInView <= locationHeight) {
+		const int posYInTopLocation = locationHeight - posYInView;
+
+		verticalScrollBar()->setValue(verticalScrollBar()->value() - (verticalScrollBar()->maximum() / 15) * posYInTopLocation / locationHeight);
+	}
 }
 
 const QList<SaveData *> &Savecard::getSaves() const

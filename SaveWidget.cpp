@@ -91,7 +91,7 @@ void SaveWidget::mouseMoveEvent(QMouseEvent *event)
 	QRect rectWidget(QPoint((width() - 672)/2, 0), QSize(672, 106));
 
 	emit dragged(saveData->id());
-	mimeData->setData("application/ff8slot", saveData->save() + saveData->MCHeader());
+	mimeData->setData("application/ff8save", saveData->save() + saveData->MCHeader());
 	drag->setMimeData(mimeData);
 	drag->setHotSpot(event->pos() - rectWidget.topLeft());
 	QPixmap pixmap(rectWidget.size());
@@ -170,11 +170,16 @@ void SaveWidget::changeEvent(QEvent *event)
 
 void SaveWidget::dragEnterEvent(QDragEnterEvent *event)
 {
-	if(event->mimeData()->hasFormat("application/ff8slot")) {
+	if(event->mimeData()->hasFormat("application/ff8save")) {
 		hasDragEvent = true;
 		update();
 		event->acceptProposedAction();
 	}
+}
+
+void SaveWidget::dragMoveEvent(QDragMoveEvent *event)
+{
+	emit dragMoved(saveData->id(), event->pos());
 }
 
 void SaveWidget::dragLeaveEvent(QDragLeaveEvent */*event*/)
@@ -192,7 +197,7 @@ void SaveWidget::dropEvent(QDropEvent *event)
 		update();
 	}
 	event->acceptProposedAction();
-	lastDropData = event->mimeData()->data("application/ff8slot");
+	lastDropData = event->mimeData()->data("application/ff8save");
 	lastIsExternal = event->source() == 0;
 	QTimer::singleShot(0, this, SLOT(emitDropped()));
 }
@@ -200,6 +205,7 @@ void SaveWidget::dropEvent(QDropEvent *event)
 void SaveWidget::emitDropped()
 {
 	emit dropped(saveData->id(), lastDropData, lastIsExternal);
+	lastDropData = QByteArray();
 }
 
 void SaveWidget::exportPC()

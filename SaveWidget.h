@@ -63,6 +63,7 @@ signals:
 	void changed();
 	void dragged(int id);
 	void dropped(int id, const QByteArray &data, bool isExternal);
+	void dragMoved(int id, const QPoint &pos);
 protected:
 	virtual void paintEvent(QPaintEvent *event);
 	virtual void enterEvent(QEvent *event);
@@ -72,6 +73,7 @@ protected:
 	virtual void contextMenuEvent(QContextMenuEvent *event);
 	virtual void changeEvent(QEvent *event);
 	virtual void dragEnterEvent(QDragEnterEvent *event);
+	virtual void dragMoveEvent(QDragMoveEvent *event);
 	virtual void dragLeaveEvent(QDragLeaveEvent *event);
 	virtual void dropEvent(QDropEvent *event);
 };
