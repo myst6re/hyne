@@ -523,12 +523,8 @@ void Savecard::addSave(const QByteArray &data, const QByteArray &header)
 	item->setSizeHint(saveWidget->sizeHint());
 	setItemWidget(item, saveWidget);
 
-	connect(saveWidget, SIGNAL(entered(int)), SLOT(moveCursor(int)));
 	connect(saveWidget, SIGNAL(released(SaveData*)), parent(), SLOT(editView(SaveData*)));
 	connect(saveWidget, SIGNAL(changed()), parent(), SLOT(setModified()));
-	connect(saveWidget, SIGNAL(dragged(int)), SLOT(setDragStart(int)));
-	connect(saveWidget, SIGNAL(dropped(int,QByteArray,bool)), SLOT(swapDraggedAndDropped(int,QByteArray,bool)));
-	connect(saveWidget, SIGNAL(dragMoved(int,QPoint)), SLOT(scrollToDrag(int,QPoint)));
 }
 
 void Savecard::setDragStart(int saveID)

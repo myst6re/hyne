@@ -62,14 +62,14 @@ QSize SaveWidget::minimumSizeHint() const
 void SaveWidget::enterEvent(QEvent *)
 {
 	hovered = true;
-	emit entered(saveData->id());
+	_savecard->moveCursor(saveData->id());
 	update(width()/2 - 372, 16, 48, 30);
 }
 
 void SaveWidget::mousePressEvent(QMouseEvent *event)
 {
-	int xStart = width()/2 - 372 + 36;
-	int xEnd = xStart + 672;
+	int xStart = (width() - sizeHint().width())/2;
+	int xEnd = xStart + sizeHint().width();
 
 	if(event->x() < xStart || event->x() > xEnd) {
 		return;
@@ -88,9 +88,9 @@ void SaveWidget::mouseMoveEvent(QMouseEvent *event)
 
 	QDrag *drag = new QDrag(this);
 	QMimeData *mimeData = new QMimeData;
-	QRect rectWidget(QPoint((width() - 672)/2, 0), QSize(672, 106));
+	QRect rectWidget(QPoint((width() - sizeHint().width())/2, 0), sizeHint());
 
-	emit dragged(saveData->id());
+	_savecard->setDragStart(saveData->id());
 	mimeData->setData("application/ff8save", saveData->save() + saveData->MCHeader());
 	drag->setMimeData(mimeData);
 	drag->setHotSpot(event->pos() - rectWidget.topLeft());
@@ -118,8 +118,8 @@ void SaveWidget::mouseReleaseEvent(QMouseEvent *event)
 		mouseMove = 0;
 	}
 
-	int xStart = width()/2 - 372 + 36;
-	int xEnd = xStart + 672;
+	int xStart = (width() - sizeHint().width())/2;
+	int xEnd = xStart + sizeHint().width();
 
 	if(event->x() < xStart || event->x() > xEnd) {
 		return;
@@ -179,7 +179,7 @@ void SaveWidget::dragEnterEvent(QDragEnterEvent *event)
 
 void SaveWidget::dragMoveEvent(QDragMoveEvent *event)
 {
-	emit dragMoved(saveData->id(), event->pos());
+	_savecard->scrollToDrag(saveData->id(), event->pos());
 }
 
 void SaveWidget::dragLeaveEvent(QDragLeaveEvent */*event*/)
@@ -204,7 +204,7 @@ void SaveWidget::dropEvent(QDropEvent *event)
 
 void SaveWidget::emitDropped()
 {
-	emit dropped(saveData->id(), lastDropData, lastIsExternal);
+	_savecard->swapDraggedAndDropped(saveData->id(), lastDropData, lastIsExternal);
 	lastDropData = QByteArray();
 }
 
@@ -317,9 +317,9 @@ void SaveWidget::paintEvent(QPaintEvent *)
 {
 	QPainter painter(this);
 	if(blackView)	return;
-	int xStart = width()/2 - 372;
+	int xStart = (width() - sizeHint().width())/2;
 
-	painter.translate(xStart+36, 0);
+	painter.translate(xStart, 0);
 
 	painter.setBrush(QBrush(QPixmap(QString(":/images/menu-fond%1.png").arg(!saveData->isTheLastEdited() && !saveData->isDelete() ? "" : "2"))));
 	drawFrame(&painter, 672, 106);
@@ -386,7 +386,7 @@ void SaveWidget::paintEvent(QPaintEvent *)
 	}
 
 	painter.resetTransform();
-	painter.translate(xStart, 0);
+	painter.translate(xStart-36, 0);
 
 	if(!saveData->isFF8() && !saveData->isDelete()) {
 		painter.drawPixmap(72, 43, saveData->icon());

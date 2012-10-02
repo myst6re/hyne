@@ -59,11 +59,7 @@ private slots:
 	void emitDropped();
 signals:
 	void released(SaveData *saveData);
-	void entered(int id);
 	void changed();
-	void dragged(int id);
-	void dropped(int id, const QByteArray &data, bool isExternal);
-	void dragMoved(int id, const QPoint &pos);
 protected:
 	virtual void paintEvent(QPaintEvent *event);
 	virtual void enterEvent(QEvent *event);

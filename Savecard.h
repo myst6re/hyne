@@ -65,12 +65,12 @@ public:
 
 	bool save(const QString &saveAs=QString(), Type newType=Pc);
 
-private slots:
 	void moveCursor(int);
-	void notifyFileChanged(const QString &path);
 	void setDragStart(int saveID);
 	void swapDraggedAndDropped(int saveID, const QByteArray &mimeData, bool isExternal);
 	void scrollToDrag(int saveID, const QPoint &pos);
+private slots:
+	void notifyFileChanged(const QString &path);
 signals:
 	void modified();
 private:
