@@ -48,8 +48,6 @@ Window::Window()
 	menu->addSeparator();
 	actionProperties = menu->addAction(tr("&Propriétés..."), this, SLOT(properties()));
 	actionProperties->setEnabled(false);
-	actionSorting = menu->addAction(tr("&Modifier l'ordre des saves..."), this, SLOT(sorting()));
-	actionSorting->setEnabled(false);
 	action = menu->addAction(QIcon(":/images/ff8.png"), tr("&Lancer Final Fantasy VIII"), this, SLOT(runFF8()), Qt::Key_F8);
 	action->setShortcutContext(Qt::ApplicationShortcut);
 	action->setEnabled(isInstalled);
@@ -329,7 +327,6 @@ void Window::setIsOpen(bool open)
 		stackedLayout->setCurrentWidget(saves);
 		actionSaveAs->setEnabled(true);
 		actionProperties->setEnabled(true);
-		actionSorting->setEnabled(saves->count() > 1);
 		actionClose->setEnabled(true);
 		actionReload->setEnabled(true);
 
@@ -348,7 +345,6 @@ void Window::setIsOpen(bool open)
 
 		actionSaveAs->setEnabled(false);
 		actionProperties->setEnabled(false);
-		actionSorting->setEnabled(false);
 		actionClose->setEnabled(false);
 		actionReload->setEnabled(false);
 
@@ -365,9 +361,7 @@ void Window::openRecentFile(QAction *action)
 
 void Window::reload()
 {
-	if(isOpen) {
-		openFile(QString(saves->path()));
-	}
+	if(isOpen) openFile(QString(saves->path()));
 }
 
 bool Window::saveAs()
@@ -471,19 +465,13 @@ bool Window::saveAs(Savecard::Type newType, const QString &path)
 
 void Window::properties()
 {
-	QList<int> selected_files = selectSavesDialog();
-	if(selected_files.isEmpty())	return;
+	if(!isOpen)		return;
 
-	saves->saveWidget(selected_files.first())->properties();
-}
-
-void Window::sorting()
-{
-	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), this);
+	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), false, this);
 
 	if(dialog->exec() == QDialog::Accepted) {
-		saves->setSlotOrder(dialog->order());
-		setModified(saves->isModified());
+		QList<int> selected_files = dialog->selectedSaves();
+		saves->saveWidget(selected_files.first())->properties();
 	}
 }
 

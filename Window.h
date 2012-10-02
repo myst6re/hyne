@@ -53,7 +53,6 @@ private slots:
 	void save();
 	bool saveAs();
 	void properties();
-	void sorting();
 	void mode(bool);
 	void changeFrame(QAction *);
 	void font(bool);
@@ -72,7 +71,7 @@ private:
 	QList<int> selectSavesDialog(bool multiSelection=false);
 	
 	QMenuBar *menuBar;
-	QAction *actionReload, *actionSave, *actionSaveAs, *actionProperties, *actionSorting, *actionClose, *actionMode, *actionFont;
+	QAction *actionReload, *actionSave, *actionSaveAs, *actionProperties, *actionClose, *actionMode, *actionFont;
 	QMenu *menuRecent, *menuFrame, *menuLang;
 	QStackedLayout *stackedLayout;
 	Savecard *saves;
