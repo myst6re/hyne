@@ -67,7 +67,9 @@ public:
 
 	void moveCursor(int);
 	void setDragStart(int saveID);
-	void swapDraggedAndDropped(int saveID, const QByteArray &mimeData, bool isExternal);
+	void moveDraggedSave(int saveID);
+	void replaceSaveData(int saveID, const QByteArray &mimeData);
+	void setDropIndicatorIsVisible(int saveID, bool onTop, bool isVisible);
 	void scrollToDrag(int saveID, const QPoint &pos);
 private slots:
 	void notifyFileChanged(const QString &path);

@@ -21,7 +21,7 @@
 
 SaveWidget::SaveWidget(SaveData *saveData, Savecard *savecard, QWidget *parent) :
 	QWidget(parent), saveData(saveData), _savecard(savecard), mouseMove(0), saved(false), hovered(false),
-	blackView(false), hasDragEvent(false)
+	blackView(false), hasDragEvent(false), hasDragEventTop(false), hasDragEventBottom(false)
 {
 	connect(saveData->saveIcon(), SIGNAL(nextIcon(QPixmap)), SLOT(refreshIcon()));
 	setAcceptDrops(true);
@@ -31,6 +31,24 @@ void SaveWidget::hideCursor()
 {
 	hovered = false;
 	update(width()/2 - 372, 16, 48, 30);
+}
+
+void SaveWidget::setDropIndicatorIsVisible(bool onTop, bool isVisible)
+{
+	bool hasDragEventTop, hasDragEventBottom;
+
+	if(isVisible) {
+		hasDragEventTop = onTop;
+		hasDragEventBottom = !onTop;
+	} else {
+		hasDragEventTop = hasDragEventBottom = false;
+	}
+
+	if(hasDragEventTop != this->hasDragEventTop || hasDragEventBottom != this->hasDragEventBottom) {
+		this->hasDragEventTop = hasDragEventTop;
+		this->hasDragEventBottom = hasDragEventBottom;
+		update();
+	}
 }
 
 void SaveWidget::setSaved()
@@ -171,7 +189,7 @@ void SaveWidget::changeEvent(QEvent *event)
 void SaveWidget::dragEnterEvent(QDragEnterEvent *event)
 {
 	if(event->mimeData()->hasFormat("application/ff8save")) {
-		hasDragEvent = true;
+		hasDragEvent = event->source() == 0; // external source
 		update();
 		event->acceptProposedAction();
 	}
@@ -179,33 +197,72 @@ void SaveWidget::dragEnterEvent(QDragEnterEvent *event)
 
 void SaveWidget::dragMoveEvent(QDragMoveEvent *event)
 {
+	if(event->source() != 0) {
+		if(event->pos().y() < height() / 2) {
+			hasDragEventTop = true;
+			hasDragEventBottom = false;
+			_savecard->setDropIndicatorIsVisible(saveData->id()-1, false, true);
+			_savecard->setDropIndicatorIsVisible(saveData->id()+1, true, false);
+		} else {
+			hasDragEventTop = false;
+			hasDragEventBottom = true;
+			_savecard->setDropIndicatorIsVisible(saveData->id()-1, false, false);
+			_savecard->setDropIndicatorIsVisible(saveData->id()+1, true, true);
+		}
+
+		update();
+	}
 	_savecard->scrollToDrag(saveData->id(), event->pos());
 }
 
 void SaveWidget::dragLeaveEvent(QDragLeaveEvent */*event*/)
 {
+	bool needUpdate = hasDragEvent || hasDragEventTop || hasDragEventBottom;
+
+	draggedID = hasDragEventBottom ? saveData->id() + 1 : saveData->id();
+
+	if(hasDragEventTop) {
+		_savecard->setDropIndicatorIsVisible(saveData->id()-1, false, false);
+	}
+	if(hasDragEventBottom) {
+		_savecard->setDropIndicatorIsVisible(saveData->id()+1, true, false);
+	}
+
 	if(hasDragEvent) {
 		hasDragEvent = false;
+	}
+	if(hasDragEventTop) {
+		hasDragEventTop = false;
+	}
+	if(hasDragEventBottom) {
+		hasDragEventBottom = false;
+	}
+
+	if(needUpdate) {
 		update();
 	}
 }
 
 void SaveWidget::dropEvent(QDropEvent *event)
 {
-	if(hasDragEvent) {
-		hasDragEvent = false;
-		update();
-	}
+	dragLeaveEvent(0);
+
 	event->acceptProposedAction();
-	lastDropData = event->mimeData()->data("application/ff8save");
 	lastIsExternal = event->source() == 0;
-	QTimer::singleShot(0, this, SLOT(emitDropped()));
+	if(lastIsExternal) {
+		lastDropData = event->mimeData()->data("application/ff8save");
+	}
+	QTimer::singleShot(0, this, SLOT(emitDropped()));// defer function call
 }
 
 void SaveWidget::emitDropped()
 {
-	_savecard->swapDraggedAndDropped(saveData->id(), lastDropData, lastIsExternal);
-	lastDropData = QByteArray();
+	if(lastIsExternal) {
+		_savecard->replaceSaveData(saveData->id(), lastDropData);
+		lastDropData = QByteArray();
+	} else {
+		_savecard->moveDraggedSave(draggedID);
+	}
 }
 
 void SaveWidget::exportPC()
@@ -316,93 +373,107 @@ void SaveWidget::refreshIcon()
 void SaveWidget::paintEvent(QPaintEvent *)
 {
 	QPainter painter(this);
-	if(blackView)	return;
 	int xStart = (width() - sizeHint().width())/2;
 
-	painter.translate(xStart, 0);
+	if(!blackView) {
+		painter.translate(xStart, 0);
 
-	painter.setBrush(QBrush(QPixmap(QString(":/images/menu-fond%1.png").arg(!saveData->isTheLastEdited() && !saveData->isDelete() ? "" : "2"))));
-	drawFrame(&painter, 672, 106);
+		painter.setBrush(QBrush(QPixmap(QString(":/images/menu-fond%1.png").arg(!saveData->isTheLastEdited() && !saveData->isDelete() ? "" : "2"))));
+		drawFrame(&painter, 672, 106);
 
-	QString title = QString("%1").arg(saveData->id()+1, 2, 10, QChar('0'));
-	QPixmap fontPixmap(":/images/numbers_title.png");
-	painter.drawPixmap(4, 0, fontPixmap.copy(title.at(0).digitValue()*16, 0, 16, 22));
-	painter.drawPixmap(20, 0, fontPixmap.copy(title.at(1).digitValue()*16, 0, 16, 22));
+		QString title = QString("%1").arg(saveData->id()+1, 2, 10, QChar('0'));
+		QPixmap fontPixmap(":/images/numbers_title.png");
+		painter.drawPixmap(4, 0, fontPixmap.copy(title.at(0).digitValue()*16, 0, 16, 22));
+		painter.drawPixmap(20, 0, fontPixmap.copy(title.at(1).digitValue()*16, 0, 16, 22));
 
-	if(saveData->isFF8())
-	{
-		if(saveData->descData().party[0] != 255)
-			painter.drawPixmap(44, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->descData().party[0] & 15)));
-		if(saveData->descData().party[1] != 255)
-			painter.drawPixmap(112, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->descData().party[1] & 15)));
-		if(saveData->descData().party[2] != 255)
-			painter.drawPixmap(180, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->descData().party[2] & 15)));
-
-		int persoIndex = saveData->descData().party[0] != 255 ? saveData->descData().party[0] : (saveData->descData().party[1] != 255 ? saveData->descData().party[1] : saveData->descData().party[2]);
-		bool langIndep = persoIndex==SQUALL || persoIndex==RINOA || persoIndex==GRIEVER || persoIndex==BOKO || persoIndex==ANGELO;
-		FF8Text::drawTextArea(&painter, QPoint(271, 8), saveData->perso(persoIndex), langIndep ? (saveData->isJp() ? 2 : 1) : 0);
-		FF8Text::drawTextArea(&painter, QPoint(271, 36), tr("NV%1").arg(saveData->descData().nivLeader,3,10,QChar(' ')), 1);
-
-		QImage numberPixmap(":/images/numbers.png");
-
-		QPixmap disc(QString(":/images/disc_%1.png").arg(Config::value("lang")=="fr" ? "fr" : "en"));
-		painter.drawPixmap(391, 38, disc);
-		num2pix(&painter, &numberPixmap, 395+disc.width(), 38, saveData->descData().disc+1);
-		painter.drawPixmap(511, 16, QPixmap(QString(":/images/play_%1.png").arg(Config::value("lang")=="fr" ? "fr" : "en")));
-
-		int hour = Config::hour(saveData->descData().time, saveData->freqValue());
-		int color = (hour>=100) + (hour>=200) + (hour>=300) + (hour>=400) + (hour>=500);
-		num2pix(&painter, &numberPixmap, 576, 16, hour, 2, QChar(' '), color);
-
-		QImage deux_points(":/images/deux-points.png");
-		colors(&deux_points, color);
-		painter.drawPixmap(612, 18, QPixmap::fromImage(deux_points));
-		num2pix(&painter, &numberPixmap, 624, 16, Config::min(saveData->descData().time, saveData->freqValue()), 2, QChar('0'), color);
-		painter.drawPixmap(640, 44, QPixmap(":/images/gils.png"));
-		num2pix(&painter, &numberPixmap, 511, 40, saveData->descData().gils, 8);
-
-		painter.translate(256, 62);
-		painter.setBrush(QBrush());
-		drawFrame(&painter, 416, 44);
-
-		FF8Text::drawTextArea(&painter, QPoint(12, 12), saveData->descData().locationID<251 ? Data::locations.at(saveData->descData().locationID) : QString("??? (%1)").arg(saveData->descData().locationID));
-	}
-	else
-	{
-		if(saveData->isDelete())
+		if(saveData->isFF8())
 		{
-			FF8Text::drawTextArea(&painter, QPoint(36, 43), tr("Bloc Disponible"));
+			if(saveData->descData().party[0] != 255)
+				painter.drawPixmap(44, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->descData().party[0] & 15)));
+			if(saveData->descData().party[1] != 255)
+				painter.drawPixmap(112, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->descData().party[1] & 15)));
+			if(saveData->descData().party[2] != 255)
+				painter.drawPixmap(180, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->descData().party[2] & 15)));
+
+			int persoIndex = saveData->descData().party[0] != 255 ? saveData->descData().party[0] : (saveData->descData().party[1] != 255 ? saveData->descData().party[1] : saveData->descData().party[2]);
+			bool langIndep = persoIndex==SQUALL || persoIndex==RINOA || persoIndex==GRIEVER || persoIndex==BOKO || persoIndex==ANGELO;
+			FF8Text::drawTextArea(&painter, QPoint(271, 8), saveData->perso(persoIndex), langIndep ? (saveData->isJp() ? 2 : 1) : 0);
+			FF8Text::drawTextArea(&painter, QPoint(271, 36), tr("NV%1").arg(saveData->descData().nivLeader,3,10,QChar(' ')), 1);
+
+			QImage numberPixmap(":/images/numbers.png");
+
+			QPixmap disc(QString(":/images/disc_%1.png").arg(Config::value("lang")=="fr" ? "fr" : "en"));
+			painter.drawPixmap(391, 38, disc);
+			num2pix(&painter, &numberPixmap, 395+disc.width(), 38, saveData->descData().disc+1);
+			painter.drawPixmap(511, 16, QPixmap(QString(":/images/play_%1.png").arg(Config::value("lang")=="fr" ? "fr" : "en")));
+
+			int hour = Config::hour(saveData->descData().time, saveData->freqValue());
+			int color = (hour>=100) + (hour>=200) + (hour>=300) + (hour>=400) + (hour>=500);
+			num2pix(&painter, &numberPixmap, 576, 16, hour, 2, QChar(' '), color);
+
+			QImage deux_points(":/images/deux-points.png");
+			colors(&deux_points, color);
+			painter.drawPixmap(612, 18, QPixmap::fromImage(deux_points));
+			num2pix(&painter, &numberPixmap, 624, 16, Config::min(saveData->descData().time, saveData->freqValue()), 2, QChar('0'), color);
+			painter.drawPixmap(640, 44, QPixmap(":/images/gils.png"));
+			num2pix(&painter, &numberPixmap, 511, 40, saveData->descData().gils, 8);
+
+			painter.translate(256, 62);
+			painter.setBrush(QBrush());
+			drawFrame(&painter, 416, 44);
+
+			FF8Text::drawTextArea(&painter, QPoint(12, 12), saveData->descData().locationID<251 ? Data::locations.at(saveData->descData().locationID) : QString("??? (%1)").arg(saveData->descData().locationID));
 		}
 		else
 		{
-			painter.drawPixmap(36, 43, saveData->icon());
-			QString short_desc = saveData->getShortDescription();
-			if(!short_desc.isEmpty())
+			if(saveData->isDelete())
 			{
-				painter.setPen(Qt::white);
-				painter.drawText(68, 59, short_desc);
+				FF8Text::drawTextArea(&painter, QPoint(36, 43), tr("Bloc Disponible"));
 			}
+			else
+			{
+				painter.drawPixmap(36, 43, saveData->icon());
+				QString short_desc = saveData->getShortDescription();
+				if(!short_desc.isEmpty())
+				{
+					painter.setPen(Qt::white);
+					painter.drawText(68, 59, short_desc);
+				}
+			}
+		}
+
+		painter.resetTransform();
+		painter.translate(xStart-36, 0);
+
+		if(!saveData->isFF8() && !saveData->isDelete()) {
+			painter.drawPixmap(72, 43, saveData->icon());
+		}
+		if(saveData->isFF8() && saved) { //TODO: remove
+			painter.drawPixmap(692, 3, QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton).pixmap(16));
+		}
+		if(hovered) {
+			painter.drawPixmap(0, 16, QPixmap(":/images/cursor.png"));
 		}
 	}
 
 	painter.resetTransform();
-	painter.translate(xStart-36, 0);
-
-	if(!saveData->isFF8() && !saveData->isDelete()) {
-		painter.drawPixmap(72, 43, saveData->icon());
-	}
-	if(saveData->isFF8() && saved) { //TODO: remove
-		painter.drawPixmap(692, 3, QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton).pixmap(16));
-	}
-	if(hovered) {
-		painter.drawPixmap(0, 16, QPixmap(":/images/cursor.png"));
-	}
+	painter.translate(xStart, 0);
 
 	if(hasDragEvent) {
 		QPen pen(Qt::white, 3);
 		painter.setPen(pen);
 		painter.setBrush(QBrush());
-		painter.drawRect(36, 2, 672, 102);
+		painter.drawRect(0, 2, 672, 102);
+	} else if(hasDragEventTop && saveData->id() > 0) {
+		QPen pen(Qt::white, 4);
+		painter.setPen(pen);
+		painter.setBrush(QBrush());
+		painter.drawLine(0, 2, 672, 2);
+	} else if(hasDragEventBottom && saveData->id() < _savecard->getSaves().size()-1) {
+		QPen pen(Qt::white, 4);
+		painter.setPen(pen);
+		painter.setBrush(QBrush());
+		painter.drawLine(0, 104, 672, 104);
 	}
 
 	painter.end();

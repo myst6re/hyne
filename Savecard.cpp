@@ -502,12 +502,13 @@ bool Savecard::sstate_pSX()
 
 void Savecard::directory()
 {
-	QTime t;t.start();
+//	QTime t;t.start();
 	for(quint8 i=0 ; i<30 ; ++i)
 	{
 		setName(QString("save%1").arg(i+1, 2, 10, QChar('0')));
 		if(!pc())	addSave();
 	}
+	setName(QString());
 //	qDebug() << "time: " << t.elapsed();
 }
 
@@ -532,62 +533,77 @@ void Savecard::setDragStart(int saveID)
 	_dragStart = saveID;
 }
 
-void Savecard::swapDraggedAndDropped(int saveID, const QByteArray &mimeData, bool isExternal)
+void Savecard::moveDraggedSave(int saveID)
 {
+	if(_dragStart < saveID) {
+		saveID--;
+	}
+
 	if(_dragStart != saveID
-			&& saveID >=0 && saveID < saves.size()) {
-		if(!isExternal && _dragStart >= 0 && _dragStart < saves.size()) {
-			qDebug() << "Savecard::swapDraggedAndDropped" << _dragStart << saveID;
-			saves.swap(_dragStart, saveID);
-			SaveData *saveData = saves.at(_dragStart);
-			saveData->setId(_dragStart);
-			saveWidget(_dragStart)->setSaveData(saveData);
-			saveData = saves.at(saveID);
+			&& _dragStart >= 0 && _dragStart < saves.size()) {
+		SaveData *saveData = saves.takeAt(_dragStart);
+		saves.insert(saveID, saveData);
+
+		saveID = 0;
+		foreach(saveData, saves) {
 			saveData->setId(saveID);
 			saveWidget(saveID)->setSaveData(saveData);
-			updateSaveWidget(_dragStart, false, true);
-			updateSaveWidget(saveID, false, true);
-
-			_isModified = true;
-			emit modified();
-		} else {
-			if(!mimeData.isEmpty()) {
-				SaveData *saveData = saves.at(saveID);
-
-				if(!saveData->isDelete()) {
-					QMessageBox::StandardButton answer = QMessageBox::question(this, tr("Écraser"), tr("Tout le contenu de la sauvegarde sera écrasé.\nContinuer ?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
-					if(answer != QMessageBox::Yes) {
-						_dragStart = -1;
-						return;
-					}
-				}
-
-				qDebug() << "Savecard::swapDraggedAndDropped useMimeData" << saveID << mimeData.size();
-
-				if(mimeData.size() > SAVE_SIZE) {
-					saveData->open(mimeData.left(SAVE_SIZE), mimeData.mid(SAVE_SIZE));
-				} else if(mimeData.size() == SAVE_SIZE) {
-					QByteArray MCHeader;
-					if(saveData->hasMCHeader()) {
-						HeaderDialog dialog(saveData, this, HeaderDialog::CreateView);
-
-						if(dialog.exec() != QDialog::Accepted) {
-							_dragStart = -1;
-							return;
-						}
-						MCHeader = saveData->MCHeader();
-					}
-					saveData->open(mimeData, MCHeader);
-				}
-				updateSaveWidget(saveID, false, true);
-
-				_isModified = true;
-				emit modified();
-			}
+			saveID++;
 		}
+
+		updateSaveWidgets();
+
+		setModified(true);
+		emit modified();
 	}
 
 	_dragStart = -1;
+}
+
+void Savecard::replaceSaveData(int saveID, const QByteArray &mimeData)
+{
+	if(saveID >=0 && saveID < saves.size()
+			&& !mimeData.isEmpty()) {
+		SaveData *saveData = saves.at(saveID);
+
+		if(!saveData->isDelete()) {
+			QMessageBox::StandardButton answer = QMessageBox::question(this, tr("Écraser"), tr("Tout le contenu de la sauvegarde sera écrasé.\nContinuer ?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
+			if(answer != QMessageBox::Yes) {
+				return;
+			}
+		}
+
+		if(mimeData.size() > SAVE_SIZE) {
+			saveData->open(mimeData.left(SAVE_SIZE), mimeData.mid(SAVE_SIZE));
+		} else if(mimeData.size() == SAVE_SIZE) {
+			QByteArray MCHeader;
+			if(saveData->hasMCHeader()) {
+				HeaderDialog dialog(saveData, this, HeaderDialog::CreateView);
+
+				if(dialog.exec() != QDialog::Accepted) {
+					return;
+				}
+				MCHeader = saveData->MCHeader();
+			}
+			saveData->open(mimeData, MCHeader);
+		} else {
+			return;
+		}
+
+		updateSaveWidget(saveID, false, true);
+
+		_isModified = true;
+		saveData->setModified(true);
+		emit modified();
+	}
+}
+
+void Savecard::setDropIndicatorIsVisible(int saveID, bool onTop, bool isVisible)
+{
+	SaveWidget *save = saveWidget(saveID);
+	if(save) {
+		save->setDropIndicatorIsVisible(onTop, isVisible);
+	}
 }
 
 void Savecard::scrollToDrag(int saveID, const QPoint &pos)
@@ -972,6 +988,7 @@ void Savecard::saveDir()
 {
 	for(int i=0 ; i<saves.size() ; ++i)
 		saveDir(i);
+	setName(QString());
 }
 
 void Savecard::saveDir(quint8 i)

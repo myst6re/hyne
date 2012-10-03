@@ -31,6 +31,7 @@ class SaveWidget : public QWidget
 public:
 	SaveWidget(SaveData *saveData, Savecard *savecard, QWidget *parent=0);
 	void hideCursor();
+	void setDropIndicatorIsVisible(bool onTop, bool isVisible);
 	void setSaved();
 	void setSaveData(SaveData *saveData);
 	void setSavecard(Savecard *savecard);
@@ -46,9 +47,10 @@ private:
 	Savecard *_savecard;
 	int mouseMove;
 	bool saved, hovered;
-	bool blackView, hasDragEvent;
+	bool blackView, hasDragEvent, hasDragEventTop, hasDragEventBottom;
 	QByteArray lastDropData;
 	bool lastIsExternal;
+	int draggedID;
 public slots:
 	void properties();
 private slots:
