@@ -584,7 +584,7 @@
         <location filename="PageWidgets/FieldEditor.cpp" line="42"/>
         <location filename="PageWidgets/FieldEditor.cpp" line="58"/>
         <source>Disque %1</source>
-        <translation>Disque %1</translation>
+        <translation>Disc %1</translation>
     </message>
     <message>
         <location filename="PageWidgets/FieldEditor.cpp" line="95"/>
