@@ -24,7 +24,7 @@ Window::Window()
 	setTitle();
 	setMinimumSize(768, 502);
 	resize(768, 502);
-	setWindowIcon(QIcon(":/images/hyne.png"));
+	savWindowIcon = windowIcon();
 	setAcceptDrops(true);
 	
 	menuBar = new QMenuBar(this);
@@ -238,6 +238,7 @@ void Window::newFile()
 		}
 		else
 		{
+			setModified(saves->isModified());
 			setIsOpen(true);
 		}
 	}
@@ -388,7 +389,12 @@ bool Window::saveAs()
 	}
 	
 	path = Config::value("savePath").isEmpty() ? saves->dirname() : Config::value("savePath")+"/";
-	path = QFileDialog::getSaveFileName(this, tr("Exporter"), path+saves->name(), types, &selectedFilter);
+	if(saves->type() == Savecard::Undefined) {
+		path = path+saves->name()+".mcr";
+	} else {
+		path = path+saves->name();
+	}
+	path = QFileDialog::getSaveFileName(this, tr("Exporter"), path, types, &selectedFilter);
 	if(path.isNull())		return false;
 
 	if(selectedFilter == ps)			newType = Savecard::Ps;
@@ -455,6 +461,7 @@ bool Window::saveAs(Savecard::Type newType, const QString &path)
 			int id = selected_files.first();
 			saves->setName(QString("save%1").arg(id+1, 2, 10, QChar('0')));
 			saves->saveOne(id, path);
+			saves->setName(QString());
 		}
 	}
 
@@ -466,6 +473,25 @@ bool Window::saveAs(Savecard::Type newType, const QString &path)
 void Window::properties()
 {
 	if(!isOpen)		return;
+
+	int saveCount = 0, firstSaveID = -1, saveID = 0;
+
+	foreach(const SaveData *saveData, saves->getSaves()) {
+		if(!saveData->isDelete()) {
+			saveCount++;
+			if(firstSaveID == -1) {
+				firstSaveID = saveID;
+			}
+		}
+		if(saveCount > 1)	break;
+		++saveID;
+	}
+
+	if(saveCount == 0)	return;
+	if(saveCount == 1) {
+		saves->saveWidget(saveID)->properties();
+		return;
+	}
 
 	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), false, this);
 
@@ -519,7 +545,7 @@ void Window::saveView()
 	stackedLayout->setCurrentWidget(saves);
 	editor->hide();
 	menuBar->show();
-	setWindowIcon(QIcon(":/images/hyne.png"));
+	setWindowIcon(savWindowIcon);
 	setTitle();
 	setModified(saves->isModified());
 	saves->updateSaveWidget(currentSaveEdited);

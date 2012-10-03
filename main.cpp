@@ -25,6 +25,8 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+	app.setWindowIcon(QIcon(":/images/hyne.png"));
+
 	Config::set();
 
 	QTranslator translator;

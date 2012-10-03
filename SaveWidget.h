@@ -46,6 +46,7 @@ private:
 	SaveData *saveData;
 	Savecard *_savecard;
 	int mouseMove;
+	QPoint startPos;
 	bool saved, hovered;
 	bool blackView, hasDragEvent, hasDragEventTop, hasDragEventBottom;
 	QByteArray lastDropData;

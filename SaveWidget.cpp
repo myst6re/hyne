@@ -77,11 +77,13 @@ QSize SaveWidget::minimumSizeHint() const
 	return QSize(672, 106);
 }
 
-void SaveWidget::enterEvent(QEvent *)
+void SaveWidget::enterEvent(QEvent *event)
 {
 	hovered = true;
 	_savecard->moveCursor(saveData->id());
 	update(width()/2 - 372, 16, 48, 30);
+
+	event->accept();
 }
 
 void SaveWidget::mousePressEvent(QMouseEvent *event)
@@ -95,14 +97,20 @@ void SaveWidget::mousePressEvent(QMouseEvent *event)
 
 	if(event->button() == Qt::LeftButton) {
 		mouseMove = 1;
+		startPos = event->pos();
+		event->accept();
 	}
 }
 
 void SaveWidget::mouseMoveEvent(QMouseEvent *event)
 {
-	if(!mouseMove || !(event->buttons() & Qt::LeftButton))	return;
+	if(!mouseMove || !(event->buttons() & Qt::LeftButton)
+			|| (startPos - event->pos()).manhattanLength() < QApplication::startDragDistance())
+		return;
 
 	mouseMove = 2;
+
+	event->accept();
 
 	QDrag *drag = new QDrag(this);
 	QMimeData *mimeData = new QMimeData;
@@ -119,7 +127,7 @@ void SaveWidget::mouseMoveEvent(QMouseEvent *event)
 
 	blackView = true;
 	update();
-	drag->exec();
+	drag->exec(Qt::MoveAction, Qt::MoveAction);
 	blackView = false;
 }
 
@@ -145,6 +153,7 @@ void SaveWidget::mouseReleaseEvent(QMouseEvent *event)
 
 	if(event->button() == Qt::LeftButton)
 	{
+		event->accept();
 		if(saveData->isFF8()) {
 			if(saveData->isDelete())
 				restore();
@@ -159,6 +168,7 @@ void SaveWidget::mouseReleaseEvent(QMouseEvent *event)
 	}
 	else if(event->button() == Qt::MidButton)
 	{
+		event->accept();
 		if(saveData->isDelete()) return;
 		properties();
 	}
@@ -166,6 +176,7 @@ void SaveWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void SaveWidget::contextMenuEvent(QContextMenuEvent *event)
 {
+	event->accept();
 	QMenu menu(this);
 	if(!saveData->isDelete() && saveData->isFF8())
 		menu.addAction(tr("Exporter en sauv. PC..."), this, SLOT(exportPC()));
@@ -181,6 +192,7 @@ void SaveWidget::changeEvent(QEvent *event)
 {
 	if(event->type() == QEvent::LanguageChange) {
 		update();
+		event->accept();
 	} else {
 		QWidget::changeEvent(event);
 	}

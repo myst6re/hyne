@@ -81,6 +81,7 @@ private:
 	bool isPCSlot;
 	bool isOpen;
 	bool firstShow;
+	QIcon savWindowIcon;
 
 protected:
 	void showEvent(QShowEvent *);

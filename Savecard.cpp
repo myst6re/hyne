@@ -106,11 +106,12 @@ Savecard::Savecard(int saveCount, QWidget *parent) :
 	QListWidget(parent), _ok(true), _hasPath(false), _dragStart(-1), start(0), notify(true), _isModified(false)
 {
 	setWidget();
-	setType(Undefined);
 
 	for(int i=0 ; i<saveCount ; ++i) {
 		addSave();
 	}
+
+	setType(Undefined);
 }
 
 Savecard::~Savecard()
