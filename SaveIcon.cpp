@@ -18,45 +18,46 @@
 
 #include "SaveIcon.h"
 
-QTimer SaveIcon::timer;
-
-SaveIcon::SaveIcon()
-	: nbFrames(0), curFrame(0)
+SaveIconData::SaveIconData() :
+	_nbFrames(0)
 {
 }
 
-SaveIcon::SaveIcon(const QByteArray &data, quint8 nbFrames)
-	: curFrame(0)
+SaveIconData::SaveIconData(const QByteArray &data, quint8 nbFrames) :
+	_data(data), _nbFrames(nbFrames)
 {
-	setAll(data, nbFrames);
 }
 
-void SaveIcon::setAll(const QByteArray &data, quint8 nbFrames)
+void SaveIconData::setData(const QByteArray &data)
 {
-	this->data = data;
-	this->nbFrames = nbFrames;
-	if(nbFrames>1)
-	{
-		connect(&timer, SIGNAL(timeout()), SLOT(nextFrame()));
-		timer.start(160);
-	}
+	_data = data;
 }
 
-QByteArray SaveIcon::save() const
+void SaveIconData::setNbFrames(quint8 nbFrames)
 {
-	return data.leftJustified(288, '\0', true);
+	_nbFrames = nbFrames;
 }
 
-QPixmap SaveIcon::icon(bool chocobo_world_icon) const
+QByteArray SaveIconData::data() const
+{
+	return _data.leftJustified(288, '\0', true);
+}
+
+quint8 SaveIconData::nbFrames() const
+{
+	return _nbFrames;
+}
+
+QPixmap SaveIconData::icon(int curFrame, bool showCW) const
 {
 	quint16 i;
 
-	if(data.isEmpty())	return QPixmap();
+	if(_data.isEmpty())	return QPixmap();
 
-	if(!chocobo_world_icon)
+	if(!showCW)
 	{
 		//palette
-		const char *access_data = data.constData();
+		const char *access_data = _data.constData();
 		QVector<QRgb> colors;
 		quint16 color;
 		for(i=0 ; i<16 ; ++i)
@@ -73,11 +74,11 @@ QPixmap SaveIcon::icon(bool chocobo_world_icon) const
 
 		image.setColorTable(colors);
 
-		if(data.size()<lastPos)	return QPixmap();
+		if(_data.size() < lastPos)	return QPixmap();
 
 		for(i=firstPos ; i<lastPos ; ++i)
 		{
-			index = data.at(i);
+			index = _data.at(i);
 			pixels[curPx++] = index & 0xF;
 			pixels[curPx++] = index >> 4;
 		}
@@ -85,27 +86,80 @@ QPixmap SaveIcon::icon(bool chocobo_world_icon) const
 		return QPixmap::fromImage(image);
 	}
 
-	if(data.size()!=288)	return QPixmap();
-	
+	if(_data.size() != 288)	return QPixmap();
+
 	QImage image(32, 32, QImage::Format_MonoLSB);
 	uchar *pixels = image.bits();
 	quint16 curPx = 0;
 
 	for(i=160 ; i<288 ; ++i)
 	{
-		pixels[curPx++] = ~data.at(i);
+		pixels[curPx++] = ~_data.at(i);
 	}
 
 	return QPixmap::fromImage(image);
 }
 
+QTimer SaveIcon::timer;
+
+SaveIcon::SaveIcon(bool showCW, QObject *parent) :
+	QObject(parent), _curFrame(0), _showCW(showCW)
+{
+}
+
+SaveIcon::SaveIcon(const SaveIconData &data, bool showCW, QObject *parent) :
+	QObject(parent), _curFrame(0), _showCW(showCW)
+{
+	setData(data);
+}
+
+void SaveIcon::setData(const SaveIconData &data)
+{
+	_data = data;
+
+	if(_data.nbFrames() > 1)
+	{
+		connect(&timer, SIGNAL(timeout()), SLOT(nextFrame()));
+		timer.start(160);
+	}
+}
+
+void SaveIcon::setCurFrame(quint8 curFrame)
+{
+	_curFrame = curFrame;
+}
+
+void SaveIcon::setCWIsVisible(bool showCW)
+{
+	_showCW = showCW;
+}
+
+const SaveIconData &SaveIcon::data() const
+{
+	return _data;
+}
+
+quint8 SaveIcon::curFrame() const
+{
+	return _curFrame;
+}
+
+bool SaveIcon::CWIsVisible() const
+{
+	return _showCW;
+}
+
 void SaveIcon::nextFrame()
 {
-	if(nbFrames==0)	return;
+	if(_data.nbFrames() == 0)	return;
 
-	curFrame = (curFrame + 1) % nbFrames;
-	QPixmap pix = icon();
-
+	_curFrame = (_curFrame + 1) % _data.nbFrames();
+	QPixmap pix = pixmap();
 	if(!pix.isNull())
 		emit nextIcon(pix);
+}
+
+QPixmap SaveIcon::pixmap() const
+{
+	return _data.icon(_curFrame, _showCW);
 }

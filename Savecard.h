@@ -42,7 +42,8 @@ public:
 	void updateSaveWidget(int saveID, bool saved=false, bool allUpdate=false);
 	void updateSaveWidgets();
 	const QList<SaveData *> &getSaves() const;
-	bool saveOne(qint8 num, QString path=QString());
+	bool save2PC(qint8 num, QString path=QString());
+	bool save2PSV(qint8 id, QString path=QString());
 	bool save2PS(QList<int> ids, const QString &path, Type newType);
 	void saveDir();
 	void saveDir(quint8);

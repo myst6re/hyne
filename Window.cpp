@@ -43,7 +43,7 @@ Window::Window()
 	actionReload->setEnabled(false);
 	actionSave = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton), tr("&Enregistrer"), this, SLOT(save()), QKeySequence::Save);
 	actionSave->setEnabled(false);
-	actionSaveAs = menu->addAction(tr("E&xporter..."), this, SLOT(saveAs()), QKeySequence::SaveAs);
+	actionSaveAs = menu->addAction(tr("E&xporter..."), this, SLOT(exportAs()), QKeySequence::SaveAs);
 	actionSaveAs->setEnabled(false);
 	menu->addSeparator();
 	actionProperties = menu->addAction(tr("&Propriétés..."), this, SLOT(properties()));
@@ -238,8 +238,8 @@ void Window::newFile()
 		}
 		else
 		{
-			setModified(saves->isModified());
 			setIsOpen(true);
+			setModified(saves->isModified());
 		}
 	}
 }
@@ -365,7 +365,7 @@ void Window::reload()
 	if(isOpen) openFile(QString(saves->path()));
 }
 
-bool Window::saveAs()
+bool Window::exportAs()
 {
 	QString types, path, selectedFilter,
 			ps = tr("PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1)"),
@@ -407,23 +407,23 @@ bool Window::saveAs()
 
 	if(newType == Savecard::Vmp || newType == Savecard::Psv) {
 		int reponse = QMessageBox::information(this, tr("Sauvegarde hasardeuse"), tr("Les formats VMP et PSV sont protégés, l'enregistrement sera partiel et risque de ne pas fonctionner.\nContinuer quand même ?"), tr("Oui"), tr("Non"));
-		if(reponse != 0)  return saveAs();
+		if(reponse != 0)  return exportAs();
 	}
 	
 	int index = path.lastIndexOf('/');
 	Config::setValue("savePath", index == -1 ? path : path.left(index));
 
-	return saveAs(newType, path);
+	return exportAs(newType, path);
 }
 
-bool Window::saveAs(Savecard::Type newType, const QString &path)
+bool Window::exportAs(Savecard::Type newType, const QString &path)
 {
 	Savecard::Type type = saves->type();
 
 	if(type == newType) {
 		switch(type) {
 		case Savecard::Pc:
-			saves->saveOne(0, path);
+			saves->save2PC(0, path);
 			break;
 		case Savecard::PcDir:
 			saves->saveDir();
@@ -460,7 +460,7 @@ bool Window::saveAs(Savecard::Type newType, const QString &path)
 			if(selected_files.isEmpty())	return false;
 			int id = selected_files.first();
 			saves->setName(QString("save%1").arg(id+1, 2, 10, QChar('0')));
-			saves->saveOne(id, path);
+			saves->save2PC(id, path);
 			saves->setName(QString());
 		}
 	}
@@ -537,7 +537,7 @@ void Window::editView(SaveData *saveData)
 	currentSaveEdited = saveData->id();
 	stackedLayout->setCurrentWidget(editor);
 	setTitle(true);
-	setWindowIcon(QIcon(saveData->icon()));
+	setWindowIcon(QIcon(saveData->saveIcon().icon()));
 }
 
 void Window::saveView()
@@ -553,32 +553,16 @@ void Window::saveView()
 
 void Window::save()
 {
-//	bool saved = true;
-
-//	if(this->isPCSlot)
-//	{
-//		saves->saveDir(currentSaveEdited);
-//	}
-//	else
-//	{
-//		Savecard::Type type = saves->type();
-//		if(type == Savecard::Vmp || type == Savecard::Psv)
-//			saved = saveAs();
-//		else if(type == Savecard::Pc)
-//			saves->saveOne(0);
-//		else
-//			saves->save();
-//	}
 	bool saved = true, hasPath = saves->hasPath();
 	Savecard::Type type = saves->type();
 
 	if(!hasPath || type == Savecard::Vmp || type == Savecard::Psv) {
-		saved = saveAs();
+		saved = exportAs();
 		if(!hasPath && saved) {
 			setTitle();
 		}
 	} else {
-		saved = saveAs(type, saves->path());
+		saved = exportAs(type, saves->path());
 	}
 
 	if(saved) {

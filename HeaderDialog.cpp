@@ -146,7 +146,7 @@ void HeaderDialog::fillId(QComboBox *id)
 
 void HeaderDialog::fill()
 {
-	setWindowIcon(QIcon(saveData->icon()));
+	setWindowIcon(QIcon(saveData->saveIcon().icon()));
 
 	if(viewType == NormalView && !saveData->hasMCHeader()) {
 		group1->hide();
@@ -191,10 +191,11 @@ void HeaderDialog::fill()
 		}
 
 		bloc->setText(QString::number((quint8)saveData->header().at(3)));
-		icon1->setPixmap(saveData->icon());
-		connect(saveData->saveIcon(), SIGNAL(nextIcon(QPixmap)), icon1, SLOT(setPixmap(QPixmap)));
+		SaveIcon *saveIcon = new SaveIcon(saveData->saveIcon());
+		icon1->setPixmap(saveIcon->pixmap());
+		connect(saveIcon, SIGNAL(nextIcon(QPixmap)), icon1, SLOT(setPixmap(QPixmap)));
 		if(saveData->isFF8()) {
-			icon2->setPixmap(saveData->icon(true));
+			icon2->setPixmap(saveData->saveIcon().icon(0, true));
 		}
 		else {
 			icon2_lbl->hide();
@@ -279,16 +280,6 @@ void HeaderDialog::saveIcon(bool chocobo_world_icon)
 	int index = path.lastIndexOf('/');
 	Config::setValue("savePathIcon", index == -1 ? path : path.left(index));
 
-	if(!saveData->icon(chocobo_world_icon).save(path))
+	if(!saveData->saveIcon().icon(0, chocobo_world_icon).save(path))
 		QMessageBox::warning(this, tr("Erreur"), tr("Format incorrect."));
-}
-
-void HeaderDialog::saveIcon1()
-{
-	saveIcon();
-}
-
-void HeaderDialog::saveIcon2()
-{
-	saveIcon(true);
 }

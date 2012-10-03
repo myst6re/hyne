@@ -45,6 +45,7 @@ private:
 
 	SaveData *saveData;
 	Savecard *_savecard;
+	SaveIcon *saveIcon;
 	int mouseMove;
 	QPoint startPos;
 	bool saved, hovered;

@@ -51,7 +51,7 @@ private slots:
 	void reload();
 	void openRecentFile(QAction*);
 	void save();
-	bool saveAs();
+	bool exportAs();
 	void properties();
 	void mode(bool);
 	void changeFrame(QAction *);
@@ -63,7 +63,7 @@ private slots:
 
 private:
 	void setIsOpen(bool open);
-	bool saveAs(Savecard::Type newType, const QString &path);
+	bool exportAs(Savecard::Type newType, const QString &path);
 	void fillMenuRecent();
 	void restartNow();
 

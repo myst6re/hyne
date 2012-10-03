@@ -373,6 +373,8 @@ bool Savecard::ps3()
 
 	addSave(fic.read(SAVE_SIZE), header);
 
+	if(saves.first()->isDelete())	return false;
+
 	if(fileWatcher.files().size()<30)
 		fileWatcher.addPath(_path);
 
@@ -737,7 +739,7 @@ bool Savecard::save(const QString &saveAs, Type newType)
 	return true;
 }
 
-bool Savecard::saveOne(qint8 id, QString path)
+bool Savecard::save2PC(qint8 id, QString path)
 {
 	if(path.isEmpty())
 		path = _path;
@@ -784,6 +786,68 @@ bool Savecard::saveOne(qint8 id, QString path)
 		_hasPath = true;
 		setPath(path);
 		setType(Pc);
+	}
+
+	return true;
+}
+
+bool Savecard::save2PSV(qint8 id, QString path)
+{
+	if(path.isEmpty())
+		path = _path;
+
+	QTemporaryFile temp("hynePsv");
+	if(!temp.open())
+	{
+		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de créer un fichier temporaire"));
+		return false;
+	}
+
+	if(id==-1)	id = 0;
+
+	bool readdPath = false;
+	if(fileWatcher.files().contains(path))
+	{
+		readdPath = true;
+		fileWatcher.removePath(path);
+	}
+
+	if(saves.at(id)->isDelete()) {
+		return QFile::remove(path);
+	}
+
+	SaveData tempSave(*saves.first());
+	if(!saves.first()->hasMCHeader()) {
+		HeaderDialog dialog(&tempSave, this, HeaderDialog::CreateView);
+		if(dialog.exec() != QDialog::Accepted) return false;
+	}
+
+	QByteArray MCHeader = tempSave.saveMCHeader();
+
+	QByteArray result;
+	result.append("\0VSP\0\0\0\0", 8);
+	result.append(QByteArray(40, '\0')); // checksum
+	result.append(QByteArray(52, '\0')); // unknown
+	result.append(MCHeader.mid(10, 32)); // Country + prod code + identifier
+	result.append(saves.at(id)->save());
+	temp.write(result);
+
+	if(QFile::exists(path) && !QFile::remove(path))
+	{
+		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nVérifiez que le fichier n'est pas utilisé par un autre programme.").arg(path));
+		if(readdPath)	fileWatcher.addPath(path);
+		return false;
+	}
+	if(!temp.copy(path))
+	{
+		QMessageBox::warning(this, tr("Erreur"), tr("Échec de la sauvegarde."));
+	}
+	if(readdPath)	fileWatcher.addPath(path);
+
+	if(_type == Undefined) {
+		_hasPath = true;
+		setPath(path);
+		setType(Psv);
 	}
 
 	return true;
@@ -996,7 +1060,7 @@ void Savecard::saveDir(quint8 i)
 {
 	if(saves.at(i)->isModified()) {
 		setName(QString("save%1").arg(i+1, 2, 10, QChar('0')));
-		saveOne(i);
+		save2PC(i);
 	}
 }
 

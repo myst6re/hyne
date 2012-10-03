@@ -421,8 +421,7 @@ public:
 	const QByteArray &header() const;
 	void setMCHeader(const QByteArray &);
 	void setMCHeader(bool exists, char country, const QString &code, const QString &id);
-	QPixmap icon(bool chocobo_world_icon=false) const;
-	const SaveIcon *saveIcon() const;
+	const SaveIconData &saveIcon() const;
 	const HEADER &descData() const;
 	const MAIN &mainData() const;
 	void setSaveData(const HEADER &, const MAIN &);
@@ -446,7 +445,7 @@ private:
 
 	QByteArray _MCHeader;
 	QByteArray _header;
-	SaveIcon _icon;
+	SaveIconData _icon;
 	HEADER _descData;
 	MAIN _mainData;
 	int _freqValue, _id;

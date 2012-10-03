@@ -23,7 +23,8 @@ SaveWidget::SaveWidget(SaveData *saveData, Savecard *savecard, QWidget *parent) 
 	QWidget(parent), saveData(saveData), _savecard(savecard), mouseMove(0), saved(false), hovered(false),
 	blackView(false), hasDragEvent(false), hasDragEventTop(false), hasDragEventBottom(false)
 {
-	connect(saveData->saveIcon(), SIGNAL(nextIcon(QPixmap)), SLOT(refreshIcon()));
+	saveIcon = new SaveIcon(saveData->saveIcon());
+	connect(saveIcon, SIGNAL(nextIcon(QPixmap)), SLOT(refreshIcon()));
 	setAcceptDrops(true);
 }
 
@@ -377,7 +378,8 @@ void SaveWidget::restore()
 
 void SaveWidget::refreshIcon()
 {
-	if(!saveData->isFF8() && !saveData->isDelete()) {
+	qDebug() << "salut";
+	if(!saveData->isDelete()) {
 		repaint(width()/2 - 372 + 36 + 36, 43, 16, 16);
 	}
 }
@@ -444,7 +446,7 @@ void SaveWidget::paintEvent(QPaintEvent *)
 			}
 			else
 			{
-				painter.drawPixmap(36, 43, saveData->icon());
+				painter.drawPixmap(36, 43, saveIcon->pixmap());
 				QString short_desc = saveData->getShortDescription();
 				if(!short_desc.isEmpty())
 				{
@@ -458,7 +460,7 @@ void SaveWidget::paintEvent(QPaintEvent *)
 		painter.translate(xStart-36, 0);
 
 		if(!saveData->isFF8() && !saveData->isDelete()) {
-			painter.drawPixmap(72, 43, saveData->icon());
+			painter.drawPixmap(72, 43, saveIcon->pixmap());
 		}
 		if(saveData->isFF8() && saved) { //TODO: remove
 			painter.drawPixmap(692, 3, QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton).pixmap(16));

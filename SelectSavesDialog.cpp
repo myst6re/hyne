@@ -77,7 +77,7 @@ void SelectSavesDialog::fillList(const QList<SaveData *> &saveFiles)
 	for(int i=0 ; i<saveFiles.size() ; ++i) {
 		save = saveFiles.at(i);
 		item = new QListWidgetItem(tr("Save %1 (%2)").arg(i+1).arg((shortDescription = save->getShortDescription()).isEmpty() ? tr("vide") : shortDescription));
-		item->setIcon(save->icon());
+		item->setIcon(save->saveIcon().icon());
 		list->addItem(item);
 		item->setData(Qt::UserRole, i);
 	}

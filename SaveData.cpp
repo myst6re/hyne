@@ -44,13 +44,15 @@ void SaveData::open(const QByteArray &data, const QByteArray &MCHeader)
 			_header = data.left(96);
 			switch((quint8)data.at(2)) {
 			case 0x11:
-				_icon.setAll(data.mid(96,_isFF8 ? 288 : 160));
+				_icon.setData(data.mid(96, _isFF8 ? 288 : 160));
 				break;
 			case 0x12:
-				_icon.setAll(data.mid(96,288), 2);
+				_icon.setNbFrames(2);
+				_icon.setData(data.mid(96, 288));
 				break;
 			case 0x13:
-				_icon.setAll(data.mid(96,416), 3);
+				_icon.setNbFrames(3);
+				_icon.setData(data.mid(96, 416));
 				break;
 			}
 		}
@@ -59,7 +61,7 @@ void SaveData::open(const QByteArray &data, const QByteArray &MCHeader)
 		_isDelete = true;
 
 	if(!_isFF8) {
-		_saveData = !_isDelete ? data.mid(96+_icon.save().size()) : data;
+		_saveData = !_isDelete ? data.mid(96+_icon.data().size()) : data;
 	}
 
 	_isModified = false;
@@ -170,14 +172,9 @@ const QByteArray &SaveData::header() const
 	return _header;
 }
 
-QPixmap SaveData::icon(bool chocobo_world_icon) const
+const SaveIconData &SaveData::saveIcon() const
 {
-	return _icon.icon(chocobo_world_icon);
-}
-
-const SaveIcon *SaveData::saveIcon() const
-{
-	return &_icon;
+	return _icon;
 }
 
 const HEADER &SaveData::descData() const
@@ -344,7 +341,7 @@ QByteArray SaveData::save() const
 	QByteArray ret;
 
 	if(!_isFF8) {
-		ret.append(_header).append(_icon.save()).append(_saveData);
+		ret.append(_header).append(_icon.data()).append(_saveData);
 		return ret.leftJustified(SAVE_SIZE, '\x00', true);
 	}
 
@@ -360,7 +357,7 @@ QByteArray SaveData::save() const
 	ret.append("\x81\x46", 2);// :
 	ret.append(FF8Text::numToBiosText(Config::min(_mainData.misc2.game_time, _freqValue), 2));// MM
 	ret.append(_header.right(66));
-	ret.append(_icon.save());
+	ret.append(_icon.data());
 	ret.append((char *)&checksum, 2);
 	ret.append("\xFF\x08", 2);
 	ret.append((char *)&_descData, sizeof(_descData));

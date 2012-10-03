@@ -32,8 +32,8 @@ public:
 	void setCode(const QString &codestr);
 	void setId(const QString &idStr);
 private slots:
-	void saveIcon1();
-	void saveIcon2();
+	inline void saveIcon1() { saveIcon(); }
+	inline void saveIcon2() { saveIcon(true); }
 	void save();
 private:
 	static void fillCode(QComboBox *code);

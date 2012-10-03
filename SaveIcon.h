@@ -22,22 +22,42 @@
 #include <QtGui>
 #define COEFF_COLOR	8.2258064516129032258064516129032 // 255/31
 
+class SaveIconData
+{
+public:
+	SaveIconData();
+	SaveIconData(const QByteArray &data, quint8 nbFrames=1);
+	void setData(const QByteArray &data);
+	void setNbFrames(quint8 nbFrames);
+	QByteArray data() const;
+	quint8 nbFrames() const;
+	QPixmap icon(int curFrame=0, bool showCW=false) const;
+private:
+	QByteArray _data;
+	quint8 _nbFrames;
+};
+
 class SaveIcon : public QObject
 {
 	Q_OBJECT
 public:
-	SaveIcon();
-	SaveIcon(const QByteArray &data, quint8 nbFrames=1);
-	void setAll(const QByteArray &data, quint8 nbFrames=1);
-	QByteArray save() const;
-	QPixmap icon(bool chocobo_world_icon=false) const;
+	SaveIcon(bool showCW=false, QObject *parent=0);
+	SaveIcon(const SaveIconData &data, bool showCW=false, QObject *parent=0);
+	void setData(const SaveIconData &data);
+	void setCurFrame(quint8 curFrame);
+	void setCWIsVisible(bool showCW);
+	const SaveIconData &data() const;
+	quint8 curFrame() const;
+	bool CWIsVisible() const;
+	QPixmap pixmap() const;
 signals:
 	void nextIcon(const QPixmap &);
 private slots:
 	void nextFrame();
 private:
-	QByteArray data;
-	quint8 nbFrames, curFrame;
+	SaveIconData _data;
+	quint8 _curFrame;
+	bool _showCW;
 	static QTimer timer;
 };
 
