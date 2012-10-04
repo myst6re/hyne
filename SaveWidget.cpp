@@ -163,14 +163,20 @@ void SaveWidget::mouseReleaseEvent(QMouseEvent *event)
 		}
 		else
 		{
-			if(saveData->isDelete()) return;
+			if(saveData->isDelete()) {
+				contextMenuEvent(new QContextMenuEvent(QContextMenuEvent::Other, event->pos(), event->globalPos(), event->modifiers()));
+				return;
+			}
 			properties();
 		}
 	}
 	else if(event->button() == Qt::MidButton)
 	{
 		event->accept();
-		if(saveData->isDelete()) return;
+		if(saveData->isDelete()) {
+			contextMenuEvent(new QContextMenuEvent(QContextMenuEvent::Other, event->pos(), event->globalPos(), event->modifiers()));
+			return;
+		}
 		properties();
 	}
 }

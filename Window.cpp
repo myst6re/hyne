@@ -109,7 +109,7 @@ Window::Window()
 	
 	/* MENU '?' */
 	
-	menuBar->addAction(tr("?"), this, SLOT(about()));
+	menuBar->addAction(tr("&?"), this, SLOT(about()));
 	
 	blackView = new QAbstractScrollArea(this);
 	blackView->setPalette(QPalette(Qt::black));
@@ -196,7 +196,7 @@ void Window::dropEvent(QDropEvent *event)
 
 void Window::setTitle(const bool editor)
 {
-	setWindowTitle(PROG_FULLNAME %
+	setWindowTitle(PROG_NAME %
 				   (!isOpen ? QString() : " - [*]" % saves->path()) %
 				   (editor ? tr(" - save %1").arg(currentSaveEdited+1, 2, 10, QChar('0')) : QString())
 				   );
@@ -213,15 +213,18 @@ void Window::newFile()
 	QDialog dialog(this, Qt::Dialog | Qt::WindowCloseButtonHint);
 	dialog.setWindowTitle(tr("Nouveau"));
 
+	QLineEdit name(tr("Sans nom"), &dialog);
+	name.selectAll();
 	QRadioButton oneSave(tr("1 sauvegarde"), &dialog);
 	QRadioButton multiSaves(tr("15 sauvegardes"), &dialog);
 	multiSaves.setChecked(true);
 	QDialogButtonBox buttonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, Qt::Horizontal, &dialog);
 
 	QGridLayout layout(&dialog);
-	layout.addWidget(&oneSave, 0, 0);
-	layout.addWidget(&multiSaves, 0, 1);
-	layout.addWidget(&buttonBox, 1, 0, 1, 2);
+	layout.addWidget(&name, 0, 0, 1, 2);
+	layout.addWidget(&oneSave, 1, 0);
+	layout.addWidget(&multiSaves, 1, 1);
+	layout.addWidget(&buttonBox, 2, 0, 1, 2);
 
 	connect(&buttonBox, SIGNAL(accepted()), &dialog, SLOT(accept()));
 	connect(&buttonBox, SIGNAL(rejected()), &dialog, SLOT(reject()));
@@ -230,6 +233,9 @@ void Window::newFile()
 		if(!closeFile())	return;
 
 		saves = new Savecard(oneSave.isChecked() ? 1 : 15, this);
+		if(!name.text().isEmpty()) {
+			saves->setName(name.text());
+		}
 		connect(saves, SIGNAL(modified()), SLOT(setModified()));
 
 		if(!saves->ok())
@@ -708,8 +714,9 @@ void Window::fullScreen()
 
 void Window::about()
 {
-	QDialog about(this, Qt::Dialog | Qt::CustomizeWindowHint);
+	QDialog about(this, Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
 	about.setFixedSize(224, 248);
+	about.setWindowTitle(tr("À propos"));
 	
 	QFont font;
 	font.setPointSize(12);
@@ -720,7 +727,7 @@ void Window::about()
 	
 	QLabel desc1(PROG_FULLNAME, &about);
 	desc1.setFont(font);
-	desc1.setFixedWidth(200);
+	desc1.setFixedWidth(about.width());
 	desc1.setAlignment(Qt::AlignHCenter);
 
 	font.setPointSize(8);

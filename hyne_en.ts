@@ -8532,7 +8532,7 @@ Continue anyway?</translation>
     <message>
         <location filename="Window.cpp" line="58"/>
         <source>O&amp;uverts récemment</source>
-        <translation>&amp;Recent Files</translation>
+        <translation>Recen&amp;t Files</translation>
     </message>
     <message>
         <location filename="Window.cpp" line="77"/>
