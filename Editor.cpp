@@ -30,10 +30,25 @@ Editor::Editor(QWidget *parent)
 	liste->setFixedWidth(96);
 	liste->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-	QPushButton *apply = new QPushButton(/*QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton),*/ tr("&OK"), this);
+	QPushButton *apply = new QPushButton(tr("&OK"), this);
 	apply->setDefault(true);
+
+	// Set default icon if needed
+	QStyle *style = this->style();
+	if(style->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons))
+		apply->setIcon(style->standardIcon(QStyle::SP_DialogOkButton, 0, this));
+	if(style != QApplication::style()) // Propagate style
+		apply->setStyle(style);
+
+
 	QPushButton *cancel = new QPushButton(tr("&Annuler"), this);
 	
+	// Set default icon if needed
+	if(style->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons))
+		cancel->setIcon(style->standardIcon(QStyle::SP_DialogCancelButton, 0, this));
+	if(style != QApplication::style()) // Propagate style
+		cancel->setStyle(style);
+
 	stackedLayout = new QStackedLayout;
 	
 	QGridLayout *gridLayout = new QGridLayout(this);

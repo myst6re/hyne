@@ -17,6 +17,12 @@
  ****************************************************************************/
 
 #include "Config.h"
+#ifdef Q_WS_WIN
+#include <windef.h>
+#include <winbase.h>
+//#include <winerror.h>
+#include <winreg.h>
+#endif
 
 QTranslator *Config::translator;
 QStringList Config::recentFiles;
@@ -144,10 +150,40 @@ void Config::sync()
 	settings->sync();
 }
 
+#ifdef Q_WS_WIN
+QString Config::regValue(const QString &regPath, const QString &regKey)
+{
+	HKEY phkResult;
+	LONG error;
+	REGSAM flags = KEY_READ;
+
+#ifdef KEY_WOW64_32KEY
+	flags |= KEY_WOW64_32KEY; // if you compile in 64-bit, force reg search into 32-bit entries
+#endif
+
+	// Open regPath relative to HKEY_LOCAL_MACHINE
+	error = RegOpenKeyEx(HKEY_LOCAL_MACHINE, (wchar_t *)("SOFTWARE\\" + regPath).utf16(), 0, flags, &phkResult);
+	if(ERROR_SUCCESS == error) {
+		BYTE value[MAX_PATH];
+		DWORD cValue = MAX_PATH, type;
+
+		// Open regKey which must is a string value (REG_SZ)
+		RegQueryValueEx(phkResult, (wchar_t *)regKey.utf16(), NULL, &type, value, &cValue);
+		if(ERROR_SUCCESS == error && type == REG_SZ) {
+			RegCloseKey(phkResult);
+			return QString::fromUtf16((ushort *)value);
+		}
+		RegCloseKey(phkResult);
+	}
+	return QString();
+}
+#endif
+
 const QString &Config::ff8Path()
 {
+#ifdef Q_WS_WIN
 	if(_ff8Path.isEmpty())
-		_ff8Path = QDir::cleanPath( QSettings("Square Soft, Inc", "Final Fantasy VIII").value("1.00/AppPath").toString() );
-
+		_ff8Path = QDir::cleanPath( QDir::fromNativeSeparators( regValue("Square Soft, Inc\\Final Fantasy VIII\\1.00", "AppPath") ) );
+#endif
 	return _ff8Path;
 }

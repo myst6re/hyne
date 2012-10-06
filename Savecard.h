@@ -39,7 +39,7 @@ public:
 	Savecard(int saveCount, QWidget *parent=0);
 	virtual ~Savecard();
 
-	void updateSaveWidget(int saveID, bool saved=false, bool allUpdate=false);
+	void setIsTheLastEdited(int saveID);
 	void updateSaveWidgets();
 	const QList<SaveData *> &getSaves() const;
 	bool save2PC(qint8 num, QString path=QString());

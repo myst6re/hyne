@@ -84,11 +84,11 @@ private:
 	QIcon savWindowIcon;
 
 protected:
-	void showEvent(QShowEvent *);
-	void closeEvent(QCloseEvent *);
-	void dragEnterEvent(QDragEnterEvent *);
-	void dropEvent(QDropEvent *);
-//	void changeEvent(QEvent *);
+	virtual void showEvent(QShowEvent *event);
+	virtual void closeEvent(QCloseEvent *event);
+	virtual void dragEnterEvent(QDragEnterEvent *event);
+	virtual void dropEvent(QDropEvent *event);
+//	virtual void changeEvent(QEvent *event);
 };
 
 #endif

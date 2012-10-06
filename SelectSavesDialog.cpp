@@ -37,13 +37,15 @@ SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, bool mu
 		msg->setText(tr("Sélectionnez une sauvegarde :"));
 	}
 
-	QPushButton *ok = new QPushButton(tr("OK"), this);
-	connect(ok, SIGNAL(released()), SLOT(accept()));
+	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok,
+													   Qt::Horizontal, this);
+
+	connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
 
 	QVBoxLayout *layout = new QVBoxLayout(this);
 	layout->addLayout(infoLayout);
 	layout->addWidget(list);
-	layout->addWidget(ok, 0, Qt::AlignCenter);
+	layout->addWidget(buttonBox);
 
 	if(multiSelection)
 		connect(list, SIGNAL(itemSelectionChanged()), SLOT(controlSelection()));
@@ -58,13 +60,15 @@ SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, QWidget
 	msg->setText(tr("Déplacez les éléments à la souris pour modifier l'ordre des saves."));
 	list->setDragDropMode(QAbstractItemView::InternalMove);
 
-	QPushButton *ok = new QPushButton(/*QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton),*/ tr("OK"), this);
-	connect(ok, SIGNAL(released()), SLOT(accept()));
+	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok,
+													   Qt::Horizontal, this);
+
+	connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
 
 	QVBoxLayout *layout = new QVBoxLayout(this);
 	layout->addLayout(infoLayout);
 	layout->addWidget(list);
-	layout->addWidget(ok, 0, Qt::AlignCenter);
+	layout->addWidget(buttonBox);
 }
 
 void SelectSavesDialog::fillList(const QList<SaveData *> &saveFiles)

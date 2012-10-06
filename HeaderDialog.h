@@ -31,10 +31,11 @@ public:
 	void setCountry(char c);
 	void setCode(const QString &codestr);
 	void setId(const QString &idStr);
+public slots:
+	virtual void accept();
 private slots:
 	inline void saveIcon1() { saveIcon(); }
 	inline void saveIcon2() { saveIcon(true); }
-	void save();
 private:
 	static void fillCode(QComboBox *code);
 	static void fillId(QComboBox *id);
@@ -49,6 +50,7 @@ private:
 	QComboBox *code;
 	QComboBox *id;
 	QGroupBox *group2;
+	QPushButton *buttonSave;
 	QPushButton *icon2_saveButton;
 	QLabel *id_lbl, *desc, *bloc, *icon1, *icon2, *icon2_lbl;
 	SaveData *saveData;

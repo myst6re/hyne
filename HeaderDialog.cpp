@@ -106,19 +106,19 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	layout2->addWidget(icon2, 3, 1);
 	layout2->addWidget(icon2_saveButton, 3, 2, Qt::AlignRight);
 
-	QPushButton *buttonSave = new QPushButton(tr("OK"));
-	QPushButton *button = new QPushButton(tr("Fermer"));
-	connect(buttonSave, SIGNAL(released()), SLOT(save()));
-	connect(button, SIGNAL(released()), SLOT(close()));
-	connect(icon1_saveButton, SIGNAL(released()), SLOT(saveIcon1()));
-	connect(icon2_saveButton, SIGNAL(released()), SLOT(saveIcon2()));
+	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Close);
+	buttonSave = buttonBox->button(QDialogButtonBox::Save);
 
 	QGridLayout *layout = new QGridLayout(this);
-	layout->addWidget(group1, 0, 0, 1, 2);
-	layout->addWidget(group2, 1, 0, 1, 2);
+	layout->addWidget(group1, 0, 0);
+	layout->addWidget(group2, 1, 0);
 	layout->setRowStretch(2, 1);
-	layout->addWidget(buttonSave, 3, 0, Qt::AlignRight);
-	layout->addWidget(button, 3, 1, Qt::AlignLeft);
+	layout->addWidget(buttonBox, 3, 0);
+
+	connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
+	connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
+	connect(icon1_saveButton, SIGNAL(released()), SLOT(saveIcon1()));
+	connect(icon2_saveButton, SIGNAL(released()), SLOT(saveIcon2()));
 
 	fill();
 }
@@ -150,6 +150,7 @@ void HeaderDialog::fill()
 
 	if(viewType == NormalView && !saveData->hasMCHeader()) {
 		group1->hide();
+		buttonSave->hide();
 	}
 	else {
 		// Fill group1 (MCHeader)
@@ -253,10 +254,10 @@ void HeaderDialog::setId(const QString &idStr)
 	id->lineEdit()->setText(idStr);
 }
 
-void HeaderDialog::save()
+void HeaderDialog::accept()
 {
 	if(viewType == NormalView && !saveData->hasMCHeader()) {
-		close();
+		reject();
 		return;
 	}
 
@@ -268,7 +269,7 @@ void HeaderDialog::save()
 						  code->currentText(),
 						  id->isVisible() ? id->currentText() : QString());
 
-	accept();
+	QDialog::accept();
 }
 
 void HeaderDialog::saveIcon(bool chocobo_world_icon)

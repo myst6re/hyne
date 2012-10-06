@@ -45,6 +45,9 @@ public:
 	static void set();
 	static const QString &ff8Path();
 	static QTranslator *translator;
+#ifdef Q_WS_WIN
+	static QString regValue(const QString &regPath, const QString &regKey);
+#endif
 private:
 	static QString _ff8Path;
 	static QSettings *settings;

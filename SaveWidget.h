@@ -32,7 +32,6 @@ public:
 	SaveWidget(SaveData *saveData, Savecard *savecard, QWidget *parent=0);
 	void hideCursor();
 	void setDropIndicatorIsVisible(bool onTop, bool isVisible);
-	void setSaved();
 	void setSaveData(SaveData *saveData);
 	void setSavecard(Savecard *savecard);
 	virtual QSize sizeHint() const;
@@ -48,7 +47,7 @@ private:
 	SaveIcon *saveIcon;
 	int mouseMove;
 	QPoint startPos;
-	bool saved, hovered;
+	bool hovered;
 	bool blackView, hasDragEvent, hasDragEventTop, hasDragEventBottom;
 	QByteArray lastDropData;
 	bool lastIsExternal;
@@ -56,6 +55,7 @@ private:
 public slots:
 	void properties();
 private slots:
+	void edit();
 	void exportPC();
 	void newGame();
 	void removeSave();

@@ -125,7 +125,6 @@ void Savecard::setWidget()
 	setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
 	setSelectionMode(QAbstractItemView::NoSelection);
 	setFrameShape(QFrame::NoFrame);
-	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	setUniformItemSizes(true);
 	// Drag & drop
 //	setDragEnabled(true);
@@ -229,6 +228,7 @@ void Savecard::setModified(bool modified)
 	foreach(SaveData *save, saves) {
 		save->setModified(modified);
 	}
+	updateSaveWidgets();
 }
 
 void Savecard::setSlotOrder(const QList<int> &order)
@@ -285,27 +285,22 @@ void Savecard::moveCursor(int row)
 	}
 }
 
-void Savecard::updateSaveWidget(int saveID, bool saved, bool allUpdate)
+void Savecard::setIsTheLastEdited(int saveID)
 {
-	if(!allUpdate) {
-		foreach(SaveData *save, saves) {
-			if(save->isTheLastEdited()) {
-				save->setIsTheLastEdited(false);
-				this->saveWidget(save->id())->update();
-			}
+	foreach(SaveData *save, saves) {
+		if(save->isTheLastEdited()) {
+			save->setIsTheLastEdited(false);
+			saveWidget(save->id())->update();
 		}
-		saves.at(saveID)->setIsTheLastEdited(true);
 	}
-	SaveWidget *saveWidget = this->saveWidget(saveID);
-	if(saved)	saveWidget->setSaved();
-	saveWidget->update();
+	saves.at(saveID)->setIsTheLastEdited(true);
 }
 
 void Savecard::updateSaveWidgets()
 {
 	int countItems = count();
-	for(int i=0 ; i<countItems ; ++i)
-		updateSaveWidget(i, false, true);
+	for(int saveID=0 ; saveID<countItems ; ++saveID)
+		saveWidget(saveID)->update();
 }
 
 bool Savecard::ps()
@@ -388,6 +383,8 @@ bool Savecard::pc()
 
 	if(!f.exists() || !f.open(QIODevice::ReadOnly))
 		return false;
+
+	if(f.size() > SAVE_SIZE * 8)		return false;
 
 	f.read((char *)&tailleC, 4);
 	if(tailleC != f.size()-4)		return false;
@@ -593,7 +590,7 @@ void Savecard::replaceSaveData(int saveID, const QByteArray &mimeData)
 			return;
 		}
 
-		updateSaveWidget(saveID, false, true);
+		saveWidget(saveID)->update();
 
 		_isModified = true;
 		saveData->setModified(true);
@@ -826,8 +823,12 @@ bool Savecard::save2PSV(qint8 id, QString path)
 
 	QByteArray result;
 	result.append("\0VSP\0\0\0\0", 8);
-	result.append(QByteArray(40, '\0')); // checksum
-	result.append(QByteArray(52, '\0')); // unknown
+	result.append(QByteArray(40, '\0')); // TODO: checksum
+	result.append("\x00\x00\x00\x00\x00\x00\x00\x00\x14\x00\x00\x00"
+				  "\x01\x00\x00\x00\x00\x20\x00\x00\x84\x00\x00\x00"
+				  "\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+				  "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x20\x00\x00"
+				  "\x03\x90\x00\x00", 52); // unknown
 	result.append(MCHeader.mid(10, 32)); // Country + prod code + identifier
 	result.append(saves.at(id)->save());
 	temp.write(result);
@@ -923,7 +924,10 @@ bool Savecard::save2PS(QList<int> ids, const QString &path, Type newType)
 
 	if(QFile::exists(path) && !QFile::remove(path))
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nVérifiez que le fichier n'est pas utilisé par un autre programme.").arg(path));
+		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de supprimer le fichier !"
+													"\n%1\nÉchec de la sauvegarde."
+													"\nVérifiez que le fichier n'est pas utilisé"
+													" par un autre programme.").arg(path));
 		if(readdPath)	fileWatcher.addPath(path);
 		return false;
 	}
@@ -964,7 +968,9 @@ QByteArray Savecard::header(QFile *srcFile, Type newType, bool saveAs, bool *abo
 		}
 		else
 		{
-			return QByteArray("\x56\x67\x73\x4d\x01\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x00\x02", 18).append(QByteArray(46, '\x00'));
+			return QByteArray("\x56\x67\x73\x4d\x01\x00\x00\x00\x01\x00\x00\x00"
+							  "\x01\x00\x00\x00\x00\x02", 18)
+					.append(QByteArray(46, '\x00'));
 		}
 	}
 	else if(newType==Gme)
@@ -977,7 +983,12 @@ QByteArray Savecard::header(QFile *srcFile, Type newType, bool saveAs, bool *abo
 		}
 		else
 		{
-			header = QByteArray("\x31\x32\x33\x2d\x34\x35\x36\x2d\x53\x54\x44\x00\x00\x00\x00\x00\x00\x00\x01\x00\x01\x4d\x51\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00", 64);
+			header = QByteArray("\x31\x32\x33\x2d\x34\x35\x36\x2d\x53\x54\x44\x00"
+								"\x00\x00\x00\x00\x00\x00\x01\x00\x01\x4d\x51\xa0"
+								"\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0"
+								"\xa0\x00\xff\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+								"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+								"\x00\x00\x00\x00", 64);
 		}
 
 		// description : 3840 bytes
@@ -1009,8 +1020,9 @@ QByteArray Savecard::header(QFile *srcFile, Type newType, bool saveAs, bool *abo
 		}
 		else
 		{
-			//Unknown crc
-			return QByteArray("\x00\x50\x4d\x56\x80", 5).append(QByteArray(123, '\x00'));
+			//TODO: Unknown crc
+			return QByteArray("\x00\x50\x4d\x56\x80", 5)
+					.append(QByteArray(123, '\x00'));
 		}
 	}
 	else if(newType==_type)
@@ -1029,16 +1041,14 @@ QByteArray Savecard::descGme(const QString &desc, bool *abort)
 	QTextEdit *textEdit = new QTextEdit(&dialog);
 	textEdit->setPlainText(desc);
 
-	QPushButton *ok = new QPushButton(tr("OK"), &dialog);
-	QPushButton *cancel = new QPushButton(tr("Annuler"), &dialog);
+	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel,
+													   Qt::Horizontal, &dialog);
+	QVBoxLayout *layout = new QVBoxLayout(&dialog);
+	layout->addWidget(textEdit);
+	layout->addWidget(buttonBox);
 
-	QGridLayout *layout = new QGridLayout(&dialog);
-	layout->addWidget(textEdit, 0, 0, 1, 2);
-	layout->addWidget(ok, 1, 0);
-	layout->addWidget(cancel, 1, 1);
-
-	connect(ok, SIGNAL(released()), &dialog, SLOT(accept()));
-	connect(cancel, SIGNAL(released()), &dialog, SLOT(reject()));
+	connect(buttonBox, SIGNAL(accepted()), &dialog, SLOT(accept()));
+	connect(buttonBox, SIGNAL(rejected()), &dialog, SLOT(reject()));
 
 	if(dialog.exec() != QDialog::Accepted) {
 		*abort = true;

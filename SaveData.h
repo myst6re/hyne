@@ -426,6 +426,7 @@ public:
 	const MAIN &mainData() const;
 	void setSaveData(const HEADER &, const MAIN &);
 	bool isModified() const;
+	bool wasModified() const;
 	void setModified(bool modified);
 	int freqValue() const;
 	int id() const;
@@ -451,7 +452,7 @@ private:
 	int _freqValue, _id;
 	bool _isFF8, _isDelete, _isTheLastEdited;
 	bool _isVmp;
-	bool _isModified;
+	bool _isModified, _wasModified;
 	QByteArray _saveData;
 };
 

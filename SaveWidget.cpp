@@ -20,7 +20,7 @@
 #include "HeaderDialog.h"
 
 SaveWidget::SaveWidget(SaveData *saveData, Savecard *savecard, QWidget *parent) :
-	QWidget(parent), saveData(saveData), _savecard(savecard), mouseMove(0), saved(false), hovered(false),
+	QWidget(parent), saveData(saveData), _savecard(savecard), mouseMove(0), hovered(false),
 	blackView(false), hasDragEvent(false), hasDragEventTop(false), hasDragEventBottom(false)
 {
 	saveIcon = new SaveIcon(saveData->saveIcon());
@@ -52,12 +52,6 @@ void SaveWidget::setDropIndicatorIsVisible(bool onTop, bool isVisible)
 	}
 }
 
-void SaveWidget::setSaved()
-{
-	saved = true;
-//	update(width()/2 - 374 + 38+656, 3, 16, 16);
-}
-
 void SaveWidget::setSaveData(SaveData *saveData)
 {
 	this->saveData = saveData;
@@ -78,13 +72,11 @@ QSize SaveWidget::minimumSizeHint() const
 	return QSize(672, 106);
 }
 
-void SaveWidget::enterEvent(QEvent *event)
+void SaveWidget::enterEvent(QEvent *)
 {
 	hovered = true;
 	_savecard->moveCursor(saveData->id());
 	update(width()/2 - 372, 16, 48, 30);
-
-	event->accept();
 }
 
 void SaveWidget::mousePressEvent(QMouseEvent *event)
@@ -111,8 +103,6 @@ void SaveWidget::mouseMoveEvent(QMouseEvent *event)
 
 	mouseMove = 2;
 
-	event->accept();
-
 	QDrag *drag = new QDrag(this);
 	QMimeData *mimeData = new QMimeData;
 	QRect rectWidget(QPoint((width() - sizeHint().width())/2, 0), sizeHint());
@@ -128,7 +118,7 @@ void SaveWidget::mouseMoveEvent(QMouseEvent *event)
 
 	blackView = true;
 	update();
-	drag->exec(Qt::MoveAction, Qt::MoveAction);
+	drag->exec(Qt::MoveAction, Qt::MoveAction);// !Qt event loop blocked on Windows!
 	blackView = false;
 }
 
@@ -154,12 +144,11 @@ void SaveWidget::mouseReleaseEvent(QMouseEvent *event)
 
 	if(event->button() == Qt::LeftButton)
 	{
-		event->accept();
 		if(saveData->isFF8()) {
 			if(saveData->isDelete())
 				restore();
 			else
-				emit released(saveData);
+				edit();
 		}
 		else
 		{
@@ -172,7 +161,6 @@ void SaveWidget::mouseReleaseEvent(QMouseEvent *event)
 	}
 	else if(event->button() == Qt::MidButton)
 	{
-		event->accept();
 		if(saveData->isDelete()) {
 			contextMenuEvent(new QContextMenuEvent(QContextMenuEvent::Other, event->pos(), event->globalPos(), event->modifiers()));
 			return;
@@ -183,14 +171,19 @@ void SaveWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void SaveWidget::contextMenuEvent(QContextMenuEvent *event)
 {
-	event->accept();
 	QMenu menu(this);
-	if(!saveData->isDelete() && saveData->isFF8())
+	if(!saveData->isDelete() && saveData->isFF8()) {
+		menu.setDefaultAction(menu.addAction(tr("Modifier..."), this, SLOT(edit())));
 		menu.addAction(tr("Exporter en sauv. PC..."), this, SLOT(exportPC()));
+	}
 	menu.addAction(tr("Nouvelle partie"), this, SLOT(newGame()));
 	if(!saveData->isDelete()) {
 		menu.addAction(tr("Vider"), this, SLOT(removeSave()));
-		menu.addAction(tr("Propriétés..."), this, SLOT(properties()));
+		QAction *action = menu.addAction(tr("Propriétés..."), this, SLOT(properties()));
+		if(!saveData->isFF8()) {
+			menu.setDefaultAction(action);
+		}
+
 	}
 	menu.exec(event->globalPos());
 }
@@ -282,6 +275,12 @@ void SaveWidget::emitDropped()
 	} else {
 		_savecard->moveDraggedSave(draggedID);
 	}
+}
+
+void SaveWidget::edit()
+{
+	if(saveData->isFF8() && !saveData->isDelete())
+		emit released(saveData);
 }
 
 void SaveWidget::exportPC()
@@ -384,7 +383,6 @@ void SaveWidget::restore()
 
 void SaveWidget::refreshIcon()
 {
-	qDebug() << "salut";
 	if(!saveData->isDelete()) {
 		repaint(width()/2 - 372 + 36 + 36, 43, 16, 16);
 	}
@@ -395,9 +393,9 @@ void SaveWidget::paintEvent(QPaintEvent *)
 	QPainter painter(this);
 	int xStart = (width() - sizeHint().width())/2;
 
-	if(!blackView) {
-		painter.translate(xStart, 0);
+	painter.translate(xStart, 0);
 
+	if(!blackView) {
 		painter.setBrush(QBrush(QPixmap(QString(":/images/menu-fond%1.png").arg(!saveData->isTheLastEdited() && !saveData->isDelete() ? "" : "2"))));
 		drawFrame(&painter, 672, 106);
 
@@ -443,6 +441,9 @@ void SaveWidget::paintEvent(QPaintEvent *)
 			drawFrame(&painter, 416, 44);
 
 			FF8Text::drawTextArea(&painter, QPoint(12, 12), saveData->descData().locationID<251 ? Data::locations.at(saveData->descData().locationID) : QString("??? (%1)").arg(saveData->descData().locationID));
+
+			painter.resetTransform();
+			painter.translate(xStart, 0);
 		}
 		else
 		{
@@ -462,22 +463,18 @@ void SaveWidget::paintEvent(QPaintEvent *)
 			}
 		}
 
-		painter.resetTransform();
-		painter.translate(xStart-36, 0);
-
 		if(!saveData->isFF8() && !saveData->isDelete()) {
-			painter.drawPixmap(72, 43, saveIcon->pixmap());
+			painter.drawPixmap(36, 43, saveIcon->pixmap());
 		}
-		if(saveData->isFF8() && saved) { //TODO: remove
-			painter.drawPixmap(692, 3, QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton).pixmap(16));
+		if(saveData->isModified() || saveData->wasModified()) {
+			QPen pen(saveData->isModified() ? Qt::red : Qt::green, 3);
+			painter.setPen(pen);
+			painter.drawLine(672, 2, 672, 102);
 		}
 		if(hovered) {
-			painter.drawPixmap(0, 16, QPixmap(":/images/cursor.png"));
+			painter.drawPixmap(-36, 16, QPixmap(":/images/cursor.png"));
 		}
 	}
-
-	painter.resetTransform();
-	painter.translate(xStart, 0);
 
 	if(hasDragEvent) {
 		QPen pen(Qt::white, 3);
@@ -487,12 +484,10 @@ void SaveWidget::paintEvent(QPaintEvent *)
 	} else if(hasDragEventTop && saveData->id() > 0) {
 		QPen pen(Qt::white, 4);
 		painter.setPen(pen);
-		painter.setBrush(QBrush());
 		painter.drawLine(0, 2, 672, 2);
 	} else if(hasDragEventBottom && saveData->id() < _savecard->getSaves().size()-1) {
 		QPen pen(Qt::white, 4);
 		painter.setPen(pen);
-		painter.setBrush(QBrush());
 		painter.drawLine(0, 104, 672, 104);
 	}
 

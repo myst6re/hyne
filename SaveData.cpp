@@ -19,12 +19,14 @@
 #include "SaveData.h"
 
 SaveData::SaveData()
-	: _freqValue(60), _id(0), _isFF8(false), _isDelete(false), _isTheLastEdited(false), _isVmp(false), _isModified(false)
+	: _freqValue(60), _id(0), _isFF8(false), _isDelete(false),
+	  _isTheLastEdited(false), _isVmp(false), _isModified(false), _wasModified(false)
 {
 }
 
 SaveData::SaveData(int id, const QByteArray &data, const QByteArray &MCHeader, bool isVmp)
-	: _freqValue(60), _id(id), _isFF8(false), _isDelete(false), _isTheLastEdited(false), _isVmp(isVmp), _isModified(false)
+	: _freqValue(60), _id(id), _isFF8(false), _isDelete(false),
+	  _isTheLastEdited(false), _isVmp(isVmp), _isModified(false), _wasModified(false)
 {
 	open(data, MCHeader);
 }
@@ -106,7 +108,8 @@ QByteArray SaveData::saveMCHeader()
 
 QByteArray SaveData::emptyMCHeader()
 {
-	return QByteArray("\xa1\x00\x00\x00\x00\x00\x00\x00\xff\xff", 10).append(QByteArray(118, '\x00'));
+	return QByteArray("\xa1\x00\x00\x00\x00\x00\x00\x00\xff\xff", 10)
+			.append(QByteArray(118, '\x00'));
 }
 
 void SaveData::setMCHeader(const QByteArray &MCHeader)
@@ -229,8 +232,16 @@ bool SaveData::isModified() const
 	return _isModified;
 }
 
+bool SaveData::wasModified() const
+{
+	return _wasModified;
+}
+
 void SaveData::setModified(bool modified)
 {
+	if(_isModified && !modified) {
+		_wasModified = true;
+	}
 	_isModified = modified;
 }
 

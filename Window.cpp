@@ -382,17 +382,15 @@ bool Window::exportAs()
 			psv = tr("PSN save (*.psv)");
 	Savecard::Type type = saves->type(), newType;
 
-	if(type == Savecard::PcDir || type == Savecard::Pc)
-		types = pc+";;"+ps+";;"+vgs+";;"+gme+";;"+vmp;
-	else if(type == Savecard::Psv)
-		types = psv+";;"+ps+";;"+vgs+";;"+gme+";;"+vmp;
-	else
-	{
-		types = ps+";;"+vgs+";;"+gme+";;"+vmp+";;"+pc;
-		if(type == Savecard::Vgs)		selectedFilter = vgs;
-		else if(type == Savecard::Gme)	selectedFilter = gme;
-		else if(type == Savecard::Vmp)	selectedFilter = vmp;
-	}
+	types = pc+";;"+ps+";;"+vgs+";;"+gme+";;"+vmp+";;"+psv;
+
+	if(type == Savecard::PcDir
+			|| type == Savecard::Pc)	selectedFilter = pc;
+	else if(type == Savecard::Psv)		selectedFilter = psv;
+	else if(type == Savecard::Vgs)		selectedFilter = vgs;
+	else if(type == Savecard::Gme)		selectedFilter = gme;
+	else if(type == Savecard::Vmp)		selectedFilter = vmp;
+	else								selectedFilter = ps;
 	
 	path = Config::value("savePath").isEmpty() ? saves->dirname() : Config::value("savePath")+"/";
 	if(saves->type() == Savecard::Undefined) {
@@ -447,7 +445,7 @@ bool Window::exportAs(Savecard::Type newType, const QString &path)
 			return false;
 		}
 	} else {
-		if(newType != Savecard::Pc)
+		if(newType != Savecard::Pc && newType != Savecard::Psv)
 		{
 			if(type == Savecard::PcDir || type == Savecard::Undefined) {
 				QList<int> selected_files = selectSavesDialog(true);
@@ -459,15 +457,19 @@ bool Window::exportAs(Savecard::Type newType, const QString &path)
 			else
 				saves->save(path, newType);
 		}
-		else // saveOne (PC)
+		else // saveOne (PC & PSV)
 		{
 			// Need selection by user
 			QList<int> selected_files = selectSavesDialog();
 			if(selected_files.isEmpty())	return false;
 			int id = selected_files.first();
-			saves->setName(QString("save%1").arg(id+1, 2, 10, QChar('0')));
-			saves->save2PC(id, path);
-			saves->setName(QString());
+			if(newType == Savecard::Pc) {
+				saves->setName(QString("save%1").arg(id+1, 2, 10, QChar('0')));
+				saves->save2PC(id, path);
+				saves->setName(QString());
+			} else {
+				saves->save2PSV(id, path);
+			}
 		}
 	}
 
@@ -554,7 +556,8 @@ void Window::saveView()
 	setWindowIcon(savWindowIcon);
 	setTitle();
 	setModified(saves->isModified());
-	saves->updateSaveWidget(currentSaveEdited);
+	saves->setIsTheLastEdited(currentSaveEdited);
+	saves->saveWidget(currentSaveEdited)->update();
 }
 
 void Window::save()
@@ -750,5 +753,12 @@ void Window::about()
 	button.move(8, about.height()-8-button.sizeHint().height());
 	connect(&button, SIGNAL(released()), &about, SLOT(close()));
 	
+	// Set default icon if needed
+	QStyle *style = about.style();
+	if(style->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons))
+		button.setIcon(style->standardIcon(QStyle::SP_DialogCloseButton, 0, &about));
+	if(style != QApplication::style()) // Propagate style
+		button.setStyle(style);
+
 	about.exec();
 }
