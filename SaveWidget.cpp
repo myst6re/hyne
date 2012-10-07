@@ -173,13 +173,13 @@ void SaveWidget::contextMenuEvent(QContextMenuEvent *event)
 {
 	QMenu menu(this);
 	if(!saveData->isDelete() && saveData->isFF8()) {
-		menu.setDefaultAction(menu.addAction(tr("Modifier..."), this, SLOT(edit())));
-		menu.addAction(tr("Exporter en sauv. PC..."), this, SLOT(exportPC()));
+		menu.setDefaultAction(menu.addAction(tr("&Modifier..."), this, SLOT(edit())));
+		menu.addAction(tr("&Exporter en sauv. PC..."), this, SLOT(exportPC()));
 	}
-	menu.addAction(tr("Nouvelle partie"), this, SLOT(newGame()));
+	menu.addAction(tr("&Nouvelle partie"), this, SLOT(newGame()));
 	if(!saveData->isDelete()) {
-		menu.addAction(tr("Vider"), this, SLOT(removeSave()));
-		QAction *action = menu.addAction(tr("Propriétés..."), this, SLOT(properties()));
+		menu.addAction(tr("&Vider"), this, SLOT(removeSave()));
+		QAction *action = menu.addAction(tr("&Propriétés..."), this, SLOT(properties()));
 		if(!saveData->isFF8()) {
 			menu.setDefaultAction(action);
 		}
@@ -467,9 +467,9 @@ void SaveWidget::paintEvent(QPaintEvent *)
 			painter.drawPixmap(36, 43, saveIcon->pixmap());
 		}
 		if(saveData->isModified() || saveData->wasModified()) {
-			QPen pen(saveData->isModified() ? Qt::red : Qt::green, 3);
+			QPen pen(saveData->isModified() ? QColor(0xd1,0x1d,0x1d) : QColor(0x1d,0xd1,0x1d), 3);
 			painter.setPen(pen);
-			painter.drawLine(672, 2, 672, 102);
+			painter.drawLine(670, 3, 670, 103);
 		}
 		if(hovered) {
 			painter.drawPixmap(-36, 16, QPixmap(":/images/cursor.png"));

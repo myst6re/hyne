@@ -749,7 +749,7 @@ void Window::about()
 	desc3.move(about.width()-8-desc3.sizeHint().width(), about.height()-8-desc3.sizeHint().height());
 	desc3.setFont(font);
 	
-	QPushButton button(tr("Fermer"), &about);
+	QPushButton button(tr("&Fermer"), &about);
 	button.move(8, about.height()-8-button.sizeHint().height());
 	connect(&button, SIGNAL(released()), &about, SLOT(close()));
 	

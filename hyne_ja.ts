@@ -675,7 +675,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Editor.cpp" line="35"/>
+        <location filename="Editor.cpp" line="44"/>
         <source>&amp;Annuler</source>
         <translation type="unfinished"></translation>
     </message>
@@ -958,25 +958,25 @@
         <translation>追加アイコン:</translation>
     </message>
     <message>
-        <location filename="HeaderDialog.cpp" line="276"/>
+        <location filename="HeaderDialog.cpp" line="278"/>
         <source>Enregistrer sous</source>
         <translatorcomment>Save As</translatorcomment>
         <translation>名前を付けて保存</translation>
     </message>
     <message>
-        <location filename="HeaderDialog.cpp" line="276"/>
+        <location filename="HeaderDialog.cpp" line="278"/>
         <source>Image PNG (*.png);;Image JPG (*.jpg *.jpeg);;Image BMP (*.bmp)</source>
         <translatorcomment>PNG image (*.png);;JPG image (*.jpg *.jpeg);;BMP image (*.bmp)</translatorcomment>
         <translation>PNG 画像 (*.png);;JPG 画像 (*.jpg *.jpeg);;BMP 画像 (*.bmp)</translation>
     </message>
     <message>
-        <location filename="HeaderDialog.cpp" line="283"/>
+        <location filename="HeaderDialog.cpp" line="285"/>
         <source>Erreur</source>
         <translatorcomment>Error</translatorcomment>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="HeaderDialog.cpp" line="283"/>
+        <location filename="HeaderDialog.cpp" line="285"/>
         <source>Format incorrect.</source>
         <translatorcomment>無効なフォーマット.</translatorcomment>
         <translation>無効なフォーマット。</translation>
@@ -1006,17 +1006,15 @@
         <translation>説明:</translation>
     </message>
     <message>
-        <location filename="HeaderDialog.cpp" line="109"/>
         <source>OK</source>
         <oldsource>Ok</oldsource>
         <translatorcomment>Ok</translatorcomment>
-        <translation>OK</translation>
+        <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="HeaderDialog.cpp" line="110"/>
         <source>Fermer</source>
         <translatorcomment>Close</translatorcomment>
-        <translation>閉じる</translation>
+        <translation type="obsolete">閉じる</translation>
     </message>
 </context>
 <context>
@@ -8707,28 +8705,28 @@ Diodon = Fastitocalon-F = フォカロルフェイク</translatorcomment>
 <context>
     <name>SaveWidget</name>
     <message>
-        <location filename="SaveWidget.cpp" line="171"/>
-        <source>Exporter en sauv. PC...</source>
+        <location filename="SaveWidget.cpp" line="177"/>
+        <source>&amp;Exporter en sauv. PC...</source>
+        <oldsource>Exporter en sauv. PC...</oldsource>
         <translatorcomment>Convert to PC Save...</translatorcomment>
-        <translation>PC セーブに変換...</translation>
+        <translation type="unfinished">PC セーブに変換...</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="172"/>
-        <location filename="SaveWidget.cpp" line="296"/>
+        <location filename="SaveWidget.cpp" line="314"/>
         <source>Nouvelle partie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="174"/>
-        <location filename="SaveWidget.cpp" line="331"/>
+        <location filename="SaveWidget.cpp" line="349"/>
         <source>Vider</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="175"/>
-        <source>Propriétés...</source>
+        <location filename="SaveWidget.cpp" line="182"/>
+        <source>&amp;Propriétés...</source>
+        <oldsource>Propriétés...</oldsource>
         <translatorcomment>Properties...</translatorcomment>
-        <translation>プロパティ...</translation>
+        <translation type="unfinished">プロパティ...</translation>
     </message>
     <message>
         <source>Enregistrer sous</source>
@@ -8736,72 +8734,88 @@ Diodon = Fastitocalon-F = フォカロルフェイク</translatorcomment>
         <translation type="obsolete">名前を付けて保存</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="283"/>
+        <location filename="SaveWidget.cpp" line="176"/>
+        <source>&amp;Modifier...</source>
+        <oldsource>Modifier...</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SaveWidget.cpp" line="179"/>
+        <source>&amp;Nouvelle partie</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SaveWidget.cpp" line="181"/>
+        <source>&amp;Vider</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="SaveWidget.cpp" line="301"/>
         <source>FF8 PC save (*)</source>
         <translatorcomment>FF8 PC save (*)</translatorcomment>
         <translation>FF8 PC セーブ (*)</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="283"/>
+        <location filename="SaveWidget.cpp" line="301"/>
         <source>Exporter</source>
         <translation>エクスポート</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="290"/>
+        <location filename="SaveWidget.cpp" line="308"/>
         <source>Échec</source>
         <translatorcomment>Failed</translatorcomment>
         <translation>失敗</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="290"/>
+        <location filename="SaveWidget.cpp" line="308"/>
         <source>Enregistrement échoué, vérifiez que le fichier cible n&apos;est pas utilisé.</source>
         <translatorcomment>Save failed, verify that the target file is not used.</translatorcomment>
         <translation>保存に失敗しました。ファイルが使用中でないか確認してください。</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="296"/>
+        <location filename="SaveWidget.cpp" line="314"/>
         <source>Tout le contenu de la sauvegarde sera remplacé par une nouvelle partie.
 Continuer ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="331"/>
+        <location filename="SaveWidget.cpp" line="349"/>
         <source>Tout le contenu de la sauvegarde sera vidé.
 Continuer ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="353"/>
+        <location filename="SaveWidget.cpp" line="371"/>
         <source>Sauvegarde supprimée</source>
         <translatorcomment>Save deleted</translatorcomment>
         <translation>削除済みのセーブ</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="353"/>
+        <location filename="SaveWidget.cpp" line="371"/>
         <source>Cette sauvegarde a été supprimée, voulez-vous tenter de la réparer ? (succès non garanti)</source>
         <translatorcomment>This save has been deleted, do you try to repair it? (Success not guaranteed)</translatorcomment>
         <translation>このセーブは削除されています。修復しますか？ (成功するとは限りません)</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="353"/>
+        <location filename="SaveWidget.cpp" line="371"/>
         <source>Oui</source>
         <translatorcomment>Yes</translatorcomment>
         <translation>はい</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="353"/>
+        <location filename="SaveWidget.cpp" line="371"/>
         <source>Non</source>
         <translatorcomment>No</translatorcomment>
         <translation>いいえ</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="401"/>
+        <location filename="SaveWidget.cpp" line="419"/>
         <source>NV%1</source>
         <translatorcomment>Lv.%1</translatorcomment>
         <translation>Lv.%1</translation>
     </message>
     <message>
-        <location filename="SaveWidget.cpp" line="431"/>
+        <location filename="SaveWidget.cpp" line="452"/>
         <source>Bloc Disponible</source>
         <translatorcomment>Unused Block</translatorcomment>
         <translation>未使用ファイルです</translation>
@@ -8817,12 +8831,12 @@ Continuer ?</source>
     </message>
     <message>
         <location filename="Savecard.cpp" line="87"/>
-        <location filename="Savecard.cpp" line="316"/>
-        <location filename="Savecard.cpp" line="321"/>
-        <location filename="Savecard.cpp" line="326"/>
-        <location filename="Savecard.cpp" line="349"/>
-        <location filename="Savecard.cpp" line="354"/>
-        <location filename="Savecard.cpp" line="365"/>
+        <location filename="Savecard.cpp" line="312"/>
+        <location filename="Savecard.cpp" line="317"/>
+        <location filename="Savecard.cpp" line="322"/>
+        <location filename="Savecard.cpp" line="345"/>
+        <location filename="Savecard.cpp" line="350"/>
+        <location filename="Savecard.cpp" line="361"/>
         <location filename="Savecard.cpp" line="457"/>
         <location filename="Savecard.cpp" line="461"/>
         <location filename="Savecard.cpp" line="486"/>
@@ -8835,8 +8849,11 @@ Continuer ?</source>
         <location filename="Savecard.cpp" line="772"/>
         <location filename="Savecard.cpp" line="778"/>
         <location filename="Savecard.cpp" line="799"/>
-        <location filename="Savecard.cpp" line="861"/>
-        <location filename="Savecard.cpp" line="867"/>
+        <location filename="Savecard.cpp" line="838"/>
+        <location filename="Savecard.cpp" line="844"/>
+        <location filename="Savecard.cpp" line="865"/>
+        <location filename="Savecard.cpp" line="927"/>
+        <location filename="Savecard.cpp" line="936"/>
         <source>Erreur</source>
         <oldsource>Error</oldsource>
         <translatorcomment>Error</translatorcomment>
@@ -8859,45 +8876,45 @@ Continuer ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="262"/>
+        <location filename="Savecard.cpp" line="263"/>
         <source>Fichier supprimé</source>
         <translatorcomment>File removed</translatorcomment>
         <translation>ファイルの削除</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="262"/>
+        <location filename="Savecard.cpp" line="263"/>
         <source>Le fichier &apos;%1&apos; a été supprimé par un programme externe !</source>
         <translatorcomment>The file &apos;%1&apos; has been removed by another program!</translatorcomment>
         <translation>ファイルe &apos;%1&apos; は他のプログラムによって削除されました !</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="266"/>
+        <location filename="Savecard.cpp" line="267"/>
         <source>Fichier modifié</source>
         <translatorcomment>File modified</translatorcomment>
         <translation>ファイルの変更</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="266"/>
+        <location filename="Savecard.cpp" line="267"/>
         <source>Le fichier &apos;%1&apos; a été modifié par un programme externe.</source>
         <translatorcomment>The file &apos;%1&apos; has been modified by another program.</translatorcomment>
         <translation>ファイル &apos;%1&apos; は他のプログラムによって変更されました。</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="321"/>
-        <location filename="Savecard.cpp" line="354"/>
+        <location filename="Savecard.cpp" line="317"/>
+        <location filename="Savecard.cpp" line="350"/>
         <location filename="Savecard.cpp" line="486"/>
         <source>Le fichier est protégé en lecture.</source>
         <translatorcomment>The file is read-protected.</translatorcomment>
         <translation>読み取り専用ファイル。</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="326"/>
+        <location filename="Savecard.cpp" line="322"/>
         <source>Fichier trop court</source>
         <translatorcomment>File too short</translatorcomment>
         <translation>ファイルが小さすぎます</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="365"/>
+        <location filename="Savecard.cpp" line="361"/>
         <source>Fichier invalide</source>
         <translatorcomment>Invalid file</translatorcomment>
         <translation>無効なファイル</translation>
@@ -8927,6 +8944,7 @@ Continuer ?</source>
         <location filename="Savecard.cpp" line="657"/>
         <location filename="Savecard.cpp" line="747"/>
         <location filename="Savecard.cpp" line="799"/>
+        <location filename="Savecard.cpp" line="865"/>
         <source>Impossible de créer un fichier temporaire</source>
         <translatorcomment>Can not create temporary file</translatorcomment>
         <translation>一時ファイルが作成できません</translation>
@@ -8934,7 +8952,8 @@ Continuer ?</source>
     <message>
         <location filename="Savecard.cpp" line="726"/>
         <location filename="Savecard.cpp" line="772"/>
-        <location filename="Savecard.cpp" line="861"/>
+        <location filename="Savecard.cpp" line="838"/>
+        <location filename="Savecard.cpp" line="927"/>
         <source>Impossible de supprimer le fichier !
 %1
 Échec de la sauvegarde.
@@ -8949,25 +8968,23 @@ Verify that the file is not used by another program.</translatorcomment>
 他のプログラムがファイルを使用していないか確認してください。</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="962"/>
+        <location filename="Savecard.cpp" line="1039"/>
         <source>Commentaire</source>
         <translatorcomment>Comment</translatorcomment>
         <translation>コメント</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="967"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="968"/>
         <source>Annuler</source>
         <translatorcomment>Cancel</translatorcomment>
-        <translation>キャンセル</translation>
+        <translation type="obsolete">キャンセル</translation>
     </message>
     <message>
-        <location filename="Savecard.cpp" line="316"/>
-        <location filename="Savecard.cpp" line="349"/>
+        <location filename="Savecard.cpp" line="312"/>
+        <location filename="Savecard.cpp" line="345"/>
         <location filename="Savecard.cpp" line="646"/>
         <source>Le fichier n&apos;existe plus.
 %1</source>
@@ -8994,7 +9011,8 @@ Voulez-vous l&apos;analyser pour obtenir le bon format ?</source>
     <message>
         <location filename="Savecard.cpp" line="732"/>
         <location filename="Savecard.cpp" line="778"/>
-        <location filename="Savecard.cpp" line="867"/>
+        <location filename="Savecard.cpp" line="844"/>
+        <location filename="Savecard.cpp" line="936"/>
         <source>Échec de la sauvegarde.</source>
         <translation>保存に失敗しました。</translation>
     </message>
@@ -9008,31 +9026,29 @@ Voulez-vous l&apos;analyser pour obtenir le bon format ?</source>
         <translation>セーブを選択してください :</translation>
     </message>
     <message>
-        <location filename="SelectSavesDialog.cpp" line="40"/>
-        <location filename="SelectSavesDialog.cpp" line="61"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="SelectSavesDialog.cpp" line="58"/>
+        <location filename="SelectSavesDialog.cpp" line="60"/>
         <source>Déplacez les éléments à la souris pour modifier l&apos;ordre des saves.</source>
         <translatorcomment>Move items with your cursor to change the order of saves.</translatorcomment>
         <translation>セーブのドラッグ移動で並び順を変更できます。</translation>
     </message>
     <message>
-        <location filename="SelectSavesDialog.cpp" line="79"/>
+        <location filename="SelectSavesDialog.cpp" line="83"/>
         <source>Save %1 (%2)</source>
         <translatorcomment>Save %1 (%2)</translatorcomment>
         <translation>セーブ %1 (%2)</translation>
     </message>
     <message>
-        <location filename="SelectSavesDialog.cpp" line="79"/>
+        <location filename="SelectSavesDialog.cpp" line="83"/>
         <source>vide</source>
         <translatorcomment>empty</translatorcomment>
         <translation>未使用</translation>
     </message>
     <message>
-        <location filename="SelectSavesDialog.cpp" line="103"/>
+        <location filename="SelectSavesDialog.cpp" line="107"/>
         <source>Sélectionnez jusqu&apos;à &lt;font color=&quot;%1&quot;&gt;15 saves&lt;/font&gt; :</source>
         <translatorcomment>Select up to &lt;font color=&quot;%1&quot;&gt;15 saves&lt;/font&gt;:</translatorcomment>
         <translation>最大 &lt;font color=&quot;%1&quot;&gt;15 のセーブ&lt;/font&gt;を選択 :</translation>
@@ -9569,6 +9585,7 @@ Voulez-vous l&apos;analyser pour obtenir le bon format ?</source>
     </message>
     <message>
         <location filename="Window.cpp" line="62"/>
+        <location filename="Window.cpp" line="752"/>
         <source>&amp;Fermer</source>
         <translatorcomment>&amp;Close</translatorcomment>
         <translation>閉じる(&amp;C)</translation>
@@ -9615,8 +9632,9 @@ Voulez-vous l&apos;analyser pour obtenir le bon format ?</source>
     </message>
     <message>
         <location filename="Window.cpp" line="112"/>
-        <source>?</source>
-        <translation>?</translation>
+        <source>&amp;?</source>
+        <oldsource>?</oldsource>
+        <translation>&amp;?</translation>
     </message>
     <message>
         <source>Par myst6re
@@ -9663,7 +9681,7 @@ myst6re@gmail.com
  - 日本語 : Asa (麻袋)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="264"/>
+        <location filename="Window.cpp" line="271"/>
         <source>Ouvrir</source>
         <translatorcomment>Open</translatorcomment>
         <translation>開く</translation>
@@ -9679,33 +9697,33 @@ myst6re@gmail.com
         <translation type="obsolete">PS MC ファイル (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="371"/>
+        <location filename="Window.cpp" line="378"/>
         <source>VGS memorycard (*.vgs *.mem)</source>
         <oldsource>PS memorycard (*.mcr;*.ddf;*.mc;*.mcd;*.mci;*.ps;*.psm)</oldsource>
         <translatorcomment>VGS memorycard (*.vgs *.mem)</translatorcomment>
         <translation>VGS MC ファイル (*.vgs *.mem)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="374"/>
+        <location filename="Window.cpp" line="381"/>
         <source>FF8 PC save (*)</source>
         <oldsource>FF8 PC save (save??)</oldsource>
         <translatorcomment>FF8 PC save (*)</translatorcomment>
         <translation>FF8 PC セーブ (*)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="403"/>
+        <location filename="Window.cpp" line="413"/>
         <source>Les formats VMP et PSV sont protégés, l&apos;enregistrement sera partiel et risque de ne pas fonctionner.
 Continuer quand même ?</source>
         <translation>VMP 形式, PSV 形式にはプロテクトがかけられています。不完全なセーブとなり、使用できなくなるかも知れません。
 それでもかまいませんか？</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="689"/>
+        <location filename="Window.cpp" line="708"/>
         <source>Erreur</source>
         <translation>エラー</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="689"/>
+        <location filename="Window.cpp" line="708"/>
         <source>Final Fantasy VIII n&apos;a pas pu être lancé.
 %1</source>
         <translation>Final Fantasy VIII の起動に失敗しました。.
@@ -9744,7 +9762,7 @@ Continuer quand même ?</source>
         <translation type="obsolete">PAL (50 fps)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="613"/>
+        <location filename="Window.cpp" line="632"/>
         <source>Français</source>
         <comment>Your translation language</comment>
         <translation>Japanese (日本語)</translation>
@@ -9768,7 +9786,7 @@ Continuer quand même ?</source>
     <message>
         <location filename="Window.cpp" line="49"/>
         <source>&amp;Propriétés...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">プロパティ...</translation>
     </message>
     <message>
         <location filename="Window.cpp" line="51"/>
@@ -9822,109 +9840,118 @@ Continuer quand même ?</source>
     </message>
     <message>
         <location filename="Window.cpp" line="216"/>
+        <source>Sans nom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="218"/>
         <source>1 sauvegarde</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="217"/>
+        <location filename="Window.cpp" line="219"/>
         <source>15 sauvegardes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="265"/>
+        <location filename="Window.cpp" line="272"/>
         <source>Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;Tous les fichiers (*)</source>
         <oldsource>Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard (*.psv);;Save state (*.000 *.001 *.002 *.003 *.004);;Tous les fichiers (*)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="280"/>
+        <location filename="Window.cpp" line="287"/>
         <source>Enregistrer ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="280"/>
+        <location filename="Window.cpp" line="287"/>
         <source>Voulez-vous enregistrer &apos;%1&apos; avant de fermer ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="280"/>
+        <location filename="Window.cpp" line="287"/>
         <source>fente</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="370"/>
+        <location filename="Window.cpp" line="377"/>
         <source>PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="372"/>
+        <location filename="Window.cpp" line="379"/>
         <source>GME memorycard (*.gme)</source>
         <oldsource>VGS memorycard (*.vgs;*.mem)</oldsource>
         <translatorcomment>GME memorycard (*.gme)</translatorcomment>
         <translation>GME MC ファイル (*.gme)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="373"/>
+        <location filename="Window.cpp" line="380"/>
         <source>PSN memorycard (*.vmp)</source>
         <translation>PSN MC ファイル (*.vmp)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="375"/>
+        <location filename="Window.cpp" line="382"/>
         <source>PSN save (*.psv)</source>
         <translation>PSN セーブ (*.psv)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="391"/>
+        <location filename="Window.cpp" line="401"/>
         <source>Exporter</source>
         <translatorcomment>Export</translatorcomment>
         <translation>エクスポート</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="403"/>
+        <location filename="Window.cpp" line="413"/>
         <source>Sauvegarde hasardeuse</source>
         <translatorcomment>Save hazardous</translatorcomment>
         <translation>運まかせで保存</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="403"/>
+        <location filename="Window.cpp" line="413"/>
         <source>Oui</source>
         <translatorcomment>Yes</translatorcomment>
         <translation>はい</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="403"/>
+        <location filename="Window.cpp" line="413"/>
         <source>Non</source>
         <translatorcomment>No</translatorcomment>
         <translation>いいえ</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="501"/>
+        <location filename="Window.cpp" line="535"/>
         <source>%1 : %2</source>
         <translatorcomment>%1: %2</translatorcomment>
         <translation>%1 : %2</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="666"/>
+        <location filename="Window.cpp" line="685"/>
         <source>Paramètres modifiés</source>
         <translatorcomment>Settings changed</translatorcomment>
         <translation>設定の変更</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="667"/>
+        <location filename="Window.cpp" line="686"/>
         <source>Relancez le programme pour que les paramètres prennent effet.</source>
         <translatorcomment>Restart the program for the settings to take effect.</translatorcomment>
         <translation>設定の変更を有効化するためにプログラムを再起動してください。</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="718"/>
+        <location filename="Window.cpp" line="722"/>
+        <source>À propos</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="738"/>
         <source>Par myst6re&lt;br/&gt;&lt;a href=&quot;https://sourceforge.net/projects/hyne/&quot;&gt;https://sourceforge.net/projects/hyne/&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;75% modifiable&lt;br/&gt;&lt;br/&gt;Merci à :&lt;br/&gt; - Qhimm&lt;br/&gt; - Cyberman&lt;br/&gt; - sithlord48&lt;br/&gt; - Aladore384&lt;br/&gt;&lt;br/&gt;Traducteurs :&lt;br/&gt; - Anglais : myst6re, Vgr&lt;br/&gt; - Japonais : Asa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="732"/>
         <source>Fermer</source>
         <translatorcomment>Close</translatorcomment>
-        <translation>閉じる</translation>
+        <translation type="obsolete">閉じる</translation>
     </message>
 </context>
 <context>
