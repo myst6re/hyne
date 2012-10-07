@@ -60,36 +60,37 @@
 #include "SpinBoxDelegate.h"
 
 SpinBoxDelegate::SpinBoxDelegate(QObject *parent)
-	: QItemDelegate(parent)
+	: QItemDelegate(parent), editor(0)
 {
 }
 
 QWidget *SpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &/*option*/, const QModelIndex &index) const
 {
-	int type = index.data(Qt::UserRole).toInt();
-	if(type == COMBOBOX_MAGICS || type == COMBOBOX_ITEMS || type == COMBOBOX_LOCATIONS || type == COMBOBOX_DRAW)
+	EditorType type = (EditorType)index.data(Qt::UserRole).toInt();
+	if(type == ComboBoxMagics || type == ComboBoxItems || type == ComboBoxLocations || type == ComboBoxDraw)
 	{
 		QComboBox *comboBox = new QComboBox(parent);
 		switch(type) {
-		case COMBOBOX_MAGICS:comboBox->addItems(Data::magic);break;
-		case COMBOBOX_ITEMS:
+		case ComboBoxMagics:comboBox->addItems(Data::magic);break;
+		case ComboBoxItems:
 			comboBox->addItem(Data::items.first());
 			for(int i=1 ; i<Data::items.size() ; ++i)
 				comboBox->addItem(QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(i))), Data::items.at(i));
 			for(int i=Data::items.size() ; i<256 ; ++i)
 				comboBox->addItem(QString::number(i));
 			break;
-		case COMBOBOX_LOCATIONS:
+		case ComboBoxLocations:
 			for(int i=0 ; i<256 ; ++i) {
 				comboBox->addItem(Data::getCardsLocation(i));
 			}
-		break;
-		case COMBOBOX_DRAW:
+			break;
+		case ComboBoxDraw:
 			comboBox->addItem(tr("Pleine"));
 			comboBox->addItem(tr("Moitié pleine"));
 			comboBox->addItem(tr("Vide"));
 			comboBox->addItem(tr("Épuisée"));
-		break;
+			break;
+		default:break;
 		}
 		comboBox->setCurrentIndex(index.data(Qt::UserRole+1).toInt());
 		QFont font;
@@ -98,14 +99,14 @@ QWidget *SpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewIt
 		return comboBox;
 	}
 	QSpinBox *spinBox = new QSpinBox(parent);
-	spinBox->setRange(0, type == SPINBOX_127 ? 127 : 255);
+	spinBox->setRange(0, type == SpinBox127 ? 127 : 255);
 	return spinBox;
 }
 
 void SpinBoxDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-	int type = index.data(Qt::UserRole).toInt();
-	if(type != COMBOBOX_MAGICS && type != COMBOBOX_ITEMS && type != COMBOBOX_LOCATIONS && type != COMBOBOX_DRAW)
+	EditorType type = (EditorType)index.data(Qt::UserRole).toInt();
+	if(type != ComboBoxMagics && type != ComboBoxItems && type != ComboBoxLocations && type != ComboBoxDraw)
 	{
 		QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
 		spinBox->setValue(index.data(Qt::EditRole).toInt());
@@ -114,21 +115,21 @@ void SpinBoxDelegate::setEditorData(QWidget *editor, const QModelIndex &index) c
 
 void SpinBoxDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
-	int type = index.data(Qt::UserRole).toInt();
-	if(type == COMBOBOX_MAGICS || type == COMBOBOX_ITEMS || type == COMBOBOX_LOCATIONS || type == COMBOBOX_DRAW)
+	EditorType type = (EditorType)index.data(Qt::UserRole).toInt();
+	if(type == ComboBoxMagics || type == ComboBoxItems || type == ComboBoxLocations || type == ComboBoxDraw)
 	{
 		QComboBox *comboBox = static_cast<QComboBox*>(editor);
 
 		model->setData(index, comboBox->currentText(), Qt::EditRole);
 		model->setData(index, comboBox->currentIndex(), Qt::UserRole+1);
 
-		if(type==COMBOBOX_ITEMS)
+		if(type == ComboBoxItems)
 		{
-			model->setData(index, 
+			model->setData(index,
 						   comboBox->currentIndex()!=0
-						   ? QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(comboBox->currentIndex())))
-							   : QIcon()
-							   , Qt::DecorationRole);
+					? QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(comboBox->currentIndex())))
+					: QIcon()
+					  , Qt::DecorationRole);
 		}
 	}
 	else
@@ -136,4 +137,31 @@ void SpinBoxDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, c
 		QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
 		model->setData(index, spinBox->value(), Qt::EditRole);
 	}
+}
+
+QSize SpinBoxDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+{
+	QSize editSize;
+
+	EditorType type = (EditorType)index.data(Qt::UserRole).toInt();
+	if(type == ComboBoxMagics || type == ComboBoxItems
+			|| type == ComboBoxLocations || type == ComboBoxDraw) {
+		editSize = QComboBox().sizeHint();
+	} else {
+		QSpinBox spinBox;
+		spinBox.setRange(0, type == SpinBox127 ? 127 : 255);
+		editSize = spinBox.sizeHint();
+	}
+
+	QSize size = QItemDelegate::sizeHint(option, index);
+
+	if(size.width() > editSize.width()) {
+		editSize.setWidth(size.width());
+	}
+
+	if(size.height() > editSize.height()) {
+		editSize.setHeight(size.height());
+	}
+
+	return editSize;
 }

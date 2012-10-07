@@ -56,7 +56,7 @@ void DrawPointEditor::buildWidget()
 		items.append(item);
 
 		item = new QStandardItem();
-		item->setData(COMBOBOX_DRAW, Qt::UserRole);
+		item->setData(SpinBoxDelegate::ComboBoxDraw, Qt::UserRole);
 		items.append(item);
 
 		drawE_model->appendRow(items);

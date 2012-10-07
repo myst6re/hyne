@@ -66,21 +66,21 @@
 #include <QSpinBox>
 #include "Data.h"
 
-#define SPINBOX_256				0
-#define COMBOBOX_MAGICS			1
-#define COMBOBOX_ITEMS			2
-#define SPINBOX_127				3
-#define COMBOBOX_LOCATIONS		4
-#define COMBOBOX_DRAW			5
-
 class SpinBoxDelegate : public QItemDelegate
 {
 	Q_OBJECT
 public:
+	enum EditorType {
+		SpinBox127, SpinBox256, ComboBoxMagics, ComboBoxItems, ComboBoxLocations, ComboBoxDraw
+	};
+
 	explicit SpinBoxDelegate(QObject *parent = 0);
-	QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-	void setEditorData(QWidget *editor, const QModelIndex &index) const;
-	void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
+	virtual QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+	virtual void setEditorData(QWidget *editor, const QModelIndex &index) const;
+	virtual void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
+	virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
+private:
+	QWidget *editor;
 };
 
 #endif

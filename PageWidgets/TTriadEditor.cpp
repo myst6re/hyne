@@ -114,7 +114,7 @@ QWidget *TTriadEditor::buildPage1()
 
 		standardItem = new QStandardItem();
 		standardItem->setData(i, Qt::UserRole+2);
-		standardItem->setData(SPINBOX_127, Qt::UserRole);
+		standardItem->setData(SpinBoxDelegate::SpinBox127, Qt::UserRole);
 		items.append(standardItem);
 
 		cardE_model->appendRow(items);
@@ -159,7 +159,7 @@ QWidget *TTriadEditor::buildPage1()
 
 		standardItem = new QStandardItem();
 		standardItem->setData(i, Qt::UserRole+2);
-		standardItem->setData(COMBOBOX_LOCATIONS, Qt::UserRole);
+		standardItem->setData(SpinBoxDelegate::ComboBoxLocations, Qt::UserRole);
 		items.append(standardItem);
 
 		cardE_model2->appendRow(items);

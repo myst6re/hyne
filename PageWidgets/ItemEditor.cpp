@@ -187,13 +187,13 @@ void ItemEditor::fillPage()
 		
 		QList<QStandardItem *> items;
 		standardItem = new QStandardItem(Data::items.value(itemID, QString::number(itemID)));
-		standardItem->setData(COMBOBOX_ITEMS, Qt::UserRole);
+		standardItem->setData(SpinBoxDelegate::ComboBoxItems, Qt::UserRole);
 		standardItem->setData(itemID);
 		standardItem->setIcon(itemID == 0 ? QIcon() : QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(itemID))));
 		items.append(standardItem);
 		
 		standardItem = new QStandardItem(QString::number(data->items.items[i] >> 8));
-		standardItem->setData(SPINBOX_256, Qt::UserRole);
+		standardItem->setData(SpinBoxDelegate::SpinBox256, Qt::UserRole);
 		items.append(standardItem);
 		itemE_model->appendRow(items);
 	}

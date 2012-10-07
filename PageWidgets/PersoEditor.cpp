@@ -298,11 +298,11 @@ QWidget *PersoEditor::buildPage3()
 	{
 		QList<QStandardItem *> items;
 		QStandardItem *standardItem = new QStandardItem();
-		standardItem->setData(COMBOBOX_MAGICS, Qt::UserRole);
+		standardItem->setData(SpinBoxDelegate::ComboBoxMagics, Qt::UserRole);
 		items.append(standardItem);
 
 		standardItem = new QStandardItem();
-		standardItem->setData(SPINBOX_256, Qt::UserRole);
+		standardItem->setData(SpinBoxDelegate::SpinBox256, Qt::UserRole);
 		items.append(standardItem);
 
 		magie_E_model->appendRow(items);
