@@ -35,6 +35,7 @@ void SaveData::open(const QByteArray &data, const QByteArray &MCHeader)
 {
 	_isDelete = _isFF8 = false;
 
+	_MCHeader = MCHeader;
 	setMCHeader(MCHeader);
 	if(data.isEmpty())	_isDelete = true;
 

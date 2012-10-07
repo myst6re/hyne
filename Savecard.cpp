@@ -461,22 +461,17 @@ bool Savecard::sstate_ePSXe()
 		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de décompresser le fichier."));
 		return false;
 	}
-	temp.seek(7);
-	QString serial(temp.read(11));
+//	temp.seek(7);
+//	QString serial(temp.read(11));
 
-	qDebug() << serial;
+//	qDebug() << serial;
+
+	temp.seek(0xBC42);
+	QByteArray MCHeader = temp.read(0x20);
 
 	temp.seek(0x779CC);
-	QByteArray data;
-	data.append("SC");
-	data.append(QByteArray(0x180, '\0'));
-	data.append(temp.read(0x139E));
 
-	if(data.size() != 0x139E + 0x182)	return false;
-
-	addSave(data);
-
-	return true;
+	return sstate(temp.read(0x139E), MCHeader);
 }
 
 bool Savecard::sstate_pSX()
@@ -487,15 +482,51 @@ bool Savecard::sstate_pSX()
 		return false;
 	}
 
+	f.seek(0xBD38);
+	QByteArray MCHeader = f.read(0x20);
+
 	f.seek(0x77AC2);
+
+	return sstate(f.read(0x139E), MCHeader);
+}
+
+bool Savecard::sstate(const QByteArray &fdata, const QByteArray &MCHeader)
+{
+	QByteArray squallIcon;
+
+	QFile iconFile(":/data/icon0.psico");
+	if(iconFile.open(QIODevice::ReadOnly)) {
+		squallIcon = iconFile.readAll();
+		iconFile.close();
+	}
+
 	QByteArray data;
 	data.append("SC");
-	data.append(QByteArray(0x180, '\0'));
-	data.append(f.read(0x139E));
+	data.append('\x11'); // icon (1 frame)
+	data.append('\x01'); // 1 save slot per save
+	data.append(QByteArray(0x4C, '\0')); // generic desc
+	data.append("\x01\x00CRD0", 6);
+	data.append(QByteArray(0x0A, '\0'));
+	data.append(squallIcon.leftJustified(288, '\0', true));
+	data.append("\x00\x00", 2); // CRC
+	data.append(fdata);
 
-	if(data.size() != 0x139E + 0x182)	return false;
+	if(data.size() != 0x139E + 0x182) {
+		QMessageBox::warning(this, tr("Erreur"), tr("Format invalide."));
+		return false;
+	}
 
-	addSave(data);
+	addSave(data, MCHeader);
+
+	if(!saves.isEmpty()) {
+		SaveData *saveData = saves.last();
+		if(!saveData->isFF8()) {
+			saves.removeLast();
+			delete saveData;
+			QMessageBox::warning(this, tr("Erreur"), tr("La sauvegarde trouvée n'est pas de Final Fantasy VIII."));
+			return false;
+		}
+	}
 
 	return true;
 }
@@ -872,16 +903,19 @@ bool Savecard::save2PS(QList<int> ids, const QString &path, Type newType)
 	if(abort)	return false;
 	temp.write(head);
 
-	if(_type==Psv) {
+	QByteArray MCHeader;
+
+	if(_type == Psv) {
 		tempSave.setMCHeader(true, saves.first()->MCHeaderCountry(), saves.first()->MCHeaderCode(), saves.first()->MCHeaderId());
+		MCHeader = tempSave.saveMCHeader();
 	}
 	else if(!saves.first()->hasMCHeader()) {
 		HeaderDialog dialog(&tempSave, this, HeaderDialog::CreateView);
 
-		if(dialog.exec()!=QDialog::Accepted) return false;
-	}
+		if(dialog.exec() != QDialog::Accepted) return false;
 
-	QByteArray MCHeader = tempSave.saveMCHeader();
+		MCHeader = tempSave.saveMCHeader();
+	}
 
 	temp.write("MC", 2);//MC
 	temp.write(QByteArray(125,'\x00'));
@@ -890,13 +924,19 @@ bool Savecard::save2PS(QList<int> ids, const QString &path, Type newType)
 	for(i=0 ; i<15 ; ++i)
 	{
 		// 128 bytes
-		if(i>=ids.size())
+		if(i >= ids.size())
 		{
 			temp.write(SaveData::emptyMCHeader());
 		}
 		else
 		{
-			temp.write(MCHeader.replace(26, 2, QString("%1").arg(i, 2, 10, QChar('0')).toLatin1()));
+			if(!MCHeader.isEmpty()) {
+				MCHeader = MCHeader.replace(26, 2, QString("%1").arg(i, 2, 10, QChar('0')).toLatin1());
+				MCHeader[127] = (char)SaveData::xorByte(MCHeader.constData());
+				temp.write(MCHeader);
+			} else {
+				temp.write(saves.at(ids.at(i))->saveMCHeader());
+			}
 		}
 	}
 
@@ -905,7 +945,7 @@ bool Savecard::save2PS(QList<int> ids, const QString &path, Type newType)
 	for(i=0 ; i<15 ; ++i)
 	{
 		// 8192 bytes
-		if(i>=ids.size() || !saves.at(ids.at(i))->isFF8())
+		if(i >= ids.size() || !saves.at(ids.at(i))->isFF8())
 		{
 			temp.write(QByteArray(SAVE_SIZE, '\x00'));
 		}
@@ -944,11 +984,16 @@ bool Savecard::save2PS(QList<int> ids, const QString &path, Type newType)
 		for(i=saves.size() ; i<15 ; ++i) {
 			addSave();
 		}
+		i=0;
 		foreach(SaveData *save, saves) {
 			if(save->isFF8()) {
-				save->setMCHeader(MCHeader);
-				save->setModified(false);
+				if(!MCHeader.isEmpty()) {
+					MCHeader = MCHeader.replace(26, 2, QString("%1").arg(i, 2, 10, QChar('0')).toLatin1());
+					save->setMCHeader(MCHeader);
+				}
 			}
+			save->setModified(false);
+			++i;
 		}
 	}
 

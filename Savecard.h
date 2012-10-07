@@ -92,6 +92,7 @@ private:
 	bool getFormatFromRaw();
 	bool sstate_ePSXe();
 	bool sstate_pSX();
+	bool sstate(const QByteArray &fdata, const QByteArray &MCHeader);
 	void directory();
 	void addSave(const QByteArray &data=QByteArray(), const QByteArray &header=QByteArray());
 	QByteArray header(QFile *srcFile, Type newType, bool saveAs, bool *abort);
