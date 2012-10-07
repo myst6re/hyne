@@ -422,6 +422,7 @@ public:
 	void setMCHeader(const QByteArray &);
 	void setMCHeader(bool exists, char country, const QString &code, const QString &id);
 	const SaveIconData &saveIcon() const;
+	void setSaveIcon(const SaveIconData &saveIconData);
 	const HEADER &descData() const;
 	const MAIN &mainData() const;
 	void setSaveData(const HEADER &, const MAIN &);

@@ -38,9 +38,9 @@ void SaveIconData::setNbFrames(quint8 nbFrames)
 	_nbFrames = nbFrames;
 }
 
-QByteArray SaveIconData::data() const
+const QByteArray &SaveIconData::data() const
 {
-	return _data.leftJustified(288, '\0', true);
+	return _data;
 }
 
 quint8 SaveIconData::nbFrames() const

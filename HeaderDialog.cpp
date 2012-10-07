@@ -80,16 +80,33 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	QLabel *desc_lbl = new QLabel(tr("Description :"));
 	desc_lbl->setTextFormat(Qt::PlainText);
 
+	QList<SaveIconData> saveIcons;
+	for(int i=0 ; i<16 ; ++i) {
+		QFile iconFile(QString(":/data/icon%1.psico").arg(i));
+		if(iconFile.open(QIODevice::ReadOnly)) {
+			saveIcons.append(SaveIconData(iconFile.readAll()));
+			iconFile.close();
+		}
+	}
+
 	QLabel *icon1_lbl = new QLabel(tr("Icône :"));
 	icon1_lbl->setTextFormat(Qt::PlainText);
-	icon1 = new QLabel();
+	icon1 = new QComboBox();
+	icon1->setIconSize(QSize(16, 16));
+	foreach(const SaveIconData &saveIcon, saveIcons) {
+		icon1->addItem(QIcon(saveIcon.icon()), QString(), saveIcon.data().left(160));
+	}
 	QPushButton *icon1_saveButton = new QPushButton();
 	QIcon saveIcon(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton));
 	icon1_saveButton->setIcon(saveIcon);
 	icon1_saveButton->setFlat(true);
 	icon2_lbl = new QLabel(tr("Icône additionnel :"));
 	icon2_lbl->setTextFormat(Qt::PlainText);
-	icon2 = new QLabel();
+	icon2 = new QComboBox();
+	icon2->setIconSize(QSize(32, 32));
+	foreach(const SaveIconData &saveIcon, saveIcons) {
+		icon2->addItem(QIcon(saveIcon.icon(0, true)), QString(), saveIcon.data().mid(160));
+	}
 	icon2_saveButton = new QPushButton();
 	icon2_saveButton->setIcon(saveIcon);
 	icon2_saveButton->setFlat(true);
@@ -150,7 +167,6 @@ void HeaderDialog::fill()
 
 	if(viewType == NormalView && !saveData->hasMCHeader()) {
 		group1->hide();
-		buttonSave->hide();
 	}
 	else {
 		// Fill group1 (MCHeader)
@@ -192,11 +208,33 @@ void HeaderDialog::fill()
 		}
 
 		bloc->setText(QString::number((quint8)saveData->header().at(3)));
-		SaveIcon *saveIcon = new SaveIcon(saveData->saveIcon());
-		icon1->setPixmap(saveIcon->pixmap());
-		connect(saveIcon, SIGNAL(nextIcon(QPixmap)), icon1, SLOT(setPixmap(QPixmap)));
+		QImage pix = saveData->saveIcon().icon().toImage();
+		int currentIndex = -1;
+		for(int i=0 ; i<icon1->count() ; ++i) {
+			if(icon1->itemIcon(i).pixmap(16).toImage() == pix) {
+				currentIndex = i;
+				break;
+			}
+		}
+		if(currentIndex == -1) {
+			icon1->addItem(QIcon(QPixmap::fromImage(pix)), QString(), QByteArray());
+			currentIndex = icon1->count()-1;
+		}
+		icon1->setCurrentIndex(currentIndex);
 		if(saveData->isFF8()) {
-			icon2->setPixmap(saveData->saveIcon().icon(0, true));
+			pix = saveData->saveIcon().icon(0, true).toImage();
+			currentIndex = -1;
+			for(int i=0 ; i<icon2->count() ; ++i) {
+				if(icon2->itemIcon(i).pixmap(32).toImage() == pix) {
+					currentIndex = i;
+					break;
+				}
+			}
+			if(currentIndex == -1) {
+				icon2->addItem(QIcon(QPixmap::fromImage(pix)), QString(), QByteArray());
+				currentIndex = icon1->count()-1;
+			}
+			icon2->setCurrentIndex(currentIndex);
 		}
 		else {
 			icon2_lbl->hide();
@@ -256,18 +294,34 @@ void HeaderDialog::setId(const QString &idStr)
 
 void HeaderDialog::accept()
 {
-	if(viewType == NormalView && !saveData->hasMCHeader()) {
-		reject();
-		return;
+	if(viewType != NormalView || saveData->hasMCHeader()) {
+		Config::setValue("lastCountry", country->currentIndex());
+		Config::setValue("lastGameCode", code->currentText());
+
+		// Edit MC Header
+		saveData->setMCHeader(exists->isChecked(),
+							  country->itemData(country->currentIndex()).toInt(),
+							  code->currentText(),
+							  id->isVisible() ? id->currentText() : QString());
 	}
 
-	Config::setValue("lastCountry", country->currentIndex());
-	Config::setValue("lastGameCode", code->currentText());
+	// Edit icon 1
+	SaveIconData saveIcon = saveData->saveIcon();
+	QByteArray itemData = icon1->itemData(icon1->currentIndex()).toByteArray();
+	if(!itemData.isEmpty()) {
+		saveIcon.setData(itemData + saveIcon.data().mid(itemData.size()));
+		saveData->setSaveIcon(saveIcon);
+	}
 
-	saveData->setMCHeader(exists->isChecked(),
-						  country->itemData(country->currentIndex()).toInt(),
-						  code->currentText(),
-						  id->isVisible() ? id->currentText() : QString());
+	if(saveData->isFF8()) {
+		// Edit icon 2
+		itemData = icon2->itemData(icon2->currentIndex()).toByteArray();
+		if(!itemData.isEmpty()) {
+			saveIcon.setData(saveIcon.data().left(160) + itemData);
+			qDebug() << saveIcon.data().size();
+			saveData->setSaveIcon(saveIcon);
+		}
+	}
 
 	QDialog::accept();
 }

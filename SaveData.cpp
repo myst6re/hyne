@@ -180,6 +180,14 @@ const SaveIconData &SaveData::saveIcon() const
 	return _icon;
 }
 
+void SaveData::setSaveIcon(const SaveIconData &saveIconData)
+{
+	if(_icon.data() != saveIconData.data()) {
+		_icon = saveIconData;
+		_isModified = true;
+	}
+}
+
 const HEADER &SaveData::descData() const
 {
 	return _descData;
@@ -368,7 +376,7 @@ QByteArray SaveData::save() const
 	ret.append("\x81\x46", 2);// :
 	ret.append(FF8Text::numToBiosText(Config::min(_mainData.misc2.game_time, _freqValue), 2));// MM
 	ret.append(_header.right(66));
-	ret.append(_icon.data());
+	ret.append(_icon.data().leftJustified(288, '\0', true));
 	ret.append((char *)&checksum, 2);
 	ret.append("\xFF\x08", 2);
 	ret.append((char *)&_descData, sizeof(_descData));

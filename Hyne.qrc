@@ -119,5 +119,21 @@
         <file>images/uk.png</file>
         <file>images/cards.png</file>
         <file>data/newGame</file>
+        <file>data/icon0.psico</file>
+        <file>data/icon1.psico</file>
+        <file>data/icon2.psico</file>
+        <file>data/icon3.psico</file>
+        <file>data/icon4.psico</file>
+        <file>data/icon5.psico</file>
+        <file>data/icon6.psico</file>
+        <file>data/icon7.psico</file>
+        <file>data/icon8.psico</file>
+        <file>data/icon9.psico</file>
+        <file>data/icon10.psico</file>
+        <file>data/icon11.psico</file>
+        <file>data/icon12.psico</file>
+        <file>data/icon13.psico</file>
+        <file>data/icon14.psico</file>
+        <file>data/icon15.psico</file>
     </qresource>
 </RCC>

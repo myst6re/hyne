@@ -362,8 +362,14 @@ void SaveWidget::properties()
 {
 	HeaderDialog dialog(saveData, this);
 
-	if(dialog.exec()==QDialog::Accepted)
+	if(dialog.exec() == QDialog::Accepted
+			&& saveData->isModified()) {
 		emit changed();
+		if(!saveData->isFF8() && !saveData->isDelete()) {
+			saveIcon->setData(saveData->saveIcon());
+			update(); // update icon
+		}
+	}
 }
 
 void SaveWidget::restore()
@@ -373,10 +379,9 @@ void SaveWidget::restore()
 
 	HeaderDialog dialog(saveData, this, HeaderDialog::RestoreView);
 
-	if(dialog.exec()==QDialog::Accepted)
+	if(dialog.exec() == QDialog::Accepted)
 	{
 		saveData->restore();
-
 		emit changed();
 	}
 }

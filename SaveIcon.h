@@ -29,7 +29,7 @@ public:
 	SaveIconData(const QByteArray &data, quint8 nbFrames=1);
 	void setData(const QByteArray &data);
 	void setNbFrames(quint8 nbFrames);
-	QByteArray data() const;
+	const QByteArray &data() const;
 	quint8 nbFrames() const;
 	QPixmap icon(int curFrame=0, bool showCW=false) const;
 private:
