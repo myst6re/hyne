@@ -134,7 +134,7 @@ void SaveData::setMCHeader(const QByteArray &MCHeader)
 
 void SaveData::setMCHeader(bool exists, char country, const QString &code, const QString &id)
 {
-	QByteArray id8, code10;
+	QByteArray id8, code10, MCHeader = _MCHeader;
 
 	if(id.isEmpty()) {
 		if(country == COUNTRY_EU)
@@ -152,22 +152,22 @@ void SaveData::setMCHeader(bool exists, char country, const QString &code, const
 	code10 = code.toLatin1().leftJustified(10, '\0', true);
 	id8 = id8.leftJustified(8, '\0', true);
 
-	if(_MCHeader.isEmpty()) {
-		_MCHeader.append(exists ? 0x51 : 0xa1);//1
-		_MCHeader.append("\x00\x00\x00\x00\x20\x00\x00\xff\xff", 9);//Main header (9)
-		_MCHeader.append('B');//1
-		_MCHeader.append(country);//1
-		_MCHeader.append(code10);//10
-		_MCHeader.append(id8);//8
+	if(MCHeader.isEmpty()) {
+		MCHeader.append(exists ? 0x51 : 0xa1);//1
+		MCHeader.append("\x00\x00\x00\x00\x20\x00\x00\xff\xff", 9);//Main header (9)
+		MCHeader.append('B');//1
+		MCHeader.append(country);//1
+		MCHeader.append(code10);//10
+		MCHeader.append(id8);//8
 	} else {
-		_MCHeader[0] = exists ? 0x51 : 0xa1;
-		_MCHeader[10] = 'B';
-		_MCHeader[11] = country;
-		_MCHeader.replace(12, 10, code10);
-		_MCHeader.replace(22, 8, id8);
+		MCHeader[0] = exists ? 0x51 : 0xa1;
+		MCHeader[10] = 'B';
+		MCHeader[11] = country;
+		MCHeader.replace(12, 10, code10);
+		MCHeader.replace(22, 8, id8);
 	}
 
-	setMCHeader(_MCHeader);// update infos
+	setMCHeader(MCHeader);// update infos
 }
 
 const QByteArray &SaveData::header() const
