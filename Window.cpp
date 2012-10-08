@@ -503,7 +503,7 @@ void Window::properties()
 
 	if(saveCount == 0)	return;
 	if(saveCount == 1) {
-		saves->saveWidget(saveID)->properties();
+		saves->saveWidget(firstSaveID)->properties();
 		return;
 	}
 
