@@ -27,7 +27,7 @@ Window::Window()
 	savWindowIcon = windowIcon();
 	setAcceptDrops(true);
 	
-	menuBar = new QMenuBar(this);
+	menuBar = new QMenuBar(0);
 	QMenu *menu;
 	QAction *action;
 
@@ -61,7 +61,7 @@ Window::Window()
 	menu->addSeparator();
 	actionClose = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogCloseButton), tr("&Fermer"), this, SLOT(closeFile()), QKeySequence::Close);
 	actionClose->setEnabled(false);
-	menu->addAction(tr("&Quitter"), this, SLOT(close()), QKeySequence::Quit);
+	menu->addAction(tr("&Quitter"), this, SLOT(close()), QKeySequence::Quit)->setMenuRole(QAction::QuitRole);
 	
 	/* MENU 'SLOT' */
 	
@@ -109,7 +109,7 @@ Window::Window()
 	
 	/* MENU '?' */
 	
-	menuBar->addAction(tr("&?"), this, SLOT(about()));
+	menuBar->addAction(tr("&?"), this, SLOT(about()))->setMenuRole(QAction::AboutRole);
 	
 	blackView = new QScrollArea(this);
 	blackView->setPalette(QPalette(Qt::black));
