@@ -37,8 +37,8 @@ Window::Window()
 
 	bool isInstalled = !Config::ff8Path().isEmpty();
 	
-	menu->addAction(tr("&Nouveau..."), this, SLOT(newFile()), QKeySequence::New);
-	menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("&Ouvrir..."), this, SLOT(open()), QKeySequence::Open);
+	QAction *actionNew = menu->addAction(tr("&Nouveau..."), this, SLOT(newFile()), QKeySequence::New);
+	QAction *actionOpen = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("&Ouvrir..."), this, SLOT(open()), QKeySequence::Open);
 	actionReload = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_BrowserReload), tr("&Recharger depuis le disque"), this, SLOT(reload()), QKeySequence::Refresh);
 	actionReload->setEnabled(false);
 	actionSave = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton), tr("&Enregistrer"), this, SLOT(save()), QKeySequence::Save);
@@ -65,10 +65,10 @@ Window::Window()
 	
 	/* MENU 'SLOT' */
 	
-	action = menuBar->addAction(tr("Fente &1"), this, SLOT(slot1()));
-	action->setEnabled(isInstalled);
-	action = menuBar->addAction(tr("Fente &2"), this, SLOT(slot2()));
-	action->setEnabled(isInstalled);
+	QAction *actionSlot1 = menuBar->addAction(tr("Fente &1"), this, SLOT(slot1()));
+	actionSlot1->setEnabled(isInstalled);
+	QAction *actionSlot2 = menuBar->addAction(tr("Fente &2"), this, SLOT(slot2()));
+	actionSlot2->setEnabled(isInstalled);
 	
 	/* MENU 'PARAMETRES' */
 	
@@ -111,11 +111,17 @@ Window::Window()
 	
 	menuBar->addAction(tr("&?"), this, SLOT(about()));
 	
-	blackView = new QAbstractScrollArea(this);
+	blackView = new QScrollArea(this);
 	blackView->setPalette(QPalette(Qt::black));
 	blackView->setFrameShape(QFrame::NoFrame);
-//	blackView->setAlignment(Qt::AlignCenter);
-//	blackView->setWidget(new StartWidget(blackView));
+	blackView->setAlignment(Qt::AlignCenter);
+	StartWidget *startWidget = new StartWidget(blackView);
+	blackView->setWidget(startWidget);
+
+	startWidget->addAction(actionNew);
+	startWidget->addAction(actionOpen);
+	startWidget->addAction(actionSlot1);
+	startWidget->addAction(actionSlot2);
 
 	editor = new Editor(this);
 	editor->hide();

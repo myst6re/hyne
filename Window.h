@@ -75,7 +75,7 @@ private:
 	QMenu *menuRecent, *menuFrame, *menuLang;
 	QStackedLayout *stackedLayout;
 	Savecard *saves;
-	QAbstractScrollArea *blackView;
+	QScrollArea *blackView;
 	Editor *editor;
 	quint8 currentSaveEdited;
 	bool isPCSlot;

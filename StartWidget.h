@@ -22,18 +22,29 @@
 #include "FF8Text.h"
 #include "SaveWidget.h"
 
+#define OPTION_HEIGHT	42
+
 class StartWidget : public QWidget
 {
 	Q_OBJECT
 public:
 	explicit StartWidget(QWidget *parent = 0);
-	
+	void addAction(QAction *action);
+	QAction *addAction(const QString &text);
+	QAction *addAction(const QString &text, const QObject *receiver, const char *method);
+	void setCursorPosition(int actionID);
 signals:
-	
+	void actionTriggered(QAction *action);
 public slots:
 	
 protected:
-	virtual void paintEvent(QPaintEvent *);
+	virtual void paintEvent(QPaintEvent *event);
+	virtual void mouseMoveEvent(QMouseEvent *event);
+	virtual void mouseReleaseEvent(QMouseEvent *event);
+	virtual void leaveEvent(QEvent *event);
+private:
+	int actionID(const QPoint &pos) const;
+	int _cursorPosition;
 };
 
 #endif // STARTWIDGET_H
