@@ -198,6 +198,93 @@ QByteArray FF8Text::toByteArray(const QString &string, bool jp)
 			}
 		}
 		if(jp) {
+			// Latin conversion
+			if(comp.isLetter()) {
+				int shift;
+				if(comp.isLower()) {
+					shift = comp.toAscii() - 'a';
+				} else {
+					shift = comp.toAscii() - 'A';
+				}
+				ff8str.append((char)(0xCE + shift));
+				goto end;
+			}
+
+			if(comp.isDigit()) {
+				int shift = comp.toAscii() - '0';
+				ff8str.append((char)(0x53 + shift));
+				goto end;
+			}
+
+			if(comp == ' ') {
+				ff8str.append((char)(0x5F));
+				goto end;
+			}
+			if(comp == '!') {
+				ff8str.append((char)(0xE8));
+				goto end;
+			}
+			if(comp == '?') {
+				ff8str.append((char)(0xE9));
+				goto end;
+			}
+			if(comp == '+') {
+				ff8str.append((char)(0xEB));
+				goto end;
+			}
+			if(comp == '-') {
+				ff8str.append((char)(0xEC));
+				goto end;
+			}
+			if(comp == '=') {
+				ff8str.append((char)(0xED));
+				goto end;
+			}
+			if(comp == '*') {
+				ff8str.append((char)(0xEE));
+				goto end;
+			}
+			if(comp == '/') {
+				ff8str.append((char)(0xEF));
+				goto end;
+			}
+			if(comp == '%') {
+				ff8str.append((char)(0xF0));
+				goto end;
+			}
+			if(comp == '&') {
+				ff8str.append((char)(0xF1));
+				goto end;
+			}
+			if(comp == '(') {
+				ff8str.append((char)(0xF4));
+				goto end;
+			}
+			if(comp == ')') {
+				ff8str.append((char)(0xF5));
+				goto end;
+			}
+			if(comp == '·') {
+				ff8str.append((char)(0xFA));
+				goto end;
+			}
+			if(comp == '.') {
+				ff8str.append((char)(0xFB));
+				goto end;
+			}
+			if(comp == ',') {
+				ff8str.append((char)(0xFC));
+				goto end;
+			}
+			if(comp == ':') {
+				ff8str.append((char)(0xFD));
+				goto end;
+			}
+			if(comp == '~') {
+				ff8str.append((char)(0xFE));
+				goto end;
+			}
+
 			for(table=2 ; table<5 ; ++table)
 			{
 				for(i=0x20 ; i<=0xff ; ++i)
