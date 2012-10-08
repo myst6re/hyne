@@ -318,7 +318,6 @@ void HeaderDialog::accept()
 		itemData = icon2->itemData(icon2->currentIndex()).toByteArray();
 		if(!itemData.isEmpty()) {
 			saveIcon.setData(saveIcon.data().left(160) + itemData);
-			qDebug() << saveIcon.data().size();
 			saveData->setSaveIcon(saveIcon);
 		}
 	}

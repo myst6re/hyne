@@ -464,8 +464,6 @@ bool Savecard::sstate_ePSXe()
 //	temp.seek(7);
 //	QString serial(temp.read(11));
 
-//	qDebug() << serial;
-
 	temp.seek(0xBC42);
 	QByteArray MCHeader = temp.read(0x20);
 
