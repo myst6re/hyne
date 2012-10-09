@@ -1,29 +1,18 @@
-hyne (1.6_package0) natty; urgency=low
+hyne (1.6.1) precise; urgency=low
 
-  * synced to 1.6 
+  * Add VM1 support
+  * Can export in PSV format (but like VMP, without breaking the protection)
+  * Can open a save from raw data
+  * Can replace a save icon by another from FF8
+  * Can create a new file and create a "new game" save
+  * New editor section: "party" with some data from the misc editor and a model position editor
+  * Introduction menu
+  * Can open a save state from ePSXe (*.000, *.001...) and from pSX (*.psv)
+  * It is now possible to Drag & Drop a save to modify the save order or export a save into another instance of Hyne
+  * If the language is not detected on your machine, a dialog will allow you to choose your language
+  * The save mechanism is modified: the file is saved only if you choose "save" in the menu (or by pressing Ctrl+S, etc...)
+  * Fix a bug when convert a save to PlayStation memory card (*.mcr file for example)
+  * Some improvements to the ergonomics of the GUI
 
- -- Chris Rizzitello <sithlord48@gmail.com>  Fri, 3 Feb 2012 19:01:32 -0400
-
-hyne (1.5.1) natty; urgency=low
-
-  * synced to 1.5.1 
-
- -- Chris Rizzitello <sithlord48@gmail.com>  Sat, 24 Sep 2011 11:20:39 -0400
-
-hyne (1.5-package1) natty; urgency=low
-
-  * Fixed Missing Desktop file 
-
- -- Chris Rizzitello <sithlord48@gmail.com>  Tue, 20 Sep 2011 21:43:09 -0400
-
-hyne (1.5) lucid; urgency=low
-
-  * Synced To hyne 1.5  
-
- -- Chris Rizzitello <sithlord48@gmail.com>  Tue, 20 Sep 2011 18:47:09 -0400
-
-hyne (1.4-package1) lucid; urgency=low
-
-  * Initial packaging 
-
- -- Chris Rizzitello <sithlord48@gmail.com>  Fri, 03 Jun 2011 20:59:26 -0400
+ -- Chris Rizzitello <sithlord48@gmail.com>  Mon, 8 Oct 2012 15:42:37 -0400
+ 
