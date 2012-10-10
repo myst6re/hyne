@@ -35,7 +35,7 @@ public:
 	explicit Window();
 	virtual ~Window();
 
-	void openFile(const QString &path);
+	void openFile(const QString &path, bool isPCSlot=false);
 	static QString chooseLangDialog();
 	static QStringList availableLanguages();
 public slots:
@@ -71,20 +71,17 @@ private:
 	QList<int> selectSavesDialog(bool multiSelection=false);
 	
 	QMenuBar *menuBar;
-	QAction *actionReload, *actionSave, *actionSaveAs, *actionProperties, *actionClose, *actionMode, *actionFont;
+	QAction *actionReload, *actionSave, *actionSaveAs;
+	QAction *actionProperties, *actionClose, *actionMode, *actionFont;
 	QMenu *menuRecent, *menuFrame, *menuLang;
 	QStackedLayout *stackedLayout;
 	Savecard *saves;
-	QScrollArea *blackView;
+	StartWidget *startWidget;
 	Editor *editor;
+
 	quint8 currentSaveEdited;
-	bool isPCSlot;
-	bool isOpen;
-	bool firstShow;
-	QIcon savWindowIcon;
 
 protected:
-	virtual void showEvent(QShowEvent *event);
 	virtual void closeEvent(QCloseEvent *event);
 	virtual void dragEnterEvent(QDragEnterEvent *event);
 	virtual void dropEvent(QDropEvent *event);

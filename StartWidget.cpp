@@ -20,14 +20,12 @@
 StartWidget::StartWidget(QWidget *parent) :
 	QWidget(parent), _cursorPosition(-1)
 {
-	setFixedSize(38 + 250 + 38, 0);
 	setMouseTracking(true);
 }
 
 void StartWidget::addAction(QAction *action)
 {
 	QWidget::addAction(action);
-	setFixedHeight(actions().size() * OPTION_HEIGHT);
 }
 
 QAction *StartWidget::addAction(const QString &text)
@@ -47,14 +45,18 @@ QAction *StartWidget::addAction(const QString &text, const QObject *receiver, co
 void StartWidget::setCursorPosition(int actionID)
 {
 	_cursorPosition = actionID;
-	update(0, 12, 48, 30 + actions().size() * OPTION_HEIGHT);
+	update(actionsPosition().x()-38, actionsPosition().y()+12, 48, 30 + actions().size() * OPTION_HEIGHT);
 }
 
 int StartWidget::actionID(const QPoint &pos) const
 {
-	if(pos.x() < 38 || pos.x() > 38 + 250)	return -1;
+	if(pos.x() < actionsPosition().x()
+			|| pos.x() >= actionsPosition().x() + sizeHint().width()
+			|| pos.y() < actionsPosition().y()
+			|| pos.y() >= actionsPosition().y() + sizeHint().height())
+		return -1;
 
-	return pos.y() / OPTION_HEIGHT;
+	return (pos.y() - actionsPosition().y()) / OPTION_HEIGHT;
 }
 
 void StartWidget::paintEvent(QPaintEvent *)
@@ -66,8 +68,12 @@ void StartWidget::paintEvent(QPaintEvent *)
 	int actionID = 0;
 	QPainter painter(this);
 
+	painter.setBrush(Qt::black);
+	painter.drawRect(0, 0, width(), height());
+
+	painter.translate(actionsPosition());
+
 	painter.setBrush(QPixmap(QString(":/images/menu-fond%1.png").arg(enabledState ? "" : "2")));
-	painter.translate(36, 0);
 
 	foreach(const QAction *act, actions()) {
 		if(act->isEnabled() != enabledState) {
@@ -78,7 +84,7 @@ void StartWidget::paintEvent(QPaintEvent *)
 		QString text = act->text();
 		text.replace(remAnd, "\\1");
 
-		SaveWidget::drawFrame(&painter, 250, OPTION_HEIGHT);
+		SaveWidget::drawFrame(&painter, OPTION_WIDTH, OPTION_HEIGHT);
 		FF8Text::drawTextArea(&painter, QPoint(12, 12), text, 0);
 
 		if(actionID == _cursorPosition) {

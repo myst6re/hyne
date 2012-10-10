@@ -22,6 +22,7 @@
 #include "FF8Text.h"
 #include "SaveWidget.h"
 
+#define OPTION_WIDTH	250
 #define OPTION_HEIGHT	42
 
 class StartWidget : public QWidget
@@ -33,6 +34,8 @@ public:
 	QAction *addAction(const QString &text);
 	QAction *addAction(const QString &text, const QObject *receiver, const char *method);
 	void setCursorPosition(int actionID);
+	inline virtual QSize sizeHint() const { return QSize(OPTION_WIDTH, OPTION_HEIGHT * actions().size()); }
+	inline virtual QSize minimumSizeHint() const { return sizeHint(); }
 signals:
 	void actionTriggered(QAction *action);
 public slots:
@@ -43,6 +46,7 @@ protected:
 	virtual void mouseReleaseEvent(QMouseEvent *event);
 	virtual void leaveEvent(QEvent *event);
 private:
+	QPoint actionsPosition() const { return QPoint((width() - sizeHint().width()) / 2, (height() - sizeHint().height()) / 2); }
 	int actionID(const QPoint &pos) const;
 	int _cursorPosition;
 };

@@ -18,13 +18,12 @@
 
 #include "Window.h"
 
-Window::Window()
-	: QWidget(), currentSaveEdited(0), isPCSlot(false), isOpen(false), firstShow(true)
+Window::Window() :
+	QWidget(), saves(0), currentSaveEdited(0)
 {
 	setTitle();
 	setMinimumSize(768, 502);
 	resize(768, 502);
-	savWindowIcon = windowIcon();
 	setAcceptDrops(true);
 	
 	menuBar = new QMenuBar(0);
@@ -111,13 +110,7 @@ Window::Window()
 	
 	menuBar->addAction(tr("&?"), this, SLOT(about()))->setMenuRole(QAction::AboutRole);
 	
-	blackView = new QScrollArea(this);
-	blackView->setPalette(QPalette(Qt::black));
-	blackView->setFrameShape(QFrame::NoFrame);
-	blackView->setAlignment(Qt::AlignCenter);
-	StartWidget *startWidget = new StartWidget(blackView);
-	blackView->setWidget(startWidget);
-
+	startWidget = new StartWidget(this);
 	startWidget->addAction(actionNew);
 	startWidget->addAction(actionOpen);
 	startWidget->addAction(actionSlot1);
@@ -129,14 +122,10 @@ Window::Window()
 	connect(editor, SIGNAL(accepted()), SLOT(saveView()));
 	connect(editor, SIGNAL(rejected()), SLOT(saveView()));
 	
-	stackedLayout = new QStackedLayout;
-	stackedLayout->addWidget(blackView);
+	stackedLayout = new QStackedLayout(this);
+	stackedLayout->setMenuBar(menuBar);
+	stackedLayout->addWidget(startWidget);
 	stackedLayout->addWidget(editor);
-	
-	QVBoxLayout *gridLayout = new QVBoxLayout(this);
-	gridLayout->setMenuBar(menuBar);
-	gridLayout->addLayout(stackedLayout, 1);
-	gridLayout->setContentsMargins(QMargins());
 
 	restoreGeometry(Config::valueVar("geometry").toByteArray());
 }
@@ -148,18 +137,9 @@ Window::~Window()
 	Config::sync();// flush data
 }
 
-void Window::showEvent(QShowEvent *)
-{
-	if(firstShow && !windowState().testFlag(Qt::WindowMaximized)) {
-		QPoint screenCenter = QApplication::desktop()->screenGeometry(this).center();
-		move(screenCenter.x() - width()/2, screenCenter.y() - height()/2);
-	}
-	firstShow = false;
-}
-
 void Window::closeEvent(QCloseEvent *event)
 {
-	if(stackedLayout->currentWidget()==editor) {
+	if(stackedLayout->currentWidget() == editor) {
 		saveView();
 		event->ignore();
 	}
@@ -172,14 +152,14 @@ void Window::closeEvent(QCloseEvent *event)
 void Window::dragEnterEvent(QDragEnterEvent *event)
 {
 	if(event->mimeData()->hasUrls() &&
-			(stackedLayout->currentWidget()==blackView
-			 || stackedLayout->currentWidget()==saves))
+			(stackedLayout->currentWidget() == startWidget
+			 || (saves && stackedLayout->currentWidget() == saves)))
 		event->acceptProposedAction();
 }
 
 void Window::dropEvent(QDropEvent *event)
 {
-	if(stackedLayout->currentWidget()==editor)	return;
+	if(stackedLayout->currentWidget() == editor)	return;
 
 	const QMimeData *mimeData = event->mimeData();
 
@@ -191,7 +171,6 @@ void Window::dropEvent(QDropEvent *event)
 			if(!path.startsWith(QDir::rootPath()))
 				path = path.mid(1);
 			if(path.startsWith(QDir::rootPath())) {
-				this->isPCSlot = false;
 				openFile(path);
 			}
 		}
@@ -203,7 +182,7 @@ void Window::dropEvent(QDropEvent *event)
 void Window::setTitle(const bool editor)
 {
 	setWindowTitle(PROG_NAME %
-				   (!isOpen ? QString() : " - [*]" % saves->path()) %
+				   (!saves ? QString() : " - [*]" % saves->path()) %
 				   (editor ? tr(" - save %1").arg(currentSaveEdited+1, 2, 10, QChar('0')) : QString())
 				   );
 }
@@ -259,6 +238,7 @@ void Window::newFile()
 void Window::open(OpenType slot)
 {
 	QString path = Config::ff8Path();
+	bool isPCSlot;
 
 	if(slot==Slot1 || slot==Slot2)
 	{
@@ -266,7 +246,7 @@ void Window::open(OpenType slot)
 
 		path.append(QString("/Save/Slot%1/").arg((int)slot));
 
-		this->isPCSlot = true;
+		isPCSlot = true;
 	}
 	else
 	{
@@ -281,15 +261,15 @@ void Window::open(OpenType slot)
 		int index = path.lastIndexOf('/');
 		Config::setValue("loadPath", index == -1 ? path : path.left(index));
 
-		this->isPCSlot = false;
+		isPCSlot = false;
 	}
 	
-	openFile(path);
+	openFile(path, isPCSlot);
 }
 
 bool Window::closeFile(bool quit)
 {
-	if(isOpen && saves->isModified()) {
+	if(saves && saves->isModified()) {
 		QMessageBox::StandardButton b = QMessageBox::question(this, tr("Enregistrer ?"), tr("Voulez-vous enregistrer '%1' avant de fermer ?").arg(saves->type()==Savecard::PcDir ? tr("fente") : saves->name()), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
 		switch(b) {
 		case QMessageBox::Yes:
@@ -309,16 +289,16 @@ bool Window::closeFile(bool quit)
 	return true;
 }
 
-void Window::openFile(const QString &path)
+void Window::openFile(const QString &path, bool isPCSlot)
 {
 	if(!closeFile())	return;
 
-	saves = new Savecard(path, this, this->isPCSlot);
+	saves = new Savecard(path, this, isPCSlot);
 	connect(saves, SIGNAL(modified()), SLOT(setModified()));
 
 	if(!saves->ok())
 	{
-		closeFile();
+		setIsOpen(false);
 	}
 	else
 	{
@@ -335,7 +315,6 @@ void Window::openFile(const QString &path)
 void Window::setIsOpen(bool open)
 {
 	if(open) {
-		isOpen = true;
 		stackedLayout->addWidget(saves);
 		stackedLayout->setCurrentWidget(saves);
 		actionSaveAs->setEnabled(true);
@@ -345,13 +324,14 @@ void Window::setIsOpen(bool open)
 
 		setTitle();
 	} else {
-		stackedLayout->setCurrentWidget(blackView);
+		stackedLayout->setCurrentWidget(startWidget);
 		editor->hide();
 
-		if(isOpen)
+		if(saves)
 		{
-			isOpen = false;
+			stackedLayout->removeWidget(saves);
 			saves->deleteLater();
+			saves = 0;
 		}
 
 		currentSaveEdited = 0;
@@ -368,13 +348,12 @@ void Window::setIsOpen(bool open)
 
 void Window::openRecentFile(QAction *action)
 {
-	this->isPCSlot = false;
 	openFile( Config::recentFile(action->data().toUInt()) );
 }
 
 void Window::reload()
 {
-	if(isOpen) openFile(QString(saves->path()));
+	if(saves) openFile(QString(saves->path()));
 }
 
 bool Window::exportAs()
@@ -486,7 +465,7 @@ bool Window::exportAs(Savecard::Type newType, const QString &path)
 
 void Window::properties()
 {
-	if(!isOpen)		return;
+	if(!saves)		return;
 
 	int saveCount = 0, firstSaveID = -1, saveID = 0;
 
@@ -559,7 +538,7 @@ void Window::saveView()
 	stackedLayout->setCurrentWidget(saves);
 	editor->hide();
 	menuBar->show();
-	setWindowIcon(savWindowIcon);
+	setWindowIcon(qApp->windowIcon());
 	setTitle();
 	setModified(saves->isModified());
 	saves->setIsTheLastEdited(currentSaveEdited);
@@ -589,8 +568,7 @@ void Window::save()
 void Window::mode(bool mode)
 {
 	Config::setValue("mode", mode);
-	if(this->isOpen)
-	{
+	if(saves) {
 		editor->updateMode(mode);
 	}
 }
@@ -608,8 +586,7 @@ void Window::changeFrame(QAction *action)
 		act->setChecked(false);
 	action->setChecked(true);
 
-	if(this->isOpen)
-	{
+	if(saves) {
 		editor->updateTime();
 		saves->updateSaveWidgets();
 	}
@@ -619,9 +596,10 @@ void Window::font(bool font)
 {
 	Config::setValue("font", font ? "hr" : "");
 	FF8Text::fontImage = QImage(QString(":/images/font%1.png").arg(font ? "hr" : ""));
-	if(this->isOpen)
-	{
+	if(saves) {
 		saves->updateSaveWidgets();
+	} else {
+		startWidget->update();
 	}
 }
 
