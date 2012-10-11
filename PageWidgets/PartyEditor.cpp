@@ -43,7 +43,7 @@ void PartyEditor::buildWidget()
 		comboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 		comboBox->addItem("-", 255);
 		for(j=0 ; j<8 ; ++j) {
-			comboBox->addItem(icons.at(j), Data::names.at(j), j);
+			comboBox->addItem(icons.at(j), Data::names().at(j), j);
 		}
 		partyGBL->addWidget(comboBox, 0, i+1);
 
@@ -51,7 +51,7 @@ void PartyEditor::buildWidget()
 		comboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 		comboBox->addItem("-", 255);
 		for(j=0 ; j<11 ; ++j) {
-			comboBox->addItem(icons.at(j), Data::names.at(j), j);
+			comboBox->addItem(icons.at(j), Data::names().at(j), j);
 		}
 		partyGBL->addWidget(comboBox, 1, i+1);
 	}

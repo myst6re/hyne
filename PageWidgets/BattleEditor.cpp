@@ -93,9 +93,9 @@ void BattleEditor::buildWidget()
 	firstdrawE_list->setUniformRowHeights(true);
 
 	QTreeWidgetItem *item;
-	int i, size = Data::magic.size();
+	int i, size = Data::magics().size();
 	for(i=1 ; i<size ; ++i) {
-		item = new QTreeWidgetItem(QStringList(Data::magic.at(i)));
+		item = new QTreeWidgetItem(QStringList(Data::magics().at(i)));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstdrawE_list->addTopLevelItem(item);
 	}
@@ -116,7 +116,7 @@ void BattleEditor::buildWidget()
 	firstscanE_list->setUniformRowHeights(true);
 
 	for(i=SQUALL ; i<=WARD ; ++i) {
-		item = new QTreeWidgetItem(QStringList(Data::names.at(i)));
+		item = new QTreeWidgetItem(QStringList(Data::names().at(i)));
 		item->setIcon(0, QIcon(QString(":/images/icons/perso%1.png").arg(i)));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstscanE_list->addTopLevelItem(item);
@@ -128,13 +128,13 @@ void BattleEditor::buildWidget()
 		firstscanE_list->addTopLevelItem(item);
 	}
 
-	foreach(QString ennemy, Data::ennemies) {
+	foreach(QString ennemy, Data::ennemies().list()) {
 		item = new QTreeWidgetItem(QStringList(ennemy));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstscanE_list->addTopLevelItem(item);
 	}
 
-	for(i=16+Data::ennemies.size() ; i<160 ; ++i) {
+	for(i=16+Data::ennemies().size() ; i<160 ; ++i) {
 		item = new QTreeWidgetItem(QStringList(tr("Inutilisé")));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstscanE_list->addTopLevelItem(item);

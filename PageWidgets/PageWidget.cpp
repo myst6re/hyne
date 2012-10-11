@@ -83,6 +83,21 @@ void PageWidget::setCurrentIndex(QComboBox *comboBox, int value)
 	}
 }
 
+QMap<int, QIcon> PageWidget::abilityIcons()
+{
+	QMap<int, QIcon> icons;
+	for(int i=0 ; i<6 ; ++i)
+		icons.insert(i, QIcon(QString(":/images/icons/capacity%1.png").arg(i)));
+	return icons;
+}
+
+void PageWidget::fillAbilities(QComboBox *comboBox, const QMap<int, QIcon> &icons)
+{
+	int abilityCount = Data::abilities().size();
+	for(int i=1 ; i<abilityCount ; ++i)
+		comboBox->addItem(icons.value(Data::abilityType(i)), Data::abilities().at(i), i);
+}
+
 //void PageWidget::changeEvent(QEvent *e)
 //{
 //	if(e->type() == QEvent::LanguageChange) {

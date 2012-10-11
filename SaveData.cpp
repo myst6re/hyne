@@ -412,7 +412,7 @@ QString SaveData::perso(quint8 index) const
 	case BOKO:			return FF8Text::toString(_descData.boko, isJp());
 	case ANGELO:		return FF8Text::toString(_descData.angelo, isJp());
 	default:
-		if(index < 16)	return Data::names.at(index);
+		if(index < 16)	return Data::names().at(index);
 		return QString();
 	}
 }

@@ -445,7 +445,7 @@ void SaveWidget::paintEvent(QPaintEvent *)
 			painter.setBrush(QBrush());
 			drawFrame(&painter, 416, 44);
 
-			FF8Text::drawTextArea(&painter, QPoint(12, 12), saveData->descData().locationID<251 ? Data::locations.at(saveData->descData().locationID) : QString("??? (%1)").arg(saveData->descData().locationID));
+			FF8Text::drawTextArea(&painter, QPoint(12, 12), saveData->descData().locationID<251 ? Data::locations().at(saveData->descData().locationID) : QString("??? (%1)").arg(saveData->descData().locationID));
 
 			painter.resetTransform();
 			painter.translate(xStart, 0);

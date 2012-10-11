@@ -120,7 +120,7 @@ QWidget *ItemEditor::buildPage3()
 	weaponsE_list->setUniformRowHeights(true);
 
 	for(int i=0 ; i<28 ; ++i) {
-		item = new QTreeWidgetItem(QStringList(Data::weapons.at(i)));
+		item = new QTreeWidgetItem(QStringList(Data::weapons().value(i)));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		item->setIcon(0, QIcon(QString(":/images/icons/weapon%1.png").arg(i,2,10,QChar('0'))));
 		weaponsE_list->addTopLevelItem(item);
@@ -186,7 +186,7 @@ void ItemEditor::fillPage()
 		if(itemID != 0)		items.append(itemID);
 		
 		QList<QStandardItem *> items;
-		standardItem = new QStandardItem(Data::items.value(itemID, QString::number(itemID)));
+		standardItem = new QStandardItem(Data::items().value(itemID, QString::number(itemID)));
 		standardItem->setData(SpinBoxDelegate::ComboBoxItems, Qt::UserRole);
 		standardItem->setData(itemID);
 		standardItem->setIcon(itemID == 0 ? QIcon() : QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(itemID))));
@@ -211,7 +211,7 @@ void ItemEditor::fillPage()
 	foreach(int itemID2, battle_order)
 	{
 		item = new QListWidgetItem(QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(itemID2))),
-								   itemID2 < 33 ? Data::items.at(itemID2) : QString::number(itemID2));
+								   itemID2 < 33 ? Data::items().value(itemID2) : QString::number(itemID2));
 		if(!items.contains(itemID2))
 			item->setForeground(Qt::darkGray);
 		item->setData(Qt::UserRole, itemID2);
@@ -267,7 +267,7 @@ void ItemEditor::allItems()
 	{
 		item = itemE_model->item(itemID-1, 0);
 		item->setData(itemID);
-		item->setText(Data::items.at(itemID));
+		item->setText(Data::items().value(itemID));
 		item->setIcon(QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(itemID))));
 		itemE_model->item(itemID-1, 1)->setText(QString::number(100));
 	}

@@ -43,6 +43,8 @@ protected:
 	virtual void buildWidget() = 0;
 	static void selectAll(QTreeWidget *, bool);
 	static void setCurrentIndex(QComboBox *comboBox, int value);
+	static QMap<int, QIcon> abilityIcons();
+	static void fillAbilities(QComboBox *comboBox, const QMap<int, QIcon> &icons);
 	bool builded, loaded;
 	MAIN *data;
 	HEADER *descData;

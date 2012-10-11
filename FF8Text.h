@@ -31,11 +31,11 @@ public:
 	static QByteArray toByteArray(const QString &string, bool jp=false);
 	static QString caract(quint8 ord, quint8 table=0);
 
+	static void reloadFont();
 	static void drawTextArea(QPainter *painter, const QPoint &point, const QString &ff8Text, int forceLang=0);// 1: latin 2: japanese
 	static QByteArray numToBiosText(quint32 num, quint8 width=0);
-
-	static QImage fontImage;
 private:
+	static QImage fontImage;
 	static void letter(int *x, int *y, int charId, QPainter *painter, quint8 tableId=0);
 	static const char *optimisedDuo[24];
 	static const quint8 charWidth[5][224];

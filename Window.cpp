@@ -19,7 +19,7 @@
 #include "Window.h"
 
 Window::Window() :
-	QWidget(), saves(0), currentSaveEdited(0)
+	QWidget(), saves(0), editor(0), currentSaveEdited(0)
 {
 	setTitle();
 	setMinimumSize(768, 502);
@@ -115,17 +115,10 @@ Window::Window() :
 	startWidget->addAction(actionOpen);
 	startWidget->addAction(actionSlot1);
 	startWidget->addAction(actionSlot2);
-
-	editor = new Editor(this);
-	editor->hide();
-
-	connect(editor, SIGNAL(accepted()), SLOT(saveView()));
-	connect(editor, SIGNAL(rejected()), SLOT(saveView()));
 	
 	stackedLayout = new QStackedLayout(this);
 	stackedLayout->setMenuBar(menuBar);
 	stackedLayout->addWidget(startWidget);
-	stackedLayout->addWidget(editor);
 
 	restoreGeometry(Config::valueVar("geometry").toByteArray());
 }
@@ -325,7 +318,7 @@ void Window::setIsOpen(bool open)
 		setTitle();
 	} else {
 		stackedLayout->setCurrentWidget(startWidget);
-		editor->hide();
+		if(editor)	editor->hide();
 
 		if(saves)
 		{
@@ -525,6 +518,13 @@ void Window::fillMenuRecent()
 void Window::editView(SaveData *saveData)
 {
 	menuBar->hide();
+	menuBar->setEnabled(false);
+	if(!editor) {
+		editor = new Editor(this);
+		connect(editor, SIGNAL(accepted()), SLOT(saveView()));
+		connect(editor, SIGNAL(rejected()), SLOT(saveView()));
+		stackedLayout->addWidget(editor);
+	}
 	editor->show();
 	editor->load(saveData, saves->type()==Savecard::Pc || saves->type()==Savecard::PcDir);
 	currentSaveEdited = saveData->id();
@@ -536,8 +536,9 @@ void Window::editView(SaveData *saveData)
 void Window::saveView()
 {
 	stackedLayout->setCurrentWidget(saves);
-	editor->hide();
+	if(editor)	editor->hide();
 	menuBar->show();
+	menuBar->setEnabled(true);
 	setWindowIcon(qApp->windowIcon());
 	setTitle();
 	setModified(saves->isModified());
@@ -568,7 +569,7 @@ void Window::save()
 void Window::mode(bool mode)
 {
 	Config::setValue("mode", mode);
-	if(saves) {
+	if(saves && editor) {
 		editor->updateMode(mode);
 	}
 }
@@ -587,7 +588,7 @@ void Window::changeFrame(QAction *action)
 	action->setChecked(true);
 
 	if(saves) {
-		editor->updateTime();
+		if(editor)	editor->updateTime();
 		saves->updateSaveWidgets();
 	}
 }
@@ -595,7 +596,7 @@ void Window::changeFrame(QAction *action)
 void Window::font(bool font)
 {
 	Config::setValue("font", font ? "hr" : "");
-	FF8Text::fontImage = QImage(QString(":/images/font%1.png").arg(font ? "hr" : ""));
+	FF8Text::reloadFont();
 	if(saves) {
 		saves->updateSaveWidgets();
 	} else {
@@ -672,8 +673,8 @@ void Window::restartNow()
     else {
         str_title = "Paramètres modifiés";
         str_text = "Relancez le programme pour que les paramètres prennent effet.";
-    }
-	Data::load();
+	}
+	Data::reload();
     QMessageBox::information(this, str_title, str_text);
 }
 

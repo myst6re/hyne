@@ -427,6 +427,11 @@ const quint8 FF8Text::charWidth[5][224] =
 	}
 };
 
+void FF8Text::reloadFont()
+{
+	fontImage = QImage(QString(":/images/font%1.png").arg(Config::value("font")));
+}
+
 void FF8Text::drawTextArea(QPainter *painter, const QPoint &point, const QString &text, int forceLang)
 {
 	bool jp = forceLang==2 || (forceLang==0 && QObject::tr("false", "Use Japanese Encoding")=="true");
@@ -478,6 +483,9 @@ void FF8Text::drawTextArea(QPainter *painter, const QPoint &point, const QString
 void FF8Text::letter(int *x, int *y, int charId, QPainter *painter, quint8 tableId)
 {
 	int charIdImage = charId + 231*tableId;
+
+	if(fontImage.isNull())
+		reloadFont();
 
 	painter->drawImage(*x, *y, fontImage.copy((charIdImage%21)*24, (charIdImage/21)*24, 24, 24));
 	*x += charWidth[tableId][charId]*2;

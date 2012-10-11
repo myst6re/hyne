@@ -63,7 +63,7 @@ void CWEditor::buildWidget()
 //	}
 
 	QGridLayout *grid = new QGridLayout(this);
-	grid->addWidget(new QLabel(Data::names.at(BOKO)+tr(" :"),this), 0, 0);
+	grid->addWidget(new QLabel(Data::names().at(BOKO)+tr(" :"),this), 0, 0);
 	grid->addWidget(bokoE, 0, 1);
 	grid->addWidget(new QLabel(tr("ID :"),this), 0, 2);
 	grid->addWidget(idE, 0, 3);

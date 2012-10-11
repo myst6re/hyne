@@ -130,7 +130,7 @@ void ShopEditor::fillPage()
 
 	for(int i=0 ; i<16 ; ++i) {
 		item = itemList->item(i);
-		item->setText(Data::items.at(items[magType][i]));
+		item->setText(Data::items().value(items[magType][i]));
 		item->setIcon(QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(items[magType][i]))));
 		item->setCheckState(shops_data->visited && (shops_data->items[i] & 1) ? Qt::Checked : Qt::Unchecked);
 		QFont itemFont = item->font();

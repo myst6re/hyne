@@ -44,13 +44,13 @@ void DrawPointEditor::buildWidget()
 	for(int i=0 ; i<256 ; ++i)
 	{
 		QList<QStandardItem *> items;
-		QStandardItem *item = new QStandardItem(Data::drawPoints[i] != -1 ? Data::magic.at(Data::drawPoints[i]) : QString::number(i));
+		QStandardItem *item = new QStandardItem(Data::drawPoints[i] != -1 ? Data::magics().value(Data::drawPoints[i]) : QString::number(i));
 		item->setEditable(false);
 		items.append(item);
 
-		item = new QStandardItem(Data::drawPointsLoc[i] != -1 ? Data::locations.at(Data::drawPointsLoc[i]) : tr("Nulle part"));
+		item = new QStandardItem(Data::drawPointsLoc[i] != -1 ? Data::locations().value(Data::drawPointsLoc[i]) : tr("Nulle part"));
 		if(i == 12) {
-			item->setText(item->text().append("/" + Data::locations.at(182)));
+			item->setText(item->text().append("/" + Data::locations().at(182)));
 		}
 		item->setEditable(false);
 		items.append(item);

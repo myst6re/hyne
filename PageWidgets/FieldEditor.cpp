@@ -39,7 +39,7 @@ void FieldEditor::buildWidget()
 		cInt couple = Data::momentLocation[i];
 
 		int moment = couple.one, loc = couple.two;
-		QTreeWidgetItem *item = new QTreeWidgetItem(QStringList() << QString::number(moment) << (loc >=0 ? Data::locations.at(loc) : tr("Disque %1").arg(-loc)));
+		QTreeWidgetItem *item = new QTreeWidgetItem(QStringList() << QString::number(moment) << (loc >=0 ? Data::locations().value(loc) : tr("Disque %1").arg(-loc)));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		item->setData(0, Qt::UserRole, moment);
 		if(loc < 0) {

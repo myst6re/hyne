@@ -71,12 +71,12 @@ QWidget *SpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewIt
 	{
 		QComboBox *comboBox = new QComboBox(parent);
 		switch(type) {
-		case ComboBoxMagics:comboBox->addItems(Data::magic);break;
+		case ComboBoxMagics:comboBox->addItems(Data::magics().list());break;
 		case ComboBoxItems:
-			comboBox->addItem(Data::items.first());
-			for(int i=1 ; i<Data::items.size() ; ++i)
-				comboBox->addItem(QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(i))), Data::items.at(i));
-			for(int i=Data::items.size() ; i<256 ; ++i)
+			comboBox->addItem(Data::items().at(0));
+			for(int i=1 ; i<Data::items().size() ; ++i)
+				comboBox->addItem(QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(i))), Data::items().at(i));
+			for(int i=Data::items().size() ; i<256 ; ++i)
 				comboBox->addItem(QString::number(i));
 			break;
 		case ComboBoxLocations:

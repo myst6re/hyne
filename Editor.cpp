@@ -18,8 +18,8 @@
 
 #include "Editor.h"
 
-Editor::Editor(QWidget *parent)
-	: QWidget(parent)
+Editor::Editor(QWidget *parent) :
+	QWidget(parent)
 {
 	QFont font;
 	font.setPointSize(9);
@@ -71,14 +71,12 @@ Editor::Editor(QWidget *parent)
 	stackedLayout->addWidget(new PartyEditor(this));
 	stackedLayout->addWidget(new MiscEditor(this));
 	stackedLayout->addWidget(new ConfigEditor(this));
-	stackedLayout->addWidget(allEditor = new AllEditor(this));
+	stackedLayout->addWidget(new AllEditor(this));
 
 	for(int i=0 ; i<stackedLayout->count() ; ++i)
 		liste->addItem(((PageWidget *)stackedLayout->widget(i))->name());
 
 	liste->item(liste->count()-1)->setHidden(!Config::mode());
-
-	widgetsLoaded = false;
 	
 	connect(liste, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), SLOT(setCurrentSection(QListWidgetItem*,QListWidgetItem*)));
 	connect(apply, SIGNAL(released()), SLOT(save()));
@@ -105,18 +103,17 @@ void Editor::setCurrentSection(QListWidgetItem *current, QListWidgetItem *previo
 
 	pageWidget = (PageWidget *)stackedLayout->widget(id);
 	if(!pageWidget->isLoaded()) {
-		pageWidget->load(&copy, &descCopy, freq_value, jp, pc);
+		pageWidget->load(&copy, &descCopy, saveData->freqValue(), saveData->isJp(), pc);
 	}
-	if(id==liste->count()-1)
-		allEditor->fillPage();
+	// AllEditor exception
+	if(id == liste->count()-1)
+		pageWidget->fillPage();
 	stackedLayout->setCurrentIndex(id);
 }
 
 void Editor::load(SaveData *saveData, bool pc)
 {
-	jp = saveData->isJp();
 	this->pc = pc;
-	freq_value = saveData->freqValue();
 	this->saveData = saveData;
 	descCopy = saveData->descData();
 	copy = saveData->mainData();

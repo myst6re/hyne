@@ -157,7 +157,7 @@ QWidget *MiscEditor::buildPage1()
 	curSaveE->setRange(0, MAX_INT32);
 	locationIDE = new QComboBox(headerE);
 	int i=0;
-	foreach(const QString &loc, Data::locations)
+	foreach(const QString &loc, Data::locations().list())
 		locationIDE->addItem(loc, i++);
 
 	QGridLayout *headerL = new QGridLayout(headerE);

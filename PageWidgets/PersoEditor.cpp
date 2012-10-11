@@ -123,14 +123,14 @@ QWidget *PersoEditor::buildPage1()
 	id_E = new QComboBox(ret);
 	id_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	for(quint8 i=0 ; i<11 ; ++i)
-		id_E->addItem(QIcon(QString(":/images/icons/perso%1.png").arg(i)), Data::names.at(i), i);
+		id_E->addItem(QIcon(QString(":/images/icons/perso%1.png").arg(i)), Data::names().at(i), i);
 
 	weapon_E = new QComboBox(ret);
 	weapon_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	for(quint8 i=0 ; i<28 ; ++i)
-		weapon_E->addItem(QIcon(QString(":/images/icons/weapon%1.png").arg(i,2,10,QChar('0'))), Data::weapons.at(i), i);
+		weapon_E->addItem(QIcon(QString(":/images/icons/weapon%1.png").arg(i,2,10,QChar('0'))), Data::weapons().at(i), i);
 	for(quint8 i=28 ; i<33 ; ++i)
-		weapon_E->addItem(Data::weapons.at(i), i);
+		weapon_E->addItem(Data::weapons().at(i), i);
 	
 	QHBoxLayout *statsEdit2_l = new QHBoxLayout;
 	statsEdit2_l->addWidget(new QLabel(tr("Personnage :"), ret));
@@ -243,7 +243,7 @@ QWidget *PersoEditor::buildPage2()
 		QCheckBox *curCheckBox;
 		QSpinBox *curSpinBox;
 		QLabel *curLabel;
-		poss_E.append(curCheckBox = new QCheckBox(Data::gfnames.at(i), ret));
+		poss_E.append(curCheckBox = new QCheckBox(Data::gfnames().at(i), ret));
 		curCheckBox->setIcon(QIcon(QString(":/images/icons/gf%1.png").arg(i)));
 		comp_E.append(curSpinBox = new QSpinBox(ret));
 		curSpinBox->setRange(-59535, 6000);
@@ -338,21 +338,21 @@ QWidget *PersoEditor::buildPage4()
 {
 	QWidget *ret = new QWidget(this);
 	
-	QMap<int, QIcon> icons = Data::abilityIcons();
+	QMap<int, QIcon> icons = abilityIcons();
 
 	QGroupBox *commande_E = new QGroupBox(tr("Commandes"), ret);
 	commande1_E = new QComboBox(commande_E);
 	commande1_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	commande1_E->addItem("-", 0);
-	Data::fillAbilities(commande1_E, icons);
+	fillAbilities(commande1_E, icons);
 	commande2_E = new QComboBox(commande_E);
 	commande2_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	commande2_E->addItem("-", 0);
-	Data::fillAbilities(commande2_E, icons);
+	fillAbilities(commande2_E, icons);
 	commande3_E = new QComboBox(commande_E);
 	commande3_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	commande3_E->addItem("-", 0);
-	Data::fillAbilities(commande3_E, icons);
+	fillAbilities(commande3_E, icons);
 	unknown1LabelE = new QLabel(tr("Inconnu (commande 4) :"), commande_E);
 	unknown1E = new QSpinBox(commande_E);
 	unknown1E->setRange(0, MAX_INT8);
@@ -372,19 +372,19 @@ QWidget *PersoEditor::buildPage4()
 	ability1_E = new QComboBox(ability_E);
 	ability1_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	ability1_E->addItem("-", 0);
-	Data::fillAbilities(ability1_E, icons);
+	fillAbilities(ability1_E, icons);
 	ability2_E = new QComboBox(ability_E);
 	ability2_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	ability2_E->addItem("-", 0);
-	Data::fillAbilities(ability2_E, icons);
+	fillAbilities(ability2_E, icons);
 	ability3_E = new QComboBox(ability_E);
 	ability3_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	ability3_E->addItem("-", 0);
-	Data::fillAbilities(ability3_E, icons);
+	fillAbilities(ability3_E, icons);
 	ability4_E = new QComboBox(ability_E);
 	ability4_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	ability4_E->addItem("-", 0);
-	Data::fillAbilities(ability4_E, icons);
+	fillAbilities(ability4_E, icons);
 	
 	QGridLayout *ability_L = new QGridLayout(ability_E);
 	ability_L->addWidget(new QLabel(tr("Capacité 1 :"), ability_E), 0, 0);
@@ -413,7 +413,7 @@ QWidget *PersoEditor::buildPage5()
 	{
 		aptitude_E.append(comboBox = new QComboBox(apt_E));
 		int j=0;
-		foreach(const QString &mag, Data::magic)
+		foreach(const QString &mag, Data::magics().list())
 			comboBox->addItem(mag, j++);
 	}
 	QGridLayout *apt_L = new QGridLayout(apt_E);
@@ -442,7 +442,7 @@ QWidget *PersoEditor::buildPage5()
 	{
 		element_E.append(comboBox = new QComboBox(ele_E));
 		int j=0;
-		foreach(const QString &mag, Data::magic)
+		foreach(const QString &mag, Data::magics().list())
 			comboBox->addItem(mag, j++);
 	}
 	QGridLayout *ele_L = new QGridLayout(ele_E);
@@ -462,7 +462,7 @@ QWidget *PersoEditor::buildPage5()
 	{
 		mental_E.append(comboBox = new QComboBox(mtl_E));
 		int j=0;
-		foreach(const QString &mag, Data::magic)
+		foreach(const QString &mag, Data::magics().list())
 			comboBox->addItem(mag, j++);
 	}
 	QGridLayout *mtl_L = new QGridLayout(mtl_E);
@@ -530,7 +530,7 @@ void PersoEditor::buildPage6()
 		{
 			for(int j=0 ; j<5 ; ++j)
 			{
-				LB_E << new QCheckBox(Data::zellLB.at(cur), lbWidget);
+				LB_E << new QCheckBox(Data::zellLBs().at(cur), lbWidget);
 				grid->addWidget(LB_E.at(cur), i, j);
 				LB_E.at(cur)->setChecked((data->limitb.zell >> cur) & 1);
 				cur++;
@@ -543,7 +543,7 @@ void PersoEditor::buildPage6()
 		{
 			for(int j=0 ; j<4 ; ++j)
 			{
-				LB_E << new QCheckBox(Data::irvineLB.at(cur), lbWidget);
+				LB_E << new QCheckBox(Data::irvineLBs().at(cur), lbWidget);
 				grid->addWidget(LB_E.at(cur), i, j);
 				LB_E.at(cur)->setChecked((data->limitb.irvine >> cur) & 1);
 				cur++;
@@ -556,7 +556,7 @@ void PersoEditor::buildPage6()
 		{
 			for(int j=0 ; j<4 ; ++j)
 			{
-				LB_E << new QCheckBox(Data::quistisLB.at(cur), lbWidget);
+				LB_E << new QCheckBox(Data::quistisLBs().at(cur), lbWidget);
 				grid->addWidget(LB_E.at(cur), i, j);
 				LB_E.at(cur)->setChecked((data->limitb.quistis >> cur) & 1);
 				cur++;
@@ -582,7 +582,7 @@ void PersoEditor::buildPage6()
 		infoLayout->addWidget(info);
 		infoLayout->addStretch();
 
-		grid->addWidget(new QLabel(Data::names.at(ANGELO)+tr(" :"), lbWidget), 0, 0);
+		grid->addWidget(new QLabel(Data::names().at(ANGELO)+tr(" :"), lbWidget), 0, 0);
 		grid->addWidget(angel_E, 0, 1, 1, 6);
 		grid->addLayout(infoLayout, 1, 0, 1, 7);
 		grid->addWidget(angeloPix, 0, 7, 3, 1, Qt::AlignRight);
@@ -591,7 +591,7 @@ void PersoEditor::buildPage6()
 		{
 			for(int j=0 ; j<4 ; ++j)
 			{
-				LB_E << new QCheckBox(Data::rinoaLB.at(cur), lbWidget);
+				LB_E << new QCheckBox(Data::rinoaLBs().at(cur), lbWidget);
 				LB_E.at(cur)->setTristate(true);
 				linoaLB_E << new QSpinBox(lbWidget);
 				linoaLB_E.at(cur)->setRange(0, MAX_INT8);
@@ -615,7 +615,7 @@ void PersoEditor::buildPage6()
 		{
 			for(int j=0 ; j<3 ; ++j)
 			{
-				LB_E << new QCheckBox(Data::magic.at(cur+51), lbWidget);
+				LB_E << new QCheckBox(Data::magics().at(cur+51), lbWidget);
 				grid->addWidget(LB_E.at(cur), i, j);
 				LB_E.at(cur)->setChecked((data->limitb.selphie >> cur) & 1);
 				cur++;
@@ -646,7 +646,7 @@ void PersoEditor::fillPage()
 	QString persoName;
 	if(id == SQUALL)		persoName = FF8Text::toString(descData->squall, jp);
 	else if(id == RINOA)	persoName = FF8Text::toString(descData->linoa, jp);
-	else					persoName = Data::names.at(id);
+	else					persoName = Data::names().at(id);
 
 	/* PAGE 1 */
 
@@ -697,7 +697,7 @@ void PersoEditor::fillPage()
 	{
 		quint8 magID = perso_data->magies[i] & 0xFF;
 		QStandardItem *standardItem = magie_E_model->item(i);
-		standardItem->setText(magID < 57 ? Data::magic.at(magID) : QString::number(magID));
+		standardItem->setText(magID < 57 ? Data::magics().at(magID) : QString::number(magID));
 		standardItem->setData(magID);
 
 		magie_E_model->item(i, 1)->setText(QString::number(perso_data->magies[i] >> 8));
@@ -901,7 +901,7 @@ void PersoEditor::removeAllMagic()
 	for(int i=0 ; i<32 ; ++i)
 	{
 		QStandardItem *standardItem = magie_E_model->item(i);
-		standardItem->setText(Data::magic.at(0));
+		standardItem->setText(Data::magics().at(0));
 		standardItem->setData(0);
 
 		magie_E_model->item(i, 1)->setText("0");

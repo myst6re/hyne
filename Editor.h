@@ -44,19 +44,13 @@ public:
 	void load(SaveData *saveData, bool pc);
 	void updateMode(bool mode);
 	void updateTime();
-
 private:
-	AllEditor *allEditor;
-
 	QStackedLayout *stackedLayout;
 	QListWidget *liste;
 	SaveData *saveData;
 	HEADER descCopy;
 	MAIN copy;
-	bool jp, pc;
-	int freq_value;
-	bool widgetsLoaded;
-	
+	bool pc;
 signals:
 	void accepted();
 	void rejected();
@@ -64,7 +58,6 @@ public slots:
 	void save();
 private slots:
 	void setCurrentSection(QListWidgetItem *current, QListWidgetItem *previous=NULL);
-
 };
 
 #endif

@@ -199,7 +199,7 @@ QWidget *GfEditor::buildPage2()
 	phoenixE = new QCheckBox(tr("Phénix"), groupBox);
 
 	QHBoxLayout *grieverLayout = new QHBoxLayout;
-	grieverLayout->addWidget(new QLabel(Data::names.at(GRIEVER)+tr(" :")));
+	grieverLayout->addWidget(new QLabel(Data::names().at(GRIEVER)+tr(" :")));
 	grieverLayout->addWidget(grieverE);
 
 	QGridLayout *grid = new QGridLayout(groupBox);
@@ -269,7 +269,7 @@ void GfEditor::fillPage()
 		QList<quint8> capacitesEnPlace;
 		liste->clear();
 		liste2->clear();
-		QMap<int, QIcon> icons = Data::abilityIcons();
+		QMap<int, QIcon> icons = abilityIcons();
 
 		//Listage des capacités aquises
 		for(abilityID=0 ; abilityID<116 ; ++abilityID)
@@ -337,7 +337,7 @@ void GfEditor::savePage()
 	}
 }
 
-QTreeWidgetItem *GfEditor::addItem(quint8 abilityID, quint8 type, quint8 innateAbID, QMap<int, QIcon> abilityIcons)
+QTreeWidgetItem *GfEditor::addItem(quint8 abilityID, quint8 type, quint8 innateAbID, const QMap<int, QIcon> &abilityIcons)
 {
 	QTreeWidgetItem *item;
 	QIcon icon;
@@ -350,7 +350,7 @@ QTreeWidgetItem *GfEditor::addItem(quint8 abilityID, quint8 type, quint8 innateA
 	switch(type)
 	{
 	case 0://Capacités de la GF non acquises (vert=Apprentissage en cours, noir sinon)
-		item = new QTreeWidgetItem(liste, QStringList() << QString("%1").arg(abilityID,3) << Data::abilities.at(abilityID) << QString("%1/%2").arg(gf_data->APs[innateAbID]).arg(Data::apsTab[abilityID]));
+		item = new QTreeWidgetItem(liste, QStringList() << QString("%1").arg(abilityID,3) << Data::abilities().value(abilityID) << QString("%1/%2").arg(gf_data->APs[innateAbID]).arg(Data::apsTab[abilityID]));
 		if(gf_data->learning == abilityID)
 		{
 			item->setForeground(1, Qt::darkGreen);
@@ -364,7 +364,7 @@ QTreeWidgetItem *GfEditor::addItem(quint8 abilityID, quint8 type, quint8 innateA
 		break;
 		
 	case 1://Capacités acquises de la GF (noir) et capacités acquises en plus (gris)
-		item = new QTreeWidgetItem(liste, QStringList() << QString("%1").arg(abilityID,3) << Data::abilities.at(abilityID) << tr("Acquis!"));
+		item = new QTreeWidgetItem(liste, QStringList() << QString("%1").arg(abilityID,3) << Data::abilities().value(abilityID) << tr("Acquis!"));
 		if(posAbility(abilityID) == -1)
 		{
 			item->setForeground(1, Qt::darkGray);
@@ -384,7 +384,7 @@ QTreeWidgetItem *GfEditor::addItem(quint8 abilityID, quint8 type, quint8 innateA
 		break;
 
 	default://Capacités oubliées de la GF (rouge)
-		item = new QTreeWidgetItem(liste2, QStringList() << QString("%1").arg(abilityID,3) << Data::abilities.at(abilityID));
+		item = new QTreeWidgetItem(liste2, QStringList() << QString("%1").arg(abilityID,3) << Data::abilities().value(abilityID));
 		item->setForeground(1, Qt::red);
 		item->setIcon(1, icon);
 		break;
@@ -426,7 +426,7 @@ void GfEditor::add_C()
 	QGridLayout *grid = new QGridLayout(&dialog);
 	
 	selection = new QComboBox(&dialog);
-	Data::fillAbilities(selection, Data::abilityIcons());
+	fillAbilities(selection, abilityIcons());
 	
 	okC = new QPushButton(tr("Ajouter"), &dialog);
 	okC->setEnabled(posAbility(1) == -1);

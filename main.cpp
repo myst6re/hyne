@@ -47,15 +47,13 @@ int main(int argc, char *argv[])
 	}
 	Config::translator = &translator;
 
-	FF8Text::fontImage = QImage(QString(":/images/font%1.png").arg(Config::value("font")));
-	Data::load();
 	Config::loadRecentFiles();
 
-    Window fenetre;
-	fenetre.show();
+	Window window;
+	window.show();
 
-	if(argc>1) {
-		fenetre.openFile(argv[1]);
+	if(argc > 1) {
+		window.openFile(argv[1]);
 	}
 
     return app.exec();

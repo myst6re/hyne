@@ -105,7 +105,7 @@ QWidget *TTriadEditor::buildPage1()
 
 		QList<QStandardItem *> items;
 
-		standardItem = new QStandardItem(Data::cards.at(i));
+		standardItem = new QStandardItem(Data::cards().at(i));
 		standardItem->setEditable(false);
 		standardItem->setCheckable(true);
 		standardItem->setIcon(cardIcon);
@@ -150,7 +150,7 @@ QWidget *TTriadEditor::buildPage1()
 
 		QList<QStandardItem *> items;
 
-		standardItem = new QStandardItem(Data::cards.at(77+i));
+		standardItem = new QStandardItem(Data::cards().at(77+i));
 		standardItem->setEditable(false);
 		standardItem->setCheckable(true);
 		standardItem->setIcon(cardIcon);
