@@ -20,7 +20,7 @@
 #define DEF_WINDOW
 
 #include <QtGui>
-#include "Savecard.h"
+#include "SavecardWidget.h"
 #include "Editor.h"
 #include "Parameters.h"
 #include "SelectSavesDialog.h"
@@ -63,7 +63,8 @@ private slots:
 
 private:
 	void setIsOpen(bool open);
-	bool exportAs(Savecard::Type newType, const QString &path);
+	bool exportAs(SavecardData::Type newType, const QString &path);
+	QByteArray descGme(const QString &desc, bool *abort);
 	void fillMenuRecent();
 	void restartNow();
 
@@ -75,7 +76,8 @@ private:
 	QAction *actionProperties, *actionClose, *actionMode, *actionFont;
 	QMenu *menuRecent, *menuFrame, *menuLang;
 	QStackedLayout *stackedLayout;
-	Savecard *saves;
+	SavecardData *saves;
+	SavecardWidget *saveList;
 	StartWidget *startWidget;
 	Editor *editor;
 

@@ -19,7 +19,7 @@
 #include "SaveWidget.h"
 #include "HeaderDialog.h"
 
-SaveWidget::SaveWidget(SaveData *saveData, Savecard *savecard, QWidget *parent) :
+SaveWidget::SaveWidget(SaveData *saveData, SavecardWidget *savecard, QWidget *parent) :
 	QWidget(parent), saveData(saveData), _savecard(savecard), mouseMove(0), hovered(false),
 	blackView(false), hasDragEvent(false), hasDragEventTop(false), hasDragEventBottom(false)
 {
@@ -57,7 +57,7 @@ void SaveWidget::setSaveData(SaveData *saveData)
 	this->saveData = saveData;
 }
 
-void SaveWidget::setSavecard(Savecard *savecard)
+void SaveWidget::setSavecard(SavecardWidget *savecard)
 {
 	_savecard = savecard;
 }
@@ -290,8 +290,8 @@ void SaveWidget::exportPC()
 
 	if(Config::value("savePath").isEmpty())
 	{
-		index = _savecard->path().lastIndexOf('/');
-		if(index != -1)		path = _savecard->path().left(index+1);
+		index = _savecard->savecard()->path().lastIndexOf('/');
+		if(index != -1)		path = _savecard->savecard()->path().left(index+1);
 	}
 	else
 	{
@@ -490,7 +490,7 @@ void SaveWidget::paintEvent(QPaintEvent *)
 		QPen pen(Qt::white, 4);
 		painter.setPen(pen);
 		painter.drawLine(0, 2, 672, 2);
-	} else if(hasDragEventBottom && saveData->id() < _savecard->getSaves().size()-1) {
+	} else if(hasDragEventBottom && saveData->id() < _savecard->savecard()->getSaves().size()-1) {
 		QPen pen(Qt::white, 4);
 		painter.setPen(pen);
 		painter.drawLine(0, 104, 672, 104);

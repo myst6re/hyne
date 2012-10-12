@@ -16,39 +16,36 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_SAVECARD
-#define DEF_SAVECARD
+#ifndef DEF_SAVECARDDATA
+#define DEF_SAVECARDDATA
 
-#include <QtGui>
-#include "LZS.h"
-#include "SaveWidget.h"
-#include "HeaderDialog.h"
+#include <QtCore>
+#include "SaveData.h"
 
-class SaveWidget;
-
-class Savecard : public QListWidget
+class SavecardData
 {
-	Q_OBJECT
-
 public:
 	enum Type {
 		Pc, Ps, Vgs, Gme, Vmp, Psv, PcDir, Unknown, Undefined
 	};
 
-	Savecard(const QString &path, QWidget *parent=0, bool slot=false);
-	Savecard(int saveCount, QWidget *parent=0);
-	virtual ~Savecard();
+	SavecardData(const QString &path, bool slot=false);
+	SavecardData(int saveCount);
+	virtual ~SavecardData();
 
+	bool open(const QString &path, bool slot=false);
+	const QFileSystemWatcher *watcher() const;
+	const QString &errorString() const;
+	QString description() const;
+	void setDescription(const QString &desc);
 	void setIsTheLastEdited(int saveID);
-	void updateSaveWidgets();
 	const QList<SaveData *> &getSaves() const;
+	void setSaves(const QList<SaveData *> &saves);
 	bool save2PC(qint8 num, QString path=QString());
 	bool save2PSV(qint8 id, QString path=QString());
-	bool save2PS(QList<int> ids, const QString &path, Type newType);
+	bool save2PS(QList<int> ids, const QString &path, Type newType, QByteArray MCHeader);
 	void saveDir();
 	void saveDir(quint8);
-
-	SaveWidget *saveWidget(int row) const;
 
 	QString dirname() const;
 	QString name() const;
@@ -61,48 +58,31 @@ public:
 	bool isOneSaveType() const;
 	bool isModified() const;
 	void setModified(bool modified);
-	void setSlotOrder(const QList<int> &order);
 	static void compare(const QByteArray &oldData, const QByteArray &newData);
 
+	bool getFormatFromRaw();
 	bool save(const QString &saveAs=QString(), Type newType=Pc);
-
-	void moveCursor(int);
-	void setDragStart(int saveID);
-	void moveDraggedSave(int saveID);
-	void replaceSaveData(int saveID, const QByteArray &mimeData);
-	void setDropIndicatorIsVisible(int saveID, bool onTop, bool isVisible);
-	void scrollToDrag(int saveID, const QPoint &pos);
-private slots:
-	void notifyFileChanged(const QString &path);
-signals:
-	void modified();
 private:
-	QString _path;
-	bool _ok;
-	Type _type;
-	bool _hasPath;
-	int _dragStart;
-
-	void setWidget();
 	void setPath(const QString &path);
 	void setType(Type type);
 	bool ps();
 	bool ps3();
 	bool pc();
-	bool getFormatFromRaw();
 	bool sstate_ePSXe();
 	bool sstate_pSX();
 	bool sstate(const QByteArray &fdata, const QByteArray &MCHeader);
 	void directory();
 	void addSave(const QByteArray &data=QByteArray(), const QByteArray &header=QByteArray());
-	QByteArray header(QFile *srcFile, Type newType, bool saveAs, bool *abort);
-	QByteArray descGme(const QString &desc, bool *abort);
+	QByteArray header(QFile *srcFile, Type newType, bool saveAs);
 
+	QString _path, _lastError;
+	bool _ok;
+	Type _type;
 	quint16 start;//Départ de la sauvegarde <=> taille du header rajouté
 	QFileSystemWatcher fileWatcher;
-	bool notify;
 	QList<SaveData *> saves;
 	bool _isModified;
+	QByteArray _description;
 };
 
 #endif

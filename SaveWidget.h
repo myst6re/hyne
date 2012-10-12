@@ -21,19 +21,19 @@
 
 #include <QtGui>
 #include "SaveData.h"
-#include "Savecard.h"
+#include "SavecardWidget.h"
 
-class Savecard;
+class SavecardWidget;
 
 class SaveWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	SaveWidget(SaveData *saveData, Savecard *savecard, QWidget *parent=0);
+	SaveWidget(SaveData *saveData, SavecardWidget *savecard, QWidget *parent=0);
 	void hideCursor();
 	void setDropIndicatorIsVisible(bool onTop, bool isVisible);
 	void setSaveData(SaveData *saveData);
-	void setSavecard(Savecard *savecard);
+	void setSavecard(SavecardWidget *savecard);
 	virtual QSize sizeHint() const;
 	virtual QSize minimumSizeHint() const;
 	static void drawFrame(QPainter *painter, int width, int height);
@@ -43,7 +43,7 @@ private:
 	static void colors(QImage *image, int color);
 
 	SaveData *saveData;
-	Savecard *_savecard;
+	SavecardWidget *_savecard;
 	SaveIcon *saveIcon;
 	int mouseMove;
 	QPoint startPos;

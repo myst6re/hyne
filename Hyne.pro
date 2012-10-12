@@ -21,7 +21,7 @@ HEADERS += PageWidgets/ConfigEditor.h \
     LZS.h \
     Parameters.h \
     SaveWidget.h \
-    Savecard.h \
+    SavecardWidget.h \
     SaveIcon.h \
     Window.h \
     HeaderDialog.h \
@@ -42,7 +42,8 @@ HEADERS += PageWidgets/ConfigEditor.h \
     PageWidgets/FieldEditor.h \
     StartWidget.h \
     PageWidgets/PartyEditor.h \
-    GZIP.h
+    GZIP.h \
+    SavecardData.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/MiscEditor.cpp \
     PageWidgets/GfEditor.cpp \
@@ -57,7 +58,7 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     LZS.cpp \
     main.cpp \
     SaveWidget.cpp \
-    Savecard.cpp \
+    SavecardWidget.cpp \
     SaveIcon.cpp \
     Window.cpp \
     HeaderDialog.cpp \
@@ -79,7 +80,8 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/FieldEditor.cpp \
     StartWidget.cpp \
     PageWidgets/PartyEditor.cpp \
-    GZIP.cpp
+    GZIP.cpp \
+    SavecardData.cpp
 RESOURCES += Hyne.qrc
 TRANSLATIONS += hyne_en.ts \
     hyne_ja.ts

@@ -17,9 +17,10 @@
  ****************************************************************************/
 
 #include "Window.h"
+#include "HeaderDialog.h"
 
 Window::Window() :
-	QWidget(), saves(0), editor(0), currentSaveEdited(0)
+	QWidget(), saves(0), saveList(0), editor(0), currentSaveEdited(0)
 {
 	setTitle();
 	setMinimumSize(768, 502);
@@ -146,7 +147,7 @@ void Window::dragEnterEvent(QDragEnterEvent *event)
 {
 	if(event->mimeData()->hasUrls() &&
 			(stackedLayout->currentWidget() == startWidget
-			 || (saves && stackedLayout->currentWidget() == saves)))
+			 || (saveList && stackedLayout->currentWidget() == saveList)))
 		event->acceptProposedAction();
 }
 
@@ -210,18 +211,25 @@ void Window::newFile()
 	if(dialog.exec() == QDialog::Accepted) {
 		if(!closeFile())	return;
 
-		saves = new Savecard(oneSave.isChecked() ? 1 : 15, this);
+		if(!saveList) {
+			saveList = new SavecardWidget(this);
+			connect(saveList, SIGNAL(modified()), SLOT(setModified()));
+			stackedLayout->addWidget(saveList);
+		}
+
+		saves = new SavecardData(oneSave.isChecked() ? 1 : 15);
 		if(!name.text().isEmpty()) {
 			saves->setName(name.text());
 		}
-		connect(saves, SIGNAL(modified()), SLOT(setModified()));
 
 		if(!saves->ok())
 		{
+			QMessageBox::warning(this, tr("Erreur"), saves->errorString());
 			closeFile();
 		}
 		else
 		{
+			saveList->setSavecard(saves);
 			setIsOpen(true);
 			setModified(saves->isModified());
 		}
@@ -248,7 +256,15 @@ void Window::open(OpenType slot)
 		else if(!path.isEmpty())
 			path.append("/Save");
 		path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path,
-											tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;Tous les fichiers (*)"));
+											tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;"
+											   "FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;"
+											   "FF8 PC save (save??);;"
+											   "FF8 vgs memorycard (*.mem *.vgs);;"
+											   "FF8 gme memorycard (*.gme);;"
+											   "FF8 PSN memorycard (*.vmp);;"
+											   "FF8 PS3 memorycard/pSX save state (*.psv);;"
+											   "ePSXe save state (*.000 *.001 *.002 *.003 *.004);;"
+											   "Tous les fichiers (*)"));
 		if(path.isNull())		return;
 
 		int index = path.lastIndexOf('/');
@@ -263,7 +279,12 @@ void Window::open(OpenType slot)
 bool Window::closeFile(bool quit)
 {
 	if(saves && saves->isModified()) {
-		QMessageBox::StandardButton b = QMessageBox::question(this, tr("Enregistrer ?"), tr("Voulez-vous enregistrer '%1' avant de fermer ?").arg(saves->type()==Savecard::PcDir ? tr("fente") : saves->name()), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
+		QMessageBox::StandardButton b = QMessageBox::question(this, tr("Enregistrer ?"),
+															  tr("Voulez-vous enregistrer '%1' avant de fermer ?")
+															  .arg(saves->type()==SavecardData::PcDir
+																   ? tr("fente")
+																   : saves->name()),
+															  QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
 		switch(b) {
 		case QMessageBox::Yes:
 			save();
@@ -286,15 +307,35 @@ void Window::openFile(const QString &path, bool isPCSlot)
 {
 	if(!closeFile())	return;
 
-	saves = new Savecard(path, this, isPCSlot);
-	connect(saves, SIGNAL(modified()), SLOT(setModified()));
+	saves = new SavecardData(path, isPCSlot);
+	if(saves->type() == SavecardData::Unknown) {
+		QMessageBox::StandardButton rep = QMessageBox::question(this, tr("Erreur"), tr("Fichier de type inconnu.\nVoulez-vous l'analyser pour obtenir le bon format ?"), QMessageBox::Yes | QMessageBox::No);
+		if(rep != QMessageBox::Yes) {
+			return;
+		}
+
+		saves->getFormatFromRaw();
+	}
 
 	if(!saves->ok())
 	{
+		QMessageBox::warning(this, tr("Erreur"), saves->errorString());
 		setIsOpen(false);
 	}
 	else
 	{
+		if(!saveList) {
+			saveList = new SavecardWidget(this);
+			connect(saveList, SIGNAL(modified()), SLOT(setModified()));
+			stackedLayout->addWidget(saveList);
+		}
+
+		saveList->setSavecard(saves);
+
+		if(saves->type() == SavecardData::Psv || saves->type() == SavecardData::Vmp)
+			QMessageBox::information(this, tr("Sauvegarde hasardeuse"), tr("Le format %1 est protégé, l'enregistrement sera partiel et risque de ne pas fonctionner.")
+									 .arg(saves->extension()));
+
 		setIsOpen(true);
 		setModified(saves->isModified());
 
@@ -308,8 +349,7 @@ void Window::openFile(const QString &path, bool isPCSlot)
 void Window::setIsOpen(bool open)
 {
 	if(open) {
-		stackedLayout->addWidget(saves);
-		stackedLayout->setCurrentWidget(saves);
+		stackedLayout->setCurrentWidget(saveList);
 		actionSaveAs->setEnabled(true);
 		actionProperties->setEnabled(true);
 		actionClose->setEnabled(true);
@@ -322,8 +362,8 @@ void Window::setIsOpen(bool open)
 
 		if(saves)
 		{
-			stackedLayout->removeWidget(saves);
-			saves->deleteLater();
+			saveList->setSavecard(0);
+			delete saves;
 			saves = 0;
 		}
 
@@ -346,7 +386,9 @@ void Window::openRecentFile(QAction *action)
 
 void Window::reload()
 {
-	if(saves) openFile(QString(saves->path()));
+	if(saves) {
+		openFile(QString(saves->path()), saves->type() == SavecardData::PcDir);
+	}
 }
 
 bool Window::exportAs()
@@ -358,20 +400,20 @@ bool Window::exportAs()
 			vmp = tr("PSN memorycard (*.vmp)"),
 			pc = tr("FF8 PC save (*)"),
 			psv = tr("PSN save (*.psv)");
-	Savecard::Type type = saves->type(), newType;
+	SavecardData::Type type = saves->type(), newType;
 
 	types = pc+";;"+ps+";;"+vgs+";;"+gme+";;"+vmp+";;"+psv;
 
-	if(type == Savecard::PcDir
-			|| type == Savecard::Pc)	selectedFilter = pc;
-	else if(type == Savecard::Psv)		selectedFilter = psv;
-	else if(type == Savecard::Vgs)		selectedFilter = vgs;
-	else if(type == Savecard::Gme)		selectedFilter = gme;
-	else if(type == Savecard::Vmp)		selectedFilter = vmp;
+	if(type == SavecardData::PcDir
+			|| type == SavecardData::Pc)	selectedFilter = pc;
+	else if(type == SavecardData::Psv)		selectedFilter = psv;
+	else if(type == SavecardData::Vgs)		selectedFilter = vgs;
+	else if(type == SavecardData::Gme)		selectedFilter = gme;
+	else if(type == SavecardData::Vmp)		selectedFilter = vmp;
 	else								selectedFilter = ps;
 	
 	path = Config::value("savePath").isEmpty() ? saves->dirname() : Config::value("savePath")+"/";
-	if(saves->type() == Savecard::Undefined) {
+	if(saves->type() == SavecardData::Undefined) {
 		path = path+saves->name()+".mcr";
 	} else {
 		path = path+saves->name();
@@ -379,15 +421,15 @@ bool Window::exportAs()
 	path = QFileDialog::getSaveFileName(this, tr("Exporter"), path, types, &selectedFilter);
 	if(path.isNull())		return false;
 
-	if(selectedFilter == ps)			newType = Savecard::Ps;
-	else if(selectedFilter == vgs)		newType = Savecard::Vgs;
-	else if(selectedFilter == gme)		newType = Savecard::Gme;
-	else if(selectedFilter == vmp)		newType = Savecard::Vmp;
-	else if(selectedFilter == pc)		newType = Savecard::Pc;
-	else if(selectedFilter == psv)		newType = Savecard::Psv;
+	if(selectedFilter == ps)			newType = SavecardData::Ps;
+	else if(selectedFilter == vgs)		newType = SavecardData::Vgs;
+	else if(selectedFilter == gme)		newType = SavecardData::Gme;
+	else if(selectedFilter == vmp)		newType = SavecardData::Vmp;
+	else if(selectedFilter == pc)		newType = SavecardData::Pc;
+	else if(selectedFilter == psv)		newType = SavecardData::Psv;
 	else	return false;
 
-	if(newType == Savecard::Vmp || newType == Savecard::Psv) {
+	if(newType == SavecardData::Vmp || newType == SavecardData::Psv) {
 		int reponse = QMessageBox::information(this, tr("Sauvegarde hasardeuse"), tr("Les formats VMP et PSV sont protégés, l'enregistrement sera partiel et risque de ne pas fonctionner.\nContinuer quand même ?"), tr("Oui"), tr("Non"));
 		if(reponse != 0)  return exportAs();
 	}
@@ -398,40 +440,60 @@ bool Window::exportAs()
 	return exportAs(newType, path);
 }
 
-bool Window::exportAs(Savecard::Type newType, const QString &path)
+bool Window::exportAs(SavecardData::Type newType, const QString &path)
 {
-	Savecard::Type type = saves->type();
+	SavecardData::Type type = saves->type();
+
+	if(newType == SavecardData::Gme) {
+		bool abort;
+		QByteArray desc = descGme(saves->description(), &abort);
+		if(abort)	return false;
+		saves->setDescription(desc);
+	}
 
 	if(type == newType) {
 		switch(type) {
-		case Savecard::Pc:
+		case SavecardData::Pc:
 			saves->save2PC(0, path);
 			break;
-		case Savecard::PcDir:
+		case SavecardData::PcDir:
 			saves->saveDir();
 			break;
-		case Savecard::Psv:
-		case Savecard::Ps:
-		case Savecard::Vgs:
-		case Savecard::Gme:
-		case Savecard::Vmp:
-		case Savecard::Unknown:
+		case SavecardData::Psv:
+		case SavecardData::Ps:
+		case SavecardData::Vgs:
+		case SavecardData::Gme:
+		case SavecardData::Vmp:
 			saves->save(path, newType);
 			break;
-		case Savecard::Undefined:
+		case SavecardData::Unknown:
+		case SavecardData::Undefined:
 			qWarning() << "not possible case";
 			return false;
 		}
 	} else {
-		if(newType != Savecard::Pc && newType != Savecard::Psv)
+		if(newType != SavecardData::Pc && newType != SavecardData::Psv)
 		{
-			if(type == Savecard::PcDir || type == Savecard::Undefined) {
-				QList<int> selected_files = selectSavesDialog(true);
-				if(selected_files.isEmpty())	return false;
-				saves->save2PS(selected_files, path, newType);
+			if(type == SavecardData::PcDir || type == SavecardData::Undefined
+					|| type == SavecardData::Pc || type == SavecardData::Psv) {
+				QList<int> selected_files;
+				if(type == SavecardData::Pc || type == SavecardData::Psv) {
+					selected_files << 0;
+				} else {
+					selected_files = selectSavesDialog(true);
+					if(selected_files.isEmpty())	return false;
+				}
+
+				QByteArray MCHeader;
+				if(type != SavecardData::Psv) {
+					SaveData tempSave;
+					HeaderDialog dialog(&tempSave, this, HeaderDialog::CreateView);
+					if(dialog.exec() != QDialog::Accepted) return false;
+					MCHeader = tempSave.saveMCHeader();
+				}
+
+				saves->save2PS(selected_files, path, newType, MCHeader);
 			}
-			else if(type == Savecard::Pc || type == Savecard::Psv)
-				saves->save2PS(QList<int>() << 0, path, newType);
 			else
 				saves->save(path, newType);
 		}
@@ -441,11 +503,15 @@ bool Window::exportAs(Savecard::Type newType, const QString &path)
 			QList<int> selected_files = selectSavesDialog();
 			if(selected_files.isEmpty())	return false;
 			int id = selected_files.first();
-			if(newType == Savecard::Pc) {
+			if(newType == SavecardData::Pc) {
 				saves->setName(QString("save%1").arg(id+1, 2, 10, QChar('0')));
 				saves->save2PC(id, path);
 				saves->setName(QString());
 			} else {
+				if(!saves->getSaves().first()->hasMCHeader()) {
+					HeaderDialog dialog(saves->getSaves().first(), this, HeaderDialog::CreateView);
+					if(dialog.exec() != QDialog::Accepted) return false;
+				}
 				saves->save2PSV(id, path);
 			}
 		}
@@ -454,6 +520,32 @@ bool Window::exportAs(Savecard::Type newType, const QString &path)
 	setTitle();
 
 	return true;
+}
+
+QByteArray Window::descGme(const QString &desc, bool *abort)
+{
+	QDialog dialog(this, Qt::Dialog | Qt::WindowCloseButtonHint);
+	dialog.setWindowTitle(tr("Commentaire"));
+
+	QTextEdit *textEdit = new QTextEdit(&dialog);
+	textEdit->setPlainText(desc);
+
+	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel,
+													   Qt::Horizontal, &dialog);
+	QVBoxLayout *layout = new QVBoxLayout(&dialog);
+	layout->addWidget(textEdit);
+	layout->addWidget(buttonBox);
+
+	connect(buttonBox, SIGNAL(accepted()), &dialog, SLOT(accept()));
+	connect(buttonBox, SIGNAL(rejected()), &dialog, SLOT(reject()));
+
+	if(dialog.exec() != QDialog::Accepted) {
+		*abort = true;
+		return QByteArray();
+	}
+	*abort = false;
+
+	return textEdit->toPlainText().toLatin1().leftJustified(3840, '\x00', true);
 }
 
 void Window::properties()
@@ -475,7 +567,7 @@ void Window::properties()
 
 	if(saveCount == 0)	return;
 	if(saveCount == 1) {
-		saves->saveWidget(firstSaveID)->properties();
+		saveList->saveWidget(firstSaveID)->properties();
 		return;
 	}
 
@@ -483,15 +575,16 @@ void Window::properties()
 
 	if(dialog->exec() == QDialog::Accepted) {
 		QList<int> selected_files = dialog->selectedSaves();
-		saves->saveWidget(selected_files.first())->properties();
+		saveList->saveWidget(selected_files.first())->properties();
 	}
 }
 
 QList<int> Window::selectSavesDialog(bool multiSelection)
 {
-	if(saves->count() <= 15 && saves->count() > 0) {
+	int saveCount = saves->getSaves().size();
+	if(saveCount <= 15 && saveCount > 0) {
 		QList<int> ids;
-		for(int i=0 ; i<saves->count() ; ++i) {
+		for(int i=0 ; i<saveCount ; ++i) {
 			ids.append(i);
 		}
 		return ids;
@@ -526,7 +619,7 @@ void Window::editView(SaveData *saveData)
 		stackedLayout->addWidget(editor);
 	}
 	editor->show();
-	editor->load(saveData, saves->type()==Savecard::Pc || saves->type()==Savecard::PcDir);
+	editor->load(saveData, saves->type()==SavecardData::Pc || saves->type()==SavecardData::PcDir);
 	currentSaveEdited = saveData->id();
 	stackedLayout->setCurrentWidget(editor);
 	setTitle(true);
@@ -535,7 +628,8 @@ void Window::editView(SaveData *saveData)
 
 void Window::saveView()
 {
-	stackedLayout->setCurrentWidget(saves);
+	if(!saveList)	return;
+	stackedLayout->setCurrentWidget(saveList);
 	if(editor)	editor->hide();
 	menuBar->show();
 	menuBar->setEnabled(true);
@@ -543,15 +637,15 @@ void Window::saveView()
 	setTitle();
 	setModified(saves->isModified());
 	saves->setIsTheLastEdited(currentSaveEdited);
-	saves->saveWidget(currentSaveEdited)->update();
+	saveList->updateSaveWidgets();
 }
 
 void Window::save()
 {
 	bool saved = true, hasPath = saves->hasPath();
-	Savecard::Type type = saves->type();
+	SavecardData::Type type = saves->type();
 
-	if(!hasPath || type == Savecard::Vmp || type == Savecard::Psv) {
+	if(!hasPath || type == SavecardData::Vmp || type == SavecardData::Psv) {
 		saved = exportAs();
 		if(!hasPath && saved) {
 			setTitle();
@@ -589,7 +683,7 @@ void Window::changeFrame(QAction *action)
 
 	if(saves) {
 		if(editor)	editor->updateTime();
-		saves->updateSaveWidgets();
+		saveList->updateSaveWidgets();
 	}
 }
 
@@ -598,7 +692,7 @@ void Window::font(bool font)
 	Config::setValue("font", font ? "hr" : "");
 	FF8Text::reloadFont();
 	if(saves) {
-		saves->updateSaveWidgets();
+		saveList->updateSaveWidgets();
 	} else {
 		startWidget->update();
 	}

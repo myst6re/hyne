@@ -16,21 +16,41 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#include "Savecard.h"
+#include "SavecardData.h"
 #include "GZIP.h"
 #include "Parameters.h"
+#include "LZS.h"
 
-Savecard::Savecard(const QString &path, QWidget *parent, bool slot) :
-	QListWidget(parent), _ok(true), _hasPath(true), _dragStart(-1), start(0), notify(true), _isModified(false)
+SavecardData::SavecardData(const QString &path, bool slot) :
+	_ok(true), start(0), _isModified(false)
 {
-	setWidget();
+	open(path, slot);
+}
 
+SavecardData::SavecardData(int saveCount) :
+	_ok(true), start(0), _isModified(false)
+{
+	for(int i=0 ; i<saveCount ; ++i) {
+		addSave();
+	}
+
+	setType(Undefined);
+}
+
+SavecardData::~SavecardData()
+{
+	foreach(SaveData *save, saves)	delete save;
+}
+
+bool SavecardData::open(const QString &path, bool slot)
+{
 	if(slot)
 	{
 		setPath(QDir::fromNativeSeparators(QDir::cleanPath(path)) + "/");
 		setType(PcDir);
 
 		directory();
+		_ok = !saves.isEmpty();
 	}
 	else
 	{
@@ -84,98 +104,79 @@ Savecard::Savecard(const QString &path, QWidget *parent, bool slot) :
 		}
 		else
 		{
-			QMessageBox::StandardButton rep = QMessageBox::question(this, tr("Erreur"), tr("Fichier de type inconnu.\nVoulez-vous l'analyser pour obtenir le bon format ?"), QMessageBox::Yes | QMessageBox::No);
-			if(rep != QMessageBox::Yes) {
-				_ok = false;
-				return;
-			}
-
-			_ok = getFormatFromRaw();
+			_ok = false;
+			setType(Unknown);
 		}
-
-		if(_ok && (_type == Psv || _type == Vmp))
-			QMessageBox::information(this, tr("Sauvegarde hasardeuse"), tr("Le format %1 est protégé, l'enregistrement sera partiel et risque de ne pas fonctionner.").arg(extension));
 	}
-	connect(&fileWatcher, SIGNAL(fileChanged(QString)), SLOT(notifyFileChanged(QString)));
 
 //	compare(saves.at(0)->save(), saves.at(1)->save());
 //	compare(saves.at(10)->save(), saves.at(11)->save());
+	return _ok;
 }
 
-Savecard::Savecard(int saveCount, QWidget *parent) :
-	QListWidget(parent), _ok(true), _hasPath(false), _dragStart(-1), start(0), notify(true), _isModified(false)
+const QFileSystemWatcher *SavecardData::watcher() const
 {
-	setWidget();
-
-	for(int i=0 ; i<saveCount ; ++i) {
-		addSave();
-	}
-
-	setType(Undefined);
+	return &fileWatcher;
 }
 
-Savecard::~Savecard()
+const QString &SavecardData::errorString() const
 {
-	foreach(SaveData *save, saves)	delete save;
+	return _lastError;
 }
 
-void Savecard::setWidget()
+QString SavecardData::description() const
 {
-	setPalette(QPalette(Qt::black));
-	setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
-	setSelectionMode(QAbstractItemView::NoSelection);
-	setFrameShape(QFrame::NoFrame);
-	setUniformItemSizes(true);
-	// Drag & drop
-//	setDragEnabled(true);
-//	setDragDropMode(QAbstractItemView::InternalMove);
-//	viewport()->setAcceptDrops(true);
-//	setDropIndicatorShown(true);
+	return QString(_description);
 }
 
-QString Savecard::dirname() const
+void SavecardData::setDescription(const QString &desc)
+{
+	_description = desc.toLatin1();
+}
+
+QString SavecardData::dirname() const
 {
 	int index = _path.lastIndexOf('/');
 	return index != -1 ? _path.left(index + 1) : QString();
 }
 
-QString Savecard::name() const
+QString SavecardData::name() const
 {
 	return _path.mid(_path.lastIndexOf('/') + 1);
 }
 
-QString Savecard::extension() const
+QString SavecardData::extension() const
 {
 	int index = _path.lastIndexOf('.');
 	return index != -1 ? _path.mid(index + 1).toLower() : QString();
 }
 
-const QString &Savecard::path() const
+const QString &SavecardData::path() const
 {
 	return _path;
 }
 
-void Savecard::setPath(const QString &path)
+void SavecardData::setPath(const QString &path)
 {
 	_path = path;
 }
 
-void Savecard::setName(const QString &name)
+void SavecardData::setName(const QString &name)
 {
 	_path = dirname() + name;
 }
 
-bool Savecard::ok() const
+bool SavecardData::ok() const
 {
 	return _ok;
 }
 
-Savecard::Type Savecard::type() const
+SavecardData::Type SavecardData::type() const
 {
 	return _type;
 }
 
-void Savecard::setType(Type type)
+void SavecardData::setType(Type type)
 {
 	switch(type) {
 	case Vgs:
@@ -189,8 +190,7 @@ void Savecard::setType(Type type)
 		break;
 	case Undefined:
 		start = 0;
-		_hasPath = false;
-		setPath(tr("Sans nom"));
+		setPath(QObject::tr("Sans nom"));
 		setModified(true);
 		break;
 	default:
@@ -201,17 +201,17 @@ void Savecard::setType(Type type)
 	_type = type;
 }
 
-bool Savecard::hasPath() const
+bool SavecardData::hasPath() const
 {
-	return _hasPath;
+	return !dirname().isEmpty();
 }
 
-bool Savecard::isOneSaveType() const
+bool SavecardData::isOneSaveType() const
 {
 	return type()==Pc || type()==Psv;
 }
 
-bool Savecard::isModified() const
+bool SavecardData::isModified() const
 {
 	if(_isModified)	return true;
 
@@ -221,106 +221,48 @@ bool Savecard::isModified() const
 	return false;
 }
 
-void Savecard::setModified(bool modified)
+void SavecardData::setModified(bool modified)
 {
 	_isModified = modified;
 
 	foreach(SaveData *save, saves) {
 		save->setModified(modified);
 	}
-	updateSaveWidgets();
 }
 
-void Savecard::setSlotOrder(const QList<int> &order)
-{
-	if(count() != order.size())		return;
-
-	QList<SaveData *> newSaves;
-
-	foreach(int i, order)
-	{
-		newSaves.append(saves.at(i));
-	}
-
-	saves = newSaves;
-
-	int i=0;
-	foreach(SaveData *saveData, saves) {
-		saveData->setId(i);
-		saveWidget(i)->setSaveData(saveData);
-		++i;
-	}
-
-	_isModified = true;
-}
-
-void Savecard::notifyFileChanged(const QString &path)
-{
-	if(!notify)	return;
-	notify = false;
-	if(!QFile::exists(path))
-	{
-		QMessageBox::warning(this->parentWidget(), tr("Fichier supprimé"), tr("Le fichier '%1' a été supprimé par un programme externe !").arg(path));
-	}
-	else
-	{
-		QMessageBox::warning(this->parentWidget(), tr("Fichier modifié"), tr("Le fichier '%1' a été modifié par un programme externe.").arg(path));
-	}
-	notify = true;
-}
-
-SaveWidget *Savecard::saveWidget(int row) const
-{
-	return (SaveWidget *)itemWidget(item(row));
-}
-
-void Savecard::moveCursor(int row)
-{
-	for(int i=0 ; i<row ; ++i) {
-		saveWidget(i)->hideCursor();
-	}
-
-	for(int i=row+1 ; i<count() ; ++i) {
-		saveWidget(i)->hideCursor();
-	}
-}
-
-void Savecard::setIsTheLastEdited(int saveID)
+void SavecardData::setIsTheLastEdited(int saveID)
 {
 	foreach(SaveData *save, saves) {
 		if(save->isTheLastEdited()) {
 			save->setIsTheLastEdited(false);
-			saveWidget(save->id())->update();
 		}
 	}
 	saves.at(saveID)->setIsTheLastEdited(true);
 }
 
-void Savecard::updateSaveWidgets()
-{
-	int countItems = count();
-	for(int saveID=0 ; saveID<countItems ; ++saveID)
-		saveWidget(saveID)->update();
-}
-
-bool Savecard::ps()
+bool SavecardData::ps()
 {
 	QFile fic(_path);
 
 	if(!fic.exists())
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Le fichier n'existe plus.\n%1").arg(_path));
+		_lastError = QObject::tr("Le fichier n'existe plus.\n%1").arg(_path);
 		return false;
 	}
 	if(!fic.open(QIODevice::ReadOnly))
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Le fichier est protégé en lecture."));
+		_lastError = QObject::tr("Le fichier est protégé en lecture.");
 		return false;
 	}
 	if(fic.size() < start+131072)//start+8192*16
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Fichier trop court"));
+		_lastError = QObject::tr("Fichier trop court");
 		return false;
+	}
+
+	if(_type == Gme) {
+		fic.seek(64);
+		_description = fic.read(3840);
 	}
 
 	fic.seek(start+128);
@@ -336,18 +278,18 @@ bool Savecard::ps()
 	return true;
 }
 
-bool Savecard::ps3()
+bool SavecardData::ps3()
 {
 	QFile fic(_path);
 
 	if(!fic.exists())
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Le fichier n'existe plus.\n%1").arg(_path));
+		_lastError = QObject::tr("Le fichier n'existe plus.\n%1").arg(_path);
 		return false;
 	}
 	if(!fic.open(QIODevice::ReadOnly))
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Le fichier est protégé en lecture."));
+		_lastError = QObject::tr("Le fichier est protégé en lecture.");
 		return false;
 	}
 
@@ -358,7 +300,7 @@ bool Savecard::ps3()
 
 	if(fic.size() < 8324)
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Fichier invalide"));
+		_lastError = QObject::tr("Fichier invalide");
 		return false;
 	}
 
@@ -376,7 +318,7 @@ bool Savecard::ps3()
 	return true;
 }
 
-bool Savecard::pc()
+bool SavecardData::pc()
 {
 	int tailleC;
 	QFile f(_path);
@@ -397,10 +339,11 @@ bool Savecard::pc()
 	return true;
 }
 
-bool Savecard::getFormatFromRaw()
+bool SavecardData::getFormatFromRaw()
 {
 	QFile f(_path);
 	start = 0;
+	_ok = false;
 
 	if(!f.exists() || !f.open(QIODevice::ReadOnly))
 		return false;
@@ -424,10 +367,11 @@ bool Savecard::getFormatFromRaw()
 			_type = Gme;
 			break;
 		default:
-			_type = Unknown;
+			setType(Undefined);
+			start = indexMC;
 			break;
 		}
-		return ps();
+		return _ok = ps();
 	} else { // Maybe PC format
 		// compressed?
 		quint32 lzsSize;
@@ -436,29 +380,29 @@ bool Savecard::getFormatFromRaw()
 			const QByteArray &unLzsed = LZS::decompress(data.mid(4), 2);
 			if(unLzsed.startsWith("SC")) {
 				_type = Pc;
-				return pc();
+				return _ok = pc();
 			}
 			return false;
 		}
 
 		if(data.indexOf("VSP") == 1) {
 			_type = Psv;
-			return ps3();
+			return _ok = ps3();
 		}
 	}
 
 	return false;
 }
 
-bool Savecard::sstate_ePSXe()
+bool SavecardData::sstate_ePSXe()
 {
 	QTemporaryFile temp;
 	if(!temp.open()) {
-		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de créer le fichier temporaire."));
+		_lastError = QObject::tr("Impossible de créer le fichier temporaire.");
 		return false;
 	}
 	if(!GZIP::decompress(_path, temp.fileName())) {
-		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de décompresser le fichier."));
+		_lastError = QObject::tr("Impossible de décompresser le fichier.");
 		return false;
 	}
 //	temp.seek(7);
@@ -472,11 +416,11 @@ bool Savecard::sstate_ePSXe()
 	return sstate(temp.read(0x139E), MCHeader);
 }
 
-bool Savecard::sstate_pSX()
+bool SavecardData::sstate_pSX()
 {
 	QFile f(_path);
 	if(!f.open(QIODevice::ReadOnly)) {
-		QMessageBox::warning(this, tr("Erreur"), tr("Le fichier est protégé en lecture."));
+		_lastError = QObject::tr("Le fichier est protégé en lecture.");
 		return false;
 	}
 
@@ -488,7 +432,7 @@ bool Savecard::sstate_pSX()
 	return sstate(f.read(0x139E), MCHeader);
 }
 
-bool Savecard::sstate(const QByteArray &fdata, const QByteArray &MCHeader)
+bool SavecardData::sstate(const QByteArray &fdata, const QByteArray &MCHeader)
 {
 	QByteArray squallIcon;
 
@@ -510,7 +454,7 @@ bool Savecard::sstate(const QByteArray &fdata, const QByteArray &MCHeader)
 	data.append(fdata);
 
 	if(data.size() != 0x139E + 0x182) {
-		QMessageBox::warning(this, tr("Erreur"), tr("Format invalide."));
+		_lastError = QObject::tr("Format invalide.");
 		return false;
 	}
 
@@ -521,7 +465,7 @@ bool Savecard::sstate(const QByteArray &fdata, const QByteArray &MCHeader)
 		if(!saveData->isFF8()) {
 			saves.removeLast();
 			delete saveData;
-			QMessageBox::warning(this, tr("Erreur"), tr("La sauvegarde trouvée n'est pas de Final Fantasy VIII."));
+			_lastError = QObject::tr("La sauvegarde trouvée n'est pas de Final Fantasy VIII.");
 			return false;
 		}
 	}
@@ -529,7 +473,7 @@ bool Savecard::sstate(const QByteArray &fdata, const QByteArray &MCHeader)
 	return true;
 }
 
-void Savecard::directory()
+void SavecardData::directory()
 {
 //	QTime t;t.start();
 	for(quint8 i=0 ; i<30 ; ++i)
@@ -541,126 +485,23 @@ void Savecard::directory()
 //	qDebug() << "time: " << t.elapsed();
 }
 
-void Savecard::addSave(const QByteArray &data, const QByteArray &header)
+void SavecardData::addSave(const QByteArray &data, const QByteArray &header)
 {
-	SaveData *saveData = new SaveData(count(), data, header, type()==Psv);
-	saves.append(saveData);
-
-	QListWidgetItem *item = new QListWidgetItem(this);
-	item->setFlags(Qt::NoItemFlags);
-
-	SaveWidget *saveWidget = new SaveWidget(saveData, this);
-	item->setSizeHint(saveWidget->sizeHint());
-	setItemWidget(item, saveWidget);
-
-	connect(saveWidget, SIGNAL(released(SaveData*)), parent(), SLOT(editView(SaveData*)));
-	connect(saveWidget, SIGNAL(changed()), parent(), SLOT(setModified()));
+	saves.append(new SaveData(saves.size(), data, header, type()==Psv));
 }
 
-void Savecard::setDragStart(int saveID)
-{
-	_dragStart = saveID;
-}
-
-void Savecard::moveDraggedSave(int saveID)
-{
-	if(_dragStart < saveID) {
-		saveID--;
-	}
-
-	if(_dragStart != saveID
-			&& _dragStart >= 0 && _dragStart < saves.size()) {
-		SaveData *saveData = saves.takeAt(_dragStart);
-		saves.insert(saveID, saveData);
-
-		saveID = 0;
-		foreach(saveData, saves) {
-			saveData->setId(saveID);
-			saveWidget(saveID)->setSaveData(saveData);
-			saveID++;
-		}
-
-		updateSaveWidgets();
-
-		setModified(true);
-		emit modified();
-	}
-
-	_dragStart = -1;
-}
-
-void Savecard::replaceSaveData(int saveID, const QByteArray &mimeData)
-{
-	if(saveID >=0 && saveID < saves.size()
-			&& !mimeData.isEmpty()) {
-		SaveData *saveData = saves.at(saveID);
-
-		if(!saveData->isDelete()) {
-			QMessageBox::StandardButton answer = QMessageBox::question(this, tr("Écraser"), tr("Tout le contenu de la sauvegarde sera écrasé.\nContinuer ?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::No);
-			if(answer != QMessageBox::Yes) {
-				return;
-			}
-		}
-
-		if(mimeData.size() > SAVE_SIZE) {
-			saveData->open(mimeData.left(SAVE_SIZE), mimeData.mid(SAVE_SIZE));
-		} else if(mimeData.size() == SAVE_SIZE) {
-			QByteArray MCHeader;
-			if(saveData->hasMCHeader()) {
-				HeaderDialog dialog(saveData, this, HeaderDialog::CreateView);
-
-				if(dialog.exec() != QDialog::Accepted) {
-					return;
-				}
-				MCHeader = saveData->MCHeader();
-			}
-			saveData->open(mimeData, MCHeader);
-		} else {
-			return;
-		}
-
-		saveWidget(saveID)->update();
-
-		_isModified = true;
-		saveData->setModified(true);
-		emit modified();
-	}
-}
-
-void Savecard::setDropIndicatorIsVisible(int saveID, bool onTop, bool isVisible)
-{
-	SaveWidget *save = saveWidget(saveID);
-	if(save) {
-		save->setDropIndicatorIsVisible(onTop, isVisible);
-	}
-}
-
-void Savecard::scrollToDrag(int saveID, const QPoint &pos)
-{
-	QListWidgetItem *curItem = item(saveID);
-	if(!curItem)	return;
-
-	QRect visualRect = visualItemRect(curItem);
-	const int locationHeight = visualRect.height() / 2;
-	const int posYInView = visualRect.top() + pos.y();
-
-	if(posYInView >= height() - locationHeight) {
-		const int posYInBottomLocation = locationHeight - (height() - posYInView);
-
-		verticalScrollBar()->setValue(verticalScrollBar()->value() + (verticalScrollBar()->maximum() / 15) * posYInBottomLocation / locationHeight);
-	} else if(posYInView <= locationHeight) {
-		const int posYInTopLocation = locationHeight - posYInView;
-
-		verticalScrollBar()->setValue(verticalScrollBar()->value() - (verticalScrollBar()->maximum() / 15) * posYInTopLocation / locationHeight);
-	}
-}
-
-const QList<SaveData *> &Savecard::getSaves() const
+const QList<SaveData *> &SavecardData::getSaves() const
 {
 	return saves;
 }
 
-bool Savecard::save(const QString &saveAs, Type newType)
+void SavecardData::setSaves(const QList<SaveData *> &saves)
+{
+	this->saves = saves;
+	setModified(true);
+}
+
+bool SavecardData::save(const QString &saveAs, Type newType)
 {
 	QString path = saveAs.isEmpty() ? _path : saveAs;
 	QTemporaryFile temp("hyne");
@@ -672,18 +513,18 @@ bool Savecard::save(const QString &saveAs, Type newType)
 
 	if(!fic.exists())
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Le fichier n'existe plus.\n%1").arg(_path));
+		_lastError = QObject::tr("Le fichier n'existe plus.\n%1").arg(_path);
 		return false;
 	}
 	if(!fic.open(QIODevice::ReadOnly))
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Le fichier est protégé en lecture.\n%1").arg(_path));
+		_lastError = QObject::tr("Le fichier est protégé en lecture.\n%1").arg(_path);
 		return false;
 	}
 	if(!temp.open())
 	{
 		fic.close();
-		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de créer un fichier temporaire"));
+		_lastError = QObject::tr("Impossible de créer un fichier temporaire");
 		return false;
 	}
 
@@ -698,14 +539,10 @@ bool Savecard::save(const QString &saveAs, Type newType)
 	}
 	else if(_type!=Pc && _type!=PcDir)
 	{
-		bool abort;
 		quint8 i;
 		SaveData *save;
 
-		QByteArray head = header(&fic, newType, !saveAs.isEmpty(), &abort);
-		if(abort) return false;
-
-		temp.write(head);
+		temp.write(header(&fic, newType, !saveAs.isEmpty()));
 
 		temp.write("MC", 2);//MC
 		temp.write(QByteArray(125,'\x00'));
@@ -752,20 +589,20 @@ bool Savecard::save(const QString &saveAs, Type newType)
 	if(QFile::exists(path) && !QFile::remove(path))
 	{
 		temp.close();
-		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nVérifiez que le fichier n'est pas utilisé par un autre programme.").arg(path));
+		_lastError = QObject::tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nVérifiez que le fichier n'est pas utilisé par un autre programme.").arg(path);
 		if(readdPath)	fileWatcher.addPath(path);
 		return false;
 	}
 	if(!temp.copy(path))
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Échec de la sauvegarde."));
+		_lastError = QObject::tr("Échec de la sauvegarde.");
 	}
 	if(readdPath)	fileWatcher.addPath(path);
 
 	return true;
 }
 
-bool Savecard::save2PC(qint8 id, QString path)
+bool SavecardData::save2PC(qint8 id, QString path)
 {
 	if(path.isEmpty())
 		path = _path;
@@ -773,7 +610,7 @@ bool Savecard::save2PC(qint8 id, QString path)
 	QTemporaryFile temp("hyneOne");
 	if(!temp.open())
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de créer un fichier temporaire"));
+		_lastError = QObject::tr("Impossible de créer un fichier temporaire");
 		return false;
 	}
 
@@ -798,18 +635,17 @@ bool Savecard::save2PC(qint8 id, QString path)
 
 	if(QFile::exists(path) && !QFile::remove(path))
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nVérifiez que le fichier n'est pas utilisé par un autre programme.").arg(path));
+		_lastError = QObject::tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nVérifiez que le fichier n'est pas utilisé par un autre programme.").arg(path);
 		if(readdPath)	fileWatcher.addPath(path);
 		return false;
 	}
 	if(!temp.copy(path))
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Échec de la sauvegarde."));
+		_lastError = QObject::tr("Échec de la sauvegarde.");
 	}
 	if(readdPath)	fileWatcher.addPath(path);
 
 	if(_type == Undefined) {
-		_hasPath = true;
 		setPath(path);
 		setType(Pc);
 	}
@@ -817,7 +653,7 @@ bool Savecard::save2PC(qint8 id, QString path)
 	return true;
 }
 
-bool Savecard::save2PSV(qint8 id, QString path)
+bool SavecardData::save2PSV(qint8 id, QString path)
 {
 	if(path.isEmpty())
 		path = _path;
@@ -825,7 +661,7 @@ bool Savecard::save2PSV(qint8 id, QString path)
 	QTemporaryFile temp("hynePsv");
 	if(!temp.open())
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de créer un fichier temporaire"));
+		_lastError = QObject::tr("Impossible de créer un fichier temporaire");
 		return false;
 	}
 
@@ -842,13 +678,12 @@ bool Savecard::save2PSV(qint8 id, QString path)
 		return QFile::remove(path);
 	}
 
-	SaveData tempSave(*saves.first());
-	if(!saves.first()->hasMCHeader()) {
-		HeaderDialog dialog(&tempSave, this, HeaderDialog::CreateView);
-		if(dialog.exec() != QDialog::Accepted) return false;
+	if(!saves.first()->hasMCHeader()) {//TODO
+		qWarning() << "Need a MC Header!";
+		return false;
 	}
 
-	QByteArray MCHeader = tempSave.saveMCHeader();
+	QByteArray MCHeader = saves.first()->saveMCHeader();
 
 	QByteArray result;
 	result.append("\0VSP\0\0\0\0", 8);
@@ -864,18 +699,17 @@ bool Savecard::save2PSV(qint8 id, QString path)
 
 	if(QFile::exists(path) && !QFile::remove(path))
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nVérifiez que le fichier n'est pas utilisé par un autre programme.").arg(path));
+		_lastError = QObject::tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nVérifiez que le fichier n'est pas utilisé par un autre programme.").arg(path);
 		if(readdPath)	fileWatcher.addPath(path);
 		return false;
 	}
 	if(!temp.copy(path))
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Échec de la sauvegarde."));
+		_lastError = QObject::tr("Échec de la sauvegarde.");
 	}
 	if(readdPath)	fileWatcher.addPath(path);
 
 	if(_type == Undefined) {
-		_hasPath = true;
 		setPath(path);
 		setType(Psv);
 	}
@@ -883,36 +717,21 @@ bool Savecard::save2PSV(qint8 id, QString path)
 	return true;
 }
 
-bool Savecard::save2PS(QList<int> ids, const QString &path, Type newType)
+bool SavecardData::save2PS(QList<int> ids, const QString &path, Type newType, QByteArray MCHeader)
 {
 	QTemporaryFile temp("hynePS");
-	SaveData tempSave;
 	quint8 i;
 
 	if(!temp.open())
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de créer un fichier temporaire"));
+		_lastError = QObject::tr("Impossible de créer un fichier temporaire");
 		return false;
 	}
 
-	bool abort;
-
-	QByteArray head = header(0, newType, true, &abort);
-	if(abort)	return false;
-	temp.write(head);
-
-	QByteArray MCHeader;
+	temp.write(header(0, newType, true));
 
 	if(_type == Psv) {
-		tempSave.setMCHeader(true, saves.first()->MCHeaderCountry(), saves.first()->MCHeaderCode(), saves.first()->MCHeaderId());
-		MCHeader = tempSave.saveMCHeader();
-	}
-	else if(!saves.first()->hasMCHeader()) {
-		HeaderDialog dialog(&tempSave, this, HeaderDialog::CreateView);
-
-		if(dialog.exec() != QDialog::Accepted) return false;
-
-		MCHeader = tempSave.saveMCHeader();
+		MCHeader = saves.first()->saveMCHeader();
 	}
 
 	temp.write("MC", 2);//MC
@@ -962,21 +781,20 @@ bool Savecard::save2PS(QList<int> ids, const QString &path, Type newType)
 
 	if(QFile::exists(path) && !QFile::remove(path))
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de supprimer le fichier !"
-													"\n%1\nÉchec de la sauvegarde."
-													"\nVérifiez que le fichier n'est pas utilisé"
-													" par un autre programme.").arg(path));
+		_lastError = QObject::tr("Impossible de supprimer le fichier !"
+								 "\n%1\nÉchec de la sauvegarde."
+								 "\nVérifiez que le fichier n'est pas utilisé"
+								 " par un autre programme.").arg(path);
 		if(readdPath)	fileWatcher.addPath(path);
 		return false;
 	}
 	if(!temp.copy(path))
 	{
-		QMessageBox::warning(this, tr("Erreur"), tr("Échec de la sauvegarde."));
+		_lastError = QObject::tr("Échec de la sauvegarde.");
 	}
 	if(readdPath)	fileWatcher.addPath(path);
 
 	if(_type == Undefined) {
-		_hasPath = true;
 		setPath(path);
 		setType(newType);
 		for(i=saves.size() ; i<15 ; ++i) {
@@ -998,10 +816,8 @@ bool Savecard::save2PS(QList<int> ids, const QString &path, Type newType)
 	return true;
 }
 
-QByteArray Savecard::header(QFile *srcFile, Type newType, bool saveAs, bool *abort)
+QByteArray SavecardData::header(QFile *srcFile, Type newType, bool saveAs)
 {
-	*abort = false;
-
 	if(newType==Vgs)
 	{
 		// header : 64 bytes
@@ -1037,16 +853,7 @@ QByteArray Savecard::header(QFile *srcFile, Type newType, bool saveAs, bool *abo
 		// description : 3840 bytes
 		if(saveAs)
 		{
-			QString old_desc;
-			if(_type==Gme)
-			{
-				//srcFile->seek(64);
-				old_desc = QString(srcFile->read(3840));
-			}
-
-			QByteArray new_desc = descGme(old_desc, abort);
-			if(*abort)	return QByteArray();
-			return header.append(new_desc);
+			return header.append(_description.leftJustified(3840, '\0', true));
 		}
 		else
 		{
@@ -1076,40 +883,14 @@ QByteArray Savecard::header(QFile *srcFile, Type newType, bool saveAs, bool *abo
 		return QByteArray();
 }
 
-QByteArray Savecard::descGme(const QString &desc, bool *abort)
-{
-	QDialog dialog(this, Qt::Dialog | Qt::WindowCloseButtonHint);
-	dialog.setWindowTitle(tr("Commentaire"));
-
-	QTextEdit *textEdit = new QTextEdit(&dialog);
-	textEdit->setPlainText(desc);
-
-	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel,
-													   Qt::Horizontal, &dialog);
-	QVBoxLayout *layout = new QVBoxLayout(&dialog);
-	layout->addWidget(textEdit);
-	layout->addWidget(buttonBox);
-
-	connect(buttonBox, SIGNAL(accepted()), &dialog, SLOT(accept()));
-	connect(buttonBox, SIGNAL(rejected()), &dialog, SLOT(reject()));
-
-	if(dialog.exec() != QDialog::Accepted) {
-		*abort = true;
-		return QByteArray();
-	}
-	*abort = false;
-
-	return textEdit->toPlainText().toLatin1().leftJustified(3840, '\x00', true);
-}
-
-void Savecard::saveDir()
+void SavecardData::saveDir()
 {
 	for(int i=0 ; i<saves.size() ; ++i)
 		saveDir(i);
 	setName(QString());
 }
 
-void Savecard::saveDir(quint8 i)
+void SavecardData::saveDir(quint8 i)
 {
 	if(saves.at(i)->isModified()) {
 		setName(QString("save%1").arg(i+1, 2, 10, QChar('0')));
@@ -1117,7 +898,7 @@ void Savecard::saveDir(quint8 i)
 	}
 }
 
-void Savecard::compare(const QByteArray &oldData, const QByteArray &newData)
+void SavecardData::compare(const QByteArray &oldData, const QByteArray &newData)
 {
 	qDebug() << "Compare ----";
 	for(int i=386 ; i<FF8SAVE_SIZE ; ++i) {
