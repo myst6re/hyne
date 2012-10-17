@@ -68,7 +68,7 @@ private:
 	void fillMenuRecent();
 	void restartNow();
 
-	void setTitle(const bool editor=false);
+	void setTitle(const int currentSaveEdited=-1);
 	QList<int> selectSavesDialog(bool multiSelection=false);
 	
 	QMenuBar *menuBar;
@@ -80,8 +80,6 @@ private:
 	SavecardWidget *saveList;
 	StartWidget *startWidget;
 	Editor *editor;
-
-	quint8 currentSaveEdited;
 
 protected:
 	virtual void closeEvent(QCloseEvent *event);

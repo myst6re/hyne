@@ -225,8 +225,10 @@ void SavecardData::setModified(bool modified)
 {
 	_isModified = modified;
 
-	foreach(SaveData *save, saves) {
-		save->setModified(modified);
+	if(modified == false) {
+		foreach(SaveData *save, saves) {
+			save->setModified(false);
+		}
 	}
 }
 
@@ -482,6 +484,7 @@ void SavecardData::directory()
 		if(!pc())	addSave();
 	}
 	setName(QString());
+	LZS::clear();
 //	qDebug() << "time: " << t.elapsed();
 }
 

@@ -30,6 +30,7 @@ class SaveWidget : public QWidget
 	Q_OBJECT
 public:
 	SaveWidget(SaveData *saveData, SavecardWidget *savecard, QWidget *parent=0);
+	virtual ~SaveWidget();
 	void hideCursor();
 	void setDropIndicatorIsVisible(bool onTop, bool isVisible);
 	void setSaveData(SaveData *saveData);
@@ -49,7 +50,7 @@ private:
 	QPoint startPos;
 	bool hovered;
 	bool blackView, hasDragEvent, hasDragEventTop, hasDragEventBottom;
-	QByteArray lastDropData;
+	QByteArray *lastDropData;
 	bool lastIsExternal;
 	int draggedID;
 public slots:

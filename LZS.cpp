@@ -369,3 +369,8 @@ const QByteArray &LZS::compress(const QByteArray &fileData)
 	result.truncate(curResult);
 	return result;
 }
+
+void LZS::clear()
+{
+	result.clear();
+}

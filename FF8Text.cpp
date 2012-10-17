@@ -18,7 +18,7 @@
 
 #include "FF8Text.h"
 
-QImage FF8Text::fontImage;
+QImage *FF8Text::fontImage = 0;
 
 QString FF8Text::toString(const QByteArray &ff8str, bool jp)
 {
@@ -429,7 +429,10 @@ const quint8 FF8Text::charWidth[5][224] =
 
 void FF8Text::reloadFont()
 {
-	fontImage = QImage(QString(":/images/font%1.png").arg(Config::value("font")));
+	if(fontImage) {
+		delete fontImage;
+	}
+	fontImage = new QImage(QString(":/images/font%1.png").arg(Config::value("font")));
 }
 
 void FF8Text::drawTextArea(QPainter *painter, const QPoint &point, const QString &text, int forceLang)
@@ -464,17 +467,19 @@ void FF8Text::drawTextArea(QPainter *painter, const QPoint &point, const QString
 		else if(charId<32)
 		{
 			++i;
-			switch(charId)
-			{
-			case 0x19: // Jap 1
-				letter(&x, &y, (quint8)ff8Text.at(i)-0x20, painter, 2);
-				break;
-			case 0x1a: // Jap 2
-				letter(&x, &y, (quint8)ff8Text.at(i)-0x20, painter, 3);
-				break;
-			case 0x1b: // Jap 3
-				letter(&x, &y, (quint8)ff8Text.at(i)-0x20, painter, 4);
-				break;
+			if(jp) {
+				switch(charId)
+				{
+				case 0x19: // Jap 1
+					letter(&x, &y, (quint8)ff8Text.at(i)-0x20, painter, 2);
+					break;
+				case 0x1a: // Jap 2
+					letter(&x, &y, (quint8)ff8Text.at(i)-0x20, painter, 3);
+					break;
+				case 0x1b: // Jap 3
+					letter(&x, &y, (quint8)ff8Text.at(i)-0x20, painter, 4);
+					break;
+				}
 			}
 		}
 	}
@@ -483,11 +488,12 @@ void FF8Text::drawTextArea(QPainter *painter, const QPoint &point, const QString
 void FF8Text::letter(int *x, int *y, int charId, QPainter *painter, quint8 tableId)
 {
 	int charIdImage = charId + 231*tableId;
+	int charSrcWidth = Config::value("font").isEmpty() ? 12 : 24;
 
-	if(fontImage.isNull())
+	if(!fontImage)
 		reloadFont();
 
-	painter->drawImage(*x, *y, fontImage.copy((charIdImage%21)*24, (charIdImage/21)*24, 24, 24));
+	painter->drawImage(QRect(*x, *y, 24, 24), fontImage->copy((charIdImage%21)*charSrcWidth, (charIdImage/21)*charSrcWidth, charSrcWidth, charSrcWidth));
 	*x += charWidth[tableId][charId]*2;
 }
 

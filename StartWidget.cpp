@@ -85,7 +85,7 @@ void StartWidget::paintEvent(QPaintEvent *)
 		text.replace(remAnd, "\\1");
 
 		SaveWidget::drawFrame(&painter, OPTION_WIDTH, OPTION_HEIGHT);
-		FF8Text::drawTextArea(&painter, QPoint(12, 12), text, 0);
+		FF8Text::drawTextArea(&painter, QPoint(12, 12), text);
 
 		if(actionID == _cursorPosition) {
 			painter.drawPixmap(-38, 12, QPixmap(":/images/cursor.png"));

@@ -20,7 +20,7 @@
 #include "HeaderDialog.h"
 
 Window::Window() :
-	QWidget(), saves(0), saveList(0), editor(0), currentSaveEdited(0)
+	QWidget(), saves(0), saveList(0), editor(0)
 {
 	setTitle();
 	setMinimumSize(768, 502);
@@ -173,11 +173,11 @@ void Window::dropEvent(QDropEvent *event)
 	event->acceptProposedAction();
 }
 
-void Window::setTitle(const bool editor)
+void Window::setTitle(const int currentSaveEdited)
 {
 	setWindowTitle(PROG_NAME %
 				   (!saves ? QString() : " - [*]" % saves->path()) %
-				   (editor ? tr(" - save %1").arg(currentSaveEdited+1, 2, 10, QChar('0')) : QString())
+				   (currentSaveEdited >= 0 ? tr(" - save %1").arg(currentSaveEdited+1, 2, 10, QChar('0')) : QString())
 				   );
 }
 
@@ -366,8 +366,6 @@ void Window::setIsOpen(bool open)
 			delete saves;
 			saves = 0;
 		}
-
-		currentSaveEdited = 0;
 
 		actionSaveAs->setEnabled(false);
 		actionProperties->setEnabled(false);
@@ -620,9 +618,9 @@ void Window::editView(SaveData *saveData)
 	}
 	editor->show();
 	editor->load(saveData, saves->type()==SavecardData::Pc || saves->type()==SavecardData::PcDir);
-	currentSaveEdited = saveData->id();
 	stackedLayout->setCurrentWidget(editor);
-	setTitle(true);
+	setTitle(saveData->id());
+	saves->setIsTheLastEdited(saveData->id());
 	setWindowIcon(QIcon(saveData->saveIcon().icon()));
 }
 
@@ -636,7 +634,6 @@ void Window::saveView()
 	setWindowIcon(qApp->windowIcon());
 	setTitle();
 	setModified(saves->isModified());
-	saves->setIsTheLastEdited(currentSaveEdited);
 	saveList->updateSaveWidgets();
 }
 

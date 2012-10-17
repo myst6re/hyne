@@ -21,11 +21,17 @@
 
 SaveWidget::SaveWidget(SaveData *saveData, SavecardWidget *savecard, QWidget *parent) :
 	QWidget(parent), saveData(saveData), _savecard(savecard), mouseMove(0), hovered(false),
-	blackView(false), hasDragEvent(false), hasDragEventTop(false), hasDragEventBottom(false)
+	blackView(false), hasDragEvent(false), hasDragEventTop(false), hasDragEventBottom(false),
+	lastDropData(0)
 {
 	saveIcon = new SaveIcon(saveData->saveIcon());
 	connect(saveIcon, SIGNAL(nextIcon(QPixmap)), SLOT(refreshIcon()));
 	setAcceptDrops(true);
+}
+
+SaveWidget::~SaveWidget()
+{
+	if(lastDropData)	delete lastDropData;
 }
 
 void SaveWidget::hideCursor()
@@ -171,6 +177,13 @@ void SaveWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void SaveWidget::contextMenuEvent(QContextMenuEvent *event)
 {
+	int xStart = (width() - sizeHint().width())/2;
+	int xEnd = xStart + sizeHint().width();
+
+	if(event->x() < xStart || event->x() > xEnd) {
+		return;
+	}
+
 	QMenu menu(this);
 	if(!saveData->isDelete() && saveData->isFF8()) {
 		menu.setDefaultAction(menu.addAction(tr("&Modifier..."), this, SLOT(edit())));
@@ -262,7 +275,8 @@ void SaveWidget::dropEvent(QDropEvent *event)
 	event->acceptProposedAction();
 	lastIsExternal = event->source() == 0;
 	if(lastIsExternal) {
-		lastDropData = event->mimeData()->data("application/ff8save");
+		if(lastDropData)	delete lastDropData;
+		lastDropData = new QByteArray(event->mimeData()->data("application/ff8save"));
 	}
 	QTimer::singleShot(0, this, SLOT(emitDropped()));// defer function call
 }
@@ -270,8 +284,9 @@ void SaveWidget::dropEvent(QDropEvent *event)
 void SaveWidget::emitDropped()
 {
 	if(lastIsExternal) {
-		_savecard->replaceSaveData(saveData->id(), lastDropData);
-		lastDropData = QByteArray();
+		_savecard->replaceSaveData(saveData->id(), *lastDropData);
+		delete lastDropData;
+		lastDropData = 0;
 	} else {
 		_savecard->moveDraggedSave(draggedID);
 	}
