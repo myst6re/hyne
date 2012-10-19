@@ -1,4 +1,4 @@
-hyne (1.6.1) precise; urgency=low
+hyne (1.6.1b1) precise; urgency=low
 
   * Add VM1 support
   * Can export in PSV format (but like VMP, without breaking the protection)
