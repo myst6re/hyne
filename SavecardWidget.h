@@ -16,16 +16,15 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_SAVECARD
-#define DEF_SAVECARD
+#ifndef DEF_SAVECARDWIDGET
+#define DEF_SAVECARDWIDGET
 
 #include <QtGui>
-#include "SaveWidget.h"
-#include "SavecardData.h"
+#include "SavecardView.h"
 
-class SaveWidget;
+class SavecardView;
 
-class SavecardWidget : public QListWidget
+class SavecardWidget : public QScrollArea
 {
 	Q_OBJECT
 
@@ -33,30 +32,13 @@ public:
 	SavecardWidget(QWidget *parent=0);
 	virtual ~SavecardWidget();
 
-	void updateSaveWidgets();
-
-	SaveWidget *saveWidget(int row) const;
+	SavecardView *view() const;
 
 	SavecardData *savecard() const;
 	void setSavecard(SavecardData *save);
 
-	void moveCursor(int);
-	void setDragStart(int saveID);
-	void moveDraggedSave(int saveID);
-	void replaceSaveData(int saveID, const QByteArray &mimeData);
-	void setDropIndicatorIsVisible(int saveID, bool onTop, bool isVisible);
-	void scrollToDrag(int saveID, const QPoint &pos);
-private slots:
-	void notifyFileChanged(const QString &path);
-signals:
-	void modified();
-private:
-	void setWidget();
-	void addSave(SaveData *saveData);
-
-	int _dragStart;
-	bool notify;
-	SavecardData *_data;
+	QRect visualRect() const;
+	void scrollToDrag(const QPoint &pos);
 };
 
-#endif
+#endif // DEF_SAVECARDWIDGET

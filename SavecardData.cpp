@@ -504,6 +504,11 @@ void SavecardData::setSaves(const QList<SaveData *> &saves)
 	setModified(true);
 }
 
+SaveData *SavecardData::getSave(int id) const
+{
+	return saves.value(id, 0);
+}
+
 bool SavecardData::save(const QString &saveAs, Type newType)
 {
 	QString path = saveAs.isEmpty() ? _path : saveAs;

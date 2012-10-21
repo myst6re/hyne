@@ -20,7 +20,6 @@ HEADERS += PageWidgets/ConfigEditor.h \
     FF8Text.h \
     LZS.h \
     Parameters.h \
-    SaveWidget.h \
     SavecardWidget.h \
     SaveIcon.h \
     Window.h \
@@ -43,7 +42,8 @@ HEADERS += PageWidgets/ConfigEditor.h \
     StartWidget.h \
     PageWidgets/PartyEditor.h \
     GZIP.h \
-    SavecardData.h
+    SavecardData.h \
+    SavecardView.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/MiscEditor.cpp \
     PageWidgets/GfEditor.cpp \
@@ -57,7 +57,6 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     FF8Text.cpp \
     LZS.cpp \
     main.cpp \
-    SaveWidget.cpp \
     SavecardWidget.cpp \
     SaveIcon.cpp \
     Window.cpp \
@@ -81,7 +80,8 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     StartWidget.cpp \
     PageWidgets/PartyEditor.cpp \
     GZIP.cpp \
-    SavecardData.cpp
+    SavecardData.cpp \
+    SavecardView.cpp
 RESOURCES += Hyne.qrc
 TRANSLATIONS += hyne_en.ts \
     hyne_ja.ts

@@ -211,12 +211,6 @@ void Window::newFile()
 	if(dialog.exec() == QDialog::Accepted) {
 		if(!closeFile())	return;
 
-		if(!saveList) {
-			saveList = new SavecardWidget(this);
-			connect(saveList, SIGNAL(modified()), SLOT(setModified()));
-			stackedLayout->addWidget(saveList);
-		}
-
 		saves = new SavecardData(oneSave.isChecked() ? 1 : 15);
 		if(!name.text().isEmpty()) {
 			saves->setName(name.text());
@@ -229,6 +223,7 @@ void Window::newFile()
 		}
 		else
 		{
+			saveView();
 			saveList->setSavecard(saves);
 			setIsOpen(true);
 			setModified(saves->isModified());
@@ -324,12 +319,7 @@ void Window::openFile(const QString &path, bool isPCSlot)
 	}
 	else
 	{
-		if(!saveList) {
-			saveList = new SavecardWidget(this);
-			connect(saveList, SIGNAL(modified()), SLOT(setModified()));
-			stackedLayout->addWidget(saveList);
-		}
-
+		saveView();
 		saveList->setSavecard(saves);
 
 		if(saves->type() == SavecardData::Psv || saves->type() == SavecardData::Vmp)
@@ -565,7 +555,7 @@ void Window::properties()
 
 	if(saveCount == 0)	return;
 	if(saveCount == 1) {
-		saveList->saveWidget(firstSaveID)->properties();
+		saveList->view()->properties(firstSaveID);
 		return;
 	}
 
@@ -573,7 +563,7 @@ void Window::properties()
 
 	if(dialog->exec() == QDialog::Accepted) {
 		QList<int> selected_files = dialog->selectedSaves();
-		saveList->saveWidget(selected_files.first())->properties();
+		saveList->view()->properties(selected_files.first());
 	}
 }
 
@@ -626,15 +616,21 @@ void Window::editView(SaveData *saveData)
 
 void Window::saveView()
 {
-	if(!saveList)	return;
-	stackedLayout->setCurrentWidget(saveList);
-	if(editor)	editor->hide();
-	menuBar->show();
-	menuBar->setEnabled(true);
-	setWindowIcon(qApp->windowIcon());
-	setTitle();
-	setModified(saves->isModified());
-	saveList->updateSaveWidgets();
+	if(!saveList) {
+		saveList = new SavecardWidget(this);
+		connect(saveList->view(), SIGNAL(changed()), SLOT(setModified()));
+		connect(saveList->view(), SIGNAL(released(SaveData*)), SLOT(editView(SaveData*)));
+		stackedLayout->addWidget(saveList);
+	} else {
+		stackedLayout->setCurrentWidget(saveList);
+		if(editor)	editor->hide();
+		menuBar->show();
+		menuBar->setEnabled(true);
+		setWindowIcon(qApp->windowIcon());
+		setTitle();
+		setModified(saves->isModified());
+		saveList->view()->update();
+	}
 }
 
 void Window::save()
@@ -680,7 +676,7 @@ void Window::changeFrame(QAction *action)
 
 	if(saves) {
 		if(editor)	editor->updateTime();
-		saveList->updateSaveWidgets();
+		saveList->view()->update();
 	}
 }
 
@@ -689,7 +685,7 @@ void Window::font(bool font)
 	Config::setValue("font", font ? "hr" : "");
 	FF8Text::reloadFont();
 	if(saves) {
-		saveList->updateSaveWidgets();
+		saveList->view()->update();
 	} else {
 		startWidget->update();
 	}

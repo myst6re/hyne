@@ -16,58 +16,76 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_SAVEWIDGET
-#define DEF_SAVEWIDGET
+#ifndef DEF_SAVECARDVIEW
+#define DEF_SAVECARDVIEW
 
 #include <QtGui>
-#include "SaveData.h"
+#include "SavecardData.h"
 #include "SavecardWidget.h"
 
 class SavecardWidget;
 
-class SaveWidget : public QWidget
+class SavecardView : public QWidget
 {
 	Q_OBJECT
+
 public:
-	SaveWidget(SaveData *saveData, SavecardWidget *savecard, QWidget *parent=0);
-	virtual ~SaveWidget();
-	void hideCursor();
-	void setDropIndicatorIsVisible(bool onTop, bool isVisible);
-	void setSaveData(SaveData *saveData);
-	void setSavecard(SavecardWidget *savecard);
+	SavecardView(SavecardWidget *parent=0);
+	virtual ~SavecardView();
+
+	void clear();
+
+	SavecardData *savecard() const;
+	void setSavecard(SavecardData *save);
+
+	void moveCursor(int saveID);
+
+	QRect saveRect(int saveID) const;
+	inline QSize saveSize() const { return QSize(saveWidth(), saveHeight()); }
+	inline int saveWidth() const { return 672; }
+	inline int saveHeight() const {	return 106; }
 	virtual QSize sizeHint() const;
 	virtual QSize minimumSizeHint() const;
+	// public function to draw a save preview
+	void renderSave(QPainter *painter, SaveData *saveData);
+	void renderSave(QPixmap *pixmap, SaveData *saveData);
 	static void drawFrame(QPainter *painter, int width, int height);
 	static void num2pix(QPainter *painter, QImage *numberPixmap, int x, int y, quint32 num, quint8 space=1, QChar fill=QChar(' '), int color=0);
-private:
-	void restore();
-	static void colors(QImage *image, int color);
-
-	SaveData *saveData;
-	SavecardWidget *_savecard;
-	SaveIcon *saveIcon;
-	int mouseMove;
-	QPoint startPos;
-	bool hovered;
-	bool blackView, hasDragEvent, hasDragEventTop, hasDragEventBottom;
-	QByteArray *lastDropData;
-	bool lastIsExternal;
-	int draggedID;
 public slots:
-	void properties();
+	void properties(int saveID=-1);
 private slots:
-	void edit();
-	void exportPC();
-	void newGame();
-	void removeSave();
-	void refreshIcon();
+	void notifyFileChanged(const QString &path);
+	void edit(int saveID=-1);
+	void exportPC(int saveID=-1);
+	void newGame(int saveID=-1);
+	void removeSave(int saveID=-1);
+//	void refreshIcon();
 	void emitDropped();
 signals:
-	void released(SaveData *saveData);
 	void changed();
+	void released(SaveData *saveData);
+private:
+	void moveDraggedSave(int saveID);
+	void replaceSaveData(int saveID, const QByteArray &mimeData);
+	void setDropIndicator(int saveID);
+	int saveID(const QPoint &pos) const;
+	void restore(int saveID);
+	void renderSave(QPainter *painter, SaveData *saveData, const QPixmap &menuBg, const QPixmap &fontPixmap);
+	static void colors(QImage *image, int color);
+
+	int cursorID, blackID, dropIndicatorID;
+	bool isExternalDrag;
+	int _dragStart;
+	bool notify;
+	SavecardData *_data;
+	SavecardWidget *_parent;
+//	SaveIcon *saveIcon;
+	int mouseMove;
+	QPoint startPos;
+	QByteArray *lastDropData;
+	int lastDropID;
 protected:
 	virtual void paintEvent(QPaintEvent *event);
-	virtual void enterEvent(QEvent *event);
 	virtual void mousePressEvent(QMouseEvent *event);
 	virtual void mouseMoveEvent(QMouseEvent *event);
 	virtual void mouseReleaseEvent(QMouseEvent *event);
@@ -79,4 +97,4 @@ protected:
 	virtual void dropEvent(QDropEvent *event);
 };
 
-#endif
+#endif // DEF_SAVECARDVIEW

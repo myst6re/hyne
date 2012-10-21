@@ -69,7 +69,7 @@ void StartWidget::paintEvent(QPaintEvent *)
 	QPainter painter(this);
 
 	painter.setBrush(Qt::black);
-	painter.drawRect(0, 0, width(), height());
+	painter.drawRect(rect());
 
 	painter.translate(actionsPosition());
 
@@ -84,7 +84,7 @@ void StartWidget::paintEvent(QPaintEvent *)
 		QString text = act->text();
 		text.replace(remAnd, "\\1");
 
-		SaveWidget::drawFrame(&painter, OPTION_WIDTH, OPTION_HEIGHT);
+		SavecardView::drawFrame(&painter, OPTION_WIDTH, OPTION_HEIGHT);
 		FF8Text::drawTextArea(&painter, QPoint(12, 12), text);
 
 		if(actionID == _cursorPosition) {
