@@ -509,6 +509,11 @@ SaveData *SavecardData::getSave(int id) const
 	return saves.value(id, 0);
 }
 
+int SavecardData::saveCount() const
+{
+	return saves.size();
+}
+
 bool SavecardData::save(const QString &saveAs, Type newType)
 {
 	QString path = saveAs.isEmpty() ? _path : saveAs;

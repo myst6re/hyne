@@ -92,7 +92,7 @@ void SavecardView::moveDraggedSave(int saveID)
 	}
 
 	if(_dragStart != saveID
-			&& _dragStart >= 0 && _dragStart < _data->getSaves().size()) {
+			&& _dragStart >= 0 && _dragStart < _data->saveCount()) {
 		QList<SaveData *> saves = _data->getSaves();
 		SaveData *saveData = saves.takeAt(_dragStart);
 		saves.insert(saveID, saveData);
@@ -116,7 +116,7 @@ void SavecardView::moveDraggedSave(int saveID)
 void SavecardView::replaceSaveData(int saveID, const QByteArray &mimeData)
 {
 	if(!_data)	return;
-	if(saveID >=0 && saveID < _data->getSaves().size()
+	if(saveID >=0 && saveID < _data->saveCount()
 			&& !mimeData.isEmpty()) {
 		SaveData *saveData = _data->getSave(saveID);
 
@@ -334,7 +334,7 @@ QRect SavecardView::saveRect(int saveID) const
 QSize SavecardView::sizeHint() const
 {
 	if(!_data)	return QSize();
-	return QSize(36 + saveWidth() + 36, saveHeight() * _data->getSaves().size());
+	return QSize(36 + saveWidth() + 36, saveHeight() * _data->saveCount());
 }
 
 QSize SavecardView::minimumSizeHint() const
@@ -451,7 +451,7 @@ void SavecardView::paintEvent(QPaintEvent *event)
 	if(_data) {
 		painter.translate(36, 0);
 
-		int curSaveID = 0, minSaveID, maxSaveID;
+		int curSaveID, minSaveID, maxSaveID;
 		minSaveID = saveID(event->rect().topLeft());
 		maxSaveID = saveID(event->rect().bottomLeft());
 
@@ -459,22 +459,27 @@ void SavecardView::paintEvent(QPaintEvent *event)
 		QPixmap menuBg2(":/images/menu-fond2.png");
 		QPixmap menuTitle(":/images/numbers_title.png");
 
-		foreach(SaveData *saveData, _data->getSaves()) {
-			if(blackID != curSaveID &&
-					curSaveID >= minSaveID && curSaveID <= maxSaveID) {
+		if(minSaveID > 0) {
+			painter.translate(0, minSaveID * saveHeight());
+		}
+
+		for(curSaveID = minSaveID ; curSaveID <= maxSaveID && curSaveID < _data->saveCount() ; ++curSaveID) {
+			if(blackID != curSaveID) {
+				SaveData *saveData = _data->getSaves().at(curSaveID);
 				renderSave(&painter, saveData, !saveData->isTheLastEdited() && !saveData->isDelete() ? menuBg : menuBg2, menuTitle);
 
 				if(cursorID == curSaveID) {
 					painter.drawPixmap(-36, 16, QPixmap(":/images/cursor.png"));
 				}
 			}
+			// Drop indicator
 			if(dropIndicatorID == curSaveID) {
-				if(isExternalDrag) {
+				if(isExternalDrag) { // Overwrite
 					QPen pen(Qt::white, 3);
 					painter.setPen(pen);
 					painter.setBrush(QBrush());
 					painter.drawRect(0, 2, saveWidth(), saveHeight()-4);
-				} else {
+				} else { // Insert
 					QPen pen(Qt::white, 8);
 					painter.setPen(pen);
 					painter.drawLine(0, 0, saveWidth(), 0);
@@ -482,7 +487,14 @@ void SavecardView::paintEvent(QPaintEvent *event)
 			}
 
 			painter.translate(0, saveHeight());
-			curSaveID++;
+		}
+		// Insert indicator after the last item
+		if(dropIndicatorID >= curSaveID && curSaveID == _data->saveCount()) {
+			if(!isExternalDrag) {
+				QPen pen(Qt::white, 8);
+				painter.setPen(pen);
+				painter.drawLine(0, 0, saveWidth(), 0);
+			}
 		}
 	}
 }

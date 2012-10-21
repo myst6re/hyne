@@ -20,7 +20,6 @@
 
 #include <QtGui>
 #include "FF8Text.h"
-#include "SaveWidget.h"
 
 #define OPTION_WIDTH	250
 #define OPTION_HEIGHT	42

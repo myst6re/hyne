@@ -16,6 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 #include "StartWidget.h"
+#include "SavecardView.h"
 
 StartWidget::StartWidget(QWidget *parent) :
 	QWidget(parent), _cursorPosition(-1)

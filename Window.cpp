@@ -569,7 +569,7 @@ void Window::properties()
 
 QList<int> Window::selectSavesDialog(bool multiSelection)
 {
-	int saveCount = saves->getSaves().size();
+	int saveCount = saves->saveCount();
 	if(saveCount <= 15 && saveCount > 0) {
 		QList<int> ids;
 		for(int i=0 ; i<saveCount ; ++i) {
