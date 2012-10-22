@@ -40,15 +40,24 @@ public:
 
 	void moveCursor(int saveID);
 
-	QRect saveRect(int saveID) const;
-	inline QSize saveSize() const { return QSize(saveWidth(), saveHeight()); }
+	inline QSize saveSize() const {
+		return QSize(saveWidth(), saveHeight());
+	}
+	inline QPoint savePoint(int saveID) const {
+		return QPoint(36, saveID * saveSize().height());
+	}
+	inline QRect saveRect(int saveID) const {
+		return QRect(savePoint(saveID), saveSize());
+	}
 	inline int saveWidth() const { return 672; }
 	inline int saveHeight() const {	return 106; }
+	void updateSave(int saveID, bool withCursor=false);
+	void updateSaves(const QList<int> &saveIDs, bool withCursor=false);
 	virtual QSize sizeHint() const;
 	virtual QSize minimumSizeHint() const;
 	// public function to draw a save preview
-	void renderSave(QPainter *painter, SaveData *saveData);
-	void renderSave(QPixmap *pixmap, SaveData *saveData);
+	void renderSave(QPainter *painter, SaveData *saveData, const QRect &sourceRect=QRect());
+	void renderSave(QPixmap *pixmap, SaveData *saveData, const QRect &sourceRect=QRect());
 	static void drawFrame(QPainter *painter, int width, int height);
 	static void num2pix(QPainter *painter, QImage *numberPixmap, int x, int y, quint32 num, quint8 space=1, QChar fill=QChar(' '), int color=0);
 public slots:
@@ -60,7 +69,7 @@ private slots:
 	void newGame(int saveID=-1);
 	void removeSave(int saveID=-1);
 //	void refreshIcon();
-	void emitDropped();
+	void drop();
 signals:
 	void changed();
 	void released(SaveData *saveData);
@@ -68,9 +77,10 @@ private:
 	void moveDraggedSave(int saveID);
 	void replaceSaveData(int saveID, const QByteArray &mimeData);
 	void setDropIndicator(int saveID);
+	void setBlackSave(int saveID);
 	int saveID(const QPoint &pos) const;
 	void restore(int saveID);
-	void renderSave(QPainter *painter, SaveData *saveData, const QPixmap &menuBg, const QPixmap &fontPixmap);
+	void renderSave(QPainter *painter, SaveData *saveData, const QPixmap &menuBg, const QPixmap &fontPixmap, QImage &numberPixmap, const QRect &sourceRect=QRect());
 	static void colors(QImage *image, int color);
 
 	int cursorID, blackID, dropIndicatorID;

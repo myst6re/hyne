@@ -78,10 +78,94 @@ void SavecardView::notifyFileChanged(const QString &path)
 	notify = true;
 }
 
+void SavecardView::updateSave(int saveID, bool withCursor)
+{
+	if(withCursor) {
+		update(QRect(0, savePoint(saveID).y(), width(), saveHeight()));
+	} else {
+		update(saveRect(saveID));
+	}
+}
+
+void SavecardView::updateSaves(const QList<int> &saveIDs, bool withCursor)
+{
+	if(saveIDs.isEmpty())	return;
+	if(saveIDs.size() == 1) {
+		updateSave(saveIDs.first(), withCursor);
+		return;
+	}
+
+	int minID=_data->saveCount(), maxID=-1;
+
+	foreach(int id, saveIDs) {
+		if(id < 0 || id > _data->saveCount()) {
+			continue;
+		}
+		if(id < minID)	minID = id;
+		if(id > maxID)	maxID = id;
+	}
+
+	if(minID == maxID) {
+		updateSave(minID, withCursor);
+	} else {
+		if(withCursor) {
+			update(QRect(QPoint(0, savePoint(minID).y()), QSize(width(), saveHeight() * (maxID - minID + 1))));
+		} else {
+			update(QRect(savePoint(minID), QSize(saveWidth(), saveHeight() * (maxID - minID + 1))));
+		}
+	}
+}
+
 void SavecardView::moveCursor(int saveID)
 {
+	if(saveID == cursorID)	return;
+
+	int oldCursorID = cursorID, minID, maxID;
 	cursorID = saveID;
+
+	if(oldCursorID < 0) {
+		oldCursorID = cursorID;
+	}
+
+	if(oldCursorID < cursorID) {
+		minID = oldCursorID;
+		maxID = cursorID;
+	} else {
+		minID = cursorID;
+		maxID = oldCursorID;
+	}
+
+	if(minID < 0) {
+		minID = maxID;
+	} else if(maxID < 0) {
+		maxID = minID;
+	}
+
+	update(0, minID*saveHeight() + 16, 48, (maxID - minID)*saveHeight() + 46);
+}
+
+void SavecardView::setDropIndicator(int saveID)
+{
+	if(dropIndicatorID == saveID) return;
+
+	dropIndicatorID = saveID;
 	update();
+}
+
+void SavecardView::setBlackSave(int saveID)
+{
+	if(blackID == saveID) return;
+
+	int oldBlackID = blackID;
+	blackID = saveID;
+
+	if(blackID <= -1) {
+		updateSave(oldBlackID, true);
+	} else if(oldBlackID <= -1) {
+		updateSave(blackID, true);
+	} else {
+		updateSaves(QList<int>() << oldBlackID << blackID, true);
+	}
 }
 
 void SavecardView::moveDraggedSave(int saveID)
@@ -93,19 +177,9 @@ void SavecardView::moveDraggedSave(int saveID)
 
 	if(_dragStart != saveID
 			&& _dragStart >= 0 && _dragStart < _data->saveCount()) {
-		QList<SaveData *> saves = _data->getSaves();
-		SaveData *saveData = saves.takeAt(_dragStart);
-		saves.insert(saveID, saveData);
+		_data->moveSave(_dragStart, saveID);
 
-		saveID = 0;
-		foreach(saveData, saves) {
-			saveData->setId(saveID);
-			saveID++;
-		}
-
-		_data->setSaves(saves);
-
-		update();
+		updateSaves(QList<int>() << _dragStart << saveID);
 
 		emit changed();
 	}
@@ -148,12 +222,6 @@ void SavecardView::replaceSaveData(int saveID, const QByteArray &mimeData)
 		saveData->setModified(true);
 		emit changed();
 	}
-}
-
-void SavecardView::setDropIndicator(int saveID)
-{
-	dropIndicatorID = saveID;
-	update();
 }
 
 void SavecardView::edit(int saveID)
@@ -325,12 +393,6 @@ int SavecardView::saveID(const QPoint &pos) const
 	return pos.y() / saveHeight();
 }
 
-QRect SavecardView::saveRect(int saveID) const
-{
-	QSize size = saveSize();
-	return QRect(QPoint(36, saveID * size.height()), size);
-}
-
 QSize SavecardView::sizeHint() const
 {
 	if(!_data)	return QSize();
@@ -349,86 +411,126 @@ QSize SavecardView::minimumSizeHint() const
 	}
 }*/
 
-void SavecardView::renderSave(QPainter *painter, SaveData *saveData)
+void SavecardView::renderSave(QPainter *painter, SaveData *saveData, const QRect &sourceRect)
 {
 	QPixmap menuBg(QString(":/images/menu-fond%1.png").arg(!saveData->isTheLastEdited() && !saveData->isDelete() ? "" : "2"));
 	QPixmap menuTitle(":/images/numbers_title.png");
+	QImage numberPixmap(":/images/numbers.png");
 
-	renderSave(painter, saveData, menuBg, menuTitle);
+	renderSave(painter, saveData, menuBg, menuTitle, numberPixmap, sourceRect);
 }
 
-void SavecardView::renderSave(QPixmap *pixmap, SaveData *saveData)
+void SavecardView::renderSave(QPixmap *pixmap, SaveData *saveData, const QRect &sourceRect)
 {
 	QPainter p(pixmap);
-	renderSave(&p, saveData);
+	renderSave(&p, saveData, sourceRect);
 }
 
-void SavecardView::renderSave(QPainter *painter, SaveData *saveData, const QPixmap &menuBg, const QPixmap &fontPixmap)
+void SavecardView::renderSave(QPainter *painter, SaveData *saveData, const QPixmap &menuBg, const QPixmap &fontPixmap, QImage &numberPixmap, const QRect &sourceRect)
 {
+	QRect toBePainted;
+	if(sourceRect.isNull()) {
+		toBePainted = QRect(QPoint(0, 0), saveSize());
+	} else {
+		toBePainted = sourceRect;
+	}
+
 	painter->save();
 
+	// Background
 	painter->setBrush(QBrush(menuBg));
 	drawFrame(painter, saveWidth(), saveHeight());
 
-	QString title = QString("%1").arg(saveData->id()+1, 2, 10, QChar('0'));
-	painter->drawPixmap(4, 0, fontPixmap.copy(title.at(0).digitValue()*16, 0, 16, 22));
-	painter->drawPixmap(20, 0, fontPixmap.copy(title.at(1).digitValue()*16, 0, 16, 22));
+	// Save Number (Frame title)
+	if(!(toBePainted & QRect(4, 0, 36, 22)).isEmpty()) {
+		QString title = QString("%1").arg(saveData->id()+1, 2, 10, QChar('0'));
+		painter->drawPixmap(4, 0, fontPixmap.copy(title.at(0).digitValue()*16, 0, 16, 22));
+		painter->drawPixmap(20, 0, fontPixmap.copy(title.at(1).digitValue()*16, 0, 16, 22));
+	}
 
 	if(saveData->isFF8())
 	{
-		if(saveData->descData().party[0] != 255)
+		// Portrait chars
+		if(saveData->descData().party[0] != 255
+				&& !(toBePainted & QRect(44, 4, 64, 96)).isEmpty())
 			painter->drawPixmap(44, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->descData().party[0] & 15)));
-		if(saveData->descData().party[1] != 255)
+		if(saveData->descData().party[1] != 255
+				&& !(toBePainted & QRect(112, 4, 64, 96)).isEmpty())
 			painter->drawPixmap(112, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->descData().party[1] & 15)));
-		if(saveData->descData().party[2] != 255)
+		if(saveData->descData().party[2] != 255
+				&& !(toBePainted & QRect(180, 4, 64, 96)).isEmpty())
 			painter->drawPixmap(180, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->descData().party[2] & 15)));
 
-		int persoIndex = saveData->descData().party[0] != 255 ? saveData->descData().party[0] : (saveData->descData().party[1] != 255 ? saveData->descData().party[1] : saveData->descData().party[2]);
-		bool langIndep = persoIndex==SQUALL || persoIndex==RINOA || persoIndex==GRIEVER || persoIndex==BOKO || persoIndex==ANGELO;
-		FF8Text::drawTextArea(painter, QPoint(271, 8), saveData->perso(persoIndex), langIndep ? (saveData->isJp() ? 2 : 1) : 0);
-		FF8Text::drawTextArea(painter, QPoint(271, 36), tr("NV%1").arg(saveData->descData().nivLeader,3,10,QChar(' ')), 1);
+		// Main char name
+		if(!(toBePainted & QRect(271, 8, saveWidth()-271, 24)).isEmpty()) {
+			int persoIndex = saveData->descData().party[0] != 255 ? saveData->descData().party[0] : (saveData->descData().party[1] != 255 ? saveData->descData().party[1] : saveData->descData().party[2]);
+			bool langIndep = persoIndex==SQUALL || persoIndex==RINOA || persoIndex==GRIEVER || persoIndex==BOKO || persoIndex==ANGELO;
+			FF8Text::drawTextArea(painter, QPoint(271, 8), saveData->perso(persoIndex), langIndep ? (saveData->isJp() ? 2 : 1) : 0);
+		}
 
-		QImage numberPixmap(":/images/numbers.png");
+		// Level
+		if(!(toBePainted & QRect(271, 36, saveWidth()-271, 24)).isEmpty()) {
+			FF8Text::drawTextArea(painter, QPoint(271, 36), tr("NV%1").arg(saveData->descData().nivLeader,3,10,QChar(' ')), 1);
+		}
 
-		QPixmap disc(QString(":/images/disc_%1.png").arg(Config::value("lang")=="fr" ? "fr" : "en"));
-		painter->drawPixmap(391, 38, disc);
-		num2pix(painter, &numberPixmap, 395+disc.width(), 38, saveData->descData().disc+1);
-		painter->drawPixmap(511, 16, QPixmap(QString(":/images/play_%1.png").arg(Config::value("lang")=="fr" ? "fr" : "en")));
+		// Disc number
+		if(!(toBePainted & QRect(391, 38, saveWidth()-391, 16)).isEmpty()) {
+			QPixmap disc(QString(":/images/disc_%1.png").arg(Config::value("lang")=="fr" ? "fr" : "en"));
+			painter->drawPixmap(391, 38, disc);
+			num2pix(painter, &numberPixmap, 395+disc.width(), 38, saveData->descData().disc+1);
+		}
 
-		int hour = Config::hour(saveData->descData().time, saveData->freqValue());
-		int color = (hour>=100) + (hour>=200) + (hour>=300) + (hour>=400) + (hour>=500);
-		num2pix(painter, &numberPixmap, 576, 16, hour, 2, QChar(' '), color);
+		// Play time
+		if(!(toBePainted & QRect(511, 16, saveWidth()-511, 16)).isEmpty()) {
+			painter->drawPixmap(511, 16, QPixmap(QString(":/images/play_%1.png").arg(Config::value("lang")=="fr" ? "fr" : "en")));
 
-		QImage deux_points(":/images/deux-points.png");
-		colors(&deux_points, color);
-		painter->drawImage(612, 18, deux_points);
-		num2pix(painter, &numberPixmap, 624, 16, Config::min(saveData->descData().time, saveData->freqValue()), 2, QChar('0'), color);
-		painter->drawPixmap(640, 44, QPixmap(":/images/gils.png"));
-		num2pix(painter, &numberPixmap, 511, 40, saveData->descData().gils, 8);
+			int hour = Config::hour(saveData->descData().time, saveData->freqValue());
+			int color = (hour>=100) + (hour>=200) + (hour>=300) + (hour>=400) + (hour>=500);
+			num2pix(painter, &numberPixmap, 576, 16, hour, 2, QChar(' '), color);
 
-		painter->translate(256, 62);
-		painter->setBrush(QBrush());
-		drawFrame(painter, 416, 44);
+			QImage deux_points(":/images/deux-points.png");
+			colors(&deux_points, color);
+			painter->drawImage(612, 18, deux_points);
+			num2pix(painter, &numberPixmap, 624, 16, Config::min(saveData->descData().time, saveData->freqValue()), 2, QChar('0'), color);
+		}
 
-		FF8Text::drawTextArea(painter, QPoint(12, 12), saveData->descData().locationID<251 ? Data::locations().at(saveData->descData().locationID) : QString("??? (%1)").arg(saveData->descData().locationID));
+		// Gils
+		if(!(toBePainted & QRect(511, 40, saveWidth()-511, 16)).isEmpty()) {
+			num2pix(painter, &numberPixmap, 511, 40, saveData->descData().gils, 8);
+			painter->drawPixmap(640, 44, QPixmap(":/images/gils.png"));
+		}
+
+		if(!(toBePainted & QRect(256, 62, 416, 44)).isEmpty()) {
+			// Sub-Frame
+			painter->translate(256, 62);
+			painter->setBrush(QBrush());
+			drawFrame(painter, 416, 44);
+
+			// Location
+			if(!(toBePainted & QRect(256+12, 62+12, saveWidth()-(256+12), 24)).isEmpty()) {
+				FF8Text::drawTextArea(painter, QPoint(12, 12), saveData->descData().locationID<251 ? Data::locations().at(saveData->descData().locationID) : QString("??? (%1)").arg(saveData->descData().locationID));
+			}
+		}
 	}
 	else
 	{
-		if(saveData->isDelete())
-		{
-			// Available block
-			FF8Text::drawTextArea(painter, QPoint(36, 43), tr("Bloc Disponible"));
-		}
-		else
-		{
-			// Icon + description
-//			painter->drawPixmap(36, 43, saveIcon->pixmap());
-			painter->drawPixmap(36, 43, saveData->saveIcon().icon());
-			QString short_desc = saveData->getShortDescription();
-			if(!short_desc.isEmpty())
+		if(!(toBePainted & QRect(36, 43, saveWidth()-36, 24)).isEmpty()) {
+			if(saveData->isDelete())
 			{
-				painter->setPen(Qt::white);
-				painter->drawText(68, 59, short_desc);
+				// Available block
+				FF8Text::drawTextArea(painter, QPoint(36, 43), tr("Bloc Disponible"));
+			}
+			else
+			{
+				// Icon + description
+//				painter->drawPixmap(36, 43, saveIcon->pixmap());
+				painter->drawPixmap(36, 43, saveData->saveIcon().icon());
+				QString short_desc = saveData->getShortDescription();
+				if(!short_desc.isEmpty())
+				{
+					painter->setPen(Qt::white);
+					painter->drawText(68, 59, short_desc);
+				}
 			}
 		}
 	}
@@ -453,12 +555,14 @@ void SavecardView::paintEvent(QPaintEvent *event)
 
 		int curSaveID, minSaveID, maxSaveID;
 		minSaveID = saveID(event->rect().topLeft());
-		maxSaveID = saveID(event->rect().bottomLeft());
+		maxSaveID = saveID(event->rect().bottomRight());
 
 		QPixmap menuBg(":/images/menu-fond.png");
 		QPixmap menuBg2(":/images/menu-fond2.png");
 		QPixmap menuTitle(":/images/numbers_title.png");
+		QImage numberPixmap(":/images/numbers.png");
 
+		// Translate painter to the first save to be drawn
 		if(minSaveID > 0) {
 			painter.translate(0, minSaveID * saveHeight());
 		}
@@ -466,8 +570,18 @@ void SavecardView::paintEvent(QPaintEvent *event)
 		for(curSaveID = minSaveID ; curSaveID <= maxSaveID && curSaveID < _data->saveCount() ; ++curSaveID) {
 			if(blackID != curSaveID) {
 				SaveData *saveData = _data->getSaves().at(curSaveID);
-				renderSave(&painter, saveData, !saveData->isTheLastEdited() && !saveData->isDelete() ? menuBg : menuBg2, menuTitle);
 
+				QRect sourceRect = (event->rect() & saveRect(curSaveID));
+				sourceRect.moveTopLeft(sourceRect.topLeft() - savePoint(curSaveID));
+
+				// Paint save
+				renderSave(&painter, saveData,
+						   !saveData->isTheLastEdited()
+						   && !saveData->isDelete() ? menuBg : menuBg2,
+						   menuTitle, numberPixmap,
+						   sourceRect);
+
+				// Paint cursor hand
 				if(cursorID == curSaveID) {
 					painter.drawPixmap(-36, 16, QPixmap(":/images/cursor.png"));
 				}
@@ -501,36 +615,43 @@ void SavecardView::paintEvent(QPaintEvent *event)
 
 void SavecardView::drawFrame(QPainter *painter, int width, int height)
 {
+	QLine lines[4];
 	QPen pen(QColor(41,41,41));
+
 	pen.setWidth(2);
 	pen.setJoinStyle(Qt::MiterJoin);
 	painter->setPen(pen);
-	painter->drawRect(1, 1, width-2, height-2);
+	painter->drawRect(QRect(1, 1, width-2, height-2));
 
-	painter->setPen(QColor(132,132,132));
-	painter->drawLine(4, 2, width-5, 2);
-	painter->drawLine(4, 3, width-5, 3);
-	painter->drawLine(2, 4, 2, height-5);
-	painter->drawLine(3, 4, 3, height-5);
+	painter->setPen(QColor(132, 132, 132));
+	lines[0] = QLine(4, 2, width-5, 2);
+	lines[1] = QLine(4, 3, width-5, 3);
+	lines[2] = QLine(2, 4, 2, height-5);
+	lines[3] = QLine(3, 4, 3, height-5);
+	painter->drawLines(lines, 4);
 
-	painter->setPen(QColor(58,58,58));
-	painter->drawLine(4, height-4, width-3, height-4);
-	painter->drawLine(4, height-3, width-3, height-3);
-	painter->drawLine(width-4, 4, width-4, height-5);
-	painter->drawLine(width-3, 4, width-3, height-5);
+	painter->setPen(QColor(58, 58, 58));
+	lines[0] = QLine(4, height-4, width-3, height-4);
+	lines[1] = QLine(4, height-3, width-3, height-3);
+	lines[2] = QLine(width-4, 4, width-4, height-5);
+	lines[3] = QLine(width-3, 4, width-3, height-5);
+	painter->drawLines(lines, 4);
 
-	painter->setPen(QColor(99,99,99));
-	painter->drawLine(2, 2, 3, 2);
-	painter->drawLine(2, 3, 3, 3);
+	painter->setPen(QColor(82, 82, 82));
+	lines[0] = QLine(width-4, 2, width-3, 2);
+	lines[1] = QLine(width-4, 3, width-3, 3);
+	lines[2] = QLine(2, height-4, 3, height-4);
+	lines[3] = QLine(2, height-3, 3, height-3);
+	painter->drawLines(lines, 4);
 
-	painter->setPen(QColor(82,82,82));
-	painter->drawLine(width-4, 2, width-3, 2);
-	painter->drawLine(width-4, 3, width-3, 3);
-	painter->drawLine(2, height-4, 3, height-4);
-	painter->drawLine(2, height-3, 3, height-3);
+	painter->setPen(QColor(99, 99, 99));
+	painter->drawPoint(QPoint(2, 2));
+	painter->drawPoint(QPoint(3, 2));
+	painter->drawPoint(QPoint(2, 3));
+	painter->drawPoint(QPoint(3, 3));
 }
 
-void SavecardView::num2pix(QPainter *painter, QImage *numberPixmap, int x, int y, quint32 num, quint8 space, QChar fill, int color)//Dessine les nombres pour l'affichage des gils et du temps
+void SavecardView::num2pix(QPainter *painter, QImage *numberPixmap, int x, int y, quint32 num, quint8 space, QChar fill, int color)
 {
 	colors(numberPixmap, color);
 	QString strNum = QString("%1").arg(num, space, 10, fill).right(space);
@@ -585,11 +706,7 @@ void SavecardView::mousePressEvent(QMouseEvent *event)
 void SavecardView::mouseMoveEvent(QMouseEvent *event)
 {
 	// Change cursor position
-	int cursorID = saveID(event->pos());
-	if(this->cursorID != cursorID) {
-		this->cursorID = cursorID;
-		update();
-	}
+	moveCursor(saveID(event->pos()));
 
 	if(!mouseMove || !(event->buttons() & Qt::LeftButton)
 			|| (startPos - event->pos()).manhattanLength() < QApplication::startDragDistance())
@@ -611,19 +728,16 @@ void SavecardView::mouseMoveEvent(QMouseEvent *event)
 	renderSave(&pixmap, saveData);
 	drag->setPixmap(pixmap);
 
-	blackID = saveData->id();
-	update();
+	setBlackSave(saveData->id());
+	updateSave(saveData->id());
 	drag->exec(Qt::MoveAction, Qt::MoveAction);// !Qt event loop blocked on Windows!
-	blackID = -1;
-	update();
+	setBlackSave(-1);
+	updateSave(saveData->id());
 }
 
 void SavecardView::mouseReleaseEvent(QMouseEvent *event)
 {
-	if(blackID != -1) {
-		blackID = -1;
-		update();
-	}
+	setBlackSave(-1);
 	if(mouseMove == 2) {
 		mouseMove = 0;
 		return;
@@ -728,10 +842,7 @@ void SavecardView::dragMoveEvent(QDragMoveEvent *event)
 
 void SavecardView::dragLeaveEvent(QDragLeaveEvent *)
 {
-	if(dropIndicatorID != -1) {
-		dropIndicatorID = -1;
-		update();
-	}
+	setDropIndicator(-1);
 }
 
 void SavecardView::dropEvent(QDropEvent *event)
@@ -745,10 +856,10 @@ void SavecardView::dropEvent(QDropEvent *event)
 		if(lastDropData)	delete lastDropData;
 		lastDropData = new QByteArray(event->mimeData()->data("application/ff8save"));
 	}
-	QTimer::singleShot(0, this, SLOT(emitDropped()));// defer function call
+	QTimer::singleShot(0, this, SLOT(drop()));// defer function call
 }
 
-void SavecardView::emitDropped()
+void SavecardView::drop()
 {
 	if(isExternalDrag) {
 		replaceSaveData(lastDropID, *lastDropData);

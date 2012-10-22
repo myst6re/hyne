@@ -40,7 +40,7 @@ public:
 	void setDescription(const QString &desc);
 	void setIsTheLastEdited(int saveID);
 	const QList<SaveData *> &getSaves() const;
-	void setSaves(const QList<SaveData *> &saves);
+	void moveSave(int sourceID, int targetID);
 	SaveData *getSave(int id) const;
 	int saveCount() const;
 	bool save2PC(qint8 num, QString path=QString());

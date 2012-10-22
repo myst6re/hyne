@@ -498,9 +498,18 @@ const QList<SaveData *> &SavecardData::getSaves() const
 	return saves;
 }
 
-void SavecardData::setSaves(const QList<SaveData *> &saves)
+void SavecardData::moveSave(int sourceID, int targetID)
 {
-	this->saves = saves;
+	SaveData *saveData = saves.takeAt(sourceID);
+	saves.insert(targetID, saveData);
+
+	// Rebuild ids
+	int saveID = 0;
+	foreach(saveData, saves) {
+		saveData->setId(saveID);
+		saveID++;
+	}
+
 	setModified(true);
 }
 
