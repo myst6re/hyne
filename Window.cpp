@@ -20,13 +20,19 @@
 #include "HeaderDialog.h"
 
 Window::Window() :
-	QWidget(), saves(0), saveList(0), editor(0)
+	QWidget(), taskBarButton(0), saves(0), saveList(0), editor(0)
 {
 	setTitle();
 	setMinimumSize(768, 502);
 	resize(768, 502);
 	setAcceptDrops(true);
-	
+
+#ifdef Q_OS_WIN
+	if(QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
+		taskBarButton = new QTaskBarButton(this);
+	}
+#endif
+
 	menuBar = new QMenuBar(0);
 	QMenu *menu;
 	QAction *action;
@@ -611,7 +617,8 @@ void Window::editView(SaveData *saveData)
 	stackedLayout->setCurrentWidget(editor);
 	setTitle(saveData->id());
 	saves->setIsTheLastEdited(saveData->id());
-	setWindowIcon(QIcon(saveData->saveIcon().icon()));
+	if(taskBarButton)	taskBarButton->setOverlayIcon(saveData->saveIcon().icon());
+	else				setWindowIcon(QIcon(saveData->saveIcon().icon()));
 }
 
 void Window::saveView()
@@ -626,7 +633,8 @@ void Window::saveView()
 		if(editor)	editor->hide();
 		menuBar->show();
 		menuBar->setEnabled(true);
-		setWindowIcon(qApp->windowIcon());
+		if(taskBarButton)	taskBarButton->setOverlayIcon(QPixmap());
+		else				setWindowIcon(qApp->windowIcon());
 		setTitle();
 		setModified(saves->isModified());
 		saveList->view()->update();

@@ -43,7 +43,8 @@ HEADERS += PageWidgets/ConfigEditor.h \
     PageWidgets/PartyEditor.h \
     GZIP.h \
     SavecardData.h \
-    SavecardView.h
+    SavecardView.h \
+	QTaskBarButton.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/MiscEditor.cpp \
     PageWidgets/GfEditor.cpp \
@@ -81,7 +82,8 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/PartyEditor.cpp \
     GZIP.cpp \
     SavecardData.cpp \
-    SavecardView.cpp
+    SavecardView.cpp \
+    QTaskBarButton.cpp
 RESOURCES += Hyne.qrc
 TRANSLATIONS += hyne_en.ts \
     hyne_ja.ts
@@ -91,7 +93,11 @@ TRANSLATIONS += hyne_en.ts \
 # CONFIG += static
 
 macx:ICON = images/hyne.icns
-win32:RC_FILE = Hyne.rc
+win32 {
+	RC_FILE = Hyne.rc
+	LIBS += libole32
+	HEADERS += shobjidl.h # Windows 7 taskBarButton
+}
 
 OTHER_FILES += Hyne.rc \
 	Hyne.desktop

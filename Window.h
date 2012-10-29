@@ -25,6 +25,7 @@
 #include "Parameters.h"
 #include "SelectSavesDialog.h"
 #include "StartWidget.h"
+#include "QTaskBarButton.h"
 
 class Window : public QWidget
 {
@@ -71,6 +72,7 @@ private:
 	void setTitle(const int currentSaveEdited=-1);
 	QList<int> selectSavesDialog(bool multiSelection=false);
 	
+	QTaskBarButton *taskBarButton; // Windows 7+
 	QMenuBar *menuBar;
 	QAction *actionReload, *actionSave, *actionSaveAs;
 	QAction *actionProperties, *actionClose, *actionMode, *actionFont;
