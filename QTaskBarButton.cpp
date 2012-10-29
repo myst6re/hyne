@@ -3,15 +3,16 @@
 #ifdef Q_WS_WIN
 
 QTaskBarButton::QTaskBarButton(QWidget *mainWindow) :
-	QObject(mainWindow), pITask(0), _minimum(0), _maximum(100),
+	QObject(mainWindow), pITask(0), destinationList(0),
+	_minimum(0), _maximum(100),
 	_value(0), _state(Invisible)
 {
-	_winId = mainWindow->winId();
+	_winId = mainWindow->window()->winId();
 
 	CoInitialize(NULL);
 	HRESULT hRes = CoCreateInstance(CLSID_TaskbarList,
 									NULL, CLSCTX_INPROC_SERVER,
-									IID_ITaskbarList3, (LPVOID*)&pITask);
+									IID_ITaskbarList3, (LPVOID *)&pITask);
 	if(FAILED(hRes)) {
 		pITask = 0;
 		CoUninitialize();
@@ -28,6 +29,92 @@ QTaskBarButton::~QTaskBarButton()
 		pITask = NULL;
 		CoUninitialize();
 	}
+
+	if(destinationList) {
+		removedItems->Release();
+		destinationList->Release();
+		destinationList = NULL;
+//		CoUninitialize();
+	}
+}
+
+void QTaskBarButton::initDestinationList()
+{
+	if(destinationList)	return;
+
+//	CoInitialize(NULL);
+	HRESULT hRes = CoCreateInstance(CLSID_DestinationList,
+									NULL, CLSCTX_INPROC_SERVER,
+									IID_ICustomDestinationList,
+									reinterpret_cast<void **>(&destinationList));
+
+	if(FAILED(hRes)) {
+		destinationList = 0;
+//		CoUninitialize();
+		return;
+	}
+
+	UINT max_count = 0;
+
+	hRes = destinationList->BeginList(&max_count, IID_IObjectArray,
+									  reinterpret_cast<void **>(&removedItems));
+
+	if(FAILED(hRes)) {
+		qWarning() << "error BeginList" << hRes;
+		return;
+	}
+
+	//	removedItems->Release();
+	//	destinationList->Release();
+}
+
+void QTaskBarButton::addList(ListCategories category)
+{
+	QList<KNOWNDESTCATEGORY> knownCats;
+
+	if(category.testFlag(Frequent)) {
+		knownCats.append(KDC_FREQUENT);
+	}
+	if(category.testFlag(Recent)) {
+		knownCats.append(KDC_RECENT);
+	}
+
+	if(knownCats.isEmpty()) {
+		qWarning() << "QTaskBarButton::addList no category!";
+		return;
+	}
+
+	initDestinationList();
+	if(!destinationList)	return;
+
+	HRESULT hRes;
+
+	foreach(KNOWNDESTCATEGORY knownCat, knownCats) {
+		hRes = destinationList->AppendKnownCategory(knownCat);
+
+		if(FAILED(hRes)) {
+			qWarning() << "error AppendKnownCategory" << hRes;
+			return;
+		}
+	}
+
+	hRes = destinationList->CommitList();
+
+	if(FAILED(hRes)) {
+		qWarning() << "error CommitList" << hRes;
+		return;
+	}
+}
+
+void QTaskBarButton::clearList()
+{
+	if(!destinationList)	return;
+	destinationList->DeleteList(NULL);
+}
+
+void QTaskBarButton::addToRecentDocs(const QString &path)
+{
+	SHAddToRecentDocs(SHARD_PATHW, QDir::toNativeSeparators(QDir::cleanPath(path)).utf16());
 }
 
 void QTaskBarButton::setOverlayIcon(const QPixmap &pixmap, const QString &text)

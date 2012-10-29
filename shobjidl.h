@@ -102,4 +102,37 @@ DEFINE_GUID_(IID_ITaskbarList2,0x602D4995,0xB13A,0x429b,0xA6,0x6E,0x19,0x35,0xE4
 DEFINE_GUID_(IID_ITaskbarList3,0xea1afb91,0x9e28,0x4b86,0x90,0xE9,0x9e,0x9f,0x8a,0x5e,0xef,0xaf);
 DEFINE_GUID_(IID_ITaskbarList4,0xc43dc798,0x95d1,0x4bea,0x90,0x30,0xbb,0x99,0xe2,0x98,0x3a,0x1a);
 
+typedef enum KNOWNDESTCATEGORY
+{
+	KDC_FREQUENT = 1,
+	KDC_RECENT = (KDC_FREQUENT + 1)
+} KNOWNDESTCATEGORY;
+
+DECLARE_INTERFACE_(IObjectArray, IUnknown)
+{
+	STDMETHOD (GetCount) (UINT *pcObjects) PURE;
+	STDMETHOD (GetAt) (UINT uiIndex, REFIID riid, void **ppv) PURE;
+};
+typedef IObjectArray *LPIObjectArray;
+
+DECLARE_INTERFACE_(ICustomDestinationList, IUnknown)
+{
+	STDMETHOD (SetAppID) (LPCWSTR pszAppID);
+	STDMETHOD (BeginList) (UINT *pcMinSlots, REFIID riid, void **ppv) PURE;
+	STDMETHOD (AppendCategory) (LPCWSTR pszCategory, IObjectArray *poa) PURE;
+	STDMETHOD (AppendKnownCategory) (KNOWNDESTCATEGORY category) PURE;
+	STDMETHOD (AddUserTasks) (IObjectArray *poa) PURE;
+	STDMETHOD (CommitList) (void) PURE;
+	STDMETHOD (GetRemovedDestinations) (REFIID riid, void **ppv) PURE;
+	STDMETHOD (DeleteList) (LPCWSTR pszAppID) PURE;
+	STDMETHOD (AbortList) (void) PURE;
+
+};
+typedef ICustomDestinationList *LPICustomDestinationList;
+
+DEFINE_GUID_(CLSID_DestinationList,0x77f10cf0,0x3db5,0x4966,0xb5,0x20,0xb7,0xc5,0x4f,0xd3,0x5e,0xd6);
+
+DEFINE_GUID_(IID_IObjectArray,0x92ca9dcd,0x5622,0x4bba,0xa8,0x05,0x5e,0x9f,0x54,0x1b,0xd8,0xc9);
+DEFINE_GUID_(IID_ICustomDestinationList,0x6332debf,0x87b5,0x4670,0x90,0xc0,0x5e,0x57,0xb4,0x08,0xa4,0x9e);
+
 #endif // SHOBJIDL_H

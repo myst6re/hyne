@@ -23,6 +23,7 @@
 //#include <winerror.h>
 #include <winreg.h>
 #endif
+#include "QTaskBarButton.h"
 
 QTranslator *Config::translator;
 QStringList Config::recentFiles;
@@ -57,9 +58,15 @@ void Config::loadRecentFiles()
 	if(recentFiles.isEmpty()) {
 		for(int i=0 ; i<20 ; ++i) {
 			QString filePath = settings->value(QString("recentFile%1").arg(i), QString()).toString();
-			if(!filePath.isEmpty())
+			if(!filePath.isEmpty()) {
 				recentFiles.append(QDir::cleanPath(filePath));
+			}
 		}
+	}
+
+	// Windows recent docs
+	foreach(const QString &path, recentFiles) {
+		QTaskBarButton::addToRecentDocs(path);
 	}
 }
 
@@ -68,6 +75,7 @@ void Config::addRecentFile(const QString &filePath)
 	int index = recentFiles.indexOf(filePath);
 	if(index != -1)					recentFiles.removeAt(index);
 	recentFiles.prepend(filePath);
+	QTaskBarButton::addToRecentDocs(filePath);
 	if(recentFiles.size() > 20)		recentFiles.removeLast();
 }
 

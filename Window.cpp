@@ -30,6 +30,7 @@ Window::Window() :
 #ifdef Q_OS_WIN
 	if(QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
 		taskBarButton = new QTaskBarButton(this);
+		taskBarButton->addList(QTaskBarButton::Recent | QTaskBarButton::Frequent);
 	}
 #endif
 
@@ -358,7 +359,7 @@ void Window::setIsOpen(bool open)
 
 		if(saves)
 		{
-			saveList->setSavecard(0);
+			if(saveList)	saveList->setSavecard(0);
 			delete saves;
 			saves = 0;
 		}

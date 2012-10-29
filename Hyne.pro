@@ -95,7 +95,7 @@ TRANSLATIONS += hyne_en.ts \
 macx:ICON = images/hyne.icns
 win32 {
 	RC_FILE = Hyne.rc
-	LIBS += libole32
+	LIBS += -lole32
 	HEADERS += shobjidl.h # Windows 7 taskBarButton
 }
 
