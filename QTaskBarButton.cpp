@@ -170,7 +170,7 @@ void QTaskBarButton::setValue(int value)
 #else
 
 QTaskBarButton::QTaskBarButton(QWidget *parent) :
-	QWidget(parent)
+	QObject(parent)
 {
 }
 
