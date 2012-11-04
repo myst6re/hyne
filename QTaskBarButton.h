@@ -23,13 +23,13 @@ public:
 	virtual ~QTaskBarButton();
 	void addList(ListCategories category);
 	void clearList();
+	static void addToRecentDocs(const QString &path);
 	void setOverlayIcon(const QPixmap &pixmap, const QString &text=QString());
 	void setState(State state);
 	int maximum() const;
 	int minimum() const;
 	State state() const;
 	int value() const;
-	static void addToRecentDocs(const QString &path);
 signals:
 	void valueChanged(int value);
 public slots:

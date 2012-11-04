@@ -178,6 +178,20 @@ QTaskBarButton::~QTaskBarButton()
 {
 }
 
+void QTaskBarButton::addList(ListCategories category)
+{
+	Q_UNUSED(category);
+}
+
+void QTaskBarButton::clearList()
+{
+}
+
+void QTaskBarButton::addToRecentDocs(const QString &path)
+{
+	Q_UNUSED(path);
+}
+
 void QTaskBarButton::setOverlayIcon(const QPixmap &pixmap, const QString &text)
 {
 	Q_UNUSED(pixmap);
