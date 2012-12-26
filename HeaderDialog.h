@@ -38,7 +38,7 @@ private slots:
 	inline void saveIcon2() { saveIcon(true); }
 private:
 	static void fillCode(QComboBox *code);
-	static void fillId(QComboBox *id);
+	static void fillId(QComboBox *id, int saveId);
 
 	void fill();
 	void saveIcon(bool chocobo_world_icon=false);

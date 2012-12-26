@@ -56,7 +56,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	id = new QComboBox;
 	id->setEditable(true);
 	id->lineEdit()->setMaxLength(8);
-	fillId(id);
+	fillId(id, saveData->id());
 
 	QGridLayout *layout1 = new QGridLayout(group1);
 	layout1->addWidget(exists_lbl, 0, 0);
@@ -154,11 +154,11 @@ void HeaderDialog::fillCode(QComboBox *code)
 	code->addItem(QIcon(":/images/sp.png"), "SLESP02084");//spanish
 }
 
-void HeaderDialog::fillId(QComboBox *id)
+void HeaderDialog::fillId(QComboBox *id, int saveId)
 {
-	id->addItem(QIcon(":/images/jp.png"), "FF0800");
-	id->addItem(QIcon(":/images/us.png"), "042600");
-	id->addItem(QIcon(":/images/eu.png"), "052000");
+	id->addItem(QIcon(":/images/jp.png"), QString("FF08%1").arg(saveId, 2, 10, QChar('0')));
+	id->addItem(QIcon(":/images/us.png"), QString("0426%1").arg(saveId, 2, 10, QChar('0')));
+	id->addItem(QIcon(":/images/eu.png"), QString("0520%1").arg(saveId, 2, 10, QChar('0')));
 }
 
 void HeaderDialog::fill()
