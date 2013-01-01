@@ -42,7 +42,7 @@ struct GFORCES//68
 	quint16 KOs;
 	quint8 learning;
 	quint32 forgotten : 24;// 22 + 2 inused
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct PERSONNAGES//152
 {
@@ -85,14 +85,14 @@ struct PERSONNAGES//152
 	quint8 u4;
 	quint8 status;
 	quint8 u5;// padding ?
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct SHOP//20
 {
 	quint8 items[16];
 	quint8 visited;
 	quint8 u1[3];// padding ?
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct CONFIG//20
 {
@@ -124,7 +124,7 @@ struct CONFIG//20
 	quint8 u4;
 	quint8 u5;
 	quint8 START;
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct MISC1//32
 {
@@ -135,7 +135,7 @@ struct MISC1//32
 	quint16 u2;// (START) 0000 0000 0010 0000 -> (CD3) 0000 0011 0010 0000 -> (CD4) 0000 0111 0010 0000
 	quint32 gils;
 	quint32 dream_gils;
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct LIMITB//16
 {
@@ -146,13 +146,13 @@ struct LIMITB//16
 	quint8 angel_completed;
 	quint8 angel_known;
 	quint8 angel_pts[8];
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct ITEMS//428
 {
 	quint8 battle_order[32];
 	quint16 items[198];
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct MISC2//144
 {
@@ -191,7 +191,7 @@ struct MISC2//144
 	quint16 id[3];// triangle (party1, party2, party3)
 	quint8 dir[3];// direction (party1, party2, party3)
 	quint8 u7[5];
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct MISC3//256
 {
@@ -240,7 +240,7 @@ struct MISC3//256
 	quint8 uF[3];
 	quint8 music_loaded; // var213
 	quint8 uG[42];
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct FIELD//1024
 {
@@ -265,7 +265,7 @@ struct FIELD//1024
 	quint8 u4[3];
 	quint16 timber_maniacs;
 	quint8 u7[974];//			(4285=tt club cc|4286=tt victory count BGU)
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct WORLDMAP//128
 {
@@ -300,7 +300,7 @@ struct WORLDMAP//128
 	 * [7] => ??? (temp var)
 	 */
 	quint8 u6[2];
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct WORLDMAP_PC//26 (padding 8)
 {
@@ -323,7 +323,7 @@ struct WORLDMAP_PC//26 (padding 8)
 	 * [7] => ??? (temp var)
 	 */
 	quint8 u6[2];
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct TTCARDS//128
 {
@@ -336,7 +336,7 @@ struct TTCARDS//128
 	quint16 tt_egality_count;
 	quint16 u2;
 	quint32 u3;
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct CHOCOBO//64
 {
@@ -351,7 +351,7 @@ struct CHOCOBO//64
 	quint8 u2[31];
 	quint8 boko_attack;// star count (chocobraise | chocoflammes | chocométéore | grochocobo)
 	quint8 u3[18];
-}__attribute__((__packed__));
+} Q_PACKED;
 
 /*
   A chercher :
@@ -375,7 +375,7 @@ struct MAIN//4944 (~4242 used)
 	WORLDMAP worldmap;//		(pos=5088)		[13/128 editable]
 	TTCARDS ttcards;//			(pos=5216)		[128/128 editable]
 	CHOCOBO chocobo;//			(pos=5344)		[8/64 editable]
-}__attribute__((__packed__));
+} Q_PACKED;
 
 struct HEADER//76	(pos=388)		[58+18(auto)/76 editable]
 {
@@ -393,7 +393,7 @@ struct HEADER//76	(pos=388)		[58+18(auto)/76 editable]
 	char boko[12];
 	quint32 disc;// auto
 	quint32 curSave;
-}__attribute__((__packed__));
+} Q_PACKED;
 
 #include "FF8Text.h"
 #include "SaveIcon.h"
