@@ -721,12 +721,18 @@ QStringList Window::availableLanguages()
 
 QString Window::chooseLangDialog()
 {
+	QStringList langs = availableLanguages();
+	if(langs.size() <= 1) {
+		// Doesn't ask for language if there is just one available
+		return langs.isEmpty() ? QString() : langs.first();
+	}
+
 	const QString chooseStr("Choose your language");
 	QDialog *dialog = new QDialog(0, Qt::Dialog | Qt::WindowCloseButtonHint);
 	dialog->setWindowTitle(chooseStr);
 	QLabel *label = new QLabel(chooseStr + ":", dialog);
 	QComboBox *comboBox = new QComboBox(dialog);
-	foreach(const QString &str, availableLanguages())
+	foreach(const QString &str, langs)
 		comboBox->addItem(str.left(str.lastIndexOf("|")), str.mid(str.lastIndexOf("|")+1));
 
 	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal, dialog);
