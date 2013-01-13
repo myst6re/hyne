@@ -63,7 +63,10 @@ private:
 	quint8 id;
 	GFORCES *gf_data;
 	
-	QTreeWidgetItem *addItem(quint8, quint8, quint8=0, const QMap<int, QIcon> &abilityIcons=QMap<int, QIcon>());
+	QTreeWidgetItem *addItem(quint8 abilityID, quint8 type, quint8 innateAbID, const QMap<int, QIcon> &abilityIcons);
+	inline QTreeWidgetItem *addItem(quint8 abilityID, quint8 type, quint8 innateAbID=0) {
+		return addItem(abilityID, type, innateAbID, QMap<int, QIcon>());
+	}
 
 	QListWidget *gfListe;
 	QStackedWidget *stackedWidget;
