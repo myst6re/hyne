@@ -83,7 +83,7 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     GZIP.cpp \
     SavecardData.cpp \
     SavecardView.cpp \
-    QTaskBarButton.cpp
+	QTaskBarButton.cpp
 RESOURCES += Hyne.qrc
 TRANSLATIONS += hyne_en.ts \
     hyne_ja.ts

@@ -17,6 +17,7 @@
  ****************************************************************************/
 
 #include "CWEditor.h"
+#include "FF8Text.h"
 
 CWEditor::CWEditor(QWidget *parent)
 	: PageWidget(parent)

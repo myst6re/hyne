@@ -17,6 +17,7 @@
  ****************************************************************************/
 
 #include "GfEditor.h"
+#include "FF8Text.h"
 
 QList<QIcon> GfEditor::gfIcons;
 

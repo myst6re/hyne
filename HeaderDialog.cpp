@@ -17,6 +17,7 @@
  ****************************************************************************/
 
 #include "HeaderDialog.h"
+#include "Config.h"
 
 HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewType)
 	: QDialog(parent, Qt::Dialog | Qt::WindowCloseButtonHint), saveData(saveData), viewType(viewType)
@@ -123,8 +124,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	layout2->addWidget(icon2, 3, 1);
 	layout2->addWidget(icon2_saveButton, 3, 2, Qt::AlignRight);
 
-	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Close);
-	buttonSave = buttonBox->button(QDialogButtonBox::Save);
+	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Close);
 
 	QGridLayout *layout = new QGridLayout(this);
 	layout->addWidget(group1, 0, 0);
@@ -185,7 +185,7 @@ void HeaderDialog::fill()
 		}
 	}
 
-	if(saveData->isVmp()) {
+	if(!saveData->hasExistsInfos()) {
 		exists->hide();
 		exists_lbl->hide();
 	}
@@ -202,12 +202,12 @@ void HeaderDialog::fill()
 	else {
 		// Fill group2 (SC_header)
 
-		QString short_desc = saveData->getShortDescription();
+		QString short_desc = saveData->shortDescription();
 		if(!short_desc.isEmpty()) {
 			desc->setText(short_desc);
 		}
 
-		bloc->setText(QString::number((quint8)saveData->header().at(3)));
+		bloc->setText(QString::number(saveData->blockCount()));
 		QImage pix = saveData->saveIcon().icon().toImage();
 		int currentIndex = -1;
 		for(int i=0 ; i<icon1->count() ; ++i) {

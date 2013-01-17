@@ -271,8 +271,23 @@ bool SavecardData::ps()
 	QByteArray header = fic.read(1920);//(128*15)
 	fic.seek(start+SAVE_SIZE);
 
-	for(quint8 i=0 ; i<15 ; ++i)
-		addSave(fic.read(SAVE_SIZE), header.mid(128*i, 127));
+	quint8 blockCount = 1;
+	bool occupied;
+
+	for(quint8 i=0 ; i<15 ; ++i) {
+		if(blockCount <= 1 && !saves.isEmpty()) {
+			blockCount = saves.last()->blockCount();
+		}
+
+		if(blockCount > 1) {
+			blockCount--;
+			occupied = true;
+		} else {
+			occupied = false;
+		}
+
+		addSave(fic.read(SAVE_SIZE), header.mid(128*i, 127), occupied);
+	}
 
 	if(fileWatcher.files().size()<30)
 		fileWatcher.addPath(_path);
@@ -488,9 +503,9 @@ void SavecardData::directory()
 //	qDebug() << "time: " << t.elapsed();
 }
 
-void SavecardData::addSave(const QByteArray &data, const QByteArray &header)
+void SavecardData::addSave(const QByteArray &data, const QByteArray &header, bool occupied)
 {
-	saves.append(new SaveData(saves.size(), data, header, type()==Psv));
+	saves.append(new SaveData(saves.size(), data, header, type()!=Psv, occupied));
 }
 
 const QList<SaveData *> &SavecardData::getSaves() const
@@ -657,7 +672,8 @@ bool SavecardData::save2PC(qint8 id, QString path)
 
 	if(QFile::exists(path) && !QFile::remove(path))
 	{
-		_lastError = QObject::tr("Impossible de supprimer le fichier !\n%1\n…chec de la sauvegarde.\nVÈrifiez que le fichier n'est pas utilisÈ par un autre programme.").arg(path);
+		_lastError = QObject::tr("Impossible de supprimer le fichier !\n%1\n…chec de la sauvegarde.\nEssayez de lancer %2 en tant qu'administrateur.")
+				.arg(path).arg(PROG_NAME);
 		if(readdPath)	fileWatcher.addPath(path);
 		return false;
 	}
@@ -905,19 +921,28 @@ QByteArray SavecardData::header(QFile *srcFile, Type newType, bool saveAs)
 		return QByteArray();
 }
 
-void SavecardData::saveDir()
+bool SavecardData::saveDir()
 {
-	for(int i=0 ; i<saves.size() ; ++i)
-		saveDir(i);
+	bool ok = true;
+
+	for(int i=0 ; i<saves.size() ; ++i) {
+		if(!saveDir(i)) {
+			ok = false;
+		}
+	}
 	setName(QString());
+
+	return ok;
 }
 
-void SavecardData::saveDir(quint8 i)
+bool SavecardData::saveDir(quint8 i)
 {
 	if(saves.at(i)->isModified()) {
 		setName(QString("save%1").arg(i+1, 2, 10, QChar('0')));
-		save2PC(i);
+		return save2PC(i);
 	}
+
+	return true;
 }
 
 void SavecardData::compare(const QByteArray &oldData, const QByteArray &newData)

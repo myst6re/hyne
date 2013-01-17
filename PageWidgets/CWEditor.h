@@ -19,7 +19,6 @@
 #ifndef DEF_CWEDITOR
 #define DEF_CWEDITOR
 
-#include "FF8Text.h"
 #include "PageWidget.h"
 
 class CWEditor : public PageWidget

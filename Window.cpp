@@ -446,20 +446,22 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 		saves->setDescription(desc);
 	}
 
+	bool ok = true;
+
 	if(type == newType) {
 		switch(type) {
 		case SavecardData::Pc:
-			saves->save2PC(0, path);
+			ok = saves->save2PC(0, path);
 			break;
 		case SavecardData::PcDir:
-			saves->saveDir();
+			ok = saves->saveDir();
 			break;
 		case SavecardData::Psv:
 		case SavecardData::Ps:
 		case SavecardData::Vgs:
 		case SavecardData::Gme:
 		case SavecardData::Vmp:
-			saves->save(path, newType);
+			ok = saves->save(path, newType);
 			break;
 		case SavecardData::Unknown:
 		case SavecardData::Undefined:
@@ -487,10 +489,10 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 					MCHeader = tempSave.saveMCHeader();
 				}
 
-				saves->save2PS(selected_files, path, newType, MCHeader);
+				ok = saves->save2PS(selected_files, path, newType, MCHeader);
 			}
 			else
-				saves->save(path, newType);
+				ok = saves->save(path, newType);
 		}
 		else // saveOne (PC & PSV)
 		{
@@ -500,21 +502,25 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 			int id = selected_files.first();
 			if(newType == SavecardData::Pc) {
 				saves->setName(QString("save%1").arg(id+1, 2, 10, QChar('0')));
-				saves->save2PC(id, path);
+				ok = saves->save2PC(id, path);
 				saves->setName(QString());
 			} else {
 				if(!saves->getSaves().first()->hasMCHeader()) {
 					HeaderDialog dialog(saves->getSaves().first(), this, HeaderDialog::CreateView);
 					if(dialog.exec() != QDialog::Accepted) return false;
 				}
-				saves->save2PSV(id, path);
+				ok = saves->save2PSV(id, path);
 			}
 		}
 	}
 
+	if(!ok) {
+		QMessageBox::warning(this, tr("Erreur"), saves->errorString());
+	}
+
 	setTitle();
 
-	return true;
+	return ok;
 }
 
 QByteArray Window::descGme(const QString &desc, bool *abort)
@@ -659,6 +665,7 @@ void Window::save()
 	if(saved) {
 		setModified(false);
 		saves->setModified(false);
+		saveList->view()->update();
 	}
 }
 

@@ -19,6 +19,9 @@
 #include "SavecardView.h"
 #include "Parameters.h"
 #include "HeaderDialog.h"
+#include "Config.h"
+#include "Data.h"
+#include "FF8Text.h"
 
 SavecardView::SavecardView(SavecardWidget *parent) :
 	QWidget(parent), cursorID(-1), blackID(-1),
@@ -515,7 +518,12 @@ void SavecardView::renderSave(QPainter *painter, SaveData *saveData, const QPixm
 	else
 	{
 		if(!(toBePainted & QRect(36, 43, saveWidth()-36, 24)).isEmpty()) {
-			if(saveData->isDelete())
+			if(saveData->isRaw())
+			{
+				// Unavailable block
+				FF8Text::drawTextArea(painter, QPoint(36, 43), tr("Bloc occupé"));
+			}
+			else if(saveData->isDelete())
 			{
 				// Available block
 				FF8Text::drawTextArea(painter, QPoint(36, 43), tr("Bloc Disponible"));
@@ -525,7 +533,7 @@ void SavecardView::renderSave(QPainter *painter, SaveData *saveData, const QPixm
 				// Icon + description
 //				painter->drawPixmap(36, 43, saveIcon->pixmap());
 				painter->drawPixmap(36, 43, saveData->saveIcon().icon());
-				QString short_desc = saveData->getShortDescription();
+				QString short_desc = saveData->shortDescription();
 				if(!short_desc.isEmpty())
 				{
 					painter->setPen(Qt::white);
@@ -768,8 +776,9 @@ void SavecardView::mouseReleaseEvent(QMouseEvent *event)
 			if(saveData->isDelete()) {
 				contextMenuEvent(new QContextMenuEvent(QContextMenuEvent::Other, event->pos(), event->globalPos(), event->modifiers()));
 				return;
+			} else if(!saveData->isRaw()) {
+				properties(saveData->id());
 			}
-			properties(saveData->id());
 		}
 	}
 	else if(event->button() == Qt::MidButton)
@@ -777,8 +786,9 @@ void SavecardView::mouseReleaseEvent(QMouseEvent *event)
 		if(saveData->isDelete()) {
 			contextMenuEvent(new QContextMenuEvent(QContextMenuEvent::Other, event->pos(), event->globalPos(), event->modifiers()));
 			return;
+		} else if(!saveData->isRaw()) {
+			properties(saveData->id());
 		}
-		properties(saveData->id());
 	}
 }
 
@@ -804,11 +814,12 @@ void SavecardView::contextMenuEvent(QContextMenuEvent *event)
 	menu.addAction(tr("&Nouvelle partie"), this, SLOT(newGame()));
 	if(!saveData->isDelete()) {
 		menu.addAction(tr("&Vider"), this, SLOT(removeSave()));
-		QAction *action = menu.addAction(tr("&Propriétés..."), this, SLOT(properties()));
-		if(!saveData->isFF8()) {
-			menu.setDefaultAction(action);
+		if(!saveData->isRaw()) {
+			QAction *action = menu.addAction(tr("&Propriétés..."), this, SLOT(properties()));
+			if(!saveData->isFF8()) {
+				menu.setDefaultAction(action);
+			}
 		}
-
 	}
 	menu.exec(event->globalPos());
 }

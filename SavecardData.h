@@ -46,8 +46,8 @@ public:
 	bool save2PC(qint8 num, QString path=QString());
 	bool save2PSV(qint8 id, QString path=QString());
 	bool save2PS(QList<int> ids, const QString &path, Type newType, QByteArray MCHeader);
-	void saveDir();
-	void saveDir(quint8);
+	bool saveDir();
+	bool saveDir(quint8);
 
 	QString dirname() const;
 	QString name() const;
@@ -74,7 +74,7 @@ private:
 	bool sstate_pSX();
 	bool sstate(const QByteArray &fdata, const QByteArray &MCHeader);
 	void directory();
-	void addSave(const QByteArray &data=QByteArray(), const QByteArray &header=QByteArray());
+	void addSave(const QByteArray &data=QByteArray(), const QByteArray &header=QByteArray(), bool occupied=false);
 	QByteArray header(QFile *srcFile, Type newType, bool saveAs);
 
 	QString _path, _lastError;

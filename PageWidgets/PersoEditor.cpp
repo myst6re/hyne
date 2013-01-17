@@ -17,6 +17,7 @@
  ****************************************************************************/
 
 #include "PersoEditor.h"
+#include "FF8Text.h"
 
 QList<QIcon> PersoEditor::persoIcons;
 

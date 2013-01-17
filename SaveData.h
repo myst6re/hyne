@@ -28,6 +28,7 @@
 #define COUNTRY_EU	'E'
 
 #include <QtCore>
+#include "SaveIcon.h"
 
 struct GFORCES//68
 {
@@ -395,51 +396,54 @@ struct HEADER//76	(pos=388)		[58+18(auto)/76 editable]
 	quint32 curSave;
 } Q_PACKED;
 
-#include "FF8Text.h"
-#include "SaveIcon.h"
-#include "Data.h"
-#include "LZS.h"
-
 class SaveData
 {
 public:
 	SaveData();
-	SaveData(int id, const QByteArray &data, const QByteArray &MCHeader, bool isVmp);
+	SaveData(int id, const QByteArray &data, const QByteArray &MCHeader, bool hasExistsInfos, bool isRaw);
+	// Operations
 	void open(const QByteArray &data, const QByteArray &MCHeader);
 	QByteArray save() const;
 	void remove();
-	QString perso(quint8 id) const;
-	QString getShortDescription() const;
-	bool exportPC(const QString &path) const;
 	void restore();
-	const QByteArray &MCHeader() const;
-	char MCHeaderCountry() const;
-	QString MCHeaderCode() const;
-	QString MCHeaderId() const;
-	QByteArray saveMCHeader();// with xor byte
-	static QByteArray emptyMCHeader();
-	const QByteArray &header() const;
-	void setMCHeader(const QByteArray &);
-	void setMCHeader(bool exists, char country, const QString &code, const QString &id);
-	const SaveIconData &saveIcon() const;
-	void setSaveIcon(const SaveIconData &saveIconData);
-	const HEADER &descData() const;
-	const MAIN &mainData() const;
-	void setSaveData(const HEADER &, const MAIN &);
+	// Informations
 	bool isModified() const;
 	bool wasModified() const;
 	void setModified(bool modified);
 	int freqValue() const;
 	int id() const;
 	void setId(int id);
-	bool isFF8() const;
 	bool isDelete() const;
 	void setIsTheLastEdited(bool isTheLast);
 	bool isTheLastEdited() const;
+	bool hasExistsInfos() const;
+	bool isRaw() const;
+	// MC Header
 	bool hasMCHeader() const;
+	const QByteArray &MCHeader() const;
+	char MCHeaderCountry() const;
 	bool isJp() const;
-	bool isVmp() const;
+	QString MCHeaderCode() const;
+	QString MCHeaderId() const;
+	QByteArray saveMCHeader();// with xor byte
+	static QByteArray emptyMCHeader();
+	void setMCHeader(const QByteArray &);
+	void setMCHeader(bool exists, char country, const QString &code, const QString &id);
 	static quint8 xorByte(const char *data);
+	// SC Header
+	bool hasSCHeader() const;
+	quint8 blockCount() const;
+	void setBlockCount(quint8 blockCount);
+	QString shortDescription() const;
+	const SaveIconData &saveIcon() const;
+	void setSaveIcon(const SaveIconData &saveIconData);
+	// FF8
+	bool isFF8() const;
+	QString perso(quint8 id) const;
+	bool exportPC(const QString &path) const;
+	const HEADER &descData() const;
+	const MAIN &mainData() const;
+	void setSaveData(const HEADER &descData, const MAIN &data);
 private:
 	bool setData(const QByteArray &data);
 	static quint16 calcChecksum(const char *data);
@@ -452,7 +456,7 @@ private:
 	MAIN _mainData;
 	int _freqValue, _id;
 	bool _isFF8, _isDelete, _isTheLastEdited;
-	bool _isVmp;
+	bool _hasExistsInfos, _isRaw;
 	bool _isModified, _wasModified;
 	QByteArray _saveData;
 };
