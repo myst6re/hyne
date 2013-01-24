@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2012 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2013 Arzel Jérôme <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -25,7 +25,8 @@ SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, bool mu
 	fillList(saveFiles);
 
 	for(int i=0 ; i<list->count() ; ++i) {
-		if(!saveFiles.at(i)->isFF8())
+		if(!saveFiles.at(i)->isFF8() &&
+				(saveFiles.at(i)->isRaw() || saveFiles.at(i)->isDelete()))
 			list->item(i)->setFlags(Qt::NoItemFlags);
 	}
 
