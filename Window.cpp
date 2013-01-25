@@ -30,17 +30,20 @@ Window::Window() :
 #ifdef Q_OS_WIN
 	if(QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
 		taskBarButton = new QTaskBarButton(this);
-		taskBarButton->addList(QTaskBarButton::Recent | QTaskBarButton::Frequent);
+		//taskBarButton->addList(QTaskBarButton::Recent | QTaskBarButton::Frequent);
 	}
 #endif
 
 	menuBar = new QMenuBar(0);
 	QMenu *menu;
-	QAction *action;
+	QAction *action, *actionSlot1=0, *actionSlot2=0;
 
 	/* MENU 'FICHIER' */
 	
 	menu = menuBar->addMenu(tr("&Fichier"));
+#ifdef Q_OS_MAC
+	QMenu *fileMenu = menu;
+#endif
 
 	bool isInstalled = !Config::ff8Path().isEmpty();
 	
@@ -55,10 +58,11 @@ Window::Window() :
 	menu->addSeparator();
 	actionProperties = menu->addAction(tr("&Propriétés..."), this, SLOT(properties()));
 	actionProperties->setEnabled(false);
-	action = menu->addAction(QIcon(":/images/ff8.png"), tr("&Lancer Final Fantasy VIII"), this, SLOT(runFF8()), Qt::Key_F8);
-	action->setShortcutContext(Qt::ApplicationShortcut);
-	action->setEnabled(isInstalled);
-	addAction(action);
+	if(isInstalled) {
+		action = menu->addAction(QIcon(":/images/ff8.png"), tr("&Lancer Final Fantasy VIII"), this, SLOT(runFF8()), Qt::Key_F8);
+		action->setShortcutContext(Qt::ApplicationShortcut);
+		addAction(action);
+	}
 	action = menu->addAction(tr("Ple&in écran"), this, SLOT(fullScreen()), Qt::Key_F11);
 	action->setShortcutContext(Qt::ApplicationShortcut);
 	addAction(action);
@@ -72,11 +76,11 @@ Window::Window() :
 	
 	/* MENU 'SLOT' */
 	
-	QAction *actionSlot1 = menuBar->addAction(tr("Fente &1"), this, SLOT(slot1()));
-	actionSlot1->setEnabled(isInstalled);
-	QAction *actionSlot2 = menuBar->addAction(tr("Fente &2"), this, SLOT(slot2()));
-	actionSlot2->setEnabled(isInstalled);
-	
+	if(isInstalled) {
+		actionSlot1 = menuBar->addAction(tr("Fente &1"), this, SLOT(slot1()));
+		actionSlot2 = menuBar->addAction(tr("Fente &2"), this, SLOT(slot2()));
+	}
+
 	/* MENU 'PARAMETRES' */
 	
 	menu = menuBar->addMenu(tr("&Paramètres"));
@@ -116,13 +120,19 @@ Window::Window() :
 	
 	/* MENU '?' */
 	
+#ifndef Q_OS_MAC
 	menuBar->addAction(tr("&?"), this, SLOT(about()))->setMenuRole(QAction::AboutRole);
-	
+#else
+	fileMenu->addAction(tr("&?"), this, SLOT(about()))->setMenuRole(QAction::AboutRole);
+#endif
+
 	startWidget = new StartWidget(this);
 	startWidget->addAction(actionNew);
 	startWidget->addAction(actionOpen);
-	startWidget->addAction(actionSlot1);
-	startWidget->addAction(actionSlot2);
+	if(isInstalled) {
+		startWidget->addAction(actionSlot1);
+		startWidget->addAction(actionSlot2);
+	}
 	
 	stackedLayout = new QStackedLayout(this);
 	stackedLayout->setMenuBar(menuBar);
