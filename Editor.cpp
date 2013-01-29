@@ -17,6 +17,21 @@
  ****************************************************************************/
 
 #include "Editor.h"
+#include "PageWidgets/GfEditor.h"
+#include "PageWidgets/PersoEditor.h"
+#include "PageWidgets/ItemEditor.h"
+#include "PageWidgets/TTriadEditor.h"
+#include "PageWidgets/CWEditor.h"
+#include "PageWidgets/MiscEditor.h"
+#include "PageWidgets/ConfigEditor.h"
+#include "PageWidgets/AllEditor.h"
+#include "PageWidgets/DrawPointEditor.h"
+#include "PageWidgets/BattleEditor.h"
+#include "PageWidgets/ShopEditor.h"
+#include "PageWidgets/WorldmapEditor.h"
+#include "PageWidgets/FieldEditor.h"
+#include "PageWidgets/PartyEditor.h"
+#include "PageWidgets/PreviewEditor.h"
 
 Editor::Editor(QWidget *parent) :
 	QWidget(parent)
@@ -71,6 +86,7 @@ Editor::Editor(QWidget *parent) :
 	stackedLayout->addWidget(new PartyEditor(this));
 	stackedLayout->addWidget(new MiscEditor(this));
 	stackedLayout->addWidget(new ConfigEditor(this));
+	stackedLayout->addWidget(new PreviewEditor(this));
 	stackedLayout->addWidget(new AllEditor(this));
 
 	for(int i=0 ; i<stackedLayout->count() ; ++i)
@@ -103,7 +119,7 @@ void Editor::setCurrentSection(QListWidgetItem *current, QListWidgetItem *previo
 
 	pageWidget = (PageWidget *)stackedLayout->widget(id);
 	if(!pageWidget->isLoaded()) {
-		pageWidget->load(&copy, &descCopy, saveData->freqValue(), saveData->isJp(), pc);
+		pageWidget->load(&saveDataCopy, pc);
 	}
 	// AllEditor exception
 	if(id == liste->count()-1)
@@ -115,8 +131,7 @@ void Editor::load(SaveData *saveData, bool pc)
 {
 	this->pc = pc;
 	this->saveData = saveData;
-	descCopy = saveData->descData();
-	copy = saveData->mainData();
+	this->saveDataCopy = *saveData;
 
 	int pageCount = stackedLayout->count();
 	for(int i=0 ; i<pageCount ; ++i) {
@@ -128,15 +143,21 @@ void Editor::load(SaveData *saveData, bool pc)
 
 void Editor::save()
 {
+	bool saveOneAtLeast = false;
 	int pageCount = stackedLayout->count();
 	for(int i=0 ; i<pageCount ; ++i) {
 		PageWidget *pageWidget = (PageWidget *)stackedLayout->widget(i);
 		if(pageWidget->isLoaded()) {
 			pageWidget->savePage();
+			saveOneAtLeast = true;
 		}
 	}
 
-	saveData->setSaveData(descCopy, copy);
+	if(saveOneAtLeast) {
+		*saveData = saveDataCopy;
+		saveData->updateDescData();
+		saveData->setModified(true);
+	}
 
 	emit accepted();
 }

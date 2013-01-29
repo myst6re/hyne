@@ -71,8 +71,10 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 
 	group2 = new QGroupBox(tr("Save header"), this);
 
-	desc = new QLabel();
-	desc->setTextFormat(Qt::PlainText);
+	desc = new QLineEdit();
+	desc->setMaxLength(64);
+
+	desc_auto = new QCheckBox(tr("Auto."));
 
 	QLabel *bloc_lbl = new QLabel(tr("Blocs utilisés :"));
 	bloc = new QLabel();
@@ -117,6 +119,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	layout2->addWidget(bloc, 0, 1, 1, 2);
 	layout2->addWidget(desc_lbl, 1, 0);
 	layout2->addWidget(desc, 1, 1, 1, 2);
+	layout2->addWidget(desc_auto, 1, 3);
 	layout2->addWidget(icon1_lbl, 2, 0);
 	layout2->addWidget(icon1, 2, 1);
 	layout2->addWidget(icon1_saveButton, 2, 2, Qt::AlignRight);
@@ -136,6 +139,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
 	connect(icon1_saveButton, SIGNAL(released()), SLOT(saveIcon1()));
 	connect(icon2_saveButton, SIGNAL(released()), SLOT(saveIcon2()));
+	connect(desc_auto, SIGNAL(toggled(bool)), desc, SLOT(setDisabled(bool)));
 
 	fill();
 }
@@ -202,11 +206,9 @@ void HeaderDialog::fill()
 	else {
 		// Fill group2 (SC_header)
 
-		QString short_desc = saveData->shortDescription();
-		if(!short_desc.isEmpty()) {
-			desc->setText(short_desc);
-		}
-
+		desc->setText(saveData->shortDescription());
+		desc_auto->setChecked(saveData->isDescriptionAuto());
+		desc_auto->setVisible(saveData->isFF8());
 		bloc->setText(QString::number(saveData->blockCount()));
 		QImage pix = saveData->saveIcon().icon().toImage();
 		int currentIndex = -1;
@@ -304,6 +306,10 @@ void HeaderDialog::accept()
 							  code->currentText(),
 							  id->isVisible() ? id->currentText() : QString());
 	}
+
+	// Edit short description
+	saveData->setShortDescription(desc->text());
+	saveData->setDescriptionAuto(desc_auto->isChecked());
 
 	// Edit icon 1
 	SaveIconData saveIcon = saveData->saveIcon();

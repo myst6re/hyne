@@ -432,7 +432,10 @@ bool Window::exportAs()
 	else if(selectedFilter == vmp)		newType = SavecardData::Vmp;
 	else if(selectedFilter == pc)		newType = SavecardData::Pc;
 	else if(selectedFilter == psv)		newType = SavecardData::Psv;
-	else	return false;
+	else {
+		qWarning() << "Bad selected filter!" << selectedFilter;
+		return false;
+	}
 
 	if(newType == SavecardData::Vmp || newType == SavecardData::Psv) {
 		int reponse = QMessageBox::information(this, tr("Sauvegarde hasardeuse"), tr("Les formats VMP et PSV sont protégés, l'enregistrement sera partiel et risque de ne pas fonctionner.\nContinuer quand même ?"), tr("Oui"), tr("Non"));

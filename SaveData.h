@@ -435,15 +435,23 @@ public:
 	quint8 blockCount() const;
 	void setBlockCount(quint8 blockCount);
 	QString shortDescription() const;
+	void setShortDescription(const QString &desc);
+	bool isDescriptionAuto() const;
+	void setDescriptionAuto(bool descAuto);
 	const SaveIconData &saveIcon() const;
 	void setSaveIcon(const SaveIconData &saveIconData);
 	// FF8
 	bool isFF8() const;
 	QString perso(quint8 id) const;
 	bool exportPC(const QString &path) const;
-	const HEADER &descData() const;
-	const MAIN &mainData() const;
+	HEADER &descData();
+	const HEADER &constDescData() const;
+	MAIN &mainData();
+	const MAIN &constMainData() const;
+	void updateDescData();
 	void setSaveData(const HEADER &descData, const MAIN &data);
+	bool isPreviewAuto() const;
+	void setPreviewAuto(bool prevAuto);
 private:
 	bool setData(const QByteArray &data);
 	static quint16 calcChecksum(const char *data);
@@ -458,6 +466,7 @@ private:
 	bool _isFF8, _isDelete, _isTheLastEdited;
 	bool _hasExistsInfos, _isRaw;
 	bool _isModified, _wasModified;
+	bool _descriptionAuto, _previewAuto;
 	QByteArray _saveData;
 };
 

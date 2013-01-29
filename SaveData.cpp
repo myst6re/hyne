@@ -21,17 +21,17 @@
 #include "Data.h"
 #include "LZS.h"
 
-SaveData::SaveData()
-	: _freqValue(60), _id(0), _isFF8(false), _isDelete(false),
-	  _isTheLastEdited(false), _hasExistsInfos(true), _isRaw(false),
-	  _isModified(false), _wasModified(false)
+SaveData::SaveData() :
+	_freqValue(60), _id(0), _isFF8(false), _isDelete(false),
+	_isTheLastEdited(false), _hasExistsInfos(true), _isRaw(false),
+	_isModified(false), _wasModified(false), _descriptionAuto(true), _previewAuto(true)
 {
 }
 
-SaveData::SaveData(int id, const QByteArray &data, const QByteArray &MCHeader, bool hasExistsInfos, bool isRaw)
-	: _freqValue(60), _id(id), _isFF8(false), _isDelete(false),
-	  _isTheLastEdited(false), _hasExistsInfos(hasExistsInfos), _isRaw(isRaw),
-	  _isModified(false), _wasModified(false)
+SaveData::SaveData(int id, const QByteArray &data, const QByteArray &MCHeader, bool hasExistsInfos, bool isRaw) :
+	_freqValue(60), _id(id), _isFF8(false), _isDelete(false),
+	_isTheLastEdited(false), _hasExistsInfos(hasExistsInfos), _isRaw(isRaw),
+	_isModified(false), _wasModified(false), _descriptionAuto(true), _previewAuto(true)
 {
 	open(data, MCHeader);
 }
@@ -91,13 +91,17 @@ QByteArray SaveData::save() const
 	ret.append("SC", 2);
 	ret.append(_header.at(2));// icon frames
 	ret.append('\x01');// slot count
-	ret.append("\x82\x65\x82\x65\x82\x57\x81\x6D", 8);// FF8[
-	ret.append(FF8Text::numToBiosText(_id+1, 2));// II
-	ret.append("\x81\x6E\x81\x5E", 4);// ]/
-	ret.append(FF8Text::numToBiosText(Config::hour(_mainData.misc2.game_time, _freqValue), 2));// HH
-	ret.append("\x81\x46", 2);// :
-	ret.append(FF8Text::numToBiosText(Config::min(_mainData.misc2.game_time, _freqValue), 2));// MM
-	ret.append(_header.right(66));
+	if(_descriptionAuto) {
+		ret.append("\x82\x65\x82\x65\x82\x57\x81\x6D", 8);// FF8[
+		ret.append(FF8Text::numToBiosText(_id+1, 2));// II
+		ret.append("\x81\x6E\x81\x5E", 4);// ]/
+		ret.append(FF8Text::numToBiosText(Config::hour(_mainData.misc2.game_time, _freqValue), 2));// HH
+		ret.append("\x81\x46", 2);// :
+		ret.append(FF8Text::numToBiosText(Config::min(_mainData.misc2.game_time, _freqValue), 2));// MM
+		ret.append(_header.right(66));
+	} else {
+		ret.append(_header.right(92));
+	}
 	ret.append(_icon.data().leftJustified(288, '\0', true));
 	ret.append((char *)&checksum, 2);
 	ret.append("\xFF\x08", 2);
@@ -233,25 +237,29 @@ void SaveData::setMCHeader(bool exists, char country, const QString &code, const
 	setMCHeader(MCHeader);// update infos
 }
 
-const HEADER &SaveData::descData() const
+HEADER &SaveData::descData()
 {
 	return _descData;
 }
 
-const MAIN &SaveData::mainData() const
+const HEADER &SaveData::constDescData() const
+{
+	return _descData;
+}
+
+MAIN &SaveData::mainData()
 {
 	return _mainData;
 }
 
-void SaveData::setSaveData(const HEADER &descData, const MAIN &data)
+const MAIN &SaveData::constMainData() const
 {
-	if(memcmp(&descData, &_descData, sizeof(HEADER)) != 0 || memcmp(&data, &_mainData, sizeof(MAIN)) != 0) {
-		_isModified = true;
-		_descData = descData;
-		_mainData = data;
+	return _mainData;
+}
 
-		// Update descData
-
+void SaveData::updateDescData()
+{
+	if(_previewAuto) {
 		quint8 leader;
 		quint8 perso1 = _mainData.misc1.party[0];
 		quint8 perso2 = _mainData.misc1.party[1];
@@ -277,6 +285,19 @@ void SaveData::setSaveData(const HEADER &descData, const MAIN &data)
 		_descData.hpLeader = _mainData.persos[leader].current_HPs;
 		_descData.gils = _mainData.misc2.dream & 1 ? _mainData.misc1.dream_gils : _mainData.misc1.gils;
 		_descData.time = _mainData.misc2.game_time;
+		_descData.disc = _mainData.misc3.disc - 1;
+
+		_isModified = true;
+	}
+}
+
+void SaveData::setSaveData(const HEADER &descData, const MAIN &data)
+{
+	if(memcmp(&descData, &_descData, sizeof(HEADER)) != 0 || memcmp(&data, &_mainData, sizeof(MAIN)) != 0) {
+		_isModified = true;
+		_descData = descData;
+		_mainData = data;
+		updateDescData();
 	}
 }
 
@@ -360,7 +381,7 @@ QString SaveData::shortDescription() const
 {
 	QTextCodec *codec = QTextCodec::codecForName(QByteArray("Shift-JIS"));
 	if(hasSCHeader() && codec!=0) {
-		QByteArray desc_array = _header.mid(4,64);
+		QByteArray desc_array = _header.mid(4, 64);
 		int index;
 		if((index = desc_array.indexOf('\x00')) != -1) {
 			desc_array.truncate(index);
@@ -368,6 +389,28 @@ QString SaveData::shortDescription() const
 		return codec->toUnicode(desc_array);
 	}
 	return QString();
+}
+
+void SaveData::setShortDescription(const QString &desc)
+{
+	QTextCodec *codec = QTextCodec::codecForName(QByteArray("Shift-JIS"));
+	if(hasSCHeader() && codec!=0) {
+		QByteArray desc_data = codec->fromUnicode(desc).leftJustified(64, '\0', true);
+		if(_header.mid(4, 64) != desc_data) {
+			_header.replace(4, 64, desc_data);
+			_isModified = true;
+		}
+	}
+}
+
+bool SaveData::isDescriptionAuto() const
+{
+	return isFF8() && _descriptionAuto;
+}
+
+void SaveData::setDescriptionAuto(bool descAuto)
+{
+	_descriptionAuto = descAuto;
 }
 
 const SaveIconData &SaveData::saveIcon() const
@@ -440,6 +483,16 @@ QString SaveData::perso(quint8 index) const
 		if(index < 16)	return Data::names().at(index);
 		return QString();
 	}
+}
+
+bool SaveData::isPreviewAuto() const
+{
+	return isFF8() && _previewAuto;
+}
+
+void SaveData::setPreviewAuto(bool prevAuto)
+{
+	_previewAuto = prevAuto;
 }
 
 quint8 SaveData::xorByte(const char *data)

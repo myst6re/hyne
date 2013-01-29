@@ -566,7 +566,7 @@ void PersoEditor::buildPage6()
 		grid->setRowStretch(4, 1);
 		return;
 	case RINOA:
-		angel_E = new QLineEdit(FF8Text::toString(descData->angelo, jp), lbWidget);
+		angel_E = new QLineEdit(FF8Text::toString(descData->angelo, saveData->isJp()), lbWidget);
 		angel_disabledE = new QCheckBox(tr("Angel désactivé"), lbWidget);
 		angel_disabledE->setChecked((data->misc2.dream >> 4) & 1);
 		a_wing_enabledE = new QCheckBox(tr("Canonisation activé"), lbWidget);
@@ -645,8 +645,8 @@ void PersoEditor::fillPage()
 	this->perso_data = &data->persos[id];
 
 	QString persoName;
-	if(id == SQUALL)		persoName = FF8Text::toString(descData->squall, jp);
-	else if(id == RINOA)	persoName = FF8Text::toString(descData->linoa, jp);
+	if(id == SQUALL)		persoName = FF8Text::toString(descData->squall, saveData->isJp());
+	else if(id == RINOA)	persoName = FF8Text::toString(descData->linoa, saveData->isJp());
 	else					persoName = Data::names().at(id);
 
 	/* PAGE 1 */
@@ -747,7 +747,7 @@ void PersoEditor::savePage()
 
 	perso_data->exists = (unknown6E->value() << 3) | (lock2E->isChecked() << 2) | (lock1E->isChecked() << 1) | existsE->isChecked();
 
-	const char *persoName = FF8Text::toByteArray(nameE->text(), jp).leftJustified(11, '\x00', true).append('\x00').constData();
+	const char *persoName = FF8Text::toByteArray(nameE->text(), saveData->isJp()).leftJustified(11, '\x00', true).append('\x00').constData();
 	if(id == SQUALL)		memcpy(&descData->squall, persoName, 12);
 	else if(id == RINOA)	memcpy(&descData->linoa, persoName, 12);
 
@@ -846,7 +846,7 @@ void PersoEditor::savePage()
 			data->limitb.quistis |= LB_E.at(i)->isChecked() << i;
 		break;
 	case RINOA:
-		persoName = FF8Text::toByteArray(angel_E->text(), jp).leftJustified(11, '\x00', true).append('\x00').constData();
+		persoName = FF8Text::toByteArray(angel_E->text(), saveData->isJp()).leftJustified(11, '\x00', true).append('\x00').constData();
 		memcpy(&descData->angelo, persoName, 12);
 		data->limitb.angel_known = data->limitb.angel_completed = 0;
 		for(int i=0 ; i<8 ; ++i)

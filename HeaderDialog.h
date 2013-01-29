@@ -52,7 +52,9 @@ private:
 	QGroupBox *group2;
 	QPushButton *icon2_saveButton;
 	QComboBox *icon1, *icon2;
-	QLabel *id_lbl, *desc, *bloc, *icon2_lbl;
+	QLineEdit *desc;
+	QCheckBox *desc_auto;
+	QLabel *id_lbl, *bloc, *icon2_lbl;
 	SaveData *saveData;
 	ViewType viewType;
 };

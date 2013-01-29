@@ -30,7 +30,7 @@ class PageWidget : public QWidget
 public:
 	explicit PageWidget(QWidget *parent = 0);
 	virtual QString name()=0;
-	void load(MAIN *data, HEADER *descData, int freq_value, bool jp, bool pc);
+	void load(SaveData *saveData, bool pc);
 	void unload();
 	bool isLoaded() const;
 	bool isBuilded() const;
@@ -48,8 +48,7 @@ protected:
 	bool builded, loaded;
 	MAIN *data;
 	HEADER *descData;
-	int freq_value;
-	bool jp;
+	SaveData *saveData;
 	bool pc;
 };
 

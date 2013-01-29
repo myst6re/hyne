@@ -111,7 +111,6 @@ void FieldEditor::fillPage()
 void FieldEditor::savePage()
 {
 	quint8 disc = discE->itemData(discE->currentIndex()).toInt();
-	descData->disc = disc;
 	data->misc3.disc = disc + 1;
 }
 

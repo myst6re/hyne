@@ -414,7 +414,7 @@ QSize SavecardView::minimumSizeHint() const
 	}
 }*/
 
-void SavecardView::renderSave(QPainter *painter, SaveData *saveData, const QRect &sourceRect)
+void SavecardView::renderSave(QPainter *painter, const SaveData *saveData, const QRect &sourceRect)
 {
 	QPixmap menuBg(QString(":/images/menu-fond%1.png").arg(!saveData->isTheLastEdited() && !saveData->isDelete() ? "" : "2"));
 	QPixmap menuTitle(":/images/numbers_title.png");
@@ -423,13 +423,13 @@ void SavecardView::renderSave(QPainter *painter, SaveData *saveData, const QRect
 	renderSave(painter, saveData, menuBg, menuTitle, numberPixmap, sourceRect);
 }
 
-void SavecardView::renderSave(QPixmap *pixmap, SaveData *saveData, const QRect &sourceRect)
+void SavecardView::renderSave(QPixmap *pixmap, const SaveData *saveData, const QRect &sourceRect)
 {
 	QPainter p(pixmap);
 	renderSave(&p, saveData, sourceRect);
 }
 
-void SavecardView::renderSave(QPainter *painter, SaveData *saveData, const QPixmap &menuBg, const QPixmap &fontPixmap, QImage &numberPixmap, const QRect &sourceRect)
+void SavecardView::renderSave(QPainter *painter, const SaveData *saveData, const QPixmap &menuBg, const QPixmap &fontPixmap, QImage &numberPixmap, const QRect &sourceRect)
 {
 	QRect toBePainted;
 	if(sourceRect.isNull()) {
@@ -454,52 +454,52 @@ void SavecardView::renderSave(QPainter *painter, SaveData *saveData, const QPixm
 	if(saveData->isFF8())
 	{
 		// Portrait chars
-		if(saveData->descData().party[0] != 255
+		if(saveData->constDescData().party[0] != 255
 				&& !(toBePainted & QRect(44, 4, 64, 96)).isEmpty())
-			painter->drawPixmap(44, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->descData().party[0] & 15)));
-		if(saveData->descData().party[1] != 255
+			painter->drawPixmap(44, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->constDescData().party[0] & 15)));
+		if(saveData->constDescData().party[1] != 255
 				&& !(toBePainted & QRect(112, 4, 64, 96)).isEmpty())
-			painter->drawPixmap(112, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->descData().party[1] & 15)));
-		if(saveData->descData().party[2] != 255
+			painter->drawPixmap(112, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->constDescData().party[1] & 15)));
+		if(saveData->constDescData().party[2] != 255
 				&& !(toBePainted & QRect(180, 4, 64, 96)).isEmpty())
-			painter->drawPixmap(180, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->descData().party[2] & 15)));
+			painter->drawPixmap(180, 4, QPixmap(QString(":/images/icons/perso%1.png").arg(saveData->constDescData().party[2] & 15)));
 
 		// Main char name
 		if(!(toBePainted & QRect(271, 8, saveWidth()-271, 24)).isEmpty()) {
-			int persoIndex = saveData->descData().party[0] != 255 ? saveData->descData().party[0] : (saveData->descData().party[1] != 255 ? saveData->descData().party[1] : saveData->descData().party[2]);
+			int persoIndex = saveData->constDescData().party[0] != 255 ? saveData->constDescData().party[0] : (saveData->constDescData().party[1] != 255 ? saveData->constDescData().party[1] : saveData->constDescData().party[2]);
 			bool langIndep = persoIndex==SQUALL || persoIndex==RINOA || persoIndex==GRIEVER || persoIndex==BOKO || persoIndex==ANGELO;
 			FF8Text::drawTextArea(painter, QPoint(271, 8), saveData->perso(persoIndex), langIndep ? (saveData->isJp() ? 2 : 1) : 0);
 		}
 
 		// Level
 		if(!(toBePainted & QRect(271, 36, saveWidth()-271, 24)).isEmpty()) {
-			FF8Text::drawTextArea(painter, QPoint(271, 36), tr("NV%1").arg(saveData->descData().nivLeader,3,10,QChar(' ')), 1);
+			FF8Text::drawTextArea(painter, QPoint(271, 36), tr("NV%1").arg(saveData->constDescData().nivLeader,3,10,QChar(' ')), 1);
 		}
 
 		// Disc number
 		if(!(toBePainted & QRect(391, 38, saveWidth()-391, 16)).isEmpty()) {
 			QPixmap disc(QString(":/images/disc_%1.png").arg(Config::value("lang")=="fr" ? "fr" : "en"));
 			painter->drawPixmap(391, 38, disc);
-			num2pix(painter, &numberPixmap, 395+disc.width(), 38, saveData->descData().disc+1);
+			num2pix(painter, &numberPixmap, 395+disc.width(), 38, saveData->constDescData().disc+1);
 		}
 
 		// Play time
 		if(!(toBePainted & QRect(511, 16, saveWidth()-511, 16)).isEmpty()) {
 			painter->drawPixmap(511, 16, QPixmap(QString(":/images/play_%1.png").arg(Config::value("lang")=="fr" ? "fr" : "en")));
 
-			int hour = Config::hour(saveData->descData().time, saveData->freqValue());
+			int hour = Config::hour(saveData->constDescData().time, saveData->freqValue());
 			int color = (hour>=100) + (hour>=200) + (hour>=300) + (hour>=400) + (hour>=500);
 			num2pix(painter, &numberPixmap, 576, 16, hour, 2, QChar(' '), color);
 
 			QImage deux_points(":/images/deux-points.png");
 			colors(&deux_points, color);
 			painter->drawImage(612, 18, deux_points);
-			num2pix(painter, &numberPixmap, 624, 16, Config::min(saveData->descData().time, saveData->freqValue()), 2, QChar('0'), color);
+			num2pix(painter, &numberPixmap, 624, 16, Config::min(saveData->constDescData().time, saveData->freqValue()), 2, QChar('0'), color);
 		}
 
 		// Gils
 		if(!(toBePainted & QRect(511, 40, saveWidth()-511, 16)).isEmpty()) {
-			num2pix(painter, &numberPixmap, 511, 40, saveData->descData().gils, 8);
+			num2pix(painter, &numberPixmap, 511, 40, saveData->constDescData().gils, 8);
 			painter->drawPixmap(640, 44, QPixmap(":/images/gils.png"));
 		}
 
@@ -511,7 +511,7 @@ void SavecardView::renderSave(QPainter *painter, SaveData *saveData, const QPixm
 
 			// Location
 			if(!(toBePainted & QRect(256+12, 62+12, saveWidth()-(256+12), 24)).isEmpty()) {
-				FF8Text::drawTextArea(painter, QPoint(12, 12), saveData->descData().locationID<251 ? Data::locations().at(saveData->descData().locationID) : QString("??? (%1)").arg(saveData->descData().locationID));
+				FF8Text::drawTextArea(painter, QPoint(12, 12), saveData->constDescData().locationID<251 ? Data::locations().at(saveData->constDescData().locationID) : QString("??? (%1)").arg(saveData->constDescData().locationID));
 			}
 		}
 	}

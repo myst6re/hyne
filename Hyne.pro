@@ -44,7 +44,8 @@ HEADERS += PageWidgets/ConfigEditor.h \
     GZIP.h \
     SavecardData.h \
     SavecardView.h \
-	QTaskBarButton.h
+	QTaskBarButton.h \
+    PageWidgets/PreviewEditor.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/MiscEditor.cpp \
     PageWidgets/GfEditor.cpp \
@@ -83,7 +84,8 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     GZIP.cpp \
     SavecardData.cpp \
     SavecardView.cpp \
-	QTaskBarButton.cpp
+	QTaskBarButton.cpp \
+    PageWidgets/PreviewEditor.cpp
 RESOURCES += Hyne.qrc
 TRANSLATIONS += hyne_en.ts \
     hyne_ja.ts

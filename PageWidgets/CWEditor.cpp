@@ -86,7 +86,7 @@ void CWEditor::buildWidget()
 
 void CWEditor::fillPage()
 {
-	bokoE->setText(FF8Text::toString(descData->boko, jp));
+	bokoE->setText(FF8Text::toString(descData->boko, saveData->isJp()));
 
 //	for(int i=0 ; i<8 ; ++i)
 //		questE.at(i)->setChecked((data->chocobo.enabled >> i) & 1);
@@ -109,7 +109,7 @@ void CWEditor::fillPage()
 
 void CWEditor::savePage()
 {
-	memcpy(&descData->boko, FF8Text::toByteArray(bokoE->text(), jp).leftJustified(11, '\x00', true).append('\x00').constData(), 12);
+	memcpy(&descData->boko, FF8Text::toByteArray(bokoE->text(), saveData->isJp()).leftJustified(11, '\x00', true).append('\x00').constData(), 12);
 
 //	data->chocobo.enabled = 0;
 //	for(int i=0 ; i<8 ; ++i)

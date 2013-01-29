@@ -24,16 +24,15 @@ PageWidget::PageWidget(QWidget *parent) :
 	builded = loaded = false;
 }
 
-void PageWidget::load(MAIN *data, HEADER *descData, int freq_value, bool jp, bool pc)
+void PageWidget::load(SaveData *saveData, bool pc)
 {
 	if(!builded) {
 		buildWidget();
 		builded = true;
 	}
-	this->data = data;
-	this->descData = descData;
-	this->freq_value = freq_value;
-	this->jp = jp;
+	this->data = &saveData->mainData();
+	this->descData = &saveData->descData();
+	this->saveData = saveData;
 	this->pc = pc;
 	fillPage();
 	loaded = true;

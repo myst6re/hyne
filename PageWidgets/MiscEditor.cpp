@@ -37,17 +37,17 @@ void MiscEditor::updateMode(bool mode)
 void MiscEditor::updateTime()
 {
 	quint32 time = data->misc2.game_time;
-	tempsSecE->setMaximum(Config::freq(freq_value)-1);
-	tempsSecE->setValue(Config::sec(time, freq_value));
-	tempsMinE->setValue(Config::min(time, freq_value));
-	tempsHourE->setMaximum(Config::freq(freq_value)==60 ? 1193046 : 1431655);
-	tempsHourE->setValue(Config::hour(time, freq_value));
+	tempsSecE->setMaximum(Config::freq(saveData->freqValue())-1);
+	tempsSecE->setValue(Config::sec(time, saveData->freqValue()));
+	tempsMinE->setValue(Config::min(time, saveData->freqValue()));
+	tempsHourE->setMaximum(Config::freq(saveData->freqValue())==60 ? 1193046 : 1431655);
+	tempsHourE->setValue(Config::hour(time, saveData->freqValue()));
 	time = data->misc2.countdown;
-	countdownSecE->setMaximum(Config::freq(freq_value)-1);
-	countdownSecE->setValue(Config::sec(time, freq_value));
-	countdownMinE->setValue(Config::min(time, freq_value));
-	countdownHourE->setMaximum(Config::freq(freq_value)==60 ? 1193046 : 1431655);
-	countdownHourE->setValue(Config::hour(time, freq_value));
+	countdownSecE->setMaximum(Config::freq(saveData->freqValue())-1);
+	countdownSecE->setValue(Config::sec(time, saveData->freqValue()));
+	countdownMinE->setValue(Config::min(time, saveData->freqValue()));
+	countdownHourE->setMaximum(Config::freq(saveData->freqValue())==60 ? 1193046 : 1431655);
+	countdownHourE->setValue(Config::hour(time, saveData->freqValue()));
 }
 
 void MiscEditor::buildWidget()
@@ -340,8 +340,8 @@ void MiscEditor::savePage()
 	data->misc3.gils = argentE->value();
 	data->misc1.dream_gils = lagunaGilsE->value();
 	data->misc3.dream_gils = lagunaGilsE->value();
-	data->misc2.game_time = Config::time(tempsHourE->value(), tempsMinE->value(), tempsSecE->value(), freq_value);
-	data->misc2.countdown = Config::time(countdownHourE->value(), countdownMinE->value(), countdownSecE->value(), freq_value);
+	data->misc2.game_time = Config::time(tempsHourE->value(), tempsMinE->value(), tempsSecE->value(), saveData->freqValue());
+	data->misc2.countdown = Config::time(countdownHourE->value(), countdownMinE->value(), countdownSecE->value(), saveData->freqValue());
 
 	data->misc3.seedExp = seedExpE->value();
 	
