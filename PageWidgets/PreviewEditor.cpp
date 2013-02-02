@@ -48,17 +48,36 @@ void PreviewEditor::buildWidget()
 	gilsE = new QDoubleSpinBox(autoGroup);
 	gilsE->setRange(0, MAX_INT32);
 	gilsE->setDecimals(0);
-	timeE = new QDoubleSpinBox(autoGroup);
-	timeE->setRange(0, MAX_INT32);
-	timeE->setDecimals(0);
+	timeE = new TimeWidget(autoGroup);
 	nivLeaderE = new QSpinBox(autoGroup);
 	nivLeaderE->setRange(0, MAX_INT8);
-	//partyE = new QSpinBox(autoGroup);
 	discE = new QDoubleSpinBox(autoGroup);
-	discE->setRange(1, MAX_INT32 + 1);
+	discE->setRange(1, double(MAX_INT32) + 1.0);
 	discE->setDecimals(0);
 
-	autoL = new QGridLayout(autoGroup);
+	QComboBox *comboBox;
+	QList<QIcon> icons;
+
+	for(int i=0 ; i<16 ; ++i) {
+		icons.append(QIcon(QString(":/images/icons/perso%1.png").arg(i)));
+	}
+
+	for(int i=0 ; i<3 ; ++i) {
+		partyE.append(comboBox = new QComboBox(autoGroup));
+		comboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
+		comboBox->addItem("-", 255);
+		for(int j=0 ; j<16 ; ++j) {
+			comboBox->addItem(icons.at(j), Data::names().at(j), j);
+		}
+	}
+
+	QHBoxLayout *partyL = new QHBoxLayout;
+	partyL->addWidget(partyE.first());
+	partyL->addWidget(partyE.at(1));
+	partyL->addWidget(partyE.last());
+	partyL->setContentsMargins(QMargins());
+
+	QGridLayout *autoL = new QGridLayout(autoGroup);
 	autoL->addWidget(new QLabel(tr("HP leader (inutilisé)"), autoGroup), 0, 0);
 	autoL->addWidget(hpLeaderE, 0, 1);
 	autoL->addWidget(new QLabel(tr("HP max. leader (inutilisé)"), autoGroup), 0, 2);
@@ -71,6 +90,8 @@ void PreviewEditor::buildWidget()
 	autoL->addWidget(timeE, 1, 3);
 	autoL->addWidget(new QLabel(tr("Disque"), autoGroup), 1, 4);
 	autoL->addWidget(discE, 1, 5);
+	autoL->addWidget(new QLabel(tr("Équipe"), autoGroup), 2, 0);
+	autoL->addLayout(partyL, 2, 1, 1, 5);
 
 	QGridLayout *layout = new QGridLayout(this);
 	layout->addWidget(previewWidget, 0, 0, 1, 6, Qt::AlignCenter);
@@ -84,15 +105,28 @@ void PreviewEditor::buildWidget()
 	layout->setRowStretch(3, 1);
 
 	connect(autoGroup, SIGNAL(toggled(bool)), SLOT(setGroupDisabled(bool)));
-	connect(nivLeaderE, SIGNAL(valueChanged(double)), SLOT(updatePreview()));
+	connect(nivLeaderE, SIGNAL(valueChanged(int)), SLOT(updatePreview()));
 	connect(gilsE, SIGNAL(valueChanged(double)), SLOT(updatePreview()));
-	connect(timeE, SIGNAL(valueChanged(double)), SLOT(updatePreview()));
+	connect(timeE, SIGNAL(valueChanged()), SLOT(updatePreview()));
 	connect(discE, SIGNAL(valueChanged(double)), SLOT(updatePreview()));
 	connect(locationIDE, SIGNAL(currentIndexChanged(int)), SLOT(updatePreview()));
+	foreach(QComboBox *cb, partyE) {
+		connect(cb, SIGNAL(currentIndexChanged(int)), SLOT(updatePreview()));
+	}
 }
 
 void PreviewEditor::fillPage()
 {
+	autoGroup->blockSignals(true);
+	nivLeaderE->blockSignals(true);
+	gilsE->blockSignals(true);
+	timeE->blockSignals(true);
+	discE->blockSignals(true);
+	locationIDE->blockSignals(true);
+	foreach(QComboBox *cb, partyE) {
+		cb->blockSignals(true);
+	}
+
 	previewWidget->setSaveData(saveData);
 	autoGroup->setChecked(saveData->isPreviewAuto());
 	setGroupDisabled(autoGroup->isChecked());
@@ -102,9 +136,22 @@ void PreviewEditor::fillPage()
 	hpLeaderE->setValue(descData->hpLeader);
 	hpMaxLeaderE->setValue(descData->hpMaxLeader);
 	gilsE->setValue(descData->gils);
-	timeE->setValue(descData->time);
+	timeE->setTime(descData->time, saveData->freqValue());
 	nivLeaderE->setValue(descData->nivLeader);
 	discE->setValue(descData->disc + 1);
+	for(int i=0 ; i<3 ; ++i) {
+		setCurrentIndex(partyE.at(i), descData->party[i]);
+	}
+
+	autoGroup->blockSignals(false);
+	nivLeaderE->blockSignals(false);
+	gilsE->blockSignals(false);
+	timeE->blockSignals(false);
+	discE->blockSignals(false);
+	locationIDE->blockSignals(false);
+	foreach(QComboBox *cb, partyE) {
+		cb->blockSignals(false);
+	}
 }
 
 void PreviewEditor::savePage()
@@ -116,9 +163,12 @@ void PreviewEditor::savePage()
 	descData->hpLeader = hpLeaderE->value();
 	descData->hpMaxLeader = hpMaxLeaderE->value();
 	descData->gils = gilsE->value();
-	descData->time = timeE->value();
+	descData->time = timeE->time(saveData->freqValue());
 	descData->nivLeader = nivLeaderE->value();
 	descData->disc = discE->value() - 1;
+	for(int i=0 ; i<3 ; ++i) {
+		descData->party[i] = partyE.at(i)->itemData(partyE.at(i)->currentIndex()).toUInt();
+	}
 }
 
 void PreviewEditor::setGroupDisabled(bool disable)

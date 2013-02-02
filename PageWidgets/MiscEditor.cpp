@@ -30,24 +30,12 @@ void MiscEditor::updateMode(bool mode)
 	lastFieldE->setVisible(mode);
 	currentFrameLabel->setVisible(mode);
 	currentFrameE->setVisible(mode);
-	hpMaxLeaderLabel->setVisible(mode);
-	hpMaxLeaderE->setVisible(mode);
 }
 
 void MiscEditor::updateTime()
 {
-	quint32 time = data->misc2.game_time;
-	tempsSecE->setMaximum(Config::freq(saveData->freqValue())-1);
-	tempsSecE->setValue(Config::sec(time, saveData->freqValue()));
-	tempsMinE->setValue(Config::min(time, saveData->freqValue()));
-	tempsHourE->setMaximum(Config::freq(saveData->freqValue())==60 ? 1193046 : 1431655);
-	tempsHourE->setValue(Config::hour(time, saveData->freqValue()));
-	time = data->misc2.countdown;
-	countdownSecE->setMaximum(Config::freq(saveData->freqValue())-1);
-	countdownSecE->setValue(Config::sec(time, saveData->freqValue()));
-	countdownMinE->setValue(Config::min(time, saveData->freqValue()));
-	countdownHourE->setMaximum(Config::freq(saveData->freqValue())==60 ? 1193046 : 1431655);
-	countdownHourE->setValue(Config::hour(time, saveData->freqValue()));
+	timeE->setTime(data->misc2.game_time, saveData->freqValue());
+	countdownE->setTime(data->misc2.countdown, saveData->freqValue());
 }
 
 void MiscEditor::buildWidget()
@@ -72,36 +60,15 @@ QWidget *MiscEditor::buildPage1()
 	argentE->setDecimals(0);
 	argentE->setRange(0, MAX_INT32);
 
-	tempsHourE = new QSpinBox(statsE);
-	tempsMinE = new QSpinBox(statsE);
-	tempsMinE->setMaximum(59);
-	tempsSecE = new QSpinBox(statsE);
-
-	QHBoxLayout *tempsL = new QHBoxLayout;
-	tempsL->addWidget(tempsHourE);
-	tempsL->addWidget(new QLabel(":",statsE));
-	tempsL->addWidget(tempsMinE);
-	tempsL->addWidget(new QLabel(":",statsE));
-	tempsL->addWidget(tempsSecE);
-
-	countdownHourE = new QSpinBox(statsE);
-	countdownMinE = new QSpinBox(statsE);
-	countdownMinE->setMaximum(59);
-	countdownSecE = new QSpinBox(statsE);
-
-	QHBoxLayout *countdownL = new QHBoxLayout;
-	countdownL->addWidget(countdownHourE);
-	countdownL->addWidget(new QLabel(":",statsE));
-	countdownL->addWidget(countdownMinE);
-	countdownL->addWidget(new QLabel(":",statsE));
-	countdownL->addWidget(countdownSecE);
+	timeE = new TimeWidget(statsE);
+	countdownE = new TimeWidget(statsE);
 
 	QHBoxLayout *argent_tempsL = new QHBoxLayout;
-	argent_tempsL->addWidget(new QLabel(tr("Temps :"),statsE));
-	argent_tempsL->addLayout(tempsL);
+	argent_tempsL->addWidget(new QLabel(tr("Temps :"), statsE));
+	argent_tempsL->addWidget(timeE);
 	argent_tempsL->addStretch();
-	argent_tempsL->addWidget(new QLabel(tr("Compte à rebours :"),statsE));
-	argent_tempsL->addLayout(countdownL);
+	argent_tempsL->addWidget(new QLabel(tr("Compte à rebours :"), statsE));
+	argent_tempsL->addWidget(countdownE);
 	
 	stepsE = new QDoubleSpinBox(statsE);
 	stepsE->setDecimals(0);
@@ -147,29 +114,6 @@ QWidget *MiscEditor::buildPage1()
 	statsL->addWidget(currentFrameLabel = new QLabel(tr("Current Movie Frame :"),statsE), 3, 2);
 	statsL->addWidget(currentFrameE, 3, 3);
 
-	QGroupBox *headerE = new QGroupBox(tr("En-tête"), ret);
-	hpMaxLeaderE = new QSpinBox(headerE);
-	hpMaxLeaderE->setRange(0, MAX_INT16);
-	saveCountE = new QSpinBox(headerE);
-	saveCountE->setRange(0, MAX_INT16);
-	curSaveE = new QDoubleSpinBox(headerE);
-	curSaveE->setDecimals(0);
-	curSaveE->setRange(0, MAX_INT32);
-	locationIDE = new QComboBox(headerE);
-	int i=0;
-	foreach(const QString &loc, Data::locations().list())
-		locationIDE->addItem(loc, i++);
-
-	QGridLayout *headerL = new QGridLayout(headerE);
-	headerL->addWidget(new QLabel(tr("Compteur :"),headerE), 0, 0);
-	headerL->addWidget(saveCountE, 0, 1);
-	headerL->addWidget(new QLabel(tr("Curseur :"),headerE), 0, 2);
-	headerL->addWidget(curSaveE, 0, 3);
-	headerL->addWidget(new QLabel(tr("Lieu :"),headerE), 1, 0);
-	headerL->addWidget(locationIDE, 1, 1);
-	headerL->addWidget(hpMaxLeaderLabel = new QLabel(tr("HP max leader (inutilisé) :"),headerE), 1, 2);
-	headerL->addWidget(hpMaxLeaderE, 1, 3);
-
 	unknownE = new QGroupBox(tr("Inconnu"), ret);
 	unknown1E = new QSpinBox(unknownE);
 	unknown1E->setRange(0, MAX_INT16);
@@ -213,7 +157,6 @@ QWidget *MiscEditor::buildPage1()
 	
 	QVBoxLayout *layout = new QVBoxLayout(ret);
 	layout->addWidget(statsE);
-	layout->addWidget(headerE);
 	layout->addWidget(unknownE);
 	layout->addStretch();
 
@@ -311,11 +254,6 @@ void MiscEditor::fillPage()
 	lastFieldE->setValue(data->misc3.last_field_id);
 	currentFrameE->setValue(data->misc3.current_frame);
 
-	saveCountE->setValue(descData->saveCount);
-	curSaveE->setValue(descData->curSave);
-	setCurrentIndex(locationIDE, descData->locationID);
-	hpMaxLeaderE->setValue(descData->hpMaxLeader);
-
 	unknown1E->setValue(data->misc1.u1);
 	unknown2E->setValue(data->misc1.u2);
 	unknown4E->setValue(data->misc2.u1);
@@ -340,8 +278,8 @@ void MiscEditor::savePage()
 	data->misc3.gils = argentE->value();
 	data->misc1.dream_gils = lagunaGilsE->value();
 	data->misc3.dream_gils = lagunaGilsE->value();
-	data->misc2.game_time = Config::time(tempsHourE->value(), tempsMinE->value(), tempsSecE->value(), saveData->freqValue());
-	data->misc2.countdown = Config::time(countdownHourE->value(), countdownMinE->value(), countdownSecE->value(), saveData->freqValue());
+	data->misc2.game_time = timeE->time(saveData->freqValue());
+	data->misc2.countdown = countdownE->time(saveData->freqValue());
 
 	data->misc3.seedExp = seedExpE->value();
 	
@@ -350,11 +288,6 @@ void MiscEditor::savePage()
 	data->misc2.testLevel = testSeedE->value();
 	data->misc3.last_field_id = lastFieldE->value();
 	data->misc3.current_frame = currentFrameE->value();
-
-	descData->saveCount = saveCountE->value();
-	descData->curSave = curSaveE->value();
-	descData->locationID = locationIDE->itemData(locationIDE->currentIndex()).toUInt();
-	descData->hpMaxLeader = hpMaxLeaderE->value();
 
 	data->misc1.u1 = unknown1E->value();
 	data->misc1.u2 = unknown2E->value();

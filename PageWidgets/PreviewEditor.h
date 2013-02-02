@@ -21,6 +21,7 @@
 
 #include "PageWidget.h"
 #include "SavecardView.h"
+#include "../TimeWidget.h"
 
 class PreviewWidget : public QWidget
 {
@@ -41,6 +42,11 @@ protected:
 	virtual void paintEvent(QPaintEvent *event) {
 		if(!_saveData)	return;
 		QPainter p(this);
+
+		QTransform transform;
+		transform.scale(width() * 1.0 / sizeHint().width(), height() * 1.0 / sizeHint().height());
+		p.setTransform(transform);
+
 		SavecardView::renderSave(&p, _saveData, event->rect());
 	}
 private:
@@ -63,12 +69,13 @@ protected:
 	void buildWidget();
 private:
 	QGroupBox *autoGroup;
-	QGridLayout *autoL;
 	QComboBox *locationIDE;
 	QSpinBox *hpLeaderE, *hpMaxLeaderE;
 	QSpinBox *nivLeaderE, *saveCountE;
-	QDoubleSpinBox *gilsE, *timeE, *discE, *curSaveE;
+	QDoubleSpinBox *gilsE, *discE, *curSaveE;
+	TimeWidget *timeE;
 	PreviewWidget *previewWidget;
+	QList<QComboBox *> partyE;
 };
 
 #endif // PREVIEWEDITOR_H
