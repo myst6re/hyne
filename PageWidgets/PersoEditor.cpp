@@ -510,11 +510,11 @@ void PersoEditor::buildPage6()
 		LB_E.first()->setChecked(data->misc2.renzokuken_auto & 1);
 		LB_E << new QCheckBox(tr("Indicateur renzokuken"), lbWidget);
 		LB_E.at(1)->setChecked(data->misc2.renzokuken_indicator < 128);
-		LB_E.at(1)->setEnabled(data->misc2.renzokuken_auto == 0);
+		LB_E.at(1)->setEnabled((data->misc2.renzokuken_auto & 1) == 0);
 		LBindicator_E = new QSlider(Qt::Horizontal, lbWidget);
 		LBindicator_E->setMaximum(127);
 		LBindicator_E->setValue(data->misc2.renzokuken_indicator < 128 ? data->misc2.renzokuken_indicator : 0);
-		LBindicator_E->setEnabled(data->misc2.renzokuken_auto == 0 || data->misc2.renzokuken_indicator < 128);
+		LBindicator_E->setEnabled((data->misc2.renzokuken_auto & 1) == 0 || data->misc2.renzokuken_indicator < 128);
 		connect(LB_E.first(), SIGNAL(stateChanged(int)), SLOT(LBautoChange(int)));
 		connect(LB_E.at(1), SIGNAL(stateChanged(int)), SLOT(LBindicatorChange(int)));
 		indicatorlabel = new QLabel(QString::number(data->misc2.renzokuken_indicator < 128 ? data->misc2.renzokuken_indicator : 0), lbWidget);
@@ -527,17 +527,21 @@ void PersoEditor::buildPage6()
 		grid->setColumnStretch(3, 1);
 		return;
 	case ZELL:
+		LB_E << new QCheckBox(tr("Ring Master auto"), lbWidget);
+		LB_E.first()->setChecked((data->misc2.renzokuken_auto >> 1) & 1);
+		grid->addWidget(LB_E.first(), 0, 0);
+		cur++;
 		for(int i=0 ; i<2 ; ++i)
 		{
 			for(int j=0 ; j<5 ; ++j)
 			{
-				LB_E << new QCheckBox(Data::zellLBs().at(cur), lbWidget);
-				grid->addWidget(LB_E.at(cur), i, j);
-				LB_E.at(cur)->setChecked((data->limitb.zell >> cur) & 1);
+				LB_E << new QCheckBox(Data::zellLBs().at(cur - 1), lbWidget);
+				grid->addWidget(LB_E.at(cur), 1 + i, j);
+				LB_E.at(cur)->setChecked((data->limitb.zell >> (cur - 1)) & 1);
 				cur++;
 			}
 		}
-		grid->setRowStretch(2, 1);
+		grid->setRowStretch(3, 1);
 		return;
 	case IRVINE:
 		for(int i=0 ; i<2 ; ++i)
@@ -822,13 +826,14 @@ void PersoEditor::savePage()
 	switch(id)
 	{
 	case SQUALL:
-		data->misc2.renzokuken_auto = LB_E.first()->isChecked();
+		data->misc2.renzokuken_auto = (data->misc2.renzokuken_auto & 0xFE) | LB_E.first()->isChecked();
 		data->misc2.renzokuken_indicator = !LB_E.at(1)->isChecked() ? 128 : LBindicator_E->value();
 		break;
 	case ZELL:
+		data->misc2.renzokuken_auto = (data->misc2.renzokuken_auto & 0xFD) | (LB_E.first()->isChecked() << 1);
 		data->limitb.zell = 0;
 		for(int i=0 ; i<10 ; ++i)
-			data->limitb.zell |= LB_E.at(i)->isChecked() << i;
+			data->limitb.zell |= LB_E.at(i + 1)->isChecked() << i;
 		break;
 	case IRVINE:
 		data->limitb.irvine = 0;

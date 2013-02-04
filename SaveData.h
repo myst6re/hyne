@@ -174,7 +174,7 @@ struct MISC2//144
 	quint32 battle_irvine;// first battle with Irvine who explains limit break
 	quint8 magic_drawn_once[8];
 	quint8 ennemy_scanned_once[20];
-	quint8 renzokuken_auto;
+	quint8 renzokuken_auto;// Renzo auto|Ring Master auto|???|???|???|???|???|???
 	quint8 renzokuken_indicator;
 	quint8 dream;//dream|Odin|Phoenix|Gilgamesh|Angelo disabled|Angel Wing enabled|???|???
 	// /Battle vars
