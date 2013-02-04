@@ -46,7 +46,8 @@ HEADERS += PageWidgets/ConfigEditor.h \
     SavecardView.h \
 	QTaskBarButton.h \
     PageWidgets/PreviewEditor.h \
-    TimeWidget.h
+    TimeWidget.h \
+    HelpWidget.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/MiscEditor.cpp \
     PageWidgets/GfEditor.cpp \
@@ -87,7 +88,8 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     SavecardView.cpp \
 	QTaskBarButton.cpp \
     PageWidgets/PreviewEditor.cpp \
-    TimeWidget.cpp
+    TimeWidget.cpp \
+    HelpWidget.cpp
 RESOURCES += Hyne.qrc
 TRANSLATIONS += hyne_en.ts \
     hyne_ja.ts

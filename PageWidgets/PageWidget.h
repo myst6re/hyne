@@ -23,6 +23,7 @@
 #include "Data.h"
 #include "Config.h"
 #include "SaveData.h"
+#include "HelpWidget.h"
 
 class PageWidget : public QWidget
 {

@@ -497,8 +497,8 @@ void PersoEditor::buildPage6()
 	LB_E.clear();
 	linoaLB_E.clear();
 	tabWidget->setTabEnabled(5, true);
-	QLabel *angeloPix, *info, *infoIcon;
-	QHBoxLayout *infoLayout;
+	QLabel *angeloPix;
+	HelpWidget *info;
 
 	LBindicator_E = 0;
 	indicatorlabel = 0;
@@ -574,18 +574,13 @@ void PersoEditor::buildPage6()
 		angeloPix = new QLabel(lbWidget);
 		angeloPix->setPixmap(QPixmap(":/images/icons/perso15.png"));
 
-		info = new QLabel(tr("<b>Case cochée :</b> limit break appris<br/><b>Case partiellement cochée :</b> limit break connu<br/><b>Valeur :</b> nombre de points restants pour apprendre le limit break"), lbWidget);
-		info->setTextFormat(Qt::RichText);
-		infoIcon = new QLabel(lbWidget);
-		infoIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation).pixmap(32));
-		infoLayout = new QHBoxLayout;
-		infoLayout->addWidget(infoIcon);
-		infoLayout->addWidget(info);
-		infoLayout->addStretch();
+		info = new HelpWidget(32, tr("<b>Case cochée :</b> limit break appris<br/><b>Case partiellement cochée :</b>"
+									 " limit break connu<br/><b>Valeur :</b> nombre de points restants pour apprendre "
+									 "le limit break"), lbWidget);
 
 		grid->addWidget(new QLabel(Data::names().at(ANGELO)+tr(" :"), lbWidget), 0, 0);
 		grid->addWidget(angel_E, 0, 1, 1, 6);
-		grid->addLayout(infoLayout, 1, 0, 1, 7);
+		grid->addWidget(info, 1, 0, 1, 7);
 		grid->addWidget(angeloPix, 0, 7, 3, 1, Qt::AlignRight);
 
 		for(int i=2 ; i<4 ; ++i)

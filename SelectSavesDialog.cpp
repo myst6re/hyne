@@ -21,7 +21,7 @@
 SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, bool multiSelection, QWidget *parent) :
 	QDialog(parent, Qt::Dialog | Qt::WindowCloseButtonHint)
 {
-	QLayout *infoLayout = helpLayout();
+	msg = new HelpWidget(16, this);
 	fillList(saveFiles);
 
 	for(int i=0 ; i<list->count() ; ++i) {
@@ -44,7 +44,7 @@ SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, bool mu
 	connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
 
 	QVBoxLayout *layout = new QVBoxLayout(this);
-	layout->addLayout(infoLayout);
+	layout->addWidget(msg);
 	layout->addWidget(list);
 	layout->addWidget(buttonBox);
 
@@ -55,7 +55,7 @@ SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, bool mu
 SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, QWidget *parent) :
 	QDialog(parent, Qt::Dialog | Qt::WindowCloseButtonHint)
 {
-	QLayout *infoLayout = helpLayout();
+	msg = new HelpWidget(16, this);
 	fillList(saveFiles);
 
 	msg->setText(tr("Déplacez les éléments à la souris pour modifier l'ordre des saves."));
@@ -67,7 +67,7 @@ SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, QWidget
 	connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
 
 	QVBoxLayout *layout = new QVBoxLayout(this);
-	layout->addLayout(infoLayout);
+	layout->addWidget(msg);
 	layout->addWidget(list);
 	layout->addWidget(buttonBox);
 }
@@ -86,21 +86,6 @@ void SelectSavesDialog::fillList(const QList<SaveData *> &saveFiles)
 		list->addItem(item);
 		item->setData(Qt::UserRole, i);
 	}
-}
-
-QLayout *SelectSavesDialog::helpLayout()
-{
-	msg = new QLabel(this);
-	msg->setTextFormat(Qt::RichText);
-	QLabel *infoIcon = new QLabel(this);
-	infoIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation).pixmap(16));
-	QHBoxLayout *infoLayout = new QHBoxLayout;
-	infoLayout->addWidget(infoIcon);
-	infoLayout->addWidget(msg);
-	infoLayout->addStretch();
-	infoLayout->setContentsMargins(QMargins());
-
-	return infoLayout;
 }
 
 QString SelectSavesDialog::infoText(bool warn)

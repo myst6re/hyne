@@ -21,6 +21,7 @@
 
 #include <QtGui>
 #include "SaveData.h"
+#include "HelpWidget.h"
 
 class SelectSavesDialog : public QDialog
 {
@@ -35,12 +36,11 @@ signals:
 private slots:
 	void controlSelection();
 private:
-	QLayout *helpLayout();
 	void fillList(const QList<SaveData *> &saveFiles);
 	static QString infoText(bool warn=false);
 
 	QListWidget *list;
-	QLabel *msg;
+	HelpWidget *msg;
 };
 
 #endif // SELECTSAVESDIALOG_H

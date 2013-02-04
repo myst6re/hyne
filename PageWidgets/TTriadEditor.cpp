@@ -196,17 +196,11 @@ QWidget *TTriadEditor::buildPage1()
 	connect(cardE_view->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), SLOT(changeCardPreview()));
 	connect(cardE_view2->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), SLOT(changeCardPreview2()));
 
-	QLabel *info = new QLabel(tr("<b>Case cochée :</b> carte connue<br/><b>Possesseur :</b> joueur possédant la carte rare, mettre Squall pour l'avoir dans votre jeu."), ret);
-	info->setTextFormat(Qt::RichText);
-	QLabel *infoIcon = new QLabel(ret);
-	infoIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation).pixmap(16));
-	QHBoxLayout *infoLayout = new QHBoxLayout;
-	infoLayout->addWidget(infoIcon);
-	infoLayout->addWidget(info);
-	infoLayout->addStretch();
+	HelpWidget *info = new HelpWidget(16, tr("<b>Case cochée :</b> carte connue<br/><b>Possesseur :</b> joueur "
+											 "possédant la carte rare, mettre Squall pour l'avoir dans votre jeu."), ret);
 
 	QGridLayout *layout = new QGridLayout(ret);
-	layout->addLayout(infoLayout, 0, 0, 1, 3, Qt::AlignTop | Qt::AlignLeft);
+	layout->addWidget(info, 0, 0, 1, 3, Qt::AlignTop | Qt::AlignLeft);
 	layout->addWidget(cardPreview, 0, 3, 2, 1, Qt::AlignRight);
 	layout->addWidget(cardE_view, 1, 0, 2, 2);
 	layout->addWidget(selectAll1, 3, 0, Qt::AlignLeft);

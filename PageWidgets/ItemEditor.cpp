@@ -90,17 +90,11 @@ QWidget *ItemEditor::buildPage2()
 	battle_itemE_list->setDragDropMode(QAbstractItemView::InternalMove);
 	battle_itemE_list->setUniformItemSizes(true);
 
-	QLabel *info = new QLabel(tr("Déplacez les éléments à la souris pour modifier l'ordre des objets en combat."), ret);
-	info->setTextFormat(Qt::PlainText);
-	QLabel *infoIcon = new QLabel(ret);
-	infoIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation).pixmap(16));
-	QHBoxLayout *infoLayout = new QHBoxLayout;
-	infoLayout->addWidget(infoIcon);
-	infoLayout->addWidget(info);
-	infoLayout->addStretch();
+	HelpWidget *info = new HelpWidget(16, tr("Déplacez les éléments à la souris pour modifier l'ordre "
+											 "des objets en combat."), ret);
 
 	QVBoxLayout *layout = new QVBoxLayout(ret);
-	layout->addLayout(infoLayout);
+	layout->addWidget(info);
 	layout->addWidget(battle_itemE_list);
 
 	return ret;

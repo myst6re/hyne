@@ -75,14 +75,8 @@ void ShopEditor::buildWidget()
 
 	shopEnabledE = new QCheckBox(tr("Magasin visité au moins une fois"), this);
 
-	QLabel *info = new QLabel(tr("Les valeurs concernant les objets semblent ne pas être utilisées par le jeu."), this);
-	info->setTextFormat(Qt::PlainText);
-	QLabel *infoIcon = new QLabel(this);
-	infoIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxInformation).pixmap(16));
-	QHBoxLayout *infoLayout = new QHBoxLayout;
-	infoLayout->addWidget(infoIcon);
-	infoLayout->addWidget(info);
-	infoLayout->addStretch();
+	HelpWidget *info = new HelpWidget(16, tr("Les valeurs concernant les objets semblent ne pas être "
+											 "utilisées par le jeu."), this);
 
 	itemList = new QListWidget(this);
 	itemList->setFont(font);
@@ -98,7 +92,7 @@ void ShopEditor::buildWidget()
 	QGridLayout *layout = new QGridLayout(this);
 	layout->addWidget(shopList, 0, 0, 3, 1, Qt::AlignLeft);
 	layout->addWidget(shopEnabledE, 0, 1);
-	layout->addLayout(infoLayout, 1, 1);
+	layout->addWidget(info, 1, 1);
 	layout->addWidget(itemList, 2, 1);
 	layout->setContentsMargins(QMargins());
 
