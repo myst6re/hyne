@@ -231,16 +231,17 @@ struct MISC3//256
 	quint8 music_played; // var199
 	quint8 uC;
 	quint8 music_is_played; // var201
-	quint8 uD[2];
-	quint8 battle_music; // var204
-	quint8 disc; // var205
+	quint8 uD;
+	quint8 battle_music; // var203
+	quint8 disc; // var204
 	quint8 uE;
-	quint8 music_is_loaded; // var207
-	quint8 battle_off; // var208
+	quint8 music_is_loaded; // var206
+	quint8 battle_off; // var207
+	quint8 uF;
 	quint8 save_enabled; // var209 (1: save enabled, 2: PHS enabled)
-	quint8 uF[3];
+	quint8 uG[3];
 	quint8 music_loaded; // var213
-	quint8 uG[42];
+	quint8 uH[42];
 } Q_PACKED;
 
 struct FIELD//1024
