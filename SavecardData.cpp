@@ -641,8 +641,9 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 
 bool SavecardData::save2PC(qint8 id, QString path)
 {
-	if(path.isEmpty())
-		path = _path;
+	if(path.isEmpty()) {
+		path = dirname() + QString("save%1").arg(id+1, 2, 10, QChar('0'));
+	}
 
 	QTemporaryFile temp("hyneOne");
 	if(!temp.open())
@@ -938,7 +939,6 @@ bool SavecardData::saveDir()
 bool SavecardData::saveDir(quint8 i)
 {
 	if(saves.at(i)->isModified()) {
-		setName(QString("save%1").arg(i+1, 2, 10, QChar('0')));
 		return save2PC(i);
 	}
 

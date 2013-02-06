@@ -200,9 +200,9 @@ QWidget *TTriadEditor::buildPage1()
 											 "possédant la carte rare, mettre Squall pour l'avoir dans votre jeu."), ret);
 
 	QGridLayout *layout = new QGridLayout(ret);
-	layout->addWidget(info, 0, 0, 1, 3, Qt::AlignTop | Qt::AlignLeft);
+	layout->addWidget(info, 0, 2, 2, 1, Qt::AlignTop);
 	layout->addWidget(cardPreview, 0, 3, 2, 1, Qt::AlignRight);
-	layout->addWidget(cardE_view, 1, 0, 2, 2);
+	layout->addWidget(cardE_view, 0, 0, 3, 2);
 	layout->addWidget(selectAll1, 3, 0, Qt::AlignLeft);
 	layout->addWidget(qtyAll, 3, 1, Qt::AlignRight);
 	layout->addWidget(cardE_view2, 2, 2, 1, 2);

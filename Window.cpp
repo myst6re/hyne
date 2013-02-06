@@ -510,13 +510,11 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 		else // saveOne (PC & PSV)
 		{
 			// Need selection by user
-			QList<int> selected_files = selectSavesDialog();
+			QList<int> selected_files = selectSavesDialog(false, true);
 			if(selected_files.isEmpty())	return false;
 			int id = selected_files.first();
 			if(newType == SavecardData::Pc) {
-				saves->setName(QString("save%1").arg(id+1, 2, 10, QChar('0')));
 				ok = saves->save2PC(id, path);
-				saves->setName(QString());
 			} else {
 				if(!saves->getSaves().first()->hasMCHeader()) {
 					HeaderDialog dialog(saves->getSaves().first(), this, HeaderDialog::CreateView);
@@ -585,7 +583,7 @@ void Window::properties()
 		return;
 	}
 
-	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), false, this);
+	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), false, false, this);
 
 	if(dialog->exec() == QDialog::Accepted) {
 		QList<int> selected_files = dialog->selectedSaves();
@@ -593,18 +591,9 @@ void Window::properties()
 	}
 }
 
-QList<int> Window::selectSavesDialog(bool multiSelection)
+QList<int> Window::selectSavesDialog(bool multiSelection, bool onlyFF8)
 {
-	int saveCount = saves->saveCount();
-	if(saveCount <= 15 && saveCount > 0) {
-		QList<int> ids;
-		for(int i=0 ; i<saveCount ; ++i) {
-			ids.append(i);
-		}
-		return ids;
-	}
-
-	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), multiSelection, this);
+	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), multiSelection, onlyFF8, this);
 
 	if(dialog->exec() == QDialog::Accepted) {
 		return dialog->selectedSaves();

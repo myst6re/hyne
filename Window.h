@@ -70,7 +70,7 @@ private:
 	void restartNow();
 
 	void setTitle(const int currentSaveEdited=-1);
-	QList<int> selectSavesDialog(bool multiSelection=false);
+	QList<int> selectSavesDialog(bool multiSelection=false, bool onlyFF8=false);
 	
 	QTaskBarButton *taskBarButton; // Windows 7+
 	QMenuBar *menuBar;

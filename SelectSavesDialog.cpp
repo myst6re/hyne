@@ -18,7 +18,7 @@
 
 #include "SelectSavesDialog.h"
 
-SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, bool multiSelection, QWidget *parent) :
+SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, bool multiSelection, bool onlyFF8, QWidget *parent) :
 	QDialog(parent, Qt::Dialog | Qt::WindowCloseButtonHint)
 {
 	msg = new HelpWidget(16, this);
@@ -26,7 +26,7 @@ SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, bool mu
 
 	for(int i=0 ; i<list->count() ; ++i) {
 		if(!saveFiles.at(i)->isFF8() &&
-				(saveFiles.at(i)->isRaw() || saveFiles.at(i)->isDelete()))
+				(onlyFF8 || saveFiles.at(i)->isRaw() || saveFiles.at(i)->isDelete()))
 			list->item(i)->setFlags(Qt::NoItemFlags);
 	}
 
