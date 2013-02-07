@@ -30,7 +30,7 @@ SavecardView::SavecardView(SavecardWidget *parent) :
 	mouseMove(0), lastDropData(0)
 {
 	setPalette(QPalette(Qt::black));
-//	saveIcon = new SaveIcon(saveData->saveIcon());//TODO
+//	saveIcon = new SaveIcon();//TODO
 //	connect(saveIcon, SIGNAL(nextIcon(QPixmap)), SLOT(refreshIcon()));
 	setMouseTracking(true);
 	setAcceptDrops(true);
@@ -84,7 +84,7 @@ void SavecardView::notifyFileChanged(const QString &path)
 void SavecardView::updateSave(int saveID, bool withCursor)
 {
 	if(withCursor) {
-		update(QRect(0, savePoint(saveID).y(), width(), saveHeight()));
+		update(QRect(savePoint(saveID) - QPoint(horizontalMargin(), 0), saveSize() + QSize(horizontalMargin(), 0)));
 	} else {
 		update(saveRect(saveID));
 	}
@@ -112,7 +112,8 @@ void SavecardView::updateSaves(const QList<int> &saveIDs, bool withCursor)
 		updateSave(minID, withCursor);
 	} else {
 		if(withCursor) {
-			update(QRect(QPoint(0, savePoint(minID).y()), QSize(width(), saveHeight() * (maxID - minID + 1))));
+			update(QRect(savePoint(minID) - QPoint(horizontalMargin(), 0),
+						 QSize(saveWidth() + horizontalMargin(), saveHeight() * (maxID - minID + 1))));
 		} else {
 			update(QRect(savePoint(minID), QSize(saveWidth(), saveHeight() * (maxID - minID + 1))));
 		}
@@ -144,7 +145,7 @@ void SavecardView::moveCursor(int saveID)
 		maxID = minID;
 	}
 
-	update(0, minID*saveHeight() + 16, 48, (maxID - minID)*saveHeight() + 46);
+	update(QRect(savePoint(minID) + QPoint(-36, 16), QSize(48, (maxID - minID)*saveHeight() + 46)));
 }
 
 void SavecardView::setDropIndicator(int saveID)
@@ -362,7 +363,7 @@ void SavecardView::properties(int saveID)
 		emit changed();
 		if(!saveData->isFF8() && !saveData->isDelete()) {
 //			saveIcon->setData(saveData->saveIcon());//TODO
-			update(); // update icon
+			refreshIcon(saveData); // update icon
 		}
 	}
 }
@@ -399,7 +400,7 @@ int SavecardView::saveID(const QPoint &pos) const
 QSize SavecardView::sizeHint() const
 {
 	if(!_data)	return QSize();
-	return QSize(36 + saveWidth() + 36, saveHeight() * _data->saveCount());
+	return QSize(horizontalMargin() * 2 + saveWidth(), saveHeight() * _data->saveCount());
 }
 
 QSize SavecardView::minimumSizeHint() const
@@ -407,12 +408,12 @@ QSize SavecardView::minimumSizeHint() const
 	return sizeHint();
 }
 
-/*void SavecardView::refreshIcon()//TODO
+void SavecardView::refreshIcon(SaveData *saveData)
 {
 	if(!saveData->isDelete()) {
-		repaint(width()/2 - 372 + 36 + 36, 43, 16, 16);
+		repaint(QRect(savePoint(saveData->id()) + QPoint(36, 43), QSize(16, 16)));
 	}
-}*/
+}
 
 void SavecardView::renderSave(QPainter *painter, const SaveData *saveData, const QRect &sourceRect)
 {
@@ -559,7 +560,7 @@ void SavecardView::paintEvent(QPaintEvent *event)
 	painter.fillRect(event->rect(), palette().color(QPalette::Window));
 
 	if(_data) {
-		painter.translate(36, 0);
+		painter.translate(horizontalMargin(), 0);
 
 		int curSaveID, minSaveID, maxSaveID;
 		minSaveID = saveID(event->rect().topLeft());
@@ -698,7 +699,7 @@ void SavecardView::colors(QImage *image, int color)
 
 void SavecardView::mousePressEvent(QMouseEvent *event)
 {
-	int xStart = 36;
+	int xStart = horizontalMargin();
 	int xEnd = width()-xStart;
 
 	if(event->x() < xStart || event->x() > xEnd) {
@@ -731,7 +732,7 @@ void SavecardView::mouseMoveEvent(QMouseEvent *event)
 	_dragStart = saveData->id();
 	mimeData->setData("application/ff8save", saveData->save() + saveData->MCHeader());
 	drag->setMimeData(mimeData);
-	drag->setHotSpot(QPoint(event->pos().x() - 36, event->pos().y() % saveHeight()));
+	drag->setHotSpot(QPoint(event->pos().x() - horizontalMargin(), event->pos().y() % saveHeight()));
 	QPixmap pixmap(saveSize());
 	renderSave(&pixmap, saveData);
 	drag->setPixmap(pixmap);
@@ -753,7 +754,7 @@ void SavecardView::mouseReleaseEvent(QMouseEvent *event)
 		mouseMove = 0;
 	}
 
-	int xStart = 36;
+	int xStart = horizontalMargin();
 	int xEnd = width()-xStart;
 
 	if(event->x() < xStart || event->x() > xEnd) {
@@ -794,7 +795,7 @@ void SavecardView::mouseReleaseEvent(QMouseEvent *event)
 
 void SavecardView::contextMenuEvent(QContextMenuEvent *event)
 {
-	int xStart = 36;
+	int xStart = horizontalMargin();
 	int xEnd = width()-xStart;
 
 	if(event->x() < xStart || event->x() > xEnd) {

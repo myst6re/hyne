@@ -43,14 +43,16 @@ public:
 	inline static QSize saveSize() {
 		return QSize(saveWidth(), saveHeight());
 	}
-	inline static QPoint savePoint(int saveID) {
-		return QPoint(36, saveID * saveSize().height());
+	inline QPoint savePoint(int saveID) {
+		return QPoint((width() - saveWidth()) / 2,
+					  saveID * saveHeight());
 	}
-	inline static QRect saveRect(int saveID) {
+	inline QRect saveRect(int saveID) {
 		return QRect(savePoint(saveID), saveSize());
 	}
 	inline static int saveWidth() { return 672; }
 	inline static int saveHeight() { return 106; }
+	inline static int horizontalMargin() { return 36; }
 	void updateSave(int saveID, bool withCursor=false);
 	void updateSaves(const QList<int> &saveIDs, bool withCursor=false);
 	virtual QSize sizeHint() const;
@@ -68,7 +70,7 @@ private slots:
 	void exportPC(int saveID=-1);
 	void newGame(int saveID=-1);
 	void removeSave(int saveID=-1);
-//	void refreshIcon();
+	void refreshIcon(SaveData *saveData);
 	void drop();
 signals:
 	void changed();
