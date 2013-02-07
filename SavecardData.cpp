@@ -321,11 +321,13 @@ bool SavecardData::ps3()
 		return false;
 	}
 
-	fic.seek(90);
-	QByteArray header = fic.read(30);
+	fic.seek(100);
+	QByteArray MCHeader("\x51\x00\x00\x00\x00\x20\x00\x00\xff\xff", 10);
+	MCHeader.append(fic.read(20));
+
 	fic.seek(132);
 
-	addSave(fic.read(SAVE_SIZE), header);
+	addSave(fic.read(SAVE_SIZE), MCHeader);
 
 	if(saves.first()->isDelete())	return false;
 
@@ -492,7 +494,6 @@ bool SavecardData::sstate(const QByteArray &fdata, const QByteArray &MCHeader)
 
 void SavecardData::directory()
 {
-//	QTime t;t.start();
 	for(quint8 i=0 ; i<30 ; ++i)
 	{
 		setName(QString("save%1").arg(i+1, 2, 10, QChar('0')));
@@ -500,7 +501,6 @@ void SavecardData::directory()
 	}
 	setName(QString());
 	LZS::clear();
-//	qDebug() << "time: " << t.elapsed();
 }
 
 void SavecardData::addSave(const QByteArray &data, const QByteArray &header, bool occupied)
@@ -639,11 +639,18 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 	return true;
 }
 
-bool SavecardData::save2PC(qint8 id, QString path)
+bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 {
-	if(path.isEmpty()) {
-		path = dirname() + QString("save%1").arg(id+1, 2, 10, QChar('0'));
+	const SaveData *save = saves.at(id);
+
+	if(!save->isFF8()) {
+		_lastError = QObject::tr("Cette sauvegarde ne provient pas de Final Fantasy VIII.");
+		return true;
 	}
+
+	const QString path = saveAs.isEmpty()
+			? dirname() + QString("save%1").arg(id+1, 2, 10, QChar('0'))
+			: saveAs;
 
 	QTemporaryFile temp("hyneOne");
 	if(!temp.open())
@@ -652,8 +659,6 @@ bool SavecardData::save2PC(qint8 id, QString path)
 		return false;
 	}
 
-	if(id==-1)	id = 0;
-
 	bool readdPath = false;
 	if(fileWatcher.files().contains(path))
 	{
@@ -661,12 +666,12 @@ bool SavecardData::save2PC(qint8 id, QString path)
 		fileWatcher.removePath(path);
 	}
 
-	if(saves.at(id)->isDelete()) {
+	if(save->isDelete()) {
 		QFile::remove(path);
 		return true;
 	}
 
-	QByteArray result = LZS::compress(saves.at(id)->save());
+	QByteArray result = LZS::compress(save->save());
 	int size = result.size();
 	temp.write((char *)&size, 4);
 	temp.write(result);
@@ -692,10 +697,12 @@ bool SavecardData::save2PC(qint8 id, QString path)
 	return true;
 }
 
-bool SavecardData::save2PSV(qint8 id, QString path)
+bool SavecardData::save2PSV(const quint8 id, const QString &saveAs, const QByteArray &MCHeader)
 {
-	if(path.isEmpty())
-		path = _path;
+	const SaveData *save = saves.at(id);
+	const QString path = saveAs.isEmpty()
+			? _path
+			: saveAs;
 
 	QTemporaryFile temp("hynePsv");
 	if(!temp.open())
@@ -704,8 +711,6 @@ bool SavecardData::save2PSV(qint8 id, QString path)
 		return false;
 	}
 
-	if(id==-1)	id = 0;
-
 	bool readdPath = false;
 	if(fileWatcher.files().contains(path))
 	{
@@ -713,16 +718,9 @@ bool SavecardData::save2PSV(qint8 id, QString path)
 		fileWatcher.removePath(path);
 	}
 
-	if(saves.at(id)->isDelete()) {
+	if(save->isDelete()) {
 		return QFile::remove(path);
 	}
-
-	if(!saves.first()->hasMCHeader()) {//TODO
-		qWarning() << "Need a MC Header!";
-		return false;
-	}
-
-	QByteArray MCHeader = saves.first()->saveMCHeader();
 
 	QByteArray result;
 	result.append("\0VSP\0\0\0\0", 8);
@@ -733,7 +731,7 @@ bool SavecardData::save2PSV(qint8 id, QString path)
 				  "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x20\x00\x00"
 				  "\x03\x90\x00\x00", 52); // unknown
 	result.append(MCHeader.mid(10, 32)); // Country + prod code + identifier
-	result.append(saves.at(id)->save());
+	result.append(save->save());
 	temp.write(result);
 
 	if(QFile::exists(path) && !QFile::remove(path))
@@ -756,7 +754,7 @@ bool SavecardData::save2PSV(qint8 id, QString path)
 	return true;
 }
 
-bool SavecardData::save2PS(QList<int> ids, const QString &path, Type newType, QByteArray MCHeader)
+bool SavecardData::save2PS(const QList<int> &ids, const QString &path, const Type newType, const QByteArray &MCHeader)
 {
 	QTemporaryFile temp("hynePS");
 	quint8 i;
@@ -768,10 +766,6 @@ bool SavecardData::save2PS(QList<int> ids, const QString &path, Type newType, QB
 	}
 
 	temp.write(header(0, newType, true));
-
-	if(_type == Psv) {
-		MCHeader = saves.first()->saveMCHeader();
-	}
 
 	temp.write("MC", 2);//MC
 	temp.write(QByteArray(125,'\x00'));
@@ -787,9 +781,10 @@ bool SavecardData::save2PS(QList<int> ids, const QString &path, Type newType, QB
 		else
 		{
 			if(!MCHeader.isEmpty()) {
-				MCHeader = MCHeader.replace(26, 2, QString("%1").arg(i, 2, 10, QChar('0')).toLatin1());
-				MCHeader[127] = (char)SaveData::xorByte(MCHeader.constData());
-				temp.write(MCHeader);
+				QByteArray MCHeaderCpy = MCHeader;
+				MCHeaderCpy.replace(26, 2, QString("%1").arg(i, 2, 10, QChar('0')).toLatin1());
+				MCHeaderCpy[127] = (char)SaveData::xorByte(MCHeaderCpy.constData());
+				temp.write(MCHeaderCpy);
 			} else {
 				temp.write(saves.at(ids.at(i))->saveMCHeader());
 			}
@@ -843,8 +838,8 @@ bool SavecardData::save2PS(QList<int> ids, const QString &path, Type newType, QB
 		foreach(SaveData *save, saves) {
 			if(save->isFF8()) {
 				if(!MCHeader.isEmpty()) {
-					MCHeader = MCHeader.replace(26, 2, QString("%1").arg(i, 2, 10, QChar('0')).toLatin1());
-					save->setMCHeader(MCHeader);
+					QByteArray MCHeaderCpy = MCHeader;
+					save->setMCHeader(MCHeaderCpy.replace(26, 2, QString("%1").arg(i, 2, 10, QChar('0')).toLatin1()));
 				}
 			}
 			save->setModified(false);
@@ -925,24 +920,18 @@ QByteArray SavecardData::header(QFile *srcFile, Type newType, bool saveAs)
 bool SavecardData::saveDir()
 {
 	bool ok = true;
+	int i=0;
 
-	for(int i=0 ; i<saves.size() ; ++i) {
-		if(!saveDir(i)) {
-			ok = false;
+	foreach(const SaveData *save, saves) {
+		if(save->isModified()) {
+			if(!save2PC(i)) {
+				ok = false;
+			}
 		}
+		++i;
 	}
-	setName(QString());
 
 	return ok;
-}
-
-bool SavecardData::saveDir(quint8 i)
-{
-	if(saves.at(i)->isModified()) {
-		return save2PC(i);
-	}
-
-	return true;
 }
 
 void SavecardData::compare(const QByteArray &oldData, const QByteArray &newData)

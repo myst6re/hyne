@@ -488,7 +488,7 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 					|| type == SavecardData::Pc || type == SavecardData::Psv) {
 				QList<int> selected_files;
 				if(type == SavecardData::Pc || type == SavecardData::Psv) {
-					selected_files << 0;
+					selected_files.append(0);
 				} else {
 					selected_files = selectSavesDialog(true);
 					if(selected_files.isEmpty())	return false;
@@ -500,6 +500,8 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 					HeaderDialog dialog(&tempSave, this, HeaderDialog::CreateView);
 					if(dialog.exec() != QDialog::Accepted) return false;
 					MCHeader = tempSave.saveMCHeader();
+				} else {
+					MCHeader = saves->getSaves().first()->saveMCHeader();
 				}
 
 				ok = saves->save2PS(selected_files, path, newType, MCHeader);
@@ -510,17 +512,22 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 		else // saveOne (PC & PSV)
 		{
 			// Need selection by user
-			QList<int> selected_files = selectSavesDialog(false, true);
+			QList<int> selected_files = selectSavesDialog(false, newType == SavecardData::Pc);
 			if(selected_files.isEmpty())	return false;
 			int id = selected_files.first();
 			if(newType == SavecardData::Pc) {
 				ok = saves->save2PC(id, path);
 			} else {
+				QByteArray MCHeader;
 				if(!saves->getSaves().first()->hasMCHeader()) {
-					HeaderDialog dialog(saves->getSaves().first(), this, HeaderDialog::CreateView);
+					SaveData tempSave;
+					HeaderDialog dialog(&tempSave, this, HeaderDialog::CreateView);
 					if(dialog.exec() != QDialog::Accepted) return false;
+					MCHeader = tempSave.saveMCHeader();
+				} else {
+					MCHeader = saves->getSaves().first()->saveMCHeader();
 				}
-				ok = saves->save2PSV(id, path);
+				ok = saves->save2PSV(id, path, MCHeader);
 			}
 		}
 	}

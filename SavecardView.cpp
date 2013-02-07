@@ -30,7 +30,7 @@ SavecardView::SavecardView(SavecardWidget *parent) :
 	mouseMove(0), lastDropData(0)
 {
 	setPalette(QPalette(Qt::black));
-//	saveIcon = new SaveIcon(saveData->saveIcon());
+//	saveIcon = new SaveIcon(saveData->saveIcon());//TODO
 //	connect(saveIcon, SIGNAL(nextIcon(QPixmap)), SLOT(refreshIcon()));
 	setMouseTracking(true);
 	setAcceptDrops(true);
@@ -407,7 +407,7 @@ QSize SavecardView::minimumSizeHint() const
 	return sizeHint();
 }
 
-/*void SavecardView::refreshIcon()
+/*void SavecardView::refreshIcon()//TODO
 {
 	if(!saveData->isDelete()) {
 		repaint(width()/2 - 372 + 36 + 36, 43, 16, 16);
@@ -531,7 +531,7 @@ void SavecardView::renderSave(QPainter *painter, const SaveData *saveData, const
 			else
 			{
 				// Icon + description
-//				painter->drawPixmap(36, 43, saveIcon->pixmap());
+//				painter->drawPixmap(36, 43, saveIcon->pixmap());//TODO
 				painter->drawPixmap(36, 43, saveData->saveIcon().icon());
 				QString short_desc = saveData->shortDescription();
 				if(!short_desc.isEmpty())

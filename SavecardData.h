@@ -43,11 +43,10 @@ public:
 	void moveSave(int sourceID, int targetID);
 	SaveData *getSave(int id) const;
 	int saveCount() const;
-	bool save2PC(qint8 num, QString path=QString());
-	bool save2PSV(qint8 id, QString path=QString());
-	bool save2PS(QList<int> ids, const QString &path, Type newType, QByteArray MCHeader);
+	bool save2PC(const quint8 id, const QString &saveAs=QString());
+	bool save2PSV(const quint8 id, const QString &saveAs, const QByteArray &MCHeader);
+	bool save2PS(const QList<int> &ids, const QString &path, const Type newType, const QByteArray &MCHeader);
 	bool saveDir();
-	bool saveDir(quint8);
 
 	QString dirname() const;
 	QString name() const;

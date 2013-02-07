@@ -187,10 +187,7 @@ void SaveData::setMCHeader(const QByteArray &MCHeader)
 	}
 
 	if(hasMCHeader()) {
-		if(_hasExistsInfos) {
-			_isDelete = (quint8)MCHeader.at(0) >> 4 != 0x5;// 0xa1-0xa2-0xa3 : deleted | 0xa0 : formated | 0x51 : has data
-		}else
-			_isDelete = false;
+		_isDelete = (quint8)MCHeader.at(0) >> 4 != 0x5;// 0xa1-0xa2-0xa3 : deleted | 0xa0 : formated | 0x51 : has data
 		_freqValue = MCHeaderCountry()==COUNTRY_EU ? 50 : 60;
 	}
 	else {
