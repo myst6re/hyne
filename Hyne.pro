@@ -98,7 +98,10 @@ TRANSLATIONS += hyne_en.ts \
 # QTPLUGIN += qjpcodecs
 # CONFIG += static
 
-macx:ICON = images/hyne.icns
+macx {
+	ICON = images/hyne.icns
+	LIBS += -zl
+}
 win32 {
 	RC_FILE = Hyne.rc
 	LIBS += -lole32
