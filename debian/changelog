@@ -1,3 +1,19 @@
+hyne (1.7.0) precise; urgency=low
+
+  * [Editor] Adding Duel Auto option for Zell's limit break
+  * [Editor] New page editor: Preview editor
+  * [Header Editor] Fixed crash when enter to the properties menu
+  * [Header Editor] The short description of a save is now editable
+  * [Header Editor] Using the current save ID in the identifier list
+  * Some changes related to multi-slots saves
+  * Hyne uses less of memory
+  * [Window 7+] The current save icon is displayed in overlay of the application icon
+  * Doesn't ask for language if there is just one available
+  * Hacks for Mac OS version
+  * Some internal changes
+  
+ -- Chris Rizzitello <sithlord48@gmail.com>  Mon, 8 Oct 2012 15:42:37 -0400
+
 hyne (1.6.1b1) precise; urgency=low
 
   * Add VM1 support
