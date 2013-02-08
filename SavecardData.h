@@ -53,10 +53,9 @@ public:
 	QString extension() const;
 	const QString &path() const;
 	void setName(const QString &name);
-	bool ok() const;
+	bool isOpen() const;
 	Type type() const;
 	bool hasPath() const;
-	bool isOneSaveType() const;
 	bool isModified() const;
 	void setModified(bool modified);
 	static void compare(const QByteArray &oldData, const QByteArray &newData);

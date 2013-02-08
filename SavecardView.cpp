@@ -374,8 +374,9 @@ void SavecardView::restore(int saveID)
 	SaveData *saveData = _data->getSave(saveID);
 	if(!saveData)	return;
 
-	int reponse = QMessageBox::question(this, tr("Sauvegarde supprimée"), tr("Cette sauvegarde a été supprimée, voulez-vous tenter de la réparer ? (succès non garanti)"), tr("Oui"), tr("Non"));
-	if(reponse != 0)  return;
+	QMessageBox::StandardButton reponse = QMessageBox::question(this, tr("Sauvegarde supprimée"), tr("Cette sauvegarde a été supprimée, voulez-vous tenter de la réparer ? (succès non garanti)"),
+																QMessageBox::Yes | QMessageBox::No);
+	if(reponse != QMessageBox::Yes)  return;
 
 	HeaderDialog dialog(saveData, this, HeaderDialog::RestoreView);
 

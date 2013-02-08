@@ -233,7 +233,7 @@ void Window::newFile()
 			saves->setName(name.text());
 		}
 
-		if(!saves->ok())
+		if(!saves->isOpen())
 		{
 			QMessageBox::warning(this, tr("Erreur"), saves->errorString());
 			closeFile();
@@ -329,7 +329,7 @@ void Window::openFile(const QString &path, bool isPCSlot)
 		saves->getFormatFromRaw();
 	}
 
-	if(!saves->ok())
+	if(!saves->isOpen())
 	{
 		QMessageBox::warning(this, tr("Erreur"), saves->errorString());
 		setIsOpen(false);

@@ -166,7 +166,7 @@ void SavecardData::setName(const QString &name)
 	_path = dirname() + name;
 }
 
-bool SavecardData::ok() const
+bool SavecardData::isOpen() const
 {
 	return _ok;
 }
@@ -204,11 +204,6 @@ void SavecardData::setType(Type type)
 bool SavecardData::hasPath() const
 {
 	return !dirname().isEmpty();
-}
-
-bool SavecardData::isOneSaveType() const
-{
-	return type()==Pc || type()==Psv;
 }
 
 bool SavecardData::isModified() const
