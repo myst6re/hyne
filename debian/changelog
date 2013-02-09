@@ -11,6 +11,7 @@ hyne (1.7.0) precise; urgency=low
   * Doesn't ask for language if there is just one available
   * Hacks for Mac OS version
   * Some internal changes
+  * The "new game" save contains character and gf names in french, there are replaced by the translated names
   
  -- Chris Rizzitello <sithlord48@gmail.com>  Mon, 8 Oct 2012 15:42:37 -0400
 
