@@ -152,7 +152,7 @@ struct LIMITB//16
 struct ITEMS//428
 {
 	quint8 battle_order[32];
-	quint16 items[198];
+	quint16 items[198]; // (quint8(itemID), quint8(quantity)) * 198
 } Q_PACKED;
 
 struct MISC2//144
