@@ -179,33 +179,33 @@
         <translation type="obsolete">Boko and MiniMog: Home/World</translation>
     </message>
     <message>
-        <location filename="PageWidgets/CWEditor.cpp" line="67"/>
+        <location filename="PageWidgets/CWEditor.cpp" line="66"/>
         <source> :</source>
         <translation>:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/CWEditor.cpp" line="69"/>
+        <location filename="PageWidgets/CWEditor.cpp" line="68"/>
         <source>ID :</source>
         <translation>ID:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/CWEditor.cpp" line="72"/>
+        <location filename="PageWidgets/CWEditor.cpp" line="71"/>
         <source>Niveau :</source>
         <translation>Level:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/CWEditor.cpp" line="74"/>
+        <location filename="PageWidgets/CWEditor.cpp" line="73"/>
         <source>Arme :</source>
         <translation>Weapon:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/CWEditor.cpp" line="76"/>
+        <location filename="PageWidgets/CWEditor.cpp" line="75"/>
         <source>HP actuels :</source>
         <oldsource>HP courants :</oldsource>
         <translation>Current HP:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/CWEditor.cpp" line="78"/>
+        <location filename="PageWidgets/CWEditor.cpp" line="77"/>
         <source>HP max :</source>
         <translation>HP max:</translation>
     </message>
@@ -605,137 +605,137 @@
 <context>
     <name>GfEditor</name>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="103"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="102"/>
         <source>Nom :</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="105"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="104"/>
         <source>HP actuels :</source>
         <translation>Current HP:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="107"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="106"/>
         <source>Niveau :</source>
         <translation>Level:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="109"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="108"/>
         <source>EXP :</source>
         <translation>EXP:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="111"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="110"/>
         <source>Tués :</source>
         <translation>Kills:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="113"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="112"/>
         <source>Mort :</source>
         <translation>KOs:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="79"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="78"/>
         <source>Disponible</source>
         <translation>Available</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="98"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="97"/>
         <source>Inconnu :</source>
         <translation>Unknown:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="128"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="127"/>
         <source>Capacités</source>
         <translation>Ability</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="128"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="127"/>
         <source>PDC</source>
         <translation>AP</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="129"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="128"/>
         <source>Capacités oubliées</source>
         <translation>Forgot Capacity</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="140"/>
-        <location filename="PageWidgets/GfEditor.cpp" line="432"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="139"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="424"/>
         <source>Ajouter</source>
         <translation>Add</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="144"/>
-        <location filename="PageWidgets/GfEditor.cpp" line="534"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="143"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="526"/>
         <source>Oublier</source>
         <translation>Forget</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="148"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="147"/>
         <source>Modifier</source>
         <translation>Edit</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="152"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="151"/>
         <source>Apprendre</source>
         <translation>Learn</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="156"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="155"/>
         <source>Tout acquérir</source>
         <translation>Complete All</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="170"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="169"/>
         <source>Restaurer</source>
         <translation>Restore</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="195"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="194"/>
         <source>Divers</source>
         <translation>Miscellaneous</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="198"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="197"/>
         <source>Odin</source>
         <translation>Odin</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="199"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="198"/>
         <source>Gilgamesh</source>
         <translation>Gilgamesh</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="200"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="199"/>
         <source>Phénix</source>
         <translation>Phoenix</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="203"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="202"/>
         <source> :</source>
         <translation>:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="368"/>
-        <location filename="PageWidgets/GfEditor.cpp" line="472"/>
-        <location filename="PageWidgets/GfEditor.cpp" line="607"/>
-        <location filename="PageWidgets/GfEditor.cpp" line="659"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="360"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="464"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="599"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="651"/>
         <source>Acquis!</source>
         <translation>Complete!</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="460"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="452"/>
         <source>Modifier PDC</source>
         <translation>Edit AP</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="474"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="466"/>
         <source>Fermer</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="PageWidgets/GfEditor.cpp" line="534"/>
+        <location filename="PageWidgets/GfEditor.cpp" line="526"/>
         <source>Supprimer</source>
         <translation>Remove</translation>
     </message>
@@ -1882,405 +1882,405 @@
 <context>
     <name>PersoEditor</name>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="55"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="54"/>
         <source>État</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="56"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="55"/>
         <source>G-Forces</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="57"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="56"/>
         <source>Magies</source>
         <translation>Magics</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="58"/>
-        <location filename="PageWidgets/PersoEditor.cpp" line="372"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="57"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="371"/>
         <source>Capacités</source>
         <translation>Abilities</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="59"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="58"/>
         <source>Associations</source>
         <translation>Junction</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="61"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="60"/>
         <source>Limit Break</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="92"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="91"/>
         <source>Disponible</source>
         <oldsource>Disponible :</oldsource>
         <translation>Available</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="94"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="93"/>
         <source>Nom :</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="96"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="95"/>
         <source>HP actuels :</source>
         <translation>Current HP:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="110"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="109"/>
         <source>EXP :</source>
         <translation>EXP:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="119"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="118"/>
         <source>Tués :</source>
         <translation>Kills:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="121"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="120"/>
         <source>Mort :</source>
         <translation>KOs:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="137"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="136"/>
         <source>Personnage :</source>
         <translation>Body:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="139"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="138"/>
         <source>Arme :</source>
         <translation>Weapon:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="142"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="141"/>
         <source>Statut</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="146"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="145"/>
         <source>Mort</source>
         <translation>KO</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="146"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="145"/>
         <source>Poison</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="146"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="145"/>
         <source>Fossile</source>
         <translation>Petrify</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="146"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="145"/>
         <source>Darkness</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="146"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="145"/>
         <source>Aphasie</source>
         <translation>Silence</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="146"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="145"/>
         <source>Trouble</source>
         <translation>Berserk</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="146"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="145"/>
         <source>Zombie</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="155"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="154"/>
         <source>???</source>
         <translation>???</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="159"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="158"/>
         <source>Inconnu</source>
         <translation>Unknown</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="172"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="171"/>
         <source>1 :</source>
         <translation>1:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="174"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="173"/>
         <source>2 :</source>
         <translation>2:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="176"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="175"/>
         <source>3 :</source>
         <translation>3:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="178"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="177"/>
         <source>4 :</source>
         <translation>4:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="180"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="179"/>
         <source>5 :</source>
         <translation>5:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="183"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="182"/>
         <source>Bonus</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="200"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="199"/>
         <source>Bonus HP :</source>
         <translation>HP bonus:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="202"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="201"/>
         <source>Bonus vgr :</source>
         <translation>Str Bonus:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="204"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="203"/>
         <source>Bonus dfs :</source>
         <translation>Vit Bonus:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="206"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="205"/>
         <source>Bonus mgi :</source>
         <translation>Mag Bonus:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="208"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="207"/>
         <source>Bonus psy :</source>
         <translation>Spr Bonus:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="210"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="209"/>
         <source>Bonus vts :</source>
         <translation>Spd Bonus:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="212"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="211"/>
         <source>Bonus chc :</source>
         <translation>Luck Bonus:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="215"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="214"/>
         <source>Costume alternatif (Seed, galbadien)</source>
         <translation>Alternative model (SeeD, galbadian)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="216"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="215"/>
         <source>Vérouillé 1 (menu &apos;remplacer&apos;)</source>
         <translation>Locked 1 (&apos;switch&apos; menu)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="217"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="216"/>
         <source>Vérouillé 2 (menu &apos;remplacer&apos;)</source>
         <translation>Locked 2 (&apos;switch&apos; menu)</translation>
     </message>
     <message>
+        <location filename="PageWidgets/PersoEditor.cpp" line="257"/>
         <location filename="PageWidgets/PersoEditor.cpp" line="258"/>
-        <location filename="PageWidgets/PersoEditor.cpp" line="259"/>
         <source>Compatibilité</source>
         <translation>Compatibility</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="314"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="313"/>
         <source>Supprimer tout</source>
         <translation>Remove All</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="318"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="317"/>
         <source>Tout</source>
         <translation>All</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="344"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="343"/>
         <source>Commandes</source>
         <translation>Command</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="357"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="356"/>
         <source>Inconnu (commande 4) :</source>
         <translation>Unknown (command 4):</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="362"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="361"/>
         <source>Commande 1 :</source>
         <translation>Command 1:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="364"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="363"/>
         <source>Commande 2 :</source>
         <translation>Command 2:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="366"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="365"/>
         <source>Commande 3 :</source>
         <translation>Command 3:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="391"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="390"/>
         <source>Capacité 1 :</source>
         <translation>Ability 1:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="393"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="392"/>
         <source>Capacité 2 :</source>
         <translation>Ability 2:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="395"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="394"/>
         <source>Capacité 3 :</source>
         <translation>Ability 3:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="397"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="396"/>
         <source>Capacité 4 :</source>
         <translation>Ability 4:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="412"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="411"/>
         <source>Aptitudes</source>
         <translation>Ability</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="421"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="420"/>
         <source>HP :</source>
         <translation>HP:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="423"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="422"/>
         <source>Vigueur :</source>
         <translation>Strength:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="425"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="424"/>
         <source>Défense :</source>
         <translation>Vitality:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="427"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="426"/>
         <source>Magie :</source>
         <translation>Magic:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="429"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="428"/>
         <source>Psychisme :</source>
         <translation>Spirit:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="432"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="431"/>
         <source>Vitesse :</source>
         <translation>Speed:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="434"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="433"/>
         <source>Esquive :</source>
         <translation>Evade:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="436"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="435"/>
         <source>Protection :</source>
         <translation>Hit%:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="438"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="437"/>
         <source>Chance :</source>
         <translation>Luck:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="441"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="440"/>
         <source>Élémental</source>
         <translation>Elemental</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="450"/>
-        <location filename="PageWidgets/PersoEditor.cpp" line="470"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="449"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="469"/>
         <source>Attaque :</source>
         <translation>Attack:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="452"/>
-        <location filename="PageWidgets/PersoEditor.cpp" line="472"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="451"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="471"/>
         <source>Défense 1 :</source>
         <translation>Defense 1:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="454"/>
-        <location filename="PageWidgets/PersoEditor.cpp" line="474"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="453"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="473"/>
         <source>Défense 2 :</source>
         <translation>Defense 2:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="456"/>
-        <location filename="PageWidgets/PersoEditor.cpp" line="476"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="455"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="475"/>
         <source>Défense 3 :</source>
         <translation>Defense 3:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="458"/>
-        <location filename="PageWidgets/PersoEditor.cpp" line="478"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="457"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="477"/>
         <source>Défense 4 :</source>
         <translation>Defense 4:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="461"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="460"/>
         <source>Mental</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="509"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="508"/>
         <source>Gunblade auto</source>
         <translation>Gunblade Auto</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="511"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="510"/>
         <source>Indicateur renzokuken</source>
         <translation>Renzokuken Indicator</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="530"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="529"/>
         <source>Ring Master auto</source>
         <translation>Duel auto</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="574"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="573"/>
         <source>Angel désactivé</source>
         <translation>Angel disabled</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="576"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="575"/>
         <source>Canonisation activé</source>
         <translation>Angelo Wing enabled</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="585"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="584"/>
         <source> :</source>
         <translation>:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="581"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="580"/>
         <source>&lt;b&gt;Case cochée :&lt;/b&gt; limit break appris&lt;br/&gt;&lt;b&gt;Case partiellement cochée :&lt;/b&gt; limit break connu&lt;br/&gt;&lt;b&gt;Valeur :&lt;/b&gt; nombre de points restants pour apprendre le limit break</source>
         <translation>&lt;b&gt;Checked:&lt;/b&gt; learned limit break&lt;br/&gt;&lt;b&gt;Partially checked:&lt;/b&gt; known limit break&lt;br/&gt;&lt;b&gt;Value:&lt;/b&gt; number of points remaining to learn the limit break</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="108"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="107"/>
         <source>Niveau :</source>
         <translation>Level:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="286"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="285"/>
         <source>Nom</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PersoEditor.cpp" line="286"/>
+        <location filename="PageWidgets/PersoEditor.cpp" line="285"/>
         <source>Qté</source>
         <translation>Qty</translation>
     </message>
@@ -8018,24 +8018,24 @@ Continuer ?</source>
 Continue?</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="336"/>
+        <location filename="SavecardView.cpp" line="346"/>
         <source>Vider</source>
         <translation>Empty</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="336"/>
+        <location filename="SavecardView.cpp" line="346"/>
         <source>Tout le contenu de la sauvegarde sera vidé.
 Continuer ?</source>
         <translation>All content of the save will be emptied.
 Continue?</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="377"/>
+        <location filename="SavecardView.cpp" line="387"/>
         <source>Sauvegarde supprimée</source>
         <translation>Save deleted</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="377"/>
+        <location filename="SavecardView.cpp" line="387"/>
         <source>Cette sauvegarde a été supprimée, voulez-vous tenter de la réparer ? (succès non garanti)</source>
         <translation>This save has been deleted, do you try to repair it? (Success not guaranteed)</translation>
     </message>
@@ -8048,42 +8048,42 @@ Continue?</translation>
         <translation type="obsolete">No</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="478"/>
+        <location filename="SavecardView.cpp" line="488"/>
         <source>NV%1</source>
         <translation>LV%1</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="526"/>
+        <location filename="SavecardView.cpp" line="536"/>
         <source>Bloc occupé</source>
         <translation>Used block</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="531"/>
+        <location filename="SavecardView.cpp" line="541"/>
         <source>Bloc Disponible</source>
         <translation>unused block</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="813"/>
+        <location filename="SavecardView.cpp" line="823"/>
         <source>&amp;Modifier...</source>
         <translation>&amp;Edit...</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="814"/>
+        <location filename="SavecardView.cpp" line="824"/>
         <source>&amp;Exporter en sauv. PC...</source>
         <translation>&amp;Convert to PC Save...</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="816"/>
+        <location filename="SavecardView.cpp" line="826"/>
         <source>&amp;Nouvelle partie</source>
         <translation>&amp;New game</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="818"/>
+        <location filename="SavecardView.cpp" line="828"/>
         <source>&amp;Vider</source>
         <translation>E&amp;mpty</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="820"/>
+        <location filename="SavecardView.cpp" line="830"/>
         <source>&amp;Propriétés...</source>
         <translation>&amp;Properties...</translation>
     </message>
