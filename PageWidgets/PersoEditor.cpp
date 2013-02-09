@@ -17,7 +17,6 @@
  ****************************************************************************/
 
 #include "PersoEditor.h"
-#include "FF8Text.h"
 
 QList<QIcon> PersoEditor::persoIcons;
 
@@ -570,7 +569,7 @@ void PersoEditor::buildPage6()
 		grid->setRowStretch(4, 1);
 		return;
 	case RINOA:
-		angel_E = new QLineEdit(FF8Text::toString(descData->angelo, saveData->isJp()), lbWidget);
+		angel_E = new QLineEdit(saveData->perso(ANGELO), lbWidget);
 		angel_disabledE = new QCheckBox(tr("Angel désactivé"), lbWidget);
 		angel_disabledE->setChecked((data->misc2.dream >> 4) & 1);
 		a_wing_enabledE = new QCheckBox(tr("Canonisation activé"), lbWidget);
@@ -643,15 +642,10 @@ void PersoEditor::fillPage()
 	this->id = persoListe->currentRow();
 	this->perso_data = &data->persos[id];
 
-	QString persoName;
-	if(id == SQUALL)		persoName = FF8Text::toString(descData->squall, saveData->isJp());
-	else if(id == RINOA)	persoName = FF8Text::toString(descData->linoa, saveData->isJp());
-	else					persoName = Data::names().at(id);
-
 	/* PAGE 1 */
 
 	existsE->setChecked(perso_data->exists & 1);
-	nameE->setText(persoName);
+	nameE->setText(saveData->perso(id));
 	nameE->setDisabled(id != SQUALL && id != RINOA);
 
 	current_HPsE->setValue(perso_data->current_HPs);
@@ -746,9 +740,9 @@ void PersoEditor::savePage()
 
 	perso_data->exists = (unknown6E->value() << 3) | (lock2E->isChecked() << 2) | (lock1E->isChecked() << 1) | existsE->isChecked();
 
-	const char *persoName = FF8Text::toByteArray(nameE->text(), saveData->isJp()).leftJustified(11, '\x00', true).append('\x00').constData();
-	if(id == SQUALL)		memcpy(&descData->squall, persoName, 12);
-	else if(id == RINOA)	memcpy(&descData->linoa, persoName, 12);
+	if(id == SQUALL || id == RINOA) {
+		saveData->setPerso(id, nameE->text());
+	}
 
 	perso_data->current_HPs = current_HPsE->value();
 	perso_data->HPs = HPs_E->value();
@@ -846,8 +840,7 @@ void PersoEditor::savePage()
 			data->limitb.quistis |= LB_E.at(i)->isChecked() << i;
 		break;
 	case RINOA:
-		persoName = FF8Text::toByteArray(angel_E->text(), saveData->isJp()).leftJustified(11, '\x00', true).append('\x00').constData();
-		memcpy(&descData->angelo, persoName, 12);
+		saveData->setPerso(ANGELO, angel_E->text());
 		data->limitb.angel_known = data->limitb.angel_completed = 0;
 		for(int i=0 ; i<8 ; ++i)
 		{

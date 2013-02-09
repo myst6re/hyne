@@ -314,6 +314,16 @@ void SavecardView::newGame(int saveID)
 	}
 
 	saveData->open(newGameFile.readAll(), saveData->MCHeader());
+	// Set translated names
+	saveData->setPerso(SQUALL, Data::names().at(SQUALL));
+	saveData->setPerso(RINOA, Data::names().at(RINOA));
+	saveData->setPerso(GRIEVER, Data::names().at(GRIEVER));
+	saveData->setPerso(BOKO, Data::names().at(BOKO));
+	saveData->setPerso(ANGELO, Data::names().at(ANGELO));
+	int gfID=0;
+	foreach(const QString &gfName, Data::gfnames().list()) {
+		saveData->setGf(gfID++, gfName);
+	}
 	saveData->setModified(true);
 	emit changed();
 	newGameFile.close();

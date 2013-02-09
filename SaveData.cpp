@@ -472,13 +472,43 @@ QString SaveData::perso(quint8 index) const
 {
 	switch(index) {
 	case SQUALL:		return FF8Text::toString(_descData.squall, isJp());
-	case RINOA:			return FF8Text::toString(_descData.linoa, isJp());
+	case RINOA:			return FF8Text::toString(_descData.rinoa, isJp());
 	case GRIEVER:		return FF8Text::toString(_mainData.misc1.griever, isJp());
 	case BOKO:			return FF8Text::toString(_descData.boko, isJp());
 	case ANGELO:		return FF8Text::toString(_descData.angelo, isJp());
 	default:
 		if(index < 16)	return Data::names().at(index);
 		return QString();
+	}
+}
+
+QString SaveData::gf(quint8 index) const
+{
+	return FF8Text::toString(_mainData.gfs[index].name, isJp());
+}
+
+void SaveData::setGf(quint8 index, const QString &name)
+{
+	const char *gfName = FF8Text::toByteArray(name, isJp())
+			.leftJustified(11, '\x00', true)
+			.append('\x00').constData();
+
+	memcpy(_mainData.gfs[index].name, gfName, 12);
+}
+
+void SaveData::setPerso(quint8 index, const QString &name)
+{
+	const char *persoName = FF8Text::toByteArray(name, isJp())
+			.leftJustified(11, '\x00', true)
+			.append('\x00').constData();
+
+	switch(index) {
+	case SQUALL:		memcpy(_descData.squall, persoName, 12);		break;
+	case RINOA:			memcpy(_descData.rinoa, persoName, 12);			break;
+	case GRIEVER:		memcpy(_mainData.misc1.griever, persoName, 12);	break;
+	case BOKO:			memcpy(_descData.boko, persoName, 12);			break;
+	case ANGELO:		memcpy(_descData.angelo, persoName, 12);		break;
+	default:	break;
 	}
 }
 

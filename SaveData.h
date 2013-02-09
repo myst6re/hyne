@@ -390,7 +390,7 @@ struct HEADER//76	(pos=388)		[58+18(auto)/76 editable]
 	quint8 nivLeader;// auto
 	quint8 party[3];// auto
 	char squall[12];
-	char linoa[12];
+	char rinoa[12];
 	char angelo[12];
 	char boko[12];
 	quint32 disc;// auto
@@ -443,7 +443,10 @@ public:
 	void setSaveIcon(const SaveIconData &saveIconData);
 	// FF8
 	bool isFF8() const;
-	QString perso(quint8 id) const;
+	QString perso(quint8 index) const;
+	void setPerso(quint8 index, const QString &name);
+	QString gf(quint8 index) const;
+	void setGf(quint8 index, const QString &name);
 	bool exportPC(const QString &path) const;
 	HEADER &descData();
 	const HEADER &constDescData() const;

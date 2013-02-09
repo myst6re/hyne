@@ -17,7 +17,6 @@
  ****************************************************************************/
 
 #include "GfEditor.h"
-#include "FF8Text.h"
 
 QList<QIcon> GfEditor::gfIcons;
 
@@ -231,12 +230,12 @@ void GfEditor::fillPage()
 	{
 		stackedWidget->setCurrentIndex(1);
 
-		grieverE->setText(FF8Text::toString(data->misc1.griever, saveData->isJp()));
+		grieverE->setText(saveData->perso(GRIEVER));
 		odinE->setChecked((data->misc2.dream >> 1) & 1);
 		phoenixE->setChecked((data->misc2.dream >> 2) & 1);
 		gilgameshE->setChecked((data->misc2.dream >> 3) & 1);
 	}
-	else
+	else if(id < 16)
 	{
 		stackedWidget->setCurrentIndex(0);
 
@@ -255,7 +254,7 @@ void GfEditor::fillPage()
 		}
 
 		existsE->setChecked(gf_data->exists & 1);
-		nameEdit->setText(FF8Text::toString(gf_data->name, saveData->isJp()));
+		nameEdit->setText(saveData->gf(id));
 		hpEdit->setValue(gf_data->HPs);
 
 		expEdit->setValue(gf_data->exp);
@@ -316,20 +315,13 @@ void GfEditor::savePage()
 {
 	if(!loaded)	return;
 
-	const char *chaine;
-
 	if(id==16) {
-		chaine = FF8Text::toByteArray(grieverE->text(), saveData->isJp()).leftJustified(11, '\x00', true).append('\x00').constData();
-		memcpy(&data->misc1.griever, chaine, 12);
-
+		saveData->setPerso(GRIEVER, grieverE->text());
 		data->misc2.dream = (odinE->isChecked() << 1) | (phoenixE->isChecked() << 2) | (gilgameshE->isChecked() << 3) | (data->misc2.dream & 0xF1);
 	}
-	else {
+	else if(id < 16) {
 		gf_data->exists = (quint8)existsE->isChecked();
-
-		chaine = FF8Text::toByteArray(nameEdit->text(), saveData->isJp()).leftJustified(11, '\x00', true).append('\x00').constData();
-		memcpy(&gf_data->name, chaine, 12);
-
+		saveData->setGf(id, nameEdit->text());
 		gf_data->exp = expEdit->value();
 		gf_data->HPs = hpEdit->value();
 		gf_data->kills = killsEdit->value();
