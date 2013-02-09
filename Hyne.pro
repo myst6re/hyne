@@ -100,7 +100,7 @@ TRANSLATIONS += hyne_en.ts \
 
 macx {
 	ICON = images/hyne.icns
-	LIBS += -zl
+	LIBS += -lz
 }
 win32 {
 	RC_FILE = Hyne.rc
