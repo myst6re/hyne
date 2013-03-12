@@ -33,7 +33,7 @@ class Window : public QWidget
 public:
 	enum OpenType { File, Slot1, Slot2 };
 
-	explicit Window();
+	Window();
 	virtual ~Window();
 
 	void openFile(const QString &path, bool isPCSlot=false);
@@ -61,6 +61,7 @@ private slots:
 	void runFF8();
 	void fullScreen();
 	void about();
+	static void newWindow();
 
 private:
 	void setIsOpen(bool open);

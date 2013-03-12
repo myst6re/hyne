@@ -849,7 +849,7 @@ void SavecardView::changeEvent(QEvent *event)
 void SavecardView::dragEnterEvent(QDragEnterEvent *event)
 {
 	if(event->mimeData()->hasFormat("application/ff8save")) {
-		isExternalDrag = event->source() == 0; // external source
+		isExternalDrag = event->source() != this; // external source
 		event->acceptProposedAction();
 	}
 }
@@ -874,7 +874,7 @@ void SavecardView::dropEvent(QDropEvent *event)
 	dragLeaveEvent(0);
 
 	event->acceptProposedAction();
-	isExternalDrag = event->source() == 0;
+	isExternalDrag = event->source() != this;
 	if(isExternalDrag) {
 		if(lastDropData)	delete lastDropData;
 		lastDropData = new QByteArray(event->mimeData()->data("application/ff8save"));

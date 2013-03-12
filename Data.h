@@ -187,7 +187,6 @@ public:
 	static const quint8 apsTab[116];
 	static const quint8 innateAbilities[16][22];
 	static QString getCardsLocation(int i);
-	static const int cardsLocation[256];
 	static const cInt momentLocation[403];
 	static const int drawPoints[256];
 	static const int drawPointsLoc[256];
@@ -228,6 +227,7 @@ private:
 	static RinoaLBs _rinoaLB;
 	static Ennemies _ennemies;
 	static const char *_maplist[MAP_COUNT];
+	static const int cardsLocation[256];
 };
 
 #endif
