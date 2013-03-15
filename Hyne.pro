@@ -100,6 +100,8 @@ TRANSLATIONS += hyne_en.ts \
 
 macx {
 	ICON = images/hyne.icns
+}
+!win32 {
 	LIBS += -lz
 }
 win32 {
