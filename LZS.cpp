@@ -39,10 +39,22 @@ const QByteArray &LZS::decompress(const QByteArray &data, int max)
 	int curResult=0, fileSize=data.size(), sizeAlloc=max+10;
 	quint16 curBuff=4078, adresse, premOctet=0, i, length;
 	const quint8 *fileData = (const quint8 *)data.constData();
-	const quint8 *endFileData = &fileData[fileSize-1] + 1;
+	const quint8 *endFileData = fileData + fileSize;
 
-	if(result.size() < sizeAlloc)
-		result.resize(sizeAlloc);
+	// Impossible case
+	if(sizeAlloc > 2000 * fileSize) {
+		result.clear();
+		return result;
+	}
+
+	if(result.size() < sizeAlloc) {
+		try {
+			result.resize(sizeAlloc);
+		} catch(std::bad_alloc) {
+			result.clear();
+			return result;
+		}
+	}
 
 	memset(text_buf, 0, 4078);//Le buffer de 4096 octets est initialisé à 0
 
@@ -90,10 +102,16 @@ const QByteArray &LZS::decompressAll(const QByteArray &data)
 	int curResult=0, fileSize=data.size(), sizeAlloc=fileSize*5;
 	quint16 curBuff=4078, adresse, premOctet=0, i, length;
 	const quint8 *fileData = (const quint8 *)data.constData();
-	const quint8 *endFileData = &fileData[fileSize-1] + 1;
+	const quint8 *endFileData = fileData + fileSize;
 
-	if(result.size() < sizeAlloc)
-		result.resize(sizeAlloc);
+	if(result.size() < sizeAlloc) {
+		try {
+			result.resize(sizeAlloc);
+		} catch(std::bad_alloc) {
+			result.clear();
+			return result;
+		}
+	}
 
 	memset(text_buf, 0, 4078);//Le buffer de 4096 octets est initialisé à 0
 
