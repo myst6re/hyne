@@ -38,9 +38,16 @@ void BattleEditor::buildWidget()
 	battleescE = new QSpinBox(statsE);
 	battleescE->setRange(0, MAX_INT16);
 
+	monsterkillsAuto = new QCheckBox(tr("Auto"), statsE);
 	monsterkillsE = new QDoubleSpinBox(statsE);
 	monsterkillsE->setDecimals(0);
 	monsterkillsE->setRange(0, MAX_INT32);
+
+	QHBoxLayout *monsterkillL = new QHBoxLayout;
+	monsterkillL->addWidget(monsterkillsE);
+	monsterkillL->addWidget(monsterkillsAuto);
+	monsterkillL->setContentsMargins(QMargins());
+
 	tombyE = new QDoubleSpinBox(statsE);
 	tombyE->setDecimals(0);
 	tombyE->setRange(0, MAX_INT32);
@@ -58,7 +65,7 @@ void BattleEditor::buildWidget()
 	statsL->addWidget(new QLabel(tr("Combats fuis :"),statsE), 0, 6, 1, 3);
 	statsL->addWidget(battleescE, 0, 9, 1, 3);
 	statsL->addWidget(new QLabel(tr("Monstres tués :"),statsE), 1, 0, 1, 3);
-	statsL->addWidget(monsterkillsE, 1, 3, 1, 3);
+	statsL->addLayout(monsterkillL, 1, 3, 1, 3);
 	statsL->addWidget(new QLabel(tr("Tomberry tués :"),statsE), 1, 6, 1, 3);
 	statsL->addWidget(tombyE, 1, 9, 1, 3);
 	statsL->addWidget(tombySrE, 2, 0, 1, 4);
@@ -158,6 +165,10 @@ void BattleEditor::buildWidget()
 	margins.setTop(0);
 	margins.setBottom(0);
 	grid->setContentsMargins(margins);
+
+	connect(monsterkillsAuto, SIGNAL(toggled(bool)), monsterkillsE, SLOT(setDisabled(bool)));
+
+	monsterkillsAuto->setChecked(true); // TODO: config?
 }
 
 void BattleEditor::fillPage()
@@ -185,11 +196,21 @@ void BattleEditor::fillPage()
 
 void BattleEditor::savePage()
 {
+	quint32 monster_kills;
+	if(monsterkillsAuto->isChecked()) {
+		monster_kills = 0;
+		for(int i=0 ; i<8 ; ++i) {
+			monster_kills += data->persos[i].kills;
+		}
+	} else {
+		monster_kills = monsterkillsE->value();
+	}
+
 	data->misc2.victory_count				= battlewinE->value();
 	data->misc3.victory_count				= battlewinE->value();
 	data->misc2.battle_escaped				= battleescE->value();
 	data->misc3.battle_escaped				= battleescE->value();
-	data->misc3.monster_kills				= monsterkillsE->value();
+	data->misc3.monster_kills				= monster_kills;
 	data->misc2.tomberry_vaincus			= tombyE->value();
 	data->misc2.tomberry_sr_vaincu			= (data->misc2.tomberry_sr_vaincu & 0xFFFE) | tombySrE->isChecked();
 	data->misc2.elmidea_battle_r1			= (data->misc2.elmidea_battle_r1 & 0xFFFE) | firstr1E->isChecked();

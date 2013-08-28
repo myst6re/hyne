@@ -39,6 +39,7 @@ protected:
 	void buildWidget();
 private:
 	QGroupBox *unknownGroupE;
+	QCheckBox *monsterkillsAuto;
 	QDoubleSpinBox *battlewinE, *tombyE, *monsterkillsE, *unknown1E, *unknown2E;
 	QSpinBox *battleescE;
 	QCheckBox *tombySrE, *firstr1E, *firsteleE, *firstmtlE, *firstirvinelbE;
