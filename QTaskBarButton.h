@@ -2,7 +2,7 @@
 #define QTASKBARBUTTON_H
 
 #include <QtGui>
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #include "shobjidl.h"
 #endif
 
@@ -40,12 +40,12 @@ public slots:
 	void setValue(int value);
 private:
 	void initDestinationList();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 	WId _winId;
 	ITaskbarList3 *pITask;
 	ICustomDestinationList *destinationList;
 	IObjectArray *removedItems;
-#endif // Q_WS_WIN
+#endif // Q_OS_WIN
 	int _minimum, _maximum, _value;
 	State _state;
 };

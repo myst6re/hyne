@@ -17,7 +17,7 @@
  ****************************************************************************/
 
 #include "Config.h"
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #include <windef.h>
 #include <winbase.h>
 //#include <winerror.h>
@@ -115,7 +115,7 @@ void Config::saveRecentFiles()
 
 void Config::set()
 {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 	settings = new QSettings(QString("%1/%2.ini").arg(qApp->applicationDirPath(), PROG_NAME), QSettings::IniFormat);
 #else
 	settings = new QSettings(PROG_NAME);
@@ -158,7 +158,7 @@ void Config::sync()
 	settings->sync();
 }
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 QString Config::regValue(const QString &regPath, const QString &regKey)
 {
 	HKEY phkResult;
@@ -189,7 +189,7 @@ QString Config::regValue(const QString &regPath, const QString &regKey)
 
 const QString &Config::ff8Path()
 {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 	if(_ff8Path.isEmpty())
 		_ff8Path = QDir::cleanPath( QDir::fromNativeSeparators( regValue("Square Soft, Inc\\Final Fantasy VIII\\1.00", "AppPath") ) );
 #endif
