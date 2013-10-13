@@ -1,2 +1,2 @@
 ?package(hyne):needs="x11" section="Games/Toys"\
-  title="Hyne" command="/usr/bin/hyne/Hyne"
+  title="Hyne" command="/usr/bin/hyne"

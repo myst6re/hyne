@@ -116,19 +116,4 @@ OTHER_FILES += Hyne.rc \
 #only on linux/unix (for package creation and other deploys)
 unix:!macx:!symbian {
 	system(lrelease Hyne.pro)
-
-	target.path = /opt/hyne
-	INSTALLS += target
-
-	lang.path = /opt/hyne
-	lang.files = *.qm
-	INSTALLS += lang
-
-	icon.path = /usr/share/pixmaps/
-	icon.files = images/hyne.png
-	INSTALLS += icon
-
-	desktop.path =/usr/share/applications
-	desktop.files = Hyne.desktop
-	INSTALLS += desktop
 }

@@ -1,0 +1,4 @@
+images/hyne.png /usr/share/pixmaps
+Hyne.desktop /usr/share/applications
+Hyne /usr/share/hyne
+*.qm /usr/share/hyne 

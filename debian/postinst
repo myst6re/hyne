@@ -1,5 +1,0 @@
-#!/bin/sh
-if [ -f /usr/bin/hyne ];then
-  exit 0
-  else ln -s /opt/hyne/Hyne /usr/bin/hyne
-fi
