@@ -719,14 +719,14 @@ void Window::font(bool font)
 
 QStringList Window::availableLanguages()
 {
-	QDir dir(qApp->applicationDirPath());
+	QDir dir(Config::translationDir());
 	QStringList languages, stringList = dir.entryList(QStringList("hyne_*.qm"), QDir::Files, QDir::Name);
 
 	languages.append("Français|fr");
 
 	QTranslator translator;
 	foreach(QString str, stringList) {
-		translator.load(str, qApp->applicationDirPath());
+		translator.load(str, Config::translationDir());
 		QString lang = translator.translate("Window", "Français", "Your translation language");
 
 		str = str.mid(5);

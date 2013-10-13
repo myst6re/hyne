@@ -165,13 +165,13 @@ struct MISC2//144
 	quint16 u2;
 	quint16 battle_escaped;
 	quint32 u3;
-	quint32 tomberry_vaincus;
-	quint32 tomberry_sr_vaincu;
+	quint32 tomberry_vaincus; // var81 (in battle scripts)
+	quint32 tomberry_sr_vaincu; // var82 (in battle scripts)
 	quint32 u4;
-	quint32 elmidea_battle_r1;
-	quint32 succube_battle_elemental;
-	quint32 trex_battle_mental;
-	quint32 battle_irvine;// first battle with Irvine who explains limit break
+	quint32 elmidea_battle_r1; // var84 (in battle scripts)
+	quint32 succube_battle_elemental; // var85 (in battle scripts)
+	quint32 trex_battle_mental; // var86 (in battle scripts)
+	quint32 battle_irvine;// first battle with Irvine who explains limit break, var87 (in battle scripts)
 	quint8 magic_drawn_once[8];
 	quint8 ennemy_scanned_once[20];
 	quint8 renzokuken_auto;// Renzo auto|Ring Master auto|???|???|???|???|???|???

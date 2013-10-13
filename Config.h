@@ -25,6 +25,7 @@
 class Config
 {
 public:
+	static QString translationDir();
 	static QString value(const QString &key, const QString &defaultValue=QString());
 	static QVariant valueVar(const QString &key, const QVariant &defaultValue=QVariant());
 	static void setValue(const QString &key, const QVariant &value);

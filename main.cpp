@@ -30,13 +30,15 @@ int main(int argc, char *argv[])
 	Config::set();
 
 	QTranslator translator;
-	QString lang = QLocale::system().name().toLower();
+	QString lang = QLocale::system().name().toLower(),
+			translationPath = Config::translationDir();
+
 	lang = Config::value("lang", lang.left(lang.indexOf("_")));
-	if(translator.load("hyne_" + lang, app.applicationDirPath())) {
+	if(translator.load("hyne_" + lang, translationPath)) {
 		app.installTranslator(&translator);
 	} else if(lang != "fr") {
 		lang = Window::chooseLangDialog();
-		if(translator.load("hyne_" + lang, app.applicationDirPath())) {
+		if(translator.load("hyne_" + lang, translationPath)) {
 			app.installTranslator(&translator);
 			Config::setValue("lang", lang);
 		} else {

@@ -30,6 +30,17 @@ QStringList Config::recentFiles;
 QSettings *Config::settings = 0;
 QString Config::_ff8Path;
 
+QString Config::translationDir()
+{
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
+	return qApp->applicationDirPath().startsWith("/usr/bin")
+			? "/usr/share/hyne"
+			: qApp->applicationDirPath();
+#else
+	return qApp->applicationDirPath();
+#endif
+}
+
 quint32 Config::sec(quint32 time, int freq_value)
 {
 	return time%freq(freq_value);
