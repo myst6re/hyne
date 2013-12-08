@@ -36,7 +36,7 @@ public:
 	Window();
 	virtual ~Window();
 
-	void openFile(const QString &path, bool isPCSlot=false);
+	void openFile(const QString &path, OpenType openType=File);
 	static QString chooseLangDialog();
 	static QStringList availableLanguages();
 public slots:

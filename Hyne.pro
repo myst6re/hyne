@@ -20,7 +20,7 @@ HEADERS += PageWidgets/ConfigEditor.h \
     PageWidgets/TTriadEditor.h \
     PageWidgets/CWEditor.h \
     PageWidgets/AllEditor.h \
-    Data.h \
+	Data.h \
     Editor.h \
     FF8Text.h \
     LZS.h \
@@ -52,7 +52,9 @@ HEADERS += PageWidgets/ConfigEditor.h \
 	QTaskBarButton.h \
     PageWidgets/PreviewEditor.h \
     TimeWidget.h \
-    HelpWidget.h
+	HelpWidget.h \
+	Metadata.h \
+    UserDirectory.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/MiscEditor.cpp \
     PageWidgets/GfEditor.cpp \
@@ -94,7 +96,9 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
 	QTaskBarButton.cpp \
     PageWidgets/PreviewEditor.cpp \
     TimeWidget.cpp \
-    HelpWidget.cpp
+    HelpWidget.cpp \
+    Metadata.cpp \
+    UserDirectory.cpp
 RESOURCES += Hyne.qrc
 TRANSLATIONS += hyne_en.ts \
     hyne_ja.ts

@@ -21,7 +21,7 @@
 #include "Parameters.h"
 #include "LZS.h"
 
-SavecardData::SavecardData(const QString &path, bool slot) :
+SavecardData::SavecardData(const QString &path, quint8 slot) :
 	_ok(true), start(0), _isModified(false)
 {
 	open(path, slot);
@@ -42,12 +42,12 @@ SavecardData::~SavecardData()
 	foreach(SaveData *save, saves)	delete save;
 }
 
-bool SavecardData::open(const QString &path, bool slot)
+bool SavecardData::open(const QString &path, quint8 slot)
 {
 	if(slot)
 	{
 		setPath(QDir::fromNativeSeparators(QDir::cleanPath(path)) + "/");
-		setType(PcDir);
+		setType(slot == 1 ? PcSlot1 : PcSlot2);
 
 		directory();
 		_ok = !saves.isEmpty();
@@ -560,7 +560,7 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 		return false;
 	}
 
-	if(_type==Psv)
+	if(_type == Psv)
 	{
 		temp.write(fic.read(100));
 		temp.write(saves.first()->MCHeader().mid(10, 20));// B + country + code + id
@@ -569,7 +569,7 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 //		compare(fic.peek(FF8SAVE_SIZE), saves.first()->save());
 		temp.write(saves.first()->save());
 	}
-	else if(_type!=Pc && _type!=PcDir)
+	else if(_type != Pc && _type != PcSlot1 && _type != PcSlot2)
 	{
 		quint8 i;
 		SaveData *save;

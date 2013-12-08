@@ -252,15 +252,12 @@ void Window::newFile()
 void Window::open(OpenType slot)
 {
 	QString path = Config::ff8Path();
-	bool isPCSlot;
 
-	if(slot==Slot1 || slot==Slot2)
+	if(slot == Slot1 || slot == Slot2)
 	{
 		if(path.isEmpty())	return;
 
 		path.append(QString("/Save/Slot%1/").arg((int)slot));
-
-		isPCSlot = true;
 	}
 	else
 	{
@@ -271,7 +268,7 @@ void Window::open(OpenType slot)
 		path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path,
 											tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;"
 											   "FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;"
-											   "FF8 PC save (save??);;"
+											   "FF8 PC save (save?? *.ff8);;"
 											   "FF8 vgs memorycard (*.mem *.vgs);;"
 											   "FF8 gme memorycard (*.gme);;"
 											   "FF8 PSN memorycard (*.vmp);;"
@@ -282,11 +279,9 @@ void Window::open(OpenType slot)
 
 		int index = path.lastIndexOf('/');
 		Config::setValue("loadPath", index == -1 ? path : path.left(index));
-
-		isPCSlot = false;
 	}
-	
-	openFile(path, isPCSlot);
+
+	openFile(path, slot);
 }
 
 bool Window::closeFile(bool quit)
@@ -294,7 +289,7 @@ bool Window::closeFile(bool quit)
 	if(saves && saves->isModified()) {
 		QMessageBox::StandardButton b = QMessageBox::question(this, tr("Enregistrer ?"),
 															  tr("Voulez-vous enregistrer '%1' avant de fermer ?")
-															  .arg(saves->type()==SavecardData::PcDir
+															  .arg(saves->type() == SavecardData::PcSlot1 || saves->type() == SavecardData::PcSlot2
 																   ? tr("fente")
 																   : saves->name()),
 															  QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
@@ -316,11 +311,11 @@ bool Window::closeFile(bool quit)
 	return true;
 }
 
-void Window::openFile(const QString &path, bool isPCSlot)
+void Window::openFile(const QString &path, OpenType openType)
 {
 	if(!closeFile())	return;
 
-	saves = new SavecardData(path, isPCSlot);
+	saves = new SavecardData(path, quint8(openType));
 	if(saves->type() == SavecardData::Unknown) {
 		QMessageBox::StandardButton rep = QMessageBox::question(this, tr("Erreur"), tr("Fichier de type inconnu.\nVoulez-vous l'analyser pour obtenir le bon format ?"), QMessageBox::Yes | QMessageBox::No);
 		if(rep != QMessageBox::Yes) {
@@ -347,7 +342,7 @@ void Window::openFile(const QString &path, bool isPCSlot)
 		setIsOpen(true);
 		setModified(saves->isModified());
 
-		if(!isPCSlot) {
+		if(openType == File) {
 			Config::addRecentFile(saves->path());
 			fillMenuRecent();
 		}
@@ -393,7 +388,16 @@ void Window::openRecentFile(QAction *action)
 void Window::reload()
 {
 	if(saves) {
-		openFile(QString(saves->path()), saves->type() == SavecardData::PcDir);
+		OpenType openType;
+		if(saves->type() == SavecardData::PcSlot1) {
+			openType = Slot1;
+		} else if(saves->type() == SavecardData::PcSlot2) {
+			openType = Slot2;
+		} else {
+			openType = File;
+		}
+
+		openFile(QString(saves->path()), openType);
 	}
 }
 
@@ -404,13 +408,13 @@ bool Window::exportAs()
 			vgs = tr("VGS memorycard (*.vgs *.mem)"),
 			gme = tr("GME memorycard (*.gme)"),
 			vmp = tr("PSN memorycard (*.vmp)"),
-			pc = tr("FF8 PC save (*)"),
+			pc = tr("FF8 PC save (*.ff8 *)"),
 			psv = tr("PSN save (*.psv)");
 	SavecardData::Type type = saves->type(), newType;
 
 	types = pc+";;"+ps+";;"+vgs+";;"+gme+";;"+vmp+";;"+psv;
 
-	if(type == SavecardData::PcDir
+	if(type == SavecardData::PcSlot1 || type == SavecardData::PcSlot2
 			|| type == SavecardData::Pc)	selectedFilter = pc;
 	else if(type == SavecardData::Psv)		selectedFilter = psv;
 	else if(type == SavecardData::Vgs)		selectedFilter = vgs;
@@ -467,7 +471,8 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 		case SavecardData::Pc:
 			ok = saves->save2PC(0, path);
 			break;
-		case SavecardData::PcDir:
+		case SavecardData::PcSlot1:
+		case SavecardData::PcSlot2:
 			ok = saves->saveDir();
 			break;
 		case SavecardData::Psv:
@@ -485,7 +490,8 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 	} else {
 		if(newType != SavecardData::Pc && newType != SavecardData::Psv)
 		{
-			if(type == SavecardData::PcDir || type == SavecardData::Undefined
+			if(type == SavecardData::PcSlot1 || type == SavecardData::PcSlot2
+					|| type == SavecardData::Undefined
 					|| type == SavecardData::Pc || type == SavecardData::Psv) {
 				QList<int> selected_files;
 				if(type == SavecardData::Pc || type == SavecardData::Psv) {
@@ -630,7 +636,7 @@ void Window::editView(SaveData *saveData)
 		stackedLayout->addWidget(editor);
 	}
 	editor->show();
-	editor->load(saveData, saves->type()==SavecardData::Pc || saves->type()==SavecardData::PcDir);
+	editor->load(saveData, saves->type() == SavecardData::Pc || saves->type() == SavecardData::PcSlot1 || saves->type() == SavecardData::PcSlot2);
 	stackedLayout->setCurrentWidget(editor);
 	setTitle(saveData->id());
 	saves->setIsTheLastEdited(saveData->id());

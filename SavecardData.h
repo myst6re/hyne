@@ -26,14 +26,14 @@ class SavecardData
 {
 public:
 	enum Type {
-		Pc, Ps, Vgs, Gme, Vmp, Psv, PcDir, Unknown, Undefined
+		Pc, Ps, Vgs, Gme, Vmp, Psv, PcSlot1, PcSlot2, Unknown, Undefined
 	};
 
-	SavecardData(const QString &path, bool slot=false);
+	SavecardData(const QString &path, quint8 slot=0);
 	SavecardData(int saveCount);
 	virtual ~SavecardData();
 
-	bool open(const QString &path, bool slot=false);
+	bool open(const QString &path, quint8 slot=0);
 	const QFileSystemWatcher *watcher() const;
 	const QString &errorString() const;
 	QString description() const;
@@ -78,7 +78,7 @@ private:
 	QString _path, _lastError;
 	bool _ok;
 	Type _type;
-	quint16 start;//Départ de la sauvegarde <=> taille du header rajouté
+	quint16 start; // Start of save data
 	QFileSystemWatcher fileWatcher;
 	QList<SaveData *> saves;
 	bool _isModified;
