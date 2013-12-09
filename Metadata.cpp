@@ -149,6 +149,11 @@ void Metadata::writeSavefileContents(QXmlStreamWriter *xml, const MetadataSaveFi
 	xml->writeTextElement("signature", saveFile.signature);
 }
 
+const QString &Metadata::filename() const
+{
+	return _filename;
+}
+
 void Metadata::setFilename(const QString &filename)
 {
 	_filename = filename;
@@ -162,6 +167,16 @@ QString Metadata::signature(quint8 slot, quint8 num) const
 void Metadata::updateSignature(quint8 slot, quint8 num, const QByteArray &saveData, const QString &userID)
 {
 	 _saveFiles[SAVE_FILES_KEY(slot, num)].signature = md5sum(saveData, userID);
+}
+
+qint64 Metadata::timestamp(quint8 slot, quint8 num) const
+{
+	return _saveFiles.value(SAVE_FILES_KEY(slot, num)).timestamp;
+}
+
+void Metadata::setTimestamp(quint8 slot, quint8 num, qint64 timestamp)
+{
+	 _saveFiles[SAVE_FILES_KEY(slot, num)].timestamp = timestamp;
 }
 
 QString Metadata::md5sum(const QByteArray &lzsData, const QString &userID)

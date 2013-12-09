@@ -12,6 +12,7 @@ public:
 	inline const Metadata &metadata() const {
 		return _metadata;
 	}
+	bool isValid() const;
 	bool openMetadata();
 	void updateMetadata(quint8 slot, quint8 num, const QByteArray &saveData);
 	bool saveMetadata();

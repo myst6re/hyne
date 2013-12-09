@@ -27,9 +27,12 @@ public:
 
 	bool open();
 	bool save();
+	const QString &filename() const;
 	void setFilename(const QString &filename);
 	QString signature(quint8 slot, quint8 num) const;
 	void updateSignature(quint8 slot, quint8 num, const QByteArray &saveData, const QString &userID);
+	qint64 timestamp(quint8 slot, quint8 num) const;
+	void setTimestamp(quint8 slot, quint8 num, qint64 timestamp);
 	const QString &errorString() const;
 private:
 	void writeSavefileContents(QXmlStreamWriter *xml, const MetadataSaveFile &saveFile);

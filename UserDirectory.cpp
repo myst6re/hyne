@@ -16,6 +16,11 @@ UserDirectory::UserDirectory(const QString &dirname) :
 	}
 }
 
+bool UserDirectory::isValid() const
+{
+	return !_userID.isEmpty() && !_metadata.filename().isEmpty();
+}
+
 bool UserDirectory::openMetadata()
 {
 	return _metadata.open();
@@ -23,6 +28,9 @@ bool UserDirectory::openMetadata()
 
 void UserDirectory::updateMetadata(quint8 slot, quint8 num, const QByteArray &saveData)
 {
+	if(_metadata.timestamp(slot, num) <= 0) {
+		_metadata.setTimestamp(slot, num, QDateTime::currentMSecsSinceEpoch());
+	}
 	_metadata.updateSignature(slot, num, saveData, _userID);
 }
 

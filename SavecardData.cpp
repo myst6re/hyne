@@ -57,7 +57,7 @@ bool SavecardData::open(const QString &path, quint8 slot)
 		setPath(QDir::fromNativeSeparators(QDir::cleanPath(path)));
 		QString extension = this->extension();
 
-		if(extension.isEmpty())
+		if(extension.isEmpty() || extension == "ff8")
 		{
 			setType(Pc);
 			if(!pc())	addSave(QByteArray());
@@ -667,6 +667,22 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 	}
 
 	QByteArray result = LZS::compress(save->save());
+
+	// Rerelease 2013
+	QString filename = path.mid(path.lastIndexOf('/') + 1);
+	QRegExp regExp("slot([12])_save(\\d\\d).ff8");
+
+	if(regExp.exactMatch(filename)) {
+		QString dirname = path.left(path.lastIndexOf('/'));
+		UserDirectory userDirectory(dirname);
+
+		if(userDirectory.isValid() && userDirectory.openMetadata()) {
+			QStringList capturedTexts = regExp.capturedTexts();
+			userDirectory.updateMetadata(capturedTexts.at(1).toInt(), capturedTexts.at(2).toInt(), result);
+			userDirectory.saveMetadata(); //TODO: raise error
+		}
+	}
+
 	int size = result.size();
 	temp.write((char *)&size, 4);
 	temp.write(result);

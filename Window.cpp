@@ -266,7 +266,7 @@ void Window::open(OpenType slot)
 		else if(!path.isEmpty())
 			path.append("/Save");
 		path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path,
-											tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;"
+											tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.ff8 *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;"
 											   "FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;"
 											   "FF8 PC save (save?? *.ff8);;"
 											   "FF8 vgs memorycard (*.mem *.vgs);;"
@@ -420,7 +420,7 @@ bool Window::exportAs()
 	else if(type == SavecardData::Vgs)		selectedFilter = vgs;
 	else if(type == SavecardData::Gme)		selectedFilter = gme;
 	else if(type == SavecardData::Vmp)		selectedFilter = vmp;
-	else								selectedFilter = ps;
+	else									selectedFilter = ps;
 	
 	path = Config::value("savePath").isEmpty() ? saves->dirname() : Config::value("savePath")+"/";
 	if(saves->type() == SavecardData::Undefined) {
@@ -488,13 +488,14 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 			return false;
 		}
 	} else {
-		if(newType != SavecardData::Pc && newType != SavecardData::Psv)
-		{
+		if(newType != SavecardData::Pc && newType != SavecardData::Psv) {
+
 			if(type == SavecardData::PcSlot1 || type == SavecardData::PcSlot2
 					|| type == SavecardData::Undefined
 					|| type == SavecardData::Pc || type == SavecardData::Psv) {
 				QList<int> selected_files;
-				if(type == SavecardData::Pc || type == SavecardData::Psv) {
+
+				if(saves->saveCount() == 1) {
 					selected_files.append(0);
 				} else {
 					selected_files = selectSavesDialog(true);
@@ -512,16 +513,21 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 				}
 
 				ok = saves->save2PS(selected_files, path, newType, MCHeader);
-			}
-			else
+			} else {
 				ok = saves->save(path, newType);
-		}
-		else // saveOne (PC & PSV)
-		{
-			// Need selection by user
-			QList<int> selected_files = selectSavesDialog(false, newType == SavecardData::Pc);
-			if(selected_files.isEmpty())	return false;
-			int id = selected_files.first();
+			}
+		} else { // saveOne (PC & PSV)
+			int id;
+
+			if(saves->saveCount() == 1) {
+				id = 0;
+			} else {
+				// Need selection by user
+				QList<int> selected_files = selectSavesDialog(false, newType == SavecardData::Pc);
+				if(selected_files.isEmpty())	return false;
+				id = selected_files.first();
+			}
+
 			if(newType == SavecardData::Pc) {
 				ok = saves->save2PC(id, path);
 			} else {

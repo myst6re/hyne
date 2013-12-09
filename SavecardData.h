@@ -21,6 +21,7 @@
 
 #include <QtCore>
 #include "SaveData.h"
+#include "UserDirectory.h"
 
 class SavecardData
 {
