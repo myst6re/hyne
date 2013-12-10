@@ -44,7 +44,7 @@ public:
 	void moveSave(int sourceID, int targetID);
 	SaveData *getSave(int id) const;
 	int saveCount() const;
-	bool save2PC(const quint8 id, const QString &saveAs=QString());
+	bool save2PC(const quint8 id, const QString &saveAs);
 	bool save2PSV(const quint8 id, const QString &saveAs, const QByteArray &MCHeader);
 	bool save2PS(const QList<int> &ids, const QString &path, const Type newType, const QByteArray &MCHeader);
 	bool saveDir();
@@ -68,11 +68,11 @@ private:
 	void setType(Type type);
 	bool ps();
 	bool ps3();
-	bool pc();
+	bool pc(const QString &path = QString());
 	bool sstate_ePSXe();
 	bool sstate_pSX();
 	bool sstate(const QByteArray &fdata, const QByteArray &MCHeader);
-	void directory();
+	void directory(const QString &filePattern);
 	void addSave(const QByteArray &data=QByteArray(), const QByteArray &header=QByteArray(), bool occupied=false);
 	QByteArray header(QFile *srcFile, Type newType, bool saveAs);
 

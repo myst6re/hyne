@@ -45,12 +45,18 @@ public:
 	static void saveRecentFiles();
 	static void set();
 	static const QString &ff8Path();
+	static const QStringList &ff8Paths();
+	static const QStringList &ff8UserDataPaths(int max = -1);
 	static QTranslator *translator;
 #ifdef Q_OS_WIN
 	static QString regValue(const QString &regPath, const QString &regKey);
+	static QStringList searchInstalledApps(const QString &appName, int max=-1);
 #endif
 private:
 	static QString _ff8Path;
+	static QStringList _ff8Paths;
+	static QStringList _ff8UserDataPaths;
+	static bool _ff8PathsSearched;
 	static QSettings *settings;
 	static QStringList recentFiles;
 };

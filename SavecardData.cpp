@@ -49,7 +49,7 @@ bool SavecardData::open(const QString &path, quint8 slot)
 		setPath(QDir::fromNativeSeparators(QDir::cleanPath(path)) + "/");
 		setType(slot == 1 ? PcSlot1 : PcSlot2);
 
-		directory();
+		directory("save{num}");
 		_ok = !saves.isEmpty();
 	}
 	else
@@ -332,10 +332,10 @@ bool SavecardData::ps3()
 	return true;
 }
 
-bool SavecardData::pc()
+bool SavecardData::pc(const QString &path)
 {
 	int tailleC;
-	QFile f(_path);
+	QFile f(path.isEmpty() ? _path : path);
 
 	if(!f.exists() || !f.open(QIODevice::ReadOnly))
 		return false;
@@ -487,14 +487,16 @@ bool SavecardData::sstate(const QByteArray &fdata, const QByteArray &MCHeader)
 	return true;
 }
 
-void SavecardData::directory()
+void SavecardData::directory(const QString &filePattern)
 {
-	for(quint8 i=0 ; i<30 ; ++i)
-	{
-		setName(QString("save%1").arg(i+1, 2, 10, QChar('0')));
-		if(!pc())	addSave();
+	for(quint8 i=0 ; i<30 ; ++i) {
+		QString path = filePattern;
+		path = dirname() + path.replace("{num}", QString("%1").arg(i + 1, 2, 10, QChar('0')));
+		if(!pc(path)) {
+			addSave(); // Invalid save
+		}
 	}
-	setName(QString());
+
 	LZS::clear();
 }
 
@@ -535,7 +537,7 @@ int SavecardData::saveCount() const
 
 bool SavecardData::save(const QString &saveAs, Type newType)
 {
-	QString path = saveAs.isEmpty() ? _path : saveAs;
+	const QString path = saveAs.isEmpty() ? _path : saveAs;
 	QTemporaryFile temp("hyne");
 	QFile fic(_path);
 
@@ -643,9 +645,7 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 		return true;
 	}
 
-	const QString path = saveAs.isEmpty()
-			? dirname() + QString("save%1").arg(id+1, 2, 10, QChar('0'))
-			: saveAs;
+	const QString path = saveAs.isEmpty() ? _path : saveAs;
 
 	QTemporaryFile temp("hyneOne");
 	if(!temp.open())
@@ -935,7 +935,7 @@ bool SavecardData::saveDir()
 
 	foreach(const SaveData *save, saves) {
 		if(save->isModified()) {
-			if(!save2PC(i)) {
+			if(!save2PC(i, QString("%1save%2").arg(dirname()).arg(i + 1, 2, 10, QChar('0')))) {
 				ok = false;
 			}
 		}

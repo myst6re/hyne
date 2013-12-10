@@ -9,7 +9,7 @@
 		(save_files_key >> 8)
 #define GET_NUM(save_files_key)		\
 		(save_files_key & 0xFF)
-#define METADATA_INDENT	2
+#define METADATA_INDENT		2
 #define TIMESTAMP_EMPTY		-2
 #define TIMESTAMP_INVALID	-1
 
