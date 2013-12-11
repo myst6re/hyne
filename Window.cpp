@@ -118,7 +118,7 @@ Window::Window() :
 		action->setChecked(Config::value("lang")==lang);
 	}
 	connect(menuLang, SIGNAL(triggered(QAction*)), SLOT(changeLanguage(QAction*)));
-	
+
 	/* MENU '?' */
 	
 #ifndef Q_OS_MAC
@@ -251,13 +251,22 @@ void Window::newFile()
 
 void Window::open(OpenType slot)
 {
-	QString path = Config::ff8Path();
+	QString path;
+	bool isRereleaseVersion = false;
 
 	if(slot == Slot1 || slot == Slot2)
 	{
+		path = Config::ff8Path();
 		if(path.isEmpty())	return;
 
 		path.append(QString("/Save/Slot%1/").arg((int)slot));
+		if(!QFile::exists(path)) {
+			QStringList ff8UserDataPaths = Config::ff8UserDataPaths(1);
+			if(!ff8UserDataPaths.empty()) {
+				path = ff8UserDataPaths.first();
+				isRereleaseVersion = true;
+			}
+		}
 	}
 	else
 	{
@@ -281,7 +290,7 @@ void Window::open(OpenType slot)
 		Config::setValue("loadPath", index == -1 ? path : path.left(index));
 	}
 
-	openFile(path, slot);
+	openFile(path, slot, isRereleaseVersion);
 }
 
 bool Window::closeFile(bool quit)
@@ -289,7 +298,7 @@ bool Window::closeFile(bool quit)
 	if(saves && saves->isModified()) {
 		QMessageBox::StandardButton b = QMessageBox::question(this, tr("Enregistrer ?"),
 															  tr("Voulez-vous enregistrer '%1' avant de fermer ?")
-															  .arg(saves->type() == SavecardData::PcSlot1 || saves->type() == SavecardData::PcSlot2
+															  .arg(saves->type() == SavecardData::PcSlot
 																   ? tr("fente")
 																   : saves->name()),
 															  QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
@@ -311,11 +320,11 @@ bool Window::closeFile(bool quit)
 	return true;
 }
 
-void Window::openFile(const QString &path, OpenType openType)
+void Window::openFile(const QString &path, OpenType openType, bool isRereleaseVersion)
 {
 	if(!closeFile())	return;
 
-	saves = new SavecardData(path, quint8(openType));
+	saves = new SavecardData(path, quint8(openType), isRereleaseVersion);
 	if(saves->type() == SavecardData::Unknown) {
 		QMessageBox::StandardButton rep = QMessageBox::question(this, tr("Erreur"), tr("Fichier de type inconnu.\nVoulez-vous l'analyser pour obtenir le bon format ?"), QMessageBox::Yes | QMessageBox::No);
 		if(rep != QMessageBox::Yes) {
@@ -389,10 +398,8 @@ void Window::reload()
 {
 	if(saves) {
 		OpenType openType;
-		if(saves->type() == SavecardData::PcSlot1) {
-			openType = Slot1;
-		} else if(saves->type() == SavecardData::PcSlot2) {
-			openType = Slot2;
+		if(saves->type() == SavecardData::PcSlot) {
+			openType = saves->slotNumber() == 1 ? Slot1 : Slot2;
 		} else {
 			openType = File;
 		}
@@ -414,7 +421,7 @@ bool Window::exportAs()
 
 	types = pc+";;"+ps+";;"+vgs+";;"+gme+";;"+vmp+";;"+psv;
 
-	if(type == SavecardData::PcSlot1 || type == SavecardData::PcSlot2
+	if(type == SavecardData::PcSlot
 			|| type == SavecardData::Pc)	selectedFilter = pc;
 	else if(type == SavecardData::Psv)		selectedFilter = psv;
 	else if(type == SavecardData::Vgs)		selectedFilter = vgs;
@@ -471,9 +478,8 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 		case SavecardData::Pc:
 			ok = saves->save2PC(0, path);
 			break;
-		case SavecardData::PcSlot1:
-		case SavecardData::PcSlot2:
-			ok = saves->saveDir();
+		case SavecardData::PcSlot:
+			ok = saves->saveDirectory();
 			break;
 		case SavecardData::Psv:
 		case SavecardData::Ps:
@@ -490,7 +496,7 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 	} else {
 		if(newType != SavecardData::Pc && newType != SavecardData::Psv) {
 
-			if(type == SavecardData::PcSlot1 || type == SavecardData::PcSlot2
+			if(type == SavecardData::PcSlot
 					|| type == SavecardData::Undefined
 					|| type == SavecardData::Pc || type == SavecardData::Psv) {
 				QList<int> selected_files;
@@ -642,7 +648,7 @@ void Window::editView(SaveData *saveData)
 		stackedLayout->addWidget(editor);
 	}
 	editor->show();
-	editor->load(saveData, saves->type() == SavecardData::Pc || saves->type() == SavecardData::PcSlot1 || saves->type() == SavecardData::PcSlot2);
+	editor->load(saveData, saves->type() == SavecardData::Pc || saves->type() == SavecardData::PcSlot);
 	stackedLayout->setCurrentWidget(editor);
 	setTitle(saveData->id());
 	saves->setIsTheLastEdited(saveData->id());

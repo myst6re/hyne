@@ -36,7 +36,7 @@ public:
 	Window();
 	virtual ~Window();
 
-	void openFile(const QString &path, OpenType openType=File);
+	void openFile(const QString &path, OpenType openType=File, bool isRereleaseVersion=false);
 	static QString chooseLangDialog();
 	static QStringList availableLanguages();
 public slots:

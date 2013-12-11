@@ -14,8 +14,9 @@ public:
 	}
 	bool isValid() const;
 	bool openMetadata();
-	void updateMetadata(quint8 slot, quint8 num, const QByteArray &saveData);
+	void updateMetadata(quint8 slot, quint8 num, const QByteArray &saveData = QByteArray());
 	bool saveMetadata();
+	void setDirname(const QString &dirname);
 	const QString &errorString() const;
 private:
 	QString extractUserID() const;

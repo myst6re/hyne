@@ -27,10 +27,10 @@ class SavecardData
 {
 public:
 	enum Type {
-		Pc, Ps, Vgs, Gme, Vmp, Psv, PcSlot1, PcSlot2, Unknown, Undefined
+		Pc, Ps, Vgs, Gme, Vmp, Psv, PcSlot, Unknown, Undefined
 	};
 
-	SavecardData(const QString &path, quint8 slot=0);
+	SavecardData(const QString &path, quint8 slot=0, bool isRereleaseVersion=false);
 	SavecardData(int saveCount);
 	virtual ~SavecardData();
 
@@ -47,7 +47,7 @@ public:
 	bool save2PC(const quint8 id, const QString &saveAs);
 	bool save2PSV(const quint8 id, const QString &saveAs, const QByteArray &MCHeader);
 	bool save2PS(const QList<int> &ids, const QString &path, const Type newType, const QByteArray &MCHeader);
-	bool saveDir();
+	bool saveDirectory();
 
 	QString dirname() const;
 	QString name() const;
@@ -56,6 +56,7 @@ public:
 	void setName(const QString &name);
 	bool isOpen() const;
 	Type type() const;
+	quint8 slotNumber() const;
 	bool hasPath() const;
 	bool isModified() const;
 	void setModified(bool modified);
@@ -84,6 +85,8 @@ private:
 	QList<SaveData *> saves;
 	bool _isModified;
 	QByteArray _description;
+	quint8 _slot;
+	bool _isRereleaseVersion;
 };
 
 #endif

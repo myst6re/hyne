@@ -4,16 +4,9 @@ UserDirectory::UserDirectory()
 {
 }
 
-UserDirectory::UserDirectory(const QString &dirname) :
-	_dirname(dirname)
+UserDirectory::UserDirectory(const QString &dirname)
 {
-	_userID = extractUserID();
-	if(!_userID.isEmpty()) {
-		QString metadataPath = _dirname + "/metadata.xml";
-		if(QFile::exists(metadataPath)) {
-			_metadata.setFilename(metadataPath);
-		}
-	}
+	setDirname(dirname);
 }
 
 bool UserDirectory::isValid() const
@@ -28,7 +21,9 @@ bool UserDirectory::openMetadata()
 
 void UserDirectory::updateMetadata(quint8 slot, quint8 num, const QByteArray &saveData)
 {
-	if(_metadata.timestamp(slot, num) <= 0) {
+	if(saveData.isEmpty()) {
+		_metadata.setTimestamp(slot, num, TIMESTAMP_EMPTY);
+	} else if(_metadata.timestamp(slot, num) <= 0) {
 		_metadata.setTimestamp(slot, num, QDateTime::currentMSecsSinceEpoch());
 	}
 	_metadata.updateSignature(slot, num, saveData, _userID);
@@ -37,6 +32,18 @@ void UserDirectory::updateMetadata(quint8 slot, quint8 num, const QByteArray &sa
 bool UserDirectory::saveMetadata()
 {
 	return _metadata.save();
+}
+
+void UserDirectory::setDirname(const QString &dirname)
+{
+	_dirname = dirname;
+	_userID = extractUserID();
+	if(!_userID.isEmpty()) {
+		QString metadataPath = _dirname + "/metadata.xml";
+		if(QFile::exists(metadataPath)) {
+			_metadata.setFilename(metadataPath);
+		}
+	}
 }
 
 const QString &UserDirectory::errorString() const

@@ -21,8 +21,8 @@
 #include "Parameters.h"
 #include "LZS.h"
 
-SavecardData::SavecardData(const QString &path, quint8 slot) :
-	_ok(true), start(0), _isModified(false)
+SavecardData::SavecardData(const QString &path, quint8 slot, bool isRereleaseVersion) :
+	_ok(true), start(0), _isModified(false), _slot(slot), _isRereleaseVersion(isRereleaseVersion)
 {
 	open(path, slot);
 }
@@ -47,9 +47,13 @@ bool SavecardData::open(const QString &path, quint8 slot)
 	if(slot)
 	{
 		setPath(QDir::fromNativeSeparators(QDir::cleanPath(path)) + "/");
-		setType(slot == 1 ? PcSlot1 : PcSlot2);
+		setType(PcSlot);
 
-		directory("save{num}");
+		if(_isRereleaseVersion) {
+			directory(QString("slot%1_save{num}.ff8").arg(_slot));
+		} else {
+			directory("save{num}");
+		}
 		_ok = !saves.isEmpty();
 	}
 	else
@@ -174,6 +178,11 @@ bool SavecardData::isOpen() const
 SavecardData::Type SavecardData::type() const
 {
 	return _type;
+}
+
+quint8 SavecardData::slotNumber() const
+{
+	return _slot;
 }
 
 void SavecardData::setType(Type type)
@@ -489,11 +498,14 @@ bool SavecardData::sstate(const QByteArray &fdata, const QByteArray &MCHeader)
 
 void SavecardData::directory(const QString &filePattern)
 {
+	QString dirname = this->dirname();
+
 	for(quint8 i=0 ; i<30 ; ++i) {
 		QString path = filePattern;
-		path = dirname() + path.replace("{num}", QString("%1").arg(i + 1, 2, 10, QChar('0')));
+		QString num = QString("%1").arg(i + 1, 2, 10, QChar('0'));
+		path = dirname + path.replace("{num}", num);
 		if(!pc(path)) {
-			addSave(); // Invalid save
+			addSave(); // Empty save
 		}
 	}
 
@@ -571,7 +583,7 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 //		compare(fic.peek(FF8SAVE_SIZE), saves.first()->save());
 		temp.write(saves.first()->save());
 	}
-	else if(_type != Pc && _type != PcSlot1 && _type != PcSlot2)
+	else if(_type != Pc && _type != PcSlot)
 	{
 		quint8 i;
 		SaveData *save;
@@ -640,9 +652,9 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 {
 	const SaveData *save = saves.at(id);
 
-	if(!save->isFF8()) {
+	if(!save->isFF8() && !save->isDelete()) {
 		_lastError = QObject::tr("Cette sauvegarde ne provient pas de Final Fantasy VIII.");
-		return true;
+		return false;
 	}
 
 	const QString path = saveAs.isEmpty() ? _path : saveAs;
@@ -661,26 +673,41 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 		fileWatcher.removePath(path);
 	}
 
+	// Rerelease 2013
+	QString filename = path.mid(path.lastIndexOf('/') + 1);
+	QRegExp regExp("slot([12])_save(\\d\\d).ff8");
+	UserDirectory userDirectory;
+	quint8 slot=0, num=0;
+
+	if(regExp.exactMatch(filename)) {
+		QString dirname = path.left(path.lastIndexOf('/'));
+		userDirectory.setDirname(dirname);
+
+		if(userDirectory.isValid() && userDirectory.openMetadata()) {
+			QStringList capturedTexts = regExp.capturedTexts();
+			slot = capturedTexts.at(1).toInt();
+			num = capturedTexts.at(2).toInt();
+		}
+	}
+
 	if(save->isDelete()) {
 		QFile::remove(path);
+
+		// Rerelease 2013: removing from metadata file
+		if(slot > 0) {
+			userDirectory.updateMetadata(slot, num);
+			userDirectory.saveMetadata(); //TODO: raise error
+		}
+
 		return true;
 	}
 
 	QByteArray result = LZS::compress(save->save());
 
-	// Rerelease 2013
-	QString filename = path.mid(path.lastIndexOf('/') + 1);
-	QRegExp regExp("slot([12])_save(\\d\\d).ff8");
-
-	if(regExp.exactMatch(filename)) {
-		QString dirname = path.left(path.lastIndexOf('/'));
-		UserDirectory userDirectory(dirname);
-
-		if(userDirectory.isValid() && userDirectory.openMetadata()) {
-			QStringList capturedTexts = regExp.capturedTexts();
-			userDirectory.updateMetadata(capturedTexts.at(1).toInt(), capturedTexts.at(2).toInt(), result);
-			userDirectory.saveMetadata(); //TODO: raise error
-		}
+	// Rerelease 2013: updating signature in metadata file
+	if(slot > 0) {
+		userDirectory.updateMetadata(slot, num, result);
+		userDirectory.saveMetadata(); //TODO: raise error
 	}
 
 	int size = result.size();
@@ -928,14 +955,24 @@ QByteArray SavecardData::header(QFile *srcFile, Type newType, bool saveAs)
 		return QByteArray();
 }
 
-bool SavecardData::saveDir()
+bool SavecardData::saveDirectory()
 {
+	QString dirname = this->dirname(), filePattern;
 	bool ok = true;
-	int i=0;
+	int i = 0;
+
+	if(_isRereleaseVersion) {
+		filePattern = QString("slot%1_save{num}.ff8").arg(_slot);
+	} else {
+		filePattern = "save{num}";
+	}
 
 	foreach(const SaveData *save, saves) {
 		if(save->isModified()) {
-			if(!save2PC(i, QString("%1save%2").arg(dirname()).arg(i + 1, 2, 10, QChar('0')))) {
+			QString num = QString("%1").arg(i + 1, 2, 10, QChar('0'));
+			QString path = filePattern;
+
+			if(!save2PC(i, dirname + path.replace("{num}", num))) {
 				ok = false;
 			}
 		}

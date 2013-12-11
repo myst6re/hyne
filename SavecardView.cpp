@@ -267,7 +267,7 @@ void SavecardView::exportPC(int saveID)
 		path = Config::value("savePath") % "/";
 	}
 
-	path = QFileDialog::getSaveFileName(this, tr("Exporter"), path % QString("save%1").arg(saveData->id()+1, 2, 10, QChar('0')), tr("FF8 PC save (*)"));
+	path = QFileDialog::getSaveFileName(this, tr("Exporter"), path % QString("save%1").arg(saveData->id()+1, 2, 10, QChar('0')), tr("FF8 PC save (* *.ff8)"));
 	if(path.isEmpty())		return;
 
 	index = path.lastIndexOf('/');
