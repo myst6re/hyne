@@ -50,8 +50,8 @@ public:
 	static QTranslator *translator;
 #ifdef Q_OS_WIN
 	static QString regValue(const QString &regPath, const QString &regKey);
-	static QStringList searchInstalledApps(const QString &appName, int max=-1);
 #endif
+	static QStringList searchInstalledApps(const QString &appName, int max=-1);
 private:
 	static QString _ff8Path;
 	static QStringList _ff8Paths;
