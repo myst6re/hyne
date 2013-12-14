@@ -60,6 +60,9 @@ public:
 	bool hasPath() const;
 	bool isModified() const;
 	void setModified(bool modified);
+	inline bool isRereleaseVersion() const {
+		return _isRereleaseVersion;
+	}
 	static void compare(const QByteArray &oldData, const QByteArray &newData);
 
 	bool getFormatFromRaw();

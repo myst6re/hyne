@@ -50,7 +50,7 @@ private slots:
 	void open(OpenType=File);
 	bool closeFile(bool quit=false);
 	void reload();
-	void openRecentFile(QAction*);
+	void openRecentFile(QAction *);
 	void save();
 	bool exportAs();
 	void properties();
@@ -58,6 +58,7 @@ private slots:
 	void changeFrame(QAction *);
 	void font(bool);
 	void changeLanguage(QAction *);
+	void changeFF8Version(QAction *);
 	void runFF8();
 	void fullScreen();
 	void about();
@@ -77,7 +78,7 @@ private:
 	QMenuBar *menuBar;
 	QAction *actionReload, *actionSave, *actionSaveAs;
 	QAction *actionProperties, *actionClose, *actionMode, *actionFont;
-	QMenu *menuRecent, *menuFrame, *menuLang;
+	QMenu *menuRecent, *menuFrame, *menuLang, *menuVersion;
 	QStackedLayout *stackedLayout;
 	SavecardData *saves;
 	SavecardWidget *saveList;

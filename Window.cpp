@@ -45,7 +45,7 @@ Window::Window() :
 	QMenu *fileMenu = menu;
 #endif
 
-	bool isInstalled = !Config::ff8Path().isEmpty();
+	bool isInstalled = !Config::ff8Installations().isEmpty();
 	
 	QAction *actionNew = menu->addAction(tr("&Nouveau..."), this, SLOT(newFile()), QKeySequence::New);
 	QAction *actionOpen = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("&Ouvrir..."), this, SLOT(open()), QKeySequence::Open);
@@ -55,6 +55,9 @@ Window::Window() :
 	actionSave->setEnabled(false);
 	actionSaveAs = menu->addAction(tr("E&xporter..."), this, SLOT(exportAs()), QKeySequence::SaveAs);
 	actionSaveAs->setEnabled(false);
+	menuRecent = menu->addMenu(tr("O&uverts récemment"));
+	fillMenuRecent();
+	connect(menuRecent, SIGNAL(triggered(QAction*)), SLOT(openRecentFile(QAction*)));
 	menu->addSeparator();
 	actionProperties = menu->addAction(tr("&Propriétés..."), this, SLOT(properties()));
 	actionProperties->setEnabled(false);
@@ -63,13 +66,10 @@ Window::Window() :
 		action->setShortcutContext(Qt::ApplicationShortcut);
 		addAction(action);
 	}
-	menu->addAction(tr("Nouvelle fenetre"), this, SLOT(newWindow()));
+	menu->addAction(tr("Nouvelle fenêtre"), this, SLOT(newWindow()));
 	action = menu->addAction(tr("Ple&in écran"), this, SLOT(fullScreen()), Qt::Key_F11);
 	action->setShortcutContext(Qt::ApplicationShortcut);
 	addAction(action);
-	menuRecent = menu->addMenu(tr("O&uverts récemment"));
-	fillMenuRecent();
-	connect(menuRecent, SIGNAL(triggered(QAction*)), SLOT(openRecentFile(QAction*)));
 	menu->addSeparator();
 	actionClose = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogCloseButton), tr("&Fermer"), this, SLOT(closeFile()), QKeySequence::Close);
 	actionClose->setEnabled(false);
@@ -109,15 +109,25 @@ Window::Window() :
 	actionFont->setCheckable(true);
 	actionFont->setChecked(!Config::value("font").isEmpty());
 	
-	menuLang = menu->addMenu(tr("&Langues"));
+	menuLang = menu->addMenu(tr("&Langue"));
 	foreach(const QString &str, availableLanguages()) {
 		action = menuLang->addAction(str.left(str.lastIndexOf("|")));
-		QString lang = str.mid(str.lastIndexOf("|")+1);
+		QString lang = str.mid(str.lastIndexOf("|") + 1);
 		action->setData(lang);
 		action->setCheckable(true);
-		action->setChecked(Config::value("lang")==lang);
+		action->setChecked(Config::value("lang") == lang);
 	}
 	connect(menuLang, SIGNAL(triggered(QAction*)), SLOT(changeLanguage(QAction*)));
+
+	if(Config::ff8Installations().size() > 1) {
+		menuVersion = menu->addMenu(tr("Version PC"));
+		foreach(const FF8Installation &installation, Config::ff8Installations()) {
+			action = menuVersion->addAction(installation.typeString());
+			action->setCheckable(true);
+			action->setChecked(Config::ff8Installation() == installation);
+		}
+		connect(menuVersion, SIGNAL(triggered(QAction*)), SLOT(changeFF8Version(QAction*)));
+	}
 
 	/* MENU '?' */
 	
@@ -256,17 +266,11 @@ void Window::open(OpenType slot)
 
 	if(slot == Slot1 || slot == Slot2)
 	{
-		path = Config::ff8Path();
-		if(path.isEmpty())	return;
+		FF8Installation installation = Config::ff8Installation();
+		if(!installation.isValid())	return;
 
-		path.append(QString("/Save/Slot%1/").arg((int)slot));
-		if(!QFile::exists(path)) {
-			QStringList ff8UserDataPaths = Config::ff8UserDataPaths(1);
-			if(!ff8UserDataPaths.empty()) {
-				path = ff8UserDataPaths.first();
-				isRereleaseVersion = true;
-			}
-		}
+		path = installation.savePath((int)slot);
+		isRereleaseVersion = installation.type() == FF8Installation::Steam;
 	}
 	else
 	{
@@ -404,7 +408,7 @@ void Window::reload()
 			openType = File;
 		}
 
-		openFile(QString(saves->path()), openType);
+		openFile(QString(saves->path()), openType, saves->isRereleaseVersion());
 	}
 }
 
@@ -800,6 +804,14 @@ void Window::changeLanguage(QAction *action)
 	}
 }
 
+void Window::changeFF8Version(QAction *action)
+{
+	Config::setSelectedFF8Installation(menuVersion->actions().indexOf(action));
+	foreach(QAction *act, menuVersion->actions())
+		act->setChecked(false);
+	action->setChecked(true);
+}
+
 void Window::newWindow()
 {
 	(new Window())->show();
@@ -831,8 +843,9 @@ void Window::restartNow()
 
 void Window::runFF8()
 {
-	if(!QProcess::startDetached("\"" % Config::ff8Path() % "/FF8.exe\"", QStringList(), Config::ff8Path())) {
-		QMessageBox::warning(this, tr("Erreur"), tr("Final Fantasy VIII n'a pas pu être lancé.\n%1").arg(Config::ff8Path() % "/FF8.exe"));
+	QString appPath = Config::ff8Installation().appPath(), exeFilename = appPath % "/" % Config::ff8Installation().exeFilename();
+	if(!QProcess::startDetached(QString("\"%1\"").arg(exeFilename), QStringList(), appPath)) {
+		QMessageBox::warning(this, tr("Erreur"), tr("Final Fantasy VIII n'a pas pu être lancé.\n%1").arg(exeFilename));
 	}
 }
 

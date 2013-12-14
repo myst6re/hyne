@@ -17,21 +17,14 @@
  ****************************************************************************/
 
 #include "Config.h"
-#ifdef Q_OS_WIN
-#include <windef.h>
-#include <winbase.h>
-//#include <winerror.h>
-#include <winreg.h>
-#endif
 #include "QTaskBarButton.h"
 
 QTranslator *Config::translator;
 QStringList Config::recentFiles;
 QSettings *Config::settings = 0;
-QString Config::_ff8Path;
-QStringList Config::_ff8Paths;
-bool Config::_ff8PathsSearched = false;
-QStringList Config::_ff8UserDataPaths;
+QList<FF8Installation> Config::_ff8Installations;
+int Config::_selectedFF8Installation = 0;
+bool Config::_ff8InstallationsSearched = false;
 
 QString Config::translationDir()
 {
@@ -172,133 +165,26 @@ void Config::sync()
 	settings->sync();
 }
 
-#ifdef Q_OS_WIN
-QString Config::regValue(const QString &regPath, const QString &regKey)
+const QList<FF8Installation> &Config::ff8Installations()
 {
-	HKEY phkResult;
-	LONG error;
-	REGSAM flags = KEY_READ;
-
-#ifdef KEY_WOW64_32KEY
-	flags |= KEY_WOW64_32KEY; // if you compile in 64-bit, force reg search into 32-bit entries
-#endif
-
-	// Open regPath relative to HKEY_LOCAL_MACHINE
-	error = RegOpenKeyEx(HKEY_LOCAL_MACHINE, (wchar_t *)QDir::toNativeSeparators("SOFTWARE/" + regPath).utf16(), 0, flags, &phkResult);
-	if(ERROR_SUCCESS == error) {
-		BYTE value[MAX_PATH];
-		DWORD cValue = MAX_PATH, type;
-
-		// Open regKey which must is a string value (REG_SZ)
-		RegQueryValueEx(phkResult, (wchar_t *)regKey.utf16(), NULL, &type, value, &cValue);
-		if(ERROR_SUCCESS == error && type == REG_SZ) {
-			RegCloseKey(phkResult);
-			return QString::fromUtf16((ushort *)value);
-		}
-		RegCloseKey(phkResult);
+	if(!_ff8InstallationsSearched) {
+		_ff8Installations = FF8Installation::installations();
+		_selectedFF8Installation = value("selectedFF8Installation").toInt();
+		_ff8InstallationsSearched = true;
 	}
-	return QString();
-}
-#endif
-
-QStringList Config::searchInstalledApps(const QString &appName, int max)
-{
-	QStringList ret;
-#ifdef Q_OS_WIN
-	HKEY phkResult, phkResult2;
-	LONG error;
-
-	error = RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\"), 0, KEY_READ, &phkResult);
-
-	if(ERROR_SUCCESS == error) {
-		DWORD index = 0;
-		WCHAR subKeyName[MAX_PATH];
-		DWORD subKeyCName = MAX_PATH;
-		while(ERROR_NO_MORE_ITEMS != (error = RegEnumKeyEx(phkResult, index, subKeyName, &subKeyCName, NULL, NULL, NULL, NULL))) {
-			QString subKeyNameStr = QString::fromUtf16((ushort *)subKeyName);
-			error = RegOpenKeyEx(phkResult, (LPCWSTR)QString("%1\\").arg(subKeyNameStr).utf16(), 0, KEY_READ, &phkResult2);
-			if(ERROR_SUCCESS == error) {
-				BYTE value[MAX_PATH];
-				DWORD cValue = MAX_PATH, type;
-				error = RegQueryValueEx(phkResult2, TEXT("DisplayName"), NULL, &type, value, &cValue);
-				if(ERROR_SUCCESS == error) {
-					if(type == REG_SZ) {
-						QString softwareNameStr = QString::fromUtf16((ushort *)value);
-						if(softwareNameStr.compare(appName, Qt::CaseInsensitive) == 0) {
-							cValue = MAX_PATH;
-							error = RegQueryValueEx(phkResult2, TEXT("InstallLocation"), NULL, &type, value, &cValue);
-							if(ERROR_SUCCESS == error) {
-								if(type == REG_SZ) {
-									ret.append(QDir::fromNativeSeparators(QDir::cleanPath(QString::fromUtf16((ushort *)value))));
-									if(max > 0 && ret.size() >= max) {
-										RegCloseKey(phkResult2);
-										RegCloseKey(phkResult);
-										return ret;
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-			RegCloseKey(phkResult2);
-			++index;
-			subKeyCName = MAX_PATH;
-		}
-
-		RegCloseKey(phkResult);
-	}
-#endif
-	return ret;
+	return _ff8Installations;
 }
 
-const QString &Config::ff8Path()
+FF8Installation Config::ff8Installation()
 {
-#ifdef Q_OS_WIN
-	if(_ff8Path.isEmpty()) {
-		_ff8Path = QDir::cleanPath( QDir::fromNativeSeparators( regValue("Square Soft, Inc/Final Fantasy VIII/1.00", "AppPath") ) );
-		if(_ff8Path.isEmpty()) {
-			if(_ff8PathsSearched) {
-				if(!_ff8Paths.isEmpty()) {
-					_ff8Path = _ff8Paths.first();
-				}
-			} else {
-				QStringList paths = searchInstalledApps("FINAL FANTASY VIII", 1);
-				if(!paths.isEmpty()) {
-					_ff8Path = paths.first();
-				}
-			}
-		}
+	if(!_ff8InstallationsSearched) {
+		ff8Installations();
 	}
-#endif
-	return _ff8Path;
+	return _ff8Installations.value(_selectedFF8Installation);
 }
 
-const QStringList &Config::ff8Paths()
+void Config::setSelectedFF8Installation(int id)
 {
-	if(!_ff8PathsSearched) {
-		_ff8Paths = searchInstalledApps("FINAL FANTASY VIII");
-		_ff8PathsSearched = true;
-	}
-	return _ff8Paths;
-}
-
-const QStringList &Config::ff8UserDataPaths(int max)
-{
-	if(_ff8UserDataPaths.isEmpty()) {
-		QDir ff8UserDataDir(QDir::homePath() + "/Documents/Square Enix");
-
-		foreach(const QString &dir, ff8UserDataDir.entryList(QStringList("FINAL FANTASY VIII*"), QDir::Dirs)) {
-			QDir userDirs(ff8UserDataDir.absoluteFilePath(dir));
-
-			foreach(const QString &userDir, userDirs.entryList(QStringList("user_*"), QDir::Dirs)) {
-				_ff8UserDataPaths.append(userDirs.absoluteFilePath(userDir));
-				if(max > 0 && _ff8UserDataPaths.size() >= max) {
-					return _ff8UserDataPaths;
-				}
-			}
-		}
-	}
-
-	return _ff8UserDataPaths;
+	_selectedFF8Installation = id;
+	setValue("selectedFF8Installation", id);
 }

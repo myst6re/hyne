@@ -21,6 +21,7 @@
 
 #include <QtCore>
 #include "Parameters.h"
+#include "FF8Installation.h"
 
 class Config
 {
@@ -44,19 +45,15 @@ public:
 	static int recentFilesSize();
 	static void saveRecentFiles();
 	static void set();
-	static const QString &ff8Path();
-	static const QStringList &ff8Paths();
-	static const QStringList &ff8UserDataPaths(int max = -1);
+	static const QList<FF8Installation> &ff8Installations();
+	static FF8Installation ff8Installation();
+	static void setSelectedFF8Installation(int id);
+
 	static QTranslator *translator;
-#ifdef Q_OS_WIN
-	static QString regValue(const QString &regPath, const QString &regKey);
-#endif
-	static QStringList searchInstalledApps(const QString &appName, int max=-1);
 private:
-	static QString _ff8Path;
-	static QStringList _ff8Paths;
-	static QStringList _ff8UserDataPaths;
-	static bool _ff8PathsSearched;
+	static QList<FF8Installation> _ff8Installations;
+	static int _selectedFF8Installation;
+	static bool _ff8InstallationsSearched;
 	static QSettings *settings;
 	static QStringList recentFiles;
 };

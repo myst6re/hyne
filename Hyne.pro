@@ -54,7 +54,8 @@ HEADERS += PageWidgets/ConfigEditor.h \
     TimeWidget.h \
 	HelpWidget.h \
 	Metadata.h \
-    UserDirectory.h
+    UserDirectory.h \
+    FF8Installation.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/MiscEditor.cpp \
     PageWidgets/GfEditor.cpp \
@@ -98,7 +99,8 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     TimeWidget.cpp \
     HelpWidget.cpp \
     Metadata.cpp \
-    UserDirectory.cpp
+    UserDirectory.cpp \
+    FF8Installation.cpp
 RESOURCES += Hyne.qrc
 TRANSLATIONS += hyne_en.ts \
     hyne_ja.ts
