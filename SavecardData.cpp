@@ -21,8 +21,8 @@
 #include "Parameters.h"
 #include "LZS.h"
 
-SavecardData::SavecardData(const QString &path, quint8 slot, bool isRereleaseVersion) :
-	_ok(true), start(0), _isModified(false), _slot(slot), _isRereleaseVersion(isRereleaseVersion)
+SavecardData::SavecardData(const QString &path, quint8 slot, const FF8Installation &ff8Installation) :
+	_ok(true), start(0), _isModified(false), _slot(slot), _ff8Installation(ff8Installation)
 {
 	open(path, slot);
 }
@@ -49,11 +49,7 @@ bool SavecardData::open(const QString &path, quint8 slot)
 		setPath(QDir::fromNativeSeparators(QDir::cleanPath(path)) + "/");
 		setType(PcSlot);
 
-		if(_isRereleaseVersion) {
-			directory(QString("slot%1_save{num}.ff8").arg(_slot));
-		} else {
-			directory("save{num}");
-		}
+		directory(_ff8Installation.saveNamePattern(_slot));
 		_ok = !saves.isEmpty();
 	}
 	else
@@ -674,19 +670,22 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 	}
 
 	// Rerelease 2013
-	QString filename = path.mid(path.lastIndexOf('/') + 1);
-	QRegExp regExp("slot([12])_save(\\d\\d).ff8");
 	UserDirectory userDirectory;
 	quint8 slot=0, num=0;
 
-	if(regExp.exactMatch(filename)) {
-		QString dirname = path.left(path.lastIndexOf('/'));
-		userDirectory.setDirname(dirname);
+	if(_ff8Installation.hasMetadata()) {
+		QString filename = path.mid(path.lastIndexOf('/') + 1);
+		QRegExp regExp("slot([12])_save(\\d\\d).ff8");
 
-		if(userDirectory.isValid() && userDirectory.openMetadata()) {
-			QStringList capturedTexts = regExp.capturedTexts();
-			slot = capturedTexts.at(1).toInt();
-			num = capturedTexts.at(2).toInt();
+		if(regExp.exactMatch(filename)) {
+			QString dirname = path.left(path.lastIndexOf('/'));
+			userDirectory.setDirname(dirname);
+
+			if(userDirectory.isValid() && userDirectory.openMetadata()) {
+				QStringList capturedTexts = regExp.capturedTexts();
+				slot = capturedTexts.at(1).toInt();
+				num = capturedTexts.at(2).toInt();
+			}
 		}
 	}
 
@@ -961,11 +960,7 @@ bool SavecardData::saveDirectory()
 	bool ok = true;
 	int i = 0;
 
-	if(_isRereleaseVersion) {
-		filePattern = QString("slot%1_save{num}.ff8").arg(_slot);
-	} else {
-		filePattern = "save{num}";
-	}
+	filePattern = _ff8Installation.saveNamePattern(_slot);
 
 	foreach(const SaveData *save, saves) {
 		if(save->isModified()) {

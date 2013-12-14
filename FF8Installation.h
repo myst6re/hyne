@@ -17,6 +17,8 @@ struct FF8Installation
 	QString savePath(int slot) const;
 	QString exeFilename() const;
 	QString typeString() const;
+	QString saveNamePattern(quint8 slot) const;
+	bool hasMetadata() const;
 	inline Type type() const {
 		return _type;
 	}

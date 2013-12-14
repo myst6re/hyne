@@ -4074,8 +4074,8 @@
         <location filename="Data.cpp" line="93"/>
         <source>Vierge</source>
         <comment>item1</comment>
-        <translatorcomment>Barrier</translatorcomment>
-        <translation>バリアシステム</translation>
+        <translatorcomment>Silver Mail</translatorcomment>
+        <translation>銀の腕輪</translation>
     </message>
     <message>
         <location filename="Data.cpp" line="94"/>

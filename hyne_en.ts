@@ -3540,7 +3540,7 @@
         <location filename="Data.cpp" line="93"/>
         <source>Vierge</source>
         <comment>item1</comment>
-        <translation>Barrier</translation>
+        <translation>Silver Mail</translation>
     </message>
     <message>
         <location filename="Data.cpp" line="94"/>

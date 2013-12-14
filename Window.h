@@ -36,7 +36,7 @@ public:
 	Window();
 	virtual ~Window();
 
-	void openFile(const QString &path, OpenType openType=File, bool isRereleaseVersion=false);
+	void openFile(const QString &path, OpenType openType=File, const FF8Installation &installation=FF8Installation());
 	static QString chooseLangDialog();
 	static QStringList availableLanguages();
 public slots:

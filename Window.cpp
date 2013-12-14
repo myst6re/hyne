@@ -262,15 +262,14 @@ void Window::newFile()
 void Window::open(OpenType slot)
 {
 	QString path;
-	bool isRereleaseVersion = false;
+	FF8Installation installation;
 
 	if(slot == Slot1 || slot == Slot2)
 	{
-		FF8Installation installation = Config::ff8Installation();
+		installation = Config::ff8Installation();
 		if(!installation.isValid())	return;
 
 		path = installation.savePath((int)slot);
-		isRereleaseVersion = installation.type() == FF8Installation::Steam;
 	}
 	else
 	{
@@ -294,7 +293,7 @@ void Window::open(OpenType slot)
 		Config::setValue("loadPath", index == -1 ? path : path.left(index));
 	}
 
-	openFile(path, slot, isRereleaseVersion);
+	openFile(path, slot, installation);
 }
 
 bool Window::closeFile(bool quit)
@@ -324,11 +323,11 @@ bool Window::closeFile(bool quit)
 	return true;
 }
 
-void Window::openFile(const QString &path, OpenType openType, bool isRereleaseVersion)
+void Window::openFile(const QString &path, OpenType openType, const FF8Installation &installation)
 {
 	if(!closeFile())	return;
 
-	saves = new SavecardData(path, quint8(openType), isRereleaseVersion);
+	saves = new SavecardData(path, quint8(openType), installation);
 	if(saves->type() == SavecardData::Unknown) {
 		QMessageBox::StandardButton rep = QMessageBox::question(this, tr("Erreur"), tr("Fichier de type inconnu.\nVoulez-vous l'analyser pour obtenir le bon format ?"), QMessageBox::Yes | QMessageBox::No);
 		if(rep != QMessageBox::Yes) {
@@ -408,7 +407,7 @@ void Window::reload()
 			openType = File;
 		}
 
-		openFile(QString(saves->path()), openType, saves->isRereleaseVersion());
+		openFile(QString(saves->path()), openType, FF8Installation(saves->ff8Installation()));
 	}
 }
 

@@ -87,6 +87,25 @@ QString FF8Installation::typeString() const
 	return QString();
 }
 
+QString FF8Installation::saveNamePattern(quint8 slot) const
+{
+	switch(_type) {
+	case Standard:
+		return "save{num}";
+	case Steam:
+		return QString("slot%1_save{num}.ff8").arg(slot);
+	case Custom:
+		return "save{num}"; // TODO!
+	}
+	Q_ASSERT(false);
+	return QString();
+}
+
+bool FF8Installation::hasMetadata() const
+{
+	return _type == Steam; // TODO: Custom
+}
+
 QList<FF8Installation> FF8Installation::installations()
 {
 	QList<FF8Installation> ret = QList<FF8Installation>()

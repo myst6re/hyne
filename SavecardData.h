@@ -22,6 +22,7 @@
 #include <QtCore>
 #include "SaveData.h"
 #include "UserDirectory.h"
+#include "FF8Installation.h"
 
 class SavecardData
 {
@@ -30,7 +31,7 @@ public:
 		Pc, Ps, Vgs, Gme, Vmp, Psv, PcSlot, Unknown, Undefined
 	};
 
-	SavecardData(const QString &path, quint8 slot=0, bool isRereleaseVersion=false);
+	SavecardData(const QString &path, quint8 slot=0, const FF8Installation &ff8Installation=FF8Installation());
 	SavecardData(int saveCount);
 	virtual ~SavecardData();
 
@@ -60,9 +61,10 @@ public:
 	bool hasPath() const;
 	bool isModified() const;
 	void setModified(bool modified);
-	inline bool isRereleaseVersion() const {
-		return _isRereleaseVersion;
+	inline const FF8Installation &ff8Installation() {
+		return _ff8Installation;
 	}
+
 	static void compare(const QByteArray &oldData, const QByteArray &newData);
 
 	bool getFormatFromRaw();
@@ -89,7 +91,7 @@ private:
 	bool _isModified;
 	QByteArray _description;
 	quint8 _slot;
-	bool _isRereleaseVersion;
+	const FF8Installation _ff8Installation;
 };
 
 #endif
