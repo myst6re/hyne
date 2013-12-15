@@ -702,6 +702,8 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 	}
 
 	QByteArray result = LZS::compress(save->save());
+	int size = result.size();
+	result.prepend((char *)&size, 4);
 
 	// Rerelease 2013: updating signature in metadata file
 	if(slot > 0) {
@@ -709,8 +711,6 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 		userDirectory.saveMetadata(); //TODO: raise error
 	}
 
-	int size = result.size();
-	temp.write((char *)&size, 4);
 	temp.write(result);
 
 	if(QFile::exists(path) && !QFile::remove(path))
