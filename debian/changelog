@@ -1,3 +1,14 @@
+hyne (1.8.1) precise; urgency=low
+
+  * FF8 Steam Support
+  * Added "New Window" Option
+  * [Battle Editor] Monster kills value is computed automatically by default
+  * Fixed Bug: removed ff8 PC save files was not correctly deleted on disk
+  * Japanese translation updated
+  * Minor Changes
+  
+ -- Chris Rizzitello <sithlord48@gmail.com>  Sun, 15 Dec 2013 09:15:00 -0400
+
 hyne (1.7.0) precise; urgency=low
 
   * [Editor] Adding Duel Auto option for Zell's limit break
