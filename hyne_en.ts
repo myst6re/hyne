@@ -583,7 +583,7 @@
     <message>
         <location filename="PageWidgets/FieldEditor.cpp" line="54"/>
         <source>Cet éditeur ne change que le moment du jeu, c&apos;est-à-dire une valeur qui change en fonction de votre avancée dans l&apos;aventure principale. En changeant cette valeur, la position de votre personnage, les sous-quêtes et autres valeurs ne seront pas modifiées.</source>
-        <translation>This editor change only the moment  of the game, wich means a value that changes according to your progress in the main adventure. By modify this value, the position of your character, sub-quests and other values ​​will not be affected.</translation>
+        <translation>This editor change only the moment of the game, wich means a value that changes according to your progress in the main adventure. By modify this value, the position of your character, sub-quests and other values ​​will not be affected.</translation>
     </message>
     <message>
         <location filename="PageWidgets/FieldEditor.cpp" line="59"/>
