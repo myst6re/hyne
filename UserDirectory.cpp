@@ -29,6 +29,42 @@ void UserDirectory::updateMetadata(quint8 slot, quint8 num, const QByteArray &sa
 	_metadata.updateSignature(slot, num, saveData, _userID);
 }
 
+bool UserDirectory::updateSignatures()
+{
+	if(!openMetadata()) {
+		return false;
+	}
+
+	for(quint8 slot=1 ; slot<=2 ; ++slot) {
+		for(quint8 num=0 ; num<30 ; ++num) {
+			QFile f(QString("%1/slot%2_save%3.ff8").arg(_dirname).arg(slot).arg(num, 2, QChar('\0')));
+			if(f.open(QIODevice::ReadOnly)) {
+				updateMetadata(slot, num, f.readAll());
+				f.close();
+			} else {
+				updateMetadata(slot, num);
+			}
+		}
+	}
+
+	QFile f(QString("%1/chocorpg.ff8").arg(_dirname));
+	if(f.open(QIODevice::ReadOnly)) {
+		if(_metadata.timestamp() <= 0) {
+			_metadata.setTimestamp(QDateTime::currentMSecsSinceEpoch());
+		}
+		_metadata.updateSignature(f.readAll(), _userID);
+		f.close();
+	} else {
+		_metadata.setTimestamp(TIMESTAMP_EMPTY);
+		_metadata.updateSignature(QByteArray(), _userID);
+	}
+
+	if(!saveMetadata()) {
+		return false;
+	}
+	return true;
+}
+
 bool UserDirectory::saveMetadata()
 {
 	return _metadata.save();

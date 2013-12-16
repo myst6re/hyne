@@ -15,6 +15,7 @@ public:
 	bool isValid() const;
 	bool openMetadata();
 	void updateMetadata(quint8 slot, quint8 num, const QByteArray &saveData = QByteArray());
+	bool updateSignatures();
 	bool saveMetadata();
 	void setDirname(const QString &dirname);
 	const QString &errorString() const;

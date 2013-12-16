@@ -673,19 +673,17 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 	UserDirectory userDirectory;
 	quint8 slot=0, num=0;
 
-	if(_ff8Installation.hasMetadata()) {
-		QString filename = path.mid(path.lastIndexOf('/') + 1);
-		QRegExp regExp("slot([12])_save(\\d\\d).ff8");
+	QString filename = path.mid(path.lastIndexOf('/') + 1);
+	QRegExp regExp("slot([12])_save(\\d\\d).ff8");
 
-		if(regExp.exactMatch(filename)) {
-			QString dirname = path.left(path.lastIndexOf('/'));
-			userDirectory.setDirname(dirname);
+	if(regExp.exactMatch(filename)) {
+		QString dirname = path.left(path.lastIndexOf('/'));
+		userDirectory.setDirname(dirname);
 
-			if(userDirectory.isValid() && userDirectory.openMetadata()) {
-				QStringList capturedTexts = regExp.capturedTexts();
-				slot = capturedTexts.at(1).toInt();
-				num = capturedTexts.at(2).toInt();
-			}
+		if(userDirectory.isValid() && userDirectory.openMetadata()) {
+			QStringList capturedTexts = regExp.capturedTexts();
+			slot = capturedTexts.at(1).toInt();
+			num = capturedTexts.at(2).toInt();
 		}
 	}
 

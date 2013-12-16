@@ -66,7 +66,7 @@ Window::Window() :
 		action->setShortcutContext(Qt::ApplicationShortcut);
 		addAction(action);
 	}
-	menu->addAction(tr("Nouvelle fenêtre"), this, SLOT(newWindow()));
+	menu->addAction(tr("Nou&velle fenêtre"), this, SLOT(newWindow()));
 	action = menu->addAction(tr("Ple&in écran"), this, SLOT(fullScreen()), Qt::Key_F11);
 	action->setShortcutContext(Qt::ApplicationShortcut);
 	addAction(action);
