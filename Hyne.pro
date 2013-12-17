@@ -1,8 +1,7 @@
 TEMPLATE = app
-!win32 {
+!win32:!macx {
 	TARGET = hyne
-}
-win32 {
+} else {
 	TARGET = Hyne
 }
 DEPENDPATH += .

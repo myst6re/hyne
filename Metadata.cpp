@@ -179,6 +179,30 @@ void Metadata::setTimestamp(quint8 slot, quint8 num, qint64 timestamp)
 	 _saveFiles[SAVE_FILES_KEY(slot, num)].timestamp = timestamp;
 }
 
+QString Metadata::signature() const
+{
+	return _chocoFile.signature;
+}
+
+void Metadata::updateSignature(const QByteArray &saveData, const QString &userID)
+{
+	if(_hasChocoFile) {
+		_chocoFile.signature = md5sum(saveData, userID);
+	}
+}
+
+qint64 Metadata::timestamp() const
+{
+	return _hasChocoFile ? _chocoFile.timestamp : TIMESTAMP_INVALID;
+}
+
+void Metadata::setTimestamp(qint64 timestamp)
+{
+	if(_hasChocoFile) {
+		_chocoFile.timestamp = timestamp;
+	}
+}
+
 QString Metadata::md5sum(const QByteArray &lzsData, const QString &userID)
 {
 	// In FF8 md5sum is computed on save data (LZSed) + userID
