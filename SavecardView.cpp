@@ -254,27 +254,25 @@ void SavecardView::exportPC(int saveID)
 	SaveData *saveData = _data->getSave(saveID);
 	if(!saveData)	return;
 
-	QString path;
+	QString path, savePath = Config::value(Config::SavePath);
 	int index;
 
-	if(Config::value("savePath").isEmpty())
-	{
+	if(savePath.isEmpty()) {
 		index = _data->path().lastIndexOf('/');
 		if(index != -1)		path = _data->path().left(index+1);
-	}
-	else
-	{
-		path = Config::value("savePath") % "/";
+	} else {
+		path = savePath % "/";
 	}
 
 	path = QFileDialog::getSaveFileName(this, tr("Exporter"), path % QString("save%1").arg(saveData->id()+1, 2, 10, QChar('0')), tr("FF8 PC save (* *.ff8)"));
 	if(path.isEmpty())		return;
 
 	index = path.lastIndexOf('/');
-	Config::value("savePath") = index == -1 ? path : path.left(index);
+	Config::setValue(Config::SavePath, index == -1 ? path : path.left(index));
 
-	if(!saveData->exportPC(path))
+	if(!saveData->exportPC(path)) {
 		QMessageBox::warning(this, tr("Échec"), tr("Enregistrement échoué, vérifiez que le fichier cible n'est pas utilisé."));
+	}
 }
 
 void SavecardView::newGame(int saveID)
@@ -490,14 +488,14 @@ void SavecardView::renderSave(QPainter *painter, const SaveData *saveData, const
 
 		// Disc number
 		if(!(toBePainted & QRect(391, 38, saveWidth()-391, 16)).isEmpty()) {
-			QPixmap disc(QString(":/images/disc_%1.png").arg(Config::value("lang")=="fr" ? "fr" : "en"));
+			QPixmap disc(QString(":/images/disc_%1.png").arg(Config::value(Config::Lang)=="fr" ? "fr" : "en"));
 			painter->drawPixmap(391, 38, disc);
 			num2pix(painter, &numberPixmap, 395+disc.width(), 38, saveData->constDescData().disc+1);
 		}
 
 		// Play time
 		if(!(toBePainted & QRect(511, 16, saveWidth()-511, 16)).isEmpty()) {
-			painter->drawPixmap(511, 16, QPixmap(QString(":/images/play_%1.png").arg(Config::value("lang")=="fr" ? "fr" : "en")));
+			painter->drawPixmap(511, 16, QPixmap(QString(":/images/play_%1.png").arg(Config::value(Config::Lang)=="fr" ? "fr" : "en")));
 
 			int hour = Config::hour(saveData->constDescData().time, saveData->freqValue());
 			int color = (hour>=100) + (hour>=200) + (hour>=300) + (hour>=400) + (hour>=500);

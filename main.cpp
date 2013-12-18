@@ -33,19 +33,19 @@ int main(int argc, char *argv[])
 	QString lang = QLocale::system().name().toLower(),
 			translationPath = Config::translationDir();
 
-	lang = Config::value("lang", lang.left(lang.indexOf("_")));
+	lang = Config::value(Config::Lang, lang.left(lang.indexOf("_")));
 	if(translator.load("hyne_" + lang, translationPath)) {
 		app.installTranslator(&translator);
 	} else if(lang != "fr") {
 		lang = Window::chooseLangDialog();
 		if(translator.load("hyne_" + lang, translationPath)) {
 			app.installTranslator(&translator);
-			Config::setValue("lang", lang);
+			Config::setValue(Config::Lang, lang);
 		} else {
-			Config::setValue("lang", "fr");
+			Config::setValue(Config::Lang, "fr");
 		}
 	} else {
-		Config::setValue("lang", "fr");
+		Config::setValue(Config::Lang, "fr");
 	}
 	Config::translator = &translator;
 

@@ -23,13 +23,22 @@
 #include "Parameters.h"
 #include "FF8Installation.h"
 
+#define KEYS_SIZE 13
+
 class Config
 {
 public:
+	enum Key {
+		RecentFiles, Lang, Geometry, // Application
+		Font, Freq, FreqAuto, Mode, LastCountry, LastGameCode, SelectedFF8Installation, // FF8
+		LoadPath, SavePath, SavePathIcon, // Load and save
+		_KeysSize
+	};
+
 	static QString translationDir();
-	static QString value(const QString &key, const QString &defaultValue=QString());
-	static QVariant valueVar(const QString &key, const QVariant &defaultValue=QVariant());
-	static void setValue(const QString &key, const QVariant &value);
+	static QString value(Key key, const QString &defaultValue=QString());
+	static QVariant valueVar(Key key, const QVariant &defaultValue=QVariant());
+	static void setValue(Key key, const QVariant &value);
 	static void sync();
 	static quint32 sec(quint32 time, int freq_value);
 	static quint32 min(quint32 time, int freq_value);
@@ -51,11 +60,15 @@ public:
 
 	static QTranslator *translator;
 private:
+	static inline QString keyToStr(Key key) {
+		return keys[int(key)];
+	}
 	static QList<FF8Installation> _ff8Installations;
 	static int _selectedFF8Installation;
 	static bool _ff8InstallationsSearched;
 	static QSettings *settings;
 	static QStringList recentFiles;
+	static const char *keys[KEYS_SIZE];
 };
 
 #endif // CONFIG_H

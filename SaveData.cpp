@@ -113,6 +113,7 @@ QByteArray SaveData::save() const
 	if(ret.size() != SAVE_SIZE) {
 		ret = ret.leftJustified(SAVE_SIZE, '\x00', true);
 		qWarning() << "Error saved save size" << ret.size() << SAVE_SIZE;
+		Q_ASSERT(false);
 	}
 
 	return ret;

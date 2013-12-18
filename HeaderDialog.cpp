@@ -38,7 +38,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	country->addItem(QIcon(":/images/eu.png"), tr("Europe"), COUNTRY_EU);
 	country->addItem(tr("Invalide"), '\x00');
 
-	country->setCurrentIndex(Config::valueVar("lastCountry").toInt());
+	country->setCurrentIndex(Config::valueVar(Config::LastCountry).toInt());
 
 	QLabel *code_lbl = new QLabel(tr("Code :"));
 	code_lbl->setTextFormat(Qt::PlainText);
@@ -47,7 +47,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	code->lineEdit()->setMaxLength(10);
 	fillCode(code);
 
-	QString lastGameCode = Config::value("lastGameCode");
+	QString lastGameCode = Config::value(Config::LastGameCode);
 	if(!lastGameCode.isEmpty()) {
 		setCode(lastGameCode);
 	}
@@ -297,8 +297,8 @@ void HeaderDialog::setId(const QString &idStr)
 void HeaderDialog::accept()
 {
 	if(viewType != NormalView || saveData->hasMCHeader()) {
-		Config::setValue("lastCountry", country->currentIndex());
-		Config::setValue("lastGameCode", code->currentText());
+		Config::setValue(Config::LastCountry, country->currentIndex());
+		Config::setValue(Config::LastGameCode, code->currentText());
 
 		// Edit MC Header
 		saveData->setMCHeader(exists->isChecked(),
@@ -333,13 +333,16 @@ void HeaderDialog::accept()
 
 void HeaderDialog::saveIcon(bool chocobo_world_icon)
 {
-	QString path = Config::value("savePathIcon").isEmpty() ? QString() : Config::value("savePathIcon") % "/";
+	QString path, savePathIcon = Config::value(Config::SavePathIcon);
+
+	path = savePathIcon.isEmpty() ? QString() : savePathIcon % "/";
 	path = QFileDialog::getSaveFileName(this, tr("Enregistrer sous"), path % QString("icon%1%2.png").arg(saveData->id()+1).arg(chocobo_world_icon ? "b" : ""), tr("Image PNG (*.png);;Image JPG (*.jpg *.jpeg);;Image BMP (*.bmp)"));
 	if(path.isEmpty())		return;
 
 	int index = path.lastIndexOf('/');
-	Config::setValue("savePathIcon", index == -1 ? path : path.left(index));
+	Config::setValue(Config::SavePathIcon, index == -1 ? path : path.left(index));
 
-	if(!saveData->saveIcon().icon(0, chocobo_world_icon).save(path))
+	if(!saveData->saveIcon().icon(0, chocobo_world_icon).save(path)) {
 		QMessageBox::warning(this, tr("Erreur"), tr("Format incorrect."));
+	}
 }

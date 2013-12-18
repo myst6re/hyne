@@ -19,6 +19,12 @@
 #include "Config.h"
 #include "QTaskBarButton.h"
 
+const char *Config::keys[KEYS_SIZE] = {
+	"recentFiles", "lang", "geometry",
+	"font", "freq", "freq_auto", "mode", "lastCountry", "lastGameCode", "selectedFF8Installation",
+	"loadPath", "savePath", "savePathIcon"
+};
+
 QTranslator *Config::translator;
 QStringList Config::recentFiles;
 QSettings *Config::settings = 0;
@@ -39,28 +45,28 @@ QString Config::translationDir()
 
 quint32 Config::sec(quint32 time, int freq_value)
 {
-	return time%freq(freq_value);
+	return time % freq(freq_value);
 }
 
 quint32 Config::min(quint32 time, int freq_value)
 {
-	return (time/freq(freq_value))%60;
+	return (time / freq(freq_value)) % 60;
 }
 
 quint32 Config::hour(quint32 time, int freq_value)
 {
-	return time/(60*freq(freq_value));
+	return time / (60 * freq(freq_value));
 }
 
 quint32 Config::time(quint32 hour, quint32 min, quint32 sec, int freq_value)
 {
 	int f = freq(freq_value);
-	return sec + min*f + hour*f*60;
+	return sec + min * f + hour * f * 60;
 }
 
 void Config::loadRecentFiles()
 {
-	recentFiles = settings->value("recentFiles").toStringList();
+	recentFiles = settings->value(keyToStr(RecentFiles)).toStringList();
 	// Compatibility with old version (< 1.6)
 	if(recentFiles.isEmpty()) {
 		for(int i=0 ; i<20 ; ++i) {
@@ -114,7 +120,7 @@ void Config::saveRecentFiles()
 		if(i > 20)	break;
 	}
 
-	settings->setValue("recentFiles", rf);
+	setValue(RecentFiles, rf);
 	// Compatibility with old version (< 1.6)
 	for(i=0 ; i<20 ; ++i)
 		settings->remove(QString("recentFile%1").arg(i));
@@ -127,37 +133,41 @@ void Config::set()
 #else
 	settings = new QSettings(PROG_NAME);
 #endif
+	if(int(_KeysSize) != KEYS_SIZE) {
+		qWarning() << "Config: invalid keys size!";
+		Q_ASSERT(false);
+	}
 }
 
 bool Config::mode()
 {
-	return settings->value("mode", false).toBool();
+	return settings->value(keyToStr(Mode), false).toBool();
 }
 
 int Config::freq(const int freq_value)
 {
 	if(freq_auto())	return freq_value;
-	return settings->value("freq", 60).toUInt()==50 ? 50 : 60;
+	return settings->value(keyToStr(Freq), 60).toUInt() == 50 ? 50 : 60;
 }
 
 bool Config::freq_auto()
 {
-	return settings->value("freq_auto", true).toBool();
+	return settings->value(keyToStr(FreqAuto), true).toBool();
 }
 
-QString Config::value(const QString &key, const QString &defaultValue)
+QString Config::value(Key key, const QString &defaultValue)
 {
-	return settings->value(key, defaultValue).toString();
+	return settings->value(keyToStr(key), defaultValue).toString();
 }
 
-void Config::setValue(const QString &key, const QVariant &value)
+void Config::setValue(Key key, const QVariant &value)
 {
-	settings->setValue(key, value);
+	settings->setValue(keyToStr(key), value);
 }
 
-QVariant Config::valueVar(const QString &key, const QVariant &defaultValue)
+QVariant Config::valueVar(Key key, const QVariant &defaultValue)
 {
-	return settings->value(key, defaultValue);
+	return settings->value(keyToStr(key), defaultValue);
 }
 
 void Config::sync()
@@ -169,7 +179,7 @@ const QList<FF8Installation> &Config::ff8Installations()
 {
 	if(!_ff8InstallationsSearched) {
 		_ff8Installations = FF8Installation::installations();
-		_selectedFF8Installation = value("selectedFF8Installation").toInt();
+		_selectedFF8Installation = settings->value(keyToStr(SelectedFF8Installation)).toInt();
 		_ff8InstallationsSearched = true;
 	}
 	return _ff8Installations;
@@ -186,5 +196,5 @@ FF8Installation Config::ff8Installation()
 void Config::setSelectedFF8Installation(int id)
 {
 	_selectedFF8Installation = id;
-	setValue("selectedFF8Installation", id);
+	settings->setValue(keyToStr(SelectedFF8Installation), id);
 }

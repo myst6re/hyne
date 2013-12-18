@@ -107,7 +107,7 @@ Window::Window() :
 	
 	actionFont = menu->addAction(tr("&Police haute résolution"), this, SLOT(font(bool)));
 	actionFont->setCheckable(true);
-	actionFont->setChecked(!Config::value("font").isEmpty());
+	actionFont->setChecked(!Config::value(Config::Font).isEmpty());
 	
 	menuLang = menu->addMenu(tr("&Langue"));
 	foreach(const QString &str, availableLanguages()) {
@@ -115,7 +115,7 @@ Window::Window() :
 		QString lang = str.mid(str.lastIndexOf("|") + 1);
 		action->setData(lang);
 		action->setCheckable(true);
-		action->setChecked(Config::value("lang") == lang);
+		action->setChecked(Config::value(Config::Lang) == lang);
 	}
 	connect(menuLang, SIGNAL(triggered(QAction*)), SLOT(changeLanguage(QAction*)));
 
@@ -149,12 +149,12 @@ Window::Window() :
 	stackedLayout->setMenuBar(menuBar);
 	stackedLayout->addWidget(startWidget);
 
-	restoreGeometry(Config::valueVar("geometry").toByteArray());
+	restoreGeometry(Config::valueVar(Config::Geometry).toByteArray());
 }
 
 Window::~Window()
 {
-	Config::setValue("geometry", saveGeometry());
+	Config::setValue(Config::Geometry, saveGeometry());
 	Config::saveRecentFiles();
 	Config::sync();// flush data
 }
@@ -273,8 +273,9 @@ void Window::open(OpenType slot)
 	}
 	else
 	{
-		if(!Config::value("loadPath").isEmpty())
-			path = Config::value("loadPath");
+		QString loadPath = Config::value(Config::LoadPath);
+		if(!loadPath.isEmpty())
+			path = loadPath;
 		else if(!path.isEmpty())
 			path.append("/Save");
 		path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path,
@@ -290,7 +291,7 @@ void Window::open(OpenType slot)
 		if(path.isNull())		return;
 
 		int index = path.lastIndexOf('/');
-		Config::setValue("loadPath", index == -1 ? path : path.left(index));
+		Config::setValue(Config::LoadPath, index == -1 ? path : path.left(index));
 	}
 
 	openFile(path, slot, installation);
@@ -432,7 +433,7 @@ bool Window::exportAs()
 	else if(type == SavecardData::Vmp)		selectedFilter = vmp;
 	else									selectedFilter = ps;
 	
-	path = Config::value("savePath").isEmpty() ? saves->dirname() : Config::value("savePath")+"/";
+	path = Config::value(Config::SavePath).isEmpty() ? saves->dirname() : Config::value(Config::SavePath)+"/";
 	if(saves->type() == SavecardData::Undefined) {
 		path = path+saves->name()+".mcr";
 	} else {
@@ -458,7 +459,7 @@ bool Window::exportAs()
 	}
 	
 	int index = path.lastIndexOf('/');
-	Config::setValue("savePath", index == -1 ? path : path.left(index));
+	Config::setValue(Config::SavePath, index == -1 ? path : path.left(index));
 
 	return exportAs(newType, path);
 }
@@ -702,7 +703,7 @@ void Window::save()
 
 void Window::mode(bool mode)
 {
-	Config::setValue("mode", mode);
+	Config::setValue(Config::Mode, mode);
 	if(saves && editor) {
 		editor->updateMode(mode);
 	}
@@ -711,10 +712,10 @@ void Window::mode(bool mode)
 void Window::changeFrame(QAction *action)
 {
 	if(action->data().toInt()==0)
-		Config::setValue("freq_auto", true);
+		Config::setValue(Config::FreqAuto, true);
 	else {
-		Config::setValue("freq", action->data());
-		Config::setValue("freq_auto", false);
+		Config::setValue(Config::Freq, action->data());
+		Config::setValue(Config::FreqAuto, false);
 	}
 
 	foreach(QAction *act, menuFrame->actions())
@@ -729,7 +730,7 @@ void Window::changeFrame(QAction *action)
 
 void Window::font(bool font)
 {
-	Config::setValue("font", font ? "hr" : "");
+	Config::setValue(Config::Font, font ? "hr" : "");
 	FF8Text::reloadFont();
 	if(saves) {
 		saveList->view()->update();
@@ -791,8 +792,8 @@ QString Window::chooseLangDialog()
 
 void Window::changeLanguage(QAction *action)
 {
-	if(Config::value("lang") != action->data()) {
-		Config::setValue("lang", action->data());
+	if(Config::value(Config::Lang) != action->data()) {
+		Config::setValue(Config::Lang, action->data());
 		foreach(QAction *act, menuLang->actions())
 			act->setChecked(false);
 		action->setChecked(true);
@@ -819,7 +820,7 @@ void Window::newWindow()
 void Window::restartNow()
 {
 	QString str_title, str_text;
-	if(Config::translator->load("hyne_" + Config::value("lang"), qApp->applicationDirPath())) {
+	if(Config::translator->load("hyne_" + Config::value(Config::Lang), qApp->applicationDirPath())) {
 		str_title = Config::translator->translate("Window", "Paramètres modifiés");
 		str_text = Config::translator->translate("Window", "Relancez le programme pour que les paramètres prennent effet.");
     }

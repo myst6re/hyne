@@ -432,7 +432,7 @@ void FF8Text::reloadFont()
 	if(fontImage) {
 		delete fontImage;
 	}
-	fontImage = new QImage(QString(":/images/font%1.png").arg(Config::value("font")));
+	fontImage = new QImage(QString(":/images/font%1.png").arg(Config::value(Config::Font)));
 }
 
 void FF8Text::drawTextArea(QPainter *painter, const QPoint &point, const QString &text, int forceLang)
@@ -488,7 +488,7 @@ void FF8Text::drawTextArea(QPainter *painter, const QPoint &point, const QString
 void FF8Text::letter(int *x, int *y, int charId, QPainter *painter, quint8 tableId)
 {
 	int charIdImage = charId + 231*tableId;
-	int charSrcWidth = Config::value("font").isEmpty() ? 12 : 24;
+	int charSrcWidth = Config::value(Config::Font).isEmpty() ? 12 : 24;
 
 	if(!fontImage)
 		reloadFont();
