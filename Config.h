@@ -54,17 +54,17 @@ public:
 	static int recentFilesSize();
 	static void saveRecentFiles();
 	static void set();
-	static const QList<FF8Installation> &ff8Installations();
+	static const QMap<FF8Installation::Type, FF8Installation> &ff8Installations();
 	static FF8Installation ff8Installation();
-	static void setSelectedFF8Installation(int id);
+	static void setSelectedFF8Installation(FF8Installation::Type id);
 
 	static QTranslator *translator;
 private:
 	static inline QString keyToStr(Key key) {
 		return keys[int(key)];
 	}
-	static QList<FF8Installation> _ff8Installations;
-	static int _selectedFF8Installation;
+	static QMap<FF8Installation::Type, FF8Installation> _ff8Installations;
+	static FF8Installation::Type _selectedFF8Installation;
 	static bool _ff8InstallationsSearched;
 	static QSettings *settings;
 	static QStringList recentFiles;

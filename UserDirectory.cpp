@@ -9,9 +9,26 @@ UserDirectory::UserDirectory(const QString &dirname)
 	setDirname(dirname);
 }
 
+UserDirectory::UserDirectory(const QString &metadataPath, const QString &userID) :
+	_userID(userID)
+{
+	_metadata.setFilename(metadataPath);
+	_dirname = metadataPath.left(metadataPath.lastIndexOf('/'));
+}
+
 bool UserDirectory::isValid() const
 {
-	return !_userID.isEmpty() && !_metadata.filename().isEmpty();
+	return hasUserId() && hasMetadata();
+}
+
+bool UserDirectory::hasMetadata() const
+{
+	return !_metadata.filename().isEmpty();
+}
+
+bool UserDirectory::hasUserId() const
+{
+	return !_userID.isEmpty();
 }
 
 bool UserDirectory::openMetadata()
@@ -36,13 +53,15 @@ bool UserDirectory::updateSignatures()
 	}
 
 	for(quint8 slot=1 ; slot<=2 ; ++slot) {
-		for(quint8 num=0 ; num<30 ; ++num) {
-			QFile f(QString("%1/slot%2_save%3.ff8").arg(_dirname).arg(slot).arg(num, 2, QChar('\0')));
+		for(quint8 num=1 ; num<=30 ; ++num) {
+			QFile f(QString("%1/slot%2_save%3.ff8").arg(_dirname).arg(slot).arg(num, 2, 10, QChar('0')));
 			if(f.open(QIODevice::ReadOnly)) {
 				updateMetadata(slot, num, f.readAll());
 				f.close();
-			} else {
+			} else if(!f.exists()) {
 				updateMetadata(slot, num);
+			} else {
+				return false;
 			}
 		}
 	}
@@ -54,9 +73,11 @@ bool UserDirectory::updateSignatures()
 		}
 		_metadata.updateSignature(f.readAll(), _userID);
 		f.close();
-	} else {
+	} else if(!f.exists()) {
 		_metadata.setTimestamp(TIMESTAMP_EMPTY);
 		_metadata.updateSignature(QByteArray(), _userID);
+	} else {
+		return false;
 	}
 
 	if(!saveMetadata()) {
@@ -73,12 +94,10 @@ bool UserDirectory::saveMetadata()
 void UserDirectory::setDirname(const QString &dirname)
 {
 	_dirname = dirname;
-	_userID = extractUserID();
-	if(!_userID.isEmpty()) {
-		QString metadataPath = _dirname + "/metadata.xml";
-		if(QFile::exists(metadataPath)) {
-			_metadata.setFilename(metadataPath);
-		}
+	_userID = extractUserID(_dirname);
+	QString metadataPath = _dirname + "/metadata.xml";
+	if(QFile::exists(metadataPath)) {
+		_metadata.setFilename(metadataPath);
 	}
 }
 
@@ -87,14 +106,14 @@ const QString &UserDirectory::errorString() const
 	return _metadata.errorString();
 }
 
-QString UserDirectory::extractUserID() const
+QString UserDirectory::extractUserID(const QString &dirname)
 {
-	int index = _dirname.lastIndexOf('/', -2);
+	int index = dirname.lastIndexOf('/', -2);
 	QString lastDirname;
 	if(index < 0) {
-		lastDirname = _dirname;
+		lastDirname = dirname;
 	} else {
-		lastDirname = _dirname.mid(index + 1);
+		lastDirname = dirname.mid(index + 1);
 	}
 	if(lastDirname.startsWith("user_")) {
 		return lastDirname.mid(5);

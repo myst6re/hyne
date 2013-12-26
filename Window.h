@@ -60,6 +60,7 @@ private slots:
 	void changeLanguage(QAction *);
 	void changeFF8Version(QAction *);
 	void runFF8();
+	void updateMetadata();
 	void fullScreen();
 	void about();
 	static void newWindow();

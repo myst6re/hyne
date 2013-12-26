@@ -3,8 +3,9 @@
 
 #include <QtCore>
 
-struct FF8Installation
+class FF8Installation
 {
+public:
 	enum Type {
 		Standard, Steam, Custom
 	};
@@ -41,13 +42,13 @@ struct FF8Installation
 		return type() == i2.type();
 	}
 
-	static QList<FF8Installation> installations();
+	static QMap<FF8Installation::Type, FF8Installation> installations();
 private:
 	static QString standardFF8AppPath();
 	static QString steamFF8AppPath();
 	static QStringList steamFF8UserDataPaths(int max=-1);
 	static QString regValue(const QString &regPath, const QString &regKey);
-	static QStringList searchInstalledApps(const QString &appName, int max=-1);
+	static QStringList searchInstalledApps(const QString &appName, const QString &publisher, int max=-1);
 
 	Type _type;
 	QString _appPath;

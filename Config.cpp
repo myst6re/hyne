@@ -28,8 +28,8 @@ const char *Config::keys[KEYS_SIZE] = {
 QTranslator *Config::translator;
 QStringList Config::recentFiles;
 QSettings *Config::settings = 0;
-QList<FF8Installation> Config::_ff8Installations;
-int Config::_selectedFF8Installation = 0;
+QMap<FF8Installation::Type, FF8Installation> Config::_ff8Installations;
+FF8Installation::Type Config::_selectedFF8Installation = FF8Installation::Standard;
 bool Config::_ff8InstallationsSearched = false;
 
 QString Config::translationDir()
@@ -175,11 +175,11 @@ void Config::sync()
 	settings->sync();
 }
 
-const QList<FF8Installation> &Config::ff8Installations()
+const QMap<FF8Installation::Type, FF8Installation> &Config::ff8Installations()
 {
 	if(!_ff8InstallationsSearched) {
 		_ff8Installations = FF8Installation::installations();
-		_selectedFF8Installation = settings->value(keyToStr(SelectedFF8Installation)).toInt();
+		_selectedFF8Installation = FF8Installation::Type(settings->value(keyToStr(SelectedFF8Installation)).toInt());
 		_ff8InstallationsSearched = true;
 	}
 	return _ff8Installations;
@@ -190,10 +190,10 @@ FF8Installation Config::ff8Installation()
 	if(!_ff8InstallationsSearched) {
 		ff8Installations();
 	}
-	return _ff8Installations.value(_selectedFF8Installation);
+	return _ff8Installations.value(_selectedFF8Installation, _ff8Installations.constBegin().value());
 }
 
-void Config::setSelectedFF8Installation(int id)
+void Config::setSelectedFF8Installation(FF8Installation::Type id)
 {
 	_selectedFF8Installation = id;
 	settings->setValue(keyToStr(SelectedFF8Installation), id);

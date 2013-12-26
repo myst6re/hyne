@@ -18,6 +18,7 @@
 
 #include "Window.h"
 #include "HeaderDialog.h"
+#include "MetadataDialog.h"
 
 Window::Window() :
 	QWidget(), taskBarButton(0), saves(0), saveList(0), editor(0)
@@ -62,6 +63,8 @@ Window::Window() :
 	actionProperties = menu->addAction(tr("&Propriétés..."), this, SLOT(properties()));
 	actionProperties->setEnabled(false);
 	if(isInstalled) {
+		action = menu->addAction(tr("Signer des sauv. pour le Cloud..."), this, SLOT(updateMetadata()));
+		addAction(action);
 		action = menu->addAction(QIcon(":/images/ff8.png"), tr("&Lancer Final Fantasy VIII"), this, SLOT(runFF8()), Qt::Key_F8);
 		action->setShortcutContext(Qt::ApplicationShortcut);
 		addAction(action);
@@ -348,10 +351,13 @@ void Window::openFile(const QString &path, OpenType openType, const FF8Installat
 		saveView();
 		saveList->setSavecard(saves);
 
-		if(saves->type() == SavecardData::Psv || saves->type() == SavecardData::Vmp)
-			QMessageBox::information(this, tr("Sauvegarde hasardeuse"), tr("Le format %1 est protégé, l'enregistrement sera partiel et risque de ne pas fonctionner.")
+		if(saves->type() == SavecardData::Psv || saves->type() == SavecardData::Vmp) {
+			QMessageBox::information(this, tr("Sauvegarde hasardeuse"),
+									 tr("Le format %1 est protégé, "
+										"l'enregistrement sera partiel "
+										"et risque de ne pas fonctionner.")
 									 .arg(saves->extension()));
-
+		}
 		setIsOpen(true);
 		setModified(saves->isModified());
 
@@ -454,8 +460,13 @@ bool Window::exportAs()
 	}
 
 	if(newType == SavecardData::Vmp || newType == SavecardData::Psv) {
-		int reponse = QMessageBox::information(this, tr("Sauvegarde hasardeuse"), tr("Les formats VMP et PSV sont protégés, l'enregistrement sera partiel et risque de ne pas fonctionner.\nContinuer quand même ?"), tr("Oui"), tr("Non"));
-		if(reponse != 0)  return exportAs();
+		QMessageBox::StandardButton reponse = QMessageBox::information(this, tr("Sauvegarde hasardeuse"),
+											   tr("Les formats VMP et PSV sont protégés, "
+												  "l'enregistrement sera partiel et risque "
+												  "de ne pas fonctionner.\n"
+												  "Continuer quand même ?"),
+											   QMessageBox::Yes | QMessageBox::No);
+		if(reponse != QMessageBox::Yes)  return exportAs();
 	}
 	
 	int index = path.lastIndexOf('/');
@@ -806,7 +817,7 @@ void Window::changeLanguage(QAction *action)
 
 void Window::changeFF8Version(QAction *action)
 {
-	Config::setSelectedFF8Installation(menuVersion->actions().indexOf(action));
+	Config::setSelectedFF8Installation(FF8Installation::Type(menuVersion->actions().indexOf(action)));
 	foreach(QAction *act, menuVersion->actions())
 		act->setChecked(false);
 	action->setChecked(true);
@@ -846,6 +857,18 @@ void Window::runFF8()
 	QString appPath = Config::ff8Installation().appPath(), exeFilename = appPath % "/" % Config::ff8Installation().exeFilename();
 	if(!QProcess::startDetached(QString("\"%1\"").arg(exeFilename), QStringList(), appPath)) {
 		QMessageBox::warning(this, tr("Erreur"), tr("Final Fantasy VIII n'a pas pu être lancé.\n%1").arg(exeFilename));
+	}
+}
+
+void Window::updateMetadata()
+{
+	MetadataDialog dialog(Config::ff8Installations(), this);
+	if(dialog.exec() == QDialog::Accepted) {
+		UserDirectory userDir(dialog.metadataPath(), dialog.userID());
+		if(!userDir.updateSignatures()) {
+			QMessageBox::warning(this, tr("Erreur"), tr("Impossible de mettre à jour les signatures.\n") +
+														userDir.errorString());
+		}
 	}
 }
 
