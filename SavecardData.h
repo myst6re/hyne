@@ -37,11 +37,15 @@ public:
 
 	bool open(const QString &path, quint8 slot=0);
 	const QFileSystemWatcher *watcher() const;
-	const QString &errorString() const;
+	inline const QString &errorString() const {
+		return _lastError;
+	}
 	QString description() const;
 	void setDescription(const QString &desc);
 	void setIsTheLastEdited(int saveID);
-	const QList<SaveData *> &getSaves() const;
+	inline const QList<SaveData *> &getSaves() const {
+		return saves;
+	}
 	void moveSave(int sourceID, int targetID);
 	SaveData *getSave(int id) const;
 	int saveCount() const;
@@ -53,11 +57,19 @@ public:
 	QString dirname() const;
 	QString name() const;
 	QString extension() const;
-	const QString &path() const;
+	inline const QString &path() const {
+		return _path;
+	}
 	void setName(const QString &name);
-	bool isOpen() const;
-	Type type() const;
-	quint8 slotNumber() const;
+	inline bool isOpen() const {
+		return _ok;
+	}
+	inline Type type() const {
+		return _type;
+	}
+	inline quint8 slotNumber() const {
+		return _slot;
+	}
 	bool hasPath() const;
 	bool isModified() const;
 	void setModified(bool modified);
@@ -70,7 +82,9 @@ public:
 	bool getFormatFromRaw();
 	bool save(const QString &saveAs=QString(), Type newType=Pc);
 private:
-	void setPath(const QString &path);
+	inline void setPath(const QString &path) {
+		_path = path;
+	}
 	void setType(Type type);
 	bool ps();
 	bool ps3();
@@ -81,6 +95,9 @@ private:
 	void directory(const QString &filePattern);
 	void addSave(const QByteArray &data=QByteArray(), const QByteArray &header=QByteArray(), bool occupied=false);
 	QByteArray header(QFile *srcFile, Type newType, bool saveAs);
+	inline void setErrorString(const QString &errorString) {
+		_lastError = errorString;
+	}
 
 	QString _path, _lastError;
 	bool _ok;

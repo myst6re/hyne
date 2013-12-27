@@ -38,12 +38,12 @@ bool Metadata::open()
 				if(type.compare("ff8", Qt::CaseInsensitive) == 0) {
 					num = attrs.value("num").toString().toUInt(&ok);
 					if (!ok) {
-						setErrorString(QObject::tr("Impossible de charger le contenu du fichier '%1' : attribut 'num' invalide").arg(_filename));
+						setErrorString(QObject::tr("Attribut 'num' invalide"));
 						return false;
 					}
 					slot = attrs.value("slot").toString().toUInt(&ok);
 					if (!ok) {
-						setErrorString(QObject::tr("Impossible de charger le contenu du fichier '%1' : attribut 'slot' invalide").arg(_filename));
+						setErrorString(QObject::tr("Attribut 'slot' invalide"));
 						return false;
 					}
 				}
@@ -84,7 +84,7 @@ bool Metadata::open()
 
 	}
 	if (xml.hasError()) {
-		setErrorString(QObject::tr("Impossible de charger le contenu du fichier '%1'").arg(_filename));
+		setErrorString(xml.errorString());
 		return false;
 	}
 
@@ -135,6 +135,11 @@ bool Metadata::save()
 	}
 
 	xml.writeEndDocument();
+
+	if (xml.hasError()) {
+		setErrorString(QObject::tr("Erreur inconnue"));
+		return false;
+	}
 
 	return true;
 }

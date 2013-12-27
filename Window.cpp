@@ -567,7 +567,9 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 	}
 
 	if(!ok) {
-		QMessageBox::warning(this, tr("Erreur"), saves->errorString());
+		QMessageBox::critical(this, tr("Erreur"), saves->errorString());
+	} else if(!saves->errorString().isEmpty()) {
+		QMessageBox::warning(this, tr("Attention"), saves->errorString());
 	}
 
 	setTitle();
