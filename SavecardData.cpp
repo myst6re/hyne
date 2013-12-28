@@ -656,7 +656,8 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 			slot = capturedTexts.at(1).toInt();
 			num = capturedTexts.at(2).toInt();
 		} else if(!userDirectory.hasMetadata()) {
-			setErrorString(QObject::tr("Le fichier 'metadata.xml' n'a pas été trouvé dans le dossier '%1'").arg(dirname));
+			setErrorString(QObject::tr("Le fichier 'metadata.xml' n'a pas été trouvé dans le dossier '%1'.\n"
+									   "Essayez de signer vos sauvegardes manuellement (Fichier > Signer les sauv. pour le Cloud).").arg(dirname));
 		} else {
 			setErrorString(QObject::tr("Le fichier 'metadata.xml' n'a pas pu être ouvert.\n%1").arg(userDirectory.errorString()));
 		}

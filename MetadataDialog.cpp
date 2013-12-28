@@ -20,8 +20,13 @@ void MetadataDialog::build()
 											 "les sauvegardes doivent être signées. "
 											 "Ces signatures sont écrites dans un fichier "
 											 "nommé metadata.xml, normalement situé "
-											 "dans le même dossier que vos sauvegardes."));
-	_autoCheckBox = new QCheckBox(tr("Auto"), this);
+											 "dans le même dossier que vos sauvegardes.\n"
+											 "Pour trouver votre numéro d'utilisateur, "
+											 "regardez le nom du dossier où se trouve vos sauvegardes. "
+											 "Si vous ne voyez pas, essayez en laissant le champ vide.\n"
+											 "Par défaut Hyne tente de signer les sauvegardes "
+											 "automatiquement, mais en cas d'erreur, vous pouvez "
+											 "essayer de le faire manuellement ici."));
 
 	_path = new QLineEdit(this);
 	_pathButton = new QPushButton(tr("Parcourir..."), this);
@@ -48,43 +53,23 @@ void MetadataDialog::build()
 
 	QVBoxLayout *layout = new QVBoxLayout(this);
 	layout->addWidget(help);
-	layout->addWidget(_autoCheckBox);
 	layout->addWidget(_formWidget);
 	layout->addStretch();
 	layout->addWidget(buttonBox);
 
-	connect(_autoCheckBox, SIGNAL(toggled(bool)), SLOT(formDisabled(bool)));
 	connect(_pathButton, SIGNAL(clicked()), SLOT(setMetadataPath()));
-}
-
-void MetadataDialog::formDisabled(bool disabled)
-{
-	_formWidget->setDisabled(disabled);
 }
 
 void MetadataDialog::fill(const QMap<FF8Installation::Type, FF8Installation> &ff8Installations)
 {
 	if(ff8Installations.contains(FF8Installation::Steam)) {
-		_autoCheckBox->setChecked(true);
 		FF8Installation installation = ff8Installations.value(FF8Installation::Steam);
 		if(installation.hasMetadata()) {
 			QString savePath = installation.savePath(1);
 			_path->setText(savePath + "/metadata.xml");
 			UserDirectory userDir(savePath);
 			_userID->setText(userDir.userID());
-			if(!userDir.hasUserId()) {
-				//TODO
-				_autoCheckBox->setChecked(false);
-				_autoCheckBox->hide();
-			}
-		} else {
-			//TODO
-			_autoCheckBox->setChecked(false);
-			_autoCheckBox->hide();
 		}
-	} else {
-		_autoCheckBox->setChecked(false);
-		_autoCheckBox->hide();
 	}
 }
 

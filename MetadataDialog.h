@@ -18,17 +18,14 @@ public:
 	inline QString userID() const {
 		return _userID->text();
 	}
-signals:
 
 public slots:
 	void setMetadataPath(const QString &path = QString());
-private slots:
-	void formDisabled(bool disabled);
+
 private:
 	void build();
 
 	QWidget *_formWidget;
-	QCheckBox *_autoCheckBox;
 	QLineEdit *_path, *_userID;
 	QPushButton *_pathButton;
 };
