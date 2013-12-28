@@ -62,9 +62,9 @@ Window::Window() :
 	menu->addSeparator();
 	actionProperties = menu->addAction(tr("&Propriétés..."), this, SLOT(properties()));
 	actionProperties->setEnabled(false);
+	action = menu->addAction(tr("Signer des sauv. pour le Cloud..."), this, SLOT(updateMetadata()));
+	addAction(action);
 	if(isInstalled) {
-		action = menu->addAction(tr("Signer des sauv. pour le Cloud..."), this, SLOT(updateMetadata()));
-		addAction(action);
 		action = menu->addAction(QIcon(":/images/ff8.png"), tr("&Lancer Final Fantasy VIII"), this, SLOT(runFF8()), Qt::Key_F8);
 		action->setShortcutContext(Qt::ApplicationShortcut);
 		addAction(action);
