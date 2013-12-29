@@ -35,6 +35,10 @@ void PersoEditor::updateMode(bool mode)
 		LBindicator_E->setVisible(mode);
 		indicatorlabel->setVisible(mode);
 	}
+	qtyAllSpin->setRange(0, mode ? MAX_INT8 : 100);
+	for(int i=0 ; i<32 ; ++i) {
+		magie_E_model->item(i, 1)->setData(mode ? SpinBoxDelegate::SpinBox255 : SpinBoxDelegate::SpinBox100, Qt::UserRole);
+	}
 }
 
 void PersoEditor::buildWidget()
@@ -302,7 +306,7 @@ QWidget *PersoEditor::buildPage3()
 		items.append(standardItem);
 
 		standardItem = new QStandardItem();
-		standardItem->setData(SpinBoxDelegate::SpinBox256, Qt::UserRole);
+		standardItem->setData(SpinBoxDelegate::SpinBox255, Qt::UserRole);
 		items.append(standardItem);
 
 		magie_E_model->appendRow(items);

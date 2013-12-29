@@ -187,7 +187,7 @@ void ItemEditor::fillPage()
 		items.append(standardItem);
 		
 		standardItem = new QStandardItem(QString::number(data->items.items[i] >> 8));
-		standardItem->setData(SpinBoxDelegate::SpinBox256, Qt::UserRole);
+		standardItem->setData(SpinBoxDelegate::SpinBox255, Qt::UserRole);
 		items.append(standardItem);
 		itemE_model->appendRow(items);
 	}

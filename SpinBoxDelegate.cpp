@@ -99,7 +99,7 @@ QWidget *SpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewIt
 		return comboBox;
 	}
 	QSpinBox *spinBox = new QSpinBox(parent);
-	spinBox->setRange(0, type == SpinBox127 ? 127 : 255);
+	spinBox->setRange(0, spinBoxMax(type));
 	return spinBox;
 }
 
@@ -109,6 +109,7 @@ void SpinBoxDelegate::setEditorData(QWidget *editor, const QModelIndex &index) c
 	if(type != ComboBoxMagics && type != ComboBoxItems && type != ComboBoxLocations && type != ComboBoxDraw)
 	{
 		QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
+		spinBox->setRange(0, spinBoxMax(type));
 		spinBox->setValue(index.data(Qt::EditRole).toInt());
 	}
 }
@@ -135,6 +136,7 @@ void SpinBoxDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, c
 	else
 	{
 		QSpinBox *spinBox = static_cast<QSpinBox*>(editor);
+		spinBox->setRange(0, spinBoxMax(type));
 		model->setData(index, spinBox->value(), Qt::EditRole);
 	}
 }
@@ -149,7 +151,7 @@ QSize SpinBoxDelegate::sizeHint(const QStyleOptionViewItem &option, const QModel
 		editSize = QComboBox().sizeHint();
 	} else {
 		QSpinBox spinBox;
-		spinBox.setRange(0, type == SpinBox127 ? 127 : 255);
+		spinBox.setRange(0, spinBoxMax(type));
 		editSize = spinBox.sizeHint();
 	}
 
@@ -164,4 +166,16 @@ QSize SpinBoxDelegate::sizeHint(const QStyleOptionViewItem &option, const QModel
 	}
 
 	return editSize;
+}
+
+int SpinBoxDelegate::spinBoxMax(EditorType type)
+{
+	switch(type) {
+	case SpinBox100:
+		return 100;
+	case SpinBox127:
+		return 127;
+	default:
+		return 255;
+	}
 }

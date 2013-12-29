@@ -71,7 +71,7 @@ class SpinBoxDelegate : public QItemDelegate
 	Q_OBJECT
 public:
 	enum EditorType {
-		SpinBox127, SpinBox256, ComboBoxMagics, ComboBoxItems, ComboBoxLocations, ComboBoxDraw
+		SpinBox100, SpinBox127, SpinBox255, ComboBoxMagics, ComboBoxItems, ComboBoxLocations, ComboBoxDraw
 	};
 
 	explicit SpinBoxDelegate(QObject *parent = 0);
@@ -80,6 +80,7 @@ public:
 	virtual void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
 	virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
 private:
+	static int spinBoxMax(EditorType type);
 	QWidget *editor;
 };
 
