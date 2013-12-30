@@ -58,8 +58,8 @@ public:
 	virtual QSize sizeHint() const;
 	virtual QSize minimumSizeHint() const;
 	// public function to draw a save preview
-	static void renderSave(QPainter *painter, const SaveData *saveData, const QRect &sourceRect=QRect());
-	static void renderSave(QPixmap *pixmap, const SaveData *saveData, const QRect &sourceRect=QRect());
+	static void renderSave(QPainter *painter, const SaveData *saveData, int currentIconFrame=0, const QRect &sourceRect=QRect());
+	static void renderSave(QPixmap *pixmap, const SaveData *saveData, int currentIconFrame=0, const QRect &sourceRect=QRect());
 	static void drawFrame(QPainter *painter, int width, int height);
 	static void num2pix(QPainter *painter, QImage *numberPixmap, int x, int y, quint32 num, quint8 space=1, QChar fill=QChar(' '), int color=0);
 public slots:
@@ -71,6 +71,7 @@ private slots:
 	void newGame(int saveID=-1);
 	void removeSave(int saveID=-1);
 	void refreshIcon(SaveData *saveData);
+	void nextIcon();
 	void drop();
 signals:
 	void changed();
@@ -82,7 +83,7 @@ private:
 	void setBlackSave(int saveID);
 	int saveID(const QPoint &pos) const;
 	void restore(int saveID);
-	static void renderSave(QPainter *painter, const SaveData *saveData, const QPixmap &menuBg, const QPixmap &fontPixmap, QImage &numberPixmap, const QRect &sourceRect=QRect());
+	static void renderSave(QPainter *painter, const SaveData *saveData, const QPixmap &menuBg, const QPixmap &fontPixmap, QImage &numberPixmap, int currentIconFrame=0, const QRect &sourceRect=QRect());
 	static void colors(QImage *image, int color);
 
 	int cursorID, blackID, dropIndicatorID;
@@ -91,11 +92,11 @@ private:
 	bool notify;
 	SavecardData *_data;
 	SavecardWidget *_parent;
-//	SaveIcon *saveIcon;
 	int mouseMove;
 	QPoint startPos;
 	QByteArray *lastDropData;
 	int lastDropID;
+	int currentSaveIconFrame;
 protected:
 	virtual void paintEvent(QPaintEvent *event);
 	virtual void mousePressEvent(QMouseEvent *event);

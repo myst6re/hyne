@@ -47,7 +47,7 @@ protected:
 		transform.scale(width() * 1.0 / sizeHint().width(), height() * 1.0 / sizeHint().height());
 		p.setTransform(transform);
 
-		SavecardView::renderSave(&p, _saveData, event->rect());
+		SavecardView::renderSave(&p, _saveData, 0, event->rect());
 	}
 private:
 	const SaveData *_saveData;

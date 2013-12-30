@@ -27,11 +27,10 @@ SavecardView::SavecardView(SavecardWidget *parent) :
 	QWidget(parent), cursorID(-1), blackID(-1),
 	dropIndicatorID(-1), isExternalDrag(false),
 	_dragStart(-1), notify(true), _data(0), _parent(parent),
-	mouseMove(0), lastDropData(0)
+	mouseMove(0), lastDropData(0), currentSaveIconFrame(0)
 {
 	setPalette(QPalette(Qt::black));
-//	saveIcon = new SaveIcon();//TODO
-//	connect(saveIcon, SIGNAL(nextIcon(QPixmap)), SLOT(refreshIcon()));
+	connect(&SaveIcon::timer, SIGNAL(timeout()), SLOT(nextIcon()));
 	setMouseTracking(true);
 	setAcceptDrops(true);
 }
@@ -61,6 +60,9 @@ void SavecardView::setSavecard(SavecardData *save)
 	if(_data) {
 		setFixedSize(sizeHint());
 		connect(_data->watcher(), SIGNAL(fileChanged(QString)), SLOT(notifyFileChanged(QString)));
+		if(!SaveIcon::timer.isActive()) {
+			SaveIcon::timer.start();
+		}
 	}
 }
 
@@ -370,7 +372,6 @@ void SavecardView::properties(int saveID)
 			&& saveData->isModified()) {
 		emit changed();
 		if(!saveData->isFF8() && !saveData->isDelete()) {
-//			saveIcon->setData(saveData->saveIcon());//TODO
 			refreshIcon(saveData); // update icon
 		}
 	}
@@ -424,22 +425,32 @@ void SavecardView::refreshIcon(SaveData *saveData)
 	}
 }
 
-void SavecardView::renderSave(QPainter *painter, const SaveData *saveData, const QRect &sourceRect)
+void SavecardView::nextIcon()
+{
+	if(!_data) return;
+
+	++currentSaveIconFrame;
+	foreach(SaveData *saveData, _data->getSaves()) {
+		refreshIcon(saveData);
+	}
+}
+
+void SavecardView::renderSave(QPainter *painter, const SaveData *saveData, int currentIconFrame, const QRect &sourceRect)
 {
 	QPixmap menuBg(QString(":/images/menu-fond%1.png").arg(!saveData->isTheLastEdited() && !saveData->isDelete() ? "" : "2"));
 	QPixmap menuTitle(":/images/numbers_title.png");
 	QImage numberPixmap(":/images/numbers.png");
 
-	renderSave(painter, saveData, menuBg, menuTitle, numberPixmap, sourceRect);
+	renderSave(painter, saveData, menuBg, menuTitle, numberPixmap, currentIconFrame, sourceRect);
 }
 
-void SavecardView::renderSave(QPixmap *pixmap, const SaveData *saveData, const QRect &sourceRect)
+void SavecardView::renderSave(QPixmap *pixmap, const SaveData *saveData, int currentIconFrame, const QRect &sourceRect)
 {
 	QPainter p(pixmap);
-	renderSave(&p, saveData, sourceRect);
+	renderSave(&p, saveData, currentIconFrame, sourceRect);
 }
 
-void SavecardView::renderSave(QPainter *painter, const SaveData *saveData, const QPixmap &menuBg, const QPixmap &fontPixmap, QImage &numberPixmap, const QRect &sourceRect)
+void SavecardView::renderSave(QPainter *painter, const SaveData *saveData, const QPixmap &menuBg, const QPixmap &fontPixmap, QImage &numberPixmap, int currentIconFrame, const QRect &sourceRect)
 {
 	QRect toBePainted;
 	if(sourceRect.isNull()) {
@@ -541,8 +552,7 @@ void SavecardView::renderSave(QPainter *painter, const SaveData *saveData, const
 			else
 			{
 				// Icon + description
-//				painter->drawPixmap(36, 43, saveIcon->pixmap());//TODO
-				painter->drawPixmap(36, 43, saveData->saveIcon().icon());
+				painter->drawPixmap(36, 43, saveData->saveIcon().icon(currentIconFrame % saveData->saveIcon().nbFrames()));
 				QString short_desc = saveData->shortDescription();
 				if(!short_desc.isEmpty())
 				{
@@ -597,6 +607,7 @@ void SavecardView::paintEvent(QPaintEvent *event)
 						   !saveData->isTheLastEdited()
 						   && !saveData->isDelete() ? menuBg : menuBg2,
 						   menuTitle, numberPixmap,
+						   currentSaveIconFrame,
 						   sourceRect);
 
 				// Paint cursor hand
@@ -743,7 +754,7 @@ void SavecardView::mouseMoveEvent(QMouseEvent *event)
 	drag->setMimeData(mimeData);
 	drag->setHotSpot(QPoint(event->pos().x() - horizontalMargin(), event->pos().y() % saveHeight()));
 	QPixmap pixmap(saveSize());
-	renderSave(&pixmap, saveData);
+	renderSave(&pixmap, saveData, currentSaveIconFrame);
 	drag->setPixmap(pixmap);
 
 	setBlackSave(saveData->id());

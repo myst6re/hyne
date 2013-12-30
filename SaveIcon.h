@@ -37,6 +37,14 @@ private:
 	quint8 _nbFrames;
 };
 
+struct SaveIconTimer : public QTimer
+{
+	SaveIconTimer(QObject *parent=0) :
+		QTimer(parent) {
+		setInterval(160);
+	}
+};
+
 class SaveIcon : public QObject
 {
 	Q_OBJECT
@@ -50,6 +58,7 @@ public:
 	quint8 curFrame() const;
 	bool CWIsVisible() const;
 	QPixmap pixmap() const;
+	static SaveIconTimer timer;
 signals:
 	void nextIcon(const QPixmap &);
 private slots:
@@ -58,7 +67,6 @@ private:
 	SaveIconData _data;
 	quint8 _curFrame;
 	bool _showCW;
-	static QTimer timer;
 };
 
 #endif

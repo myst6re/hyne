@@ -100,7 +100,7 @@ QPixmap SaveIconData::icon(int curFrame, bool showCW) const
 	return QPixmap::fromImage(image);
 }
 
-QTimer SaveIcon::timer;
+SaveIconTimer SaveIcon::timer;
 
 SaveIcon::SaveIcon(bool showCW, QObject *parent) :
 	QObject(parent), _curFrame(0), _showCW(showCW)
@@ -120,7 +120,9 @@ void SaveIcon::setData(const SaveIconData &data)
 	if(_data.nbFrames() > 1)
 	{
 		connect(&timer, SIGNAL(timeout()), SLOT(nextFrame()));
-		timer.start(160);
+		if(!timer.isActive()) {
+			timer.start();
+		}
 	}
 }
 
