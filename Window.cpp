@@ -865,13 +865,7 @@ void Window::runFF8()
 void Window::updateMetadata()
 {
 	MetadataDialog dialog(Config::ff8Installations(), this);
-	if(dialog.exec() == QDialog::Accepted) {
-		UserDirectory userDir(dialog.metadataPath(), dialog.userID());
-		if(!userDir.updateSignatures()) {
-			QMessageBox::warning(this, tr("Erreur"), tr("Impossible de mettre à jour les signatures.\n") +
-														userDir.errorString());
-		}
-	}
+	dialog.exec();
 }
 
 void Window::fullScreen()

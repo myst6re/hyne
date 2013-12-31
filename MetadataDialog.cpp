@@ -90,6 +90,17 @@ void MetadataDialog::fill(const QMap<FF8Installation::Type, FF8Installation> &ff
 	}
 }
 
+void MetadataDialog::accept()
+{
+	UserDirectory userDir(metadataPath(), userID());
+	if(!userDir.updateSignatures()) {
+		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de mettre à jour les signatures.\n") +
+													userDir.errorString());
+	} else {
+		QDialog::accept();
+	}
+}
+
 void MetadataDialog::setMetadataPath(const QString &path)
 {
 	QString metadataPath;

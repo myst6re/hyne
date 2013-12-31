@@ -37,6 +37,7 @@ public:
 	}
 
 public slots:
+	void accept();
 	void setMetadataPath(const QString &path = QString());
 
 private:
