@@ -1,3 +1,16 @@
+hyne (1.8.2) precise; urgency=low
+
+  * [FF8 rerelease] Metadata.xml (Cloud saves) can be updated manually (File > Sign saves for the Cloud...).
+  * [FF8 rerelease] Adding error messages when there are errors with metadata.xml (Cloud saves)
+  * [FF8 rerelease] Fixing bug: when saving a *.ff8 file, the metadata file is not saved if the selected ff8 installation is not a Steam installation.
+  * [FF8 rerelease] Fixing bug: Steam version can be not detected when there are several FF8 installation on the computer.
+  * [FF8 rerelease] Hyne now update the metadata file even it is not in an "user_*" directory. Please let me know if it isn't work.
+  * Fixing bug: last save path is not saved when exporting a selected save to PC.
+  * Change spell count limit to 100 in standard mode.
+  * Fixing (old) regression: animate multi-frame icons in save list view (PS memorycard)
+  
+ -- Chris Rizzitello <sithlord48@gmail.com>  Wed, 01 Jan 2014 12:20:23 -0400
+
 hyne (1.8.1) precise; urgency=low
 
   * FF8 Steam Support
