@@ -342,17 +342,27 @@ struct TTCARDS//128
 
 struct CHOCOBO//64
 {
-	quint8 enabled;// Enabled|Dans le world|MiniMog trouvé|Roi démon vaincu|Koko enlevée|Dépêche-toi !|Koko rencontrée|Event Wait off
+	quint8 enabled;// Enabled|In world|MiniMog found|Demon King defeated|Koko kidnapped|Hurry!|Koko met|Event Wait off
 	quint8 level;
 	quint8 current_hp;
 	quint8 max_hp;
 	quint16 weapon;// 4 bit = 1 weapon
 	quint8 move;
-	quint8 u1[5];
+	quint8 u1;
+	quint32 saveCount;
 	quint16 id_related;
-	quint8 u2[31];
+	quint8 u2[6];
+	quint8 itemClassACount;
+	quint8 itemClassBCount;
+	quint8 itemClassCCount;
+	quint8 itemClassDCount;
+	quint8 u3[16];
+	quint32 associatedSaveID;
+	quint8 u4;
 	quint8 boko_attack;// star count (chocobraise | chocoflammes | chocométéore | grochocobo)
-	quint8 u3[18];
+	quint8 u5;
+	quint8 home_walking;
+	quint8 u6[16];
 } Q_PACKED;
 
 /*
