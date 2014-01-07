@@ -347,22 +347,22 @@ struct CHOCOBO//64
 	quint8 current_hp;
 	quint8 max_hp;
 	quint16 weapon;// 4 bit = 1 weapon
+	quint8 rank;
 	quint8 move;
-	quint8 u1;
 	quint32 saveCount;
 	quint16 id_related;
-	quint8 u2[6];
+	quint8 u1[6];
 	quint8 itemClassACount;
 	quint8 itemClassBCount;
 	quint8 itemClassCCount;
 	quint8 itemClassDCount;
-	quint8 u3[16];
+	quint8 u2[16];
 	quint32 associatedSaveID;
-	quint8 u4;
+	quint8 u3;
 	quint8 boko_attack;// star count (chocobraise | chocoflammes | chocométéore | grochocobo)
-	quint8 u5;
+	quint8 u4;
 	quint8 home_walking;
-	quint8 u6[16];
+	quint8 u5[16];
 } Q_PACKED;
 
 /*
@@ -386,7 +386,7 @@ struct MAIN//4944 (~4242 used)
 	FIELD field;//				(pos=4064)		[30/1024 editable] (702 unused)
 	WORLDMAP worldmap;//		(pos=5088)		[13/128 editable]
 	TTCARDS ttcards;//			(pos=5216)		[128/128 editable]
-	CHOCOBO chocobo;//			(pos=5344)		[8/64 editable]
+	CHOCOBO chocobo;//			(pos=5344)		[16/64 editable]
 } Q_PACKED;
 
 struct HEADER//76	(pos=388)		[58+18(auto)/76 editable]

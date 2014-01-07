@@ -39,80 +39,188 @@ void CWEditor::buildWidget()
 	pixLayout->addStretch();
 	pixLayout->setContentsMargins(QMargins());
 
-	levelE = new QSpinBox(this);
+	enabledE = new QGroupBox(tr("Activé"), this);
+	enabledE->setCheckable(true);
+
+	levelE = new QSpinBox(enabledE);
 	levelE->setRange(0, MAX_INT8);
-	currentHpE = new QSpinBox(this);
+	currentHpE = new QSpinBox(enabledE);
 	currentHpE->setRange(0, MAX_INT8);
-	maxHpE = new QSpinBox(this);
+	maxHpE = new QSpinBox(enabledE);
 	maxHpE->setRange(0, MAX_INT8);
-	idE = new QSpinBox(this);
+	idE = new QSpinBox(enabledE);
 	idE->setRange(000, 999);
-	weaponE = new QSpinBox(this);
+	weaponE = new QSpinBox(enabledE);
 	weaponE->setRange(0000, 9999);
+	rankE = new QSpinBox(enabledE);
+	rankE->setRange(1, MAX_INT8 + 1);
+	saveCountE = new QDoubleSpinBox(enabledE);
+	saveCountE->setRange(0, MAX_INT32);
+	saveCountE->setDecimals(0);
+	itemClassACountE = new QSpinBox(enabledE);
+	itemClassACountE->setRange(0, MAX_INT8);
+	itemClassBCountE = new QSpinBox(enabledE);
+	itemClassBCountE->setRange(0, MAX_INT8);
+	itemClassCCountE = new QSpinBox(enabledE);
+	itemClassCCountE->setRange(0, MAX_INT8);
+	itemClassDCountE = new QSpinBox(enabledE);
+	itemClassDCountE->setRange(0, MAX_INT8);
 
-//	QGroupBox *questGroupE = new QGroupBox(tr("Avancement quête"), this);
-//	QGridLayout *questL = new QGridLayout(questGroupE);
+	QGroupBox *questGroupE = new QGroupBox(tr("Avancement quête"), enabledE);
+	QGridLayout *questL = new QGridLayout(questGroupE);
 
-//	QStringList texts;
-//	texts << tr("Activé") << tr("MiniMog trouvé") << tr("Koko rencontrée") << tr("Dépêche-toi !") << tr("Koko enlevée") << tr("Roi démon vaincu") << tr("Boko et MiniMog : Home/World") << tr("MiniMog disponible");
-//	for(int i=0 ; i<8 ; ++i)
-//	{
-//		QCheckBox *questCheckBox = new QCheckBox(texts.at(i), questGroupE);
-//		questE.append(questCheckBox);
-//		questL->addWidget(questCheckBox, i/4, i%4);
-//	}
+	QStringList texts;
+	texts << tr("Dans le Chocobo World")
+		  << tr("MiniMog trouvé") << tr("MiniMog obtenu")
+		  << tr("MiniMog en attente") << tr("Roi démon vaincu")
+		  << tr("Événement courant vu") << tr("Event wait OFF");
+	for(int i=0 ; i<7 ; ++i) {
+		QCheckBox *questCheckBox = new QCheckBox(texts.at(i));
+		questE.append(questCheckBox);
+		if(i >= 1) {
+			questL->addWidget(questCheckBox, (i - 1) / 3, (i - 1) % 3);
+		}
+	}
 
-	QGridLayout *grid = new QGridLayout(this);
-	grid->addWidget(new QLabel(Data::names().at(BOKO)+tr(" :"),this), 0, 0);
-	grid->addWidget(bokoE, 0, 1);
-	grid->addWidget(new QLabel(tr("ID :"),this), 0, 2);
+	QGroupBox *starCountGroupE = new QGroupBox(tr("Niveau d'invocation en jeu"), enabledE);
+	QGridLayout *starCountL = new QGridLayout(starCountGroupE);
+
+	texts.clear();
+	texts << tr("Chocobraise") << tr("Chocoflammes")
+		  << tr("Chocométéore") << tr("Grochocobo");
+	for(int i=0 ; i<4 ; ++i) {
+		QRadioButton *starCountRadio = new QRadioButton(texts.at(i));
+		starCountE.append(starCountRadio);
+		starCountL->addWidget(starCountRadio, i / 2, i % 2);
+	}
+
+	QGridLayout *grid = new QGridLayout(enabledE);
+	grid->addWidget(questE.at(0), 0, 0, 1, 2);
+	grid->addWidget(new QLabel(tr("ID :"),enabledE), 0, 2);
 	grid->addWidget(idE, 0, 3);
-	grid->addLayout(pixLayout, 0, 4, 5, 1, Qt::AlignRight | Qt::AlignTop);
-	grid->addWidget(new QLabel(tr("Niveau :"),this), 1, 0);
+	grid->addWidget(new QLabel(tr("Niveau :"),enabledE), 1, 0);
 	grid->addWidget(levelE, 1, 1);
-	grid->addWidget(new QLabel(tr("Arme :"),this), 1, 2);
+	grid->addWidget(new QLabel(tr("Arme :"),enabledE), 1, 2);
 	grid->addWidget(weaponE, 1, 3);
-	grid->addWidget(new QLabel(tr("HP actuels :"),this), 2, 0);
+	grid->addWidget(new QLabel(tr("HP actuels :"),enabledE), 2, 0);
 	grid->addWidget(currentHpE, 2, 1);
-	grid->addWidget(new QLabel(tr("HP max :"),this), 2, 2);
+	grid->addWidget(new QLabel(tr("HP max :"),enabledE), 2, 2);
 	grid->addWidget(maxHpE, 2, 3);
-//	grid->addWidget(questGroupE, 3, 0, 1, 4);
-	grid->setRowStretch(3, 1);
-	grid->setColumnStretch(1, 1);
-	grid->setColumnStretch(3, 1);
-	grid->setContentsMargins(QMargins());
+	grid->addWidget(new QLabel(tr("Rang (1 est le meilleur) :"),enabledE), 3, 0);
+	grid->addWidget(rankE, 3, 1);
+	grid->addWidget(new QLabel(tr("Nombre de sauvegardes :"),enabledE), 3, 2);
+	grid->addWidget(saveCountE, 3, 3);
+	grid->addWidget(new QLabel(tr("Nombre d'objets de classe A :"),enabledE), 4, 0);
+	grid->addWidget(itemClassACountE, 4, 1);
+	grid->addWidget(new QLabel(tr("Nombre d'objets de classe B :"),enabledE), 4, 2);
+	grid->addWidget(itemClassBCountE, 4, 3);
+	grid->addWidget(new QLabel(tr("Nombre d'objets de classe C :"),enabledE), 5, 0);
+	grid->addWidget(itemClassCCountE, 5, 1);
+	grid->addWidget(new QLabel(tr("Nombre d'objets de classe D :"),enabledE), 5, 2);
+	grid->addWidget(itemClassDCountE, 5, 3);
+	grid->addWidget(questGroupE, 6, 0, 1, 4, Qt::AlignTop);
+	grid->addWidget(starCountGroupE, 7, 0, 1, 4, Qt::AlignTop);
+
+	QGridLayout *layout = new QGridLayout(this);
+	layout->addWidget(new QLabel(Data::names().at(BOKO)+tr(" :"),this), 0, 0);
+	layout->addWidget(bokoE, 0, 1, 1, 3);
+	layout->addLayout(pixLayout, 0, 4, 6, 1, Qt::AlignRight | Qt::AlignTop);
+	layout->addWidget(enabledE, 1, 0, 1, 4);
+	layout->setRowStretch(2, 1);
+	layout->setColumnStretch(1, 1);
+	layout->setColumnStretch(3, 1);
+	layout->setContentsMargins(QMargins());
+
+	connect(enabledE, SIGNAL(toggled(bool)), SLOT(setCWEnabled(bool)));
 }
 
 void CWEditor::fillPage()
 {
 	bokoE->setText(saveData->perso(BOKO));
 
-//	for(int i=0 ; i<8 ; ++i)
-//		questE.at(i)->setChecked((data->chocobo.enabled >> i) & 1);
+	enabledE->setChecked(data->chocobo.enabled & 1);
+	for(int i=0 ; i<7 ; ++i) {
+		questE.at(i)->setChecked((data->chocobo.enabled >> (i + 1)) & 1);
+	}
+
+	for(int i=0 ; i<4 ; ++i) {
+		if(data->chocobo.boko_attack == i) {
+			starCountE.at(i)->setChecked(true);
+			break;
+		}
+	}
 
 	levelE->setValue(data->chocobo.level);
 	currentHpE->setValue(data->chocobo.current_hp);
 	maxHpE->setValue(data->chocobo.max_hp);
 
-	int ID1 = qMin(data->chocobo.id_related & 0xF, 9);
-	int ID2 = qMin((data->chocobo.id_related >> 4) & 0xF, 9);
-	int ID3 = qMin((data->chocobo.id_related >> 8) & 0xF, 9);
+	int ID1 = data->chocobo.id_related & 0xF;
+	int ID2 = (data->chocobo.id_related >> 4) & 0xF;
+	int ID3 = (data->chocobo.id_related >> 8) & 0xF;
+
+	if(ID1 > 9) {
+		qWarning() << "CWEditor::fillPage invalid ID1";
+		ID1 = 9;
+	}
+	if(ID2 > 9) {
+		qWarning() << "CWEditor::fillPage invalid ID2";
+		ID2 = 9;
+	}
+	if(ID3 > 9) {
+		qWarning() << "CWEditor::fillPage invalid ID3";
+		ID3 = 9;
+	}
+
 	idE->setValue(ID1 + 10*ID2 + 100*ID3);
 
-	int W1 = qMin(data->chocobo.weapon & 0xF, 9);
-	int W2 = qMin((data->chocobo.weapon >> 4) & 0xF, 9);
-	int W3 = qMin((data->chocobo.weapon >> 8) & 0xF, 9);
-	int W4 = qMin((data->chocobo.weapon >> 12) & 0xF, 9);
+	int W1 = data->chocobo.weapon & 0xF;
+	int W2 = (data->chocobo.weapon >> 4) & 0xF;
+	int W3 = (data->chocobo.weapon >> 8) & 0xF;
+	int W4 = (data->chocobo.weapon >> 12) & 0xF;
+
+	if(W1 > 9) {
+		qWarning() << "CWEditor::fillPage invalid W1";
+		W1 = 9;
+	}
+	if(W2 > 9) {
+		qWarning() << "CWEditor::fillPage invalid W2";
+		W2 = 9;
+	}
+	if(W3 > 9) {
+		qWarning() << "CWEditor::fillPage invalid W3";
+		W3 = 9;
+	}
+	if(W4 > 9) {
+		qWarning() << "CWEditor::fillPage invalid W4";
+		W4 = 9;
+	}
+
 	weaponE->setValue(W1 + 10*W2 + 100*W3 + 1000*W4);
+
+	rankE->setValue(data->chocobo.rank + 1);
+	saveCountE->setValue(data->chocobo.saveCount);
+
+	itemClassACountE->setValue(data->chocobo.itemClassACount);
+	itemClassBCountE->setValue(data->chocobo.itemClassBCount);
+	itemClassCCountE->setValue(data->chocobo.itemClassCCount);
+	itemClassDCountE->setValue(data->chocobo.itemClassDCount);
 }
 
 void CWEditor::savePage()
 {
 	saveData->setPerso(BOKO, bokoE->text());
 
-//	data->chocobo.enabled = 0;
-//	for(int i=0 ; i<8 ; ++i)
-//		data->chocobo.enabled |= questE.at(i)->isChecked() << i;
+	data->chocobo.enabled = enabledE->isChecked();
+	for(int i=0 ; i<7 ; ++i) {
+		data->chocobo.enabled |= questE.at(i)->isChecked() << (i + 1);
+	}
+
+	for(int i=0 ; i<4 ; ++i) {
+		if(starCountE.at(i)->isChecked()) {
+			data->chocobo.boko_attack = i;
+			break;
+		}
+	}
 
 	data->chocobo.level = levelE->value();
 	data->chocobo.current_hp = currentHpE->value();
@@ -123,4 +231,19 @@ void CWEditor::savePage()
 
 	int W = weaponE->value(), W4 = W / 1000, W3 = W / 100 - W4 * 10, W2 = W / 10 - W3 * 10 - W4 * 100, W1 = W - W2 * 10 - W3 * 100 - W4 * 1000;
 	data->chocobo.weapon = (W4 << 12) | (W3 << 8) | (W2 << 4) | W1;
+
+	data->chocobo.rank = rankE->value() - 1;
+	data->chocobo.saveCount = saveCountE->value();
+
+	data->chocobo.itemClassACount = itemClassACountE->value();
+	data->chocobo.itemClassBCount = itemClassBCountE->value();
+	data->chocobo.itemClassCCount = itemClassCCountE->value();
+	data->chocobo.itemClassDCount = itemClassDCountE->value();
+}
+
+void CWEditor::setCWEnabled(bool enabled)
+{
+	foreach(QObject *child, enabledE->findChildren<QWidget *>()) {
+		((QWidget *)child)->setEnabled(enabled);
+	}
 }

@@ -30,12 +30,19 @@ public:
 public slots:
 	void fillPage();
 	void savePage();
+private slots:
+	void setCWEnabled(bool enabled);
 protected:
 	void buildWidget();
 private:
 	QLineEdit *bokoE;
 	QSpinBox *levelE, *currentHpE, *maxHpE, *idE, *weaponE;
-//	QList<QCheckBox *> questE;
+	QSpinBox *rankE;
+	QSpinBox *itemClassACountE, *itemClassBCountE, *itemClassCCountE, *itemClassDCountE;
+	QDoubleSpinBox *saveCountE;
+	QGroupBox *enabledE;
+	QList<QCheckBox *> questE;
+	QList<QRadioButton *> starCountE;
 };
 
 #endif
