@@ -377,23 +377,43 @@ void SaveData::setBlockCount(quint8 blockCount)
 
 QString SaveData::shortDescription() const
 {
-	QTextCodec *codec = QTextCodec::codecForName(QByteArray("Shift-JIS"));
-	if(hasSCHeader() && codec!=0) {
-		QByteArray desc_array = _header.mid(4, 64);
-		int index;
-		if((index = desc_array.indexOf('\x00')) != -1) {
-			desc_array.truncate(index);
+	if(hasSCHeader()) {
+		try {
+			QTextCodec *codec = QTextCodec::codecForName("Shift-JIS");
+			if(codec) {
+				QByteArray desc_array = _header.mid(4, 64);
+				int index;
+				if((index = desc_array.indexOf('\x00')) != -1) {
+					desc_array.truncate(index);
+				}
+				return codec->toUnicode(desc_array);
+			}
+		} catch(...) {
 		}
-		return codec->toUnicode(desc_array);
 	}
 	return QString();
 }
 
 void SaveData::setShortDescription(const QString &desc)
 {
-	QTextCodec *codec = QTextCodec::codecForName(QByteArray("Shift-JIS"));
-	if(hasSCHeader() && codec!=0) {
-		QByteArray desc_data = codec->fromUnicode(desc).leftJustified(64, '\0', true);
+	if(hasSCHeader()) {
+		QByteArray desc_data;
+
+		if(!desc.isEmpty()) {
+			try {
+				QTextCodec *codec = QTextCodec::codecForName("Shift-JIS");
+				if(codec) {
+					desc_data = codec->fromUnicode(desc);
+				} else {
+					return;
+				}
+			} catch(...) {
+				return;
+			}
+		}
+
+		desc_data = desc_data.leftJustified(64, '\0', true);
+
 		if(_header.mid(4, 64) != desc_data) {
 			_header.replace(4, 64, desc_data);
 			_isModified = true;
