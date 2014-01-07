@@ -517,7 +517,7 @@ int SavecardData::saveCount() const
 bool SavecardData::save(const QString &saveAs, Type newType)
 {
 	const QString path = saveAs.isEmpty() ? _path : saveAs;
-	QTemporaryFile temp("hyne");
+	QTemporaryFile temp;
 	QFile fic(_path);
 	setErrorString(QString());
 
@@ -628,7 +628,7 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 
 	const QString path = saveAs.isEmpty() ? _path : saveAs;
 
-	QTemporaryFile temp("hyneOne");
+	QTemporaryFile temp;
 	if(!temp.open()) {
 		setErrorString(QObject::tr("Impossible de créer un fichier temporaire"));
 		return false;
@@ -720,7 +720,7 @@ bool SavecardData::save2PSV(const quint8 id, const QString &saveAs, const QByteA
 			: saveAs;
 	setErrorString(QString());
 
-	QTemporaryFile temp("hynePsv");
+	QTemporaryFile temp;
 	if(!temp.open())
 	{
 		setErrorString(QObject::tr("Impossible de créer un fichier temporaire"));
@@ -772,7 +772,7 @@ bool SavecardData::save2PSV(const quint8 id, const QString &saveAs, const QByteA
 
 bool SavecardData::save2PS(const QList<int> &ids, const QString &path, const Type newType, const QByteArray &MCHeader)
 {
-	QTemporaryFile temp("hynePS");
+	QTemporaryFile temp;
 	quint8 i;
 	setErrorString(QString());
 
