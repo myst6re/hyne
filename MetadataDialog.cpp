@@ -118,4 +118,8 @@ void MetadataDialog::setMetadataPath(const QString &path)
 	}
 
 	_path->setText(metadataPath);
+	if(_userID->text().isEmpty()) {
+		UserDirectory userDir(metadataPath.left(metadataPath.lastIndexOf('/')));
+		_userID->setText(userDir.userID());
+	}
 }
