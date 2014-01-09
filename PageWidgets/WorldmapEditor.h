@@ -21,6 +21,7 @@
 
 #include "PageWidget.h"
 #include "../MapWidget.h"
+#include "../SpinBox.h"
 
 class WorldmapEditor : public PageWidget
 {
@@ -42,8 +43,8 @@ private:
 	QLabel *fixWarnIcon, *fixLabel;
 	QRadioButton *fix;
 	// Page 1
-	QSpinBox *stepsE, *currentCarE;
-	QDoubleSpinBox *carStepsE;
+	SpinBox8 *currentCarE;
+	SpinBox16 *stepsE, *carStepsE;
 	QComboBox *currentMapE;
 	QList<QCheckBox *> controlE, koyokE, obelE;
 //	QCheckBox *blockLunaticE;

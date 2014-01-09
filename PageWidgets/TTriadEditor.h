@@ -21,6 +21,7 @@
 
 #include "SpinBoxDelegate.h"
 #include "PageWidget.h"
+#include "../SpinBox.h"
 
 class TTriadEditor : public PageWidget
 {
@@ -57,9 +58,10 @@ private:
 	// Page 2
 	QListWidget *ruleE_list;
 	QComboBox *queenE, *last_regionE, *last2_regionE, *traderating_regionE, *ttcardqueenquestE;
-	QSpinBox *traderatingE, *ttvictorycountE, *ttdefeatcountE, *ttegalitycountE, *ttdegenerationE;
-	QDoubleSpinBox *unknown2E;
-	QSpinBox *unknown1E;
+	SpinBox8 *traderatingE, *ttdegenerationE;
+	SpinBox16 *ttvictorycountE, *ttdefeatcountE, *ttegalitycountE;
+	SpinBox32 *unknown2E;
+	SpinBox16 *unknown1E;
 	QLabel *unknown1E_label, *unknown2E_label;
 	QGroupBox *group2;
 	QList<QCheckBox *> rules;

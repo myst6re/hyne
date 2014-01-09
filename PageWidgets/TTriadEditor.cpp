@@ -298,23 +298,18 @@ QWidget *TTriadEditor::buildPage2()
 	foreach(const QString &queenCity, queenCities)
 		queenE->addItem(queenCity, i++);
 
-	traderatingE = new QSpinBox(group3);
-	traderatingE->setRange(0, MAX_INT8);
+	traderatingE = new SpinBox8(group3);
 	traderating_regionE = new QComboBox(group3);
 	traderating_regionE->addItem(QString::number(0), 0);
 	i=1;
 	foreach(const QString &region, regions)
 		traderating_regionE->addItem(region, i++);
 
-	ttvictorycountE = new QSpinBox(group3);
-	ttvictorycountE->setRange(0, MAX_INT16);
-	ttdefeatcountE = new QSpinBox(group3);
-	ttdefeatcountE->setRange(0, MAX_INT16);
-	ttegalitycountE = new QSpinBox(group3);
-	ttegalitycountE->setRange(0, MAX_INT16);
+	ttvictorycountE = new SpinBox16(group3);
+	ttdefeatcountE = new SpinBox16(group3);
+	ttegalitycountE = new SpinBox16(group3);
 
-	ttdegenerationE = new QSpinBox(group3);
-	ttdegenerationE->setRange(0, MAX_INT8);
+	ttdegenerationE = new SpinBox8(group3);
 
 	ttcardqueenquestE = new QComboBox(group3);
 	ttcardqueenquestE->addItem(tr("MiniMog"), 0);
@@ -325,12 +320,9 @@ QWidget *TTriadEditor::buildPage2()
 	ttcardqueenquestE->addItem(tr("Toutes"), 5);
 
 	unknown1E_label = new QLabel(tr("Inconnu 1 :"),group3);
-	unknown1E = new QSpinBox(group3);
-	unknown1E->setRange(0, MAX_INT16);
+	unknown1E = new SpinBox16(group3);
 	unknown2E_label = new QLabel(tr("Inconnu 2 :"),group3);
-	unknown2E = new QDoubleSpinBox(group3);
-	unknown2E->setDecimals(0);
-	unknown2E->setRange(0, MAX_INT32);
+	unknown2E = new SpinBox32(group3);
 
 	group3L->addWidget(new QLabel(tr("Dernières régions visitées :"),group3), 0, 0);
 	group3L->addWidget(last_regionE, 0, 1);

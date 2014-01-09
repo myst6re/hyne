@@ -35,7 +35,7 @@ void PersoEditor::updateMode(bool mode)
 		LBindicator_E->setVisible(mode);
 		indicatorlabel->setVisible(mode);
 	}
-	qtyAllSpin->setRange(0, mode ? MAX_INT8 : 100);
+	qtyAllSpin->setMaximum(mode ? MAX_INT8 : 100);
 	for(int i=0 ; i<32 ; ++i) {
 		magie_E_model->item(i, 1)->setData(mode ? SpinBoxDelegate::SpinBox255 : SpinBoxDelegate::SpinBox100, Qt::UserRole);
 	}
@@ -88,8 +88,7 @@ QWidget *PersoEditor::buildPage1()
 	existsE = new QCheckBox(ret);
 	connect(existsE, SIGNAL(toggled(bool)), SLOT(changeExists(bool)));
 	nameE = new QLineEdit(ret);
-	current_HPsE = new QSpinBox(ret);
-	current_HPsE->setRange(0, MAX_INT16);
+	current_HPsE = new SpinBox16(ret);
 	
 	QHBoxLayout *mainEdit_l = new QHBoxLayout;
 	mainEdit_l->addWidget(new QLabel(tr("Disponible"), ret));
@@ -99,9 +98,7 @@ QWidget *PersoEditor::buildPage1()
 	mainEdit_l->addWidget(new QLabel(tr("HP actuels :"), ret));
 	mainEdit_l->addWidget(current_HPsE);
 	
-	expE = new QDoubleSpinBox(ret);
-	expE->setDecimals(0);
-	expE->setRange(0, MAX_INT32);
+	expE = new SpinBox32(ret);
 	connect(expE, SIGNAL(valueChanged(double)), SLOT(exp_S(double)));
 	nivE = new QSpinBox(ret);
 	nivE->setRange(1, 100);
@@ -113,10 +110,8 @@ QWidget *PersoEditor::buildPage1()
 	mainEdit2_l->addWidget(new QLabel(tr("EXP :"), ret));
 	mainEdit2_l->addWidget(expE);
 	
-	kills_E = new QSpinBox(ret);
-	kills_E->setRange(0, MAX_INT16);
-	kos_E = new QSpinBox(ret);
-	kos_E->setRange(0, MAX_INT16);
+	kills_E = new SpinBox16(ret);
+	kos_E = new SpinBox16(ret);
 	
 	QHBoxLayout *statsEdit_l = new QHBoxLayout;
 	statsEdit_l->addWidget(new QLabel(tr("Tués :"), ret));
@@ -160,14 +155,10 @@ QWidget *PersoEditor::buildPage1()
 	statusEdit_l->addWidget(status_checkBox, 1, 3);
 	
 	unknownE = new QGroupBox(tr("Inconnu"), ret);
-	unknown2E = new QSpinBox(unknownE);
-	unknown2E->setRange(0, MAX_INT8);
-	unknown3E = new QSpinBox(unknownE);
-	unknown3E->setRange(0, MAX_INT8);
-	unknown4E = new QSpinBox(unknownE);
-	unknown4E->setRange(0, MAX_INT8);
-	unknown5E = new QSpinBox(unknownE);
-	unknown5E->setRange(0, MAX_INT8);
+	unknown2E = new SpinBox8(unknownE);
+	unknown3E = new SpinBox8(unknownE);
+	unknown4E = new SpinBox8(unknownE);
+	unknown5E = new SpinBox8(unknownE);
 	unknown6E = new QSpinBox(unknownE);
 	unknown6E->setRange(0, 31);
 	
@@ -184,20 +175,13 @@ QWidget *PersoEditor::buildPage1()
 	inconnuEdit_l->addWidget(unknown6E);
 	
 	bonus_E = new QGroupBox(tr("Bonus"), ret);
-	HPs_E = new QSpinBox(bonus_E);
-	HPs_E->setRange(0, MAX_INT16);
-	vgr_E = new QSpinBox(bonus_E);
-	vgr_E->setRange(0, MAX_INT8);
-	dfs_E = new QSpinBox(bonus_E);
-	dfs_E->setRange(0, MAX_INT8);
-	mgi_E = new QSpinBox(bonus_E);
-	mgi_E->setRange(0, MAX_INT8);
-	psy_E = new QSpinBox(bonus_E);
-	psy_E->setRange(0, MAX_INT8);
-	vts_E = new QSpinBox(bonus_E);
-	vts_E->setRange(0, MAX_INT8);
-	chc_E = new QSpinBox(bonus_E);
-	chc_E->setRange(0, MAX_INT8);
+	HPs_E = new SpinBox16(bonus_E);
+	vgr_E = new SpinBox8(bonus_E);
+	dfs_E = new SpinBox8(bonus_E);
+	mgi_E = new SpinBox8(bonus_E);
+	psy_E = new SpinBox8(bonus_E);
+	vts_E = new SpinBox8(bonus_E);
+	chc_E = new SpinBox8(bonus_E);
 	
 	QGridLayout *bonusEdit_l = new QGridLayout(bonus_E);
 	bonusEdit_l->addWidget(new QLabel(tr("Bonus HP :"), bonus_E), 0, 0);
@@ -320,8 +304,7 @@ QWidget *PersoEditor::buildPage3()
 	QWidget *qtyAll = new QWidget(ret);
 	QPushButton *qtyAllOK = new QPushButton(tr("Tout"), qtyAll);
 	qtyAllOK->setFont(font);
-	qtyAllSpin = new QSpinBox(qtyAll);
-	qtyAllSpin->setRange(0, MAX_INT8);
+	qtyAllSpin = new SpinBox8(qtyAll);
 	QHBoxLayout *qtyLayout = new QHBoxLayout(qtyAll);
 	qtyLayout->addWidget(qtyAllSpin, 1);
 	qtyLayout->addWidget(qtyAllOK);
@@ -358,8 +341,7 @@ QWidget *PersoEditor::buildPage4()
 	commande3_E->addItem("-", 0);
 	fillAbilities(commande3_E, icons);
 	unknown1LabelE = new QLabel(tr("Inconnu (commande 4) :"), commande_E);
-	unknown1E = new QSpinBox(commande_E);
-	unknown1E->setRange(0, MAX_INT8);
+	unknown1E = new SpinBox8(commande_E);
 	
 	QGridLayout *commande_L = new QGridLayout(commande_E);
 	commande_L->addWidget(new QLabel(tr("Commande 1 :"), commande_E), 0, 0);
@@ -596,8 +578,7 @@ void PersoEditor::buildPage6()
 			{
 				LB_E << new QCheckBox(Data::rinoaLBs().at(cur), lbWidget);
 				LB_E.at(cur)->setTristate(true);
-				linoaLB_E << new QSpinBox(lbWidget);
-				linoaLB_E.at(cur)->setRange(0, MAX_INT8);
+				linoaLB_E << new SpinBox8(lbWidget);
 
 				grid->addWidget(LB_E.at(cur), i, j*2);
 				grid->addWidget(linoaLB_E.at(cur), i, j*2+1);

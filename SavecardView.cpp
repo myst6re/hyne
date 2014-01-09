@@ -17,7 +17,6 @@
  ****************************************************************************/
 
 #include "SavecardView.h"
-#include "Parameters.h"
 #include "HeaderDialog.h"
 #include "Config.h"
 #include "Data.h"

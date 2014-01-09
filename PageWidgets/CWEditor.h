@@ -20,6 +20,7 @@
 #define DEF_CWEDITOR
 
 #include "PageWidget.h"
+#include "../SpinBox.h"
 
 class CWEditor : public PageWidget
 {
@@ -36,10 +37,11 @@ protected:
 	void buildWidget();
 private:
 	QLineEdit *bokoE;
-	QSpinBox *levelE, *currentHpE, *maxHpE, *idE, *weaponE;
-	QSpinBox *rankE;
-	QSpinBox *itemClassACountE, *itemClassBCountE, *itemClassCCountE, *itemClassDCountE;
-	QDoubleSpinBox *saveCountE;
+	SpinBox8 *levelE, *currentHpE, *maxHpE;
+	QSpinBox *idE, *weaponE;
+	SpinBox8 *rankE;
+	SpinBox8 *itemClassACountE, *itemClassBCountE, *itemClassCCountE, *itemClassDCountE;
+	SpinBox32 *saveCountE;
 	QGroupBox *enabledE;
 	QList<QCheckBox *> questE;
 	QList<QRadioButton *> starCountE;

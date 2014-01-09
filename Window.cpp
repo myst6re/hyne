@@ -17,6 +17,8 @@
  ****************************************************************************/
 
 #include "Window.h"
+#include "Parameters.h"
+#include "SelectSavesDialog.h"
 #include "HeaderDialog.h"
 #include "MetadataDialog.h"
 
@@ -887,7 +889,7 @@ void Window::about()
 	image.setPixmap(QPixmap(":/images/about.png"));
 	image.move(about.width()-20-image.sizeHint().height(), 80);
 	
-	QLabel desc1(PROG_FULLNAME, &about);
+	QLabel desc1(QString("%1 %2").arg(PROG_NAME, PROG_VERSION), &about);
 	desc1.setFont(font);
 	desc1.setFixedWidth(about.width());
 	desc1.setAlignment(Qt::AlignHCenter);

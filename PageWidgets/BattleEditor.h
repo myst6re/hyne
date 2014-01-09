@@ -20,6 +20,7 @@
 #define DEF_BATTLEEDITOR
 
 #include "PageWidget.h"
+#include "../SpinBox.h"
 
 class BattleEditor : public PageWidget
 {
@@ -40,8 +41,8 @@ protected:
 private:
 	QGroupBox *unknownGroupE;
 	QCheckBox *monsterkillsAuto;
-	QDoubleSpinBox *battlewinE, *tombyE, *monsterkillsE, *unknown1E, *unknown2E;
-	QSpinBox *battleescE;
+	SpinBox32 *battlewinE, *tombyE, *monsterkillsE, *unknown1E, *unknown2E;
+	SpinBox16 *battleescE;
 	QCheckBox *tombySrE, *firstr1E, *firsteleE, *firstmtlE, *firstirvinelbE;
 	QTreeWidget *firstdrawE_list, *firstscanE_list;
 };

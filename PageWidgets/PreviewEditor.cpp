@@ -17,7 +17,23 @@
  ****************************************************************************/
 
 #include "PreviewEditor.h"
-#include "Parameters.h"
+
+PreviewWidget::PreviewWidget(QWidget *parent) :
+	QWidget(parent), _saveData(0)
+{
+}
+
+void PreviewWidget::paintEvent(QPaintEvent *event)
+{
+	if(!_saveData)	return;
+	QPainter p(this);
+
+	QTransform transform;
+	transform.scale(width() * 1.0 / sizeHint().width(), height() * 1.0 / sizeHint().height());
+	p.setTransform(transform);
+
+	SavecardView::renderSave(&p, _saveData, 0, event->rect());
+}
 
 PreviewEditor::PreviewEditor(QWidget *parent)
 	: PageWidget(parent)
@@ -32,28 +48,19 @@ void PreviewEditor::buildWidget()
 	int i=0;
 	foreach(const QString &loc, Data::locations().list())
 		locationIDE->addItem(loc, i++);
-	saveCountE = new QSpinBox(this);
-	saveCountE->setRange(0, MAX_INT16);
-	curSaveE = new QDoubleSpinBox(this);
-	curSaveE->setRange(0, MAX_INT32);
-	curSaveE->setDecimals(0);
+	saveCountE = new SpinBox16(this);
+	curSaveE = new SpinBox32(this);
 
 	autoGroup = new QGroupBox(tr("Auto."));
 	autoGroup->setCheckable(true);
 
-	hpLeaderE = new QSpinBox(autoGroup);
-	hpLeaderE->setRange(0, MAX_INT16);
-	hpMaxLeaderE = new QSpinBox(autoGroup);
-	hpMaxLeaderE->setRange(0, MAX_INT16);
-	gilsE = new QDoubleSpinBox(autoGroup);
-	gilsE->setRange(0, MAX_INT32);
-	gilsE->setDecimals(0);
+	hpLeaderE = new SpinBox16(autoGroup);
+	hpMaxLeaderE = new SpinBox16(autoGroup);
+	gilsE = new SpinBox32(autoGroup);
 	timeE = new TimeWidget(autoGroup);
-	nivLeaderE = new QSpinBox(autoGroup);
-	nivLeaderE->setRange(0, MAX_INT8);
-	discE = new QDoubleSpinBox(autoGroup);
+	nivLeaderE = new SpinBox8(autoGroup);
+	discE = new SpinBox32(autoGroup);
 	discE->setRange(1, double(MAX_INT32) + 1.0);
-	discE->setDecimals(0);
 
 	QComboBox *comboBox;
 	QList<QIcon> icons;

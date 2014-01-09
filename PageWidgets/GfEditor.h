@@ -20,6 +20,7 @@
 #define DEF_GFEDITOR
 
 #include "PageWidget.h"
+#include "../SpinBox.h"
 
 class GfEditor : public PageWidget
 {
@@ -73,12 +74,13 @@ private:
 
 	QCheckBox *existsE;
 	QLineEdit *nameEdit;
-	QSpinBox *hpEdit;
-	QDoubleSpinBox *expEdit;
-	QSpinBox *nivEdit, *APsEdit;
-	QSpinBox *killsEdit, *KOsEdit;
+	SpinBox16 *hpEdit;
+	SpinBox32 *expEdit;
+	QSpinBox *nivEdit;
+	SpinBox8 *APsEdit;
+	SpinBox16 *killsEdit, *KOsEdit;
 	QLabel *inconnu1_labelE;
-	QSpinBox *unknown1E;
+	SpinBox8 *unknown1E;
 	QCheckBox *abilityCompleted;
 	QDialog *dialog;
 	QPushButton *okC;

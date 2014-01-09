@@ -20,6 +20,7 @@
 #define DEF_CONFIGEDITOR
 
 #include "PageWidget.h"
+#include "../SpinBox.h"
 
 class ConfigEditor : public PageWidget
 {
@@ -34,7 +35,7 @@ public slots:
 
 private slots:
 	void joystickS();
-	void touchesDefault();
+	void defaultKeys();
 protected:
 	void buildWidget();
 private:
@@ -49,7 +50,7 @@ private:
 	QSlider *cameraE, *vts_combatE;
 	QSlider *vts_msg_combatE, *vts_msgE;
 	QSpinBox *analog_volumeE;
-	QList<QSpinBox *> touchesE;
+	QList<SpinBox8 *> keysE;
 	QLabel *joystickLbl;
 	QGroupBox *manetteGroupE;
 	QCheckBox *inconnu1E;

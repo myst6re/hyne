@@ -20,7 +20,6 @@
 #define CONFIG_H
 
 #include <QtCore>
-#include "Parameters.h"
 #include "FF8Installation.h"
 
 #define KEYS_SIZE 13

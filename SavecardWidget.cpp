@@ -17,7 +17,6 @@
  ****************************************************************************/
 
 #include "SavecardWidget.h"
-#include "Parameters.h"
 #include "HeaderDialog.h"
 
 SavecardWidget::SavecardWidget(QWidget *parent) :

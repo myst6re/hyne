@@ -74,29 +74,23 @@ void GfEditor::buildWidget()
 QWidget *GfEditor::buildPage1()
 {
 	QWidget *ret = new QWidget(this);
-	
+
 	existsE = new QCheckBox(tr("Disponible"), ret);
 	connect(existsE, SIGNAL(toggled(bool)), SLOT(changeExists(bool)));
 	nameEdit = new QLineEdit(ret);
-	hpEdit = new QSpinBox(ret);
-	hpEdit->setRange(0, MAX_INT16);
-	
-	expEdit = new QDoubleSpinBox(ret);
-	expEdit->setDecimals(0);
-	expEdit->setRange(0, MAX_INT32);
+	hpEdit = new SpinBox16(ret);
+
+	expEdit = new SpinBox32(ret);
 	connect(expEdit, SIGNAL(valueChanged(double)), SLOT(changeExp(double)));
 	nivEdit = new QSpinBox(ret);
 	nivEdit->setRange(1, 100);
 	connect(nivEdit, SIGNAL(valueChanged(int)), SLOT(changeNiv(int)));
-	
-	killsEdit = new QSpinBox(ret);
-	killsEdit->setRange(0, MAX_INT16);
-	KOsEdit = new QSpinBox(ret);
-	KOsEdit->setRange(0, MAX_INT16);
-	
+
+	killsEdit = new SpinBox16(ret);
+	KOsEdit = new SpinBox16(ret);
+
 	inconnu1_labelE = new QLabel(tr("Inconnu :"), ret);
-	unknown1E = new QSpinBox(ret);
-	unknown1E->setRange(0, MAX_INT8);
+	unknown1E = new SpinBox8(ret);
 
 	QGridLayout *statEditL = new QGridLayout;
 	statEditL->addWidget(new QLabel(tr("Nom :"), ret), 0, 0);
@@ -119,7 +113,7 @@ QWidget *GfEditor::buildPage1()
 
 	QFont font;
 	font.setPointSize(10);
-	
+
 	liste = new QTreeWidget(ret);
 	liste2 = new QTreeWidget(ret);
 	liste->setFont(font);
@@ -135,29 +129,29 @@ QWidget *GfEditor::buildPage1()
 	liste2->resizeColumnToContents(1);
 	liste->setUniformRowHeights(true);
 	liste2->setUniformRowHeights(true);
-	
+
 	addC = new QPushButton(tr("Ajouter"), ret);
 	addC->setIcon(QIcon(":/images/plus.png"));
 	connect(addC, SIGNAL(released()), SLOT(add_C()));
-	
+
 	removeC = new QPushButton(tr("Oublier"), ret);
 	removeC->setIcon(QIcon(":/images/minus.png"));
 	connect(removeC, SIGNAL(released()), SLOT(remove_C()));
-	
+
 	editC = new QPushButton(tr("Modifier"), ret);
 	editC->setIcon(QIcon(":/images/edit.png"));
 	connect(editC, SIGNAL(released()), SLOT(edit_C()));
-	
+
 	learnC = new QPushButton(tr("Apprendre"), ret);
 	learnC->setIcon(QIcon(":/images/icons/learning.png"));
 	connect(learnC, SIGNAL(released()), SLOT(changeLearning()));
 
 	acquireAllC = new QPushButton(tr("Tout acquérir"), ret);
 	connect(acquireAllC, SIGNAL(released()), SLOT(acquireAll()));
-	
+
 	connect(liste, SIGNAL(itemSelectionChanged()), SLOT(enableButtons()));
 	connect(liste, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), SLOT(edit_C(QTreeWidgetItem*)));
-	
+
 	QVBoxLayout *buttonC = new QVBoxLayout;
 	buttonC->addWidget(addC);
 	buttonC->addWidget(removeC);
@@ -165,14 +159,14 @@ QWidget *GfEditor::buildPage1()
 	buttonC->addWidget(learnC);
 	buttonC->addStretch();
 	buttonC->addWidget(acquireAllC);
-	
+
 	restoreF = new QPushButton(tr("Restaurer"), ret);
 	restoreF->setIcon(QIcon(":/images/restore.png"));
 	connect(restoreF, SIGNAL(released()), SLOT(restore_C()));
-	
+
 	connect(liste2, SIGNAL(itemSelectionChanged()), SLOT(enableButtons2()));
 	connect(liste2, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), SLOT(restore_C()));
-	
+
 	QGridLayout *grid = new QGridLayout(ret);
 	grid->addWidget(existsE, 0, 0, 1, 4);
 	grid->addLayout(statEditL, 2, 0, 1, 4);
@@ -430,7 +424,7 @@ void GfEditor::add_C()
 	
 	connect(okC, SIGNAL(released()), SLOT(addCapacity()));
 	connect(selection, SIGNAL(currentIndexChanged(int)), SLOT(changeCapacity(int)));
-	connect(okC, SIGNAL(released()), &dialog, SLOT(close()));	
+	connect(okC, SIGNAL(released()), &dialog, SLOT(close()));
 	
 	dialog.exec();
 }
@@ -451,12 +445,10 @@ void GfEditor::edit_C()
 	dialog = new QDialog(this, Qt::Dialog | Qt::WindowCloseButtonHint);
 	dialog->setWindowTitle(tr("Modifier PDC"));
 
-	APsEdit = new QSpinBox(dialog);
-	APsEdit->setRange(0, MAX_INT8);
-	
-	qint8 pos;
-	if((pos = posAbility(abilityID)) != -1)
-	{
+	APsEdit = new SpinBox8(dialog);
+
+	qint8 pos = posAbility(abilityID);
+	if(pos != -1) {
 		APsEdit->setValue(gf_data->APs[pos]);
 	}
 	

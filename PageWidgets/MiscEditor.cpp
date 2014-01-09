@@ -56,9 +56,7 @@ QWidget *MiscEditor::buildPage1()
 
 	QGroupBox *statsE = new QGroupBox(tr("Statistiques"), ret);
 	
-	argentE = new QDoubleSpinBox(statsE);
-	argentE->setDecimals(0);
-	argentE->setRange(0, MAX_INT32);
+	argentE = new SpinBox32(statsE);
 
 	timeE = new TimeWidget(statsE);
 	countdownE = new TimeWidget(statsE);
@@ -70,30 +68,18 @@ QWidget *MiscEditor::buildPage1()
 	argent_tempsL->addWidget(new QLabel(tr("Compte à rebours :"), statsE));
 	argent_tempsL->addWidget(countdownE);
 	
-	stepsE = new QDoubleSpinBox(statsE);
-	stepsE->setDecimals(0);
-	stepsE->setRange(0, MAX_INT32);
+	stepsE = new SpinBox32(statsE);
 	
 	seedLvlE = new QSpinBox(statsE);
 	seedLvlE->setRange(0, 31);
 	connect(seedLvlE, SIGNAL(valueChanged(int)), SLOT(nivS(int)));
-	seedExpE = new QSpinBox(statsE);
-	seedExpE->setRange(0, MAX_INT16);
+	seedExpE = new SpinBox16(statsE);
 	connect(seedExpE, SIGNAL(valueChanged(int)), SLOT(expS(int)));
 
-	testSeedE = new QSpinBox(statsE);
-	testSeedE->setRange(0, MAX_INT8);
-	
-	lagunaGilsE = new QDoubleSpinBox(statsE);
-	lagunaGilsE->setDecimals(0);
-	lagunaGilsE->setRange(0, MAX_INT32);
-
-	lastFieldE = new QSpinBox(statsE);
-	lastFieldE->setRange(0, MAX_INT16);
-
-	currentFrameE = new QDoubleSpinBox(statsE);
-	currentFrameE->setDecimals(0);
-	currentFrameE->setRange(0, MAX_INT32);
+	testSeedE = new SpinBox8(statsE);
+	lagunaGilsE = new SpinBox32(statsE);
+	lastFieldE = new SpinBox16(statsE);
+	currentFrameE = new SpinBox32(statsE);
 
 	QGridLayout *statsL = new QGridLayout(statsE);
 	statsL->addLayout(argent_tempsL, 0, 0, 1, 6);
@@ -115,27 +101,14 @@ QWidget *MiscEditor::buildPage1()
 	statsL->addWidget(currentFrameE, 3, 3);
 
 	unknownE = new QGroupBox(tr("Inconnu"), ret);
-	unknown1E = new QSpinBox(unknownE);
-	unknown1E->setRange(0, MAX_INT16);
-	unknown2E = new QSpinBox(unknownE);
-	unknown2E->setRange(0, MAX_INT16);
-	unknown4E = new QDoubleSpinBox(unknownE);
-	unknown4E->setDecimals(0);
-	unknown4E->setRange(0, MAX_INT32);
-	unknown5E = new QSpinBox(unknownE);
-	unknown5E->setRange(0, MAX_INT16);
-	unknown6E = new QDoubleSpinBox(unknownE);
-	unknown6E->setDecimals(0);
-	unknown6E->setRange(0, MAX_INT32);
-	unknown7E = new QDoubleSpinBox(unknownE);
-	unknown7E->setDecimals(0);
-	unknown7E->setRange(0, MAX_INT32);
-	unknown8E = new QDoubleSpinBox(unknownE);
-	unknown8E->setDecimals(0);
-	unknown8E->setRange(0, MAX_INT32);
-	unknown9E = new QDoubleSpinBox(unknownE);
-	unknown9E->setDecimals(0);
-	unknown9E->setRange(0, MAX_INT32);
+	unknown1E = new SpinBox16(unknownE);
+	unknown2E = new SpinBox16(unknownE);
+	unknown4E = new SpinBox32(unknownE);
+	unknown5E = new SpinBox16(unknownE);
+	unknown6E = new SpinBox32(unknownE);
+	unknown7E = new SpinBox32(unknownE);
+	unknown8E = new SpinBox32(unknownE);
+	unknown9E = new SpinBox32(unknownE);
 
 	QGridLayout *unknownL = new QGridLayout(unknownE);
 	unknownL->addWidget(new QLabel(tr("Inconnu 1 :"),unknownE), 0, 0);

@@ -18,6 +18,7 @@
 
 #include "Config.h"
 #include "QTaskBarButton.h"
+#include "Parameters.h"
 
 const char *Config::keys[KEYS_SIZE] = {
 	"recentFiles", "lang", "geometry",

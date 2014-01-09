@@ -41,13 +41,9 @@ QWidget *WorldmapEditor::buildPage1()
 {
 	QWidget *ret = new QWidget(this);
 
-	stepsE = new QSpinBox(ret);
-	stepsE->setRange(0, MAX_INT16);
-	carStepsE = new QDoubleSpinBox(ret);
-	carStepsE->setDecimals(0);
-	carStepsE->setRange(0, MAX_INT16);
-	currentCarE = new QSpinBox(ret);
-	currentCarE->setRange(0, MAX_INT8);
+	stepsE = new SpinBox16(ret);
+	carStepsE = new SpinBox16(ret);
+	currentCarE = new SpinBox8(ret);
 	currentMapE = new QComboBox(ret);
 	currentMapE->addItem(tr("Aucune"), 0);
 	currentMapE->addItem(tr("Globe"), 1);

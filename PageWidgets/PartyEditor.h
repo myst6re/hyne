@@ -20,6 +20,7 @@
 #define DEF_PARTYEDITOR
 
 #include "PageWidget.h"
+#include "../SpinBox.h"
 
 class PartyEditor : public PageWidget
 {

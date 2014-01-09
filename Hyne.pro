@@ -52,7 +52,8 @@ HEADERS += PageWidgets/ConfigEditor.h \
 	Metadata.h \
     UserDirectory.h \
     FF8Installation.h \
-    MetadataDialog.h
+    MetadataDialog.h \
+    SpinBox.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/MiscEditor.cpp \
     PageWidgets/GfEditor.cpp \
@@ -98,7 +99,8 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     Metadata.cpp \
     UserDirectory.cpp \
     FF8Installation.cpp \
-    MetadataDialog.cpp
+    MetadataDialog.cpp \
+    SpinBox.cpp
 RESOURCES += Hyne.qrc
 TRANSLATIONS += hyne_en.ts \
     hyne_ja.ts

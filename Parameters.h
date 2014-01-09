@@ -17,14 +17,8 @@
  ****************************************************************************/
 
 #define PROG_NAME 			"Hyne"
-#define PROG_VERSION 		"1.8.2"
-#define PROG_FULLNAME 		QString("%1 %2").arg(PROG_NAME, PROG_VERSION)
-#define FF8SAVE_SIZE		5408
-#define SAVE_SIZE			8192
-#define MAX_INT8			255
-#define MAX_INT16			65535
-#define MAX_INT32			(quint32)-1
+#define PROG_VERSION 		"1.8.3"
 
-#define RC_PRODUCT_VERSION			1,8,2,0
+#define RC_PRODUCT_VERSION			1,8,3,0
 #define RC_FILE_DESCRIPTION_STR		"Hyne FF8 Save Editor"
 #define RC_COMPANY_NAME_STR			"myst6re"

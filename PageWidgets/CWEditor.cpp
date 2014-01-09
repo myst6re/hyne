@@ -42,29 +42,20 @@ void CWEditor::buildWidget()
 	enabledE = new QGroupBox(tr("Activé"), this);
 	enabledE->setCheckable(true);
 
-	levelE = new QSpinBox(enabledE);
-	levelE->setRange(0, MAX_INT8);
-	currentHpE = new QSpinBox(enabledE);
-	currentHpE->setRange(0, MAX_INT8);
-	maxHpE = new QSpinBox(enabledE);
-	maxHpE->setRange(0, MAX_INT8);
+	levelE = new SpinBox8(enabledE);
+	currentHpE = new SpinBox8(enabledE);
+	maxHpE = new SpinBox8(enabledE);
 	idE = new QSpinBox(enabledE);
 	idE->setRange(000, 999);
 	weaponE = new QSpinBox(enabledE);
 	weaponE->setRange(0000, 9999);
-	rankE = new QSpinBox(enabledE);
+	rankE = new SpinBox8(enabledE);
 	rankE->setRange(1, MAX_INT8 + 1);
-	saveCountE = new QDoubleSpinBox(enabledE);
-	saveCountE->setRange(0, MAX_INT32);
-	saveCountE->setDecimals(0);
-	itemClassACountE = new QSpinBox(enabledE);
-	itemClassACountE->setRange(0, MAX_INT8);
-	itemClassBCountE = new QSpinBox(enabledE);
-	itemClassBCountE->setRange(0, MAX_INT8);
-	itemClassCCountE = new QSpinBox(enabledE);
-	itemClassCCountE->setRange(0, MAX_INT8);
-	itemClassDCountE = new QSpinBox(enabledE);
-	itemClassDCountE->setRange(0, MAX_INT8);
+	saveCountE = new SpinBox32(enabledE);
+	itemClassACountE = new SpinBox8(enabledE);
+	itemClassBCountE = new SpinBox8(enabledE);
+	itemClassCCountE = new SpinBox8(enabledE);
+	itemClassDCountE = new SpinBox8(enabledE);
 
 	QGroupBox *questGroupE = new QGroupBox(tr("Avancement quête"), enabledE);
 	QGridLayout *questL = new QGridLayout(questGroupE);

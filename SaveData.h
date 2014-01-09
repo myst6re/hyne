@@ -26,6 +26,8 @@
 #define COUNTRY_JP	'I'
 #define COUNTRY_US	'A'
 #define COUNTRY_EU	'E'
+#define FF8SAVE_SIZE		5408
+#define SAVE_SIZE			8192
 
 #include <QtCore>
 #include "SaveIcon.h"

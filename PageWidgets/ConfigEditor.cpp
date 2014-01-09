@@ -46,31 +46,29 @@ void ConfigEditor::buildWidget()
 			<< tr("Marcher/Annuler") << tr("Menu") << tr("Parler/Confirmer") << tr("Parler/Jeu de cartes")
 			<< tr("Select") << tr("???") << tr("???");
 	
-	QGridLayout *touchesL = new QGridLayout(manetteGroupE);
-	QSpinBox *curSpinBox;
+	QGridLayout *keysL = new QGridLayout(manetteGroupE);
+	SpinBox8 *curSpinBox;
 	quint8 i, j;
-	for(i=0 ; i<3 ; ++i)
-	{
-		for(j=0 ; j<4 ; ++j)
-		{
-			touchesE.append(curSpinBox = new QSpinBox(manetteGroupE));
-			curSpinBox->setRange(0, MAX_INT8);
-			touchesL->addWidget(new QLabel(keyNames.at(i*4+j), manetteGroupE), i, j*2);
-			touchesL->addWidget(curSpinBox, i, j*2+1);
+	for(i=0 ; i<3 ; ++i) {
+		for(j=0 ; j<4 ; ++j) {
+			curSpinBox = new SpinBox8(manetteGroupE);
+			keysE.append(curSpinBox);
+			keysL->addWidget(new QLabel(keyNames.at(i*4+j), manetteGroupE), i, j*2);
+			keysL->addWidget(curSpinBox, i, j*2+1);
 		}
 	}
-	touchesE.append(curSpinBox = new QSpinBox(manetteGroupE));
-	curSpinBox->setRange(0, MAX_INT8);
-	touchesL->addWidget(new QLabel(tr("Pause"), manetteGroupE), 3, 0);
-	touchesL->addWidget(curSpinBox, 3, 1);
+	curSpinBox = new SpinBox8(manetteGroupE);
+	keysE.append(curSpinBox);
+	keysL->addWidget(new QLabel(tr("Pause"), manetteGroupE), 3, 0);
+	keysL->addWidget(curSpinBox, 3, 1);
 	
 	QPushButton *joystickE = new QPushButton(tr("Inverser"), manetteGroupE);
 	joystickLbl = new QLabel(manetteGroupE);
-	touchesL->addWidget(joystickLbl, 4, 0, 1, 4);
-	touchesL->addWidget(joystickE, 4, 4);
+	keysL->addWidget(joystickLbl, 4, 0, 1, 4);
+	keysL->addWidget(joystickE, 4, 4);
 
 	QPushButton *defaultButton = new QPushButton(tr("Par défaut"), manetteGroupE);
-	touchesL->addWidget(defaultButton, 4, 6, 1, 2);
+	keysL->addWidget(defaultButton, 4, 6, 1, 2);
 	
 	QGroupBox *pointeurGroupE = new QGroupBox(tr("Pointeur"), this);
 	pointeur1E = new QRadioButton(tr("Initial"), pointeurGroupE);
@@ -163,7 +161,7 @@ void ConfigEditor::buildWidget()
 	margins.setBottom(0);
 	grid->setContentsMargins(margins);
 
-	connect(defaultButton, SIGNAL(released()), SLOT(touchesDefault()));
+	connect(defaultButton, SIGNAL(released()), SLOT(defaultKeys()));
 	connect(joystickE, SIGNAL(released()), SLOT(joystickS()));
 }
 
@@ -200,19 +198,19 @@ void ConfigEditor::fillPage()
 	vts_msgE->setValue(4-data->config.vts_msg);
 	analog_volumeE->setValue(data->config.analog_volume);
 
-	touchesE.first()->setValue(data->config.u3);
-	touchesE.at(1)->setValue(data->config.L2);
-	touchesE.at(2)->setValue(data->config.R2);
-	touchesE.at(3)->setValue(data->config.L1);
-	touchesE.at(4)->setValue(data->config.R1);
-	touchesE.at(5)->setValue(data->config.TRIANGLE);
-	touchesE.at(6)->setValue(data->config.ROND);
-	touchesE.at(7)->setValue(data->config.CROIX);
-	touchesE.at(8)->setValue(data->config.CARRE);
-	touchesE.at(9)->setValue(data->config.SELECT);
-	touchesE.at(10)->setValue(data->config.u4);
-	touchesE.at(11)->setValue(data->config.u5);
-	touchesE.at(12)->setValue(data->config.START);
+	keysE.first()->setValue(data->config.u3);
+	keysE.at(1)->setValue(data->config.L2);
+	keysE.at(2)->setValue(data->config.R2);
+	keysE.at(3)->setValue(data->config.L1);
+	keysE.at(4)->setValue(data->config.R1);
+	keysE.at(5)->setValue(data->config.TRIANGLE);
+	keysE.at(6)->setValue(data->config.ROND);
+	keysE.at(7)->setValue(data->config.CROIX);
+	keysE.at(8)->setValue(data->config.CARRE);
+	keysE.at(9)->setValue(data->config.SELECT);
+	keysE.at(10)->setValue(data->config.u4);
+	keysE.at(11)->setValue(data->config.u5);
+	keysE.at(12)->setValue(data->config.START);
 
 	setJoystickLbl();
 	
@@ -232,19 +230,19 @@ void ConfigEditor::savePage()
 	data->config.vts_msg = 4-vts_msgE->value();
 	data->config.analog_volume = analog_volumeE->value();
 	
-	data->config.u3 = touchesE.first()->value();
-	data->config.L2 = touchesE.at(1)->value();
-	data->config.R2 = touchesE.at(2)->value();
-	data->config.L1 = touchesE.at(3)->value();
-	data->config.R1 = touchesE.at(4)->value();
-	data->config.TRIANGLE = touchesE.at(5)->value();
-	data->config.ROND = touchesE.at(6)->value();
-	data->config.CROIX = touchesE.at(7)->value();
-	data->config.CARRE = touchesE.at(8)->value();
-	data->config.SELECT = touchesE.at(9)->value();
-	data->config.u4 = touchesE.at(10)->value();
-	data->config.u5 = touchesE.at(11)->value();
-	data->config.START = touchesE.at(12)->value();
+	data->config.u3 = keysE.first()->value();
+	data->config.L2 = keysE.at(1)->value();
+	data->config.R2 = keysE.at(2)->value();
+	data->config.L1 = keysE.at(3)->value();
+	data->config.R1 = keysE.at(4)->value();
+	data->config.TRIANGLE = keysE.at(5)->value();
+	data->config.ROND = keysE.at(6)->value();
+	data->config.CROIX = keysE.at(7)->value();
+	data->config.CARRE = keysE.at(8)->value();
+	data->config.SELECT = keysE.at(9)->value();
+	data->config.u4 = keysE.at(10)->value();
+	data->config.u5 = keysE.at(11)->value();
+	data->config.START = keysE.at(12)->value();
 }
 
 void ConfigEditor::setJoystickLbl()
@@ -258,10 +256,10 @@ void ConfigEditor::joystickS()
 	setJoystickLbl();
 }
 
-void ConfigEditor::touchesDefault()
+void ConfigEditor::defaultKeys()
 {
 	for(quint8 i=0 ; i<13 ; ++i)
-		touchesE.at(i)->setValue(i);
+		keysE.at(i)->setValue(i);
 	data->config.divers &= 0x7F;// joystick=0
 	setJoystickLbl();
 }

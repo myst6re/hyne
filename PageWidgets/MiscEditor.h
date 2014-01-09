@@ -21,6 +21,7 @@
 
 #include "PageWidget.h"
 #include "../TimeWidget.h"
+#include "../SpinBox.h"
 
 class MiscEditor : public PageWidget
 {
@@ -46,15 +47,16 @@ private:
 	QTabWidget *tabWidget;
 	// Misc
 	TimeWidget *timeE, *countdownE;
-	QSpinBox *seedLvlE, *seedExpE;
+	QSpinBox *seedLvlE;
+	SpinBox16 *seedExpE, *lastFieldE;
 	QLabel *lastFieldLabel, *currentFrameLabel;
-	QDoubleSpinBox *argentE, *lagunaGilsE, *currentFrameE;
-	QDoubleSpinBox *stepsE;
-	QSpinBox *testSeedE, *lastFieldE;
+	SpinBox32 *argentE, *lagunaGilsE, *currentFrameE;
+	SpinBox32 *stepsE;
+	SpinBox8 *testSeedE;
 	// Unknown
 	QGroupBox *unknownE;
-	QSpinBox *unknown1E, *unknown2E, *unknown5E;
-	QDoubleSpinBox *unknown4E, *unknown6E, *unknown7E, *unknown8E, *unknown9E;
+	SpinBox16 *unknown1E, *unknown2E, *unknown5E;
+	SpinBox32 *unknown4E, *unknown6E, *unknown7E, *unknown8E, *unknown9E;
 	// Page 2
 	QTreeWidget *tutoE_list;
 };

@@ -22,8 +22,6 @@
 #include <QtGui>
 #include "SavecardWidget.h"
 #include "Editor.h"
-#include "Parameters.h"
-#include "SelectSavesDialog.h"
 #include "StartWidget.h"
 #include "QTaskBarButton.h"
 

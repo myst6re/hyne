@@ -32,25 +32,18 @@ void BattleEditor::buildWidget()
 {
 	QGroupBox *statsE = new QGroupBox(tr("Statistiques"), this);
 
-	battlewinE = new QDoubleSpinBox(statsE);
-	battlewinE->setDecimals(0);
-	battlewinE->setRange(0, MAX_INT32);
-	battleescE = new QSpinBox(statsE);
-	battleescE->setRange(0, MAX_INT16);
+	battlewinE = new SpinBox32(statsE);
+	battleescE = new SpinBox16(statsE);
 
 	monsterkillsAuto = new QCheckBox(tr("Auto"), statsE);
-	monsterkillsE = new QDoubleSpinBox(statsE);
-	monsterkillsE->setDecimals(0);
-	monsterkillsE->setRange(0, MAX_INT32);
+	monsterkillsE = new SpinBox32(statsE);
 
 	QHBoxLayout *monsterkillL = new QHBoxLayout;
 	monsterkillL->addWidget(monsterkillsE);
 	monsterkillL->addWidget(monsterkillsAuto);
 	monsterkillL->setContentsMargins(QMargins());
 
-	tombyE = new QDoubleSpinBox(statsE);
-	tombyE->setDecimals(0);
-	tombyE->setRange(0, MAX_INT32);
+	tombyE = new SpinBox32(statsE);
 
 	tombySrE = new QCheckBox(tr("Tomberry Sr vaincu"), statsE);
 
@@ -76,13 +69,8 @@ void BattleEditor::buildWidget()
 
 	unknownGroupE = new QGroupBox(tr("Inconnu"), this);
 
-	unknown1E = new QDoubleSpinBox(unknownGroupE);
-	unknown1E->setDecimals(0);
-	unknown1E->setRange(0, MAX_INT32);
-
-	unknown2E = new QDoubleSpinBox(unknownGroupE);
-	unknown2E->setDecimals(0);
-	unknown2E->setRange(0, MAX_INT32);
+	unknown1E = new SpinBox32(unknownGroupE);
+	unknown2E = new SpinBox32(unknownGroupE);
 
 	QGridLayout *unknownL = new QGridLayout(unknownGroupE);
 	unknownL->addWidget(new QLabel(tr("Inconnu 1 :"),statsE), 0, 0);

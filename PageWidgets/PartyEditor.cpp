@@ -79,12 +79,10 @@ void PartyEditor::buildWidget()
 		spinBox->setRange(-32768, 32767);
 		positionGBL->addWidget(spinBox, i+1, 2);
 
-		idE.append(spinBox = new QSpinBox(positionGBE));
-		spinBox->setRange(0, 65535);
+		idE.append(spinBox = new SpinBox16(positionGBE));
 		positionGBL->addWidget(spinBox, i+1, 3);
 
-		dirE.append(spinBox = new QSpinBox(positionGBE));
-		spinBox->setRange(0, 255);
+		dirE.append(spinBox = new SpinBox8(positionGBE));
 		positionGBL->addWidget(spinBox, i+1, 4);
 	}
 

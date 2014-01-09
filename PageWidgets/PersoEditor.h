@@ -21,6 +21,7 @@
 
 #include "SpinBoxDelegate.h"
 #include "PageWidget.h"
+#include "../SpinBox.h"
 
 class PersoEditor : public PageWidget
 {
@@ -62,16 +63,19 @@ private:
 	// Page 1
 	QCheckBox *existsE;
 	QLineEdit *nameE;
-	QDoubleSpinBox *expE;
-	QSpinBox *current_HPsE, *nivE;
+	SpinBox32 *expE;
+	SpinBox16 *current_HPsE;
+	QSpinBox *nivE;
 	QGroupBox *bonus_E;
-	QSpinBox *HPs_E, *vgr_E, *dfs_E, *mgi_E, *psy_E, *vts_E, *chc_E;
-	QSpinBox *kills_E, *kos_E;
+	SpinBox16 *HPs_E;
+	SpinBox8 *vgr_E, *dfs_E, *mgi_E, *psy_E, *vts_E, *chc_E;
+	SpinBox16 *kills_E, *kos_E;
 	QComboBox *id_E, *weapon_E;
 	QList<QCheckBox *> status_list_E;
 	QGroupBox *unknownE;
 	QLabel *unknown1LabelE;
-	QSpinBox *unknown1E, *unknown2E, *unknown3E, *unknown4E, *unknown5E, *unknown6E;
+	SpinBox8 *unknown1E, *unknown2E, *unknown3E, *unknown4E, *unknown5E;
+	QSpinBox *unknown6E;
 	QCheckBox *alternativeE, *lock1E, *lock2E;
 	// Page 2
 	QList<QCheckBox *> poss_E;
@@ -80,7 +84,7 @@ private:
 	// Page 3
 	QTreeView *magie_E_view;
 	QStandardItemModel *magie_E_model;
-	QSpinBox *qtyAllSpin;
+	SpinBox8 *qtyAllSpin;
 	// Page 4
 	QComboBox *commande1_E, *commande2_E, *commande3_E;
 	QComboBox *ability1_E, *ability2_E, *ability3_E, *ability4_E;
@@ -90,7 +94,7 @@ private:
 	QList<QCheckBox *> LB_E;
 	QLineEdit *angel_E;
 	QCheckBox *angel_disabledE, *a_wing_enabledE;
-	QList<QSpinBox *> linoaLB_E;
+	QList<SpinBox8 *> linoaLB_E;
 	QLabel *indicatorlabel;
 	QSlider *LBindicator_E;
 };

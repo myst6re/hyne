@@ -22,33 +22,25 @@
 #include "PageWidget.h"
 #include "SavecardView.h"
 #include "../TimeWidget.h"
+#include "../SpinBox.h"
 
 class PreviewWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit PreviewWidget(QWidget *parent=0) : QWidget(parent), _saveData(0) {}
-	QSize sizeHint() const {
+	explicit PreviewWidget(QWidget *parent=0);
+	inline QSize sizeHint() const {
 		return minimumSizeHint();
 	}
-	QSize minimumSizeHint() const {
+	inline QSize minimumSizeHint() const {
 		return SavecardView::saveSize();
 	}
-	void setSaveData(const SaveData *saveData) {
+	inline void setSaveData(const SaveData *saveData) {
 		_saveData = saveData;
 	}
 
 protected:
-	virtual void paintEvent(QPaintEvent *event) {
-		if(!_saveData)	return;
-		QPainter p(this);
-
-		QTransform transform;
-		transform.scale(width() * 1.0 / sizeHint().width(), height() * 1.0 / sizeHint().height());
-		p.setTransform(transform);
-
-		SavecardView::renderSave(&p, _saveData, 0, event->rect());
-	}
+	virtual void paintEvent(QPaintEvent *event);
 private:
 	const SaveData *_saveData;
 };
@@ -70,9 +62,9 @@ protected:
 private:
 	QGroupBox *autoGroup;
 	QComboBox *locationIDE;
-	QSpinBox *hpLeaderE, *hpMaxLeaderE;
-	QSpinBox *nivLeaderE, *saveCountE;
-	QDoubleSpinBox *gilsE, *discE, *curSaveE;
+	SpinBox16 *hpLeaderE, *hpMaxLeaderE, *saveCountE;
+	SpinBox8 *nivLeaderE;
+	SpinBox32 *gilsE, *discE, *curSaveE;
 	TimeWidget *timeE;
 	PreviewWidget *previewWidget;
 	QList<QComboBox *> partyE;
