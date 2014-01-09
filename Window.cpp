@@ -879,7 +879,7 @@ void Window::fullScreen()
 void Window::about()
 {
 	QDialog about(this, Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
-	about.setFixedSize(224, 248);
+	about.setFixedSize(224, 272);
 	about.setWindowTitle(tr("À propos"));
 	
 	QFont font;
