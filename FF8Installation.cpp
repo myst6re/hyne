@@ -259,6 +259,10 @@ QStringList FF8Installation::searchInstalledApps(const QString &appName, const Q
 
 		RegCloseKey(phkResult);
 	}
+#else
+	Q_UNUSED(appName)
+	Q_UNUSED(publisher)
+	Q_UNUSED(max)
 #endif
 	return ret;
 }
