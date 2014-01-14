@@ -20,9 +20,9 @@ QHexEditPrivate::QHexEditPrivate(QScrollArea *parent) : QWidget(parent)
     setHighlighting(true);
     setOverwriteMode(true);
     setReadOnly(false);
-    setAddressAreaColor(QColor(0xd4, 0xd4, 0xd4, 0xff));
-    setHighlightingColor(QColor(0xff, 0xff, 0x99, 0xff));
-    setSelectionColor(QColor(0x6d, 0x9e, 0xff, 0xff));
+	setAddressAreaColor(palette().background().color());
+	setSelectionColor(palette().highlight().color());
+	setHighlightingColor(QColor(0xff, 0xff, 0x99, 0xff));
     setFont(QFont("Courier", 10));
 
     _size = 0;
@@ -596,7 +596,7 @@ void QHexEditPrivate::paintEvent(QPaintEvent *event)
     QBrush highLighted = QBrush(_highlightingColor);
 	QPen colHighlighted = QPen(this->palette().color(QPalette::WindowText));
 	QBrush selected = QBrush(_selectionColor);
-    QPen colSelected = QPen(Qt::white);
+	QPen colSelected = QPen(this->palette().color(QPalette::HighlightedText));
 	QPen colStandard = QPen(this->palette().color(QPalette::WindowText));
 
     painter.setBackgroundMode(Qt::TransparentMode);
