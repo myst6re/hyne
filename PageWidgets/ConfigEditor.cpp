@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ void ConfigEditor::updateMode(bool mode)
 void ConfigEditor::buildWidget()
 {
 	QGroupBox *sonGroupE = new QGroupBox(tr("Son"), this);
-	son1E = new QRadioButton(tr("Stéréo"), sonGroupE);
+	son1E = new QRadioButton(tr("StÃ©rÃ©o"), sonGroupE);
 	son2E = new QRadioButton(tr("Mono"), sonGroupE);
 	
 	QHBoxLayout *sonL = new QHBoxLayout(sonGroupE);
@@ -39,10 +39,10 @@ void ConfigEditor::buildWidget()
 	sonL->addWidget(son2E);
 	sonL->addStretch();
 	
-	manetteGroupE = new QGroupBox(tr("Touches personnalisées"), this);
+	manetteGroupE = new QGroupBox(tr("Touches personnalisÃ©es"), this);
 	manetteGroupE->setCheckable(true);
 	QStringList keyNames;
-	keyNames << tr("???") << tr("Fuite") << tr("Fuite/Changer vision") << tr("Écran cible") << tr("Gâchette")
+	keyNames << tr("???") << tr("Fuite") << tr("Fuite/Changer vision") << tr("Ã‰cran cible") << tr("GÃ¢chette")
 			<< tr("Marcher/Annuler") << tr("Menu") << tr("Parler/Confirmer") << tr("Parler/Jeu de cartes")
 			<< tr("Select") << tr("???") << tr("???");
 	
@@ -67,12 +67,12 @@ void ConfigEditor::buildWidget()
 	keysL->addWidget(joystickLbl, 4, 0, 1, 4);
 	keysL->addWidget(joystickE, 4, 4);
 
-	QPushButton *defaultButton = new QPushButton(tr("Par défaut"), manetteGroupE);
+	QPushButton *defaultButton = new QPushButton(tr("Par dÃ©faut"), manetteGroupE);
 	keysL->addWidget(defaultButton, 4, 6, 1, 2);
 	
 	QGroupBox *pointeurGroupE = new QGroupBox(tr("Pointeur"), this);
 	pointeur1E = new QRadioButton(tr("Initial"), pointeurGroupE);
-	pointeur2E = new QRadioButton(tr("Mémoire"), pointeurGroupE);
+	pointeur2E = new QRadioButton(tr("MÃ©moire"), pointeurGroupE);
 	
 	QHBoxLayout *pointeurL = new QHBoxLayout(pointeurGroupE);
 	pointeurL->addWidget(pointeur1E);
@@ -144,7 +144,7 @@ void ConfigEditor::buildWidget()
 	grid->addWidget(targetMenuGroupE, 1, 2, 1, 2);
 	grid->addWidget(vibrationGroupE, 1, 4, 1, 2);
 	grid->addLayout(inconnuL, 2, 0, 1, 6);
-	grid->addWidget(new QLabel(tr("Déplacement caméra :"), this), 3, 0, 1, 2);
+	grid->addWidget(new QLabel(tr("DÃ©placement camÃ©ra :"), this), 3, 0, 1, 2);
 	grid->addWidget(cameraE, 3, 2, 1, 4);
 	grid->addWidget(new QLabel(tr("Vitesse combat :"), this), 4, 0, 1, 2);
 	grid->addWidget(vts_combatE, 4, 2, 1, 4);
@@ -152,7 +152,7 @@ void ConfigEditor::buildWidget()
 	grid->addWidget(vts_msg_combatE, 5, 2, 1, 4);
 	grid->addWidget(new QLabel(tr("Message excursion :"), this), 6, 0, 1, 2);
 	grid->addWidget(vts_msgE, 6, 2, 1, 4);
-	grid->addWidget(new QLabel(tr("Entrée Analogique/Volume :"), this), 7, 0, 1, 2);
+	grid->addWidget(new QLabel(tr("EntrÃ©e Analogique/Volume :"), this), 7, 0, 1, 2);
 	grid->addWidget(analog_volumeE, 7, 2, 1, 4);
 	grid->addWidget(manetteGroupE, 8, 0, 1, 6);
 	grid->setRowStretch(9, 1);
@@ -220,7 +220,7 @@ void ConfigEditor::fillPage()
 void ConfigEditor::savePage()
 {
 	data->config.divers =
-			(ATB2E->isChecked()) | (son2E->isChecked()<<1) | (pointeur2E->isChecked()<<2) | (inconnu1E->isChecked()<<3) |
+			int(ATB2E->isChecked()) | (son2E->isChecked()<<1) | (pointeur2E->isChecked()<<2) | (inconnu1E->isChecked()<<3) |
 			(targetMenu2E->isChecked()<<4) | (manetteGroupE->isChecked()<<5) | (vibration2E->isChecked()<<6) | (data->config.divers&0x80);
 
 	data->config.scan = scan2E->isChecked();
@@ -247,7 +247,7 @@ void ConfigEditor::savePage()
 
 void ConfigEditor::setJoystickLbl()
 {
-	joystickLbl->setText(((data->config.divers >> 7) & 1) ? tr("Joystick gauche : Véhicule avt/arr | Joystick droit : marcher") : tr("Joystick gauche : marcher | Joystick droit : Véhicule avt/arr"));
+	joystickLbl->setText(((data->config.divers >> 7) & 1) ? tr("Joystick gauche : VÃ©hicule avt/arr | Joystick droit : marcher") : tr("Joystick gauche : marcher | Joystick droit : VÃ©hicule avt/arr"));
 }
 
 void ConfigEditor::joystickS()

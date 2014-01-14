@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -19,11 +19,11 @@
 #ifndef PAGEWIDGET_H
 #define PAGEWIDGET_H
 
-#include <QtGui>
-#include "Data.h"
-#include "Config.h"
-#include "SaveData.h"
-#include "HelpWidget.h"
+#include <QtWidgets>
+#include "../Data.h"
+#include "../Config.h"
+#include "../SaveData.h"
+#include "../HelpWidget.h"
 
 class PageWidget : public QWidget
 {

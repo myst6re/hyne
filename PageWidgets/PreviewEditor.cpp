@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -85,9 +85,9 @@ void PreviewEditor::buildWidget()
 	partyL->setContentsMargins(QMargins());
 
 	QGridLayout *autoL = new QGridLayout(autoGroup);
-	autoL->addWidget(new QLabel(tr("HP leader (inutilisé)"), autoGroup), 0, 0);
+	autoL->addWidget(new QLabel(tr("HP leader (inutilisÃ©)"), autoGroup), 0, 0);
 	autoL->addWidget(hpLeaderE, 0, 1);
-	autoL->addWidget(new QLabel(tr("HP max. leader (inutilisé)"), autoGroup), 0, 2);
+	autoL->addWidget(new QLabel(tr("HP max. leader (inutilisÃ©)"), autoGroup), 0, 2);
 	autoL->addWidget(hpMaxLeaderE, 0, 3);
 	autoL->addWidget(new QLabel(tr("Niveau leader"), autoGroup), 0, 4);
 	autoL->addWidget(nivLeaderE, 0, 5);
@@ -97,7 +97,7 @@ void PreviewEditor::buildWidget()
 	autoL->addWidget(timeE, 1, 3);
 	autoL->addWidget(new QLabel(tr("Disque"), autoGroup), 1, 4);
 	autoL->addWidget(discE, 1, 5);
-	autoL->addWidget(new QLabel(tr("Équipe"), autoGroup), 2, 0);
+	autoL->addWidget(new QLabel(tr("Ã‰quipe"), autoGroup), 2, 0);
 	autoL->addLayout(partyL, 2, 1, 1, 5);
 
 	QGridLayout *layout = new QGridLayout(this);

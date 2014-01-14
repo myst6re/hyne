@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ void DrawPointEditor::buildWidget()
 	font.setPointSize(10);
 
 	drawE_model = new QStandardItemModel(this);
-	drawE_model->setHorizontalHeaderLabels(QStringList() << tr("Magie") << tr("Lieu") << tr("État actuel"));
+	drawE_model->setHorizontalHeaderLabels(QStringList() << tr("Magie") << tr("Lieu") << tr("Ã‰tat actuel"));
 
 	QTreeView *drawE_list = new QTreeView(this);
 	drawE_list->setModel(drawE_model);
@@ -63,17 +63,17 @@ void DrawPointEditor::buildWidget()
 	}
 
 	drawE_list->header()->setStretchLastSection(false);
-	drawE_list->header()->setResizeMode(0, QHeaderView::ResizeToContents);
-	drawE_list->header()->setResizeMode(1, QHeaderView::Stretch);
+	drawE_list->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+	drawE_list->header()->setSectionResizeMode(1, QHeaderView::Stretch);
 
 	font.setPixelSize(10);
 
 	listAll = new QComboBox(this);
 	listAll->setFont(font);
 	listAll->addItem(tr("Toutes pleines"));
-	listAll->addItem(tr("Toutes moitié pleines"));
+	listAll->addItem(tr("Toutes moitiÃ© pleines"));
 	listAll->addItem(tr("Toutes vides"));
-	listAll->addItem(tr("Toutes épuisées"));
+	listAll->addItem(tr("Toutes Ã©puisÃ©es"));
 
 	QPushButton *okAll = new QPushButton(tr("OK"), this);
 	okAll->setFont(font);
@@ -97,7 +97,7 @@ void DrawPointEditor::fillPage()
 	QStandardItem *item;
 	int drawState;
 	QStringList drawStates;
-	drawStates << tr("Pleine") << tr("Moitié pleine") << tr("Vide") << tr("Épuisée");
+	drawStates << tr("Pleine") << tr("MoitiÃ© pleine") << tr("Vide") << tr("Ã‰puisÃ©e");
 
 	for(int i=0 ; i<256 ; ++i)
 	{
@@ -139,7 +139,7 @@ void DrawPointEditor::all()
 {
 	int all = listAll->currentIndex();
 	QStringList drawStates;
-	drawStates << tr("Pleine") << tr("Moitié pleine") << tr("Vide") << tr("Épuisée");
+	drawStates << tr("Pleine") << tr("MoitiÃ© pleine") << tr("Vide") << tr("Ã‰puisÃ©e");
 	QString allText = drawStates.at(all);
 
 	for(int i=0 ; i<256 ; ++i) {

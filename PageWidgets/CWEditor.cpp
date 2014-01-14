@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ void CWEditor::buildWidget()
 	pixLayout->addStretch();
 	pixLayout->setContentsMargins(QMargins());
 
-	enabledE = new QGroupBox(tr("Activé"), this);
+	enabledE = new QGroupBox(tr("ActivÃ©"), this);
 	enabledE->setCheckable(true);
 
 	levelE = new SpinBox8(enabledE);
@@ -57,14 +57,14 @@ void CWEditor::buildWidget()
 	itemClassCCountE = new SpinBox8(enabledE);
 	itemClassDCountE = new SpinBox8(enabledE);
 
-	QGroupBox *questGroupE = new QGroupBox(tr("Avancement quête"), enabledE);
+	QGroupBox *questGroupE = new QGroupBox(tr("Avancement quÃªte"), enabledE);
 	QGridLayout *questL = new QGridLayout(questGroupE);
 
 	QStringList texts;
 	texts << tr("Dans le Chocobo World")
-		  << tr("MiniMog trouvé") << tr("MiniMog obtenu")
-		  << tr("MiniMog en attente") << tr("Roi démon vaincu")
-		  << tr("Événement courant vu") << tr("Event wait OFF");
+		  << tr("MiniMog trouvÃ©") << tr("MiniMog obtenu")
+		  << tr("MiniMog en attente") << tr("Roi dÃ©mon vaincu")
+		  << tr("Ã‰vÃ©nement courant vu") << tr("Event wait OFF");
 	for(int i=0 ; i<7 ; ++i) {
 		QCheckBox *questCheckBox = new QCheckBox(texts.at(i));
 		questE.append(questCheckBox);
@@ -78,7 +78,7 @@ void CWEditor::buildWidget()
 
 	texts.clear();
 	texts << tr("Chocobraise") << tr("Chocoflammes")
-		  << tr("Chocométéore") << tr("Grochocobo");
+		  << tr("ChocomÃ©tÃ©ore") << tr("Grochocobo");
 	for(int i=0 ; i<4 ; ++i) {
 		QRadioButton *starCountRadio = new QRadioButton(texts.at(i));
 		starCountE.append(starCountRadio);

@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -53,13 +53,13 @@ void BattleEditor::buildWidget()
 	firstirvinelbE = new QCheckBox(tr("Premier combat avec Irvine"), statsE);
 
 	QGridLayout *statsL = new QGridLayout(statsE);
-	statsL->addWidget(new QLabel(tr("Combats gagnés :"),statsE), 0, 0, 1, 3);
+	statsL->addWidget(new QLabel(tr("Combats gagnÃ©s :"),statsE), 0, 0, 1, 3);
 	statsL->addWidget(battlewinE, 0, 3, 1, 3);
 	statsL->addWidget(new QLabel(tr("Combats fuis :"),statsE), 0, 6, 1, 3);
 	statsL->addWidget(battleescE, 0, 9, 1, 3);
-	statsL->addWidget(new QLabel(tr("Monstres tués :"),statsE), 1, 0, 1, 3);
+	statsL->addWidget(new QLabel(tr("Monstres tuÃ©s :"),statsE), 1, 0, 1, 3);
 	statsL->addLayout(monsterkillL, 1, 3, 1, 3);
-	statsL->addWidget(new QLabel(tr("Tomberry tués :"),statsE), 1, 6, 1, 3);
+	statsL->addWidget(new QLabel(tr("Tomberry tuÃ©s :"),statsE), 1, 6, 1, 3);
 	statsL->addWidget(tombyE, 1, 9, 1, 3);
 	statsL->addWidget(tombySrE, 2, 0, 1, 4);
 	statsL->addWidget(firstr1E, 2, 4, 1, 4);
@@ -96,17 +96,17 @@ void BattleEditor::buildWidget()
 	}
 
 	for(i=size ; i<65 ; ++i) {
-		item = new QTreeWidgetItem(QStringList(tr("Inutilisé")));
+		item = new QTreeWidgetItem(QStringList(tr("InutilisÃ©")));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstdrawE_list->addTopLevelItem(item);
 	}
 
-	QCheckBox *firstdrawCheckAll = new QCheckBox(tr("Sélectionner tout"), this);
+	QCheckBox *firstdrawCheckAll = new QCheckBox(tr("SÃ©lectionner tout"), this);
 	connect(firstdrawCheckAll, SIGNAL(toggled(bool)), SLOT(selectAllDraw(bool)));
 
 	firstscanE_list = new QTreeWidget(this);
 	firstscanE_list->setFont(font);
-	firstscanE_list->setHeaderLabel(tr("Scannés au moins une fois"));
+	firstscanE_list->setHeaderLabel(tr("ScannÃ©s au moins une fois"));
 	firstscanE_list->setIndentation(0);
 	firstscanE_list->setUniformRowHeights(true);
 
@@ -118,7 +118,7 @@ void BattleEditor::buildWidget()
 	}
 
 	for(i=WARD+1 ; i<16 ; ++i) {
-		item = new QTreeWidgetItem(QStringList(tr("Inutilisé")));
+		item = new QTreeWidgetItem(QStringList(tr("InutilisÃ©")));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstscanE_list->addTopLevelItem(item);
 	}
@@ -130,12 +130,12 @@ void BattleEditor::buildWidget()
 	}
 
 	for(i=16+Data::ennemies().size() ; i<160 ; ++i) {
-		item = new QTreeWidgetItem(QStringList(tr("Inutilisé")));
+		item = new QTreeWidgetItem(QStringList(tr("InutilisÃ©")));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstscanE_list->addTopLevelItem(item);
 	}
 
-	QCheckBox *firstscanCheckAll = new QCheckBox(tr("Sélectionner tout"), this);
+	QCheckBox *firstscanCheckAll = new QCheckBox(tr("SÃ©lectionner tout"), this);
 	connect(firstscanCheckAll, SIGNAL(toggled(bool)), SLOT(selectAllScan(bool)));
 
 	font.setPixelSize(10);
@@ -200,11 +200,11 @@ void BattleEditor::savePage()
 	data->misc3.battle_escaped				= battleescE->value();
 	data->misc3.monster_kills				= monster_kills;
 	data->misc2.tomberry_vaincus			= tombyE->value();
-	data->misc2.tomberry_sr_vaincu			= (data->misc2.tomberry_sr_vaincu & 0xFFFE) | tombySrE->isChecked();
-	data->misc2.elmidea_battle_r1			= (data->misc2.elmidea_battle_r1 & 0xFFFE) | firstr1E->isChecked();
-	data->misc2.succube_battle_elemental	= (data->misc2.succube_battle_elemental & 0xFFFE) | firsteleE->isChecked();
-	data->misc2.trex_battle_mental			= (data->misc2.trex_battle_mental & 0xFFFE) | firstmtlE->isChecked();
-	data->misc2.battle_irvine				= (data->misc2.battle_irvine & 0xFFFE) | firstirvinelbE->isChecked();
+	data->misc2.tomberry_sr_vaincu			= (data->misc2.tomberry_sr_vaincu & 0xFFFE) | int(tombySrE->isChecked());
+	data->misc2.elmidea_battle_r1			= (data->misc2.elmidea_battle_r1 & 0xFFFE) | int(firstr1E->isChecked());
+	data->misc2.succube_battle_elemental	= (data->misc2.succube_battle_elemental & 0xFFFE) | int(firsteleE->isChecked());
+	data->misc2.trex_battle_mental			= (data->misc2.trex_battle_mental & 0xFFFE) | int(firstmtlE->isChecked());
+	data->misc2.battle_irvine				= (data->misc2.battle_irvine & 0xFFFE) | int(firstirvinelbE->isChecked());
 	data->misc2.u3							= unknown1E->value();
 	data->misc2.u4							= unknown2E->value();
 

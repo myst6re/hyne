@@ -4,7 +4,7 @@
 /** \cond docNever */
 
 #include <QtCore>
-#include "FF8Text.h"
+#include "../FF8Text.h"
 
 /*! XByteArray represents the content of QHexEcit.
 XByteArray comprehend the data itself and informations to store if it was

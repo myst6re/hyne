@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -101,7 +101,7 @@ QWidget *GfEditor::buildPage1()
 	statEditL->addWidget(nivEdit, 1, 1);
 	statEditL->addWidget(new QLabel(tr("EXP :"), ret), 1, 2);
 	statEditL->addWidget(expEdit, 1, 3);
-	statEditL->addWidget(new QLabel(tr("Tués :"), ret), 2, 0);
+	statEditL->addWidget(new QLabel(tr("TuÃ©s :"), ret), 2, 0);
 	statEditL->addWidget(killsEdit, 2, 1);
 	statEditL->addWidget(new QLabel(tr("Mort :"), ret), 2, 2);
 	statEditL->addWidget(KOsEdit, 2, 3);
@@ -118,8 +118,8 @@ QWidget *GfEditor::buildPage1()
 	liste2 = new QTreeWidget(ret);
 	liste->setFont(font);
 	liste2->setFont(font);
-	liste->setHeaderLabels(QStringList() << QString() << tr("Capacités") << tr("PDC"));
-	liste2->setHeaderLabels(QStringList() << QString() << tr("Capacités oubliées"));
+	liste->setHeaderLabels(QStringList() << QString() << tr("CapacitÃ©s") << tr("PDC"));
+	liste2->setHeaderLabels(QStringList() << QString() << tr("CapacitÃ©s oubliÃ©es"));
 	liste->setIndentation(0);
 	liste2->setIndentation(0);
 	liste->setColumnHidden(0, true);
@@ -146,7 +146,7 @@ QWidget *GfEditor::buildPage1()
 	learnC->setIcon(QIcon(":/images/icons/learning.png"));
 	connect(learnC, SIGNAL(released()), SLOT(changeLearning()));
 
-	acquireAllC = new QPushButton(tr("Tout acquérir"), ret);
+	acquireAllC = new QPushButton(tr("Tout acquÃ©rir"), ret);
 	connect(acquireAllC, SIGNAL(released()), SLOT(acquireAll()));
 
 	connect(liste, SIGNAL(itemSelectionChanged()), SLOT(enableButtons()));
@@ -190,7 +190,7 @@ QWidget *GfEditor::buildPage2()
 	grieverE = new QLineEdit;
 	odinE = new QCheckBox(tr("Odin"), groupBox);
 	gilgameshE = new QCheckBox(tr("Gilgamesh"), groupBox);
-	phoenixE = new QCheckBox(tr("Phénix"), groupBox);
+	phoenixE = new QCheckBox(tr("PhÃ©nix"), groupBox);
 
 	QHBoxLayout *grieverLayout = new QHBoxLayout;
 	grieverLayout->addWidget(new QLabel(Data::names().at(GRIEVER)+tr(" :")));
@@ -265,7 +265,7 @@ void GfEditor::fillPage()
 		liste2->clear();
 		QMap<int, QIcon> icons = abilityIcons();
 
-		//Listage des capacités aquises
+		//Listage des capacitÃ©s aquises
 		for(abilityID=0 ; abilityID<116 ; ++abilityID)
 		{
 			if(getCompleteAbility(abilityID))
@@ -278,18 +278,20 @@ void GfEditor::fillPage()
 
 		enableButtons();
 
-		//Listage des capacités en apprentissage et des capacités oubliées
+		quint32 forgotten = GF_GET_FORGOTTEN(*gf_data);
+
+		//Listage des capacitÃ©s en apprentissage et des capacitÃ©s oubliÃ©es
 		for(quint8 i=0 ; i<22 ; ++i)
 		{
 			abilityID = Data::innateAbilities[id][i];
 
-			if(!capacitesEnPlace.contains(abilityID))//Si pas déjà listé précédemment dans les capacités aquises
+			if(!capacitesEnPlace.contains(abilityID))//Si pas dÃ©jÃ  listÃ© prÃ©cÃ©demment dans les capacitÃ©s aquises
 			{
-				if(!((gf_data->forgotten >> i) & 1))//En apprentissage
+				if(!((forgotten >> i) & 1))//En apprentissage
 				{
 					addItem(abilityID, 0, i, icons);
 				}
-				else //Oubliées
+				else //OubliÃ©es
 				{
 					addItem(abilityID, 2, i, icons);
 				}
@@ -300,8 +302,8 @@ void GfEditor::fillPage()
 
 		liste->sortByColumn(0, Qt::AscendingOrder);
 		liste2->sortByColumn(0, Qt::AscendingOrder);
-		liste->header()->setResizeMode(1, QHeaderView::Stretch);
-		liste->header()->setResizeMode(2, QHeaderView::ResizeToContents);
+		liste->header()->setSectionResizeMode(1, QHeaderView::Stretch);
+		liste->header()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
 	}
 }
 
@@ -336,7 +338,7 @@ QTreeWidgetItem *GfEditor::addItem(quint8 abilityID, quint8 type, quint8 innateA
 	
 	switch(type)
 	{
-	case 0://Capacités de la GF non acquises (vert=Apprentissage en cours, noir sinon)
+	case 0://CapacitÃ©s de la GF non acquises (vert=Apprentissage en cours, noir sinon)
 		item = new QTreeWidgetItem(liste, QStringList() << QString("%1").arg(abilityID,3) << Data::abilities().value(abilityID) << QString("%1/%2").arg(gf_data->APs[innateAbID]).arg(Data::apsTab[abilityID]));
 		if(gf_data->learning == abilityID)
 		{
@@ -350,7 +352,7 @@ QTreeWidgetItem *GfEditor::addItem(quint8 abilityID, quint8 type, quint8 innateA
 		}
 		break;
 		
-	case 1://Capacités acquises de la GF (noir) et capacités acquises en plus (gris)
+	case 1://CapacitÃ©s acquises de la GF (noir) et capacitÃ©s acquises en plus (gris)
 		item = new QTreeWidgetItem(liste, QStringList() << QString("%1").arg(abilityID,3) << Data::abilities().value(abilityID) << tr("Acquis!"));
 		if(posAbility(abilityID) == -1)
 		{
@@ -370,7 +372,7 @@ QTreeWidgetItem *GfEditor::addItem(quint8 abilityID, quint8 type, quint8 innateA
 		}
 		break;
 
-	default://Capacités oubliées de la GF (rouge)
+	default://CapacitÃ©s oubliÃ©es de la GF (rouge)
 		item = new QTreeWidgetItem(liste2, QStringList() << QString("%1").arg(abilityID,3) << Data::abilities().value(abilityID));
 		item->setForeground(1, Qt::red);
 		item->setIcon(1, icon);
@@ -393,15 +395,17 @@ void GfEditor::remove_C()
 		gf_data->learning = 0;
 	}
 	
+	quint32 forgotten = GF_GET_FORGOTTEN(*gf_data);
 	qint8 pos;
 	if((pos = posAbility(abilityID)) != -1)
 	{
 		QTreeWidgetItem *item = addItem(abilityID, 2, pos);
-		gf_data->forgotten |= 1 << pos;
+		forgotten |= 1 << pos;
 		liste2->sortByColumn(0, Qt::AscendingOrder);
 		liste2->scrollToItem(item);
 		liste2->setCurrentItem(item);
 	}
+	GF_SET_FORGOTTEN(*gf_data, forgotten & 0xFFFF);
 	setCompleteAbility(abilityID, false);
 }
 
@@ -496,9 +500,12 @@ void GfEditor::restore_C()
 	liste->sortByColumn(0, Qt::AscendingOrder);
 	liste->scrollToItem(item);
 	liste->setCurrentItem(item);
-	liste->header()->setResizeMode(1, QHeaderView::Stretch);
-	liste->header()->setResizeMode(2, QHeaderView::ResizeToContents);
-	gf_data->forgotten ^= 1 << pos;
+	liste->header()->setSectionResizeMode(1, QHeaderView::Stretch);
+	liste->header()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+
+	quint32 forgotten = GF_GET_FORGOTTEN(*gf_data);
+	forgotten ^= 1 << pos;
+	GF_SET_FORGOTTEN(*gf_data, forgotten);
 }
 
 void GfEditor::enableButtons()
@@ -564,8 +571,8 @@ void GfEditor::addCapacity()
 		setCompleteAbility(abilityID, true);
 		liste->scrollToItem(item);
 		liste->setCurrentItem(item);
-		liste->header()->setResizeMode(1, QHeaderView::Stretch);
-		liste->header()->setResizeMode(2, QHeaderView::ResizeToContents);
+		liste->header()->setSectionResizeMode(1, QHeaderView::Stretch);
+		liste->header()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
 	}
 }
 

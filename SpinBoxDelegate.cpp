@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel JÈrÙme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel J√©r√¥me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -56,7 +56,7 @@
  **
  ****************************************************************************/
 
-#include <QtGui>
+#include <QtWidgets>
 #include "SpinBoxDelegate.h"
 
 SpinBoxDelegate::SpinBoxDelegate(QObject *parent)
@@ -86,9 +86,9 @@ QWidget *SpinBoxDelegate::createEditor(QWidget *parent, const QStyleOptionViewIt
 			break;
 		case ComboBoxDraw:
 			comboBox->addItem(tr("Pleine"));
-			comboBox->addItem(tr("MoitiÈ pleine"));
+			comboBox->addItem(tr("Moiti√© pleine"));
 			comboBox->addItem(tr("Vide"));
-			comboBox->addItem(tr("…puisÈe"));
+			comboBox->addItem(tr("√âpuis√©e"));
 			break;
 		default:break;
 		}

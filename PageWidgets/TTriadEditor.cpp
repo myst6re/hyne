@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ void TTriadEditor::buildWidget()
 
 	tabWidget = new QTabWidget(this);
 	tabWidget->addTab(buildPage1(), tr("Cartes"));
-	tabWidget->addTab(buildPage2(), tr("Règles"));
+	tabWidget->addTab(buildPage2(), tr("RÃ¨gles"));
 
 	layout->addWidget(tabWidget);
 	layout->setContentsMargins(QMargins());
@@ -78,7 +78,7 @@ QWidget *TTriadEditor::buildPage1()
 	QStandardItem *standardItem;
 	QIcon cardIcon(":/images/icons/carte.png");
 
-	labels << tr("Nom") << tr("Qté");
+	labels << tr("Nom") << tr("QtÃ©");
 	cardE_model->setHorizontalHeaderLabels(labels);
 
 	for(quint8 i=0 ; i<77 ; ++i)
@@ -120,8 +120,8 @@ QWidget *TTriadEditor::buildPage1()
 		cardE_model->appendRow(items);
 	}
 
-	cardE_view->header()->setResizeMode(0, QHeaderView::Stretch);
-	cardE_view->header()->setResizeMode(1, QHeaderView::ResizeToContents);
+	cardE_view->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+	cardE_view->header()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
 
 	labels.replace(1, tr("Possesseur"));
 	cardE_model2->setHorizontalHeaderLabels(labels);
@@ -165,11 +165,11 @@ QWidget *TTriadEditor::buildPage1()
 		cardE_model2->appendRow(items);
 	}
 
-	cardE_view2->header()->setResizeMode(0, QHeaderView::ResizeToContents);
-	cardE_view2->header()->setResizeMode(1, QHeaderView::Stretch);
+	cardE_view2->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
+	cardE_view2->header()->setSectionResizeMode(1, QHeaderView::Stretch);
 
 	font.setPixelSize(10);
-	QString selectAll = tr("Sélectionner tout");
+	QString selectAll = tr("SÃ©lectionner tout");
 	QCheckBox *selectAll1 = new QCheckBox(selectAll, ret);
 	QCheckBox *selectAll2 = new QCheckBox(selectAll, ret);
 	selectAll1->setFont(font);
@@ -196,8 +196,8 @@ QWidget *TTriadEditor::buildPage1()
 	connect(cardE_view->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), SLOT(changeCardPreview()));
 	connect(cardE_view2->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)), SLOT(changeCardPreview2()));
 
-	HelpWidget *info = new HelpWidget(16, tr("<b>Case cochée :</b> carte connue<br/><b>Possesseur :</b> joueur "
-											 "possédant la carte rare, mettre Squall pour l'avoir dans votre jeu."), ret);
+	HelpWidget *info = new HelpWidget(16, tr("<b>Case cochÃ©e :</b> carte connue<br/><b>Possesseur :</b> joueur "
+											 "possÃ©dant la carte rare, mettre Squall pour l'avoir dans votre jeu."), ret);
 
 	QGridLayout *layout = new QGridLayout(ret);
 	layout->addWidget(info, 0, 2, 2, 1, Qt::AlignTop);
@@ -247,13 +247,13 @@ QWidget *TTriadEditor::buildPage2()
 	ruleE_list = new QListWidget(ret);
 	ruleE_list->setFont(font);
 	ruleE_list->setUniformItemSizes(true);
-	ruleE_list->addItems(QStringList() << regions << tr("Dernières règles (1)") << tr("Dernières règles (2)"));
+	ruleE_list->addItems(QStringList() << regions << tr("DerniÃ¨res rÃ¨gles (1)") << tr("DerniÃ¨res rÃ¨gles (2)"));
 	connect(ruleE_list, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), SLOT(fillRules(QListWidgetItem*,QListWidgetItem*)));
 
-	QGroupBox *group1 = new QGroupBox(tr("Règles"), ret);
+	QGroupBox *group1 = new QGroupBox(tr("RÃ¨gles"), ret);
 	QVBoxLayout *group1L = new QVBoxLayout(group1);
 	QStringList rules_names;
-	rules_names << tr("Open") << tr("Identique") << tr("Plus") << tr("Aléatoire") << tr("Mort subite") << tr("(Essai)") << tr("Même mur") << tr("Élémentaire");
+	rules_names << tr("Open") << tr("Identique") << tr("Plus") << tr("AlÃ©atoire") << tr("Mort subite") << tr("(Essai)") << tr("MÃªme mur") << tr("Ã‰lÃ©mentaire");
 	QCheckBox *rule;
 	for(int i=0 ; i<8 ; ++i) {
 		rule = new QCheckBox(rules_names.at(i), group1);
@@ -262,7 +262,7 @@ QWidget *TTriadEditor::buildPage2()
 	}
 	group1L->addStretch(1);
 
-	group2 = new QGroupBox(tr("Règle du vainqueur"), ret);
+	group2 = new QGroupBox(tr("RÃ¨gle du vainqueur"), ret);
 	QVBoxLayout *group2L = new QVBoxLayout(group2);
 
 	QStringList traderules_names;
@@ -324,24 +324,24 @@ QWidget *TTriadEditor::buildPage2()
 	unknown2E_label = new QLabel(tr("Inconnu 2 :"),group3);
 	unknown2E = new SpinBox32(group3);
 
-	group3L->addWidget(new QLabel(tr("Dernières régions visitées :"),group3), 0, 0);
+	group3L->addWidget(new QLabel(tr("DerniÃ¨res rÃ©gions visitÃ©es :"),group3), 0, 0);
 	group3L->addWidget(last_regionE, 0, 1);
 	group3L->addWidget(last2_regionE, 0, 2);
 	group3L->addWidget(new QLabel(tr("Emplacement reine des cartes :"),group3), 2, 0);
 	group3L->addWidget(queenE, 2, 1);
-	group3L->addWidget(new QLabel(tr("Nombre de joueurs règle du vainqueur :"),group3), 3, 0);
+	group3L->addWidget(new QLabel(tr("Nombre de joueurs rÃ¨gle du vainqueur :"),group3), 3, 0);
 	group3L->addWidget(traderatingE, 3, 1);
-	group3L->addWidget(new QLabel(tr("Région :"),group3), 3, 2);
+	group3L->addWidget(new QLabel(tr("RÃ©gion :"),group3), 3, 2);
 	group3L->addWidget(traderating_regionE, 3, 3);
-	group3L->addWidget(new QLabel(tr("Dégénération :"),group3), 4, 0);
+	group3L->addWidget(new QLabel(tr("DÃ©gÃ©nÃ©ration :"),group3), 4, 0);
 	group3L->addWidget(ttdegenerationE, 4, 1);
-	group3L->addWidget(new QLabel(tr("Cartes créées :"),group3), 4, 2);
+	group3L->addWidget(new QLabel(tr("Cartes crÃ©Ã©es :"),group3), 4, 2);
 	group3L->addWidget(ttcardqueenquestE, 4, 3);
 	group3L->addWidget(new QLabel(tr("Nombre de victoires :"),group3), 5, 0);
 	group3L->addWidget(ttvictorycountE, 5, 1);
-	group3L->addWidget(new QLabel(tr("Nombre de défaites :"),group3), 5, 2);
+	group3L->addWidget(new QLabel(tr("Nombre de dÃ©faites :"),group3), 5, 2);
 	group3L->addWidget(ttdefeatcountE, 5, 3);
-	group3L->addWidget(new QLabel(tr("Nombre d'égalités :"),group3), 6, 0);
+	group3L->addWidget(new QLabel(tr("Nombre d'Ã©galitÃ©s :"),group3), 6, 0);
 	group3L->addWidget(ttegalitycountE, 6, 1);
 	group3L->addWidget(unknown1E_label, 7, 0);
 	group3L->addWidget(unknown1E, 7, 1);

@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -86,7 +86,7 @@ QByteArray SaveData::save() const
 		return ret.leftJustified(SAVE_SIZE, '\x00', true);
 	}
 
-	quint16 checksum = calcChecksum((char *)&_mainData);//On calcule le checksum à partir de la partie gf
+	quint16 checksum = calcChecksum((char *)&_mainData);//On calcule le checksum Ã  partir de la partie gf
 
 	ret.append("SC", 2);
 	ret.append(_header.at(2));// icon frames
@@ -492,11 +492,11 @@ bool SaveData::exportPC(const QString &path) const
 QString SaveData::perso(quint8 index) const
 {
 	switch(index) {
-	case SQUALL:		return FF8Text::toString(_descData.squall, isJp());
-	case RINOA:			return FF8Text::toString(_descData.rinoa, isJp());
-	case GRIEVER:		return FF8Text::toString(_mainData.misc1.griever, isJp());
-	case BOKO:			return FF8Text::toString(_descData.boko, isJp());
-	case ANGELO:		return FF8Text::toString(_descData.angelo, isJp());
+	case SQUALL:		return FF8Text::toString((char *)_descData.squall, isJp());
+	case RINOA:			return FF8Text::toString((char *)_descData.rinoa, isJp());
+	case GRIEVER:		return FF8Text::toString((char *)_mainData.misc1.griever, isJp());
+	case BOKO:			return FF8Text::toString((char *)_descData.boko, isJp());
+	case ANGELO:		return FF8Text::toString((char *)_descData.angelo, isJp());
 	default:
 		if(index < 16)	return Data::names().at(index);
 		return QString();
@@ -505,7 +505,7 @@ QString SaveData::perso(quint8 index) const
 
 QString SaveData::gf(quint8 index) const
 {
-	return FF8Text::toString(_mainData.gfs[index].name, isJp());
+	return FF8Text::toString((char *)_mainData.gfs[index].name, isJp());
 }
 
 void SaveData::setGf(quint8 index, const QString &name)

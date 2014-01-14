@@ -1,4 +1,3 @@
-#include <QtGui>
 
 #include "qhexedit_p.h"
 #include "commands.h"
@@ -394,7 +393,7 @@ void QHexEditPrivate::keyPressEvent(QKeyEvent *event)
 if (!_readOnly)
 {
     /* Hex input */
-        int key = int(event->text()[0].toAscii());
+		int key = int(event->text()[0].toLatin1());
         if ((key>='0' && key<='9') || (key>='a' && key <= 'f'))
         {
             if (getSelectionBegin() != getSelectionEnd())
@@ -605,7 +604,7 @@ void QHexEditPrivate::paintEvent(QPaintEvent *event)
     {
         QByteArray hex;
         int xPos = _xPosHex;
-        for (int colIdx = 0; ((lineIdx + colIdx) < _xData.size() and (colIdx < BYTES_PER_LINE)); colIdx++)
+		for (int colIdx = 0; ((lineIdx + colIdx) < _xData.size() && (colIdx < BYTES_PER_LINE)); colIdx++)
         {
             int posBa = lineIdx + colIdx;
             if ((getSelectionBegin() <= posBa) && (getSelectionEnd() > posBa))
@@ -656,7 +655,7 @@ void QHexEditPrivate::paintEvent(QPaintEvent *event)
         for (int lineIdx = firstLineIdx, yPos = yPosStart; lineIdx < lastLineIdx; lineIdx += BYTES_PER_LINE, yPos +=_charHeight)
         {
             int xPosAscii = _xPosAscii;
-            for (int colIdx = 0; ((lineIdx + colIdx) < _xData.size() and (colIdx < BYTES_PER_LINE)); colIdx++)
+			for (int colIdx = 0; ((lineIdx + colIdx) < _xData.size() && (colIdx < BYTES_PER_LINE)); colIdx++)
 			{
                 painter.drawText(xPosAscii, yPos, _xData.asciiChar(lineIdx + colIdx));
                 xPosAscii += _charWidth;
@@ -715,7 +714,7 @@ int QHexEditPrivate::cursorPos(QPoint pos)
 {
     int result = -1;
     // find char under cursor
-    if ((pos.x() >= _xPosHex) and (pos.x() < (_xPosHex + HEXCHARS_IN_LINE * _charWidth)))
+	if ((pos.x() >= _xPosHex) && (pos.x() < (_xPosHex + HEXCHARS_IN_LINE * _charWidth)))
     {
         int x = (pos.x() - _xPosHex) / _charWidth;
         if ((x % 3) == 0)

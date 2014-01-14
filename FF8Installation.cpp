@@ -17,7 +17,7 @@
  ****************************************************************************/
 #include "FF8Installation.h"
 #ifdef Q_OS_WIN
-#include <windef.h>
+#include <windows.h>
 #include <winbase.h>
 //#include <winerror.h>
 #include <winreg.h>
@@ -98,7 +98,7 @@ QString FF8Installation::typeString() const
 	case Steam:
 		return QObject::tr("FF8 Steam");
 	case Custom:
-		return QObject::tr("FF8 personnalisé");
+		return QObject::tr("FF8 personnalisÃ©");
 	}
 	Q_ASSERT(false);
 	return QString();

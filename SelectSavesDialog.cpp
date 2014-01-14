@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, bool mu
 		list->setSelectionMode(QAbstractItemView::MultiSelection);
 	}
 	else {
-		msg->setText(tr("Sélectionnez une sauvegarde :"));
+		msg->setText(tr("SÃ©lectionnez une sauvegarde :"));
 	}
 
 	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok,
@@ -58,7 +58,7 @@ SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, QWidget
 	msg = new HelpWidget(16, this);
 	fillList(saveFiles);
 
-	msg->setText(tr("Déplacez les éléments à la souris pour modifier l'ordre des saves."));
+	msg->setText(tr("DÃ©placez les Ã©lÃ©ments Ã  la souris pour modifier l'ordre des saves."));
 	list->setDragDropMode(QAbstractItemView::InternalMove);
 
 	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok,
@@ -90,7 +90,7 @@ void SelectSavesDialog::fillList(const QList<SaveData *> &saveFiles)
 
 QString SelectSavesDialog::infoText(bool warn)
 {
-	return tr("Sélectionnez jusqu'à <font color=\"%1\">15 saves</font> :").arg(warn ? "red" : "");
+	return tr("SÃ©lectionnez jusqu'Ã  <font color=\"%1\">15 saves</font> :").arg(warn ? "red" : "");
 }
 
 QList<int> SelectSavesDialog::selectedSaves() const

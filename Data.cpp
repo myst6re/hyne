@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -39,11 +39,11 @@ Ennemies Data::_ennemies;
 void Abilities::fillList()
 {
 	_list << QString("") << QObject::tr("HP-A") << QObject::tr("Vgr-A") << QObject::tr("Dfs-A") << QObject::tr("Mgi-A") << QObject::tr("Psy-A")
-		  << QObject::tr("Vts-A") << QObject::tr("Esq-A") << QObject::tr("Prc-A") << QObject::tr("Chc-A") << QObject::tr("Atq-Élé-A")
-		  << QObject::tr("Atq-Mtl-A") << QObject::tr("Déf-Élé-A") << QObject::tr("Déf-Mtl-A") << QObject::tr("Déf-ÉléX2") << QObject::tr("Déf-ÉléX4")
-		  << QObject::tr("Déf-Mtl-Ax2") << QObject::tr("Déf-Mtl-Ax4") << QObject::tr("CapacitéX3") << QObject::tr("CapacitéX4") << QObject::tr("Magie")
+		  << QObject::tr("Vts-A") << QObject::tr("Esq-A") << QObject::tr("Prc-A") << QObject::tr("Chc-A") << QObject::tr("Atq-Ã‰lÃ©-A")
+		  << QObject::tr("Atq-Mtl-A") << QObject::tr("DÃ©f-Ã‰lÃ©-A") << QObject::tr("DÃ©f-Mtl-A") << QObject::tr("DÃ©f-Ã‰lÃ©X2") << QObject::tr("DÃ©f-Ã‰lÃ©X4")
+		  << QObject::tr("DÃ©f-Mtl-Ax2") << QObject::tr("DÃ©f-Mtl-Ax4") << QObject::tr("CapacitÃ©X3") << QObject::tr("CapacitÃ©X4") << QObject::tr("Magie")
 		  << QObject::tr("G-Force") << QObject::tr("Voler") << QObject::tr("Objets") << "???" << QObject::tr("Carte")
-		  << QObject::tr("Châtiment") << QObject::tr("Mad Rush") << QObject::tr("Traitement") << QObject::tr("Défense") << QObject::tr("Combustion")
+		  << QObject::tr("ChÃ¢timent") << QObject::tr("Mad Rush") << QObject::tr("Traitement") << QObject::tr("DÃ©fense") << QObject::tr("Combustion")
 		  << QObject::tr("Arnica") << QObject::tr("Phagocyte") << QObject::tr("Ranimer") << QObject::tr("Nv Moins") << QObject::tr("Nv Plus")
 		  << QObject::tr("Kamikaze") << QObject::tr("Cannibale") << QObject::tr("Mini Kikou") << QObject::tr("HP+20%") << QObject::tr("HP+40%")
 		  << QObject::tr("HP+80%") << QObject::tr("Vgr+20%") << QObject::tr("Vgr+40%") << QObject::tr("Vgr+60%") << QObject::tr("Dfs+20%")
@@ -57,83 +57,83 @@ void Abilities::fillList()
 		  << QObject::tr("No-Combat") << QObject::tr("Sensor") << QObject::tr("Invoc+10%") << QObject::tr("Invoc+20%") << QObject::tr("Invoc+30%")
 		  << QObject::tr("Invoc+40%") << QObject::tr("HP-GF+10%") << QObject::tr("HP-GF+20%") << QObject::tr("HP-GF+30%") << QObject::tr("HP-GF+40%")
 		  << QObject::tr("Turbo") << QObject::tr("Souk") << QObject::tr("Sentier") << QObject::tr("Connaisseur") << QObject::tr("Boutiques")
-		  << QObject::tr("Bazars") << QObject::tr("Créa-Mgi-Cél") << QObject::tr("Créa-Mgi-Gla") << QObject::tr("Créa-Mgi-Inc") << QObject::tr("Créa-Mgi-Méd")
-		  << QObject::tr("Créa-Mgi-Temp") << QObject::tr("Créa-Mgi-Mtl") << QObject::tr("Créa-Mgi-Pro") << QObject::tr("Créa-Mgi-Tab") << QObject::tr("Créa-Mgi-Thér")
-		  << QObject::tr("Créa-Mgi-Ana") << QObject::tr("Créa-Balles") << QObject::tr("Créa-Outils") << QObject::tr("Créa-Thér-Tab") << QObject::tr("Créa-Thér-GF")
-		  << QObject::tr("Créa-Capa-GF") << QObject::tr("Créa-Mgi-Plus") << QObject::tr("Créa-Mgi-Max") << QObject::tr("Soins NV +") << QObject::tr("Mode Carte");
+		  << QObject::tr("Bazars") << QObject::tr("CrÃ©a-Mgi-CÃ©l") << QObject::tr("CrÃ©a-Mgi-Gla") << QObject::tr("CrÃ©a-Mgi-Inc") << QObject::tr("CrÃ©a-Mgi-MÃ©d")
+		  << QObject::tr("CrÃ©a-Mgi-Temp") << QObject::tr("CrÃ©a-Mgi-Mtl") << QObject::tr("CrÃ©a-Mgi-Pro") << QObject::tr("CrÃ©a-Mgi-Tab") << QObject::tr("CrÃ©a-Mgi-ThÃ©r")
+		  << QObject::tr("CrÃ©a-Mgi-Ana") << QObject::tr("CrÃ©a-Balles") << QObject::tr("CrÃ©a-Outils") << QObject::tr("CrÃ©a-ThÃ©r-Tab") << QObject::tr("CrÃ©a-ThÃ©r-GF")
+		  << QObject::tr("CrÃ©a-Capa-GF") << QObject::tr("CrÃ©a-Mgi-Plus") << QObject::tr("CrÃ©a-Mgi-Max") << QObject::tr("Soins NV +") << QObject::tr("Mode Carte");
 }
 
 void Magics::fillList()
 {
 	_list << QString("-") << QObject::tr("Brasier") << QObject::tr("Brasier+") << QObject::tr("BrasierX") << QObject::tr("Glacier") << QObject::tr("Glacier+")
 		  << QObject::tr("GlacierX") << QObject::tr("Foudre") << QObject::tr("Foudre+") << QObject::tr("FoudreX") << QObject::tr("H2o") << QObject::tr("Rafale") << QObject::tr("Cyanure")
-		  << QObject::tr("Quart") << QObject::tr("Sidéral") << QObject::tr("Fournaise") << QObject::tr("Météore") << QObject::tr("Quake") << QObject::tr("Tornade") << QObject::tr("Ultima")
-		  << QObject::tr("Apocalypse") << QObject::tr("Soin") << QObject::tr("Soin +") << QObject::tr("Soin Max") << QObject::tr("Vie") << QObject::tr("Vie Max") << QObject::tr("Récup") << QObject::tr("Esuna")
+		  << QObject::tr("Quart") << QObject::tr("SidÃ©ral") << QObject::tr("Fournaise") << QObject::tr("MÃ©tÃ©ore") << QObject::tr("Quake") << QObject::tr("Tornade") << QObject::tr("Ultima")
+		  << QObject::tr("Apocalypse") << QObject::tr("Soin") << QObject::tr("Soin +") << QObject::tr("Soin Max") << QObject::tr("Vie") << QObject::tr("Vie Max") << QObject::tr("RÃ©cup") << QObject::tr("Esuna")
 		  << QObject::tr("Anti-sort") << QObject::tr("Carapace") << QObject::tr("Blindage") << QObject::tr("Boomrg") << QObject::tr("Aura") << QObject::tr("Double") << QObject::tr("Triple") << QObject::tr("Booster")
-		  << QObject::tr("Somni") << QObject::tr("Stop") << QObject::tr("Cécité") << QObject::tr("Folie") << QObject::tr("Morphée") << QObject::tr("Aphasie") << QObject::tr("Mégalith") << QObject::tr("Ankou")
-		  << QObject::tr("Saignée") << QObject::tr("Supplice") << QObject::tr("Furie") << QObject::tr("Décubitus") << QObject::tr("Zombie") << QObject::tr("Meltdown") << QObject::tr("Scan") << QObject::tr("Joobu")
+		  << QObject::tr("Somni") << QObject::tr("Stop") << QObject::tr("CÃ©citÃ©") << QObject::tr("Folie") << QObject::tr("MorphÃ©e") << QObject::tr("Aphasie") << QObject::tr("MÃ©galith") << QObject::tr("Ankou")
+		  << QObject::tr("SaignÃ©e") << QObject::tr("Supplice") << QObject::tr("Furie") << QObject::tr("DÃ©cubitus") << QObject::tr("Zombie") << QObject::tr("Meltdown") << QObject::tr("Scan") << QObject::tr("Joobu")
 		  << QObject::tr("Wall") << QObject::tr("Arkange") << QObject::tr("Percent") << QObject::tr("Catastrophe") << QObject::tr("The End");
 }
 
 void Items::fillList()
 {
 	_list << "" << QObject::tr("Potion") << QObject::tr("Potion+") << QObject::tr("Hypra-Potion") << QObject::tr("Maxi potion") << QObject::tr("Potion totale")
-		  << QObject::tr("Méga potion") << QObject::tr("MT-Psy") << QObject::tr("Maxi MT-Psy") << QObject::tr("Elixir") << QObject::tr("Mégalixir") << QObject::tr("Antidote")
-		  << QObject::tr("Défijeur") << QObject::tr("Lasik") << QObject::tr("Bocca") << QObject::tr("Eau bénite") << QObject::tr("Remède") << QObject::tr("Remède +")
-		  << QObject::tr("1-20-Syble") << QObject::tr("Invulnérable") << QObject::tr("1-destructible") << QObject::tr("Croisade") << QObject::tr("Roc cosse")
-		  << QObject::tr("Roc carapace") << QObject::tr("Roc d'Aura") << QObject::tr("Roc mortel") << QObject::tr("Roc sacré") << QObject::tr("Roc flamboyant")
-		  << QObject::tr("Roc Météore") << QObject::tr("Roc Ultima") << QObject::tr("ChocoLégume") << QObject::tr("Golgotha","item") << QObject::tr("Pen Pal")
+		  << QObject::tr("MÃ©ga potion") << QObject::tr("MT-Psy") << QObject::tr("Maxi MT-Psy") << QObject::tr("Elixir") << QObject::tr("MÃ©galixir") << QObject::tr("Antidote")
+		  << QObject::tr("DÃ©fijeur") << QObject::tr("Lasik") << QObject::tr("Bocca") << QObject::tr("Eau bÃ©nite") << QObject::tr("RemÃ¨de") << QObject::tr("RemÃ¨de +")
+		  << QObject::tr("1-20-Syble") << QObject::tr("InvulnÃ©rable") << QObject::tr("1-destructible") << QObject::tr("Croisade") << QObject::tr("Roc cosse")
+		  << QObject::tr("Roc carapace") << QObject::tr("Roc d'Aura") << QObject::tr("Roc mortel") << QObject::tr("Roc sacrÃ©") << QObject::tr("Roc flamboyant")
+		  << QObject::tr("Roc MÃ©tÃ©ore") << QObject::tr("Roc Ultima") << QObject::tr("ChocoLÃ©gume") << QObject::tr("Golgotha","item") << QObject::tr("Pen Pal")
 		  << QObject::tr("Red Kross") << QObject::tr("Zoologie") << QObject::tr("Saindoux") << QObject::tr("Potion GF") << QObject::tr("Potion GF +")
-		  << QObject::tr("Mégapotion GF") << QObject::tr("Sel marin") << QObject::tr("Carte baptême") << QObject::tr("Décapaciteur") << QObject::tr("Livret HP-A")
+		  << QObject::tr("MÃ©gapotion GF") << QObject::tr("Sel marin") << QObject::tr("Carte baptÃªme") << QObject::tr("DÃ©capaciteur") << QObject::tr("Livret HP-A")
 		  << QObject::tr("Livret Vgr-A") << QObject::tr("Livret Dfs-A") << QObject::tr("Livret Mgi-A") << QObject::tr("Livret Psy-A") << QObject::tr("Livret Vts-A")
-		  << QObject::tr("Livret Chc-A") << QObject::tr("Shadow") << QObject::tr("Assaut Elé") << QObject::tr("Antichoc Elé") << QObject::tr("Assaut Mtl")
+		  << QObject::tr("Livret Chc-A") << QObject::tr("Shadow") << QObject::tr("Assaut ElÃ©") << QObject::tr("Antichoc ElÃ©") << QObject::tr("Assaut Mtl")
 		  << QObject::tr("Antichoc Mtl") << QObject::tr("Roc Rosette") << QObject::tr("GrimoMagic") << QObject::tr("GrimoForce") << QObject::tr("GrimoVole")
-		  << QObject::tr("GrimObjets") << QObject::tr("Vegas Feel") << QObject::tr("Sanatorium") << QObject::tr("MétemPsy") << QObject::tr("Bandage") << QObject::tr("Nova")
-		  << QObject::tr("Régime") << QObject::tr("Kikkou Mania") << QObject::tr("Samâdhi") << QObject::tr("Zodiaque") << QObject::tr("Nuclide") << QObject::tr("Sacrum")
-		  << QObject::tr("Billet") << QObject::tr("Vierge", "item1") << QObject::tr("Armure d'or") << QObject::tr("Cuirasse") << QObject::tr("Anneau Récup") << QObject::tr("Alliance")
-		  << QObject::tr("Bague Gaêa") << QObject::tr("Vitamine") << QObject::tr("Sagou") << QObject::tr("Sagette") << QObject::tr("Coquille") << QObject::tr("Halcyon")
+		  << QObject::tr("GrimObjets") << QObject::tr("Vegas Feel") << QObject::tr("Sanatorium") << QObject::tr("MÃ©temPsy") << QObject::tr("Bandage") << QObject::tr("Nova")
+		  << QObject::tr("RÃ©gime") << QObject::tr("Kikkou Mania") << QObject::tr("SamÃ¢dhi") << QObject::tr("Zodiaque") << QObject::tr("Nuclide") << QObject::tr("Sacrum")
+		  << QObject::tr("Billet") << QObject::tr("Vierge", "item1") << QObject::tr("Armure d'or") << QObject::tr("Cuirasse") << QObject::tr("Anneau RÃ©cup") << QObject::tr("Alliance")
+		  << QObject::tr("Bague GaÃªa") << QObject::tr("Vitamine") << QObject::tr("Sagou") << QObject::tr("Sagette") << QObject::tr("Coquille") << QObject::tr("Halcyon")
 		  << QObject::tr("Adamantine") << QObject::tr("Obole") << QObject::tr("Tao") << QObject::tr("Lacan") << QObject::tr("Garcinord") << QObject::tr("Merlin")
 		  << QObject::tr("Magax") << QObject::tr("Injection") << QObject::tr("SuperSonic") << QObject::tr("Pied de biche") << QObject::tr("Ecaille") << QObject::tr("Tasmania")
-		  << QObject::tr("Speedy") << QObject::tr("Réactor") << QObject::tr("Protector") << QObject::tr("Pasteur") << QObject::tr("Manivelle") << QObject::tr("Trilogie")
+		  << QObject::tr("Speedy") << QObject::tr("RÃ©actor") << QObject::tr("Protector") << QObject::tr("Pasteur") << QObject::tr("Manivelle") << QObject::tr("Trilogie")
 		  << QObject::tr("Freud", "item") << QObject::tr("Balles normales") << QObject::tr("Mitra-balles") << QObject::tr("Dark balles") << QObject::tr("Balles foudre")
-		  << QObject::tr("Balles tornade") << QObject::tr("Balles véloces") << QObject::tr("Balles anti-char") << QObject::tr("Balles Pulsar") << QObject::tr("Caillou magik")
-		  << QObject::tr("Roc initiatique") << QObject::tr("Roc féerique") << QObject::tr("Tentacule") << QObject::tr("Onde bénite") << QObject::tr("Plumage")
+		  << QObject::tr("Balles tornade") << QObject::tr("Balles vÃ©loces") << QObject::tr("Balles anti-char") << QObject::tr("Balles Pulsar") << QObject::tr("Caillou magik")
+		  << QObject::tr("Roc initiatique") << QObject::tr("Roc fÃ©erique") << QObject::tr("Tentacule") << QObject::tr("Onde bÃ©nite") << QObject::tr("Plumage")
 		  << QObject::tr("Poudre Zombie") << QObject::tr("Bottes de 7km") << QObject::tr("9 inch nail") << QObject::tr("Enclume") << QObject::tr("Cimeterre")
-		  << QObject::tr("Corne") << QObject::tr("Sanguine") << QObject::tr("EuFurysant") << QObject::tr("Epée trompeuse") << QObject::tr("Poudre Morphée")
+		  << QObject::tr("Corne") << QObject::tr("Sanguine") << QObject::tr("EuFurysant") << QObject::tr("EpÃ©e trompeuse") << QObject::tr("Poudre MorphÃ©e")
 		  << QObject::tr("Anneau de vie") << QObject::tr("Lochness") << QObject::tr("U-Boat") << QObject::tr("Etoile") << QObject::tr("Weirdo") << QObject::tr("Gen-X")
 		  << QObject::tr("Fluide") << QObject::tr("M-Double") << QObject::tr("House") << QObject::tr("Chevrotine") << QObject::tr("Canicule") << QObject::tr("Germe")
-		  << QObject::tr("Rhône") << QObject::tr("Rayon") << QObject::tr("Vierge", "item2") << QObject::tr("V-Choc") << QObject::tr("H-Espace") << QObject::tr("Hot Rock")
+		  << QObject::tr("RhÃ´ne") << QObject::tr("Rayon") << QObject::tr("Vierge", "item2") << QObject::tr("V-Choc") << QObject::tr("H-Espace") << QObject::tr("Hot Rock")
 		  << QObject::tr("Molaire") << QObject::tr("Blizzard") << QObject::tr("Nunatak") << QObject::tr("Gemma Luce") << QObject::tr("Aigrette") << QObject::tr("Canine")
-		  << QObject::tr("Globe d'acier") << QObject::tr("Roc lunaire") << QObject::tr("Fémur") << QObject::tr("Aquilon") << QObject::tr("Derme") << QObject::tr("Zygène")
-		  << QObject::tr("Shark") << QObject::tr("Poudre Aphasie") << QObject::tr("Venin") << QObject::tr("Revenant") << QObject::tr("Désosseur ") << QObject::tr("Kaktos")
+		  << QObject::tr("Globe d'acier") << QObject::tr("Roc lunaire") << QObject::tr("FÃ©mur") << QObject::tr("Aquilon") << QObject::tr("Derme") << QObject::tr("ZygÃ¨ne")
+		  << QObject::tr("Shark") << QObject::tr("Poudre Aphasie") << QObject::tr("Venin") << QObject::tr("Revenant") << QObject::tr("DÃ©sosseur ") << QObject::tr("Kaktos")
 		  << QObject::tr("Roc Shaman") << QObject::tr("Essence") << QObject::tr("Comtesse Cochon") << QObject::tr("Missive d'Edea") << QObject::tr("Collier Chocobo")
 		  << QObject::tr("Collier chien") << QObject::tr("Bague du chef") << QObject::tr("Aladore") << QObject::tr("Bonus Hp","item") << QObject::tr("Bonus Vgr","item")
 		  << QObject::tr("Bonus Dfs","item") << QObject::tr("Bonus Mgi","item") << QObject::tr("Bonus Psy","item") << QObject::tr("Bonus Vts","item") << QObject::tr("Bonus Chc","item")
-		  << QObject::tr("Amour bestial") << QObject::tr("F.F.F. Fév") << QObject::tr("F.F.F. Mar") << QObject::tr("F.F.F. Avr") << QObject::tr("F.F.F. Mai")
-		  << QObject::tr("F.F.F. Jun") << QObject::tr("F.F.F. Jul") << QObject::tr("F.F.F. Aoû") << QObject::tr("Baston mag 1") << QObject::tr("Baston mag 2")
-		  << QObject::tr("Baston mag 3") << QObject::tr("Baston mag 4") << QObject::tr("Baston mag 5") << QObject::tr("L'A D bêtes 1") << QObject::tr("L'A D bêtes 2")
-		  << QObject::tr("L'A D bêtes 3") << QObject::tr("L'A D bêtes 4") << QObject::tr("L'A D bêtes 5") << QObject::tr("L'A D bêtes 6") << QObject::tr("Occult Fan I")
+		  << QObject::tr("Amour bestial") << QObject::tr("F.F.F. FÃ©v") << QObject::tr("F.F.F. Mar") << QObject::tr("F.F.F. Avr") << QObject::tr("F.F.F. Mai")
+		  << QObject::tr("F.F.F. Jun") << QObject::tr("F.F.F. Jul") << QObject::tr("F.F.F. AoÃ»") << QObject::tr("Baston mag 1") << QObject::tr("Baston mag 2")
+		  << QObject::tr("Baston mag 3") << QObject::tr("Baston mag 4") << QObject::tr("Baston mag 5") << QObject::tr("L'A D bÃªtes 1") << QObject::tr("L'A D bÃªtes 2")
+		  << QObject::tr("L'A D bÃªtes 3") << QObject::tr("L'A D bÃªtes 4") << QObject::tr("L'A D bÃªtes 5") << QObject::tr("L'A D bÃªtes 6") << QObject::tr("Occult Fan I")
 		  << QObject::tr("Occult Fan II") << QObject::tr("Occult Fan III") << QObject::tr("Occult Fan IV");
 }
 
 void Locations::fillList()
 {
-	_list << QString("???") << QObject::tr("Plaines d'Arkland - Balamb","1") << QObject::tr("Monts Gaulg - Balamb","2") << QObject::tr("Baie de Rinaul - Balamb","3") << QObject::tr("Cap Raha - Balamb","4") << QObject::tr("Forêt de Rosfall - Timber","5") << QObject::tr("Mandy Beach - Timber","6") << QObject::tr("Lac Obel - Timber","7") << QObject::tr("Vallée de Lanker - Timber","8") << QObject::tr("Ile Nantakhet - Timber","9") << QObject::tr("Yaulny Canyon - Timber","10") << QObject::tr("Val Hasberry - Dollet","11") << QObject::tr("Cap Holy Glory - Dollet","12") << QObject::tr("Longhorn Island - Dollet","13") << QObject::tr("Péninsule Malgo - Dollet","14") << QObject::tr("Plateau Monterosa - Galbadia","15")
-		  << QObject::tr("Lallapalooza Canyon - Galbadia","16") << QObject::tr("Shenand Hill - Timber","17") << QObject::tr("Péninsule Gotland - Galbadia","18") << QObject::tr("Ile de l'Enfer - Galbadia","19") << QObject::tr("Plaine Galbadienne","20") << QObject::tr("Wilburn Hill - Galbadia","21") << QObject::tr("Archipel Rem - Galbadia","22") << QObject::tr("Dingo Désert - Galbadia","23") << QObject::tr("Cap Winhill","24") << QObject::tr("Archipel Humphrey - Winhill","25") << QObject::tr("Ile Winter - Trabia","26") << QObject::tr("Val de Solvard - Trabia","27") << QObject::tr("Crête d'Eldbeak - Trabia","28") << QString("") << QObject::tr("Plaine d'Hawkind - Trabia","30") << QObject::tr("Atoll Albatross - Trabia","31")
-		  << QObject::tr("Vallon de Bika - Trabia","32") << QObject::tr("Péninsule Thor - Trabia","33") << QString("") << QObject::tr("Crête d'Heath - Trabia","35") << QObject::tr("Trabia Crater - Trabia","36") << QObject::tr("Mont Vienne - Trabia","37") << QObject::tr("Plaine de Mordor - Esthar","38") << QObject::tr("Mont Nortes - Esthar","39") << QObject::tr("Atoll Fulcura - Esthar","40") << QObject::tr("Forêt Grandidi - Esthar","41") << QObject::tr("Iles Millefeuilles - Esthar","42") << QObject::tr("Grandes plaines d'Esthar","43") << QObject::tr("Esthar City","44") << QObject::tr("Salt Lake - Esthar","45") << QObject::tr("Côte Ouest - Esthar","46") << QObject::tr("Mont Sollet - Esthar","47")
-		  << QObject::tr("Vallée d'Abadan - Esthar","48") << QObject::tr("Ile Minde - Esthar","49") << QObject::tr("Désert Kashkabald - Esthar","50") << QObject::tr("Ile Paradisiaque - Esthar","51") << QObject::tr("Pic de Talle - Esthar","52") << QObject::tr("Atoll Shalmal - Esthar","53") << QObject::tr("Vallée de Lolestern - Centra","54") << QObject::tr("Aiguille d'Almage - Centra","55") << QObject::tr("Vallon Lenown - Centra","56") << QObject::tr("Cap de l'espoir - Centra","57") << QObject::tr("Mont Yorn - Centra","58") << QObject::tr("Ile Pampa - Esthar","59") << QObject::tr("Val Serengetti - Centra","60") << QObject::tr("Péninsule Nectalle - Centra","61") << QObject::tr("Centra Crater - Centra","62") << QObject::tr("Ile Poccarahi - Centra","63")
-		  << QObject::tr("Bibliothèque - BGU","64") << QObject::tr("Entrée - BGU","65") << QObject::tr("Salle de cours - BGU","66") << QObject::tr("Cafétéria - BGU","67") << QObject::tr("Niveau MD - BGU","68") << QObject::tr("Hall 1er étage - BGU","69") << QObject::tr("Hall - BGU","70") << QObject::tr("Infirmerie - BGU","71") << QObject::tr("Dortoirs doubles - BGU","72") << QObject::tr("Dortoirs simples - BGU","73") << QObject::tr("Bureau proviseur - BGU","74") << QObject::tr("Parking - BGU","75") << QObject::tr("Salle de bal - BGU","76") << QObject::tr("Campus - BGU","77") << QObject::tr("Serre de combat - BGU","78") << QObject::tr("Zone secrète - BGU","79")
-		  << QObject::tr("Corridor - BGU","80") << QObject::tr("Temple - BGU","81") << QObject::tr("Pont - BGU","82") << QObject::tr("Villa Dincht - Balamb","83") << QObject::tr("Hôtel - Balamb","84") << QObject::tr("Place centrale - Balamb","85") << QObject::tr("Place de la gare - Balamb","86") << QObject::tr("Port - Balamb","87") << QObject::tr("Résidence - Balamb","88") << QObject::tr("Train","89") << QObject::tr("Voiture","90") << QObject::tr("Vaisseau","91") << QObject::tr("Mine de souffre","92") << QObject::tr("Place du village - Dollet","93") << QObject::tr("Zuma Beach","94") << QObject::tr("Port - Dollet","95")
-		  << QObject::tr("Pub - Dollet","96") << QObject::tr("Hôtel - Dollet","97") << QObject::tr("Résidence - Dollet","98") << QObject::tr("Tour satellite - Dollet","99") << QObject::tr("Refuge montagneux - Dollet","100") << QObject::tr("Centre ville - Timber","101") << QObject::tr("Chaîne de TV - Timber","102") << QObject::tr("Base des Hiboux - Timber","103") << QObject::tr("Pub - Timber","104") << QObject::tr("Hôtel - Timber","105") << QObject::tr("Train - Timber","106") << QObject::tr("Résidence - Timber","107") << QObject::tr("Ecran géant - Timber","108") << QObject::tr("Centre de presse - Timber","109") << QObject::tr("Forêt de Timber","110") << QObject::tr("Entrée - Fac de Galbadia","111")
-		  << QObject::tr("Station Fac de Galbadia","112") << QObject::tr("Hall - Fac de Galbadia","113") << QObject::tr("Corridor - Fac de Galbadia","114") << QObject::tr("Salle d'attente - Fac Galbadia","115") << QObject::tr("Salle de cours - Fac Galbadia","116") << QObject::tr("Salle de réunion - Fac Galbadia","117") << QObject::tr("Dortoirs - Fac de Galbadia","118") << QObject::tr("Ascenseur - Fac de Galbadia","119") << QObject::tr("Salle recteur - Fac Galbadia","120") << QObject::tr("Auditorium - Fac de Galbadia","121") << QObject::tr("Stade - Fac de Galbadia","122") << QObject::tr("Stand - Fac de Galbadia","123") << QObject::tr("2nde entrée - Fac Galbadia","124") << QObject::tr("Gymnase - Fac de Galbadia","125") << QObject::tr("Palais président - Deling City","126") << QObject::tr("Manoir Caraway - Deling City","127")
-		  << QObject::tr("Gare - Deling City","128") << QObject::tr("Place centrale - Deling City","129") << QObject::tr("Hôtel - Deling City","130") << QObject::tr("Bar - Deling City","131") << QObject::tr("Sortie - Deling City","132") << QObject::tr("Parade - Deling City","133") << QObject::tr("Egout - Deling City","134") << QObject::tr("Prison du désert - Galbadia","135") << QObject::tr("Désert","136") << QObject::tr("Base des missiles","137") << QObject::tr("Village de Winhill","138") << QObject::tr("Pub - Winhill","139") << QObject::tr("Maison vide - Winhill","140") << QObject::tr("Manoir - Winhill","141") << QObject::tr("Résidence - Winhill","142") << QObject::tr("Hôtel - Winhill","143")
-		  << QObject::tr("Voiture - Winhill","144") << QObject::tr("Tombe du roi inconnu","145") << QObject::tr("Horizon","146") << QObject::tr("Habitations - Horizon","147") << QObject::tr("Ecrans solaires - Horizon","148") << QObject::tr("Villa du maire - Horizon","149") << QObject::tr("Usine - Horizon","150") << QObject::tr("Salle des fêtes - Horizon","151") << QObject::tr("Hôtel - Horizon","152") << QObject::tr("Résidence - Horizon","153") << QObject::tr("Gare - Horizon","154") << QObject::tr("Aqueduc d'Horizon","155") << QObject::tr("Station balnéaire","156") << QObject::tr("Salt Lake","157") << QObject::tr("Bâtiment mystérieux","158") << QObject::tr("Esthar City","159")
-		  << QObject::tr("Laboratoire Geyser - Esthar","160") << QObject::tr("Aérodrome - Esthar","161") << QObject::tr("Lunatic Pandora approche","162") << QObject::tr("Résidence président - Esthar","163") << QObject::tr("Hall - Résidence président","164") << QObject::tr("Couloir - Résidence président","165") << QObject::tr("Bureau - Résidence président","166") << QObject::tr("Accueil - Labo Geyser","167") << QObject::tr("Laboratoire Geyser","168") << QObject::tr("Deleted","169") << QObject::tr("Lunar Gate","170") << QObject::tr("Parvis - Lunar Gate","171") << QObject::tr("Glacière - Lunar gate","172") << QObject::tr("Mausolée - Esthar","173") << QObject::tr("Entrée - Mausolée","174") << QObject::tr("Pod de confinement - Mausolée","175")
-		  << QObject::tr("Salle de contrôle - Mausolée","176") << QObject::tr("Tears Point","177") << QObject::tr("Labo Lunatic Pandora","178") << QObject::tr("Zone d'atterrissage de secours","179") << QObject::tr("Zone d'atterrissage officielle","180") << QObject::tr("Lunatic Pandora","181") << QObject::tr("Site des fouilles - Centra","182") << QObject::tr("Orphelinat","183") << QObject::tr("Salle de jeux - Orphelinat","184") << QObject::tr("Dortoir - Orphelinat","185") << QObject::tr("Jardin - Orphelinat","186") << QObject::tr("Front de mer - Orphelinat","187") << QObject::tr("Champ - Orphelinat","188") << QObject::tr("Ruines de Centra","189") << QObject::tr("Entrée - Fac de Trabia","190") << QObject::tr("Cimetière - Fac de Trabia","191")
-		  << QObject::tr("Garage - Fac de Trabia","192") << QObject::tr("Campus - Fac Trabia","193") << QObject::tr("Amphithéatre - Fac de Trabia","194") << QObject::tr("Stade - Fac de Trabia","195") << QObject::tr("Dôme mystérieux","196") << QObject::tr("Ville du désert - Shumi Village","197") << QObject::tr("Ascenseur - Shumi Village","198") << QObject::tr("Shumi Village","199") << QObject::tr("Habitation - Shumi Village","200") << QObject::tr("Résidence - Shumi Village","201") << QObject::tr("Habitat - Shumi Village","202") << QObject::tr("Hôtel - Shumi Village","203") << QObject::tr("Trabia canyon","204") << QObject::tr("Vaisseau des Seeds blancs","205") << QObject::tr("Navire des Seeds Blancs","206") << QObject::tr("Cabine - Navire Seeds blancs","207")
-		  << QObject::tr("Cockpit - Hydre","208") << QObject::tr("Siège passager - Hydre","209") << QObject::tr("Couloir - Hydre","210") << QObject::tr("Hangar - Hydre","211") << QObject::tr("Accès - Hydre","212") << QObject::tr("Air Room - Hydre","213") << QObject::tr("Salle de pression - Hydre","214") << QObject::tr("Centre de recherches Deep Sea","215") << QObject::tr("Laboratoire - Deep Sea","216") << QObject::tr("Salle de travail - Deep Sea","217") << QObject::tr("Fouilles - Deep Sea","218") << QObject::tr("Salle de contrôle - Base lunaire","219") << QObject::tr("Centre médical - Base lunaire","220") << QObject::tr("Pod - Base lunaire","221") << QObject::tr("Dock - Base lunaire","222") << QObject::tr("Passage - Base lunaire","223")
-		  << QObject::tr("Vestiaire - Base lunaire","224") << QObject::tr("Habitats - Base lunaire","225") << QObject::tr("Hyper Espace","226") << QObject::tr("Forêt Chocobo","227") << QObject::tr("Jungle","228") << QObject::tr("Citadelle d'Ultimecia - Vestibule","229") << QObject::tr("Citadelle d'Ultimecia - Hall","230") << QObject::tr("Citadelle d'Ultimecia - Terrasse","231") << QObject::tr("Citadelle d'Ultimecia - Cave","232") << QObject::tr("Citadelle d'Ultimecia - Couloir","233") << QObject::tr("Elévateur - Citadelle","234") << QObject::tr("Escalier - Citadelle d'Ultimecia","235") << QObject::tr("Salle du trésor - Citadelle","236") << QObject::tr("Salle de rangement - Citadelle","237") << QObject::tr("Citadelle d'Ultimecia - Galerie","238") << QObject::tr("Citadelle d'Ultimecia - Ecluse","239")
-		  << QObject::tr("Citadelle - Armurerie","240") << QObject::tr("Citadelle d'Ultimecia - Prison","241") << QObject::tr("Citadelle d'Ultimecia - Fossé","242") << QObject::tr("Citadelle d'Ultimecia - Jardin","243") << QObject::tr("Citadelle d'Ultimecia - Chapelle","244") << QObject::tr("Clocher - Citadelle d'Ultimecia","245") << QObject::tr("Chambre d'Ultimecia - Citadelle","246") << QString("???") << QObject::tr("Citadelle d'Ultimecia","248") << QObject::tr("Salle d'initiation","249") << QObject::tr("Reine des cartes","250") << QString("???") << QString("???") << QString("???") << QString("???") << QString("???");
+	_list << QString("???") << QObject::tr("Plaines d'Arkland - Balamb","1") << QObject::tr("Monts Gaulg - Balamb","2") << QObject::tr("Baie de Rinaul - Balamb","3") << QObject::tr("Cap Raha - Balamb","4") << QObject::tr("ForÃªt de Rosfall - Timber","5") << QObject::tr("Mandy Beach - Timber","6") << QObject::tr("Lac Obel - Timber","7") << QObject::tr("VallÃ©e de Lanker - Timber","8") << QObject::tr("Ile Nantakhet - Timber","9") << QObject::tr("Yaulny Canyon - Timber","10") << QObject::tr("Val Hasberry - Dollet","11") << QObject::tr("Cap Holy Glory - Dollet","12") << QObject::tr("Longhorn Island - Dollet","13") << QObject::tr("PÃ©ninsule Malgo - Dollet","14") << QObject::tr("Plateau Monterosa - Galbadia","15")
+		  << QObject::tr("Lallapalooza Canyon - Galbadia","16") << QObject::tr("Shenand Hill - Timber","17") << QObject::tr("PÃ©ninsule Gotland - Galbadia","18") << QObject::tr("Ile de l'Enfer - Galbadia","19") << QObject::tr("Plaine Galbadienne","20") << QObject::tr("Wilburn Hill - Galbadia","21") << QObject::tr("Archipel Rem - Galbadia","22") << QObject::tr("Dingo DÃ©sert - Galbadia","23") << QObject::tr("Cap Winhill","24") << QObject::tr("Archipel Humphrey - Winhill","25") << QObject::tr("Ile Winter - Trabia","26") << QObject::tr("Val de Solvard - Trabia","27") << QObject::tr("CrÃªte d'Eldbeak - Trabia","28") << QString("") << QObject::tr("Plaine d'Hawkind - Trabia","30") << QObject::tr("Atoll Albatross - Trabia","31")
+		  << QObject::tr("Vallon de Bika - Trabia","32") << QObject::tr("PÃ©ninsule Thor - Trabia","33") << QString("") << QObject::tr("CrÃªte d'Heath - Trabia","35") << QObject::tr("Trabia Crater - Trabia","36") << QObject::tr("Mont Vienne - Trabia","37") << QObject::tr("Plaine de Mordor - Esthar","38") << QObject::tr("Mont Nortes - Esthar","39") << QObject::tr("Atoll Fulcura - Esthar","40") << QObject::tr("ForÃªt Grandidi - Esthar","41") << QObject::tr("Iles Millefeuilles - Esthar","42") << QObject::tr("Grandes plaines d'Esthar","43") << QObject::tr("Esthar City","44") << QObject::tr("Salt Lake - Esthar","45") << QObject::tr("CÃ´te Ouest - Esthar","46") << QObject::tr("Mont Sollet - Esthar","47")
+		  << QObject::tr("VallÃ©e d'Abadan - Esthar","48") << QObject::tr("Ile Minde - Esthar","49") << QObject::tr("DÃ©sert Kashkabald - Esthar","50") << QObject::tr("Ile Paradisiaque - Esthar","51") << QObject::tr("Pic de Talle - Esthar","52") << QObject::tr("Atoll Shalmal - Esthar","53") << QObject::tr("VallÃ©e de Lolestern - Centra","54") << QObject::tr("Aiguille d'Almage - Centra","55") << QObject::tr("Vallon Lenown - Centra","56") << QObject::tr("Cap de l'espoir - Centra","57") << QObject::tr("Mont Yorn - Centra","58") << QObject::tr("Ile Pampa - Esthar","59") << QObject::tr("Val Serengetti - Centra","60") << QObject::tr("PÃ©ninsule Nectalle - Centra","61") << QObject::tr("Centra Crater - Centra","62") << QObject::tr("Ile Poccarahi - Centra","63")
+		  << QObject::tr("BibliothÃ¨que - BGU","64") << QObject::tr("EntrÃ©e - BGU","65") << QObject::tr("Salle de cours - BGU","66") << QObject::tr("CafÃ©tÃ©ria - BGU","67") << QObject::tr("Niveau MD - BGU","68") << QObject::tr("Hall 1er Ã©tage - BGU","69") << QObject::tr("Hall - BGU","70") << QObject::tr("Infirmerie - BGU","71") << QObject::tr("Dortoirs doubles - BGU","72") << QObject::tr("Dortoirs simples - BGU","73") << QObject::tr("Bureau proviseur - BGU","74") << QObject::tr("Parking - BGU","75") << QObject::tr("Salle de bal - BGU","76") << QObject::tr("Campus - BGU","77") << QObject::tr("Serre de combat - BGU","78") << QObject::tr("Zone secrÃ¨te - BGU","79")
+		  << QObject::tr("Corridor - BGU","80") << QObject::tr("Temple - BGU","81") << QObject::tr("Pont - BGU","82") << QObject::tr("Villa Dincht - Balamb","83") << QObject::tr("HÃ´tel - Balamb","84") << QObject::tr("Place centrale - Balamb","85") << QObject::tr("Place de la gare - Balamb","86") << QObject::tr("Port - Balamb","87") << QObject::tr("RÃ©sidence - Balamb","88") << QObject::tr("Train","89") << QObject::tr("Voiture","90") << QObject::tr("Vaisseau","91") << QObject::tr("Mine de souffre","92") << QObject::tr("Place du village - Dollet","93") << QObject::tr("Zuma Beach","94") << QObject::tr("Port - Dollet","95")
+		  << QObject::tr("Pub - Dollet","96") << QObject::tr("HÃ´tel - Dollet","97") << QObject::tr("RÃ©sidence - Dollet","98") << QObject::tr("Tour satellite - Dollet","99") << QObject::tr("Refuge montagneux - Dollet","100") << QObject::tr("Centre ville - Timber","101") << QObject::tr("ChaÃ®ne de TV - Timber","102") << QObject::tr("Base des Hiboux - Timber","103") << QObject::tr("Pub - Timber","104") << QObject::tr("HÃ´tel - Timber","105") << QObject::tr("Train - Timber","106") << QObject::tr("RÃ©sidence - Timber","107") << QObject::tr("Ecran gÃ©ant - Timber","108") << QObject::tr("Centre de presse - Timber","109") << QObject::tr("ForÃªt de Timber","110") << QObject::tr("EntrÃ©e - Fac de Galbadia","111")
+		  << QObject::tr("Station Fac de Galbadia","112") << QObject::tr("Hall - Fac de Galbadia","113") << QObject::tr("Corridor - Fac de Galbadia","114") << QObject::tr("Salle d'attente - Fac Galbadia","115") << QObject::tr("Salle de cours - Fac Galbadia","116") << QObject::tr("Salle de rÃ©union - Fac Galbadia","117") << QObject::tr("Dortoirs - Fac de Galbadia","118") << QObject::tr("Ascenseur - Fac de Galbadia","119") << QObject::tr("Salle recteur - Fac Galbadia","120") << QObject::tr("Auditorium - Fac de Galbadia","121") << QObject::tr("Stade - Fac de Galbadia","122") << QObject::tr("Stand - Fac de Galbadia","123") << QObject::tr("2nde entrÃ©e - Fac Galbadia","124") << QObject::tr("Gymnase - Fac de Galbadia","125") << QObject::tr("Palais prÃ©sident - Deling City","126") << QObject::tr("Manoir Caraway - Deling City","127")
+		  << QObject::tr("Gare - Deling City","128") << QObject::tr("Place centrale - Deling City","129") << QObject::tr("HÃ´tel - Deling City","130") << QObject::tr("Bar - Deling City","131") << QObject::tr("Sortie - Deling City","132") << QObject::tr("Parade - Deling City","133") << QObject::tr("Egout - Deling City","134") << QObject::tr("Prison du dÃ©sert - Galbadia","135") << QObject::tr("DÃ©sert","136") << QObject::tr("Base des missiles","137") << QObject::tr("Village de Winhill","138") << QObject::tr("Pub - Winhill","139") << QObject::tr("Maison vide - Winhill","140") << QObject::tr("Manoir - Winhill","141") << QObject::tr("RÃ©sidence - Winhill","142") << QObject::tr("HÃ´tel - Winhill","143")
+		  << QObject::tr("Voiture - Winhill","144") << QObject::tr("Tombe du roi inconnu","145") << QObject::tr("Horizon","146") << QObject::tr("Habitations - Horizon","147") << QObject::tr("Ecrans solaires - Horizon","148") << QObject::tr("Villa du maire - Horizon","149") << QObject::tr("Usine - Horizon","150") << QObject::tr("Salle des fÃªtes - Horizon","151") << QObject::tr("HÃ´tel - Horizon","152") << QObject::tr("RÃ©sidence - Horizon","153") << QObject::tr("Gare - Horizon","154") << QObject::tr("Aqueduc d'Horizon","155") << QObject::tr("Station balnÃ©aire","156") << QObject::tr("Salt Lake","157") << QObject::tr("BÃ¢timent mystÃ©rieux","158") << QObject::tr("Esthar City","159")
+		  << QObject::tr("Laboratoire Geyser - Esthar","160") << QObject::tr("AÃ©rodrome - Esthar","161") << QObject::tr("Lunatic Pandora approche","162") << QObject::tr("RÃ©sidence prÃ©sident - Esthar","163") << QObject::tr("Hall - RÃ©sidence prÃ©sident","164") << QObject::tr("Couloir - RÃ©sidence prÃ©sident","165") << QObject::tr("Bureau - RÃ©sidence prÃ©sident","166") << QObject::tr("Accueil - Labo Geyser","167") << QObject::tr("Laboratoire Geyser","168") << QObject::tr("Deleted","169") << QObject::tr("Lunar Gate","170") << QObject::tr("Parvis - Lunar Gate","171") << QObject::tr("GlaciÃ¨re - Lunar gate","172") << QObject::tr("MausolÃ©e - Esthar","173") << QObject::tr("EntrÃ©e - MausolÃ©e","174") << QObject::tr("Pod de confinement - MausolÃ©e","175")
+		  << QObject::tr("Salle de contrÃ´le - MausolÃ©e","176") << QObject::tr("Tears Point","177") << QObject::tr("Labo Lunatic Pandora","178") << QObject::tr("Zone d'atterrissage de secours","179") << QObject::tr("Zone d'atterrissage officielle","180") << QObject::tr("Lunatic Pandora","181") << QObject::tr("Site des fouilles - Centra","182") << QObject::tr("Orphelinat","183") << QObject::tr("Salle de jeux - Orphelinat","184") << QObject::tr("Dortoir - Orphelinat","185") << QObject::tr("Jardin - Orphelinat","186") << QObject::tr("Front de mer - Orphelinat","187") << QObject::tr("Champ - Orphelinat","188") << QObject::tr("Ruines de Centra","189") << QObject::tr("EntrÃ©e - Fac de Trabia","190") << QObject::tr("CimetiÃ¨re - Fac de Trabia","191")
+		  << QObject::tr("Garage - Fac de Trabia","192") << QObject::tr("Campus - Fac Trabia","193") << QObject::tr("AmphithÃ©atre - Fac de Trabia","194") << QObject::tr("Stade - Fac de Trabia","195") << QObject::tr("DÃ´me mystÃ©rieux","196") << QObject::tr("Ville du dÃ©sert - Shumi Village","197") << QObject::tr("Ascenseur - Shumi Village","198") << QObject::tr("Shumi Village","199") << QObject::tr("Habitation - Shumi Village","200") << QObject::tr("RÃ©sidence - Shumi Village","201") << QObject::tr("Habitat - Shumi Village","202") << QObject::tr("HÃ´tel - Shumi Village","203") << QObject::tr("Trabia canyon","204") << QObject::tr("Vaisseau des Seeds blancs","205") << QObject::tr("Navire des Seeds Blancs","206") << QObject::tr("Cabine - Navire Seeds blancs","207")
+		  << QObject::tr("Cockpit - Hydre","208") << QObject::tr("SiÃ¨ge passager - Hydre","209") << QObject::tr("Couloir - Hydre","210") << QObject::tr("Hangar - Hydre","211") << QObject::tr("AccÃ¨s - Hydre","212") << QObject::tr("Air Room - Hydre","213") << QObject::tr("Salle de pression - Hydre","214") << QObject::tr("Centre de recherches Deep Sea","215") << QObject::tr("Laboratoire - Deep Sea","216") << QObject::tr("Salle de travail - Deep Sea","217") << QObject::tr("Fouilles - Deep Sea","218") << QObject::tr("Salle de contrÃ´le - Base lunaire","219") << QObject::tr("Centre mÃ©dical - Base lunaire","220") << QObject::tr("Pod - Base lunaire","221") << QObject::tr("Dock - Base lunaire","222") << QObject::tr("Passage - Base lunaire","223")
+		  << QObject::tr("Vestiaire - Base lunaire","224") << QObject::tr("Habitats - Base lunaire","225") << QObject::tr("Hyper Espace","226") << QObject::tr("ForÃªt Chocobo","227") << QObject::tr("Jungle","228") << QObject::tr("Citadelle d'Ultimecia - Vestibule","229") << QObject::tr("Citadelle d'Ultimecia - Hall","230") << QObject::tr("Citadelle d'Ultimecia - Terrasse","231") << QObject::tr("Citadelle d'Ultimecia - Cave","232") << QObject::tr("Citadelle d'Ultimecia - Couloir","233") << QObject::tr("ElÃ©vateur - Citadelle","234") << QObject::tr("Escalier - Citadelle d'Ultimecia","235") << QObject::tr("Salle du trÃ©sor - Citadelle","236") << QObject::tr("Salle de rangement - Citadelle","237") << QObject::tr("Citadelle d'Ultimecia - Galerie","238") << QObject::tr("Citadelle d'Ultimecia - Ecluse","239")
+		  << QObject::tr("Citadelle - Armurerie","240") << QObject::tr("Citadelle d'Ultimecia - Prison","241") << QObject::tr("Citadelle d'Ultimecia - FossÃ©","242") << QObject::tr("Citadelle d'Ultimecia - Jardin","243") << QObject::tr("Citadelle d'Ultimecia - Chapelle","244") << QObject::tr("Clocher - Citadelle d'Ultimecia","245") << QObject::tr("Chambre d'Ultimecia - Citadelle","246") << QString("???") << QObject::tr("Citadelle d'Ultimecia","248") << QObject::tr("Salle d'initiation","249") << QObject::tr("Reine des cartes","250") << QString("???") << QString("???") << QString("???") << QString("???") << QString("???");
 }
 
 void Weapons::fillList()
@@ -142,7 +142,7 @@ void Weapons::fillList()
 		  << QObject::tr("Metal Gloves") << QObject::tr("Maverick") << QObject::tr("Gauntlets") << QObject::tr("Ehrgeiz")
 		  << QObject::tr("W.W.West") << QObject::tr("Roosevelt") << QObject::tr("Bertha") << QObject::tr("Steel Gun")
 		  << QObject::tr("Gibet") << QObject::tr("Totally S.M.") << QObject::tr("Red Scorpio") << QObject::tr("Smiley")
-		  << QObject::tr("Rotator") << QObject::tr("Walkyrie") << QObject::tr("Ninja Sun") << QObject::tr("Ptérodactyle") << QObject::tr("Tronçonneur")
+		  << QObject::tr("Rotator") << QObject::tr("Walkyrie") << QObject::tr("Ninja Sun") << QObject::tr("PtÃ©rodactyle") << QObject::tr("TronÃ§onneur")
 		  << QObject::tr("Nunchak Red") << QObject::tr("Nunchak Blue") << QObject::tr("Islam Star") << QObject::tr("Sagaie")
 		  << QObject::tr("Hyperion") << QObject::tr("Nada") << QObject::tr("Kalachnikov") << QObject::tr("Katal") << QObject::tr("Harpoon");
 }
@@ -158,55 +158,55 @@ void GfNames::fillList()
 {
 	_list << QObject::tr("Golgotha","gf") << QObject::tr("Shiva","gf") << QObject::tr("Ifrit","gf") << QObject::tr("Ondine","gf")
 		  << QObject::tr("Taurus","gf") << QObject::tr("Nosferatu","gf") << QObject::tr("Ahuri","gf") << QObject::tr("Leviathan","gf")
-		  << QObject::tr("Zéphyr","gf") << QObject::tr("Cerberus","gf") << QObject::tr("Alexander","gf") << QObject::tr("Helltrain","gf")
+		  << QObject::tr("ZÃ©phyr","gf") << QObject::tr("Cerberus","gf") << QObject::tr("Alexander","gf") << QObject::tr("Helltrain","gf")
 		  << QObject::tr("Bahamut","gf") << QObject::tr("Pampa","gf") << QObject::tr("Tomberry","gf") << QObject::tr("Orbital","gf");
 }
 
 void ZellLBs::fillList()
 {
 	_list << QObject::tr("Top Punch") << QObject::tr("Feinte") << QObject::tr("Achille") << QObject::tr("Forcing") << QObject::tr("Delphinium")
-		  << QObject::tr("Apesanteur") << QObject::tr("Fahreinheit") << QObject::tr("Stratosphère") << QObject::tr("Trapèze") << QObject::tr("Global Wave");
+		  << QObject::tr("Apesanteur") << QObject::tr("Fahreinheit") << QObject::tr("StratosphÃ¨re") << QObject::tr("TrapÃ¨ze") << QObject::tr("Global Wave");
 }
 
 void IrvineLBs::fillList()
 {
 	_list << QObject::tr("Furioso") << QObject::tr("Fluxion") << QObject::tr("Fracas") << QObject::tr("Fusion")
-		  << QObject::tr("Barbacane") << QObject::tr("Mach 4") << QObject::tr("Apogée") << QObject::tr("Percuteur");
+		  << QObject::tr("Barbacane") << QObject::tr("Mach 4") << QObject::tr("ApogÃ©e") << QObject::tr("Percuteur");
 }
 
 void QuistisLBs::fillList()
 {
-	_list << QObject::tr("Fovéa") << QObject::tr("Ultra Waves") << QObject::tr("Firmament") << QObject::tr("Freak")
-		  << QObject::tr("Dégénérator") << QObject::tr("Fréon") << QObject::tr("Micro Missiles") << QObject::tr("Acid")
+	_list << QObject::tr("FovÃ©a") << QObject::tr("Ultra Waves") << QObject::tr("Firmament") << QObject::tr("Freak")
+		  << QObject::tr("DÃ©gÃ©nÃ©rator") << QObject::tr("FrÃ©on") << QObject::tr("Micro Missiles") << QObject::tr("Acid")
 		  << QObject::tr("Mitraille") << QObject::tr("Dead Heat") << QObject::tr("Infection") << QObject::tr("Mistral")
 		  << QObject::tr("Laser") << QObject::tr("Mother") << QObject::tr("Shockwave") << QObject::tr("Outerspace");
 }
 
 void RinoaLBs::fillList()
 {
-	_list << QObject::tr("Dingo") << QObject::tr("Shepherd") << QObject::tr("Dachshund") << QObject::tr("Borzoï")
-		  << QObject::tr("Laïka") << QObject::tr("Nordfolk") << QObject::tr("Sélénium") << QObject::tr("Phantasm");
+	_list << QObject::tr("Dingo") << QObject::tr("Shepherd") << QObject::tr("Dachshund") << QObject::tr("BorzoÃ¯")
+		  << QObject::tr("LaÃ¯ka") << QObject::tr("Nordfolk") << QObject::tr("SÃ©lÃ©nium") << QObject::tr("Phantasm");
 }
 
 void Cards::fillList()
 {
 	_list << QObject::tr("Bogomile") << QObject::tr("Fungus") << QObject::tr("Elmidea") << QObject::tr("Nocturnus") << QObject::tr("Incube") << QObject::tr("Aphide")
-		  << QObject::tr("Elastos") << QObject::tr("Diodon") << QObject::tr("Carnidéa") << QObject::tr("Larva") << QObject::tr("Gallus") << QObject::tr("Orchida")
-		  << QObject::tr("Schizoïd") << QObject::tr("Licorne") << QObject::tr("Xylopode") << QObject::tr("Koatl") << QObject::tr("Malaku") << QObject::tr("Arconada")
-		  << QObject::tr("Formicide") << QObject::tr("Feng") << QObject::tr("Héra") << QObject::tr("Selek") << QObject::tr("Weevil") << QObject::tr("Scavenger")
-		  << QObject::tr("Adéphage") << QObject::tr("Phantom") << QObject::tr("Satyrux") << QObject::tr("Trogiidae") << QObject::tr("Barbarian")
-		  << QObject::tr("Berserker") << QObject::tr("Pampa","card") << QObject::tr("Tomberry","card") << QObject::tr("Célébis") << QObject::tr("Eiffel") << QObject::tr("Cariatide")
+		  << QObject::tr("Elastos") << QObject::tr("Diodon") << QObject::tr("CarnidÃ©a") << QObject::tr("Larva") << QObject::tr("Gallus") << QObject::tr("Orchida")
+		  << QObject::tr("SchizoÃ¯d") << QObject::tr("Licorne") << QObject::tr("Xylopode") << QObject::tr("Koatl") << QObject::tr("Malaku") << QObject::tr("Arconada")
+		  << QObject::tr("Formicide") << QObject::tr("Feng") << QObject::tr("HÃ©ra") << QObject::tr("Selek") << QObject::tr("Weevil") << QObject::tr("Scavenger")
+		  << QObject::tr("AdÃ©phage") << QObject::tr("Phantom") << QObject::tr("Satyrux") << QObject::tr("Trogiidae") << QObject::tr("Barbarian")
+		  << QObject::tr("Berserker") << QObject::tr("Pampa","card") << QObject::tr("Tomberry","card") << QObject::tr("CÃ©lÃ©bis") << QObject::tr("Eiffel") << QObject::tr("Cariatide")
 		  << QObject::tr("T-rex") << QObject::tr("Succube") << QObject::tr("Tikal") << QObject::tr("Wendigo") << QObject::tr("Marsupial") << QObject::tr("Draconus")
 		  << QObject::tr("Moloch") << QObject::tr("Ao") << QObject::tr("Polyphage") << QObject::tr("Ekarissor") << QObject::tr("Kanibal") << QObject::tr("Chimaira")
 		  << QObject::tr("Koyo K") << QObject::tr("Protesis") << QObject::tr("Pikasso") << QObject::tr("Xylomid") << QObject::tr("Griffon") << QObject::tr("Sulfor")
 		  << QObject::tr("Tomberry Sr") << QObject::tr("Wedge/Biggs") << QObject::tr("Fujin/Raijin") << QObject::tr("Sulfura") << QObject::tr("Goliath")
-		  << QObject::tr("Lygus") << QObject::tr("Écorché") << QObject::tr("Iguanor") << QObject::tr("Hornet") << QObject::tr("Flotix") << QObject::tr("Cyanide")
+		  << QObject::tr("Lygus") << QObject::tr("Ã‰corchÃ©") << QObject::tr("Iguanor") << QObject::tr("Hornet") << QObject::tr("Flotix") << QObject::tr("Cyanide")
 		  << QObject::tr("Shumi") << QObject::tr("Krystal") << QObject::tr("Alienator") << QObject::tr("Pampa Sr") << QObject::tr("Acron") << QObject::tr("Agamemnon")
 		  << QObject::tr("Anakronox") << QObject::tr("Mithra") << QObject::tr("Acarnan") << QObject::tr("Omniborg") << QObject::tr("Attila") << QObject::tr("Fabryce")
 		  << QObject::tr("Monarch") << QObject::tr("Grochocobo","card") << QObject::tr("Angel","card") << QObject::tr("Gilgamesh","card") << QObject::tr("Minimog","card") << QObject::tr("Chicobo","card")
 		  << QObject::tr("Golgotha","card") << QObject::tr("Shiva","card") << QObject::tr("Ifrit","card") << QObject::tr("Ondine","card") << QObject::tr("Tauros","card") << QObject::tr("Taurux","card")
-		  << QObject::tr("Ahuri","card") << QObject::tr("Nosferatu","card") << QObject::tr("Leviathan","card") << QObject::tr("Odin","card") << QObject::tr("Zéphyr","card") << QObject::tr("Cerbères")
-		  << QObject::tr("Alexander","card") << QObject::tr("Phénix","card") << QObject::tr("Bahamut","card") << QObject::tr("Helltrain","card") << QObject::tr("Orbital","card") << QObject::tr("Ward")
+		  << QObject::tr("Ahuri","card") << QObject::tr("Nosferatu","card") << QObject::tr("Leviathan","card") << QObject::tr("Odin","card") << QObject::tr("ZÃ©phyr","card") << QObject::tr("CerbÃ¨res")
+		  << QObject::tr("Alexander","card") << QObject::tr("PhÃ©nix","card") << QObject::tr("Bahamut","card") << QObject::tr("Helltrain","card") << QObject::tr("Orbital","card") << QObject::tr("Ward")
 		  << QObject::tr("Kiros") << QObject::tr("Laguna") << QObject::tr("Selphie") << QObject::tr("Quistis") << QObject::tr("Irvine") << QObject::tr("Zell")
 		  << QObject::tr("Linoa") << QObject::tr("Edea") << QObject::tr("Seifer") << QObject::tr("Squall");
 }
@@ -215,21 +215,21 @@ void Ennemies::fillList()
 {
 	_list << QObject::tr("Dummy", "Ennemy") << QObject::tr("ExoSkelet", "Ennemy") << QObject::tr("Incube", "Ennemy") << QObject::tr("Malaku", "Ennemy")
 		  << QObject::tr("Bogomile", "Ennemy") << QObject::tr("Koatl", "Ennemy") << QObject::tr("Xylopode", "Ennemy") << QObject::tr("Barbarian", "Ennemy")
-		  << QObject::tr("Pikasso", "Ennemy") << QObject::tr("Licorne", "Ennemy") << QObject::tr("Schizoïd", "Ennemy") << QObject::tr("Brahman", "Ennemy")
+		  << QObject::tr("Pikasso", "Ennemy") << QObject::tr("Licorne", "Ennemy") << QObject::tr("SchizoÃ¯d", "Ennemy") << QObject::tr("Brahman", "Ennemy")
 		  << QObject::tr("Shiva", "Ennemy") << QObject::tr("Satyrux", "Ennemy") << QObject::tr("Arconada", "Ennemy") << QObject::tr("Orchida", "Ennemy")
 		  << QObject::tr("Gallus", "Ennemy") << QObject::tr("Larva", "Ennemy") << QObject::tr("Nocturnus", "Ennemy") << QObject::tr("Tikal", "Ennemy")
 		  << QObject::tr("Diodon", "Ennemy") << QObject::tr("Phantom", "Ennemy") << QObject::tr("Elastos", "Ennemy") << QObject::tr("Formicide", "Ennemy")
 		  << QObject::tr("Polyphage", "Ennemy") << QObject::tr("Carnidea", "Ennemy") << QObject::tr("Protesis", "Ennemy") << QObject::tr("Scavenger", "Ennemy")
-		  << QObject::tr("Elmidea", "Ennemy") << QObject::tr("Héra", "Ennemy") << QObject::tr("Acron", "Ennemy") << QObject::tr("Eiffel", "Ennemy")
-		  << QObject::tr("Wendigo", "Ennemy") << QObject::tr("Aphide", "Ennemy") << QObject::tr("Ecorché", "Ennemy") << QObject::tr("Berserker", "Ennemy")
-		  << QObject::tr("Adéphage", "Ennemy") << QObject::tr("Selek", "Ennemy") << QObject::tr("Krystal", "Ennemy") << QObject::tr("Gangrène", "Ennemy")
+		  << QObject::tr("Elmidea", "Ennemy") << QObject::tr("HÃ©ra", "Ennemy") << QObject::tr("Acron", "Ennemy") << QObject::tr("Eiffel", "Ennemy")
+		  << QObject::tr("Wendigo", "Ennemy") << QObject::tr("Aphide", "Ennemy") << QObject::tr("EcorchÃ©", "Ennemy") << QObject::tr("Berserker", "Ennemy")
+		  << QObject::tr("AdÃ©phage", "Ennemy") << QObject::tr("Selek", "Ennemy") << QObject::tr("Krystal", "Ennemy") << QObject::tr("GangrÃ¨ne", "Ennemy")
 		  << QObject::tr("Fatima", "Ennemy") << QObject::tr("Moloch", "Ennemy") << QObject::tr("Weevil", "Ennemy") << QObject::tr("Succube", "Ennemy")
-		  << QObject::tr("Célébis", "Ennemy") << QObject::tr("Trogiidae", "Ennemy") << QObject::tr("Ao", "Ennemy") << QObject::tr("Chimaira", "Ennemy")
+		  << QObject::tr("CÃ©lÃ©bis", "Ennemy") << QObject::tr("Trogiidae", "Ennemy") << QObject::tr("Ao", "Ennemy") << QObject::tr("Chimaira", "Ennemy")
 		  << QObject::tr("Xylomid", "Ennemy") << QObject::tr("Ekarissor", "Ennemy") << QObject::tr("Kanibal", "Ennemy") << QObject::tr("T-Rex", "Ennemy")
 		  << QObject::tr("Griffon", "Ennemy") << QObject::tr("Feng", "Ennemy") << QObject::tr("Cariatide", "Ennemy") << QObject::tr("Pampa", "Ennemy")
 		  << QObject::tr("Tomberry", "Ennemy") << QObject::tr("Marsupial", "Ennemy") << QObject::tr("Fungus", "Ennemy") << QObject::tr("Draconus", "Ennemy")
 		  << QObject::tr("Koyo K", "Ennemy") << QObject::tr("Ifrit", "Ennemy") << QObject::tr("Taurux", "Ennemy") << QObject::tr("Tauros", "Ennemy")
-		  << QObject::tr("Commandeur", "Ennemy") << QObject::tr("Cerbères", "Ennemy") << QObject::tr("Nosferatu", "Ennemy") << QObject::tr("Bahamut", "Ennemy")
+		  << QObject::tr("Commandeur", "Ennemy") << QObject::tr("CerbÃ¨res", "Ennemy") << QObject::tr("Nosferatu", "Ennemy") << QObject::tr("Bahamut", "Ennemy")
 		  << QObject::tr("Odyssey", "Ennemy") << QObject::tr("Templier", "Ennemy") << QObject::tr("Odin", "Ennemy") << QObject::tr("Galbadien", "Ennemy")
 		  << QObject::tr("Elite-T", "Ennemy") << QObject::tr("Wedge (1)", "Ennemy") << QObject::tr("Biggs (1)", "Ennemy") << QObject::tr("Doublure", "Ennemy")
 		  << QObject::tr("Trooper", "Ennemy") << QObject::tr("Norg", "Ennemy") << QObject::tr("S-Borg", "Ennemy") << QObject::tr("T-Borg", "Ennemy")
@@ -241,13 +241,13 @@ void Ennemies::fillList()
 		  << QObject::tr("Edea (2)", "Ennemy") << QObject::tr("Omniborg (1)", "Ennemy") << QObject::tr("Omniborg (2)", "Ennemy") << QObject::tr("Hornet", "Ennemy")
 		  << QObject::tr("Hornet (zombie)", "Ennemy") << QObject::tr("Anakronox", "Ennemy") << QObject::tr("A-G Pod", "Ennemy") << QObject::tr("A-D Pod", "Ennemy")
 		  << QObject::tr("ParaBorg", "Ennemy") << QObject::tr("Flotix", "Ennemy") << QObject::tr("Bibendum", "Ennemy") << QObject::tr("Alienator (rouge)", "Ennemy")
-		  << QObject::tr("Adel", "Ennemy") << _names->at(RINOA) << QObject::tr("Minotaure", "Ennemy") << QObject::tr("Nécromancienne (1)", "Ennemy")
-		  << QObject::tr("Nécromancienne (2)", "Ennemy") << QObject::tr("Nécromancienne (3)", "Ennemy") << QObject::tr("UFO", "Ennemy") << QObject::tr("Fujin (1)", "Ennemy")
+		  << QObject::tr("Adel", "Ennemy") << _names->at(RINOA) << QObject::tr("Minotaure", "Ennemy") << QObject::tr("NÃ©cromancienne (1)", "Ennemy")
+		  << QObject::tr("NÃ©cromancienne (2)", "Ennemy") << QObject::tr("NÃ©cromancienne (3)", "Ennemy") << QObject::tr("UFO", "Ennemy") << QObject::tr("Fujin (1)", "Ennemy")
 		  << QObject::tr("Raijin (1)", "Ennemy") << QObject::tr("Ultimecia (1)", "Ennemy") << _names->at(GRIEVER) << QObject::tr("(Sans nom)", "Ennemy") << QObject::tr("Ultimecia (2)", "Ennemy")
-		  << QObject::tr("Hélix", "Ennemy") << QObject::tr("Ultimecia (3)", "Ennemy") << QObject::tr("Ultimecia (4)", "Ennemy") << QObject::tr("Seifer (4)", "Ennemy") << QObject::tr("Jason", "Ennemy")
+		  << QObject::tr("HÃ©lix", "Ennemy") << QObject::tr("Ultimecia (3)", "Ennemy") << QObject::tr("Ultimecia (4)", "Ennemy") << QObject::tr("Seifer (4)", "Ennemy") << QObject::tr("Jason", "Ennemy")
 		  << QObject::tr("Attila", "Ennemy") << QObject::tr("Sulfor", "Ennemy") << QObject::tr("Acarnan", "Ennemy") << QObject::tr("Fabryce", "Ennemy")
 		  << QObject::tr("Wedge (2)", "Ennemy") << QObject::tr("Biggs (2)", "Ennemy") << QObject::tr("Fujin (2)", "Ennemy") << QObject::tr("Raijin (2)", "Ennemy")
-		  << QObject::tr("UFO (Mandy Beach)", "Ennemy") << QObject::tr("UFO (Winhill)", "Ennemy") << QObject::tr("UFO (Trabia)", "Ennemy") << QObject::tr("UFO (Désert Kashkabald)", "Ennemy")
+		  << QObject::tr("UFO (Mandy Beach)", "Ennemy") << QObject::tr("UFO (Winhill)", "Ennemy") << QObject::tr("UFO (Trabia)", "Ennemy") << QObject::tr("UFO (DÃ©sert Kashkabald)", "Ennemy")
 		  << QObject::tr("Gunblade (2)", "Ennemy") << QObject::tr("Soldat", "Ennemy");
 }
 
@@ -610,7 +610,7 @@ const quint8 Data::innateAbilities[16][22] =
 	 21,	//GF
 	 22, //Draw
 	},
-	{//Zéphyr
+	{//ZÃ©phyr
 	 83,	//SumMag+10%
 	 84,	//SumMag+20%
 	 85,	//SumMag+30%
@@ -808,7 +808,7 @@ QString Data::getCardsLocation(int i)
 {
 	QString location;
 	int locID = cardsLocation[i];
-	if(locID==-1)		location = QObject::tr("Utilisée");
+	if(locID==-1)		location = QObject::tr("UtilisÃ©e");
 	else if(locID==-2)	location = QObject::tr("Squall");
 	else {
 		location = _locations.at(locID);
@@ -832,7 +832,7 @@ const int Data::cardsLocation[256] = {
 	101,101,102,101,97,94,93,93,95,0,0,0,0,0,0,0,
 	0,0,0,227,44,0,0,0,0,0,0,0,0,44,44,44,
 	44,44,44,44,44,44,44,250/*(200)GroChocobo...*/,103,73,70,227,149,207,0/*Ifrit*/,96,
-	0/*Tauros*/,0/*Taurux*/,74,0/*Nosferatu*/,74,0/*Odin*/,86,0/*Cerbères*/,220,250,0/*Bahamut*/,250,0/*Orbital*/,164,250,225,
+	0/*Tauros*/,0/*Taurux*/,74,0/*Nosferatu*/,74,0/*Odin*/,86,0/*CerbÃ¨res*/,220,250,0/*Bahamut*/,250,0/*Orbital*/,164,250,225,
 	190,80,250,88,127,183,74,163/*Squall(card)*/,0,0,0,0,0,0,0,-2,
 	0,184,1,0,0,193,1,0,0,200,1,0,0,208,1
 };

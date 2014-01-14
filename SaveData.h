@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -32,21 +32,42 @@
 #include <QtCore>
 #include "SaveIcon.h"
 
+#ifdef _MSC_VER
+#	define PACK(structure)			\
+		__pragma(pack(push, 1))		\
+		structure					\
+		__pragma(pack(pop))
+#else
+#	define PACK(structure) structure Q_PACKED
+#endif
+
+#define GF_GET_FORGOTTEN(data) \
+	((data).forgotten1 | ((data).forgotten2 << 8) | ((data).forgotten3 << 16))
+
+#define GF_SET_FORGOTTEN(data, forgotten)			\
+	(data).forgotten1 = forgotten & 0xFF;				\
+	(data).forgotten2 = (forgotten >> 8) & 0xFF;		\
+	(data).forgotten3 = (forgotten >> 16) & 0xFF;
+
+PACK(
 struct GFORCES//68
 {
-	char name[12];
+	quint8 name[12];
 	quint32 exp;
 	quint8 u1;
 	quint8 exists;
 	quint16 HPs;
 	quint8 completeAbilities[16];//115+1 valides, 124 existantes
-	quint8 APs[24];// 22 + 2 inused
+	quint8 APs[24];// 22 + 2 unused
 	quint16 kills;
 	quint16 KOs;
 	quint8 learning;
-	quint32 forgotten : 24;// 22 + 2 inused
-} Q_PACKED;
+	quint8 forgotten1;// 22 + 2 unused
+	quint8 forgotten2;// 22 + 2 unused
+	quint8 forgotten3;// 22 + 2 unused
+});
 
+PACK(
 struct PERSONNAGES//152
 {
 	quint16 current_HPs;
@@ -88,15 +109,17 @@ struct PERSONNAGES//152
 	quint8 u4;
 	quint8 status;
 	quint8 u5;// padding ?
-} Q_PACKED;
+});
 
+PACK(
 struct SHOP//20
 {
 	quint8 items[16];
 	quint8 visited;
 	quint8 u1[3];// padding ?
-} Q_PACKED;
+});
 
+PACK(
 struct CONFIG//20
 {
 	quint8 vts_combat;
@@ -127,19 +150,21 @@ struct CONFIG//20
 	quint8 u4;
 	quint8 u5;
 	quint8 START;
-} Q_PACKED;
+});
 
+PACK(
 struct MISC1//32
 {
 	quint8 party[4];// party[3] always=255
 	quint32 unlocked_weapons;
-	char griever[12];
+	quint8 griever[12];
 	quint16 u1;// always 7966?
 	quint16 u2;// (START) 0000 0000 0010 0000 -> (CD3) 0000 0011 0010 0000 -> (CD4) 0000 0111 0010 0000
 	quint32 gils;
 	quint32 dream_gils;
-} Q_PACKED;
+});
 
+PACK(
 struct LIMITB//16
 {
 	quint16 quistis;
@@ -149,14 +174,16 @@ struct LIMITB//16
 	quint8 angel_completed;
 	quint8 angel_known;
 	quint8 angel_pts[8];
-} Q_PACKED;
+});
 
+PACK(
 struct ITEMS//428
 {
 	quint8 battle_order[32];
 	quint16 items[198]; // (quint8(itemID), quint8(quantity)) * 198
-} Q_PACKED;
+});
 
+PACK(
 struct MISC2//144
 {
 	quint32 game_time;
@@ -194,8 +221,9 @@ struct MISC2//144
 	quint16 id[3];// triangle (party1, party2, party3)
 	quint8 dir[3];// direction (party1, party2, party3)
 	quint8 u7[5];
-} Q_PACKED;
+});
 
+PACK(
 struct MISC3//256
 {
 	quint32 u1;// Const : "FF-8"
@@ -244,8 +272,9 @@ struct MISC3//256
 	quint8 uG[3];
 	quint8 music_loaded; // var213
 	quint8 uH[42];
-} Q_PACKED;
+});
 
+PACK(
 struct FIELD//1024
 {
 	quint16 game_moment;// var256 in field scripts
@@ -269,8 +298,9 @@ struct FIELD//1024
 	quint8 u4[3];
 	quint16 timber_maniacs;
 	quint8 u7[974];//			(4285=tt club cc|4286=tt victory count BGU)
-} Q_PACKED;
+});
 
+PACK(
 struct WORLDMAP//128
 {
 	qint16 char_pos[6];// x z y ? ? rot(0->4095)
@@ -292,20 +322,21 @@ struct WORLDMAP//128
 	quint16 car_steps_related;
 	quint16 car_steps_related2;
 	quint8 vehicles_instructions_worldmap;//voiture|Unused|BGU|Chocobo|Hydre|???|???|Unused
-	quint8 koyok_quest;//04 : Mandy Beach|Winhill|Trabia|Kashkabald Desert|UFO? Battu|80 : Koyo K Battu/Soigné/Mangé
+	quint8 koyok_quest;//04 : Mandy Beach|Winhill|Trabia|Kashkabald Desert|UFO? Battu|80 : Koyo K Battu/SoignÃ©/MangÃ©
 	quint8 obel_quest[8];
-	/* [0] => avoir fredonné twice|???|Unused|Unused|n ricochets|infini ricochets|Vu ryo|Vu ryo² ("100x + de ricochets que toi !")
-	 * [1] => Ryo a donné tablette|Unused|Indices ombre pour trouver l'idiot|Unused|Unused|Unused|Indice ombre pour Eldbeak|Eldbeak trouvé
-	 * [2] => Trésor île Minde|Trésor Plaine de Mordor|Unused|Unused|Unused|Unused|Unused|Unused
+	/* [0] => avoir fredonnÃ© twice|???|Unused|Unused|n ricochets|infini ricochets|Vu ryo|Vu ryoÂ² ("100x + de ricochets que toi !")
+	 * [1] => Ryo a donnÃ© tablette|Unused|Indices ombre pour trouver l'idiot|Unused|Unused|Unused|Indice ombre pour Eldbeak|Eldbeak trouvÃ©
+	 * [2] => TrÃ©sor Ã®le Minde|TrÃ©sor Plaine de Mordor|Unused|Unused|Unused|Unused|Unused|Unused
 	 * [3] => ???|Pierre Balamb|Pierre Ryo|Pierre Timber|Pierre Galbadia|Toutes les pierres|Indice Ombre pour Balamb|???
 	 * [4] => ??? (mordor var?)
 	 * [5] => ???|???|???|???|Block access Lunatic Pandora|???|Block access Lunatic Pandora|???
-	 * [6] => avoir parlé à l'ombre|Accepter de chercher l'idiot|Avoir vu l'idiot|...
+	 * [6] => avoir parlÃ© Ã  l'ombre|Accepter de chercher l'idiot|Avoir vu l'idiot|...
 	 * [7] => ??? (temp var)
 	 */
 	quint8 u6[2];
-} Q_PACKED;
+});
 
+PACK(
 struct WORLDMAP_PC//26 (padding 8)
 {
 	quint8 padding1[6];
@@ -315,20 +346,21 @@ struct WORLDMAP_PC//26 (padding 8)
 	quint16 car_steps_related;
 	quint16 car_steps_related2;
 	quint8 vehicles_instructions_worldmap;//voiture|Unused|BGU|Chocobo|Hydre|???|???|Unused
-	quint8 koyok_quest;//04 : Mandy Beach|Winhill|Trabia|Kashkabald Desert|UFO? Battu|80 : Koyo K Battu/Soigné/Mangé
+	quint8 koyok_quest;//04 : Mandy Beach|Winhill|Trabia|Kashkabald Desert|UFO? Battu|80 : Koyo K Battu/SoignÃ©/MangÃ©
 	quint8 obel_quest[8];
-	/* [0] => avoir fredonné twice|???|Unused|Unused|n ricochets|infini ricochets|Vu ryo|Vu ryo² ("100x + de ricochets que toi !")
-	 * [1] => Ryo a donné tablette|Unused|Indices ombre pour trouver l'idiot|Unused|Unused|Unused|Indice ombre pour Eldbeak|Eldbeak trouvé
-	 * [2] => Trésor île Minde|Trésor Plaine de Mordor|Unused|Unused|Unused|Unused|Unused|Unused
+	/* [0] => avoir fredonnÃ© twice|???|Unused|Unused|n ricochets|infini ricochets|Vu ryo|Vu ryoÂ² ("100x + de ricochets que toi !")
+	 * [1] => Ryo a donnÃ© tablette|Unused|Indices ombre pour trouver l'idiot|Unused|Unused|Unused|Indice ombre pour Eldbeak|Eldbeak trouvÃ©
+	 * [2] => TrÃ©sor Ã®le Minde|TrÃ©sor Plaine de Mordor|Unused|Unused|Unused|Unused|Unused|Unused
 	 * [3] => ???|Pierre Balamb|Pierre Ryo|Pierre Timber|Pierre Galbadia|Toutes les pierres|Indice Ombre pour Balamb|???
 	 * [4] => ??? (mordor var?)
 	 * [5] => ???|???|???|???|Block access Lunatic Pandora|???|Block access Lunatic Pandora|???
-	 * [6] => avoir parlé à l'ombre|Accepter de chercher l'idiot|Avoir vu l'idiot|...
+	 * [6] => avoir parlÃ© Ã  l'ombre|Accepter de chercher l'idiot|Avoir vu l'idiot|...
 	 * [7] => ??? (temp var)
 	 */
 	quint8 u6[2];
-} Q_PACKED;
+});
 
+PACK(
 struct TTCARDS//128
 {
 	quint8 cards[77];
@@ -340,8 +372,9 @@ struct TTCARDS//128
 	quint16 tt_egality_count;
 	quint16 u2;
 	quint32 u3;
-} Q_PACKED;
+});
 
+PACK(
 struct CHOCOBO//64
 {
 	quint8 enabled;// Enabled|In world|MiniMog found|Demon King defeated|Koko kidnapped|Hurry!|Koko met|Event Wait off
@@ -361,19 +394,20 @@ struct CHOCOBO//64
 	quint8 u2[16];
 	quint32 associatedSaveID;
 	quint8 u3;
-	quint8 boko_attack;// star count (chocobraise | chocoflammes | chocométéore | grochocobo)
+	quint8 boko_attack;// star count (chocobraise | chocoflammes | chocomÃ©tÃ©ore | grochocobo)
 	quint8 u4;
 	quint8 home_walking;
 	quint8 u5[16];
-} Q_PACKED;
+});
 
 /*
   A chercher :
 1. Event WAIT : ON ou OFF
 2. le Move  : 1, 2, 3, 4, 5, ou 6
-3. Etat MiniMog : Stand by ou Sleep (à mon avis y a aussi un 3e caché pour dire si on montre ou pas ce menu qui dépend de si on a trouvé ou pas MiniMog)
+3. Etat MiniMog : Stand by ou Sleep (Ã  mon avis y a aussi un 3e cachÃ© pour dire si on montre ou pas ce menu qui dÃ©pend de si on a trouvÃ© ou pas MiniMog)
 */
 
+PACK(
 struct MAIN//4944 (~4242 used)
 {
 	GFORCES gfs[16];//			(pos=464|ar_pos_fr=pos + 489104)	[1088/1088 editable]
@@ -389,8 +423,9 @@ struct MAIN//4944 (~4242 used)
 	WORLDMAP worldmap;//		(pos=5088)		[13/128 editable]
 	TTCARDS ttcards;//			(pos=5216)		[128/128 editable]
 	CHOCOBO chocobo;//			(pos=5344)		[16/64 editable]
-} Q_PACKED;
+});
 
+PACK(
 struct HEADER//76	(pos=388)		[58+18(auto)/76 editable]
 {
 	quint16 locationID;
@@ -401,13 +436,13 @@ struct HEADER//76	(pos=388)		[58+18(auto)/76 editable]
 	quint32 time;// auto
 	quint8 nivLeader;// auto
 	quint8 party[3];// auto
-	char squall[12];
-	char rinoa[12];
-	char angelo[12];
-	char boko[12];
+	quint8 squall[12];
+	quint8 rinoa[12];
+	quint8 angelo[12];
+	quint8 boko[12];
 	quint32 disc;// auto
 	quint32 curSave;
-} Q_PACKED;
+});
 
 class SaveData
 {

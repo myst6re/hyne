@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@
 HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewType)
 	: QDialog(parent, Qt::Dialog | Qt::WindowCloseButtonHint), saveData(saveData), viewType(viewType)
 {
-	setWindowTitle(tr("Propriétés"));
+	setWindowTitle(tr("PropriÃ©tÃ©s"));
 
 	group1 = new QGroupBox(tr("Memory card header"), this);
 
@@ -30,11 +30,11 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	exists_lbl->setTextFormat(Qt::PlainText);
 	exists = new QCheckBox;
 
-	QLabel *country_lbl = new QLabel(tr("Région :"));
+	QLabel *country_lbl = new QLabel(tr("RÃ©gion :"));
 	country_lbl->setTextFormat(Qt::PlainText);
 	country = new QComboBox;
 	country->addItem(QIcon(":/images/jp.png"), tr("Japon"), COUNTRY_JP);
-	country->addItem(QIcon(":/images/us.png"), tr("Amérique"), COUNTRY_US);
+	country->addItem(QIcon(":/images/us.png"), tr("AmÃ©rique"), COUNTRY_US);
 	country->addItem(QIcon(":/images/eu.png"), tr("Europe"), COUNTRY_EU);
 	country->addItem(tr("Invalide"), '\x00');
 
@@ -76,7 +76,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 
 	desc_auto = new QCheckBox(tr("Auto."));
 
-	QLabel *bloc_lbl = new QLabel(tr("Blocs utilisés :"));
+	QLabel *bloc_lbl = new QLabel(tr("Blocs utilisÃ©s :"));
 	bloc = new QLabel();
 	bloc->setTextFormat(Qt::PlainText);
 
@@ -92,7 +92,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 		}
 	}
 
-	QLabel *icon1_lbl = new QLabel(tr("Icône :"));
+	QLabel *icon1_lbl = new QLabel(tr("IcÃ´ne :"));
 	icon1_lbl->setTextFormat(Qt::PlainText);
 	icon1 = new QComboBox();
 	icon1->setIconSize(QSize(16, 16));
@@ -103,7 +103,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	QIcon saveIcon(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton));
 	icon1_saveButton->setIcon(saveIcon);
 	icon1_saveButton->setFlat(true);
-	icon2_lbl = new QLabel(tr("Icône additionnel :"));
+	icon2_lbl = new QLabel(tr("IcÃ´ne additionnel :"));
 	icon2_lbl->setTextFormat(Qt::PlainText);
 	icon2 = new QComboBox();
 	icon2->setIconSize(QSize(32, 32));

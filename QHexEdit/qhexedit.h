@@ -1,7 +1,7 @@
 #ifndef QHEXEDIT_H
 #define QHEXEDIT_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "qhexedit_p.h"
 
 /** \mainpage

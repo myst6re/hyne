@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -51,10 +51,10 @@ void FieldEditor::buildWidget()
 
 	gameMomentList->resizeColumnToContents(0);
 
-	HelpWidget *info = new HelpWidget(32, tr("Cet éditeur ne change que le moment du jeu, c'est-à-dire une valeur "
-											 "qui change en fonction de votre avancée dans l'aventure principale."
-											 " En changeant cette valeur, la position de votre personnage, les sous-quêtes"
-											 " et autres valeurs ne seront pas modifiées."), this);
+	HelpWidget *info = new HelpWidget(32, tr("Cet Ã©diteur ne change que le moment du jeu, c'est-Ã -dire une valeur "
+											 "qui change en fonction de votre avancÃ©e dans l'aventure principale."
+											 " En changeant cette valeur, la position de votre personnage, les sous-quÃªtes"
+											 " et autres valeurs ne seront pas modifiÃ©es."), this);
 
 	autoDiscE = new QCheckBox(tr("Auto."), this);
 

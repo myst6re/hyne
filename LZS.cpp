@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -56,12 +56,12 @@ const QByteArray &LZS::decompress(const QByteArray &data, int max)
 		}
 	}
 
-	memset(text_buf, 0, 4078);//Le buffer de 4096 octets est initialisé à 0
+	memset(text_buf, 0, 4078);//Le buffer de 4096 octets est initialisÃ© Ã  0
 
 	forever
 	{
 		if(((premOctet >>= 1) & 256) == 0) {
-			premOctet = *fileData++ | 0xff00;//On récupère le premier octet puis on avance d'un octet
+			premOctet = *fileData++ | 0xff00;//On rÃ©cupÃ¨re le premier octet puis on avance d'un octet
 		}
 
 		if(fileData >= endFileData || curResult >= max) {
@@ -71,8 +71,8 @@ const QByteArray &LZS::decompress(const QByteArray &data, int max)
 
 		if(premOctet & 1)
 		{
-			result[curResult] = text_buf[curBuff] = *fileData++;//On récupère l'octet (qui n'est pas compressé) et on le sauvegarde dans la chaine finale (result) et dans le buffer. Et bien sûr on fait avancer les curseurs d'un octet.
-			curBuff = (curBuff + 1) & 4095;//Le curseur du buffer doit toujours être entre 0 et 4095
+			result[curResult] = text_buf[curBuff] = *fileData++;//On rÃ©cupÃ¨re l'octet (qui n'est pas compressÃ©) et on le sauvegarde dans la chaine finale (result) et dans le buffer. Et bien sÃ»r on fait avancer les curseurs d'un octet.
+			curBuff = (curBuff + 1) & 4095;//Le curseur du buffer doit toujours Ãªtre entre 0 et 4095
 			++curResult;
 		}
 		else
@@ -84,12 +84,12 @@ const QByteArray &LZS::decompress(const QByteArray &data, int max)
 
 			adresse = *fileData++;
 			length = *fileData++;
-			adresse |= (length & 0xF0) << 4;//on récupère l'adresse dans les deux octets (qui sont "compressés")
+			adresse |= (length & 0xF0) << 4;//on rÃ©cupÃ¨re l'adresse dans les deux octets (qui sont "compressÃ©s")
 			length = (length & 0xF) + 2 + adresse;
 
 			for(i=adresse ; i<=length ; ++i)
 			{
-				result[curResult] = text_buf[curBuff] = text_buf[i & 4095];//On va chercher l'octet (qui est décompressé) dans le buffer à l'adresse indiquée puis on le sauvegarde dans la chaine finale et le buffer.
+				result[curResult] = text_buf[curBuff] = text_buf[i & 4095];//On va chercher l'octet (qui est dÃ©compressÃ©) dans le buffer Ã  l'adresse indiquÃ©e puis on le sauvegarde dans la chaine finale et le buffer.
 				curBuff = (curBuff + 1) & 4095;
 				++curResult;
 			}
@@ -113,12 +113,12 @@ const QByteArray &LZS::decompressAll(const QByteArray &data)
 		}
 	}
 
-	memset(text_buf, 0, 4078);//Le buffer de 4096 octets est initialisé à 0
+	memset(text_buf, 0, 4078);//Le buffer de 4096 octets est initialisÃ© Ã  0
 
 	forever
 	{
 		if(((premOctet >>= 1) & 256) == 0) {
-			premOctet = *fileData++ | 0xff00;//On récupère le premier octet puis on avance d'un octet
+			premOctet = *fileData++ | 0xff00;//On rÃ©cupÃ¨re le premier octet puis on avance d'un octet
 		}
 
 		if(fileData >= endFileData) {
@@ -128,8 +128,8 @@ const QByteArray &LZS::decompressAll(const QByteArray &data)
 
 		if(premOctet & 1)
 		{
-			result[curResult] = text_buf[curBuff] = *fileData++;//On récupère l'octet (qui n'est pas compressé) et on le sauvegarde dans la chaine finale (result) et dans le buffer. Et bien sûr on fait avancer les curseurs d'un octet.
-			curBuff = (curBuff + 1) & 4095;//Le curseur du buffer doit toujours être entre 0 et 4095
+			result[curResult] = text_buf[curBuff] = *fileData++;//On rÃ©cupÃ¨re l'octet (qui n'est pas compressÃ©) et on le sauvegarde dans la chaine finale (result) et dans le buffer. Et bien sÃ»r on fait avancer les curseurs d'un octet.
+			curBuff = (curBuff + 1) & 4095;//Le curseur du buffer doit toujours Ãªtre entre 0 et 4095
 			++curResult;
 		}
 		else
@@ -141,12 +141,12 @@ const QByteArray &LZS::decompressAll(const QByteArray &data)
 
 			adresse = *fileData++;
 			length = *fileData++;
-			adresse |= (length & 0xF0) << 4;//on récupère l'adresse dans les deux octets (qui sont "compressés")
+			adresse |= (length & 0xF0) << 4;//on rÃ©cupÃ¨re l'adresse dans les deux octets (qui sont "compressÃ©s")
 			length = (length & 0xF) + 2 + adresse;
 
 			for(i=adresse ; i<=length ; ++i)
 			{
-				result[curResult] = text_buf[curBuff] = text_buf[i & 4095];//On va chercher l'octet (qui est décompressé) dans le buffer à l'adresse indiquée puis on le sauvegarde dans la chaine finale et le buffer.
+				result[curResult] = text_buf[curBuff] = text_buf[i & 4095];//On va chercher l'octet (qui est dÃ©compressÃ©) dans le buffer Ã  l'adresse indiquÃ©e puis on le sauvegarde dans la chaine finale et le buffer.
 				curBuff = (curBuff + 1) & 4095;
 				++curResult;
 			}

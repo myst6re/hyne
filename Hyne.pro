@@ -4,8 +4,10 @@ TEMPLATE = app
 } else {
 	TARGET = Hyne
 }
-DEPENDPATH += .
-INCLUDEPATH += .
+# include zlib
+INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
+
+QT       += core gui widgets
 
 # Input
 HEADERS += PageWidgets/ConfigEditor.h \
@@ -104,6 +106,8 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
 RESOURCES += Hyne.qrc
 TRANSLATIONS += hyne_en.ts \
     hyne_ja.ts
+CODECFORTR = UTF-8
+CODECFORSRC = UTF-8
 
 # Only for static compilation
 # QTPLUGIN += qjpcodecs
@@ -117,8 +121,8 @@ macx {
 }
 win32 {
 	RC_FILE = Hyne.rc
-	LIBS += -lole32
-	HEADERS += shobjidl.h # Windows 7 taskBarButton
+	# include Windows libs
+	LIBS += -lole32 -ladvapi32 -lshell32
 }
 
 OTHER_FILES += Hyne.rc \

@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -202,16 +202,16 @@ QByteArray FF8Text::toByteArray(const QString &string, bool jp)
 			if(comp.isLetter()) {
 				int shift;
 				if(comp.isLower()) {
-					shift = comp.toAscii() - 'a';
+					shift = comp.toLatin1() - 'a';
 				} else {
-					shift = comp.toAscii() - 'A';
+					shift = comp.toLatin1() - 'A';
 				}
 				ff8str.append((char)(0xCE + shift));
 				goto end;
 			}
 
 			if(comp.isDigit()) {
-				int shift = comp.toAscii() - '0';
+				int shift = comp.toLatin1() - '0';
 				ff8str.append((char)(0x53 + shift));
 				goto end;
 			}
@@ -264,7 +264,7 @@ QByteArray FF8Text::toByteArray(const QString &string, bool jp)
 				ff8str.append((char)(0xF5));
 				goto end;
 			}
-			if(comp == '·') {
+			if(QString::compare(comp, "Â·") == 0) {
 				ff8str.append((char)(0xFA));
 				goto end;
 			}

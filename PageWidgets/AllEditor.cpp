@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -28,9 +28,9 @@ void AllEditor::buildWidget()
 	tabBar = new QTabBar(this);
 	tabBar->setDrawBase(false);
 	tabBar->addTab(tr("Tout"));
-//	tabBar->addTab(tr("En-tête"));
+//	tabBar->addTab(tr("En-tÃªte"));
 //	tabBar->addTab(tr("Divers 1"));
-	tabBar->addTab(tr("Caméra"));
+	tabBar->addTab(tr("CamÃ©ra"));
 	tabBar->addTab(tr("Boutiques"));
 	tabBar->addTab(tr("Divers"));
 	tabBar->addTab(tr("Field"));

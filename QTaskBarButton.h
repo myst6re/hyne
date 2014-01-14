@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -18,9 +18,14 @@
 #ifndef QTASKBARBUTTON_H
 #define QTASKBARBUTTON_H
 
-#include <QtGui>
+#include <QtCore>
+#include <QWidget>
 #ifdef Q_OS_WIN
-#include "shobjidl.h"
+#	ifndef __GNUC__
+#		include <shobjidl.h>
+#		include <shlobj.h>
+#		undef min
+#	endif
 #endif
 
 class QTaskBarButton : public QObject
@@ -50,21 +55,31 @@ public:
 signals:
 	void valueChanged(int value);
 public slots:
-	void reset();
+	inline void reset() {
+		setState(Normal);
+		setValue(0);
+	}
 	void setMaximum(int maximum);
 	void setMinimum(int minimum);
-	void setRange(int minimum, int maximum);
+	inline void setRange(int minimum, int maximum) {
+		setMinimum(minimum);
+		setMaximum(maximum);
+	}
+
 	void setValue(int value);
 private:
+#ifdef __ITaskbarList3_INTERFACE_DEFINED__
+	void initTaskBar();
 	void initDestinationList();
 #ifdef Q_OS_WIN
-	WId _winId;
+	HWND _winId;
 	ITaskbarList3 *pITask;
 	ICustomDestinationList *destinationList;
 	IObjectArray *removedItems;
 #endif // Q_OS_WIN
 	int _minimum, _maximum, _value;
 	State _state;
+#endif // __ITaskbarList3_INTERFACE_DEFINED__
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(QTaskBarButton::ListCategories)

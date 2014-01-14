@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ QWidget *MiscEditor::buildPage1()
 	argent_tempsL->addWidget(new QLabel(tr("Temps :"), statsE));
 	argent_tempsL->addWidget(timeE);
 	argent_tempsL->addStretch();
-	argent_tempsL->addWidget(new QLabel(tr("Compte à rebours :"), statsE));
+	argent_tempsL->addWidget(new QLabel(tr("Compte Ã  rebours :"), statsE));
 	argent_tempsL->addWidget(countdownE);
 	
 	stepsE = new SpinBox32(statsE);
@@ -95,7 +95,7 @@ QWidget *MiscEditor::buildPage1()
 	statsL->addWidget(seedExpE, 2, 3);
 	statsL->addWidget(new QLabel(tr("Niveau test Seed :"),statsE), 2, 4);
 	statsL->addWidget(testSeedE, 2, 5);
-	statsL->addWidget(lastFieldLabel = new QLabel(tr("Dernier écran visité :"),statsE), 3, 0);
+	statsL->addWidget(lastFieldLabel = new QLabel(tr("Dernier Ã©cran visitÃ© :"),statsE), 3, 0);
 	statsL->addWidget(lastFieldE, 3, 1);
 	statsL->addWidget(currentFrameLabel = new QLabel(tr("Current Movie Frame :"),statsE), 3, 2);
 	statsL->addWidget(currentFrameE, 3, 3);
@@ -145,22 +145,22 @@ QWidget *MiscEditor::buildPage2()
 
 	tutoE_list = new QTreeWidget(ret);
 	tutoE_list->setFont(font);
-	tutoE_list->setHeaderLabel(tr("Catégorie"));
+	tutoE_list->setHeaderLabel(tr("CatÃ©gorie"));
 	tutoE_list->setIndentation(0);
 	tutoE_list->setUniformRowHeights(true);
 
 	QStringList tutoStrings;
 	tutoStrings
 			<< tr("Lieux/Mine de souffre") << tr("Lieux/Dollet") << tr("Lieux/Timber")
-			<< tr("Lieux/Chaîne TV Timber") << tr("Lieux/Galbadia") << tr("Lieux/Tombe du roi inconnu")
-			<< tr("Lieux/Winhill") << tr("Lieux/Prison du désert") << tr("Lieux/Base des missiles")
+			<< tr("Lieux/ChaÃ®ne TV Timber") << tr("Lieux/Galbadia") << tr("Lieux/Tombe du roi inconnu")
+			<< tr("Lieux/Winhill") << tr("Lieux/Prison du dÃ©sert") << tr("Lieux/Base des missiles")
 			<< tr("Lieux/Aqueduc d'Horizon") << tr("Lieux/Horizon") << tr("Lieux/Trabia")
 			<< tr("Lieux/Esthar(1)") << tr("Lieux/Esthar(2)") << tr("Lieux/Esthar(3)")
-			<< tr("Lieux/Station balnéaire") << tr("Lieux/Salt Lake") << tr("Lieux/Lune")
+			<< tr("Lieux/Station balnÃ©aire") << tr("Lieux/Salt Lake") << tr("Lieux/Lune")
 			<< tr("Lieux/Labo de Deep Sea") << tr("Lieux/Fouilles de Deep Sea") << tr("Termes/Compression Temporelle")
 			<< tr("Termes/Origine de la BGU") << tr("Termes/Ondes hertziennes(1)") << tr("Termes/Ondes hertziennes(2)")
-			<< tr("Termes/Larme sélénite") << tr("Termes/Centra") << tr("Termes/Compteur Geyser")
-			<< tr("Termes/Mages et sorcières") << tr("Termes/Pouvoirs magiques") << tr("Termes/Monolithe")
+			<< tr("Termes/Larme sÃ©lÃ©nite") << tr("Termes/Centra") << tr("Termes/Compteur Geyser")
+			<< tr("Termes/Mages et sorciÃ¨res") << tr("Termes/Pouvoirs magiques") << tr("Termes/Monolithe")
 			<< tr("Termes/Lunatic Pandora") << tr("Termes/Tears Point") << tr("Termes/Sanctuaire d'Adel")
 			<< tr("Termes/L'Hydre") << tr("Termes/Niveau MD") << tr("Termes/Refuge de Centra")
 			<< tr("Termes/Timber Maniacs") << tr("Termes/Eyes On Me") << tr("Personnages/Dr. Geyser")
@@ -169,31 +169,31 @@ QWidget *MiscEditor::buildPage2()
 			<< tr("Zell") << tr("Quistis") << tr("Seifer")
 			<< tr("Selphie") << tr("Linoa") << tr("Irvine")
 			<< tr("Edea") << tr("Laguna") << tr("Kiros")
-			<< tr("Ward") << tr("Linoa 2 (Canonisation)") << tr("Inutilisé")
-			<< tr("Inutilisé") << tr("Termes/Réincarnation occulte") << tr("Rapport de combat")
-			<< tr("Rapport Perso") << tr("Rapport G-Force") << tr("Actions/Association G-Force (inutilisé)")
-			<< tr("Actions/Association magique") << tr("Actions/Association élémentale") << tr("Actions/Association mentale")
-			<< tr("Actions/Tutorial G-Forces") << tr("Actions/Écran situation Squall") << tr("Actions/Écran situation Zell")
-			<< tr("Actions/Écran situation Linoa") << tr("Actions/Intervertir") << tr("Inutilisé")
+			<< tr("Ward") << tr("Linoa 2 (Canonisation)") << tr("InutilisÃ©")
+			<< tr("InutilisÃ©") << tr("Termes/RÃ©incarnation occulte") << tr("Rapport de combat")
+			<< tr("Rapport Perso") << tr("Rapport G-Force") << tr("Actions/Association G-Force (inutilisÃ©)")
+			<< tr("Actions/Association magique") << tr("Actions/Association Ã©lÃ©mentale") << tr("Actions/Association mentale")
+			<< tr("Actions/Tutorial G-Forces") << tr("Actions/Ã‰cran situation Squall") << tr("Actions/Ã‰cran situation Zell")
+			<< tr("Actions/Ã‰cran situation Linoa") << tr("Actions/Intervertir") << tr("InutilisÃ©")
 			<< tr("Minimog") << tr("Rapport G-Force/Golgotha") << tr("Rapport G-Force/Shiva")
 			<< tr("Rapport G-Force/Ifrit") << tr("Rapport G-Force/Ondine") << tr("Rapport G-Force/Taurus")
 			<< tr("Rapport G-Force/Nosferatu") << tr("Rapport G-Force/Ahuri") << tr("Rapport G-Force/Leviathan")
-			<< tr("Rapport G-Force/Zéphyr") << tr("Rapport G-Force/Cerberus") << tr("Rapport G-Force/Alexander")
+			<< tr("Rapport G-Force/ZÃ©phyr") << tr("Rapport G-Force/Cerberus") << tr("Rapport G-Force/Alexander")
 			<< tr("Rapport G-Force/Helltrain") << tr("Rapport G-Force/Bahamut") << tr("Rapport G-Force/Pampa")
-			<< tr("Rapport G-Force/Tomberry") << tr("Rapport G-Force/Orbital") << tr("Créa-Mgi-Cél")
-			<< tr("Créa-Mgi-Cél 2") << tr("Créa-Mgi-Gla") << tr("Créa-Mgi-Gla 2")
-			<< tr("Créa-Mgi-Inc") << tr("Créa-Mgi-Inc 2") << tr("Créa-Mgi-Méd")
-			<< tr("Créa-Mgi-Méd 2") << tr("Créa-Mgi-Temp") << tr("Créa-Mgi-Temp 2")
-			<< tr("Créa-Mgi-Mtl") << tr("Créa-Mgi-Mtl 2") << tr("Créa-Mgi-Pro")
-			<< tr("Créa-Mgi-Pro 2") << tr("Créa-Mgi-Tab") << tr("Créa-Mgi-Tab 2")
-			<< tr("Créa-Mgi-Thér") << tr("Créa-Mgi-Thér 2") << tr("Créa-Mgi-Ana")
-			<< tr("Créa-Mgi-Ana 2") << tr("Créa-balles") << tr("Créa-balles 2")
-			<< tr("Créa-outils") << tr("Créa-outils 2") << tr("Créa-Thér-Tab")
-			<< tr("Créa-Thér-Tab 2") << tr("Créa-Thér-GF") << tr("Créa-Thér-GF 2")
-			<< tr("Créa-Capa-GF") << tr("Créa-Capa-GF 2") << tr("Créa-Mgi-Plus")
-			<< tr("Créa-Mgi-Plus 2") << tr("Thér-Niv +") << tr("Thér-Niv + 2")
-			<< tr("Freud") << tr("Créa-Mgi-Max") << tr("Créa-Mgi-Max 2")
-			<< tr("Inutilisé") << tr("Diplôme Minotaure");
+			<< tr("Rapport G-Force/Tomberry") << tr("Rapport G-Force/Orbital") << tr("CrÃ©a-Mgi-CÃ©l")
+			<< tr("CrÃ©a-Mgi-CÃ©l 2") << tr("CrÃ©a-Mgi-Gla") << tr("CrÃ©a-Mgi-Gla 2")
+			<< tr("CrÃ©a-Mgi-Inc") << tr("CrÃ©a-Mgi-Inc 2") << tr("CrÃ©a-Mgi-MÃ©d")
+			<< tr("CrÃ©a-Mgi-MÃ©d 2") << tr("CrÃ©a-Mgi-Temp") << tr("CrÃ©a-Mgi-Temp 2")
+			<< tr("CrÃ©a-Mgi-Mtl") << tr("CrÃ©a-Mgi-Mtl 2") << tr("CrÃ©a-Mgi-Pro")
+			<< tr("CrÃ©a-Mgi-Pro 2") << tr("CrÃ©a-Mgi-Tab") << tr("CrÃ©a-Mgi-Tab 2")
+			<< tr("CrÃ©a-Mgi-ThÃ©r") << tr("CrÃ©a-Mgi-ThÃ©r 2") << tr("CrÃ©a-Mgi-Ana")
+			<< tr("CrÃ©a-Mgi-Ana 2") << tr("CrÃ©a-balles") << tr("CrÃ©a-balles 2")
+			<< tr("CrÃ©a-outils") << tr("CrÃ©a-outils 2") << tr("CrÃ©a-ThÃ©r-Tab")
+			<< tr("CrÃ©a-ThÃ©r-Tab 2") << tr("CrÃ©a-ThÃ©r-GF") << tr("CrÃ©a-ThÃ©r-GF 2")
+			<< tr("CrÃ©a-Capa-GF") << tr("CrÃ©a-Capa-GF 2") << tr("CrÃ©a-Mgi-Plus")
+			<< tr("CrÃ©a-Mgi-Plus 2") << tr("ThÃ©r-Niv +") << tr("ThÃ©r-Niv + 2")
+			<< tr("Freud") << tr("CrÃ©a-Mgi-Max") << tr("CrÃ©a-Mgi-Max 2")
+			<< tr("InutilisÃ©") << tr("DiplÃ´me Minotaure");
 
 	QTreeWidgetItem *item;
 	foreach(QString tutoString, tutoStrings) {
@@ -202,7 +202,7 @@ QWidget *MiscEditor::buildPage2()
 		tutoE_list->addTopLevelItem(item);
 	}
 
-	QCheckBox *tutoCheckAll = new QCheckBox(tr("Sélectionner tout"), ret);
+	QCheckBox *tutoCheckAll = new QCheckBox(tr("SÃ©lectionner tout"), ret);
 	connect(tutoCheckAll, SIGNAL(toggled(bool)), SLOT(selectAll(bool)));
 
 	font.setPixelSize(10);

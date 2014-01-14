@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2013 Arzel JÃ©rÃ´me <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -33,15 +33,15 @@ MetadataDialog::MetadataDialog(const QMap<FF8Installation::Type, FF8Installation
 
 void MetadataDialog::build()
 {
-	HelpWidget *help = new HelpWidget(32, tr("Pour être placées dans le Cloud, "
-											 "les sauvegardes doivent être signées. "
-											 "Ces signatures sont écrites dans un fichier "
-											 "nommé metadata.xml, normalement situé "
-											 "dans le même dossier que vos sauvegardes.\n"
-											 "Pour trouver votre numéro d'utilisateur, "
-											 "regardez le nom du dossier où se trouve vos sauvegardes. "
+	HelpWidget *help = new HelpWidget(32, tr("Pour ÃƒÂªtre placÃƒÂ©es dans le Cloud, "
+											 "les sauvegardes doivent ÃƒÂªtre signÃƒÂ©es. "
+											 "Ces signatures sont ÃƒÂ©crites dans un fichier "
+											 "nommÃƒÂ© metadata.xml, normalement situÃƒÂ© "
+											 "dans le mÃƒÂªme dossier que vos sauvegardes.\n"
+											 "Pour trouver votre numÃƒÂ©ro d'utilisateur, "
+											 "regardez le nom du dossier oÃƒÂ¹ se trouve vos sauvegardes. "
 											 "Si vous ne voyez pas, essayez en laissant le champ vide.\n"
-											 "Par défaut Hyne tente de signer les sauvegardes "
+											 "Par dÃƒÂ©faut Hyne tente de signer les sauvegardes "
 											 "automatiquement, mais en cas d'erreur, vous pouvez "
 											 "essayer de le faire manuellement ici."));
 
@@ -65,7 +65,7 @@ void MetadataDialog::build()
 
 	QFormLayout *formLayout = new QFormLayout(_formWidget);
 	formLayout->addRow(tr("metadata.xml"), pathLayout);
-	formLayout->addRow(tr("Numéro d'utilisateur"), _userID);
+	formLayout->addRow(tr("NumÃƒÂ©ro d'utilisateur"), _userID);
 	formLayout->setContentsMargins(QMargins());
 
 	QVBoxLayout *layout = new QVBoxLayout(this);
@@ -94,7 +94,7 @@ void MetadataDialog::accept()
 {
 	UserDirectory userDir(metadataPath(), userID());
 	if(!userDir.updateSignatures()) {
-		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de mettre à jour les signatures.\n") +
+		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de mettre Ã  jour les signatures.\n") +
 													userDir.errorString());
 	} else {
 		QDialog::accept();
