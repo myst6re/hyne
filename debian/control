@@ -2,7 +2,7 @@ Source: hyne
 Section: games
 Priority: extra
 Maintainer: Chris Rizzitello <sithlord48@gmail.com>
-Build-Depends: Build-Depends: debhelper (>= 8.0.0), cdbs, qtbase5-dev, qt5-qmake, zlib1g-dev
+Build-Depends: Build-Depends: debhelper (>= 8.0.0), cdbs, qtbase5-dev, qt5-qmake,qttools5-dev zlib1g-dev
 
 Standards-Version: 3.9.4
 Homepage: http://forums.qhimm.com/index.php?topic=9713.0
