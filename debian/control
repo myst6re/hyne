@@ -2,7 +2,8 @@ Source: hyne
 Section: games
 Priority: extra
 Maintainer: Chris Rizzitello <sithlord48@gmail.com>
-Build-Depends: debhelper (>= 8.0.0~), cdbs, qt5-default, zlib1g-dev
+Build-Depends: Build-Depends: debhelper (>= 8.0.0), cdbs, qtbase5-dev, qt5-qmake, zlib1g-dev
+
 Standards-Version: 3.9.4
 Homepage: http://forums.qhimm.com/index.php?topic=9713.0
 #Vcs-Git: git://git.debian.org/collab-maint/hyne.git
