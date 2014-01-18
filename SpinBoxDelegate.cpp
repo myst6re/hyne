@@ -56,7 +56,7 @@
  **
  ****************************************************************************/
 
-#include <QtWidgets>
+#include "QtWidgets.h"
 #include "SpinBoxDelegate.h"
 
 SpinBoxDelegate::SpinBoxDelegate(QObject *parent)

@@ -23,19 +23,12 @@
 #include "MetadataDialog.h"
 
 Window::Window() :
-	QWidget(), taskBarButton(0), saves(0), saveList(0), editor(0)
+	QWidget(), taskbarButton(0), saves(0), saveList(0), editor(0)
 {
 	setTitle();
 	setMinimumSize(768, 502);
 	resize(768, 502);
 	setAcceptDrops(true);
-
-#ifdef Q_OS_WIN
-	if(QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
-		taskBarButton = new QTaskBarButton(this);
-		//taskBarButton->addList(QTaskBarButton::Recent | QTaskBarButton::Frequent);
-	}
-#endif
 
 	menuBar = new QMenuBar(0);
 	QMenu *menu;
@@ -162,6 +155,16 @@ Window::~Window()
 	Config::setValue(Config::Geometry, saveGeometry());
 	Config::saveRecentFiles();
 	Config::sync();// flush data
+}
+
+void Window::showEvent(QShowEvent *event)
+{
+	event->accept();
+#if defined(Q_OS_WIN) && (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+	if(!taskbarButton && QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
+		taskbarButton = new QTaskbarButton(windowHandle());
+	}
+#endif
 }
 
 void Window::closeEvent(QCloseEvent *event)
@@ -671,7 +674,7 @@ void Window::editView(SaveData *saveData)
 	stackedLayout->setCurrentWidget(editor);
 	setTitle(saveData->id());
 	saves->setIsTheLastEdited(saveData->id());
-	if(taskBarButton)	taskBarButton->setOverlayIcon(saveData->saveIcon().icon());
+	if(taskbarButton)	taskbarButton->setOverlayIcon(saveData->saveIcon().icon());
 	else				setWindowIcon(QIcon(saveData->saveIcon().icon()));
 }
 
@@ -687,7 +690,7 @@ void Window::saveView()
 		if(editor)	editor->hide();
 		menuBar->show();
 		menuBar->setEnabled(true);
-		if(taskBarButton)	taskBarButton->setOverlayIcon(QPixmap());
+		if(taskbarButton)	taskbarButton->setOverlayIcon(QPixmap());
 		else				setWindowIcon(qApp->windowIcon());
 		setTitle();
 		setModified(saves->isModified());

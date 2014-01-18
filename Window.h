@@ -19,11 +19,11 @@
 #ifndef DEF_WINDOW
 #define DEF_WINDOW
 
-#include <QtWidgets>
+#include "QtWidgets.h"
 #include "SavecardWidget.h"
 #include "Editor.h"
 #include "StartWidget.h"
-#include "QTaskBarButton.h"
+#include "QTaskbarButton.h"
 
 class Window : public QWidget
 {
@@ -73,7 +73,7 @@ private:
 	void setTitle(const int currentSaveEdited=-1);
 	QList<int> selectSavesDialog(bool multiSelection=false, bool onlyFF8=false);
 	
-	QTaskBarButton *taskBarButton; // Windows 7+
+	QTaskbarButton *taskbarButton; // Windows 7+
 	QMenuBar *menuBar;
 	QAction *actionReload, *actionSave, *actionSaveAs;
 	QAction *actionProperties, *actionClose, *actionMode, *actionFont;
@@ -85,6 +85,7 @@ private:
 	Editor *editor;
 
 protected:
+	virtual void showEvent(QShowEvent *event);
 	virtual void closeEvent(QCloseEvent *event);
 	virtual void dragEnterEvent(QDragEnterEvent *event);
 	virtual void dropEvent(QDropEvent *event);

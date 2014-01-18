@@ -302,8 +302,8 @@ void GfEditor::fillPage()
 
 		liste->sortByColumn(0, Qt::AscendingOrder);
 		liste2->sortByColumn(0, Qt::AscendingOrder);
-		liste->header()->setSectionResizeMode(1, QHeaderView::Stretch);
-		liste->header()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+		liste->header()->HEADER_VIEW_SET_RESIZE_MODE(1, QHeaderView::Stretch);
+		liste->header()->HEADER_VIEW_SET_RESIZE_MODE(2, QHeaderView::ResizeToContents);
 	}
 }
 
@@ -500,8 +500,8 @@ void GfEditor::restore_C()
 	liste->sortByColumn(0, Qt::AscendingOrder);
 	liste->scrollToItem(item);
 	liste->setCurrentItem(item);
-	liste->header()->setSectionResizeMode(1, QHeaderView::Stretch);
-	liste->header()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+	liste->header()->HEADER_VIEW_SET_RESIZE_MODE(1, QHeaderView::Stretch);
+	liste->header()->HEADER_VIEW_SET_RESIZE_MODE(2, QHeaderView::ResizeToContents);
 
 	quint32 forgotten = GF_GET_FORGOTTEN(*gf_data);
 	forgotten ^= 1 << pos;
@@ -571,8 +571,8 @@ void GfEditor::addCapacity()
 		setCompleteAbility(abilityID, true);
 		liste->scrollToItem(item);
 		liste->setCurrentItem(item);
-		liste->header()->setSectionResizeMode(1, QHeaderView::Stretch);
-		liste->header()->setSectionResizeMode(2, QHeaderView::ResizeToContents);
+		liste->header()->HEADER_VIEW_SET_RESIZE_MODE(1, QHeaderView::Stretch);
+		liste->header()->HEADER_VIEW_SET_RESIZE_MODE(2, QHeaderView::ResizeToContents);
 	}
 }
 

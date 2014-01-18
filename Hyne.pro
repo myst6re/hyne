@@ -1,13 +1,31 @@
 TEMPLATE = app
 !win32:!macx {
-	TARGET = hyne
+    TARGET = hyne
 } else {
-	TARGET = Hyne
+    TARGET = Hyne
 }
-# include zlib
-INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
 
-QT       += core gui widgets
+QT += core gui
+greaterThan(QT_MAJOR_VERSION, 4) {
+    QT += widgets
+    # include zlib
+    INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
+    # QTaskbarButton
+    greaterThan(QT_MINOR_VERSION, 1):win32 {
+	QT += winextras
+    }
+} else {
+    message(This program works better with Qt5!)
+    # include zlib
+    !win32 {
+	LIBS += -lz
+    }
+}
+
+win32 {
+    # Regedit features
+    LIBS += -ladvapi32 -lshell32
+}
 
 # Input
 HEADERS += PageWidgets/ConfigEditor.h \
@@ -18,7 +36,7 @@ HEADERS += PageWidgets/ConfigEditor.h \
     PageWidgets/TTriadEditor.h \
     PageWidgets/CWEditor.h \
     PageWidgets/AllEditor.h \
-	Data.h \
+    Data.h \
     Editor.h \
     FF8Text.h \
     LZS.h \
@@ -47,15 +65,16 @@ HEADERS += PageWidgets/ConfigEditor.h \
     GZIP.h \
     SavecardData.h \
     SavecardView.h \
-	QTaskBarButton.h \
+    QTaskbarButton.h \
     PageWidgets/PreviewEditor.h \
     TimeWidget.h \
-	HelpWidget.h \
-	Metadata.h \
+    HelpWidget.h \
+    Metadata.h \
     UserDirectory.h \
     FF8Installation.h \
     MetadataDialog.h \
-    SpinBox.h
+    SpinBox.h \
+    QtWidgets.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/MiscEditor.cpp \
     PageWidgets/GfEditor.cpp \
@@ -94,7 +113,6 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     GZIP.cpp \
     SavecardData.cpp \
     SavecardView.cpp \
-	QTaskBarButton.cpp \
     PageWidgets/PreviewEditor.cpp \
     TimeWidget.cpp \
     HelpWidget.cpp \
@@ -113,22 +131,18 @@ CODECFORSRC = UTF-8
 # QTPLUGIN += qjpcodecs
 # CONFIG += static
 
+# Icons
 macx {
-	ICON = images/hyne.icns
-}
-!win32 {
-	LIBS += -lz
+    ICON = images/hyne.icns
 }
 win32 {
-	RC_FILE = Hyne.rc
-	# include Windows libs
-	LIBS += -lole32 -ladvapi32 -lshell32
+    RC_FILE = Hyne.rc
 }
 
 OTHER_FILES += Hyne.rc \
-	Hyne.desktop
+    Hyne.desktop
 
 #only on linux/unix (for package creation and other deploys)
 unix:!macx:!symbian {
-	system(lrelease Hyne.pro)
+    system(lrelease Hyne.pro)
 }

@@ -19,7 +19,7 @@
 #ifndef SELECTSAVESDIALOG_H
 #define SELECTSAVESDIALOG_H
 
-#include <QtWidgets>
+#include "QtWidgets.h"
 #include "SaveData.h"
 #include "HelpWidget.h"
 

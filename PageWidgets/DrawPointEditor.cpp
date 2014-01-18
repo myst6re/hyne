@@ -63,8 +63,8 @@ void DrawPointEditor::buildWidget()
 	}
 
 	drawE_list->header()->setStretchLastSection(false);
-	drawE_list->header()->setSectionResizeMode(0, QHeaderView::ResizeToContents);
-	drawE_list->header()->setSectionResizeMode(1, QHeaderView::Stretch);
+	drawE_list->header()->HEADER_VIEW_SET_RESIZE_MODE(0, QHeaderView::ResizeToContents);
+	drawE_list->header()->HEADER_VIEW_SET_RESIZE_MODE(1, QHeaderView::Stretch);
 
 	font.setPixelSize(10);
 

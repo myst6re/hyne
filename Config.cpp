@@ -17,7 +17,6 @@
  ****************************************************************************/
 
 #include "Config.h"
-#include "QTaskBarButton.h"
 #include "Parameters.h"
 
 const char *Config::keys[KEYS_SIZE] = {
@@ -77,11 +76,6 @@ void Config::loadRecentFiles()
 			}
 		}
 	}
-
-	// Windows recent docs
-	foreach(const QString &path, recentFiles) {
-		QTaskBarButton::addToRecentDocs(path);
-	}
 }
 
 void Config::addRecentFile(const QString &filePath)
@@ -89,7 +83,6 @@ void Config::addRecentFile(const QString &filePath)
 	int index = recentFiles.indexOf(filePath);
 	if(index != -1)					recentFiles.removeAt(index);
 	recentFiles.prepend(filePath);
-	QTaskBarButton::addToRecentDocs(filePath);
 	if(recentFiles.size() > 20)		recentFiles.removeLast();
 }
 

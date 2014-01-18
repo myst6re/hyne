@@ -19,7 +19,7 @@
 #ifndef DEF_SAVECARDWIDGET
 #define DEF_SAVECARDWIDGET
 
-#include <QtWidgets>
+#include "QtWidgets.h"
 #include "SavecardView.h"
 
 class SavecardView;

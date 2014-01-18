@@ -295,7 +295,7 @@ QWidget *PersoEditor::buildPage3()
 
 		magie_E_model->appendRow(items);
 	}
-	magie_E_view->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+	magie_E_view->header()->HEADER_VIEW_SET_RESIZE_MODE(0, QHeaderView::Stretch);
 
 	font.setPixelSize(10);
 	QPushButton *delAll = new QPushButton(tr("Supprimer tout"), ret);
@@ -805,7 +805,7 @@ void PersoEditor::savePage()
 	switch(id)
 	{
 	case SQUALL:
-		data->misc2.renzokuken_auto = (data->misc2.renzokuken_auto & 0xFE) | LB_E.first()->isChecked();
+		data->misc2.renzokuken_auto = (data->misc2.renzokuken_auto & 0xFE) | int(LB_E.first()->isChecked());
 		data->misc2.renzokuken_indicator = !LB_E.at(1)->isChecked() ? 128 : LBindicator_E->value();
 		break;
 	case ZELL:

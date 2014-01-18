@@ -18,7 +18,7 @@
 #ifndef HELPWIDGET_H
 #define HELPWIDGET_H
 
-#include <QtWidgets>
+#include "QtWidgets.h"
 
 class HelpWidget : public QWidget
 {
