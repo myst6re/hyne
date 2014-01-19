@@ -19,7 +19,7 @@ QHexEditPrivate::QHexEditPrivate(QScrollArea *parent) : QWidget(parent)
     setHighlighting(true);
     setOverwriteMode(true);
     setReadOnly(false);
-	setAddressAreaColor(palette().background().color());
+	setAddressAreaColor(palette().window().color());
 	setSelectionColor(palette().highlight().color());
 	setHighlightingColor(QColor(0xff, 0xff, 0x99, 0xff));
     setFont(QFont("Courier", 10));
@@ -568,8 +568,6 @@ void QHexEditPrivate::paintEvent(QPaintEvent *event)
         painter.drawLine(linePos, event->rect().top(), linePos, height());
     }
 
-	painter.setPen(this->palette().color(QPalette::WindowText));
-
     // calc position
     int firstLineIdx = ((event->rect().top()/ _charHeight) - _charHeight) * BYTES_PER_LINE;
     if (firstLineIdx < 0)
@@ -581,7 +579,9 @@ void QHexEditPrivate::paintEvent(QPaintEvent *event)
 
     // paint address area
     if (_addressArea)
-    {
+	{
+		painter.setPen(this->palette().color(QPalette::WindowText));
+
         for (int lineIdx = firstLineIdx, yPos = yPosStart; lineIdx < lastLineIdx; lineIdx += BYTES_PER_LINE, yPos +=_charHeight)
         {
             QString address = QString("%1")
@@ -593,11 +593,12 @@ void QHexEditPrivate::paintEvent(QPaintEvent *event)
     // paint hex area
     QByteArray hexBa(_xData.data().mid(firstLineIdx, lastLineIdx - firstLineIdx + 1).toHex());
     QBrush highLighted = QBrush(_highlightingColor);
-	QPen colHighlighted = QPen(this->palette().color(QPalette::WindowText));
+	QPen colHighlighted = QPen(this->palette().color(QPalette::Text));
 	QBrush selected = QBrush(_selectionColor);
 	QPen colSelected = QPen(this->palette().color(QPalette::HighlightedText));
-	QPen colStandard = QPen(this->palette().color(QPalette::WindowText));
+	QPen colStandard = QPen(this->palette().color(QPalette::Text));
 
+	painter.setPen(this->palette().color(QPalette::Text));
     painter.setBackgroundMode(Qt::TransparentMode);
 
     for (int lineIdx = firstLineIdx, yPos = yPosStart; lineIdx < lastLineIdx; lineIdx += BYTES_PER_LINE, yPos +=_charHeight)
@@ -647,7 +648,7 @@ void QHexEditPrivate::paintEvent(QPaintEvent *event)
         }
     }
     painter.setBackgroundMode(Qt::TransparentMode);
-	painter.setPen(this->palette().color(QPalette::WindowText));
+	painter.setPen(this->palette().color(QPalette::Text));
 
     // paint ascii area
     if (_asciiArea)
@@ -667,9 +668,9 @@ void QHexEditPrivate::paintEvent(QPaintEvent *event)
     if (_blink)
     {
         if (_overwriteMode)
-			painter.fillRect(_cursorX, _cursorY + _charHeight - 2, _charWidth, 2, this->palette().color(QPalette::WindowText));
+			painter.fillRect(_cursorX, _cursorY + _charHeight - 2, _charWidth, 2, this->palette().color(QPalette::Text));
         else
-			painter.fillRect(_cursorX, _cursorY, 2, _charHeight, this->palette().color(QPalette::WindowText));
+			painter.fillRect(_cursorX, _cursorY, 2, _charHeight, this->palette().color(QPalette::Text));
     }
 
     if (_size != _xData.size())
