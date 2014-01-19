@@ -212,7 +212,6 @@ public:
 
 	static QStringList maplist();
 private:
-	static void fillAbilities();
 	static Abilities _abilities;
 	static Magics _magic;
 	static Items _items;

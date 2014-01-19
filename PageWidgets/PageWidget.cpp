@@ -90,11 +90,15 @@ QMap<int, QIcon> PageWidget::abilityIcons()
 	return icons;
 }
 
-void PageWidget::fillAbilities(QComboBox *comboBox, const QMap<int, QIcon> &icons)
+void PageWidget::fillAbilities(QComboBox *comboBox, const QMap<int, QIcon> &icons, const QList<qint8> &typeFilter)
 {
 	int abilityCount = Data::abilities().size();
-	for(int i=1 ; i<abilityCount ; ++i)
-		comboBox->addItem(icons.value(Data::abilityType(i)), Data::abilities().at(i), i);
+	for(int i=1 ; i<abilityCount ; ++i) {
+		qint8 type = Data::abilityType(i);
+		if(typeFilter.isEmpty() || typeFilter.contains(type)) {
+			comboBox->addItem(icons.value(type), Data::abilities().at(i), i);
+		}
+	}
 }
 
 //void PageWidget::changeEvent(QEvent *e)

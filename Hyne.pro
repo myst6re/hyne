@@ -11,14 +11,19 @@ greaterThan(QT_MAJOR_VERSION, 4) {
     # include zlib
     INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
     # QTaskbarButton
-    greaterThan(QT_MINOR_VERSION, 1):win32 {
-	QT += winextras
+    win32 {
+	greaterThan(QT_MINOR_VERSION, 1) {
+	    QT += winextras
+	} else {
+	    message(Taskbar button overlay icon is only available with Qt5.2+)
+	}
     }
 } else {
-    message(This program works better with Qt5!)
     # include zlib
     !win32 {
 	LIBS += -lz
+    } else {
+	message(Taskbar button overlay icon is only available with Qt5.2+)
     }
 }
 
@@ -140,7 +145,8 @@ win32 {
 }
 
 OTHER_FILES += Hyne.rc \
-    Hyne.desktop
+    Hyne.desktop \
+    README.md
 
 #only on linux/unix (for package creation and other deploys)
 unix:!macx:!symbian {

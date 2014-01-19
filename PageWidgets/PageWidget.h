@@ -45,7 +45,7 @@ protected:
 	static void selectAll(QTreeWidget *, bool);
 	static void setCurrentIndex(QComboBox *comboBox, int value);
 	static QMap<int, QIcon> abilityIcons();
-	static void fillAbilities(QComboBox *comboBox, const QMap<int, QIcon> &icons);
+	static void fillAbilities(QComboBox *comboBox, const QMap<int, QIcon> &icons, const QList<qint8> &typeFilter = QList<qint8>());
 	bool builded, loaded;
 	MAIN *data;
 	HEADER *descData;

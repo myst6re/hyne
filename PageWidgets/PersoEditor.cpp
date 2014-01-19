@@ -39,6 +39,38 @@ void PersoEditor::updateMode(bool mode)
 	for(int i=0 ; i<32 ; ++i) {
 		magie_E_model->item(i, 1)->setData(mode ? SpinBoxDelegate::SpinBox255 : SpinBoxDelegate::SpinBox100, Qt::UserRole);
 	}
+
+	QList<qint8> abilityFilter;
+	if(!mode) {
+		abilityFilter << 1; // Command ability
+	}
+	commande1_E->clear();
+	commande2_E->clear();
+	commande3_E->clear();
+	commande1_E->addItem("-", 0);
+	commande2_E->addItem("-", 0);
+	commande3_E->addItem("-", 0);
+	QMap<int, QIcon> icons = abilityIcons();
+	fillAbilities(commande1_E, icons, abilityFilter);
+	fillAbilities(commande2_E, icons, abilityFilter);
+	fillAbilities(commande3_E, icons, abilityFilter);
+
+	abilityFilter.clear();
+	if(!mode) {
+		abilityFilter << 2 << 3; // Character ability, Team ability
+	}
+	ability1_E->clear();
+	ability2_E->clear();
+	ability3_E->clear();
+	ability4_E->clear();
+	ability1_E->addItem("-", 0);
+	ability2_E->addItem("-", 0);
+	ability3_E->addItem("-", 0);
+	ability4_E->addItem("-", 0);
+	fillAbilities(ability1_E, icons, abilityFilter);
+	fillAbilities(ability2_E, icons, abilityFilter);
+	fillAbilities(ability3_E, icons, abilityFilter);
+	fillAbilities(ability4_E, icons, abilityFilter);
 }
 
 void PersoEditor::buildWidget()
@@ -330,16 +362,10 @@ QWidget *PersoEditor::buildPage4()
 	QGroupBox *commande_E = new QGroupBox(tr("Commandes"), ret);
 	commande1_E = new QComboBox(commande_E);
 	commande1_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
-	commande1_E->addItem("-", 0);
-	fillAbilities(commande1_E, icons);
 	commande2_E = new QComboBox(commande_E);
 	commande2_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
-	commande2_E->addItem("-", 0);
-	fillAbilities(commande2_E, icons);
 	commande3_E = new QComboBox(commande_E);
 	commande3_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
-	commande3_E->addItem("-", 0);
-	fillAbilities(commande3_E, icons);
 	unknown1LabelE = new QLabel(tr("Inconnu (commande 4) :"), commande_E);
 	unknown1E = new SpinBox8(commande_E);
 	
@@ -357,20 +383,12 @@ QWidget *PersoEditor::buildPage4()
 	QGroupBox *ability_E = new QGroupBox(tr("Capacités"), ret);
 	ability1_E = new QComboBox(ability_E);
 	ability1_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
-	ability1_E->addItem("-", 0);
-	fillAbilities(ability1_E, icons);
 	ability2_E = new QComboBox(ability_E);
 	ability2_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
-	ability2_E->addItem("-", 0);
-	fillAbilities(ability2_E, icons);
 	ability3_E = new QComboBox(ability_E);
 	ability3_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
-	ability3_E->addItem("-", 0);
-	fillAbilities(ability3_E, icons);
 	ability4_E = new QComboBox(ability_E);
 	ability4_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
-	ability4_E->addItem("-", 0);
-	fillAbilities(ability4_E, icons);
 	
 	QGridLayout *ability_L = new QGridLayout(ability_E);
 	ability_L->addWidget(new QLabel(tr("Capacité 1 :"), ability_E), 0, 0);
