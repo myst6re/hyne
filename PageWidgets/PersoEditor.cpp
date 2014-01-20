@@ -257,9 +257,8 @@ QWidget *PersoEditor::buildPage1()
 QWidget *PersoEditor::buildPage2()
 {
 	QWidget *ret = new QWidget(this);
-	
-	for(int i=0 ; i<16 ; ++i)
-	{
+
+	for(int i=0 ; i<16 ; ++i) {
 		QCheckBox *curCheckBox;
 		QSpinBox *curSpinBox;
 		QLabel *curLabel;
@@ -272,14 +271,20 @@ QWidget *PersoEditor::buildPage2()
 		curLabel->setTextInteractionFlags(Qt::NoTextInteraction);
 		connect(curSpinBox, SIGNAL(valueChanged(int)), SLOT(updateCompLabels()));
 	}
-	
+	possAll_E = new QCheckBox(tr("Sélectionner tout"), ret);
+	compAll_E = new QSpinBox(ret);
+	compAll_E->setRange(-59535, 6000);
+	compLabelAll_E = new QLabel(ret);
+	QPushButton *apply = new QPushButton(tr("Appliquer"), ret);
+	connect(possAll_E, SIGNAL(toggled(bool)), SLOT(selectAllGFs(bool)));
+	connect(compAll_E, SIGNAL(valueChanged(int)), SLOT(updateCompAllLabel()));
+	connect(apply, SIGNAL(clicked()), SLOT(updateAllCompatibilities()));
+
 	QGridLayout *grid = new QGridLayout(ret);
 	grid->addWidget(new QLabel(tr("Compatibilité"), ret), 0, 1, Qt::AlignRight);
 	grid->addWidget(new QLabel(tr("Compatibilité"), ret), 0, 4, Qt::AlignRight);
-	for(int i=0 ; i<8 ; ++i)
-	{
-		for(int j=0 ; j<2 ; j++)
-		{
+	for(int i=0 ; i<8 ; ++i) {
+		for(int j=0 ; j<2 ; j++) {
 			grid->addWidget(poss_E.at(i), i+1, 0);
 			grid->addWidget(comp_E.at(i), i+1, 1, Qt::AlignRight);
 			grid->addWidget(compLabel_E.at(i), i+1, 2, Qt::AlignLeft);
@@ -290,7 +295,11 @@ QWidget *PersoEditor::buildPage2()
 		}
 	}
 	grid->setRowStretch(9, 1);
-	
+	grid->addWidget(compLabelAll_E, 10, 4, Qt::AlignRight);
+	grid->addWidget(possAll_E, 11, 3);
+	grid->addWidget(compAll_E, 11, 4, Qt::AlignRight);
+	grid->addWidget(apply, 11, 5, Qt::AlignLeft);
+
 	return ret;
 }
 
@@ -887,9 +896,27 @@ void PersoEditor::changeExists(bool exists)
 
 void PersoEditor::updateCompLabels()
 {
-	for(int i=0 ; i<16 ; ++i)
-	{
-		compLabel_E.at(i)->setText(QString("(%1)").arg(comp_E.at(i)->value()/5));
+	QSpinBox *comp = (QSpinBox *)sender();
+	compLabel_E.at(comp_E.indexOf(comp))->setText(QString("(%1)").arg(comp->value()/5));
+}
+
+void PersoEditor::updateCompAllLabel()
+{
+	compLabelAll_E->setText(QString("(%1)").arg(compAll_E->value()/5));
+}
+
+void PersoEditor::selectAllGFs(bool all)
+{
+	foreach(QCheckBox *poss, poss_E) {
+		poss->setChecked(all);
+	}
+}
+
+void PersoEditor::updateAllCompatibilities()
+{
+	int val = compAll_E->value();
+	foreach(QSpinBox *comp, comp_E) {
+		comp->setValue(val);
 	}
 }
 

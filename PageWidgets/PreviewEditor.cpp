@@ -102,7 +102,7 @@ void PreviewEditor::buildWidget()
 
 	QGridLayout *layout = new QGridLayout(this);
 	layout->addWidget(previewWidget, 0, 0, 1, 6, Qt::AlignCenter);
-	layout->addWidget(new QLabel(tr("Lieu")), 1, 0);
+	layout->addWidget(new QLabel(tr("Lieu affiché")), 1, 0);
 	layout->addWidget(locationIDE, 1, 1);
 	layout->addWidget(new QLabel(tr("Nombre de sauvegardes")), 1, 2);
 	layout->addWidget(saveCountE, 1, 3);

@@ -38,6 +38,9 @@ private slots:
 	void exp_S(double value);
 	void changeExists(bool exists);
 	void updateCompLabels();
+	void updateCompAllLabel();
+	void selectAllGFs(bool all);
+	void updateAllCompatibilities();
 	void removeAllMagic();
 	void qtyAllMagic();
 	void LBindicatorChange(int state);
@@ -81,6 +84,9 @@ private:
 	QList<QCheckBox *> poss_E;
 	QList<QSpinBox *> comp_E;
 	QList<QLabel *> compLabel_E;
+	QCheckBox *possAll_E;
+	QSpinBox *compAll_E;
+	QLabel *compLabelAll_E;
 	// Page 3
 	QTreeView *magie_E_view;
 	QStandardItemModel *magie_E_model;
