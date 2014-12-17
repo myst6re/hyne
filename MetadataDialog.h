@@ -30,7 +30,7 @@ public:
 	explicit MetadataDialog(const QMap<FF8Installation::Type, FF8Installation> &ff8Installations, QWidget *parent = 0);
 	void fill(const QMap<FF8Installation::Type, FF8Installation> &ff8Installations);
 	inline QString metadataPath() const {
-		return _path->text();
+		return QDir::fromNativeSeparators(_path->text());
 	}
 	inline QString userID() const {
 		return _userID->text();

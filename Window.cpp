@@ -212,7 +212,7 @@ void Window::dropEvent(QDropEvent *event)
 void Window::setTitle(const int currentSaveEdited)
 {
 	setWindowTitle(PROG_NAME %
-				   (!saves ? QString() : " - [*]" % saves->path()) %
+				   (!saves ? QString() : " - [*]" % QDir::toNativeSeparators(saves->path())) %
 				   (currentSaveEdited >= 0 ? tr(" - save %1").arg(currentSaveEdited+1, 2, 10, QChar('0')) : QString())
 				   );
 }
@@ -654,7 +654,7 @@ void Window::fillMenuRecent()
 	menuRecent->clear();
 	
 	for(int i=0 ; i<Config::recentFilesSize() ; ++i)
-		menuRecent->addAction(tr("%1 : %2").arg(i+1,2,10).arg(Config::recentFile(i)))->setData(i);
+		menuRecent->addAction(tr("%1 : %2").arg(i+1,2,10).arg(QDir::toNativeSeparators(Config::recentFile(i))))->setData(i);
 
 	menuRecent->setEnabled(Config::hasRecentFiles());
 }

@@ -83,7 +83,7 @@ void MetadataDialog::fill(const QMap<FF8Installation::Type, FF8Installation> &ff
 		FF8Installation installation = ff8Installations.value(FF8Installation::Steam);
 		if(installation.hasMetadata()) {
 			QString savePath = installation.savePath(1);
-			_path->setText(savePath + "/metadata.xml");
+			_path->setText(QDir::toNativeSeparators(savePath + "/metadata.xml"));
 			UserDirectory userDir(savePath);
 			_userID->setText(userDir.userID());
 		}
@@ -117,7 +117,7 @@ void MetadataDialog::setMetadataPath(const QString &path)
 		metadataPath = path;
 	}
 
-	_path->setText(metadataPath);
+	_path->setText(QDir::toNativeSeparators(metadataPath));
 	if(_userID->text().isEmpty()) {
 		UserDirectory userDir(metadataPath.left(metadataPath.lastIndexOf('/')));
 		_userID->setText(userDir.userID());
