@@ -202,7 +202,7 @@ struct MISC2//144
 	quint32 trex_battle_mental; // var86 (in battle scripts)
 	quint32 battle_irvine;// first battle with Irvine who explains limit break, var87 (in battle scripts)
 	quint8 magic_drawn_once[8];
-	quint8 ennemy_scanned_once[20];
+	quint8 ennemy_scanned_once[20]; // TODO: scan pages for some ennemies (Belhelmel/Koatl or Jelleye/Héra for example)
 	quint8 renzokuken_auto;// Renzo auto|Ring Master auto|???|???|???|???|???|???
 	quint8 renzokuken_indicator;
 	quint8 dream;//dream|Odin|Phoenix|Gilgamesh|Angelo disabled|Angel Wing enabled|???|???

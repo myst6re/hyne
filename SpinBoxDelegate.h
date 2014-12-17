@@ -62,9 +62,6 @@
 #include <QItemDelegate>
 #include <QModelIndex>
 #include <QObject>
-#include <QSize>
-#include <QSpinBox>
-#include "Data.h"
 
 class SpinBoxDelegate : public QItemDelegate
 {
@@ -81,7 +78,6 @@ public:
 	virtual QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const;
 private:
 	static int spinBoxMax(EditorType type);
-	QWidget *editor;
 };
 
 #endif

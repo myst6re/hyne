@@ -56,11 +56,14 @@
  **
  ****************************************************************************/
 
-#include "QtWidgets.h"
+#include <QSize>
+#include <QSpinBox>
+#include <QComboBox>
 #include "SpinBoxDelegate.h"
+#include "Data.h"
 
-SpinBoxDelegate::SpinBoxDelegate(QObject *parent)
-	: QItemDelegate(parent), editor(0)
+SpinBoxDelegate::SpinBoxDelegate(QObject *parent) :
+	QItemDelegate(parent)
 {
 }
 

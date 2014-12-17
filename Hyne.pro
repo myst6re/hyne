@@ -15,7 +15,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 	greaterThan(QT_MINOR_VERSION, 1) {
 	    QT += winextras
 	} else {
-	    message(Taskbar button overlay icon is only available with Qt5.2+)
+	    message(Hyne: Taskbar button overlay icon is only available with Qt5.2+)
 	}
     }
 } else {
@@ -23,7 +23,7 @@ greaterThan(QT_MAJOR_VERSION, 4) {
     !win32 {
 	LIBS += -lz
     } else {
-	message(Taskbar button overlay icon is only available with Qt5.2+)
+	message(Hyne: Taskbar button overlay icon is only available with Qt5.2+)
     }
 }
 
