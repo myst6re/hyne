@@ -551,12 +551,12 @@ void SavecardView::renderSave(QPainter *painter, const SaveData *saveData, const
 			else
 			{
 				// Icon + description
-				painter->drawPixmap(36, 43, saveData->saveIcon().icon(currentIconFrame % saveData->saveIcon().nbFrames()));
+				painter->drawPixmap(36, 44, saveData->saveIcon().icon(currentIconFrame % saveData->saveIcon().nbFrames()));
 				QString short_desc = saveData->shortDescription();
 				if(!short_desc.isEmpty())
 				{
 					painter->setPen(Qt::white);
-					painter->drawText(68, 59, short_desc);
+					painter->drawText(68, 57, short_desc);
 				}
 			}
 		}
