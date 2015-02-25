@@ -9097,7 +9097,8 @@ Try to launch %2 as admin.</translation>
     </message>
     <message>
         <location filename="FF8Installation.cpp" line="101"/>
-        <source>FF8 personnalisé</source>
+        <source>FF8 personnalisÃ©</source>
+        <oldsource>FF8 personnalisé</oldsource>
         <translation type="unfinished">FF8 custom</translation>
     </message>
     <message>
