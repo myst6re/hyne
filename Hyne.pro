@@ -12,11 +12,11 @@ greaterThan(QT_MAJOR_VERSION, 4) {
     INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
     # QTaskbarButton
     win32 {
-	greaterThan(QT_MINOR_VERSION, 1) {
-	    QT += winextras
-	} else {
-	    message(Hyne: Taskbar button overlay icon is only available with Qt5.2+)
-	}
+        greaterThan(QT_MINOR_VERSION, 1) {
+            QT += winextras
+        } else {
+            message(Hyne: Taskbar button overlay icon is only available with Qt5.2+)
+        }
     }
 } else {
     # include zlib
@@ -98,7 +98,7 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     Window.cpp \
     HeaderDialog.cpp \
     Config.cpp \
-    FF8text_caract_utf8.cpp \
+    FF8text_caract.cpp \
     SpinBoxDelegate.cpp \
     QHexEdit/qhexedit.cpp \
     QHexEdit/qhexedit_p.cpp \
