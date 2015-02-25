@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2013 Arzel J�r�me <myst6re@gmail.com>
+ ** Copyright (C) 2013 Arzel Jérôme <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -98,7 +98,7 @@ QString FF8Installation::typeString() const
 	case Steam:
 		return QObject::tr("FF8 Steam");
 	case Custom:
-		return QObject::tr("FF8 personnalisé");
+		return QObject::tr("FF8 personnalisÃ©");
 	}
 	Q_ASSERT(false);
 	return QString();
