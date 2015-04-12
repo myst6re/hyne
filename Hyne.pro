@@ -145,10 +145,12 @@ win32 {
 }
 
 OTHER_FILES += Hyne.rc \
-    Hyne.desktop \
-    README.md
+    deploy.bat
 
 #only on linux/unix (for package creation and other deploys)
 unix:!macx:!symbian {
     system(lrelease Hyne.pro)
 }
+
+DISTFILES += Hyne.desktop \
+    README.md
