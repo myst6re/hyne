@@ -16,7 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 #include "GZIP.h"
-#if (QT_VERSION < QT_VERSION_CHECK(5, 0, 0)) && (defined(Q_OS_WIN) || defined(Q_OS_MAC))
+#ifdef HYNE_ZLIB_EXTERNAL
 #include "zlib/zlib.h"
 #else
 #include <zlib.h>

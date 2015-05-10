@@ -8,22 +8,28 @@ TEMPLATE = app
 QT += core gui
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
-    # include zlib
+}
+
+# include zlib
+packagesExist(QtZlib):exists($$[QT_INSTALL_PREFIX]/include/QtZlib) {
     INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
-    # QTaskbarButton
-    win32 {
-        greaterThan(QT_MINOR_VERSION, 1) {
-            QT += winextras
-        } else {
-            message(Hyne: Taskbar button overlay icon is only available with Qt5.2+)
-        }
-    }
 } else {
-    # include zlib
     !win32 {
-	LIBS += -lz
+        LIBS += -lz
     } else {
-	message(Hyne: Taskbar button overlay icon is only available with Qt5.2+)
+        # DEFINES += HYNE_ZLIB_EXTERNAL
+        # LIBS += -lz
+    }
+}
+
+# QTaskbarButton
+greaterThan(QT_MAJOR_VERSION, 4):qtHaveModule(winextras) {
+    QT += winextras
+} else {
+    DEFINES += HYNE_TASKBAR_FAKE
+
+    win32 {
+        message(Hyne: Taskbar button overlay icon is only available with Qt Windows Extras)
     }
 }
 

@@ -33,15 +33,15 @@ MetadataDialog::MetadataDialog(const QMap<FF8Installation::Type, FF8Installation
 
 void MetadataDialog::build()
 {
-	HelpWidget *help = new HelpWidget(32, tr("Pour Ãªtre placÃ©es dans le Cloud, "
-											 "les sauvegardes doivent Ãªtre signÃ©es. "
-											 "Ces signatures sont Ã©crites dans un fichier "
-											 "nommÃ© metadata.xml, normalement situÃ© "
-											 "dans le mÃªme dossier que vos sauvegardes.\n"
-											 "Pour trouver votre numÃ©ro d'utilisateur, "
-											 "regardez le nom du dossier oÃ¹ se trouve vos sauvegardes. "
+	HelpWidget *help = new HelpWidget(32, tr("Pour être placées dans le Cloud, "
+											 "les sauvegardes doivent être signées. "
+											 "Ces signatures sont écrites dans un fichier "
+											 "nommé metadata.xml, normalement situé "
+											 "dans le même dossier que vos sauvegardes.\n"
+											 "Pour trouver votre numéro d'utilisateur, "
+											 "regardez le nom du dossier où se trouve vos sauvegardes. "
 											 "Si vous ne voyez pas, essayez en laissant le champ vide.\n"
-											 "Par dÃ©faut Hyne tente de signer les sauvegardes "
+											 "Par défaut Hyne tente de signer les sauvegardes "
 											 "automatiquement, mais en cas d'erreur, vous pouvez "
 											 "essayer de le faire manuellement ici."));
 
@@ -65,7 +65,7 @@ void MetadataDialog::build()
 
 	QFormLayout *formLayout = new QFormLayout(_formWidget);
 	formLayout->addRow(tr("metadata.xml"), pathLayout);
-	formLayout->addRow(tr("NumÃ©ro d'utilisateur"), _userID);
+	formLayout->addRow(tr("Numéro d'utilisateur"), _userID);
 	formLayout->setContentsMargins(QMargins());
 
 	QVBoxLayout *layout = new QVBoxLayout(this);

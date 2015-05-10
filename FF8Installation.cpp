@@ -98,7 +98,7 @@ QString FF8Installation::typeString() const
 	case Steam:
 		return QObject::tr("FF8 Steam");
 	case Custom:
-		return QObject::tr("FF8 personnalisÃ©");
+		return QObject::tr("FF8 personnalisé");
 	}
 	Q_ASSERT(false);
 	return QString();

@@ -40,7 +40,8 @@ int main(int argc, char *argv[])
 	if(translator.load("hyne_" + lang, translationPath)) {
 		app.installTranslator(&translator);
 	} else if(lang != "fr") {
-		lang = Window::chooseLangDialog();
+		QLocale locale = Window::chooseLangDialog();
+		lang = locale.bcp47Name();
 		if(translator.load("hyne_" + lang, translationPath)) {
 			app.installTranslator(&translator);
 			Config::setValue(Config::Lang, lang);
