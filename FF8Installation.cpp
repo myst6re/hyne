@@ -153,15 +153,24 @@ QString FF8Installation::steamFF8AppPath()
 QStringList FF8Installation::steamFF8UserDataPaths(int max)
 {
 	QStringList ff8UserDataPaths;
-	QDir ff8UserDataDir(QDir::homePath() + "/Documents/Square Enix");
 
-	foreach(const QString &dir, ff8UserDataDir.entryList(QStringList("FINAL FANTASY VIII*"), QDir::Dirs)) {
-		QDir userDirs(ff8UserDataDir.absoluteFilePath(dir));
+	foreach (const QString &documentsPath, QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation)) {
+		QDir ff8UserDataDir(QString("%1/Square Enix").arg(documentsPath));
 
-		foreach(const QString &userDir, userDirs.entryList(QStringList("user_*"), QDir::Dirs)) {
-			ff8UserDataPaths.append(userDirs.absoluteFilePath(userDir));
-			if(max > 0 && ff8UserDataPaths.size() >= max) {
-				return ff8UserDataPaths;
+		foreach(const QString &dir, ff8UserDataDir.entryList(QStringList("FINAL FANTASY VIII*"), QDir::Dirs)) {
+			QDirIterator it(ff8UserDataDir.absoluteFilePath(dir),
+							QStringList("user_*"),
+							QDir::Dirs,
+							QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
+
+			while(it.hasNext()) {
+				it.next();
+
+				ff8UserDataPaths.append(it.filePath());
+
+				if(max > 0 && ff8UserDataPaths.size() >= max) {
+					return ff8UserDataPaths;
+				}
 			}
 		}
 	}
