@@ -22,7 +22,7 @@
 #include "HeaderDialog.h"
 #include "MetadataDialog.h"
 
-Window::Window() :
+Window::Window(bool isNew) :
 	QWidget(), taskbarButton(0), saves(0), saveList(0), editor(0)
 {
 	setTitle();
@@ -60,13 +60,19 @@ Window::Window() :
 	action = menu->addAction(tr("S&igner des sauv. pour le Cloud..."), this, SLOT(updateMetadata()));
 	addAction(action);
 	if(isInstalled) {
-		action = menu->addAction(QIcon(":/images/ff8.png"), tr("&Lancer Final Fantasy VIII"), this, SLOT(runFF8()), Qt::Key_F8);
-		action->setShortcutContext(Qt::ApplicationShortcut);
+		action = menu->addAction(QIcon(":/images/ff8.png"), tr("&Lancer Final Fantasy VIII"), this, SLOT(runFF8()));
+		if(!isNew) {
+			action->setShortcut(Qt::Key_F8);
+			action->setShortcutContext(Qt::ApplicationShortcut);
+		}
 		addAction(action);
 	}
 	menu->addAction(tr("Nou&velle fenêtre"), this, SLOT(newWindow()));
-	action = menu->addAction(tr("Ple&in écran"), this, SLOT(fullScreen()), Qt::Key_F11);
-	action->setShortcutContext(Qt::ApplicationShortcut);
+	action = menu->addAction(tr("Ple&in écran"), this, SLOT(fullScreen()));
+	if(!isNew) {
+		action->setShortcut(Qt::Key_F11);
+		action->setShortcutContext(Qt::ApplicationShortcut);
+	}
 	addAction(action);
 	menu->addSeparator();
 	actionClose = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogCloseButton), tr("&Fermer"), this, SLOT(closeFile()), QKeySequence::Close);
@@ -828,7 +834,7 @@ void Window::changeFF8Version(QAction *action)
 
 void Window::newWindow()
 {
-	(new Window())->show();
+	(new Window(true))->show();
 }
 
 void Window::restartNow()
