@@ -48,8 +48,14 @@ void DrawPointEditor::buildWidget()
 		item->setEditable(false);
 		items.append(item);
 
-		item = new QStandardItem(Data::drawPointsLoc[i] != -1 ? Data::locations().value(Data::drawPointsLoc[i]) : tr("Nulle part"));
-		if(i == 12) {
+		QString location = Data::drawPointsLoc[i] != -1 ? Data::locations().value(Data::drawPointsLoc[i]) : tr("Nulle part");
+		if (i >= 128) {
+			location.prepend(tr("Mappemonde - "));
+		} else {
+			location.prepend(tr("Terrain - "));
+		}
+		item = new QStandardItem(location);
+		if(i == 12) { // Exception for "Cure", "escavation site - centra"
 			item->setText(item->text().append("/" + Data::locations().at(182)));
 		}
 		item->setEditable(false);
