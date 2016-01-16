@@ -24,3 +24,9 @@ for %%l in (%LANGUAGES%) do (
 )
 
 xcopy /y %EXE_PATH% %OUTPUT_DIR%
+
+exit 0
+
+upx %OUTPUT_DIR%\*.dll %OUTPUT_DIR%\*.exe
+
+exit 0
