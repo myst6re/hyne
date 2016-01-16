@@ -839,12 +839,11 @@ void Window::newWindow()
 
 void Window::restartNow()
 {
-	QString title = tr("Paramètres modifiés"),
-	        text = tr("Relancez le programme pour que les paramètres prennent effet.");
+	QString title, text;
 
 	if(Config::translator->load("hyne_" + Config::value(Config::Lang), qApp->applicationDirPath())) {
-		title = Config::translator->translate("Window", title.toUtf8().data());
-		text = Config::translator->translate("Window", text.toUtf8().data());
+		title = Config::translator->translate("Window", "Paramètres modifiés");
+		text = Config::translator->translate("Window", "Relancez le programme pour que les paramètres prennent effet.");
 	} else {
 		title = "Paramètres modifiés";
 		text = "Relancez le programme pour que les paramètres prennent effet.";
