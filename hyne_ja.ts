@@ -10017,7 +10017,7 @@ Continue?</translation>
     </message>
     <message>
         <location filename="Window.cpp" line="78"/>
-        <location filename="Window.cpp" line="919"/>
+        <location filename="Window.cpp" line="918"/>
         <source>&amp;Fermer</source>
         <translatorcomment>&amp;Close</translatorcomment>
         <translation>閉じる(&amp;C)</translation>
@@ -10155,7 +10155,7 @@ Continuer quand même ?</source>
         <location filename="Window.cpp" line="346"/>
         <location filename="Window.cpp" line="356"/>
         <location filename="Window.cpp" line="580"/>
-        <location filename="Window.cpp" line="869"/>
+        <location filename="Window.cpp" line="868"/>
         <source>Erreur</source>
         <translation>エラー</translation>
     </message>
@@ -10165,7 +10165,7 @@ Continuer quand même ?</source>
         <translation type="unfinished">Warning</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="869"/>
+        <location filename="Window.cpp" line="868"/>
         <source>Final Fantasy VIII n&apos;a pas pu être lancé.
 %1</source>
         <translation>Final Fantasy VIII の起動に失敗しました。.
@@ -10375,7 +10375,7 @@ Would you analyze it to get the right format?</translation>
         <translation>エクスポート</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="905"/>
+        <location filename="Window.cpp" line="904"/>
         <source>Par myst6re&lt;br/&gt;&lt;a href=&quot;https://sourceforge.net/projects/hyne/&quot;&gt;https://sourceforge.net/projects/hyne/&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;75% modifiable&lt;br/&gt;&lt;br/&gt;Merci à :&lt;br/&gt; - Qhimm&lt;br/&gt; - Cyberman&lt;br/&gt; - sithlord48&lt;br/&gt; - Aladore384&lt;br/&gt; - suloku&lt;br/&gt;&lt;br/&gt;Traducteurs :&lt;br/&gt; - Anglais : myst6re, Vgr&lt;br/&gt; - Japonais : Asa, Sharleen</source>
         <translation>作者 : myst6re&lt;br/&gt;&lt;a href=&quot;https://sourceforge.net/projects/hyne/&quot;&gt;https://sourceforge.net/projects/hyne/&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;編集可能 : 75%&lt;br/&gt;&lt;br/&gt;多謝 :&lt;br/&gt; - Qhimm&lt;br/&gt; - Cyberman&lt;br/&gt; - sithlord48&lt;br/&gt; - Aladore384&lt;br/&gt; - suloku&lt;br/&gt;&lt;br/&gt;翻訳者 :&lt;br/&gt; - 英語 : myst6re, Vgr&lt;br/&gt; - 日本語 : Asa (麻袋)</translation>
     </message>
@@ -10413,19 +10413,19 @@ Would you analyze it to get the right format?</translation>
         <translation>%1 : %2</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="842"/>
+        <location filename="Window.cpp" line="845"/>
         <source>Paramètres modifiés</source>
         <translatorcomment>Settings changed</translatorcomment>
         <translation>設定の変更</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="843"/>
+        <location filename="Window.cpp" line="846"/>
         <source>Relancez le programme pour que les paramètres prennent effet.</source>
         <translatorcomment>Restart the program for the settings to take effect.</translatorcomment>
         <translation>設定の変更を有効化するためにプログラムを再起動してください。</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="889"/>
+        <location filename="Window.cpp" line="888"/>
         <source>À propos</source>
         <translation type="unfinished">About</translation>
     </message>

@@ -8847,7 +8847,7 @@ Continue?</translation>
     </message>
     <message>
         <location filename="Window.cpp" line="78"/>
-        <location filename="Window.cpp" line="919"/>
+        <location filename="Window.cpp" line="918"/>
         <source>&amp;Fermer</source>
         <translation>&amp;Close</translation>
     </message>
@@ -8972,7 +8972,7 @@ Continue anyway?</translation>
         <location filename="Window.cpp" line="346"/>
         <location filename="Window.cpp" line="356"/>
         <location filename="Window.cpp" line="580"/>
-        <location filename="Window.cpp" line="869"/>
+        <location filename="Window.cpp" line="868"/>
         <source>Erreur</source>
         <translation>Error</translation>
     </message>
@@ -8982,7 +8982,7 @@ Continue anyway?</translation>
         <translation>Warning</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="869"/>
+        <location filename="Window.cpp" line="868"/>
         <source>Final Fantasy VIII n&apos;a pas pu être lancé.
 %1</source>
         <translation>Final Fantasy VIII could not be launched.
@@ -9125,7 +9125,7 @@ Continue anyway?</translation>
         <translation>15 saves</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="905"/>
+        <location filename="Window.cpp" line="904"/>
         <source>Par myst6re&lt;br/&gt;&lt;a href=&quot;https://sourceforge.net/projects/hyne/&quot;&gt;https://sourceforge.net/projects/hyne/&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;75% modifiable&lt;br/&gt;&lt;br/&gt;Merci à :&lt;br/&gt; - Qhimm&lt;br/&gt; - Cyberman&lt;br/&gt; - sithlord48&lt;br/&gt; - Aladore384&lt;br/&gt; - suloku&lt;br/&gt;&lt;br/&gt;Traducteurs :&lt;br/&gt; - Anglais : myst6re, Vgr&lt;br/&gt; - Japonais : Asa, Sharleen</source>
         <translation>By myst6re&lt;br/&gt;&lt;a href=&quot;https://sourceforge.net/projects/hyne/&quot;&gt;https://sourceforge.net/projects/hyne/&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;75% editable&lt;br/&gt;&lt;br/&gt;Thanks to:&lt;br/&gt; - Qhimm&lt;br/&gt; - Cyberman&lt;br/&gt; - sithlord48&lt;br/&gt; - Aladore384&lt;br/&gt; - suloku&lt;br/&gt;&lt;br/&gt;Translators:&lt;br/&gt; - English: myst6re, Vgr&lt;br/&gt; - Japanese: Asa, Sharleen</translation>
     </message>
@@ -9222,17 +9222,17 @@ Would you analyze it to get the right format?</translation>
         <translation>%1: %2</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="842"/>
+        <location filename="Window.cpp" line="845"/>
         <source>Paramètres modifiés</source>
         <translation>Settings changed</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="843"/>
+        <location filename="Window.cpp" line="846"/>
         <source>Relancez le programme pour que les paramètres prennent effet.</source>
         <translation>Restart the program for the settings to take effect.</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="889"/>
+        <location filename="Window.cpp" line="888"/>
         <source>À propos</source>
         <translation>About</translation>
     </message>
