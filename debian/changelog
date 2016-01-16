@@ -1,3 +1,13 @@
+hyne (1.9.0) precise; urgency=low
+
+  * [Draw point editor] Adding indication if located in field or worldmap
+  * Fixing keyboard shortcut conflicts if more than one main windows was instanciated
+  * Improving detection of user's documents directory on Windows
+  * Reencode source files to UTF-8
+  * Migrate to Qt 5 library
+
+ -- Jérôme Arzel <myst6re@gmail.com>  Sat, 16 Jan 2016 22:18:16 +0100
+
 hyne (1.8.2-git) precise; urgency=low
 
   * Bump debian revison to fix building of dailys after switch to github

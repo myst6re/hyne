@@ -22,7 +22,7 @@
 #include "HeaderDialog.h"
 #include "MetadataDialog.h"
 
-Window::Window() :
+Window::Window(bool isNew) :
 	QWidget(), taskbarButton(0), saves(0), saveList(0), editor(0)
 {
 	setTitle();
@@ -60,13 +60,19 @@ Window::Window() :
 	action = menu->addAction(tr("S&igner des sauv. pour le Cloud..."), this, SLOT(updateMetadata()));
 	addAction(action);
 	if(isInstalled) {
-		action = menu->addAction(QIcon(":/images/ff8.png"), tr("&Lancer Final Fantasy VIII"), this, SLOT(runFF8()), Qt::Key_F8);
-		action->setShortcutContext(Qt::ApplicationShortcut);
+		action = menu->addAction(QIcon(":/images/ff8.png"), tr("&Lancer Final Fantasy VIII"), this, SLOT(runFF8()));
+		if(!isNew) {
+			action->setShortcut(Qt::Key_F8);
+			action->setShortcutContext(Qt::ApplicationShortcut);
+		}
 		addAction(action);
 	}
 	menu->addAction(tr("Nou&velle fenêtre"), this, SLOT(newWindow()));
-	action = menu->addAction(tr("Ple&in écran"), this, SLOT(fullScreen()), Qt::Key_F11);
-	action->setShortcutContext(Qt::ApplicationShortcut);
+	action = menu->addAction(tr("Ple&in écran"), this, SLOT(fullScreen()));
+	if(!isNew) {
+		action->setShortcut(Qt::Key_F11);
+		action->setShortcutContext(Qt::ApplicationShortcut);
+	}
 	addAction(action);
 	menu->addSeparator();
 	actionClose = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogCloseButton), tr("&Fermer"), this, SLOT(closeFile()), QKeySequence::Close);
@@ -108,12 +114,11 @@ Window::Window() :
 	actionFont->setChecked(!Config::value(Config::Font).isEmpty());
 	
 	menuLang = menu->addMenu(tr("&Langue"));
-	foreach(const QString &str, availableLanguages()) {
-		action = menuLang->addAction(str.left(str.lastIndexOf("|")));
-		QString lang = str.mid(str.lastIndexOf("|") + 1);
-		action->setData(lang);
+	foreach(const QLocale &locale, availableLanguages()) {
+		action = menuLang->addAction(QLocale::languageToString(locale.language()));
+		action->setData(locale.bcp47Name());
 		action->setCheckable(true);
-		action->setChecked(Config::value(Config::Lang) == lang);
+		action->setChecked(Config::value(Config::Lang) == locale.bcp47Name());
 	}
 	connect(menuLang, SIGNAL(triggered(QAction*)), SLOT(changeLanguage(QAction*)));
 
@@ -757,31 +762,28 @@ void Window::font(bool font)
 	}
 }
 
-QStringList Window::availableLanguages()
+QList<QLocale> Window::availableLanguages()
 {
 	QDir dir(Config::translationDir());
-	QStringList languages, stringList = dir.entryList(QStringList("hyne_*.qm"), QDir::Files, QDir::Name);
+	QList<QLocale> languages;
+	QStringList qmFiles = dir.entryList(QStringList("hyne_*.qm"), QDir::Files, QDir::Name);
 
-	languages.append("Français|fr");
+	languages.append(QLocale(QLocale::French));
 
-	QTranslator translator;
-	foreach(QString str, stringList) {
-		translator.load(str, Config::translationDir());
-		QString lang = translator.translate("Window", QString::fromUtf8("Français").toLatin1().data(), "Your translation language");
-
-		str = str.mid(5);
-		languages.append(lang + "|" + str.left(str.size()-3));
+	foreach(const QString &qmFile, qmFiles) {
+		QString language = qmFile.mid(5, qmFile.size() - 5 - 3);
+		languages.append(QLocale(language));
 	}
 
 	return languages;
 }
 
-QString Window::chooseLangDialog()
+QLocale Window::chooseLangDialog()
 {
-	QStringList langs = availableLanguages();
+	QList<QLocale> langs = availableLanguages();
 	if(langs.size() <= 1) {
 		// Doesn't ask for language if there is just one available
-		return langs.isEmpty() ? QString() : langs.first();
+		return langs.isEmpty() ? QLocale() : langs.first();
 	}
 
 	const QString chooseStr("Choose your language");
@@ -789,8 +791,8 @@ QString Window::chooseLangDialog()
 	dialog->setWindowTitle(chooseStr);
 	QLabel *label = new QLabel(chooseStr + ":", dialog);
 	QComboBox *comboBox = new QComboBox(dialog);
-	foreach(const QString &str, langs)
-		comboBox->addItem(str.left(str.lastIndexOf("|")), str.mid(str.lastIndexOf("|")+1));
+	foreach(const QLocale &lang, langs)
+		comboBox->addItem(QLocale::languageToString(lang.language()), lang.bcp47Name());
 
 	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal, dialog);
 
@@ -802,10 +804,10 @@ QString Window::chooseLangDialog()
 	connect(buttonBox, SIGNAL(accepted()), dialog, SLOT(accept()));
 
 	if(dialog->exec() == QDialog::Accepted) {
-		return comboBox->itemData(comboBox->currentIndex()).toString();
+		return QLocale(comboBox->itemData(comboBox->currentIndex()).toString());
 	}
 
-	return QString();
+	return QLocale();
 }
 
 void Window::changeLanguage(QAction *action)
@@ -832,22 +834,22 @@ void Window::changeFF8Version(QAction *action)
 
 void Window::newWindow()
 {
-	(new Window())->show();
+	(new Window(true))->show();
 }
 
 void Window::restartNow()
 {
-	QString str_title, str_text;
+	QString title, text;
+
 	if(Config::translator->load("hyne_" + Config::value(Config::Lang), qApp->applicationDirPath())) {
-		str_title = Config::translator->translate("Window", QString::fromUtf8("Paramètres modifiés").toLatin1().data());
-		str_text = Config::translator->translate("Window", QString::fromUtf8("Relancez le programme pour que les paramètres prennent effet.").toLatin1().data());
-    }
-    else {
-        str_title = "Paramètres modifiés";
-        str_text = "Relancez le programme pour que les paramètres prennent effet.";
+		title = Config::translator->translate("Window", "Paramètres modifiés");
+		text = Config::translator->translate("Window", "Relancez le programme pour que les paramètres prennent effet.");
+	} else {
+		title = "Paramètres modifiés";
+		text = "Relancez le programme pour que les paramètres prennent effet.";
 	}
 	Data::reload();
-    QMessageBox::information(this, str_title, str_text);
+    QMessageBox::information(this, title, text);
 }
 
 /*void Window::changeEvent(QEvent *e)

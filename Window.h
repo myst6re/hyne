@@ -31,12 +31,12 @@ class Window : public QWidget
 public:
 	enum OpenType { File, Slot1, Slot2 };
 
-	Window();
+	Window(bool isNew = false);
 	virtual ~Window();
 
 	void openFile(const QString &path, OpenType openType=File, const FF8Installation &installation=FF8Installation());
-	static QString chooseLangDialog();
-	static QStringList availableLanguages();
+	static QLocale chooseLangDialog();
+	static QList<QLocale> availableLanguages();
 public slots:
 	void editView(SaveData *saveData);
 	void setModified(bool modified=true);

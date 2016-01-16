@@ -18,8 +18,7 @@
 #ifndef QTASKBARBUTTON_H
 #define QTASKBARBUTTON_H
 
-#include <QtGlobal>
-#if defined(Q_OS_WIN) && (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
+#ifndef HYNE_TASKBAR_FAKE
 #	include <QWinTaskbarButton>
 
 typedef QWinTaskbarButton QTaskbarButton;

@@ -1,29 +1,35 @@
 TEMPLATE = app
-!win32:!macx {
-    TARGET = hyne
-} else {
+win32 {
     TARGET = Hyne
+} else {
+    TARGET = hyne
 }
 
 QT += core gui
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
-    # include zlib
-    INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
-    # QTaskbarButton
-    win32 {
-	greaterThan(QT_MINOR_VERSION, 1) {
-	    QT += winextras
-	} else {
-	    message(Hyne: Taskbar button overlay icon is only available with Qt5.2+)
-	}
-    }
+}
+
+# include zlib
+!win32 {
+    LIBS += -lz
 } else {
-    # include zlib
-    !win32 {
-	LIBS += -lz
+    packagesExist(QtZlib):exists($$[QT_INSTALL_PREFIX]/include/QtZlib) {
+        INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
     } else {
-	message(Hyne: Taskbar button overlay icon is only available with Qt5.2+)
+        # INCLUDEPATH += zlib
+        LIBS += -lz
+    }
+}
+
+# QTaskbarButton
+greaterThan(QT_MAJOR_VERSION, 4):qtHaveModule(winextras) {
+    QT += winextras
+} else {
+    DEFINES += HYNE_TASKBAR_FAKE
+
+    win32 {
+        message(Hyne: Taskbar button overlay icon is only available with Qt Windows Extras)
     }
 }
 
@@ -98,7 +104,7 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     Window.cpp \
     HeaderDialog.cpp \
     Config.cpp \
-    FF8text_caract_utf8.cpp \
+    FF8text_caract.cpp \
     SpinBoxDelegate.cpp \
     QHexEdit/qhexedit.cpp \
     QHexEdit/qhexedit_p.cpp \
@@ -145,10 +151,12 @@ win32 {
 }
 
 OTHER_FILES += Hyne.rc \
-    Hyne.desktop \
-    README.md
+    deploy.bat
 
 #only on linux/unix (for package creation and other deploys)
 unix:!macx:!symbian {
     system(lrelease Hyne.pro)
 }
+
+DISTFILES += Hyne.desktop \
+    README.md
