@@ -1,8 +1,8 @@
 TEMPLATE = app
-!win32:!macx {
-    TARGET = hyne
-} else {
+win32 {
     TARGET = Hyne
+} else {
+    TARGET = hyne
 }
 
 QT += core gui
@@ -11,14 +11,14 @@ greaterThan(QT_MAJOR_VERSION, 4) {
 }
 
 # include zlib
-packagesExist(QtZlib):exists($$[QT_INSTALL_PREFIX]/include/QtZlib) {
-    INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
+!win32 {
+    LIBS += -lz
 } else {
-    !win32 {
-        LIBS += -lz
+    packagesExist(QtZlib):exists($$[QT_INSTALL_PREFIX]/include/QtZlib) {
+        INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
     } else {
-        # DEFINES += HYNE_ZLIB_EXTERNAL
-        # LIBS += -lz
+        # INCLUDEPATH += zlib
+        LIBS += -lz
     }
 }
 
