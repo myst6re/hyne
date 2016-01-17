@@ -32,11 +32,17 @@ int main(int argc, char *argv[])
 
 	Config::set();
 
-	QTranslator translator;
+	QTranslator translator_qt, translator;
 	QString lang = QLocale::system().name().toLower(),
 			translationPath = Config::translationDir();
 
 	lang = Config::value(Config::Lang, lang.left(lang.indexOf("_")));
+
+	if(translator_qt.load("qt_" % lang, translationPath)
+	        || translator_qt.load("qt_" % lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+		app.installTranslator(&translator_qt);
+	}
+
 	if(translator.load("hyne_" + lang, translationPath)) {
 		app.installTranslator(&translator);
 	} else if(lang != "fr") {
