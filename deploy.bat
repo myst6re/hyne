@@ -3,30 +3,30 @@
 set OUTPUT_DIR=deploy
 set EXE_PATH=release\hyne.exe
 set LIB_DIR=%QTDIR%\bin
-set LIBS=Qt5Core.dll Qt5Gui.dll Qt5Widgets.dll Qt5WinExtras.dll icudt53.dll icuin53.dll icuuc53.dll
-set MINGW_LIBS=libgcc_s_dw2-1.dll libstdc++-6.dll libwinpthread-1.dll
-
 set QT_TR_DIR=%QTDIR%\translations
 set LANGUAGES=fr ja
 
+rem Create target directory
 if not exist %OUTPUT_DIR% mkdir %OUTPUT_DIR%
 
-for %%l in (%LIBS%) do (
-    xcopy /y %LIB_DIR%\%%l %OUTPUT_DIR%
-)
+rem Deploy DLLs
+%LIB_DIR%\windeployqt.exe --force --release --dir %OUTPUT_DIR% --no-quick-import --no-translations --no-system-d3d-compiler --no-opengl --no-3dcore --no-3drenderer --no-webkit2 --no-angle --no-svg --no-webkit %EXE_PATH%
 
-for %%l in (%MINGW_LIBS%) do (
-    xcopy /y %LIB_DIR%\%%l %OUTPUT_DIR%
-)
+rem Removing unused DLLs
+del /q %OUTPUT_DIR%\opengl32sw.dll
 
+rem Deploy Translations
 for %%l in (%LANGUAGES%) do (
-    xcopy /y %QT_TR_DIR%\qt_%%l.qm %OUTPUT_DIR%
+    %LIB_DIR%\lconvert -o %OUTPUT_DIR%\qt_%%l.qm -no-obsolete -no-ui-lines %QT_TR_DIR%\qtbase_%%l.qm
+    echo "Create %QT_TR_DIR%\qtbase_%%l.qm"
 )
 
+rem Deploy Exe
 xcopy /y %EXE_PATH% %OUTPUT_DIR%
 
 exit 0
 
+rem Compress Exe and DLLs. Note: DLLs in platforms/ directory should not be compressed.
 upx %OUTPUT_DIR%\*.dll %OUTPUT_DIR%\*.exe
 
 exit 0
