@@ -155,7 +155,21 @@ OTHER_FILES += Hyne.rc \
 
 #only on linux/unix (for package creation and other deploys)
 unix:!macx:!symbian {
+    
     system(lrelease Hyne.pro)
+    
+    target.path = /usr/bin
+    
+    langfiles.files= *.qm
+    langfiles.path= /usr/share/hyne/
+    
+    icon.files = images/Hyne.png
+    icon.path = /usr/share/pixmaps
+
+    desktop.files =Hyne.desktop
+    desktop.path = /usr/share/applications
+
+    INSTALLS += target langfiles icon desktop
 }
 
 DISTFILES += Hyne.desktop \
