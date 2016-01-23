@@ -77,6 +77,7 @@ public:
 		return _ff8Installation;
 	}
 
+	void compare(quint8 idLeft, quint8 idRight) const;
 	static void compare(const QByteArray &oldData, const QByteArray &newData);
 
 	bool getFormatFromRaw();

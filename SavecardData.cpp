@@ -109,8 +109,8 @@ bool SavecardData::open(const QString &path, quint8 slot)
 		}
 	}
 
-//	compare(saves.at(0)->save(), saves.at(1)->save());
-//	compare(saves.at(10)->save(), saves.at(11)->save());
+	// compare(2, 3);
+
 	return _ok;
 }
 
@@ -955,6 +955,15 @@ bool SavecardData::saveDirectory()
 	}
 
 	return ok;
+}
+
+void SavecardData::compare(quint8 idLeft, quint8 idRight) const
+{
+	if (qMax(idLeft, idRight) < saves.count()) {
+		compare(saves.at(idLeft)->save(), saves.at(idRight)->save());
+	} else {
+		qDebug() << "Compare overflow";
+	}
 }
 
 void SavecardData::compare(const QByteArray &oldData, const QByteArray &newData)
