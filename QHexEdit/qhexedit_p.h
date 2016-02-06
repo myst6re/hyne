@@ -3,7 +3,7 @@
 
 /** \cond docNever */
 
-#include "../QtWidgets.h"
+#include <QtWidgets>
 #include "xbytearray.h"
 
 class QHexEditPrivate : public QWidget

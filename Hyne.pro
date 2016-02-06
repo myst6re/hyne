@@ -9,12 +9,15 @@ QT += core gui
 greaterThan(QT_MAJOR_VERSION, 4) {
     QT += widgets
 }
+lessThan(QT_MAJOR_VERSION, 5) {
+    INCLUDEPATH += compat
+}
 
 # include zlib
 !win32 {
     LIBS += -lz
 } else {
-    packagesExist(QtZlib):exists($$[QT_INSTALL_PREFIX]/include/QtZlib) {
+    exists($$[QT_INSTALL_PREFIX]/include/QtZlib) {
         INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
     } else {
         # INCLUDEPATH += zlib
@@ -84,8 +87,7 @@ HEADERS += PageWidgets/ConfigEditor.h \
     UserDirectory.h \
     FF8Installation.h \
     MetadataDialog.h \
-    SpinBox.h \
-    QtWidgets.h
+    SpinBox.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
     PageWidgets/MiscEditor.cpp \
     PageWidgets/GfEditor.cpp \
@@ -151,7 +153,8 @@ win32 {
 }
 
 OTHER_FILES += Hyne.rc \
-    deploy.bat
+    deploy.bat \
+    compat/QtWidgets
 
 # only on linux/unix (for package creation and other deploys)
 unix:!macx:!symbian {

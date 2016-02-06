@@ -18,7 +18,7 @@
 #ifndef TIMEWIDGET_H
 #define TIMEWIDGET_H
 
-#include "QtWidgets.h"
+#include <QtWidgets>
 
 class TimeWidget : public QWidget
 {

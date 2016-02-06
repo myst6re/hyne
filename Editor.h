@@ -19,7 +19,7 @@
 #ifndef DEF_EDITOR
 #define DEF_EDITOR
 
-#include "QtWidgets.h"
+#include <QtWidgets>
 #include "SaveData.h"
 
 class Editor : public QWidget

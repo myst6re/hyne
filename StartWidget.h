@@ -18,7 +18,7 @@
 #ifndef STARTWIDGET_H
 #define STARTWIDGET_H
 
-#include "QtWidgets.h"
+#include <QtWidgets>
 #include "FF8Text.h"
 
 #define OPTION_WIDTH	250

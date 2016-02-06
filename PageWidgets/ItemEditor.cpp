@@ -193,8 +193,8 @@ void ItemEditor::fillPage()
 	}
 	
 	battle_itemE_list->clear();
-	itemE_view->header()->HEADER_VIEW_SET_RESIZE_MODE(0, QHeaderView::Stretch);
-	itemE_view->header()->HEADER_VIEW_SET_RESIZE_MODE(1, QHeaderView::ResizeToContents);
+	itemE_view->header()->setSectionResizeMode(0, QHeaderView::Stretch);
+	itemE_view->header()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
 
 	for(itemID=0 ; itemID<32 ; ++itemID)
 	{

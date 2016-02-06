@@ -19,7 +19,7 @@
 #ifndef DEF_WINDOW
 #define DEF_WINDOW
 
-#include "QtWidgets.h"
+#include <QtWidgets>
 #include "SavecardWidget.h"
 #include "Editor.h"
 #include "StartWidget.h"

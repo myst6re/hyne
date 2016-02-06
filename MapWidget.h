@@ -19,7 +19,7 @@
 #ifndef MAPWIDGET_H
 #define MAPWIDGET_H
 
-#include "QtWidgets.h"
+#include <QtWidgets>
 
 class MapWidget : public QWidget
 {

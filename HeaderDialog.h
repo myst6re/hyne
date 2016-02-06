@@ -19,7 +19,7 @@
 #ifndef HEADERDIALOG_H
 #define HEADERDIALOG_H
 
-#include "QtWidgets.h"
+#include <QtWidgets>
 #include "SaveData.h"
 
 class HeaderDialog : public QDialog

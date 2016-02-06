@@ -19,7 +19,7 @@
 #ifndef PAGEWIDGET_H
 #define PAGEWIDGET_H
 
-#include "../QtWidgets.h"
+#include <QtWidgets>
 #include "../Data.h"
 #include "../Config.h"
 #include "../SaveData.h"
