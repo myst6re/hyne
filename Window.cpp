@@ -292,8 +292,8 @@ void Window::open(OpenType slot)
 		else if(!path.isEmpty())
 			path.append("/Save");
 		path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path,
-											tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.ff8 *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;"
-											   "FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;"
+											tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;"
+											   "FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm);;"
 											   "FF8 PC save (save?? *.ff8);;"
 											   "FF8 vgs memorycard (*.mem *.vgs);;"
 											   "FF8 gme memorycard (*.gme);;"
@@ -431,7 +431,7 @@ void Window::reload()
 bool Window::exportAs()
 {
 	QString types, path, selectedFilter,
-			ps = tr("PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1)"),
+			ps = tr("PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm)"),
 			vgs = tr("VGS memorycard (*.vgs *.mem)"),
 			gme = tr("GME memorycard (*.gme)"),
 			vmp = tr("PSN memorycard (*.vmp)"),
