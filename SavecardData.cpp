@@ -64,7 +64,7 @@ bool SavecardData::open(const QString &path, quint8 slot)
 		}
 		else if(extension == "mcr" || extension == "ddf" || extension == "mc"
 		   || extension == "mcd"|| extension == "mci" || extension == "ps"
-		   || extension == "psm" || extension == "vm1")
+		   || extension == "psm" || extension == "vm1" || extension =="srm")
 		{
 			setType(Ps);
 			_ok = ps();
