@@ -24,8 +24,6 @@ for %%l in (%LANGUAGES%) do (
 rem Deploy Exe
 xcopy /y %EXE_PATH% %OUTPUT_DIR%
 
-exit 0
-
 rem Compress Exe and DLLs. Note: DLLs in platforms/ directory should not be compressed.
 upx %OUTPUT_DIR%\*.dll %OUTPUT_DIR%\*.exe
 
