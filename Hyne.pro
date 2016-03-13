@@ -176,4 +176,5 @@ unix:!macx:!symbian {
 }
 
 DISTFILES += Hyne.desktop \
-    README.md
+    README.md \
+    .travis.yml

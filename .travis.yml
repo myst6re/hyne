@@ -1,0 +1,63 @@
+language: cpp
+
+os:
+  - linux
+  - osx
+
+install:
+  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+         lsb_release -a
+      && sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
+      && sudo apt-add-repository -y ppa:beineri/opt-qt551
+      && sudo apt-get -qq update
+      && sudo apt-get -qq install -y g++-4.8 libc6-i386 qt55tools \
+           qt55base qt55translations qt55imageformats
+      && export CXX="g++-4.8"
+      && export CC="gcc-4.8"
+      ;
+    else
+         brew update > /dev/null
+      && brew install qt5
+      && chmod -R 755 /usr/local/opt/qt5/*
+      ;
+    fi
+
+before_script:
+  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+      QTDIR="/opt/qt55";
+    else
+      QTDIR="/usr/local/opt/qt5";
+    fi
+  - export PATH="$QTDIR/bin:$PATH"
+  - mkdir -p build
+  - cd build
+  - qmake -config release ..
+
+script:
+  - make -j2
+
+before_deploy:
+  - DEPLOY_DIR="hyne-$(git describe --tags)-${TRAVIS_OS_NAME}64"
+  - export DEPLOY_ARCHIVE="$DEPLOY_DIR.tar.gz"
+  - mkdir -p "$DEPLOY_DIR"
+  - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
+         DEPLOY_BINARY="hyne.app"
+      && cp -r "$DEPLOY_BINARY" "$DEPLOY_DIR"
+      && cp ../*.qm "$DEPLOY_DIR/$DEPLOY_BINARY/Contents/MacOS"
+      && "$QTDIR/bin/macdeployqt" "$DEPLOY_DIR/$DEPLOY_BINARY"
+      ;
+    else
+         cp hyne "$DEPLOY_DIR"
+      && cp ../*.qm "$DEPLOY_DIR"
+      ;
+    fi
+  - tar -czf "$DEPLOY_ARCHIVE" "$DEPLOY_DIR"
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "TODO"
+  file: "$DEPLOY_ARCHIVE"
+  skip_cleanup: true
+  on:
+    tags: true
