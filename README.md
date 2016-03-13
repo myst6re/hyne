@@ -1,5 +1,6 @@
-Hyne
-====
+# Hyne
+
+[![Build Status](https://travis-ci.org/myst6re/hyne.svg?branch=develop)](https://travis-ci.org/myst6re/hyne)
 
 Hyne is a complete savegame editor for Final Fantasy VIII.
 
