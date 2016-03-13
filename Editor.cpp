@@ -90,11 +90,12 @@ Editor::Editor(QWidget *parent) :
 	stackedLayout->addWidget(new AllEditor(this));
 
 	for(int i=0 ; i<stackedLayout->count() ; ++i)
-		liste->addItem(((PageWidget *)stackedLayout->widget(i))->name());
+		liste->addItem(static_cast<PageWidget *>(stackedLayout->widget(i))->name());
 
 	liste->item(liste->count()-1)->setHidden(!Config::mode());
 	
-	connect(liste, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), SLOT(setCurrentSection(QListWidgetItem*,QListWidgetItem*)));
+	connect(liste, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),
+	        SLOT(setCurrentSection(QListWidgetItem*,QListWidgetItem*)));
 	connect(apply, SIGNAL(released()), SLOT(save()));
 	connect(cancel, SIGNAL(released()), SIGNAL(rejected()));
 }
@@ -109,7 +110,7 @@ void Editor::setCurrentSection(QListWidgetItem *current, QListWidgetItem *previo
 	}
 
 	if(previous != NULL) {
-		pageWidget = (PageWidget *)stackedLayout->widget(liste->row(previous));
+		pageWidget = static_cast<PageWidget *>(stackedLayout->widget(liste->row(previous)));
 		if(pageWidget->isLoaded()) {
 			pageWidget->savePage();
 		}
@@ -117,7 +118,7 @@ void Editor::setCurrentSection(QListWidgetItem *current, QListWidgetItem *previo
 
 	int id = liste->currentRow();
 
-	pageWidget = (PageWidget *)stackedLayout->widget(id);
+	pageWidget = static_cast<PageWidget *>(stackedLayout->widget(id));
 	if(!pageWidget->isLoaded()) {
 		pageWidget->load(&saveDataCopy, pc);
 	}
@@ -135,7 +136,7 @@ void Editor::load(SaveData *saveData, bool pc)
 
 	int pageCount = stackedLayout->count();
 	for(int i=0 ; i<pageCount ; ++i) {
-		((PageWidget *)stackedLayout->widget(i))->unload();
+		static_cast<PageWidget *>(stackedLayout->widget(i))->unload();
 	}
 
 	setCurrentSection(liste->currentItem());
@@ -146,7 +147,7 @@ void Editor::save()
 	bool saveOneAtLeast = false;
 	int pageCount = stackedLayout->count();
 	for(int i=0 ; i<pageCount ; ++i) {
-		PageWidget *pageWidget = (PageWidget *)stackedLayout->widget(i);
+		PageWidget *pageWidget = static_cast<PageWidget *>(stackedLayout->widget(i));
 		if(pageWidget->isLoaded()) {
 			pageWidget->savePage();
 			saveOneAtLeast = true;
@@ -171,7 +172,7 @@ void Editor::updateMode(bool mode)
 
 	int pageCount = stackedLayout->count();
 	for(int i=0 ; i<pageCount ; ++i) {
-		PageWidget *pageWidget = (PageWidget *)stackedLayout->widget(i);
+		PageWidget *pageWidget = static_cast<PageWidget *>(stackedLayout->widget(i));
 		if(pageWidget->isBuilded()) {
 			pageWidget->updateMode(mode);
 		}
@@ -182,7 +183,7 @@ void Editor::updateTime()
 {
 	int pageCount = stackedLayout->count();
 	for(int i=0 ; i<pageCount ; ++i) {
-		PageWidget *pageWidget = (PageWidget *)stackedLayout->widget(i);
+		PageWidget *pageWidget = static_cast<PageWidget *>(stackedLayout->widget(i));
 		if(pageWidget->isLoaded()) {
 			pageWidget->updateTime();
 		}

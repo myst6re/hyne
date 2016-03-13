@@ -34,7 +34,7 @@ SavecardWidget::~SavecardWidget()
 
 SavecardView *SavecardWidget::view() const
 {
-	return (SavecardView *)widget();
+	return static_cast<SavecardView *>(widget());
 }
 
 SavecardData *SavecardWidget::savecard() const
