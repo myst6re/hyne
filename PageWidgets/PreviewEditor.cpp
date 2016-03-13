@@ -62,7 +62,6 @@ void PreviewEditor::buildWidget()
 	discE = new SpinBox32(autoGroup);
 	discE->setRange(1, double(MAX_INT32) + 1.0);
 
-	QComboBox *comboBox;
 	QList<QIcon> icons;
 
 	for(int i=0 ; i<16 ; ++i) {
@@ -70,6 +69,7 @@ void PreviewEditor::buildWidget()
 	}
 
 	for(int i=0 ; i<3 ; ++i) {
+		QComboBox *comboBox;
 		partyE.append(comboBox = new QComboBox(autoGroup));
 		comboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 		comboBox->addItem("-", 255);

@@ -165,10 +165,8 @@ QWidget *ItemEditor::buildPage3()
 void ItemEditor::fillPage()
 {
 	quint8 itemID;
-	QStandardItem *standardItem;
-	QListWidgetItem *item;
 	QList<quint8> items;
-	QMultiMap<int, int> battle_order;
+	QMultiMap<int, int> battleOrder;
 	
 	itemE_model->clear();
 	itemE_model->setHorizontalHeaderLabels(QStringList() << tr("Nom") << tr("Qté"));
@@ -180,7 +178,7 @@ void ItemEditor::fillPage()
 		if(itemID != 0)		items.append(itemID);
 		
 		QList<QStandardItem *> items;
-		standardItem = new QStandardItem(Data::items().value(itemID, QString::number(itemID)));
+		QStandardItem *standardItem = new QStandardItem(Data::items().value(itemID, QString::number(itemID)));
 		standardItem->setData(SpinBoxDelegate::ComboBoxItems, Qt::UserRole);
 		standardItem->setData(itemID);
 		standardItem->setIcon(itemID == 0 ? QIcon() : QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(itemID))));
@@ -199,12 +197,12 @@ void ItemEditor::fillPage()
 	for(itemID=0 ; itemID<32 ; ++itemID)
 	{
 		// (pos, id)
-		battle_order.insert(data->items.battle_order[itemID], itemID+1);
+		battleOrder.insert(data->items.battle_order[itemID], itemID+1);
 	}
 
-	foreach(int itemID2, battle_order)
+	foreach(int itemID2, battleOrder)
 	{
-		item = new QListWidgetItem(QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(itemID2))),
+		QListWidgetItem *item = new QListWidgetItem(QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(itemID2))),
 								   itemID2 < 33 ? Data::items().value(itemID2) : QString::number(itemID2));
 		if(!items.contains(itemID2))
 			item->setForeground(Qt::darkGray);
@@ -216,20 +214,20 @@ void ItemEditor::fillPage()
 
 	for(i=0 ; i<32 ; ++i) {
 		weaponsE_list->topLevelItem(i)
-				->setCheckState(0, (data->misc1.unlocked_weapons>>i)&1 ? Qt::Checked : Qt::Unchecked);
+		        ->setCheckState(0, ((data->misc1.unlocked_weapons>>i) & 1)
+		                        ? Qt::Checked : Qt::Unchecked);
 	}
 
 	for(i=0 ; i<16 ; ++i) {
 		timbermaniacsE_list->topLevelItem(i)
-				->setCheckState(0, (data->field.timber_maniacs>>i)&1 ? Qt::Checked : Qt::Unchecked);
+		        ->setCheckState(0, ((data->field.timber_maniacs>>i) & 1)
+		                        ? Qt::Checked : Qt::Unchecked);
 	}
 }
 
 void ItemEditor::savePage()
 {
-	int itemID, i;
-
-	for(i=0 ; i<198 ; ++i)
+	for(int i=0 ; i<198 ; ++i)
 	{
 		data->items.items[i] = (quint8)itemE_model->item(i, 0)->data().toInt();
 		data->items.items[i] |= (quint8)itemE_model->item(i, 1)->text().toUInt() << 8;
@@ -237,18 +235,18 @@ void ItemEditor::savePage()
 
 	for(int pos=0 ; pos<32 ; ++pos)
 	{
-		itemID = battle_itemE_list->item(pos)->data(Qt::UserRole).toInt()-1;
+		int itemID = battle_itemE_list->item(pos)->data(Qt::UserRole).toInt()-1;
 		data->items.battle_order[itemID] = pos;
 	}
 
 	quint32 unlocked_weapons=0;
-	for(i=0 ; i<32 ; ++i) {
+	for(int i=0 ; i<32 ; ++i) {
 		unlocked_weapons |= (weaponsE_list->topLevelItem(i)->checkState(0)==Qt::Checked)<<i;
 	}
 	data->misc1.unlocked_weapons = unlocked_weapons;
 
 	quint16 timber_maniacs=0;
-	for(i=0 ; i<16 ; ++i) {
+	for(int i=0 ; i<16 ; ++i) {
 		timber_maniacs |= (timbermaniacsE_list->topLevelItem(i)->checkState(0)==Qt::Checked)<<i;
 	}
 	data->field.timber_maniacs = timber_maniacs;
@@ -256,10 +254,9 @@ void ItemEditor::savePage()
 
 void ItemEditor::allItems()
 {
-	QStandardItem *item;
 	for(int itemID=1 ; itemID<199 ; ++itemID)
 	{
-		item = itemE_model->item(itemID-1, 0);
+		QStandardItem *item = itemE_model->item(itemID-1, 0);
 		item->setData(itemID);
 		item->setText(Data::items().value(itemID));
 		item->setIcon(QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(itemID))));
@@ -270,11 +267,11 @@ void ItemEditor::allItems()
 void ItemEditor::sortByType()
 {
 	QMultiMap<int, quint8> items;
-	int itemID, i;
+	int i;
 
 	for(i=0 ; i<198 ; ++i)
 	{
-		itemID = itemE_model->item(i, 0)->data().toInt();
+		int itemID = itemE_model->item(i, 0)->data().toInt();
 		if(itemID == 0)		itemID = 256;
 		items.insert(itemID, itemE_model->item(i, 1)->text().toUInt());
 	}
@@ -284,7 +281,7 @@ void ItemEditor::sortByType()
 	i = 0;
 	while(it != items.constEnd())
 	{
-		itemID = it.key();
+		int itemID = it.key();
 		if(itemID == 256)		itemID = 0;
 		data->items.items[i++] = itemID | (it.value() << 8);
 		++it;

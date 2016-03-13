@@ -81,9 +81,8 @@ void ShopEditor::buildWidget()
 	itemList->setFont(font);
 	itemList->setUniformItemSizes(true);
 
-	QListWidgetItem *item;
 	for(int i=0 ; i<16 ; ++i) {
-		item = new QListWidgetItem();
+		QListWidgetItem *item = new QListWidgetItem();
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		itemList->addItem(item);
 	}

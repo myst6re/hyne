@@ -281,7 +281,8 @@ void SaveData::updateDescData()
 
 		_descData.nivLeader = _mainData.persos[leader].exp/1000 + 1;
 		_descData.hpLeader = _mainData.persos[leader].current_HPs;
-		_descData.gils = _mainData.misc2.dream & 1 ? _mainData.misc1.dream_gils : _mainData.misc1.gils;
+		_descData.gils = (_mainData.misc2.dream & 1) ? _mainData.misc1.dream_gils
+		                                             : _mainData.misc1.gils;
 		_descData.time = _mainData.misc2.game_time;
 		_descData.disc = _mainData.misc3.disc - 1;
 

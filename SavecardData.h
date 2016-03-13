@@ -73,7 +73,7 @@ public:
 	bool hasPath() const;
 	bool isModified() const;
 	void setModified(bool modified);
-	inline const FF8Installation &ff8Installation() {
+	inline const FF8Installation &ff8Installation() const {
 		return _ff8Installation;
 	}
 

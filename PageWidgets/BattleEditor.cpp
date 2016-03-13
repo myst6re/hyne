@@ -174,11 +174,13 @@ void BattleEditor::fillPage()
 	unknown2E->setValue(data->misc2.u4);
 
 	for(int i=0 ; i<64 ; ++i) {
-		firstdrawE_list->topLevelItem(i)->setCheckState(0, (data->misc2.magic_drawn_once[i/8] >> (i%8)) & 1 ? Qt::Checked : Qt::Unchecked);
+		firstdrawE_list->topLevelItem(i)->setCheckState(0, ((data->misc2.magic_drawn_once[i/8] >> (i%8)) & 1)
+		        ? Qt::Checked : Qt::Unchecked);
 	}
 
 	for(int i=0 ; i<160 ; ++i) {
-		firstscanE_list->topLevelItem(i)->setCheckState(0, (data->misc2.ennemy_scanned_once[i/8] >> (i%8)) & 1 ? Qt::Checked : Qt::Unchecked);
+		firstscanE_list->topLevelItem(i)->setCheckState(0, ((data->misc2.ennemy_scanned_once[i/8] >> (i%8)) & 1)
+		        ? Qt::Checked : Qt::Unchecked);
 	}
 }
 

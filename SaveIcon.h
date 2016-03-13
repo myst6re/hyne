@@ -26,7 +26,7 @@ class SaveIconData
 {
 public:
 	SaveIconData();
-	SaveIconData(const QByteArray &data, quint8 nbFrames=1);
+	explicit SaveIconData(const QByteArray &data, quint8 nbFrames=1);
 	void setData(const QByteArray &data);
 	void setNbFrames(quint8 nbFrames);
 	const QByteArray &data() const;
@@ -39,7 +39,7 @@ private:
 
 struct SaveIconTimer : public QTimer
 {
-	SaveIconTimer(QObject *parent=0) :
+	explicit SaveIconTimer(QObject *parent=0) :
 		QTimer(parent) {
 		setInterval(160);
 	}

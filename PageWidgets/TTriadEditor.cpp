@@ -254,9 +254,9 @@ QWidget *TTriadEditor::buildPage2()
 	QVBoxLayout *group1L = new QVBoxLayout(group1);
 	QStringList rules_names;
 	rules_names << tr("Open") << tr("Identique") << tr("Plus") << tr("Aléatoire") << tr("Mort subite") << tr("(Essai)") << tr("Même mur") << tr("Élémentaire");
-	QCheckBox *rule;
+
 	for(int i=0 ; i<8 ; ++i) {
-		rule = new QCheckBox(rules_names.at(i), group1);
+		QCheckBox *rule = new QCheckBox(rules_names.at(i), group1);
 		group1L->addWidget(rule);
 		rules.append(rule);
 	}
@@ -267,11 +267,11 @@ QWidget *TTriadEditor::buildPage2()
 
 	QStringList traderules_names;
 	traderules_names << tr("Aucune") << tr("One") << tr("Change") << tr("Direct") << tr("Totale") << "???" << "???" << "???";
-	QRadioButton *trade_rule;
+
 	for(int i=0 ; i<8 ; ++i) {
-		trade_rule = new QRadioButton(traderules_names.at(i), group2);
-		group2L->addWidget(trade_rule);
-		trade_rules.append(trade_rule);
+		QRadioButton *tradeRule = new QRadioButton(traderules_names.at(i), group2);
+		group2L->addWidget(tradeRule);
+		trade_rules.append(tradeRule);
 	}
 	group2L->addStretch(1);
 
@@ -367,7 +367,8 @@ void TTriadEditor::fillPage()
 	{
 		int row = cardE_model->item(i)->data(Qt::UserRole+2).toInt();
 		if(row != -1) {
-			cardE_model->item(i)->setCheckState(data->ttcards.cards[row] >> 7 ? Qt::Checked : Qt::Unchecked);
+			cardE_model->item(i)->setCheckState((data->ttcards.cards[row] >> 7)
+			                                    ? Qt::Checked : Qt::Unchecked);
 			cardE_model->item(i, 1)->setText(QString::number(data->ttcards.cards[row] & 0x7F));
 		}
 	}
@@ -376,7 +377,8 @@ void TTriadEditor::fillPage()
 	{
 		int row = cardE_model2->item(i)->data(Qt::UserRole+2).toInt();
 		if(row != -1) {
-			cardE_model2->item(i)->setCheckState(data->ttcards.cards_rare[row/8] & (1 << (row%8)) ? Qt::Checked : Qt::Unchecked);
+			cardE_model2->item(i)->setCheckState((data->ttcards.cards_rare[row/8] & (1 << (row%8)))
+			        ? Qt::Checked : Qt::Unchecked);
 			standardItem = cardE_model2->item(i, 1);
 			standardItem->setText(Data::getCardsLocation(data->ttcards.card_locations[row]));
 			standardItem->setData(data->ttcards.card_locations[row]);

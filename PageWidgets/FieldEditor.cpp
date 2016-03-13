@@ -87,10 +87,10 @@ void FieldEditor::fillPage()
 	gameMomentList->blockSignals(true);
 
 	bool valueFound = false;
-	int itemCount = gameMomentList->topLevelItemCount();
-	QTreeWidgetItem *item;
+	const int itemCount = gameMomentList->topLevelItemCount();
+
 	for(int i=0 ; i<itemCount ; ++i) {
-		item = gameMomentList->topLevelItem(i);
+		QTreeWidgetItem *item = gameMomentList->topLevelItem(i);
 
 		if(item->data(0, Qt::UserRole).toInt() == data->field.game_moment)
 			valueFound = true;
@@ -125,10 +125,10 @@ void FieldEditor::adjustCheck(QTreeWidgetItem *itemChanged)
 	gameMomentList->blockSignals(true);
 
 	Qt::CheckState checkState = Qt::Checked;
-	int itemCount = gameMomentList->topLevelItemCount();
-	QTreeWidgetItem *item;
+	const int itemCount = gameMomentList->topLevelItemCount();
+
 	for(int i=0 ; i<itemCount ; ++i) {
-		item = gameMomentList->topLevelItem(i);
+		QTreeWidgetItem *item = gameMomentList->topLevelItem(i);
 
 		item->setCheckState(0, checkState);
 

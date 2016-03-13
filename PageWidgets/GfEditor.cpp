@@ -47,10 +47,9 @@ void GfEditor::buildWidget()
 
 	gfIcons.clear();
 
-	QListWidgetItem *item;
 	for(quint8 i=0 ; i<17 ; ++i)
 	{
-		item = new QListWidgetItem(gfListe);
+		QListWidgetItem *item = new QListWidgetItem(gfListe);
 		QIcon icon = QIcon(QString(":/images/icons/gf%1.png").arg(i));
 		gfIcons.append(icon);
 		item->setIcon(icon);

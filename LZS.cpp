@@ -277,7 +277,7 @@ void LZS::DeleteNode(qint32 p)//deletes node p from tree
 
 const QByteArray &LZS::compress(const QByteArray &fileData)
 {
-	int i, c, len, r, s, last_match_length, code_buf_ptr,
+	int i, c, len, r, s, code_buf_ptr,
 			curResult = 0, sizeData = fileData.size(), sizeAlloc = sizeData / 2;
 	unsigned char code_buf[17], mask;
 	const char *fileConstData = fileData.constData();
@@ -350,7 +350,7 @@ const QByteArray &LZS::compress(const QByteArray &fileData)
 			code_buf_ptr = mask = 1;
 		}
 
-		last_match_length = match_length;
+		int last_match_length = match_length;
 		for(i=0 ; i < last_match_length && fileConstData<fileConstDataEnd ; ++i)
 		{
 			c = *fileConstData++;

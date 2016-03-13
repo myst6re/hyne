@@ -11,7 +11,7 @@ class QHexEditPrivate : public QWidget
 Q_OBJECT
 
 public:
-    QHexEditPrivate(QScrollArea *parent);
+    explicit QHexEditPrivate(QScrollArea *parent);
 
     void setAddressAreaColor(QColor const &color);
     QColor addressAreaColor();

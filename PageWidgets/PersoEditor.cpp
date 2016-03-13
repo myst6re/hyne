@@ -98,10 +98,9 @@ void PersoEditor::buildWidget()
 	layout->addWidget(persoListe);
 	layout->addWidget(tabWidget);
 	
-	QListWidgetItem *item;
 	for(quint8 i=0 ; i<8 ; ++i)
 	{
-		item = new QListWidgetItem(persoListe);
+		QListWidgetItem *item = new QListWidgetItem(persoListe);
 		QIcon icon = QIcon(QString(":/images/icons/perso%1.png").arg(i));
 		persoIcons.append(icon);
 		item->setIcon(icon);
@@ -648,7 +647,8 @@ void PersoEditor::fillPage()
 
 	for(quint8 i=0 ; i<8 ; ++i)
 	{
-		persoListe->item(i)->setIcon(persoIcons.at(i).pixmap(32, 48, data->persos[i].exists & 1 ? QIcon::Normal : QIcon::Disabled));
+		persoListe->item(i)->setIcon(persoIcons.at(i).pixmap(32, 48, (data->persos[i].exists & 1)
+		                                                     ? QIcon::Normal : QIcon::Disabled));
 	}
 
 	this->id = persoListe->currentRow();

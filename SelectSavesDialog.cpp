@@ -77,11 +77,14 @@ void SelectSavesDialog::fillList(const QList<SaveData *> &saveFiles)
 	list = new QListWidget(this);
 
 	SaveData *save;
-	QListWidgetItem *item;
 	QString shortDescription;
 	for(int i=0 ; i<saveFiles.size() ; ++i) {
 		save = saveFiles.at(i);
-		item = new QListWidgetItem(tr("Save %1 (%2)").arg(i+1).arg((shortDescription = save->shortDescription()).isEmpty() ? tr("vide") : shortDescription));
+		shortDescription = save->shortDescription();
+		QListWidgetItem *item = new QListWidgetItem(tr("Save %1 (%2)").arg(i+1)
+		                                            .arg(shortDescription.isEmpty()
+		                                                 ? tr("vide")
+		                                                 : shortDescription));
 		item->setIcon(save->saveIcon().icon());
 		list->addItem(item);
 		item->setData(Qt::UserRole, i);
@@ -90,7 +93,8 @@ void SelectSavesDialog::fillList(const QList<SaveData *> &saveFiles)
 
 QString SelectSavesDialog::infoText(bool warn)
 {
-	return tr("Sélectionnez jusqu'à <font color=\"%1\">15 saves</font> :").arg(warn ? "red" : "");
+	return tr("Sélectionnez jusqu'à <font color=\"%1\">15 saves</font> :")
+	        .arg(warn ? "red" : "");
 }
 
 QList<int> SelectSavesDialog::selectedSaves() const

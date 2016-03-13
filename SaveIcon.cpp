@@ -69,7 +69,6 @@ QPixmap SaveIconData::icon(int curFrame, bool showCW) const
 
 		QImage image(16, 16, QImage::Format_Indexed8);
 		uchar *pixels = (uchar *)image.bits();
-		quint8 index;
 		quint16 firstPos = 32+curFrame*128, lastPos = firstPos+128, curPx = 0;
 
 		image.setColorTable(colors);
@@ -78,7 +77,7 @@ QPixmap SaveIconData::icon(int curFrame, bool showCW) const
 
 		for(i=firstPos ; i<lastPos ; ++i)
 		{
-			index = _data.at(i);
+			quint8 index = _data.at(i);
 			pixels[curPx++] = index & 0xF;
 			pixels[curPx++] = index >> 4;
 		}

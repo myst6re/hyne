@@ -100,15 +100,13 @@ void DrawPointEditor::buildWidget()
 
 void DrawPointEditor::fillPage()
 {
-	QStandardItem *item;
-	int drawState;
 	QStringList drawStates;
 	drawStates << tr("Pleine") << tr("Moitié pleine") << tr("Vide") << tr("Épuisée");
 
 	for(int i=0 ; i<256 ; ++i)
 	{
-		item = drawE_model->item(i, 2);
-		drawState = (data->misc3.draw_points[i/4] >> ((i % 4)*2)) & 0x3;
+		QStandardItem *item = drawE_model->item(i, 2);
+		int drawState = (data->misc3.draw_points[i/4] >> ((i % 4)*2)) & 0x3;
 		item->setData(drawState);
 		item->setText(drawStates.at(drawState));
 	}
@@ -117,11 +115,10 @@ void DrawPointEditor::fillPage()
 void DrawPointEditor::savePage()
 {
 	QStandardItem *item;
-	quint8 drawState;
 
 	for(int i=0 ; i<64 ; ++i)
 	{
-		drawState = 0;
+		quint8 drawState = 0;
 		for(int j=0 ; j<4 ; ++j)
 		{
 			item = drawE_model->item(i*4 + j, 2);

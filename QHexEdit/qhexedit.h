@@ -96,7 +96,7 @@ public:
     /*! Creates an instance of QHexEdit.
     \param parent Parent widget of QHexEdit.
     */
-    QHexEdit(QWidget *parent = 0);
+    explicit QHexEdit(QWidget *parent = 0);
 
     /*! Inserts a byte array.
     \param i Index position, where to insert

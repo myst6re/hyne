@@ -23,11 +23,10 @@ QImage *FF8Text::fontImage = 0;
 QString FF8Text::toString(const QByteArray &ff8str, bool jp)
 {
 	QString ret, character;
-	quint8 index, oldIndex;
-	int size = ff8str.size();
+	const int size = ff8str.size();
 
 	for(int i=0 ; i<size ; ++i) {
-		index = (quint8)ff8str.at(i);
+		quint8 index = (quint8)ff8str.at(i);
 		if(index==0x00)						break;
 		/*else if(index==0x01)
 			ret.append("\n{NewPage}\n");
@@ -100,7 +99,7 @@ QString FF8Text::toString(const QByteArray &ff8str, bool jp)
 		}*/
 		else if(jp && index>=0x19 && index<=0x1b) {//jp19, jp1a, jp1b
 			if((++i) < size) {
-				oldIndex = index;
+				quint8 oldIndex = index;
 				index = (quint8)ff8str.at(i);
 				if(index>=0x20) {
 					character = caract(index, oldIndex-0x17);
@@ -443,11 +442,11 @@ void FF8Text::drawTextArea(QPainter *painter, const QPoint &point, const QString
 
 	/* Text */
 
-	int charId, x = point.x(), y = point.y(), size = ff8Text.size();
+	int x = point.x(), y = point.y(), size = ff8Text.size();
 
 	for(int i=0 ; i<size ; ++i)
 	{
-		charId = (quint8)ff8Text.at(i);
+		quint8 charId = (quint8)ff8Text.at(i);
 
 		if(charId>=32)
 		{

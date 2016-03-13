@@ -35,10 +35,10 @@ void PartyEditor::buildWidget()
 	for(j=0 ; j<11 ; ++j) {
 		icons.append(QIcon(QString(":/images/icons/perso%1.png").arg(j)));
 	}
-	QComboBox *comboBox;
 
 	for(i=0 ; i<3 ; ++i)
 	{
+		QComboBox *comboBox;
 		partyE.append(comboBox = new QComboBox(partyGBE));
 		comboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 		comboBox->addItem("-", 255);
@@ -61,7 +61,6 @@ void PartyEditor::buildWidget()
 
 	QGroupBox *positionGBE = new QGroupBox(tr("Position"), this);
 
-	QSpinBox *spinBox;
 	QGridLayout *positionGBL = new QGridLayout(positionGBE);
 	positionGBL->addWidget(new QLabel(tr("X :")), 0, 1);
 	positionGBL->addWidget(new QLabel(tr("Y :")), 0, 2);
@@ -69,6 +68,7 @@ void PartyEditor::buildWidget()
 	positionGBL->addWidget(new QLabel(tr("Direction :")), 0, 4);
 
 	for(i=0 ; i<3 ; ++i) {
+		QSpinBox *spinBox;
 		positionGBL->addWidget(new QLabel(tr("Membre %1 :").arg(i+1)), i+1, 0);
 
 		xE.append(spinBox = new QSpinBox(positionGBE));
