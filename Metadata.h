@@ -56,7 +56,7 @@ public:
 	void setTimestamp(qint64 timestamp);
 	const QString &errorString() const;
 private:
-	void writeSavefileContents(QXmlStreamWriter *xml, const MetadataSaveFile &saveFile);
+	static void writeSavefileContents(QXmlStreamWriter *xml, const MetadataSaveFile &saveFile);
 	MetadataSaveFile createSaveFile(quint8 slot, quint8 num);
 	MetadataSaveFile createSaveFile();
 	void setErrorString(const QString &str);
