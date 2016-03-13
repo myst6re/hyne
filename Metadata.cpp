@@ -17,12 +17,13 @@
  ****************************************************************************/
 #include "Metadata.h"
 
-Metadata::Metadata()
+Metadata::Metadata() :
+    _hasChocoFile(false)
 {
 }
 
 Metadata::Metadata(const QString &filename) :
-	_filename(filename)
+	_filename(filename), _hasChocoFile(false)
 {
 }
 
