@@ -29,7 +29,7 @@ class SavecardWidget : public QScrollArea
 	Q_OBJECT
 
 public:
-	SavecardWidget(QWidget *parent=0);
+	explicit SavecardWidget(QWidget *parent=0);
 	virtual ~SavecardWidget();
 
 	SavecardView *view() const;

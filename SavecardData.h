@@ -31,8 +31,8 @@ public:
 		Pc, Ps, Vgs, Gme, Vmp, Psv, PcSlot, Unknown, Undefined
 	};
 
-	SavecardData(const QString &path, quint8 slot=0, const FF8Installation &ff8Installation=FF8Installation());
-	SavecardData(int saveCount);
+	explicit SavecardData(const QString &path, quint8 slot=0, const FF8Installation &ff8Installation=FF8Installation());
+	explicit SavecardData(int saveCount);
 	virtual ~SavecardData();
 
 	bool open(const QString &path, quint8 slot=0);

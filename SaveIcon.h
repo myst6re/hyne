@@ -49,8 +49,8 @@ class SaveIcon : public QObject
 {
 	Q_OBJECT
 public:
-	SaveIcon(bool showCW=false, QObject *parent=0);
-	SaveIcon(const SaveIconData &data, bool showCW=false, QObject *parent=0);
+	explicit SaveIcon(bool showCW=false, QObject *parent=0);
+	explicit SaveIcon(const SaveIconData &data, bool showCW=false, QObject *parent=0);
 	void setData(const SaveIconData &data);
 	void setCurFrame(quint8 curFrame);
 	void setCWIsVisible(bool showCW);

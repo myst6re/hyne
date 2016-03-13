@@ -28,7 +28,7 @@ public:
 	};
 
 	FF8Installation();
-	FF8Installation(Type type);
+	explicit FF8Installation(Type type);
 	FF8Installation(const QString &appPath, const QString &savePath);
 
 	bool isValid() const;
