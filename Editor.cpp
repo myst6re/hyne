@@ -175,6 +175,7 @@ void Editor::updateMode(bool mode)
 		PageWidget *pageWidget = static_cast<PageWidget *>(stackedLayout->widget(i));
 		if(pageWidget->isBuilded()) {
 			pageWidget->updateMode(mode);
+			pageWidget->updateModeAfter(mode);
 		}
 	}
 }

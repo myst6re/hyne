@@ -37,6 +37,7 @@ void PageWidget::load(SaveData *saveData, bool pc)
 	updateMode(Config::mode());
 	fillPage();
 	loaded = true;
+	updateModeAfter(Config::mode());
 	updateTime();
 }
 
@@ -56,6 +57,10 @@ bool PageWidget::isBuilded() const
 }
 
 void PageWidget::updateMode(bool)
+{
+}
+
+void PageWidget::updateModeAfter(bool)
 {
 }
 

@@ -21,7 +21,7 @@
 QList<QIcon> PersoEditor::persoIcons;
 
 PersoEditor::PersoEditor(QWidget *parent)
-	: PageWidget(parent)
+	: PageWidget(parent), LBindicator_E(0), indicatorlabel(0)
 {
 	this->id = 255;
 }
@@ -31,10 +31,6 @@ void PersoEditor::updateMode(bool mode)
 	unknownE->setVisible(mode);
 	unknown1E->setVisible(mode);
 	unknown1LabelE->setVisible(mode);
-	if(LBindicator_E) {
-		LBindicator_E->setVisible(mode);
-		indicatorlabel->setVisible(mode);
-	}
 	qtyAllSpin->setMaximum(mode ? MAX_INT8 : 100);
 	for(int i=0 ; i<32 ; ++i) {
 		magie_E_model->item(i, 1)->setData(mode ? SpinBoxDelegate::SpinBox255 : SpinBoxDelegate::SpinBox100, Qt::UserRole);
@@ -71,6 +67,14 @@ void PersoEditor::updateMode(bool mode)
 	fillAbilities(ability2_E, icons, abilityFilter);
 	fillAbilities(ability3_E, icons, abilityFilter);
 	fillAbilities(ability4_E, icons, abilityFilter);
+}
+
+void PersoEditor::updateModeAfter(bool mode)
+{
+	if(LBindicator_E) {
+		LBindicator_E->setVisible(mode);
+		indicatorlabel->setVisible(mode);
+	}
 }
 
 void PersoEditor::buildWidget()
@@ -511,9 +515,6 @@ void PersoEditor::buildPage6()
 	QLabel *angeloPix;
 	HelpWidget *info;
 
-	LBindicator_E = 0;
-	indicatorlabel = 0;
-	
 	switch(id)
 	{
 	case SQUALL:

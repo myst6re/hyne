@@ -36,6 +36,7 @@ public:
 	bool isLoaded() const;
 	bool isBuilded() const;
 	virtual void updateMode(bool mode);
+	virtual void updateModeAfter(bool mode);
 	virtual void updateTime();
 public slots:
 	virtual void fillPage() = 0;

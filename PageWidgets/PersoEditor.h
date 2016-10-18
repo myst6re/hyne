@@ -30,6 +30,7 @@ public:
 	explicit PersoEditor(QWidget *parent=0);
 	inline QString name() { return tr("Personnages"); }
 	void updateMode(bool mode);
+	void updateModeAfter(bool mode);
 public slots:
 	void fillPage();
 	void savePage();
