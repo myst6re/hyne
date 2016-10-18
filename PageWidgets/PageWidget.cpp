@@ -34,9 +34,9 @@ void PageWidget::load(SaveData *saveData, bool pc)
 	this->descData = &saveData->descData();
 	this->saveData = saveData;
 	this->pc = pc;
+	updateMode(Config::mode());
 	fillPage();
 	loaded = true;
-	updateMode(Config::mode());
 	updateTime();
 }
 
@@ -73,12 +73,12 @@ void PageWidget::selectAll(QTreeWidget *list, bool selected)
 
 void PageWidget::setCurrentIndex(QComboBox *comboBox, int value)
 {
-	int index;
-	if((index = comboBox->findData(value)) != -1) {
+	int index = comboBox->findData(value);
+	if(index != -1) {
 		comboBox->setCurrentIndex(index);
 	} else {
 		comboBox->addItem(QString::number(value), value);
-		comboBox->setCurrentIndex(comboBox->count()-1);
+		comboBox->setCurrentIndex(comboBox->count() - 1);
 	}
 }
 

@@ -741,7 +741,6 @@ void PersoEditor::fillPage()
 	/* PAGE 6 */
 
 	buildPage6();
-	updateMode(Config::mode());
 }
 
 void PersoEditor::savePage()
