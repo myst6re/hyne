@@ -156,10 +156,11 @@ OTHER_FILES += Hyne.rc \
     deploy.bat \
     compat/QtWidgets
 
+# call lrelease to make the qm files.
+system(lrelease Hyne.pro)
+
 # only on linux/unix (for package creation and other deploys)
 unix:!macx:!symbian {
-
-    system(lrelease Hyne.pro)
 
     target.path = /usr/bin
 

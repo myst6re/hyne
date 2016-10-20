@@ -21,8 +21,8 @@ build_script:
 
 after_build:
   - FOR /F %%i IN ('git describe --tags') DO SET GIT_TAG_OR_BRANCH=%%i
-  - if "%USE_MSVC%"=="1" set DEPLOY_DIR="deling-%GIT_TAG_OR_BRANCH%-win32"
-  - if "%USE_MINGW%"=="1" set DEPLOY_DIR="deling-%GIT_TAG_OR_BRANCH%-win32-xp"
+  - if "%USE_MSVC%"=="1" set DEPLOY_DIR="hyne-%GIT_TAG_OR_BRANCH%-win32"
+  - if "%USE_MINGW%"=="1" set DEPLOY_DIR="hyne-%GIT_TAG_OR_BRANCH%-win32-xp"
   - echo "%DEPLOY_DIR%"
   - deploy.bat
   - MOVE *.qm deploy
@@ -31,13 +31,13 @@ after_build:
   - 7z a "%DEPLOY_DIR%.zip" "%DEPLOY_DIR%"
 
 artifacts:
-  - path: deling-*.zip
+  - path: hyne-*.zip
 
 deploy:
   description: Description # Mandatory
   provider: GitHub
   auth_token:
     secure: hC7ZT9txiEAgKU9m2PzmUNe/eDYz1dNPT2DketUKF+8CwuDiXQgNzKSx33Rek2CF
-  artifact: /deling-.*\.zip/
+  artifact: /hyne-.*\.zip/
   on:
     appveyor_repo_tag: true # deploy on tag push only

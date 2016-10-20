@@ -21,7 +21,7 @@
 QList<QIcon> PersoEditor::persoIcons;
 
 PersoEditor::PersoEditor(QWidget *parent)
-	: PageWidget(parent), LBindicator_E(0), indicatorlabel(0)
+	: PageWidget(parent), indicatorlabel(0), LBindicator_E(0)
 {
 	this->id = 255;
 }
