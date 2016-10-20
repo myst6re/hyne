@@ -177,4 +177,5 @@ unix:!macx:!symbian {
 
 DISTFILES += Hyne.desktop \
     README.md \
-    .travis.yml
+    .travis.yml \
+    appveyor.yml
