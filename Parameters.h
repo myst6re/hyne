@@ -17,8 +17,8 @@
  ****************************************************************************/
 
 #define PROG_NAME 			"Hyne"
-#define PROG_VERSION 		"1.9.1"
+#define PROG_VERSION 		"1.9.2"
 
-#define RC_PRODUCT_VERSION			1,9,1,0
+#define RC_PRODUCT_VERSION			1,9,2,0
 #define RC_FILE_DESCRIPTION_STR		"Hyne FF8 Save Editor"
 #define RC_COMPANY_NAME_STR			"myst6re"

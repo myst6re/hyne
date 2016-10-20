@@ -1,3 +1,10 @@
+hyne (1.9.2) precise; urgency=low
+
+  * Adding *.srm file support
+  * Fixing Characters Abilities page: abilities were always cleared
+
+ -- Jérôme Arzel <myst6re@gmail.com> Thu, 20 Oct 2016 18:39:56 +0200
+
 hyne (1.9.0) precise; urgency=low
 
   * [Draw point editor] Adding indication if located in field or worldmap
