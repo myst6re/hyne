@@ -1,5 +1,15 @@
 hyne (1.9.2) precise; urgency=low
 
+  * Adding button to set character bonuses to max
+  * Fix compilation errors with Qt 5.10
+  * Drop Qt 4 compatibility
+  * Clean target specific meta generation (RC file on Windows and Bundle on Mac OSX)
+  * Fix version in Mac OSX Bundle
+
+ -- Jérôme Arzel <myst6re@gmail.com> Sun, 14 Oct 2018 00:55:10 +0200
+
+hyne (1.9.2) precise; urgency=low
+
   * Adding *.srm file support
   * Fixing Characters Abilities page: abilities were always cleared
 
