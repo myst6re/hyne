@@ -58,7 +58,9 @@ void SavecardView::setSavecard(SavecardData *save)
 
 	if(_data) {
 		setFixedSize(sizeHint());
+#ifndef Q_OS_WINRT
 		connect(_data->watcher(), SIGNAL(fileChanged(QString)), SLOT(notifyFileChanged(QString)));
+#endif
 		if(!SaveIcon::timer.isActive()) {
 			SaveIcon::timer.start();
 		}
