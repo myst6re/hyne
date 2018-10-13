@@ -1,4 +1,6 @@
 language: cpp
+sudo: required
+dist: trusty
 
 os:
   - linux
@@ -8,9 +10,9 @@ install:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
          lsb_release -a
       && sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
-      && sudo apt-add-repository -y ppa:beineri/opt-qt551
+      && sudo apt-add-repository -y ppa:beineri/opt-qt-5.10.1-trusty
       && sudo apt-get -qq update
-      && sudo apt-get -qq install -y g++-4.8 libc6-i386 qt55tools qt55base qt55translations qt55imageformats
+      && sudo apt-get -qq install -y g++-4.8 libc6-i386 qt510tools qt510base qt510translations qt510imageformats
       && export CXX="g++-4.8"
       && export CC="gcc-4.8"
       ;
@@ -23,7 +25,7 @@ install:
 
 before_script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-      QTDIR="/opt/qt55";
+      QTDIR="/opt/qt510";
     else
       QTDIR="/usr/local/opt/qt5";
     fi

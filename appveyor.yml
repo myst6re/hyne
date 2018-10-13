@@ -1,13 +1,16 @@
 environment:
   matrix:
     - USE_MSVC: 1
-      QTDIR: C:\Qt\5.6\msvc2013
+      QTDIR: C:\Qt\5.11\msvc2015
+    - USE_WINRT: 1
+      QTDIR: C:\Qt\5.11\winrt_x86_msvc2017
     - USE_MINGW: 1
-      QTDIR: C:\Qt\5.6\mingw49_32
+      QTDIR: C:\Qt\5.11\mingw53_32
 
 install:
-  - if "%USE_MINGW%"=="1" set PATH=%QTDIR%\bin;C:\Qt\Tools\mingw492_32\bin;%PATH%
   - if "%USE_MSVC%"=="1" set PATH=%QTDIR%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
+  - if "%USE_WINRT%"=="1" set PATH=%QTDIR%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
+  - if "%USE_MINGW%"=="1" set PATH=%QTDIR%\bin;C:\Qt\Tools\mingw53_32\bin;%PATH%
   - '"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"'
   - curl -L -o upx.zip http://upx.sourceforge.net/download/upx391w.zip &&
     7z e upx.zip *.exe -r
@@ -17,11 +20,13 @@ before_build:
 
 build_script:
   - if "%USE_MSVC%"=="1" jom
+  - if "%USE_WINRT%"=="1" jom
   - if "%USE_MINGW%"=="1" mingw32-make
 
 after_build:
   - FOR /F %%i IN ('git describe --tags') DO SET GIT_TAG_OR_BRANCH=%%i
   - if "%USE_MSVC%"=="1" set DEPLOY_DIR="hyne-%GIT_TAG_OR_BRANCH%-win32"
+  - if "%USE_WINRT%"=="1" set DEPLOY_DIR="hyne-%GIT_TAG_OR_BRANCH%-winrt32"
   - if "%USE_MINGW%"=="1" set DEPLOY_DIR="hyne-%GIT_TAG_OR_BRANCH%-win32-xp"
   - echo "%DEPLOY_DIR%"
   - deploy.bat
