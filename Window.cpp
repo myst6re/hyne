@@ -165,7 +165,7 @@ Window::~Window()
 void Window::showEvent(QShowEvent *event)
 {
 	event->accept();
-#if defined(Q_OS_WIN) && (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#if defined(Q_OS_WIN)
 	if(!taskbarButton && QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
 		taskbarButton = new QTaskbarButton(windowHandle());
 	}

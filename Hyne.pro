@@ -1,17 +1,14 @@
 TEMPLATE = app
-win32 {
+if(win32|macx) {
     TARGET = Hyne
 } else {
     TARGET = hyne
 }
+VERSION = 1.9.3
 
-QT += core gui
-greaterThan(QT_MAJOR_VERSION, 4) {
-    QT += widgets
-}
-lessThan(QT_MAJOR_VERSION, 5) {
-    INCLUDEPATH += compat
-}
+DEFINES += PROGVERSION=$$VERSION PROGNAME=Hyne
+
+QT += core gui widgets
 
 # include zlib
 !win32 {
@@ -26,7 +23,7 @@ lessThan(QT_MAJOR_VERSION, 5) {
 }
 
 # QTaskbarButton
-greaterThan(QT_MAJOR_VERSION, 4):qtHaveModule(winextras) {
+qtHaveModule(winextras) {
     QT += winextras
 } else {
     DEFINES += HYNE_TASKBAR_FAKE
@@ -54,12 +51,12 @@ HEADERS += PageWidgets/ConfigEditor.h \
     Editor.h \
     FF8Text.h \
     LZS.h \
-    Parameters.h \
     SavecardWidget.h \
     SaveIcon.h \
     Window.h \
     HeaderDialog.h \
     Config.h \
+    Parameters.h \
     SpinBoxDelegate.h \
     QHexEdit/qhexedit.h \
     QHexEdit/qhexedit_p.h \
@@ -149,12 +146,14 @@ macx {
     ICON = images/hyne.icns
 }
 win32 {
-    RC_FILE = Hyne.rc
+    RC_ICONS = "images/hyne.ico"
+    QMAKE_TARGET_COMPANY = "myst6re"
+    QMAKE_TARGET_DESCRIPTION = "Hyne FF8 Save Editor"
+    RC_LANG = 0x40C
 }
 
-OTHER_FILES += Hyne.rc \
-    deploy.bat \
-    compat/QtWidgets
+OTHER_FILES += \
+    deploy.bat
 
 # call lrelease to make the qm files.
 system(lrelease Hyne.pro)
