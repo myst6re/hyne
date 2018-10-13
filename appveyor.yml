@@ -1,3 +1,7 @@
+image: Visual Studio 2017
+platform: x86
+configuration: Release
+
 environment:
   matrix:
     - USE_MSVC: 1
@@ -8,12 +12,11 @@ environment:
       QTDIR: C:\Qt\5.11\mingw53_32
 
 install:
-  - type %QTDIR%\bin\qtenv2.bat
   - if "%USE_MSVC%"=="1" set PATH=%QTDIR%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
   - if "%USE_WINRT%"=="1" set PATH=%QTDIR%\bin;C:\Qt\Tools\QtCreator\bin;%PATH%
   - if "%USE_MINGW%"=="1" set PATH=%QTDIR%\bin;C:\Qt\Tools\mingw530_32\bin;%PATH%
-  - if "%USE_WINRT%"=="1" "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\vcvarsall.bat"
-  - if "%USE_MSVC%"=="1" "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat"
+  - if "%USE_WINRT%"=="1" "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\vcvarsall.bat" x86
+  - if "%USE_MSVC%"=="1" "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
   - curl -L -o upx.zip http://upx.sourceforge.net/download/upx391w.zip &&
     7z e upx.zip *.exe -r
 
