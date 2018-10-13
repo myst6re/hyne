@@ -48,7 +48,7 @@ deploy:
   description: Description # Mandatory
   provider: GitHub
   auth_token:
-    secure: hC7ZT9txiEAgKU9m2PzmUNe/eDYz1dNPT2DketUKF+8CwuDiXQgNzKSx33Rek2CF
+    secure: bEZQyYeFrSaFzPe4uWO5WZGUPGq+qrxt3rb3077AEOBPOxqErqnA5rCkNWO7OR6R
   artifact: /hyne-.*\.zip/
   on:
     appveyor_repo_tag: true # deploy on tag push only
