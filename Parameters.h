@@ -16,9 +16,8 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#define PROG_NAME 			"Hyne"
-#define PROG_VERSION 		"1.9.2"
+#define STRINGIZE(x)             #x
+#define STRINGIZE_VALUE_OF(x)    STRINGIZE(x)
 
-#define RC_PRODUCT_VERSION			1,9,2,0
-#define RC_FILE_DESCRIPTION_STR		"Hyne FF8 Save Editor"
-#define RC_COMPANY_NAME_STR			"myst6re"
+#define PROG_NAME       STRINGIZE_VALUE_OF(PROGNAME)
+#define PROG_VERSION    STRINGIZE_VALUE_OF(PROGVERSION)

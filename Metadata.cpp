@@ -48,7 +48,7 @@ bool Metadata::open()
 
 		case QXmlStreamReader::StartElement:
 
-			if(!isInSaveFile && xml.name().compare("savefile", Qt::CaseInsensitive) == 0) {
+			if(!isInSaveFile && xml.name().compare(QLatin1String("savefile"), Qt::CaseInsensitive) == 0) {
 				isInSaveFile = true;
 				saveFile = MetadataSaveFile();
 				QXmlStreamAttributes attrs = xml.attributes();
@@ -66,7 +66,7 @@ bool Metadata::open()
 					}
 				}
 			} else if(isInSaveFile) {
-				if(xml.name().compare("timestamp", Qt::CaseInsensitive) == 0) {
+				if(xml.name().compare(QLatin1String("timestamp"), Qt::CaseInsensitive) == 0) {
 					QString timestamp = xml.readElementText();
 					if(!timestamp.isEmpty()) {
 						saveFile.timestamp = timestamp.toLongLong(&ok);
@@ -76,7 +76,7 @@ bool Metadata::open()
 					} else {
 						saveFile.timestamp = TIMESTAMP_EMPTY;
 					}
-				} else if(xml.name().compare("signature", Qt::CaseInsensitive) == 0) {
+				} else if(xml.name().compare(QLatin1String("signature"), Qt::CaseInsensitive) == 0) {
 					saveFile.signature = xml.readElementText();
 				}
 			}
@@ -84,7 +84,7 @@ bool Metadata::open()
 
 		case QXmlStreamReader::EndElement:
 
-			if(isInSaveFile && xml.name().compare("savefile", Qt::CaseInsensitive) == 0) {
+			if(isInSaveFile && xml.name().compare(QLatin1String("savefile"), Qt::CaseInsensitive) == 0) {
 				isInSaveFile = false;
 				if(type.compare("ff8", Qt::CaseInsensitive) == 0) {
 					_saveFiles.insert(SAVE_FILES_KEY(slot, num),

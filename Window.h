@@ -57,7 +57,9 @@ private slots:
 	void font(bool);
 	void changeLanguage(QAction *);
 	void changeFF8Version(QAction *);
+#ifndef Q_OS_WINRT
 	void runFF8();
+#endif
 	void updateMetadata();
 	void fullScreen();
 	void about();

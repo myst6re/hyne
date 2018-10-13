@@ -4,7 +4,7 @@ set OUTPUT_DIR=deploy
 set EXE_PATH=release\hyne.exe
 set LIB_DIR=%QTDIR%\bin
 set QT_TR_DIR=%QTDIR%\translations
-set LANGUAGES=fr ja
+set LANGUAGES=en ja
 
 rem Create target directory
 if not exist %OUTPUT_DIR% mkdir %OUTPUT_DIR%
@@ -25,6 +25,4 @@ rem Deploy Exe
 xcopy /y %EXE_PATH% %OUTPUT_DIR%
 
 rem Compress Exe and DLLs. Note: DLLs in platforms/ directory should not be compressed.
-upx %OUTPUT_DIR%\*.dll %OUTPUT_DIR%\*.exe
-
-exit 0
+upx %OUTPUT_DIR%\*.dll %OUTPUT_DIR%\Hyne.exe

@@ -114,10 +114,12 @@ bool SavecardData::open(const QString &path, quint8 slot)
 	return _ok;
 }
 
+#ifndef Q_OS_WINRT
 const QFileSystemWatcher *SavecardData::watcher() const
 {
 	return &fileWatcher;
 }
+#endif
 
 QString SavecardData::description() const
 {
@@ -260,8 +262,10 @@ bool SavecardData::ps()
 		addSave(fic.read(SAVE_SIZE), header.mid(128*i, 127), occupied);
 	}
 
+#ifndef Q_OS_WINRT
 	if(fileWatcher.files().size()<30)
 		fileWatcher.addPath(_path);
+#endif
 
 	return true;
 }
@@ -303,8 +307,10 @@ bool SavecardData::ps3()
 
 	if(saves.first()->isDelete())	return false;
 
+#ifndef Q_OS_WINRT
 	if(fileWatcher.files().size()<30)
 		fileWatcher.addPath(_path);
+#endif
 
 	return true;
 }
@@ -324,8 +330,10 @@ bool SavecardData::pc(const QString &path)
 
 	addSave(LZS::decompress(f.readAll(), FF8SAVE_SIZE));
 
+//#ifndef Q_OS_WINRT
 //	if(fileWatcher.files().size()<30)
 //		fileWatcher.addPath(_path);
+//#endif
 
 	return true;
 }
@@ -593,25 +601,31 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 
 	fic.close();
 
+#ifndef Q_OS_WINRT
 	bool readdPath = false;
 	if(fileWatcher.files().contains(path))
 	{
 		readdPath = true;
 		fileWatcher.removePath(path);
 	}
+#endif
 
 	if(QFile::exists(path) && !QFile::remove(path))
 	{
 		temp.close();
 		setErrorString(QObject::tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nVérifiez que le fichier n'est pas utilisé par un autre programme.").arg(path));
+#ifndef Q_OS_WINRT
 		if(readdPath)	fileWatcher.addPath(path);
+#endif
 		return false;
 	}
 	if(!temp.copy(path))
 	{
 		setErrorString(QObject::tr("Échec de la sauvegarde."));
 	}
+#ifndef Q_OS_WINRT
 	if(readdPath)	fileWatcher.addPath(path);
+#endif
 
 	return true;
 }
@@ -634,11 +648,13 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 		return false;
 	}
 
+#ifndef Q_OS_WINRT
 	bool readdPath = false;
 	if(fileWatcher.files().contains(path)) {
 		readdPath = true;
 		fileWatcher.removePath(path);
 	}
+#endif
 
 	// Rerelease 2013
 	UserDirectory userDirectory;
@@ -695,14 +711,18 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 	{
 		setErrorString(QObject::tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nEssayez de lancer %2 en tant qu'administrateur.")
 				.arg(path).arg(PROG_NAME));
+#ifndef Q_OS_WINRT
 		if(readdPath)	fileWatcher.addPath(path);
+#endif
 		return false;
 	}
 	if(!temp.copy(path))
 	{
 		setErrorString(QObject::tr("Échec de la sauvegarde."));
 	}
+#ifndef Q_OS_WINRT
 	if(readdPath)	fileWatcher.addPath(path);
+#endif
 
 	if(_type == Undefined) {
 		setPath(path);
@@ -727,12 +747,14 @@ bool SavecardData::save2PSV(const quint8 id, const QString &saveAs, const QByteA
 		return false;
 	}
 
+#ifndef Q_OS_WINRT
 	bool readdPath = false;
 	if(fileWatcher.files().contains(path))
 	{
 		readdPath = true;
 		fileWatcher.removePath(path);
 	}
+#endif
 
 	if(save->isDelete()) {
 		return QFile::remove(path);
@@ -753,14 +775,18 @@ bool SavecardData::save2PSV(const quint8 id, const QString &saveAs, const QByteA
 	if(QFile::exists(path) && !QFile::remove(path))
 	{
 		setErrorString(QObject::tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nVérifiez que le fichier n'est pas utilisé par un autre programme.").arg(path));
+#ifndef Q_OS_WINRT
 		if(readdPath)	fileWatcher.addPath(path);
+#endif
 		return false;
 	}
 	if(!temp.copy(path))
 	{
 		setErrorString(QObject::tr("Échec de la sauvegarde."));
 	}
+#ifndef Q_OS_WINRT
 	if(readdPath)	fileWatcher.addPath(path);
+#endif
 
 	if(_type == Undefined) {
 		setPath(path);
@@ -823,12 +849,14 @@ bool SavecardData::save2PS(const QList<int> &ids, const QString &path, const Typ
 		}
 	}
 
+#ifndef Q_OS_WINRT
 	bool readdPath = false;
 	if(fileWatcher.files().contains(path))
 	{
 		readdPath = true;
 		fileWatcher.removePath(path);
 	}
+#endif
 
 	if(QFile::exists(path) && !QFile::remove(path))
 	{
@@ -836,14 +864,18 @@ bool SavecardData::save2PS(const QList<int> &ids, const QString &path, const Typ
 								 "\n%1\nÉchec de la sauvegarde."
 								 "\nVérifiez que le fichier n'est pas utilisé"
 								 " par un autre programme.").arg(path));
+#ifndef Q_OS_WINRT
 		if(readdPath)	fileWatcher.addPath(path);
+#endif
 		return false;
 	}
 	if(!temp.copy(path))
 	{
 		setErrorString(QObject::tr("Échec de la sauvegarde."));
 	}
+#ifndef Q_OS_WINRT
 	if(readdPath)	fileWatcher.addPath(path);
+#endif
 
 	if(_type == Undefined) {
 		setPath(path);

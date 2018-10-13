@@ -59,6 +59,7 @@ Window::Window(bool isNew) :
 	actionProperties->setEnabled(false);
 	action = menu->addAction(tr("S&igner des sauv. pour le Cloud..."), this, SLOT(updateMetadata()));
 	addAction(action);
+#ifndef Q_OS_WINRT
 	if(isInstalled) {
 		action = menu->addAction(QIcon(":/images/ff8.png"), tr("&Lancer Final Fantasy VIII"), this, SLOT(runFF8()));
 		if(!isNew) {
@@ -67,6 +68,9 @@ Window::Window(bool isNew) :
 		}
 		addAction(action);
 	}
+#else
+	isInstalled = false;
+#endif
 	menu->addAction(tr("Nou&velle fenêtre"), this, SLOT(newWindow()));
 	action = menu->addAction(tr("Ple&in écran"), this, SLOT(fullScreen()));
 	if(!isNew) {
@@ -165,7 +169,7 @@ Window::~Window()
 void Window::showEvent(QShowEvent *event)
 {
 	event->accept();
-#if defined(Q_OS_WIN) && (QT_VERSION >= QT_VERSION_CHECK(5, 0, 0))
+#ifdef Q_OS_WIN
 	if(!taskbarButton && QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
 		taskbarButton = new QTaskbarButton(windowHandle());
 	}
@@ -861,6 +865,7 @@ void Window::restartNow()
 	}
 }*/
 
+#ifndef Q_OS_WINRT
 void Window::runFF8()
 {
 	QString appPath = Config::ff8Installation().appPath(), exeFilename = appPath % "/" % Config::ff8Installation().exeFilename();
@@ -868,6 +873,7 @@ void Window::runFF8()
 		QMessageBox::warning(this, tr("Erreur"), tr("Final Fantasy VIII n'a pas pu être lancé.\n%1").arg(exeFilename));
 	}
 }
+#endif
 
 void Window::updateMetadata()
 {

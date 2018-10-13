@@ -16,7 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 #include "FF8Installation.h"
-#ifdef Q_OS_WIN
+#ifdef Q_OS_WIN32
 #include <windows.h>
 #include <winbase.h>
 //#include <winerror.h>
@@ -180,7 +180,7 @@ QStringList FF8Installation::steamFF8UserDataPaths(int max)
 
 QString FF8Installation::regValue(const QString &regPath, const QString &regKey)
 {
-#ifdef Q_OS_WIN
+#ifdef Q_OS_WIN32
 	HKEY phkResult;
 	LONG error;
 	REGSAM flags = KEY_READ;
@@ -213,7 +213,7 @@ QString FF8Installation::regValue(const QString &regPath, const QString &regKey)
 QStringList FF8Installation::searchInstalledApps(const QString &appName, const QString &publisher, int max)
 {
 	QStringList ret;
-#ifdef Q_OS_WIN
+#ifdef Q_OS_WIN32
 	HKEY phkResult, phkResult2;
 	LONG error;
 

@@ -36,7 +36,9 @@ public:
 	virtual ~SavecardData();
 
 	bool open(const QString &path, quint8 slot=0);
+#ifndef Q_OS_WINRT
 	const QFileSystemWatcher *watcher() const;
+#endif
 	inline const QString &errorString() const {
 		return _lastError;
 	}
@@ -104,7 +106,9 @@ private:
 	bool _ok;
 	Type _type;
 	quint16 start; // Start of save data
+#ifndef Q_OS_WINRT
 	QFileSystemWatcher fileWatcher;
+#endif
 	QList<SaveData *> saves;
 	bool _isModified;
 	QByteArray _description;

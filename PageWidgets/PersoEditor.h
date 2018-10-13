@@ -46,6 +46,7 @@ private slots:
 	void qtyAllMagic();
 	void LBindicatorChange(int state);
 	void LBautoChange(int state);
+	void bonusMaxAll();
 protected:
 	void buildWidget();
 private:

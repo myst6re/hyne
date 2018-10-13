@@ -21,13 +21,14 @@
 QList<QIcon> PersoEditor::persoIcons;
 
 PersoEditor::PersoEditor(QWidget *parent)
-	: PageWidget(parent), LBindicator_E(0), indicatorlabel(0)
+	: PageWidget(parent), indicatorlabel(0), LBindicator_E(0)
 {
 	this->id = 255;
 }
 
 void PersoEditor::updateMode(bool mode)
 {
+	status_list_E.last()->setVisible(mode);
 	unknownE->setVisible(mode);
 	unknown1E->setVisible(mode);
 	unknown1LabelE->setVisible(mode);
@@ -217,7 +218,8 @@ QWidget *PersoEditor::buildPage1()
 	psy_E = new SpinBox8(bonus_E);
 	vts_E = new SpinBox8(bonus_E);
 	chc_E = new SpinBox8(bonus_E);
-	
+	QPushButton *bonusAllButton = new QPushButton(tr("Max"), bonus_E);
+
 	QGridLayout *bonusEdit_l = new QGridLayout(bonus_E);
 	bonusEdit_l->addWidget(new QLabel(tr("Bonus HP :"), bonus_E), 0, 0);
 	bonusEdit_l->addWidget(HPs_E, 0, 1);
@@ -233,6 +235,9 @@ QWidget *PersoEditor::buildPage1()
 	bonusEdit_l->addWidget(vts_E, 1, 3);
 	bonusEdit_l->addWidget(new QLabel(tr("Bonus chc :"), bonus_E), 1, 4);
 	bonusEdit_l->addWidget(chc_E, 1, 5);
+	bonusEdit_l->addWidget(bonusAllButton, 1, 7);
+
+	connect(bonusAllButton, SIGNAL(released()), SLOT(bonusMaxAll()));
 
 	alternativeE = new QCheckBox(tr("Costume alternatif (Seed, galbadien)"), ret);
 	lock1E = new QCheckBox(tr("Vérouillé 1 (menu 'remplacer')"), ret);
@@ -887,6 +892,17 @@ void PersoEditor::niv_S(int value)
 	{
 		expE->setValue(exp);
 	}
+}
+
+void PersoEditor::bonusMaxAll()
+{
+	HPs_E->setValue(MAX_INT16);
+	vgr_E->setValue(MAX_INT8);
+	dfs_E->setValue(MAX_INT8);
+	mgi_E->setValue(MAX_INT8);
+	psy_E->setValue(MAX_INT8);
+	vts_E->setValue(MAX_INT8);
+	chc_E->setValue(MAX_INT8);
 }
 
 void PersoEditor::changeExists(bool exists)

@@ -1,4 +1,6 @@
 language: cpp
+sudo: required
+dist: trusty
 
 os:
   - linux
@@ -23,7 +25,7 @@ install:
 
 before_script:
   - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-      source /opt/qt*/bin/qt*-env.sh; 
+      source /opt/qt*/bin/qt*-env.sh;
     else
       QTDIR="/usr/local/opt/qt5";
     fi
@@ -56,7 +58,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    secure: "TODO"
+    secure: V4boAXdJojJ0/hDkdure1F8u3yKBNJNGYT+KE/dtiwSu24wB4bn+4NhUFtUUtXJWiBsE0bzpkjP2Hyiy8W+Mf0Hs5a/B613tdKcGqeMXfW0sAK4YKIEhnjVVsXNR0EDkxpLPJxPhqoB5WyY1+9vN9Wdwy5ZNa+9CmhZtGuU3FFg=
   file: "$DEPLOY_ARCHIVE"
   skip_cleanup: true
   on:
