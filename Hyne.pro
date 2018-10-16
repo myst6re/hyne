@@ -144,6 +144,8 @@ CODECFORSRC = UTF-8
 # Icons
 macx {
     ICON = images/hyne.icns
+    QMAKE_INFO_PLIST = Hyne.plist
+    QMAKE_TARGET_BUNDLE_PREFIX = com.myst6re
 }
 win32 {
     RC_ICONS = "images/hyne.ico"
@@ -178,4 +180,5 @@ unix:!macx:!symbian {
 DISTFILES += Hyne.desktop \
     README.md \
     .travis.yml \
-    appveyor.yml
+    appveyor.yml \
+    Hyne.plist
