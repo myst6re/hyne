@@ -286,7 +286,7 @@ void Window::open(OpenType slot)
 		installation = Config::ff8Installation();
 		if(!installation.isValid())	return;
 
-		path = installation.savePath((int)slot);
+		path = installation.savePath(int(slot));
 	}
 	else
 	{
@@ -435,18 +435,20 @@ void Window::reload()
 bool Window::exportAs()
 {
 	QString types, path, selectedFilter,
-			ps = tr("PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm)"),
-			vgs = tr("VGS memorycard (*.vgs *.mem)"),
-			gme = tr("GME memorycard (*.gme)"),
-			vmp = tr("PSN memorycard (*.vmp)"),
-			pc = tr("FF8 PC save (*.ff8 *)"),
-			psv = tr("PSN save (*.psv)");
+	        ps = tr("PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm)"),
+	        vgs = tr("VGS memorycard (*.vgs *.mem)"),
+	        gme = tr("GME memorycard (*.gme)"),
+	        vmp = tr("PSN memorycard (*.vmp)"),
+	        pc = tr("FF8 PC save (*.ff8 *)"),
+	        ps4 = tr("PS4 Remaster save (*.ff8 *)"),
+	        psv = tr("PSN save (*.psv)");
 	SavecardData::Type type = saves->type(), newType;
 
-	types = pc+";;"+ps+";;"+vgs+";;"+gme+";;"+vmp+";;"+psv;
+	types = pc+";;"+ps+";;"+ps4+";;"+vgs+";;"+gme+";;"+vmp+";;"+psv;
 
 	if(type == SavecardData::PcSlot
-			|| type == SavecardData::Pc)	selectedFilter = pc;
+	        || type == SavecardData::Pc)	selectedFilter = pc;
+	else if(type == SavecardData::PcUncompressed)	selectedFilter = ps4;
 	else if(type == SavecardData::Psv)		selectedFilter = psv;
 	else if(type == SavecardData::Vgs)		selectedFilter = vgs;
 	else if(type == SavecardData::Gme)		selectedFilter = gme;
@@ -467,6 +469,7 @@ bool Window::exportAs()
 	else if(selectedFilter == gme)		newType = SavecardData::Gme;
 	else if(selectedFilter == vmp)		newType = SavecardData::Vmp;
 	else if(selectedFilter == pc)		newType = SavecardData::Pc;
+	else if(selectedFilter == ps4)		newType = SavecardData::PcUncompressed;
 	else if(selectedFilter == psv)		newType = SavecardData::Psv;
 	else {
 		qWarning() << "Bad selected filter!" << selectedFilter;
@@ -505,7 +508,10 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 	if(type == newType) {
 		switch(type) {
 		case SavecardData::Pc:
-			ok = saves->save2PC(0, path);
+			ok = saves->save2PC(0, path, true);
+			break;
+		case SavecardData::PcUncompressed:
+			ok = saves->save2PC(0, path, false);
 			break;
 		case SavecardData::PcSlot:
 			ok = saves->saveDirectory();
@@ -523,11 +529,13 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 			return false;
 		}
 	} else {
-		if(newType != SavecardData::Pc && newType != SavecardData::Psv) {
+		if(newType != SavecardData::Pc && newType != SavecardData::PcUncompressed && newType != SavecardData::Psv) {
 
 			if(type == SavecardData::PcSlot
 					|| type == SavecardData::Undefined
-					|| type == SavecardData::Pc || type == SavecardData::Psv) {
+			        || type == SavecardData::Pc
+			        || type == SavecardData::PcUncompressed
+			        || type == SavecardData::Psv) {
 				QList<int> selected_files;
 
 				if(saves->saveCount() == 1) {
@@ -564,7 +572,9 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 			}
 
 			if(newType == SavecardData::Pc) {
-				ok = saves->save2PC(id, path);
+				ok = saves->save2PC(id, path, true);
+			} else if(newType == SavecardData::PcUncompressed) {
+				ok = saves->save2PC(id, path, false);
 			} else {
 				QByteArray MCHeader;
 				if(!saves->getSaves().first()->hasMCHeader()) {

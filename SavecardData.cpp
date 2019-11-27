@@ -60,7 +60,7 @@ bool SavecardData::open(const QString &path, quint8 slot)
 		if(extension.isEmpty() || extension == "ff8")
 		{
 			setType(Pc);
-			if(!pc())	addSave(QByteArray());
+			if(!pc()) addSave();
 		}
 		else if(extension == "mcr" || extension == "ddf" || extension == "mc"
 		   || extension == "mcd"|| extension == "mci" || extension == "ps"
@@ -326,7 +326,17 @@ bool SavecardData::pc(const QString &path)
 	if(f.size() > SAVE_SIZE * 8)		return false;
 
 	f.read((char *)&tailleC, 4);
-	if(tailleC != f.size()-4)		return false;
+	if(tailleC != f.size()-4) {
+		quint16 header = tailleC & 0xFFFF;
+		if(header == 0x4353) { // SC
+			f.reset();
+			addSave(f.read(FF8SAVE_SIZE));
+
+			setType(PcUncompressed);
+
+			return true;
+		}
+	}
 
 	addSave(LZS::decompress(f.readAll(), FF8SAVE_SIZE));
 
@@ -379,9 +389,20 @@ bool SavecardData::getFormatFromRaw()
 			const QByteArray &unLzsed = LZS::decompress(data.mid(4), 2);
 			if(unLzsed.startsWith("SC")) {
 				_type = Pc;
-				return _ok = pc();
+				addSave(unLzsed);
+				_ok = true;
+
+				return true;
 			}
 			return false;
+		}
+
+		if(data.startsWith("SC")) {
+			_type = PcUncompressed;
+			addSave(data);
+			_ok = true;
+
+			return true;
 		}
 
 		if(data.indexOf("VSP") == 1) {
@@ -559,7 +580,7 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 //		compare(fic.peek(FF8SAVE_SIZE), saves.first()->save());
 		temp.write(saves.first()->save());
 	}
-	else if(_type != Pc && _type != PcSlot)
+	else if(_type != Pc && _type != PcSlot && _type != PcUncompressed)
 	{
 		quint8 i;
 		SaveData *save;
@@ -598,6 +619,11 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 			fic.seek(fic.pos() + SAVE_SIZE);
 		}
 	}
+	else
+	{
+		setErrorString(QObject::tr("Type non supporté pour la sauvegarde.\n%1").arg(_type));
+		return false;
+	}
 
 	fic.close();
 
@@ -630,7 +656,7 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 	return true;
 }
 
-bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
+bool SavecardData::save2PC(const quint8 id, const QString &saveAs, bool compress)
 {
 	const SaveData *save = saves.at(id);
 	setErrorString(QString());
@@ -693,9 +719,15 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 		return true;
 	}
 
-	QByteArray result = LZS::compress(save->save());
-	int size = result.size();
-	result.prepend((char *)&size, 4);
+	QByteArray result;
+
+	if(compress) {
+		result = LZS::compress(save->save());
+		int size = result.size();
+		result.prepend((char *)&size, 4);
+	} else {
+		result = save->save();
+	}
 
 	// Rerelease 2013: updating signature in metadata file
 	if(slot > 0) {
@@ -726,7 +758,7 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs)
 
 	if(_type == Undefined) {
 		setPath(path);
-		setType(Pc);
+		setType(compress ? Pc : PcUncompressed);
 	}
 
 	return true;
@@ -979,7 +1011,7 @@ bool SavecardData::saveDirectory()
 			QString num = QString("%1").arg(i + 1, 2, 10, QChar('0'));
 			QString path = filePattern;
 
-			if(!save2PC(i, dirname + path.replace("{num}", num))) {
+			if(!save2PC(i, dirname + path.replace("{num}", num), true)) {
 				ok = false;
 			}
 		}
