@@ -31,10 +31,23 @@ FF8Installation::FF8Installation() :
 FF8Installation::FF8Installation(Type type) :
 	_type(type)
 {
+	QStringList appDataLocations;
+	QString path;
+
 	switch(type) {
 	case Standard:
 		_appPath = standardFF8AppPath();
-		_savePaths.append(_appPath + "/save"); // TODO: \AppData\Local\VirtualStore\Program Files\Eidos Interactive\Square Soft, Inc\FINAL FANTASY VIII
+		appDataLocations = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
+		if (!appDataLocations.isEmpty()) {
+			path = appDataLocations.first().append("/VirtualStore/").append(QString(_appPath).replace(QRegExp("^\\w+:/"), ""));
+			if (!QFile::exists(path)) {
+				path = QString();
+			}
+		}
+		if (path.isEmpty()) {
+			path = _appPath;
+		}
+		_savePaths.append(path + "/save");
 		break;
 	case Steam:
 		_appPath = steamFF8AppPath();
