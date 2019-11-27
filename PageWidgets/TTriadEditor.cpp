@@ -37,7 +37,7 @@ void TTriadEditor::buildWidget()
 
 	tabWidget = new QTabWidget(this);
 	tabWidget->addTab(buildPage1(), tr("Cartes"));
-	tabWidget->addTab(buildPage2(), tr("Règles"));
+	tabWidget->addTab(buildPage2(), tr("Règles et quêtes"));
 
 	layout->addWidget(tabWidget);
 	layout->setContentsMargins(QMargins());
@@ -275,85 +275,112 @@ QWidget *TTriadEditor::buildPage2()
 	}
 	group2L->addStretch(1);
 
-	QGroupBox *group3 = new QGroupBox(tr("Divers"), ret);
+	QGroupBox *group3 = new QGroupBox(tr("Quêtes"), ret);
 	QGridLayout *group3L = new QGridLayout(group3);
 
+	regions.prepend(tr("Aucune"));
+
 	last_regionE = new QComboBox(group3);
-	last_regionE->addItem(QString::number(0), 0);
-	int i=1;
+	int i=0;
 	foreach(const QString &region, regions)
 		last_regionE->addItem(region, i++);
 
 	last2_regionE = new QComboBox(group3);
-	last2_regionE->addItem(QString::number(0), 0);
-	i=1;
+	i=0;
 	foreach(const QString &region, regions)
 		last2_regionE->addItem(region, i++);
 
+	QStringList cc_names;
+	cc_names << tr("-") << tr("Valet") << tr("Trèfle") << tr("Carreaux") << tr("Pique") << tr("Reine de coeur");
+	QList<int> cc_values;
+	cc_values << 0 << 0x1 << 0x3 << 0x13 << 0x17 << 0x1F;
+
+	ccE = new QComboBox(group3);
+	i=0;
+	foreach(const QString &name, cc_names)
+		ccE->addItem(name, cc_values.at(i++));
+
 	queenE = new QComboBox(group3);
-	queenE->addItem(QString::number(0), 0);
+	queenE->addItem(tr("Nulle part"), 0);
 	QStringList queenCities;
 	queenCities << tr("Balamb City") << tr("Deling City") << tr("Shumi village") << tr("Winhill") << tr("Dollet") << tr("Horizon") << tr("Lunar Gate") << tr("Esthar City");
 	i=1;
 	foreach(const QString &queenCity, queenCities)
 		queenE->addItem(queenCity, i++);
 
+	traderule_queenE = new QComboBox(group3);
+
+	i=0;
+	foreach(const QString &name, traderules_names)
+		traderule_queenE->addItem(name, i++);
+
 	traderatingE = new SpinBox8(group3);
 	traderating_regionE = new QComboBox(group3);
-	traderating_regionE->addItem(QString::number(0), 0);
-	i=1;
+	i=0;
 	foreach(const QString &region, regions)
 		traderating_regionE->addItem(region, i++);
-
-	ttvictorycountE = new SpinBox16(group3);
-	ttdefeatcountE = new SpinBox16(group3);
-	ttegalitycountE = new SpinBox16(group3);
 
 	ttdegenerationE = new SpinBox8(group3);
 
 	ttcardqueenquestE = new QComboBox(group3);
-	ttcardqueenquestE->addItem(tr("MiniMog"), 0);
-	ttcardqueenquestE->addItem(tr("Tauros"), 1);
-	ttcardqueenquestE->addItem(tr("Chicobo"), 2);
-	ttcardqueenquestE->addItem(tr("Alexander"), 3);
+	ttcardqueenquestE->addItem(tr("Aucune"), 0);
+	ttcardqueenquestE->addItem(tr("Kiros"), 1);
+	ttcardqueenquestE->addItem(tr("Irvine"), 2);
+	ttcardqueenquestE->addItem(tr("GroChocobo"), 3);
 	ttcardqueenquestE->addItem(tr("Helltrain"), 4);
-	ttcardqueenquestE->addItem(tr("Toutes"), 5);
-
-	unknown1E_label = new QLabel(tr("Inconnu 1 :"),group3);
-	unknown1E = new SpinBox16(group3);
-	unknown2E_label = new QLabel(tr("Inconnu 2 :"),group3);
-	unknown2E = new SpinBox32(group3);
+	ttcardqueenquestE->addItem(tr("Phénix"), 5);
 
 	group3L->addWidget(new QLabel(tr("Dernières régions visitées :"),group3), 0, 0);
 	group3L->addWidget(last_regionE, 0, 1);
-	group3L->addWidget(last2_regionE, 0, 2);
+	group3L->addWidget(last2_regionE, 1, 1);
+	group3L->addWidget(new QLabel(tr("Quête du Groupe CC :"),group3), 0, 2);
+	group3L->addWidget(ccE, 0, 3);
 	group3L->addWidget(new QLabel(tr("Emplacement reine des cartes :"),group3), 2, 0);
 	group3L->addWidget(queenE, 2, 1);
+	group3L->addWidget(new QLabel(tr("Règle du vainqueur de la reine :"),group3), 2, 2);
+	group3L->addWidget(traderule_queenE, 2, 3);
 	group3L->addWidget(new QLabel(tr("Nombre de joueurs règle du vainqueur :"),group3), 3, 0);
 	group3L->addWidget(traderatingE, 3, 1);
-	group3L->addWidget(new QLabel(tr("Région :"),group3), 3, 2);
+	group3L->addWidget(new QLabel(tr("Région règle du vainqueur :"),group3), 3, 2);
 	group3L->addWidget(traderating_regionE, 3, 3);
 	group3L->addWidget(new QLabel(tr("Dégénération :"),group3), 4, 0);
 	group3L->addWidget(ttdegenerationE, 4, 1);
-	group3L->addWidget(new QLabel(tr("Cartes créées :"),group3), 4, 2);
+	group3L->addWidget(new QLabel(tr("Dernière carte créée :"),group3), 4, 2);
 	group3L->addWidget(ttcardqueenquestE, 4, 3);
-	group3L->addWidget(new QLabel(tr("Nombre de victoires :"),group3), 5, 0);
-	group3L->addWidget(ttvictorycountE, 5, 1);
-	group3L->addWidget(new QLabel(tr("Nombre de défaites :"),group3), 5, 2);
-	group3L->addWidget(ttdefeatcountE, 5, 3);
-	group3L->addWidget(new QLabel(tr("Nombre d'égalités :"),group3), 6, 0);
-	group3L->addWidget(ttegalitycountE, 6, 1);
-	group3L->addWidget(unknown1E_label, 7, 0);
-	group3L->addWidget(unknown1E, 7, 1);
-	group3L->addWidget(unknown2E_label, 7, 2);
-	group3L->addWidget(unknown2E, 7, 3);
+
+	QGroupBox *group4 = new QGroupBox(tr("Divers"), ret);
+	QGridLayout *group4L = new QGridLayout(group4);
+
+	ttvictorycountE = new SpinBox16(group4);
+	ttdefeatcountE = new SpinBox16(group4);
+	ttegalitycountE = new SpinBox16(group4);
+	ttbguvictorycountE = new SpinBox8(group4);
+
+	unknown1E_label = new QLabel(tr("Inconnu 1 :"),group4);
+	unknown1E = new SpinBox16(group4);
+	unknown2E_label = new QLabel(tr("Inconnu 2 :"),group4);
+	unknown2E = new SpinBox32(group4);
+
+	group4L->addWidget(new QLabel(tr("Nombre de victoires :"),group4), 0, 0);
+	group4L->addWidget(ttvictorycountE, 0, 1);
+	group4L->addWidget(new QLabel(tr("Nombre de défaites :"),group4), 0, 2);
+	group4L->addWidget(ttdefeatcountE, 0, 3);
+	group4L->addWidget(new QLabel(tr("Nombre d'égalités :"),group4), 0, 4);
+	group4L->addWidget(ttegalitycountE, 0, 5);
+	group4L->addWidget(new QLabel(tr("Nombre de victoires à la BGU :"),group4), 1, 0);
+	group4L->addWidget(ttbguvictorycountE, 1, 1);
+	group4L->addWidget(unknown1E_label, 1, 2);
+	group4L->addWidget(unknown1E, 1, 3);
+	group4L->addWidget(unknown2E_label, 1, 4);
+	group4L->addWidget(unknown2E, 1, 5);
 
 	QGridLayout *layout = new QGridLayout(ret);
 	layout->addWidget(ruleE_list, 0, 0);
 	layout->addWidget(group1, 0, 1);
 	layout->addWidget(group2, 0, 2);
 	layout->addWidget(group3, 1, 0, 1, 4);
-	layout->setRowStretch(2, 1);
+	layout->addWidget(group4, 2, 0, 1, 4);
+	layout->setRowStretch(3, 1);
 	layout->setColumnStretch(3, 1);
 
 	return ret;
@@ -389,11 +416,14 @@ void TTriadEditor::fillPage()
 	setCurrentIndex(last_regionE, data->field.tt_lastregion[0]);
 	setCurrentIndex(last2_regionE, data->field.tt_lastregion[1]);
 	setCurrentIndex(queenE, data->field.tt_cardqueen_location);
+	setCurrentIndex(traderule_queenE, data->field.tt_curtraderulequeen);
+	setCurrentIndex(ccE, data->field.tt_cc_quest);
 	traderatingE->setValue(data->field.tt_traderating);
 	setCurrentIndex(traderating_regionE, data->field.tt_traderating_region);
 	ttvictorycountE->setValue(data->ttcards.tt_victory_count);
 	ttdefeatcountE->setValue(data->ttcards.tt_defeat_count);
 	ttegalitycountE->setValue(data->ttcards.tt_egality_count);
+	ttbguvictorycountE->setValue(data->field.tt_bgu_victory_count);
 	ttdegenerationE->setValue(data->field.tt_degeneration);
 	setCurrentIndex(ttcardqueenquestE, data->field.tt_cardqueen_quest);
 	unknown1E->setValue(data->ttcards.u2);
@@ -453,18 +483,21 @@ void TTriadEditor::savePage()
 		}
 	}
 	saveRules(ruleE_list->currentRow());
-	data->field.tt_lastregion[0] = last_regionE->itemData(last_regionE->currentIndex()).toInt();
-	data->field.tt_lastregion[1] = last2_regionE->itemData(last2_regionE->currentIndex()).toInt();
-	data->field.tt_cardqueen_location = queenE->itemData(queenE->currentIndex()).toInt();
-	data->field.tt_traderating = traderatingE->value();
-	data->field.tt_traderating_region = traderating_regionE->itemData(traderating_regionE->currentIndex()).toInt();
-	data->ttcards.tt_victory_count = ttvictorycountE->value();
-	data->ttcards.tt_defeat_count = ttdefeatcountE->value();
-	data->ttcards.tt_egality_count = ttegalitycountE->value();
-	data->field.tt_degeneration = ttdegenerationE->value();
-	data->field.tt_cardqueen_quest = ttcardqueenquestE->itemData(ttcardqueenquestE->currentIndex()).toInt();
-	data->ttcards.u2 = unknown1E->value();
-	data->ttcards.u3 = unknown2E->value();
+	data->field.tt_lastregion[0] = quint8(last_regionE->itemData(last_regionE->currentIndex()).toInt());
+	data->field.tt_lastregion[1] = quint8(last2_regionE->itemData(last2_regionE->currentIndex()).toInt());
+	data->field.tt_cardqueen_location = quint8(queenE->itemData(queenE->currentIndex()).toInt());
+	data->field.tt_cc_quest = quint8(ccE->itemData(ccE->currentIndex()).toInt());
+	data->field.tt_curtraderulequeen = quint8(traderule_queenE->itemData(traderule_queenE->currentIndex()).toInt());
+	data->field.tt_traderating = quint8(traderatingE->value());
+	data->field.tt_traderating_region = quint8(traderating_regionE->itemData(traderating_regionE->currentIndex()).toInt());
+	data->ttcards.tt_victory_count = quint16(ttvictorycountE->value());
+	data->ttcards.tt_defeat_count = quint16(ttdefeatcountE->value());
+	data->ttcards.tt_egality_count = quint16(ttegalitycountE->value());
+	data->field.tt_bgu_victory_count = quint8(ttbguvictorycountE->value());
+	data->field.tt_degeneration = quint8(ttdegenerationE->value());
+	data->field.tt_cardqueen_quest = quint8(ttcardqueenquestE->itemData(ttcardqueenquestE->currentIndex()).toInt());
+	data->ttcards.u2 = quint16(unknown1E->value());
+	data->ttcards.u3 = quint16(unknown2E->value());
 }
 
 void TTriadEditor::saveRules(int id)

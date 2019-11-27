@@ -212,7 +212,7 @@ QWidget *GfEditor::buildPage2()
 void GfEditor::fillPage()
 {
 	savePage();
-	this->id = gfListe->currentRow();
+	this->id = quint8(gfListe->currentRow());
 
 	for(quint8 i=0 ; i<16 ; ++i)
 	{
@@ -404,7 +404,7 @@ void GfEditor::remove_C()
 		liste2->scrollToItem(item);
 		liste2->setCurrentItem(item);
 	}
-	GF_SET_FORGOTTEN(*gf_data, forgotten & 0xFFFF);
+	GF_SET_FORGOTTEN(*gf_data, forgotten & 0xFFFFFF);
 	setCompleteAbility(abilityID, false);
 }
 

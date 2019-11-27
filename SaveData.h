@@ -42,7 +42,7 @@
 #endif
 
 #define GF_GET_FORGOTTEN(data) \
-	((data).forgotten1 | ((data).forgotten2 << 8) | ((data).forgotten3 << 16))
+	quint32((data).forgotten1 | ((data).forgotten2 << 8) | ((data).forgotten3 << 16))
 
 #define GF_SET_FORGOTTEN(data, forgotten)			\
 	(data).forgotten1 = forgotten & 0xFF;				\
@@ -63,8 +63,8 @@ struct GFORCES//68
 	quint16 KOs;
 	quint8 learning;
 	quint8 forgotten1;// 22 + 2 unused
-	quint8 forgotten2;// 22 + 2 unused
-	quint8 forgotten3;// 22 + 2 unused
+	quint8 forgotten2;
+	quint8 forgotten3;
 });
 
 PACK(
@@ -186,7 +186,7 @@ struct ITEMS//428
 PACK(
 struct MISC2//144
 {
-	quint32 game_time;
+    quint32 game_time; // var75 (in battle scripts)
 	quint32 countdown;
 	// Battle vars (75)
 	quint32 u1;
@@ -279,25 +279,33 @@ struct FIELD//1024
 {
 	quint16 game_moment;// var256 in field scripts
 	quint8 ward_unused;// unused text at gpbigin2
-	quint8 u1[2];
+	quint8 unused1[2];
 	quint8 save_flag;
-	quint8 u2[10];
+	quint8 unused2[2];
+	quint8 wm_related[7];
+	quint8 unused3;
 	quint8 tt_rules[8];
 	quint8 tt_traderules[8];
 	quint8 tt_lastrules[2];
 	quint8 tt_lastregion[2];
-	quint8 u3;// Unused in save
-	quint8 tt_currules;// Unused in save
-	quint8 tt_curtraderule;// Unused in save
+	quint8 tt_new_rules_tmp;// Unused in save
+	quint8 tt_new_trade_rules_tmp;// Unused in save
+	quint8 tt_add_this_rule_queen_tmp;// Unused in save
 	quint8 tt_cardqueen_location;
 	quint8 tt_traderating_region;
 	quint8 tt_traderating;
 	quint8 tt_degeneration;
 	quint8 tt_curtraderulequeen;
 	quint8 tt_cardqueen_quest;
-	quint8 u4[3];
-	quint16 timber_maniacs;
-	quint8 u7[974];//			(4285=tt club cc|4286=tt victory count BGU)
+	quint8 unused4[3];
+	quint16 timber_maniacs; // var304 in field scripts
+	quint8 u1[168];
+	quint8 tt_players_bgu_dialogs1; // first cards BGU|CC Ragnarok init CD4|CC Ragnarok Joker|CC Ragnarok Quistis
+	quint8 tt_players_bgu_dialogs2; // kadowaki 1|kadowaki 2|joker in prison|joker BGU|joker BGU CC|dormitory to Quistis night|Zell with cards
+	quint8 tt_players_bgu_dialogs3; // CC Jack 1|CC Jack 2|CC Clover about Jack|CC Diamonds|CC Spades|CC Shu|Nida about Shu in CC|Running Child is alive!
+	quint8 tt_cc_quest; // Jack | Clover | Spades | Shu | Diamonds
+	quint8 tt_bgu_victory_count;
+	quint8 u2[801];
 });
 
 PACK(
