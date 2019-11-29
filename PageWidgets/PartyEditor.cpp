@@ -61,7 +61,18 @@ void PartyEditor::buildWidget()
 
 	QGroupBox *positionGBE = new QGroupBox(tr("Position"), this);
 
+	presetPosE = new QComboBox(positionGBE);
+	presetPosE->addItem(tr("Position prédéfinie"));
+	for(i=0 ; i<21 ; ++i) {
+		Point p = Data::wmLocation[i];
+		presetPosE->addItem(Data::cities().at(p.city), quint32(p.x) | quint32(p.y) << 16);
+		presetPosE->setItemData(i + 1, quint32(p.z) | quint32(p.dir) << 16, Qt::UserRole + 1);
+	}
+
+	connect(presetPosE, SIGNAL(currentIndexChanged(int)), SLOT(setPosPresetFromIndex(int)));
+
 	QGridLayout *positionGBL = new QGridLayout(positionGBE);
+	positionGBL->addWidget(presetPosE, 0, 0);
 	positionGBL->addWidget(new QLabel(tr("X :")), 0, 1);
 	positionGBL->addWidget(new QLabel(tr("Y :")), 0, 2);
 	positionGBL->addWidget(new QLabel(tr("Triangle ID :")), 0, 3);
@@ -91,6 +102,8 @@ void PartyEditor::buildWidget()
 	moduleE->addItem(tr("Terrain"), 1);
 	moduleE->addItem(tr("Mappemonde"), 2);
 	moduleE->addItem(tr("Combat"), 3);
+
+	connect(moduleE, SIGNAL(currentIndexChanged(int)), SLOT(setPosPresetsVisibilityFromModuleIndex(int)));
 
 	mapE = new QComboBox(positionGBE);
 	mapE->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
@@ -172,4 +185,35 @@ void PartyEditor::savePage()
 	data->misc2.location = mapE->itemData(mapE->currentIndex()).toInt();
 	data->misc2.location_last = lastMapE->itemData(lastMapE->currentIndex()).toInt();
 
+}
+
+void PartyEditor::setPosPresetFromIndex(int index)
+{
+	if (index == 0) {
+		return;
+	}
+
+	qint32 data = presetPosE->itemData(index).toInt(),
+	        data2 = presetPosE->itemData(index, Qt::UserRole + 1).toInt(),
+	        x = data & 0xFFFF, y = (data >> 16) & 0xFFFF,
+	        z = data2 & 0xFFFF, dir = (data2 >> 16) & 0xFFFF;
+
+	xE.first()->setValue(x);
+	yE.first()->setValue(y);
+	idE.first()->setValue(z);
+	dirE.first()->setValue(dir);
+
+	for (int i=1 ; i < xE.size(); ++i) {
+		xE.at(i)->setValue(0);
+		yE.at(i)->setValue(0);
+		idE.at(i)->setValue(0);
+		dirE.at(i)->setValue(0);
+	}
+
+	presetPosE->setCurrentIndex(0);
+}
+
+void PartyEditor::setPosPresetsVisibilityFromModuleIndex(int index)
+{
+	presetPosE->setVisible(index == 2);
 }

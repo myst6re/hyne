@@ -26,6 +26,7 @@ Abilities Data::_abilities;
 Magics Data::_magic;
 Items Data::_items;
 Locations Data::_locations;
+Cities Data::_cities;
 Weapons Data::_weapons;
 Names Data::_names;
 GfNames Data::_gfnames;
@@ -134,6 +135,18 @@ void Locations::fillList()
 		  << QObject::tr("Cockpit - Hydre","208") << QObject::tr("Siège passager - Hydre","209") << QObject::tr("Couloir - Hydre","210") << QObject::tr("Hangar - Hydre","211") << QObject::tr("Accès - Hydre","212") << QObject::tr("Air Room - Hydre","213") << QObject::tr("Salle de pression - Hydre","214") << QObject::tr("Centre de recherches Deep Sea","215") << QObject::tr("Laboratoire - Deep Sea","216") << QObject::tr("Salle de travail - Deep Sea","217") << QObject::tr("Fouilles - Deep Sea","218") << QObject::tr("Salle de contrôle - Base lunaire","219") << QObject::tr("Centre médical - Base lunaire","220") << QObject::tr("Pod - Base lunaire","221") << QObject::tr("Dock - Base lunaire","222") << QObject::tr("Passage - Base lunaire","223")
 		  << QObject::tr("Vestiaire - Base lunaire","224") << QObject::tr("Habitats - Base lunaire","225") << QObject::tr("Hyper Espace","226") << QObject::tr("Forêt Chocobo","227") << QObject::tr("Jungle","228") << QObject::tr("Citadelle d'Ultimecia - Vestibule","229") << QObject::tr("Citadelle d'Ultimecia - Hall","230") << QObject::tr("Citadelle d'Ultimecia - Terrasse","231") << QObject::tr("Citadelle d'Ultimecia - Cave","232") << QObject::tr("Citadelle d'Ultimecia - Couloir","233") << QObject::tr("Elévateur - Citadelle","234") << QObject::tr("Escalier - Citadelle d'Ultimecia","235") << QObject::tr("Salle du trésor - Citadelle","236") << QObject::tr("Salle de rangement - Citadelle","237") << QObject::tr("Citadelle d'Ultimecia - Galerie","238") << QObject::tr("Citadelle d'Ultimecia - Ecluse","239")
 		  << QObject::tr("Citadelle - Armurerie","240") << QObject::tr("Citadelle d'Ultimecia - Prison","241") << QObject::tr("Citadelle d'Ultimecia - Fossé","242") << QObject::tr("Citadelle d'Ultimecia - Jardin","243") << QObject::tr("Citadelle d'Ultimecia - Chapelle","244") << QObject::tr("Clocher - Citadelle d'Ultimecia","245") << QObject::tr("Chambre d'Ultimecia - Citadelle","246") << QString("???") << QObject::tr("Citadelle d'Ultimecia","248") << QObject::tr("Salle d'initiation","249") << QObject::tr("Reine des cartes","250") << QString("???") << QString("???") << QString("???") << QString("???") << QString("???");
+}
+
+void Cities::fillList()
+{
+	_list << QObject::tr("Balamb City") << QObject::tr("Deling City") << QObject::tr("Shumi Village")
+	      << QObject::tr("Winhill") << QObject::tr("Dollet") << QObject::tr("Horizon")
+	      << QObject::tr("Lunar Gate") << QObject::tr("Esthar City") << QObject::tr("Timber")
+	      << QObject::tr("BGU") << QObject::tr("GGU") << QObject::tr("TGU") << QObject::tr("Ruines de Centra")
+	      << QObject::tr("Orphelinat") << QObject::tr("Salt Lake") << QObject::tr("Forêt des novices")
+	      << QObject::tr("Forêt Classica") << QObject::tr("Forêt de l'errance") << QObject::tr("Sanctuaire des chocobos")
+	      << QObject::tr("Forêt clôturée") << QObject::tr("Forêt fun") << QObject::tr("Forêt de la solitude")
+	      << QObject::tr("Pod de secours");
 }
 
 void Weapons::fillList()
@@ -257,6 +270,7 @@ void Data::reload()
 	_magic.clear();
 	_items.clear();
 	_locations.clear();
+	_cities.clear();
 	_weapons.clear();
 	_names.clear();
 	_gfnames.clear();
@@ -906,6 +920,31 @@ const int Data::drawPointsLoc[256] =
 	51, 51, 51, 51, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
 	19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19,
 	19, 19, 19, 19, 19, 1, 1, 15, 20, 43, 43, 43, 43, 47, 48, -1
+};
+
+const Point Data::wmLocation[21] =
+{
+	P(0, 0, 0, 0, Cities::Balamb),
+	P(3680, 99, 412, 7, Cities::Dollet),
+	P(21744, 113, 1176, 6, Cities::Timber),
+	P(22576, 97, 898, 6, Cities::GGU),
+	P(15488, 80, 2256, 8, Cities::Deling),
+	P(4259, 258, 152, 64, Cities::Winhill),
+	P(-897, -847, 49, 192, Cities::CentraRuins),
+	P(-139, -882, 12, 0, Cities::Orphanage),
+	P(-1244, -2127, 481, 232, Cities::TGU),
+	P(-35, -5853, 5, 0, Cities::ShumiVillage),
+	P(724, -869, 163, 128, Cities::SaltLake),
+	P(12, 384, 22, 97, Cities::Esthar),
+	P(10215, -8591, 64, 0, Cities::LunarGate),
+	P(-241, -3315, 150, 0, Cities::ChocoboBeginner),
+	P(147, -2467, 47, 0, Cities::ChocoboBasics),
+	P(390, -3239, 81, 16, Cities::ChocoboRoaming),
+	P(-63, -1764, 67, 0, Cities::ChocoboSanctuary),
+	P(-181, -1594, 20, 0, Cities::ChocoboEnclosed),
+	P(-708, -593, 52, 224, Cities::ChocoboFun),
+	P(-200, -2292, 138, 0, Cities::ChocoboSolitude),
+	P(210, -8585, 19, 0, Cities::RescuePod)
 };
 
 QStringList Data::maplist()

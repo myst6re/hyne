@@ -104,6 +104,40 @@ protected:
 	virtual void fillList();
 };
 
+class Cities : public DataList
+{
+public:
+	enum City {
+		Balamb,
+		Deling,
+		ShumiVillage,
+		Winhill,
+		Dollet,
+		Horizon,
+		LunarGate,
+		Esthar,
+		Timber,
+		BGU,
+		GGU,
+		TGU,
+		CentraRuins,
+		Orphanage,
+		SaltLake,
+		ChocoboBeginner,
+		ChocoboBasics,
+		ChocoboRoaming,
+		ChocoboSanctuary,
+		ChocoboEnclosed,
+		ChocoboFun,
+		ChocoboSolitude,
+		RescuePod
+	};
+
+	Cities() {}
+protected:
+	virtual void fillList();
+};
+
 class Weapons : public DataList
 {
 public:
@@ -181,6 +215,21 @@ private:
 	Names *_names;
 };
 
+struct Point {
+	inline Point(qint16 x, qint16 y, qint16 z, qint16 dir, Cities::City city) {
+		this->x = x;
+		this->y = y;
+		this->z = z;
+		this->dir = dir;
+		this->city = quint8(city);
+	}
+	qint16 x, y, z, dir;
+	quint8 city;
+};
+
+#define P(x, y, z, dir, city) \
+	Point(x, y, z, dir, city)
+
 class Data
 {
 public:
@@ -190,6 +239,7 @@ public:
 	static const cInt momentLocation[403];
 	static const int drawPoints[256];
 	static const int drawPointsLoc[256];
+	static const Point wmLocation[21];
 
 	static void reload();
 
@@ -197,6 +247,7 @@ public:
 	static inline Magics &magics() { return _magic; }
 	static inline Items &items() { return _items; }
 	static inline Locations &locations() { return _locations; }
+	static inline Cities &cities() { return _cities; }
 	static inline Weapons &weapons() { return _weapons; }
 	static inline Names &names() { return _names; }
 	static inline GfNames &gfnames() { return _gfnames; }
@@ -216,6 +267,7 @@ private:
 	static Magics _magic;
 	static Items _items;
 	static Locations _locations;
+	static Cities _cities;
 	static Weapons _weapons;
 	static Names _names;
 	static GfNames _gfnames;

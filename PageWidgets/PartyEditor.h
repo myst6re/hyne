@@ -31,13 +31,15 @@ public:
 public slots:
 	void fillPage();
 	void savePage();
+	void setPosPresetFromIndex(int index);
+	void setPosPresetsVisibilityFromModuleIndex(int index);
 protected:
 	void buildWidget();
 private:
 	QList<QComboBox *> partyE, partySortE;
 	QCheckBox *dreamE;
 	QList<QSpinBox *> xE, yE, idE, dirE;
-	QComboBox *moduleE, *mapE, *lastMapE;
+	QComboBox *moduleE, *mapE, *lastMapE, *presetPosE;
 };
 
 #endif // DEF_PARTYEDITOR

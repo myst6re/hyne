@@ -302,8 +302,7 @@ QWidget *TTriadEditor::buildPage2()
 
 	queenE = new QComboBox(group3);
 	queenE->addItem(tr("Nulle part"), 0);
-	QStringList queenCities;
-	queenCities << tr("Balamb City") << tr("Deling City") << tr("Shumi village") << tr("Winhill") << tr("Dollet") << tr("Horizon") << tr("Lunar Gate") << tr("Esthar City");
+	QStringList queenCities = Data::cities().list().mid(0, 8);
 	i=1;
 	foreach(const QString &queenCity, queenCities)
 		queenE->addItem(queenCity, i++);
