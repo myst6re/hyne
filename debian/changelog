@@ -1,4 +1,14 @@
-hyne (1.9.2) precise; urgency=low
+hyne (1.10.0) precise; urgency=low
+
+  * Fixing slot detection on modern Windows (2000 version)
+  * Adding uncompressed save format
+  * Fixing GF forget ability
+  * Adding Queen trade rule, CC quest and BGU TT victory count
+  * Adding worldmap position presets
+
+ -- Jérôme Arzel <myst6re@gmail.com> Sat, 30 Nov 2019 22:46:13 +0200
+
+hyne (1.9.3) precise; urgency=low
 
   * Adding button to set character bonuses to max
   * Fix compilation errors with Qt 5.10

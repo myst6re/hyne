@@ -4,7 +4,7 @@ if(win32|macx) {
 } else {
     TARGET = hyne
 }
-VERSION = 1.9.3
+VERSION = 1.10.0b
 
 DEFINES += PROGVERSION=$$VERSION PROGNAME=Hyne
 

@@ -1978,59 +1978,64 @@ By default Hyne attempts to automatically sign saves, but in case of error, you 
     </message>
     <message>
         <location filename="PageWidgets/PartyEditor.cpp" line="65"/>
+        <source>Position prédéfinie</source>
+        <translation>Presets</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/PartyEditor.cpp" line="76"/>
         <source>X :</source>
         <translation>X:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PartyEditor.cpp" line="66"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="77"/>
         <source>Y :</source>
         <translation>Y:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PartyEditor.cpp" line="67"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="78"/>
         <source>Triangle ID :</source>
         <translation>Triangle ID:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PartyEditor.cpp" line="68"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="79"/>
         <source>Direction :</source>
         <translation>Direction:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PartyEditor.cpp" line="72"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="83"/>
         <source>Membre %1 :</source>
         <translation>Member %1:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PartyEditor.cpp" line="90"/>
-        <location filename="PageWidgets/PartyEditor.cpp" line="91"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="101"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="102"/>
         <source>Terrain</source>
         <translation>Field</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PartyEditor.cpp" line="92"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="103"/>
         <source>Mappemonde</source>
         <translation>Worldmap</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PartyEditor.cpp" line="93"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="104"/>
         <source>Combat</source>
         <translation>Battle</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PartyEditor.cpp" line="111"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="124"/>
         <source>Terrain courant</source>
         <translation>Current field</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PartyEditor.cpp" line="113"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="126"/>
         <source>Terrain précédent</source>
         <translation>Previous field</translation>
     </message>
     <message>
-        <location filename="PageWidgets/PartyEditor.cpp" line="141"/>
-        <location filename="PageWidgets/PartyEditor.cpp" line="148"/>
-        <location filename="PageWidgets/PartyEditor.cpp" line="155"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="154"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="161"/>
+        <location filename="PageWidgets/PartyEditor.cpp" line="168"/>
         <source>Inconnu (%1)</source>
         <translation>Unknown (%1)</translation>
     </message>
@@ -2531,2175 +2536,2175 @@ By default Hyne attempts to automatically sign saves, but in case of error, you 
 <context>
     <name>QObject</name>
     <message>
-        <location filename="Data.cpp" line="41"/>
+        <location filename="Data.cpp" line="42"/>
         <source>Vgr-A</source>
         <translation>Str-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="41"/>
+        <location filename="Data.cpp" line="42"/>
         <source>Dfs-A</source>
         <translation>Vit-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="41"/>
+        <location filename="Data.cpp" line="42"/>
         <source>Mgi-A</source>
         <translation>Mag-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="41"/>
+        <location filename="Data.cpp" line="42"/>
         <source>Psy-A</source>
         <translation>Spr-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="41"/>
+        <location filename="Data.cpp" line="42"/>
         <source>HP-A</source>
         <translation>HP-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="42"/>
+        <location filename="Data.cpp" line="43"/>
         <source>Vts-A</source>
         <translation>Spd-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="42"/>
+        <location filename="Data.cpp" line="43"/>
         <source>Esq-A</source>
         <translation>Eva-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="42"/>
+        <location filename="Data.cpp" line="43"/>
         <source>Prc-A</source>
         <translation>Hit-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="42"/>
+        <location filename="Data.cpp" line="43"/>
         <source>Chc-A</source>
         <translation>Luck-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="42"/>
+        <location filename="Data.cpp" line="43"/>
         <source>Atq-Élé-A</source>
         <translation>Elem-Atk-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="43"/>
+        <location filename="Data.cpp" line="44"/>
         <source>Atq-Mtl-A</source>
         <translation>ST-Atk-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="43"/>
+        <location filename="Data.cpp" line="44"/>
         <source>Déf-Élé-A</source>
         <translation>Elem-Def-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="43"/>
+        <location filename="Data.cpp" line="44"/>
         <source>Déf-Mtl-A</source>
         <translation>ST-Def-J</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="43"/>
+        <location filename="Data.cpp" line="44"/>
         <source>Déf-ÉléX2</source>
         <translation>Elem-Defx2</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="43"/>
+        <location filename="Data.cpp" line="44"/>
         <source>Déf-ÉléX4</source>
         <translation>Elem-Defx4</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="44"/>
+        <location filename="Data.cpp" line="45"/>
         <source>Déf-Mtl-Ax2</source>
         <translation>ST-Def-Jx2</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="44"/>
+        <location filename="Data.cpp" line="45"/>
         <source>Déf-Mtl-Ax4</source>
         <translation>ST-Def-Jx4</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="44"/>
+        <location filename="Data.cpp" line="45"/>
         <source>CapacitéX3</source>
         <translation>Abilityx3</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="44"/>
+        <location filename="Data.cpp" line="45"/>
         <source>CapacitéX4</source>
         <translation>Abilityx4</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="44"/>
+        <location filename="Data.cpp" line="45"/>
         <source>Magie</source>
         <translation>Magic</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="45"/>
+        <location filename="Data.cpp" line="46"/>
         <source>G-Force</source>
         <translation>GF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="45"/>
+        <location filename="Data.cpp" line="46"/>
         <source>Voler</source>
         <translation>Draw</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="45"/>
+        <location filename="Data.cpp" line="46"/>
         <source>Objets</source>
         <translation>Item</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="45"/>
+        <location filename="Data.cpp" line="46"/>
         <source>Carte</source>
         <translation>Card</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="46"/>
+        <location filename="Data.cpp" line="47"/>
         <source>Châtiment</source>
         <translation>Doom</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="46"/>
+        <location filename="Data.cpp" line="47"/>
         <source>Mad Rush</source>
         <translation>Mad Rush</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="46"/>
+        <location filename="Data.cpp" line="47"/>
         <source>Traitement</source>
         <translation>Treatment</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="46"/>
+        <location filename="Data.cpp" line="47"/>
         <source>Défense</source>
         <translation>Defend</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="46"/>
+        <location filename="Data.cpp" line="47"/>
         <source>Combustion</source>
         <translation>Darkside</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="47"/>
+        <location filename="Data.cpp" line="48"/>
         <source>Arnica</source>
         <translation>Recover</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="47"/>
+        <location filename="Data.cpp" line="48"/>
         <source>Phagocyte</source>
         <translation>Absorb</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="47"/>
+        <location filename="Data.cpp" line="48"/>
         <source>Ranimer</source>
         <translation>Revive</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="47"/>
+        <location filename="Data.cpp" line="48"/>
         <source>Nv Moins</source>
         <translation>LV Down</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="47"/>
+        <location filename="Data.cpp" line="48"/>
         <source>Nv Plus</source>
         <translation>LV Up</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="48"/>
+        <location filename="Data.cpp" line="49"/>
         <source>Kamikaze</source>
         <translation>Kamikaze</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="48"/>
+        <location filename="Data.cpp" line="49"/>
         <source>Cannibale</source>
         <translation>Devour</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="48"/>
+        <location filename="Data.cpp" line="49"/>
         <source>Mini Kikou</source>
         <translation>MiniMog</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="48"/>
+        <location filename="Data.cpp" line="49"/>
         <source>HP+20%</source>
         <translation>HP+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="48"/>
+        <location filename="Data.cpp" line="49"/>
         <source>HP+40%</source>
         <translation>HP+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="49"/>
+        <location filename="Data.cpp" line="50"/>
         <source>HP+80%</source>
         <translation>HP+80%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="49"/>
+        <location filename="Data.cpp" line="50"/>
         <source>Vgr+20%</source>
         <translation>Str+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="49"/>
+        <location filename="Data.cpp" line="50"/>
         <source>Vgr+40%</source>
         <translation>Str+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="49"/>
+        <location filename="Data.cpp" line="50"/>
         <source>Vgr+60%</source>
         <translation>Str+60%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="49"/>
+        <location filename="Data.cpp" line="50"/>
         <source>Dfs+20%</source>
         <translation>Vit+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="50"/>
+        <location filename="Data.cpp" line="51"/>
         <source>Dfs+40%</source>
         <translation>Vit+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="50"/>
+        <location filename="Data.cpp" line="51"/>
         <source>Dfs+60%</source>
         <translation>Vit+60%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="50"/>
+        <location filename="Data.cpp" line="51"/>
         <source>Mgi+20%</source>
         <translation>Mag+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="50"/>
+        <location filename="Data.cpp" line="51"/>
         <source>Mgi+40%</source>
         <translation>Mag+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="50"/>
+        <location filename="Data.cpp" line="51"/>
         <source>Mgi+60%</source>
         <translation>Mag+60%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="51"/>
+        <location filename="Data.cpp" line="52"/>
         <source>Psy+20%</source>
         <translation>Spr+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="51"/>
+        <location filename="Data.cpp" line="52"/>
         <source>Psy+40%</source>
         <translation>Spr+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="51"/>
+        <location filename="Data.cpp" line="52"/>
         <source>Psy+60%</source>
         <translation>Spr+60%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="51"/>
+        <location filename="Data.cpp" line="52"/>
         <source>Vit+20%</source>
         <translation>Spd+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="51"/>
+        <location filename="Data.cpp" line="52"/>
         <source>Vit+40%</source>
         <translation>Spd+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="52"/>
+        <location filename="Data.cpp" line="53"/>
         <source>Esq+30%</source>
         <translation>Eva+30%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="52"/>
+        <location filename="Data.cpp" line="53"/>
         <source>Chc+50%</source>
         <translation>Luck+50%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="52"/>
+        <location filename="Data.cpp" line="53"/>
         <source>Piller</source>
         <translation>Mug</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="52"/>
+        <location filename="Data.cpp" line="53"/>
         <source>Schweitzer</source>
         <translation>Med Data</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="52"/>
+        <location filename="Data.cpp" line="53"/>
         <source>Amorce</source>
         <translation>Counter</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="53"/>
+        <location filename="Data.cpp" line="54"/>
         <source>Backlash</source>
         <translation>Return Damage</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="53"/>
+        <location filename="Data.cpp" line="54"/>
         <source>Empathie</source>
         <translation>Cover</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="53"/>
+        <location filename="Data.cpp" line="54"/>
         <source>Genki</source>
         <translation>Initiative</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="53"/>
+        <location filename="Data.cpp" line="54"/>
         <source>Atlas-HP</source>
         <translation>Move-HP Up</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="54"/>
+        <location filename="Data.cpp" line="55"/>
         <source>Auto-Carapace</source>
         <translation>Auto-Protect</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="55"/>
+        <location filename="Data.cpp" line="56"/>
         <source>Auto-Blindage</source>
         <translation>Auto-Shell</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="55"/>
+        <location filename="Data.cpp" line="56"/>
         <source>Auto-Boomerang</source>
         <translation>Auto-Reflect</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="55"/>
+        <location filename="Data.cpp" line="56"/>
         <source>Auto-Booster</source>
         <translation>Auto-Haste</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="55"/>
+        <location filename="Data.cpp" line="56"/>
         <source>Auto-Potion</source>
         <translation>Auto-Potion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="55"/>
+        <location filename="Data.cpp" line="56"/>
         <source>DoublEco</source>
         <translation>Expendx2-1</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="56"/>
+        <location filename="Data.cpp" line="57"/>
         <source>TriplEco</source>
         <translation>Expendx3-1</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="56"/>
+        <location filename="Data.cpp" line="57"/>
         <source>Prudence</source>
         <translation>Alert</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="56"/>
+        <location filename="Data.cpp" line="57"/>
         <source>Clairvoyance</source>
         <translation>Move-Find</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="56"/>
+        <location filename="Data.cpp" line="57"/>
         <source>Mi-Combat</source>
         <translation>Enc-Half</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="56"/>
+        <location filename="Data.cpp" line="57"/>
         <source>Freud</source>
         <comment>ability</comment>
         <translation>Ribbon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="57"/>
+        <location filename="Data.cpp" line="58"/>
         <source>No-Combat</source>
         <translation>Enc-None</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="57"/>
+        <location filename="Data.cpp" line="58"/>
         <source>Sensor</source>
         <translation>Rare Item</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="57"/>
+        <location filename="Data.cpp" line="58"/>
         <source>Invoc+10%</source>
         <translation>SumMag+10%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="57"/>
+        <location filename="Data.cpp" line="58"/>
         <source>Invoc+20%</source>
         <translation>SumMag+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="57"/>
+        <location filename="Data.cpp" line="58"/>
         <source>Invoc+30%</source>
         <translation>SumMag+30%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="58"/>
+        <location filename="Data.cpp" line="59"/>
         <source>Invoc+40%</source>
         <translation>SumMag+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="58"/>
+        <location filename="Data.cpp" line="59"/>
         <source>HP-GF+10%</source>
         <translation>GFHP+10%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="58"/>
+        <location filename="Data.cpp" line="59"/>
         <source>HP-GF+20%</source>
         <translation>GFHP+20%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="58"/>
+        <location filename="Data.cpp" line="59"/>
         <source>HP-GF+30%</source>
         <translation>GFHP+30%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="58"/>
+        <location filename="Data.cpp" line="59"/>
         <source>HP-GF+40%</source>
         <translation>GFHP+40%</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="59"/>
+        <location filename="Data.cpp" line="60"/>
         <source>Turbo</source>
         <translation>Boost</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="59"/>
+        <location filename="Data.cpp" line="60"/>
         <source>Souk</source>
         <translation>Haggle</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="59"/>
+        <location filename="Data.cpp" line="60"/>
         <source>Sentier</source>
         <translation>Sell-High</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="59"/>
+        <location filename="Data.cpp" line="60"/>
         <source>Connaisseur</source>
         <translation>Familiar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="59"/>
+        <location filename="Data.cpp" line="60"/>
         <source>Boutiques</source>
         <translation>Call Shop</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="60"/>
+        <location filename="Data.cpp" line="61"/>
         <source>Bazars</source>
         <translation>Junk Shop</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="60"/>
+        <location filename="Data.cpp" line="61"/>
         <source>Créa-Mgi-Cél</source>
         <translation>T Mag-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="60"/>
+        <location filename="Data.cpp" line="61"/>
         <source>Créa-Mgi-Gla</source>
         <translation>I Mag-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="60"/>
+        <location filename="Data.cpp" line="61"/>
         <source>Créa-Mgi-Inc</source>
         <translation>F Mag-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="60"/>
+        <location filename="Data.cpp" line="61"/>
         <source>Créa-Mgi-Méd</source>
         <translation>L Mag-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="61"/>
+        <location filename="Data.cpp" line="62"/>
         <source>Créa-Mgi-Temp</source>
         <translation>Time Mag-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="61"/>
+        <location filename="Data.cpp" line="62"/>
         <source>Créa-Mgi-Mtl</source>
         <translation>ST Mag-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="61"/>
+        <location filename="Data.cpp" line="62"/>
         <source>Créa-Mgi-Pro</source>
         <translation>Supt Mag-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="61"/>
+        <location filename="Data.cpp" line="62"/>
         <source>Créa-Mgi-Tab</source>
         <translation>Forbid Mag-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="61"/>
+        <location filename="Data.cpp" line="62"/>
         <source>Créa-Mgi-Thér</source>
         <translation>Recov Med-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="62"/>
+        <location filename="Data.cpp" line="63"/>
         <source>Créa-Mgi-Ana</source>
         <translation>ST Med-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="62"/>
+        <location filename="Data.cpp" line="63"/>
         <source>Créa-Balles</source>
         <translation>Ammo-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="62"/>
+        <location filename="Data.cpp" line="63"/>
         <source>Créa-Outils</source>
         <translation>Tool-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="62"/>
+        <location filename="Data.cpp" line="63"/>
         <source>Créa-Thér-Tab</source>
         <translation>Forbid Med-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="62"/>
+        <location filename="Data.cpp" line="63"/>
         <source>Créa-Thér-GF</source>
         <translation>GFRecov Med-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="63"/>
+        <location filename="Data.cpp" line="64"/>
         <source>Créa-Capa-GF</source>
         <translation>GFAbl Med-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="63"/>
+        <location filename="Data.cpp" line="64"/>
         <source>Créa-Mgi-Plus</source>
         <translation>Mid Mag-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="63"/>
+        <location filename="Data.cpp" line="64"/>
         <source>Créa-Mgi-Max</source>
         <translation>High Mag-RF</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="63"/>
+        <location filename="Data.cpp" line="64"/>
         <source>Soins NV +</source>
         <translation>Med LV Up</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="63"/>
+        <location filename="Data.cpp" line="64"/>
         <source>Mode Carte</source>
         <translation>Card Mod</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="68"/>
+        <location filename="Data.cpp" line="69"/>
         <source>Brasier</source>
         <translation>Fire</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="68"/>
+        <location filename="Data.cpp" line="69"/>
         <source>Brasier+</source>
         <translation>Fira</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="68"/>
+        <location filename="Data.cpp" line="69"/>
         <source>BrasierX</source>
         <translation>Firaga</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="68"/>
+        <location filename="Data.cpp" line="69"/>
         <source>Glacier</source>
         <translation>Blizzard</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="68"/>
+        <location filename="Data.cpp" line="69"/>
         <source>Glacier+</source>
         <translation>Blizzara</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="69"/>
+        <location filename="Data.cpp" line="70"/>
         <source>GlacierX</source>
         <translation>Blizzaga</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="69"/>
+        <location filename="Data.cpp" line="70"/>
         <source>Foudre</source>
         <translation>Thunder</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="69"/>
+        <location filename="Data.cpp" line="70"/>
         <source>Foudre+</source>
         <translation>Thundara</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="69"/>
+        <location filename="Data.cpp" line="70"/>
         <source>FoudreX</source>
         <translation>Thundaga</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="69"/>
+        <location filename="Data.cpp" line="70"/>
         <source>Rafale</source>
         <translation>Aero</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="69"/>
+        <location filename="Data.cpp" line="70"/>
         <source>Cyanure</source>
         <translation>Bio</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="70"/>
+        <location filename="Data.cpp" line="71"/>
         <source>Quart</source>
         <translation>Demi</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="70"/>
+        <location filename="Data.cpp" line="71"/>
         <source>Sidéral</source>
         <translation>Holy</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="70"/>
+        <location filename="Data.cpp" line="71"/>
         <source>Fournaise</source>
         <translation>Flare</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="70"/>
+        <location filename="Data.cpp" line="71"/>
         <source>Météore</source>
         <translation>Meteor</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="70"/>
+        <location filename="Data.cpp" line="71"/>
         <source>Quake</source>
         <translation>Quake</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="70"/>
+        <location filename="Data.cpp" line="71"/>
         <source>Tornade</source>
         <translation>Tornado</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="70"/>
+        <location filename="Data.cpp" line="71"/>
         <source>Ultima</source>
         <translation>Ultima</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="72"/>
         <source>Apocalypse</source>
         <translation>Apocalypse</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="72"/>
         <source>Soin</source>
         <translation>Cure</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="72"/>
         <source>Soin Max</source>
         <translation>Curaga</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="72"/>
         <source>Vie</source>
         <translation>Life</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="72"/>
         <source>Vie Max</source>
         <translation>Full-life</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="72"/>
         <source>Récup</source>
         <translation>Regen</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="72"/>
         <source>Esuna</source>
         <translation>Esuna</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="73"/>
         <source>Anti-sort</source>
         <translation>Dispel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="73"/>
         <source>Carapace</source>
         <translation>Protect</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="73"/>
         <source>Blindage</source>
         <translation>Shell</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="73"/>
         <source>Aura</source>
         <translation>Aura</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="73"/>
         <source>Double</source>
         <translation>Double</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="73"/>
         <source>Triple</source>
         <translation>Triple</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="73"/>
         <source>Booster</source>
         <translation>Haste</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Somni</source>
         <translation>Slow</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Cécité</source>
         <translation>Blind</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Folie</source>
         <translation>Confuse</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Morphée</source>
         <translation>Sleep</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Aphasie</source>
         <translation>Silence</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Mégalith</source>
         <translation>Break</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="73"/>
+        <location filename="Data.cpp" line="74"/>
         <source>Ankou</source>
         <translation>Death</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Saignée</source>
         <translation>Drain</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Supplice</source>
         <translation>Pain</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Furie</source>
         <translation>Berserk</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Décubitus</source>
         <translation>Float</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Zombie</source>
         <translation>Zombie</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Meltdown</source>
         <translation>Meltdown</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Scan</source>
         <translation>Scan</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="74"/>
+        <location filename="Data.cpp" line="75"/>
         <source>Joobu</source>
         <translation>Full-cure</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="75"/>
+        <location filename="Data.cpp" line="76"/>
         <source>Wall</source>
         <translation>Wall</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="75"/>
+        <location filename="Data.cpp" line="76"/>
         <source>Arkange</source>
         <translation>Rapture</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="75"/>
+        <location filename="Data.cpp" line="76"/>
         <source>The End</source>
         <translation>The End</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="75"/>
+        <location filename="Data.cpp" line="76"/>
         <source>Percent</source>
         <translation>Percent</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="75"/>
+        <location filename="Data.cpp" line="76"/>
         <source>Catastrophe</source>
         <translation>Catastrophe</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="81"/>
         <source>Potion</source>
         <translation>Potion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="81"/>
         <source>Potion+</source>
         <translation>Potion+</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="81"/>
         <source>Hypra-Potion</source>
         <translation>Hi-Potion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="81"/>
         <source>Maxi potion</source>
         <translation>Hi-Potion+</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="80"/>
+        <location filename="Data.cpp" line="81"/>
         <source>Potion totale</source>
         <translation>X-Potion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="82"/>
         <source>Méga potion</source>
         <translation>Mega-Potion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="82"/>
         <source>MT-Psy</source>
         <translation>Phoenix Down</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="82"/>
         <source>Maxi MT-Psy</source>
         <translation>Mega Phoenix</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="82"/>
         <source>Elixir</source>
         <translation>Elixir</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="82"/>
         <source>Mégalixir</source>
         <translation>Megalixir</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="81"/>
+        <location filename="Data.cpp" line="82"/>
         <source>Antidote</source>
         <translation>Antidote</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Défijeur</source>
         <translation>Soft</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Lasik</source>
         <translation>Eye Drops</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Bocca</source>
         <translation>Echo Screen</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Eau bénite</source>
         <translation>Holy Water</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Remède</source>
         <translation>Remedy</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="82"/>
+        <location filename="Data.cpp" line="83"/>
         <source>Remède +</source>
         <translation>Remedy+</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="84"/>
         <source>1-20-Syble</source>
         <translation>Hero-trial</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="84"/>
         <source>Invulnérable</source>
         <translation>Hero</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="84"/>
         <source>1-destructible</source>
         <translation>Holy War-trial</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="84"/>
         <source>Croisade</source>
         <translation>Holy War</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="83"/>
+        <location filename="Data.cpp" line="84"/>
         <source>Roc cosse</source>
         <translation>Shell Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="84"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Roc carapace</source>
         <translation>Protect Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="84"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Roc d&apos;Aura</source>
         <translation>Aura Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="84"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Roc mortel</source>
         <translation>Death Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="84"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Roc sacré</source>
         <translation>Holy Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="84"/>
+        <location filename="Data.cpp" line="85"/>
         <source>Roc flamboyant</source>
         <translation>Flare Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="85"/>
+        <location filename="Data.cpp" line="86"/>
         <source>Roc Météore</source>
         <translation>Meteor Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="85"/>
+        <location filename="Data.cpp" line="86"/>
         <source>Roc Ultima</source>
         <translation>Ultima Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="85"/>
+        <location filename="Data.cpp" line="86"/>
         <source>ChocoLégume</source>
         <translation>Gysahl Greens</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="85"/>
+        <location filename="Data.cpp" line="86"/>
         <source>Pen Pal</source>
         <translation>Friendship</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="86"/>
+        <location filename="Data.cpp" line="87"/>
         <source>Red Kross</source>
         <translation>Tent</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="86"/>
+        <location filename="Data.cpp" line="87"/>
         <source>Zoologie</source>
         <translation>Pet House</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="86"/>
+        <location filename="Data.cpp" line="87"/>
         <source>Saindoux</source>
         <translation>Cottage</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="86"/>
+        <location filename="Data.cpp" line="87"/>
         <source>Potion GF</source>
         <translation>G-Potion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="86"/>
+        <location filename="Data.cpp" line="87"/>
         <source>Potion GF +</source>
         <translation>G-Hi-Potion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="87"/>
+        <location filename="Data.cpp" line="88"/>
         <source>Mégapotion GF</source>
         <translation>G-Mega-Potion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="87"/>
+        <location filename="Data.cpp" line="88"/>
         <source>Sel marin</source>
         <translation>G-Returner</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="87"/>
+        <location filename="Data.cpp" line="88"/>
         <source>Carte baptême</source>
         <translation>Rename Card</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="87"/>
+        <location filename="Data.cpp" line="88"/>
         <source>Décapaciteur</source>
         <translation>Amnesia Greens</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="87"/>
+        <location filename="Data.cpp" line="88"/>
         <source>Livret HP-A</source>
         <translation>HP-J Scroll</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="88"/>
+        <location filename="Data.cpp" line="89"/>
         <source>Livret Vgr-A</source>
         <translation>Str-J Scroll</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="88"/>
+        <location filename="Data.cpp" line="89"/>
         <source>Livret Dfs-A</source>
         <translation>Vit-J Scroll</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="88"/>
+        <location filename="Data.cpp" line="89"/>
         <source>Livret Mgi-A</source>
         <translation>Mag-J Scroll</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="88"/>
+        <location filename="Data.cpp" line="89"/>
         <source>Livret Psy-A</source>
         <translation>Spr-J Scroll</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="88"/>
+        <location filename="Data.cpp" line="89"/>
         <source>Livret Vts-A</source>
         <translation>Spd-J Scroll</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="89"/>
+        <location filename="Data.cpp" line="90"/>
         <source>Livret Chc-A</source>
         <translation>Luck-J Scroll</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="89"/>
+        <location filename="Data.cpp" line="90"/>
         <source>Shadow</source>
         <translation>Aegis Amulet</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="89"/>
+        <location filename="Data.cpp" line="90"/>
         <source>Assaut Elé</source>
         <translation>Elem Atk</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="89"/>
+        <location filename="Data.cpp" line="90"/>
         <source>Antichoc Elé</source>
         <translation>Elem Guard</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="89"/>
+        <location filename="Data.cpp" line="90"/>
         <source>Assaut Mtl</source>
         <translation>Status Atk</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="90"/>
+        <location filename="Data.cpp" line="91"/>
         <source>Antichoc Mtl</source>
         <translation>Status Guard</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="90"/>
+        <location filename="Data.cpp" line="91"/>
         <source>Roc Rosette</source>
         <translation>Rosetta Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="90"/>
+        <location filename="Data.cpp" line="91"/>
         <source>GrimoMagic</source>
         <translation>Magic Scroll</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="90"/>
+        <location filename="Data.cpp" line="91"/>
         <source>GrimoForce</source>
         <translation>GF Scroll</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="90"/>
+        <location filename="Data.cpp" line="91"/>
         <source>GrimoVole</source>
         <translation>Draw Scroll</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="91"/>
+        <location filename="Data.cpp" line="92"/>
         <source>GrimObjets</source>
         <translation>Item Scroll</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="91"/>
+        <location filename="Data.cpp" line="92"/>
         <source>Vegas Feel</source>
         <translation>Gambler Spirit</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="91"/>
+        <location filename="Data.cpp" line="92"/>
         <source>Sanatorium</source>
         <translation>Healing Ring</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="91"/>
+        <location filename="Data.cpp" line="92"/>
         <source>MétemPsy</source>
         <translation>Phoenix Spirit</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="91"/>
+        <location filename="Data.cpp" line="92"/>
         <source>Bandage</source>
         <translation>Med Kit</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="91"/>
+        <location filename="Data.cpp" line="92"/>
         <source>Nova</source>
         <translation>Bomb Spirit</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="92"/>
+        <location filename="Data.cpp" line="93"/>
         <source>Régime</source>
         <translation>Hungry Cookpot</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="92"/>
+        <location filename="Data.cpp" line="93"/>
         <source>Kikkou Mania</source>
         <translation>Mog&apos;s Amulet</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="92"/>
+        <location filename="Data.cpp" line="93"/>
         <source>Samâdhi</source>
         <translation>Steel Pipe</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="92"/>
+        <location filename="Data.cpp" line="93"/>
         <source>Zodiaque</source>
         <translation>Star Fragment</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="92"/>
+        <location filename="Data.cpp" line="93"/>
         <source>Nuclide</source>
         <translation>Energy Crystal</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="92"/>
+        <location filename="Data.cpp" line="93"/>
         <source>Sacrum</source>
         <translation>Samantha Soul</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="93"/>
+        <location filename="Data.cpp" line="94"/>
         <source>Billet</source>
         <translation>Healing Mail</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="93"/>
+        <location filename="Data.cpp" line="94"/>
         <source>Armure d&apos;or</source>
         <translation>Gold Armor</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="93"/>
+        <location filename="Data.cpp" line="94"/>
         <source>Cuirasse</source>
         <translation>Diamond Armor</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="93"/>
+        <location filename="Data.cpp" line="94"/>
         <source>Anneau Récup</source>
         <translation>Regen Ring</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="93"/>
+        <location filename="Data.cpp" line="94"/>
         <source>Alliance</source>
         <translation>Giant&apos;s Ring</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="93"/>
+        <location filename="Data.cpp" line="94"/>
         <source>Vierge</source>
         <comment>item1</comment>
         <translation>Silver Mail</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="94"/>
+        <location filename="Data.cpp" line="95"/>
         <source>Bague Gaêa</source>
         <translation>Gaea&apos;s Ring</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="94"/>
+        <location filename="Data.cpp" line="95"/>
         <source>Vitamine</source>
         <translation>Strength Love</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="94"/>
+        <location filename="Data.cpp" line="95"/>
         <source>Sagou</source>
         <translation>Power Wrist</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="94"/>
+        <location filename="Data.cpp" line="95"/>
         <source>Sagette</source>
         <translation>Hyper Wrist</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="94"/>
+        <location filename="Data.cpp" line="95"/>
         <source>Coquille</source>
         <translation>Turtle Shell</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="94"/>
+        <location filename="Data.cpp" line="95"/>
         <source>Halcyon</source>
         <translation>Orihalcon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="95"/>
+        <location filename="Data.cpp" line="96"/>
         <source>Adamantine</source>
         <translation>Adamantine</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="95"/>
+        <location filename="Data.cpp" line="96"/>
         <source>Obole</source>
         <translation>Rune Armlet</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="95"/>
+        <location filename="Data.cpp" line="96"/>
         <source>Tao</source>
         <translation>Force Armlet</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="95"/>
+        <location filename="Data.cpp" line="96"/>
         <source>Lacan</source>
         <translation>Magic Armlet</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="95"/>
+        <location filename="Data.cpp" line="96"/>
         <source>Garcinord</source>
         <translation>Circlet</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="95"/>
+        <location filename="Data.cpp" line="96"/>
         <source>Merlin</source>
         <translation>Hypno Crown</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="96"/>
+        <location filename="Data.cpp" line="97"/>
         <source>Magax</source>
         <translation>Royal Crown</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="96"/>
+        <location filename="Data.cpp" line="97"/>
         <source>Injection</source>
         <translation>Jet Engine</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="96"/>
+        <location filename="Data.cpp" line="97"/>
         <source>SuperSonic</source>
         <translation>Rocket Engine</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="96"/>
+        <location filename="Data.cpp" line="97"/>
         <source>Pied de biche</source>
         <translation>Moon Curtain</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="96"/>
+        <location filename="Data.cpp" line="97"/>
         <source>Ecaille</source>
         <translation>Steel Curtain</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="96"/>
+        <location filename="Data.cpp" line="97"/>
         <source>Tasmania</source>
         <translation>Glow Curtain</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="97"/>
+        <location filename="Data.cpp" line="98"/>
         <source>Speedy</source>
         <translation>Accelerator</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="97"/>
+        <location filename="Data.cpp" line="98"/>
         <source>Réactor</source>
         <translation>Monk&apos;s Code</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="97"/>
+        <location filename="Data.cpp" line="98"/>
         <source>Protector</source>
         <translation>Knight&apos;s Code</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="97"/>
+        <location filename="Data.cpp" line="98"/>
         <source>Pasteur</source>
         <translation>Doc&apos;s Code</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="97"/>
+        <location filename="Data.cpp" line="98"/>
         <source>Manivelle</source>
         <translation>Hundred Needles</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="97"/>
+        <location filename="Data.cpp" line="98"/>
         <source>Trilogie</source>
         <translation>Three Stars</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="98"/>
+        <location filename="Data.cpp" line="99"/>
         <source>Balles normales</source>
         <translation>Normal Ammo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="98"/>
+        <location filename="Data.cpp" line="99"/>
         <source>Mitra-balles</source>
         <translation>Shotgun Ammo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="98"/>
+        <location filename="Data.cpp" line="99"/>
         <source>Dark balles</source>
         <translation>Dark Ammo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="98"/>
+        <location filename="Data.cpp" line="99"/>
         <source>Balles foudre</source>
         <translation>Fire Ammo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="98"/>
+        <location filename="Data.cpp" line="99"/>
         <source>Freud</source>
         <comment>item</comment>
         <translation>Ribbon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="99"/>
+        <location filename="Data.cpp" line="100"/>
         <source>Balles tornade</source>
         <translation>Demolition Ammo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="99"/>
+        <location filename="Data.cpp" line="100"/>
         <source>Balles véloces</source>
         <translation>Fast Ammo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="99"/>
+        <location filename="Data.cpp" line="100"/>
         <source>Balles anti-char</source>
         <translation>AP Ammo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="99"/>
+        <location filename="Data.cpp" line="100"/>
         <source>Balles Pulsar</source>
         <translation>Pulse Ammo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="99"/>
+        <location filename="Data.cpp" line="100"/>
         <source>Caillou magik</source>
         <translation>M-Stone Piece</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="100"/>
+        <location filename="Data.cpp" line="101"/>
         <source>Roc initiatique</source>
         <translation>Magic Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="100"/>
+        <location filename="Data.cpp" line="101"/>
         <source>Roc féerique</source>
         <translation>Wizard Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="100"/>
+        <location filename="Data.cpp" line="101"/>
         <source>Tentacule</source>
         <translation>Ochu Tentacle</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="100"/>
+        <location filename="Data.cpp" line="101"/>
         <source>Onde bénite</source>
         <translation>Healing Water</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="100"/>
+        <location filename="Data.cpp" line="101"/>
         <source>Plumage</source>
         <translation>Cockatrice Pinion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="101"/>
+        <location filename="Data.cpp" line="102"/>
         <source>Poudre Zombie</source>
         <translation>Zombie Powder</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="101"/>
+        <location filename="Data.cpp" line="102"/>
         <source>Bottes de 7km</source>
         <translation>Lightweight</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="101"/>
+        <location filename="Data.cpp" line="102"/>
         <source>9 inch nail</source>
         <translation>Sharp Spike</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="101"/>
+        <location filename="Data.cpp" line="102"/>
         <source>Enclume</source>
         <translation>Screw</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="101"/>
+        <location filename="Data.cpp" line="102"/>
         <source>Cimeterre</source>
         <translation>Saw Blade</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="102"/>
+        <location filename="Data.cpp" line="103"/>
         <source>Corne</source>
         <translation>Mesmerize Blade</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="102"/>
+        <location filename="Data.cpp" line="103"/>
         <source>Sanguine</source>
         <translation>Vampire Fang</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="102"/>
+        <location filename="Data.cpp" line="103"/>
         <source>EuFurysant</source>
         <translation>Fury Fragment</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="102"/>
+        <location filename="Data.cpp" line="103"/>
         <source>Epée trompeuse</source>
         <translation>Betrayal Sword</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="102"/>
+        <location filename="Data.cpp" line="103"/>
         <source>Poudre Morphée</source>
         <translation>Sleep Powder</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="103"/>
+        <location filename="Data.cpp" line="104"/>
         <source>Anneau de vie</source>
         <translation>Life Ring</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="103"/>
+        <location filename="Data.cpp" line="104"/>
         <source>Lochness</source>
         <translation>Dragon Fang</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="103"/>
+        <location filename="Data.cpp" line="104"/>
         <source>U-Boat</source>
         <translation>Spider Web</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="103"/>
+        <location filename="Data.cpp" line="104"/>
         <source>Etoile</source>
         <translation>Coral Fragment</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="103"/>
+        <location filename="Data.cpp" line="104"/>
         <source>Weirdo</source>
         <translation>Curse Spike</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="103"/>
+        <location filename="Data.cpp" line="104"/>
         <source>Gen-X</source>
         <translation>Black Hole</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="104"/>
+        <location filename="Data.cpp" line="105"/>
         <source>Fluide</source>
         <translation>Water Crystal</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="104"/>
+        <location filename="Data.cpp" line="105"/>
         <source>M-Double</source>
         <translation>Missile</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="104"/>
+        <location filename="Data.cpp" line="105"/>
         <source>House</source>
         <translation>Mystery Fluid</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="104"/>
+        <location filename="Data.cpp" line="105"/>
         <source>Chevrotine</source>
         <translation>Running Fire</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="104"/>
+        <location filename="Data.cpp" line="105"/>
         <source>Canicule</source>
         <translation>Inferno Fang</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="104"/>
+        <location filename="Data.cpp" line="105"/>
         <source>Germe</source>
         <translation>Malboro Tentacle</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="105"/>
+        <location filename="Data.cpp" line="106"/>
         <source>Rhône</source>
         <translation>Whisper</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="105"/>
+        <location filename="Data.cpp" line="106"/>
         <source>Rayon</source>
         <translation>Laser Cannon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="105"/>
+        <location filename="Data.cpp" line="106"/>
         <source>V-Choc</source>
         <translation>Power Generator</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="105"/>
+        <location filename="Data.cpp" line="106"/>
         <source>H-Espace</source>
         <translation>Dark Matter</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="105"/>
+        <location filename="Data.cpp" line="106"/>
         <source>Hot Rock</source>
         <translation>Bomb Fragment</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="105"/>
+        <location filename="Data.cpp" line="106"/>
         <source>Vierge</source>
         <comment>item2</comment>
         <translation>Barrier</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="106"/>
+        <location filename="Data.cpp" line="107"/>
         <source>Molaire</source>
         <translation>Red Fang</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="106"/>
+        <location filename="Data.cpp" line="107"/>
         <source>Blizzard</source>
         <translation>Arctic Wind</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="106"/>
+        <location filename="Data.cpp" line="107"/>
         <source>Nunatak</source>
         <translation>North Wind</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="106"/>
+        <location filename="Data.cpp" line="107"/>
         <source>Gemma Luce</source>
         <translation>Dynamo Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="106"/>
+        <location filename="Data.cpp" line="107"/>
         <source>Aigrette</source>
         <translation>Shear Feather</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="106"/>
+        <location filename="Data.cpp" line="107"/>
         <source>Canine</source>
         <translation>Venom Fang</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="107"/>
+        <location filename="Data.cpp" line="108"/>
         <source>Globe d&apos;acier</source>
         <translation>Steel Orb</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="107"/>
+        <location filename="Data.cpp" line="108"/>
         <source>Roc lunaire</source>
         <translation>Moon Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="107"/>
+        <location filename="Data.cpp" line="108"/>
         <source>Fémur</source>
         <translation>Dino Bone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="107"/>
+        <location filename="Data.cpp" line="108"/>
         <source>Aquilon</source>
         <translation>Windmill</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="107"/>
+        <location filename="Data.cpp" line="108"/>
         <source>Derme</source>
         <translation>Dragon Skin</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="107"/>
+        <location filename="Data.cpp" line="108"/>
         <source>Zygène</source>
         <translation>Fish Fin</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="108"/>
+        <location filename="Data.cpp" line="109"/>
         <source>Shark</source>
         <translation>Dragon Fin</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="108"/>
+        <location filename="Data.cpp" line="109"/>
         <source>Poudre Aphasie</source>
         <translation>Silence Powder</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="108"/>
+        <location filename="Data.cpp" line="109"/>
         <source>Venin</source>
         <translation>Poison Powder</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="108"/>
+        <location filename="Data.cpp" line="109"/>
         <source>Revenant</source>
         <translation>Dead Spirit</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="108"/>
+        <location filename="Data.cpp" line="109"/>
         <source>Désosseur </source>
         <translation>Chef&apos;s Knife</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="108"/>
+        <location filename="Data.cpp" line="109"/>
         <source>Kaktos</source>
         <translation>Cactus Thorn</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="109"/>
+        <location filename="Data.cpp" line="110"/>
         <source>Roc Shaman</source>
         <translation>Shaman Stone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="109"/>
+        <location filename="Data.cpp" line="110"/>
         <source>Essence</source>
         <translation>Fuel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="109"/>
+        <location filename="Data.cpp" line="110"/>
         <source>Comtesse Cochon</source>
         <translation>Girl Next Door</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="109"/>
+        <location filename="Data.cpp" line="110"/>
         <source>Missive d&apos;Edea</source>
         <translation>Sorceress&apos; Letter</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="109"/>
+        <location filename="Data.cpp" line="110"/>
         <source>Collier Chocobo</source>
         <translation>Chocobo&apos;s Tag</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="110"/>
+        <location filename="Data.cpp" line="111"/>
         <source>Collier chien</source>
         <translation>Pet Nametag</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="110"/>
+        <location filename="Data.cpp" line="111"/>
         <source>Bague du chef</source>
         <translation>Solomon Ring</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="110"/>
+        <location filename="Data.cpp" line="111"/>
         <source>Aladore</source>
         <translation>Magical Lamp</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="53"/>
+        <location filename="Data.cpp" line="54"/>
         <source>Bonus HP</source>
         <comment>ability</comment>
         <translation>HP Bonus</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="54"/>
+        <location filename="Data.cpp" line="55"/>
         <source>Bonus Vgr</source>
         <comment>ability</comment>
         <translation>Str Bonus</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="54"/>
+        <location filename="Data.cpp" line="55"/>
         <source>Bonus Dfs</source>
         <comment>ability</comment>
         <translation>Vit Bonus</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="54"/>
+        <location filename="Data.cpp" line="55"/>
         <source>Bonus Mgi</source>
         <comment>ability</comment>
         <translation>Mag Bonus</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="54"/>
+        <location filename="Data.cpp" line="55"/>
         <source>Bonus Psy</source>
         <comment>ability</comment>
         <translation>Spr Bonus</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="110"/>
+        <location filename="Data.cpp" line="111"/>
         <source>Bonus Hp</source>
         <comment>item</comment>
         <translation>HP Up</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="110"/>
+        <location filename="Data.cpp" line="111"/>
         <source>Bonus Vgr</source>
         <comment>item</comment>
         <translation>Str Up</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="111"/>
+        <location filename="Data.cpp" line="112"/>
         <source>Bonus Dfs</source>
         <comment>item</comment>
         <translation>Vit Up</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="111"/>
+        <location filename="Data.cpp" line="112"/>
         <source>Bonus Mgi</source>
         <comment>item</comment>
         <translation>Mag Up</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="111"/>
+        <location filename="Data.cpp" line="112"/>
         <source>Bonus Psy</source>
         <comment>item</comment>
         <translation>Spr Up</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="111"/>
+        <location filename="Data.cpp" line="112"/>
         <source>Bonus Vts</source>
         <comment>item</comment>
         <translation>Spd Up</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="111"/>
+        <location filename="Data.cpp" line="112"/>
         <source>Bonus Chc</source>
         <comment>item</comment>
         <translation>Luck Up</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="112"/>
+        <location filename="Data.cpp" line="113"/>
         <source>Amour bestial</source>
         <translation>LuvLuv G</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="112"/>
+        <location filename="Data.cpp" line="113"/>
         <source>F.F.F. Fév</source>
         <translation>Weapons Mon 1st</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="112"/>
+        <location filename="Data.cpp" line="113"/>
         <source>F.F.F. Mar</source>
         <translation>Weapons Mon Mar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="112"/>
+        <location filename="Data.cpp" line="113"/>
         <source>F.F.F. Avr</source>
         <translation>Weapons Mon Apr</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="112"/>
+        <location filename="Data.cpp" line="113"/>
         <source>F.F.F. Mai</source>
         <translation>Weapons Mon May</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="113"/>
+        <location filename="Data.cpp" line="114"/>
         <source>F.F.F. Jun</source>
         <translation>Weapons Mon Jun</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="113"/>
+        <location filename="Data.cpp" line="114"/>
         <source>F.F.F. Jul</source>
         <translation>Weapons Mon Jul</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="113"/>
+        <location filename="Data.cpp" line="114"/>
         <source>F.F.F. Aoû</source>
         <translation>Weapons Mon Aug</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="113"/>
+        <location filename="Data.cpp" line="114"/>
         <source>Baston mag 1</source>
         <translation>Combat King 001</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="113"/>
+        <location filename="Data.cpp" line="114"/>
         <source>Baston mag 2</source>
         <translation>Combat King 002</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="114"/>
+        <location filename="Data.cpp" line="115"/>
         <source>Baston mag 3</source>
         <translation>Combat King 003</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="114"/>
+        <location filename="Data.cpp" line="115"/>
         <source>Baston mag 4</source>
         <translation>Combat King 004</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="114"/>
+        <location filename="Data.cpp" line="115"/>
         <source>Baston mag 5</source>
         <translation>Combat King 005</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="114"/>
+        <location filename="Data.cpp" line="115"/>
         <source>L&apos;A D bêtes 1</source>
         <translation>Pet Pals Vol.1</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="114"/>
+        <location filename="Data.cpp" line="115"/>
         <source>L&apos;A D bêtes 2</source>
         <translation>Pet Pals Vol.2</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="115"/>
+        <location filename="Data.cpp" line="116"/>
         <source>L&apos;A D bêtes 3</source>
         <translation>Pet Pals Vol.3</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="115"/>
+        <location filename="Data.cpp" line="116"/>
         <source>L&apos;A D bêtes 4</source>
         <translation>Pet Pals Vol.4</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="115"/>
+        <location filename="Data.cpp" line="116"/>
         <source>L&apos;A D bêtes 5</source>
         <translation>Pet Pals Vol.5</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="115"/>
+        <location filename="Data.cpp" line="116"/>
         <source>L&apos;A D bêtes 6</source>
         <translation>Pet Pals Vol.6</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="115"/>
+        <location filename="Data.cpp" line="116"/>
         <source>Occult Fan I</source>
         <translation>Occult Fan I</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="116"/>
+        <location filename="Data.cpp" line="117"/>
         <source>Occult Fan II</source>
         <translation>Occult Fan II</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="116"/>
+        <location filename="Data.cpp" line="117"/>
         <source>Occult Fan III</source>
         <translation>Occult Fan III</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="116"/>
+        <location filename="Data.cpp" line="117"/>
         <source>Occult Fan IV</source>
         <translation>Occult Fan IV</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="154"/>
         <source>Pistolame</source>
         <translation>Revolver</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="154"/>
         <source>Nacre Blade</source>
         <translation>Shear Trigger</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="154"/>
         <source>Dragon Blade</source>
         <translation>Cutting Trigger</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="154"/>
         <source>Sabreur</source>
         <translation>Flame Saber</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="154"/>
         <source>Katana</source>
         <translation>Twin Lance</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="154"/>
         <source>Kendo</source>
         <translation>Punishment</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="141"/>
+        <location filename="Data.cpp" line="154"/>
         <source>Lionheart</source>
         <translation>Lion Heart</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="142"/>
+        <location filename="Data.cpp" line="155"/>
         <source>Metal Gloves</source>
         <translation>Metal Knuckle</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="142"/>
+        <location filename="Data.cpp" line="155"/>
         <source>Maverick</source>
         <translation>Maverick</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="142"/>
+        <location filename="Data.cpp" line="155"/>
         <source>Gauntlets</source>
         <translation>Gauntlet</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="142"/>
+        <location filename="Data.cpp" line="155"/>
         <source>Ehrgeiz</source>
         <translation>Ehrgeiz</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="143"/>
+        <location filename="Data.cpp" line="156"/>
         <source>W.W.West</source>
         <translation>Valiant</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="143"/>
+        <location filename="Data.cpp" line="156"/>
         <source>Roosevelt</source>
         <translation>Ulysses</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="143"/>
+        <location filename="Data.cpp" line="156"/>
         <source>Bertha</source>
         <translation>Bismarck</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="143"/>
+        <location filename="Data.cpp" line="156"/>
         <source>Steel Gun</source>
         <translation>Exeter</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="144"/>
+        <location filename="Data.cpp" line="157"/>
         <source>Gibet</source>
         <translation>Chain Whip</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="144"/>
+        <location filename="Data.cpp" line="157"/>
         <source>Totally S.M.</source>
         <translation>Slaying Tail</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="144"/>
+        <location filename="Data.cpp" line="157"/>
         <source>Red Scorpio</source>
         <translation>Red Scorpion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="144"/>
+        <location filename="Data.cpp" line="157"/>
         <source>Smiley</source>
         <translation>Save the Queen</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="145"/>
+        <location filename="Data.cpp" line="158"/>
         <source>Rotator</source>
         <translation>Pinwheel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="145"/>
+        <location filename="Data.cpp" line="158"/>
         <source>Walkyrie</source>
         <translation>Valkyrie</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="145"/>
+        <location filename="Data.cpp" line="158"/>
         <source>Ninja Sun</source>
         <translation>Rising Sun</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="145"/>
+        <location filename="Data.cpp" line="158"/>
         <source>Ptérodactyle</source>
         <translation>Cardinal</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="145"/>
+        <location filename="Data.cpp" line="158"/>
         <source>Tronçonneur</source>
         <translation>Shooting Star</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="146"/>
+        <location filename="Data.cpp" line="159"/>
         <source>Nunchak Red</source>
         <translation>Flail</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="146"/>
+        <location filename="Data.cpp" line="159"/>
         <source>Nunchak Blue</source>
         <translation>Morning Star</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="146"/>
+        <location filename="Data.cpp" line="159"/>
         <source>Islam Star</source>
         <translation>Crescent Wish</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="147"/>
+        <location filename="Data.cpp" line="160"/>
         <source>Hyperion</source>
         <translation>Hyperion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="147"/>
+        <location filename="Data.cpp" line="160"/>
         <source>Nada</source>
         <translation>None</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="147"/>
+        <location filename="Data.cpp" line="160"/>
         <source>Kalachnikov</source>
         <translation>Machine Gun</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="147"/>
+        <location filename="Data.cpp" line="160"/>
         <source>Katal</source>
         <translation>Katal</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="147"/>
+        <location filename="Data.cpp" line="160"/>
         <source>Harpoon</source>
         <translation>Harpoon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="152"/>
-        <location filename="Data.cpp" line="211"/>
-        <location filename="Data.cpp" line="812"/>
+        <location filename="Data.cpp" line="165"/>
+        <location filename="Data.cpp" line="224"/>
+        <location filename="Data.cpp" line="826"/>
         <source>Squall</source>
         <translation>Squall</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="152"/>
-        <location filename="Data.cpp" line="210"/>
+        <location filename="Data.cpp" line="165"/>
+        <location filename="Data.cpp" line="223"/>
         <source>Zell</source>
         <translation>Zell</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="152"/>
-        <location filename="Data.cpp" line="210"/>
+        <location filename="Data.cpp" line="165"/>
+        <location filename="Data.cpp" line="223"/>
         <source>Irvine</source>
         <translation>Irvine</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="152"/>
-        <location filename="Data.cpp" line="210"/>
+        <location filename="Data.cpp" line="165"/>
+        <location filename="Data.cpp" line="223"/>
         <source>Quistis</source>
         <translation>Quistis</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="152"/>
-        <location filename="Data.cpp" line="211"/>
+        <location filename="Data.cpp" line="165"/>
+        <location filename="Data.cpp" line="224"/>
         <source>Linoa</source>
         <translation>Rinoa</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="153"/>
-        <location filename="Data.cpp" line="210"/>
+        <location filename="Data.cpp" line="166"/>
+        <location filename="Data.cpp" line="223"/>
         <source>Selphie</source>
         <translation>Selphie</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="153"/>
-        <location filename="Data.cpp" line="211"/>
+        <location filename="Data.cpp" line="166"/>
+        <location filename="Data.cpp" line="224"/>
         <source>Seifer</source>
         <translation>Seifer</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="153"/>
-        <location filename="Data.cpp" line="211"/>
+        <location filename="Data.cpp" line="166"/>
+        <location filename="Data.cpp" line="224"/>
         <source>Edea</source>
         <translation>Edea</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="153"/>
-        <location filename="Data.cpp" line="210"/>
+        <location filename="Data.cpp" line="166"/>
+        <location filename="Data.cpp" line="223"/>
         <source>Laguna</source>
         <translation>Laguna</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="153"/>
-        <location filename="Data.cpp" line="210"/>
+        <location filename="Data.cpp" line="166"/>
+        <location filename="Data.cpp" line="223"/>
         <source>Kiros</source>
         <translation>Kiros</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="154"/>
-        <location filename="Data.cpp" line="209"/>
+        <location filename="Data.cpp" line="167"/>
+        <location filename="Data.cpp" line="222"/>
         <source>Ward</source>
         <translation>Ward</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="154"/>
+        <location filename="Data.cpp" line="167"/>
         <source>Cronos</source>
         <translation>Griever</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="154"/>
+        <location filename="Data.cpp" line="167"/>
         <source>MiniMog</source>
         <translation>MiniMog</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="154"/>
+        <location filename="Data.cpp" line="167"/>
         <source>Angel</source>
         <translation>Angelo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="207"/>
+        <location filename="Data.cpp" line="220"/>
         <source>Shiva</source>
         <comment>card</comment>
         <translation>Shiva</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="207"/>
+        <location filename="Data.cpp" line="220"/>
         <source>Ifrit</source>
         <comment>card</comment>
         <translation>Ifrit</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="207"/>
+        <location filename="Data.cpp" line="220"/>
         <source>Ondine</source>
         <comment>card</comment>
         <translation>Siren</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="207"/>
+        <location filename="Data.cpp" line="220"/>
         <source>Tauros</source>
         <comment>card</comment>
         <translation>Sacred</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="207"/>
+        <location filename="Data.cpp" line="220"/>
         <source>Taurux</source>
         <comment>card</comment>
         <translation>Minotaur</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="208"/>
+        <location filename="Data.cpp" line="221"/>
         <source>Ahuri</source>
         <comment>card</comment>
         <translation>Carbuncle</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="208"/>
+        <location filename="Data.cpp" line="221"/>
         <source>Nosferatu</source>
         <comment>card</comment>
         <translation>Diablos</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="208"/>
+        <location filename="Data.cpp" line="221"/>
         <source>Leviathan</source>
         <comment>card</comment>
         <translation>Leviathan</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="208"/>
+        <location filename="Data.cpp" line="221"/>
         <source>Odin</source>
         <comment>card</comment>
         <translation>Odin</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="208"/>
+        <location filename="Data.cpp" line="221"/>
         <source>Zéphyr</source>
         <comment>card</comment>
         <translation>Pandemona</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="209"/>
+        <location filename="Data.cpp" line="222"/>
         <source>Alexander</source>
         <comment>card</comment>
         <translation>Alexander</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="209"/>
+        <location filename="Data.cpp" line="222"/>
         <source>Phénix</source>
         <comment>card</comment>
         <translation>Phoenix</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="209"/>
+        <location filename="Data.cpp" line="222"/>
         <source>Bahamut</source>
         <comment>card</comment>
         <translation>Bahamut</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="209"/>
+        <location filename="Data.cpp" line="222"/>
         <source>Helltrain</source>
         <comment>card</comment>
         <translation>Doomtrain</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="209"/>
+        <location filename="Data.cpp" line="222"/>
         <source>Orbital</source>
         <comment>card</comment>
         <translation>Eden</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="159"/>
+        <location filename="Data.cpp" line="172"/>
         <source>Golgotha</source>
         <comment>gf</comment>
         <translation>Quezacotl</translation>
@@ -4710,2543 +4715,2658 @@ By default Hyne attempts to automatically sign saves, but in case of error, you 
         <translation type="obsolete">Death Claw</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="167"/>
+        <location filename="Data.cpp" line="180"/>
         <source>Top Punch</source>
         <translation>Punch Rush</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="69"/>
+        <location filename="Data.cpp" line="70"/>
         <source>H2o</source>
         <translation>Water</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="71"/>
+        <location filename="Data.cpp" line="72"/>
         <source>Soin +</source>
         <translation>Cura</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="72"/>
+        <location filename="Data.cpp" line="73"/>
         <source>Boomrg</source>
         <translation>Reflect</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Plaines d&apos;Arkland - Balamb</source>
         <comment>1</comment>
         <translation>Balamb- Alcauld Plains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Monts Gaulg - Balamb</source>
         <comment>2</comment>
         <translation>Balamb- Gaulg Mountains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Baie de Rinaul - Balamb</source>
         <comment>3</comment>
         <translation>Balamb- Rinaul Coast</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Cap Raha - Balamb</source>
         <comment>4</comment>
         <translation>Balamb- Raha Cape</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Forêt de Rosfall - Timber</source>
         <comment>5</comment>
         <translation>Timber- Roshfall Forest</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Mandy Beach - Timber</source>
         <comment>6</comment>
         <translation>Timber- Mandy Beach</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Lac Obel - Timber</source>
         <comment>7</comment>
         <translation>Timber- Obel Lake</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Vallée de Lanker - Timber</source>
         <comment>8</comment>
         <translation>Timber- Lanker Plains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Ile Nantakhet - Timber</source>
         <comment>9</comment>
         <translation>Timber- Nanchucket Island</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Yaulny Canyon - Timber</source>
         <comment>10</comment>
         <translation>Timber- Yaulny Canyon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Val Hasberry - Dollet</source>
         <comment>11</comment>
         <translation>Dollet- Hasberry Plains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Cap Holy Glory - Dollet</source>
         <comment>12</comment>
         <translation>Dollet- Holy Glory Cape</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Longhorn Island - Dollet</source>
         <comment>13</comment>
         <translation>Dollet- Long Horn Island</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Péninsule Malgo - Dollet</source>
         <comment>14</comment>
         <translation>Dollet- Malgo Peninsula</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="121"/>
+        <location filename="Data.cpp" line="122"/>
         <source>Plateau Monterosa - Galbadia</source>
         <comment>15</comment>
         <translation>Galbadia- Monterosa Plateau</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Lallapalooza Canyon - Galbadia</source>
         <comment>16</comment>
         <translation>Galbadia- Lallapalooza Canyon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Shenand Hill - Timber</source>
         <comment>17</comment>
         <translation>Timber- Shenand Hill</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Péninsule Gotland - Galbadia</source>
         <comment>18</comment>
         <translation>Galbadia- Gotland Peninsula</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Ile de l&apos;Enfer - Galbadia</source>
         <comment>19</comment>
         <translation>Island Closest to Hell</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Plaine Galbadienne</source>
         <comment>20</comment>
         <translation>Great Plains of Galbadia</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Wilburn Hill - Galbadia</source>
         <comment>21</comment>
         <translation>Galbadia- Wilburn Hill</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Archipel Rem - Galbadia</source>
         <comment>22</comment>
         <translation>Galbadia- Rem Archipelago</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Dingo Désert - Galbadia</source>
         <comment>23</comment>
         <translation>Galbadia- Dingo Desert</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Cap Winhill</source>
         <comment>24</comment>
         <translation>Winhill- Winhill Bluffs</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Archipel Humphrey - Winhill</source>
         <comment>25</comment>
         <translation>Winhill- Humphrey Archipelago</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Ile Winter - Trabia</source>
         <comment>26</comment>
         <translation>Trabia- Winter Island</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Val de Solvard - Trabia</source>
         <comment>27</comment>
         <translation>Trabia- Sorbald Snowfield</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Crête d&apos;Eldbeak - Trabia</source>
         <comment>28</comment>
         <translation>Trabia- Eldbeak Peninsula</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Plaine d&apos;Hawkind - Trabia</source>
         <comment>30</comment>
         <translation>Trabia- Hawkwind Plains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="122"/>
+        <location filename="Data.cpp" line="123"/>
         <source>Atoll Albatross - Trabia</source>
         <comment>31</comment>
         <translation>Trabia- Albatross Archipelago</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Vallon de Bika - Trabia</source>
         <comment>32</comment>
         <translation>Trabia- Bika Snowfield</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Péninsule Thor - Trabia</source>
         <comment>33</comment>
         <translation>Trabia- Thor Peninsula</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Crête d&apos;Heath - Trabia</source>
         <comment>35</comment>
         <translation>Trabia- Heath Peninsula</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Trabia Crater - Trabia</source>
         <comment>36</comment>
         <translation>Trabia- Trabia Crater</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Mont Vienne - Trabia</source>
         <comment>37</comment>
         <translation>Trabia- Vienne Mountains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Plaine de Mordor - Esthar</source>
         <comment>38</comment>
         <translation>Esthar- Mordred Plains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Mont Nortes - Esthar</source>
         <comment>39</comment>
         <translation>Esthar- Nortes Mountains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Atoll Fulcura - Esthar</source>
         <comment>40</comment>
         <translation>Esthar- Fulcura Archipelago</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Forêt Grandidi - Esthar</source>
         <comment>41</comment>
         <translation>Esthar- Grandidi Forest</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Iles Millefeuilles - Esthar</source>
         <comment>42</comment>
         <translation>Esthar- Millefeuille Archipelago</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Grandes plaines d&apos;Esthar</source>
         <comment>43</comment>
         <translation>Great Plains of Esthar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Esthar City</source>
         <comment>44</comment>
         <translation>Esthar City</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Salt Lake - Esthar</source>
         <comment>45</comment>
         <translation>Esthar- Great Salt Lake</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Côte Ouest - Esthar</source>
         <comment>46</comment>
         <translation>Esthar- West Coast</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="123"/>
+        <location filename="Data.cpp" line="124"/>
         <source>Mont Sollet - Esthar</source>
         <comment>47</comment>
         <translation>Esthar- Sollet Mountains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Vallée d&apos;Abadan - Esthar</source>
         <comment>48</comment>
         <translation>Esthar- Abadan Plains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Ile Minde - Esthar</source>
         <comment>49</comment>
         <translation>Esthar- Minde Island</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Désert Kashkabald - Esthar</source>
         <comment>50</comment>
         <translation>Esthar- Kashkabald Desert</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Ile Paradisiaque - Esthar</source>
         <comment>51</comment>
         <translation>Island Closest to Heaven</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Pic de Talle - Esthar</source>
         <comment>52</comment>
         <translation>Esthar- Talle Mountains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Atoll Shalmal - Esthar</source>
         <comment>53</comment>
         <translation>Esthar- Shalmal Peninsula</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Vallée de Lolestern - Centra</source>
         <comment>54</comment>
         <translation>Centra- Lolestern Plains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Aiguille d&apos;Almage - Centra</source>
         <comment>55</comment>
         <translation>Centra- Almaj Mountains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Vallon Lenown - Centra</source>
         <comment>56</comment>
         <translation>Centra- Lenown Plains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Cap de l&apos;espoir - Centra</source>
         <comment>57</comment>
         <translation>Centra- Cape of Good Hope</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Mont Yorn - Centra</source>
         <comment>58</comment>
         <translation>Centra- Yorn Mountains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Ile Pampa - Esthar</source>
         <comment>59</comment>
         <translation>Esthar- Cactuar Island</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Val Serengetti - Centra</source>
         <comment>60</comment>
         <translation>Centra- Serengetti Plains</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Péninsule Nectalle - Centra</source>
         <comment>61</comment>
         <translation>Centra- Nectar Peninsula</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Centra Crater - Centra</source>
         <comment>62</comment>
         <translation>Centra- Centra Crater</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="124"/>
+        <location filename="Data.cpp" line="125"/>
         <source>Ile Poccarahi - Centra</source>
         <comment>63</comment>
         <translation>Centra- Poccarahi Island</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Bibliothèque - BGU</source>
         <comment>64</comment>
         <translation>B-Garden- Library</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Entrée - BGU</source>
         <comment>65</comment>
         <translation>B-Garden- Front Gate</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Salle de cours - BGU</source>
         <comment>66</comment>
         <translation>B-Garden- Classroom</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Cafétéria - BGU</source>
         <comment>67</comment>
         <translation>B-Garden- Cafeteria</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Niveau MD - BGU</source>
         <comment>68</comment>
         <translation>B-Garden- MD Level</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Hall 1er étage - BGU</source>
         <comment>69</comment>
         <translation>B-Garden- 2F Hallway</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Hall - BGU</source>
         <comment>70</comment>
         <translation>B-Garden- Hall</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Infirmerie - BGU</source>
         <comment>71</comment>
         <translation>B-Garden- Infirmary</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Dortoirs doubles - BGU</source>
         <comment>72</comment>
         <translation>B-Garden- Dormitory Double</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Dortoirs simples - BGU</source>
         <comment>73</comment>
         <translation>B-Garden- Dormitory Single</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Bureau proviseur - BGU</source>
         <comment>74</comment>
         <translation>B-Garden- Headmaster&apos;s Office</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Parking - BGU</source>
         <comment>75</comment>
         <translation>B-Garden- Parking Lot</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Salle de bal - BGU</source>
         <comment>76</comment>
         <translation>B-Garden- Ballroom</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Campus - BGU</source>
         <comment>77</comment>
         <translation>B-Garden- Quad</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Serre de combat - BGU</source>
         <comment>78</comment>
         <translation>B-Garden- Training Center</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="125"/>
+        <location filename="Data.cpp" line="126"/>
         <source>Zone secrète - BGU</source>
         <comment>79</comment>
         <translation>B-Garden- Secret Area</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Corridor - BGU</source>
         <comment>80</comment>
         <translation>B-Garden- Hallway</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Temple - BGU</source>
         <comment>81</comment>
         <translation>B-Garden- Master Room</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Pont - BGU</source>
         <comment>82</comment>
         <translation>B-Garden- Deck</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Villa Dincht - Balamb</source>
         <comment>83</comment>
         <translation>Balamb- The Dincht&apos;s</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Hôtel - Balamb</source>
         <comment>84</comment>
         <translation>Balamb Hotel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Place centrale - Balamb</source>
         <comment>85</comment>
         <translation>Balamb- Town Square</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Place de la gare - Balamb</source>
         <comment>86</comment>
         <translation>Balamb- Station Yard</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Port - Balamb</source>
         <comment>87</comment>
         <translation>Balamb Harbor</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Résidence - Balamb</source>
         <comment>88</comment>
         <translation>Balamb- Residence</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Train</source>
         <comment>89</comment>
         <translation>Train</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Voiture</source>
         <comment>90</comment>
         <translation>Car</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Vaisseau</source>
         <comment>91</comment>
         <translation>Inside Ship</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Mine de souffre</source>
         <comment>92</comment>
         <translation>Fire Cavern</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Place du village - Dollet</source>
         <comment>93</comment>
         <translation>Dollet- Town Square</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Zuma Beach</source>
         <comment>94</comment>
         <translation>Dollet- Lapin Beach</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="126"/>
+        <location filename="Data.cpp" line="127"/>
         <source>Port - Dollet</source>
         <comment>95</comment>
         <translation>Dollet Harbor</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Pub - Dollet</source>
         <comment>96</comment>
         <translation>Dollet Pub</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Hôtel - Dollet</source>
         <comment>97</comment>
         <translation>Dollet Hotel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Résidence - Dollet</source>
         <comment>98</comment>
         <translation>Dollet- Residence</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Tour satellite - Dollet</source>
         <comment>99</comment>
         <translation>Dollet- Comm Tower</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Refuge montagneux - Dollet</source>
         <comment>100</comment>
         <translation>Dollet- Mountain Hideout</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Centre ville - Timber</source>
         <comment>101</comment>
         <translation>Timber- City Square</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Chaîne de TV - Timber</source>
         <comment>102</comment>
         <translation>Timber TV Station</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Base des Hiboux - Timber</source>
         <comment>103</comment>
         <translation>Timber- Forest Owls&apos; Base</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Pub - Timber</source>
         <comment>104</comment>
         <translation>Timber Pub</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Hôtel - Timber</source>
         <comment>105</comment>
         <translation>Timber Hotel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Train - Timber</source>
         <comment>106</comment>
         <translation>Timber- Train</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Résidence - Timber</source>
         <comment>107</comment>
         <translation>Timber- Residence</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Ecran géant - Timber</source>
         <comment>108</comment>
         <translation>Timber- TV Screen</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Centre de presse - Timber</source>
         <comment>109</comment>
         <translation>Timber- Editorial Department</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Forêt de Timber</source>
         <comment>110</comment>
         <translation>Timber Forest</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="127"/>
+        <location filename="Data.cpp" line="128"/>
         <source>Entrée - Fac de Galbadia</source>
         <comment>111</comment>
         <translation>Galbadia Garden- Front Gate</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Station Fac de Galbadia</source>
         <comment>112</comment>
         <translation>G-Garden- Station</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Hall - Fac de Galbadia</source>
         <comment>113</comment>
         <translation>G-Garden- Hall</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Corridor - Fac de Galbadia</source>
         <comment>114</comment>
         <translation>G-Garden- Hallway</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Salle d&apos;attente - Fac Galbadia</source>
         <comment>115</comment>
         <translation>G-Garden- Reception Room</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Salle de cours - Fac Galbadia</source>
         <comment>116</comment>
         <translation>G-Garden- Classroom</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Salle de réunion - Fac Galbadia</source>
         <comment>117</comment>
         <translation>G-Garden- Clubroom</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Dortoirs - Fac de Galbadia</source>
         <comment>118</comment>
         <translation>G-Garden- Dormitory</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Ascenseur - Fac de Galbadia</source>
         <comment>119</comment>
         <translation>G-Garden- Elevator Hall</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Salle recteur - Fac Galbadia</source>
         <comment>120</comment>
         <translation>G-Garden- Master Room</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Auditorium - Fac de Galbadia</source>
         <comment>121</comment>
         <translation>G-Garden- Auditorium</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Stade - Fac de Galbadia</source>
         <comment>122</comment>
         <translation>G-Garden- Athletic Track</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Stand - Fac de Galbadia</source>
         <comment>123</comment>
         <translation>G-Garden- Stand</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>2nde entrée - Fac Galbadia</source>
         <comment>124</comment>
         <translation>G-Garden- Back Entrance</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Gymnase - Fac de Galbadia</source>
         <comment>125</comment>
         <translation>G-Garden- Gymnasium</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Palais président - Deling City</source>
         <comment>126</comment>
         <translation>Deling- Presidential Residence</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="128"/>
+        <location filename="Data.cpp" line="129"/>
         <source>Manoir Caraway - Deling City</source>
         <comment>127</comment>
         <translation>Deling City- Caraway&apos;s Mansion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Gare - Deling City</source>
         <comment>128</comment>
         <translation>Deling City- Station Yard</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Place centrale - Deling City</source>
         <comment>129</comment>
         <translation>Deling City- City Square</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Hôtel - Deling City</source>
         <comment>130</comment>
         <translation>Deling City- Hotel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Bar - Deling City</source>
         <comment>131</comment>
         <translation>Deling City- Club</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Sortie - Deling City</source>
         <comment>132</comment>
         <translation>Deling City- Gateway</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Parade - Deling City</source>
         <comment>133</comment>
         <translation>Deling City- Parade</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Egout - Deling City</source>
         <comment>134</comment>
         <translation>Deling City- Sewer</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Prison du désert - Galbadia</source>
         <comment>135</comment>
         <translation>Galbadia D-District Prison</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Désert</source>
         <comment>136</comment>
         <translation>Desert</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Base des missiles</source>
         <comment>137</comment>
         <translation>Galbadia Missile Base</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Village de Winhill</source>
         <comment>138</comment>
         <translation>Winhill Village</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Pub - Winhill</source>
         <comment>139</comment>
         <translation>Winhill Pub</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Maison vide - Winhill</source>
         <comment>140</comment>
         <translation>Winhill- Vacant House</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Manoir - Winhill</source>
         <comment>141</comment>
         <translation>Winhill- Mansion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Résidence - Winhill</source>
         <comment>142</comment>
         <translation>Winhill- Residence</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="129"/>
+        <location filename="Data.cpp" line="130"/>
         <source>Hôtel - Winhill</source>
         <comment>143</comment>
         <translation>Winhill- Hotel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Voiture - Winhill</source>
         <comment>144</comment>
         <translation>Winhill- Car</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Tombe du roi inconnu</source>
         <comment>145</comment>
         <translation>Tomb of the Unknown King</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Horizon</source>
         <comment>146</comment>
         <translation>Fishermans Horizon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Habitations - Horizon</source>
         <comment>147</comment>
         <translation>FH- Residential Area</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Ecrans solaires - Horizon</source>
         <comment>148</comment>
         <translation>FH- Sun Panel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Villa du maire - Horizon</source>
         <comment>149</comment>
         <translation>FH- Mayor&apos;s Residence</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Usine - Horizon</source>
         <comment>150</comment>
         <translation>FH- Factory</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Salle des fêtes - Horizon</source>
         <comment>151</comment>
         <translation>FH- Festival Grounds</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Hôtel - Horizon</source>
         <comment>152</comment>
         <translation>FH- Hotel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Résidence - Horizon</source>
         <comment>153</comment>
         <translation>FH- Residence</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Gare - Horizon</source>
         <comment>154</comment>
         <translation>FH- Station Yard</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Aqueduc d&apos;Horizon</source>
         <comment>155</comment>
         <translation>FH- Horizon Bridge</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Station balnéaire</source>
         <comment>156</comment>
         <translation>FH- Seaside Station</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Salt Lake</source>
         <comment>157</comment>
-        <translation>FH- Geat Salt Lake</translation>
+        <translation>FH- Great Salt Lake</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Bâtiment mystérieux</source>
         <comment>158</comment>
         <translation>FH- Mystery Building</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="130"/>
+        <location filename="Data.cpp" line="131"/>
         <source>Esthar City</source>
         <comment>159</comment>
         <translation>Esthar- City</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Laboratoire Geyser - Esthar</source>
         <comment>160</comment>
         <translation>Esthar- Odine&apos;s Laboratory</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Aérodrome - Esthar</source>
         <comment>161</comment>
         <translation>Esthar- Airstation</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Lunatic Pandora approche</source>
         <comment>162</comment>
         <translation>Lunatic Pandora Approaching</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Résidence président - Esthar</source>
         <comment>163</comment>
         <translation>Esthar- Presidential Palace</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Hall - Résidence président</source>
         <comment>164</comment>
         <translation>Presidential Palace- Hall</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Couloir - Résidence président</source>
         <comment>165</comment>
         <translation>Presidential Palace- Hallway</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Bureau - Résidence président</source>
         <comment>166</comment>
         <translation>Presidential Palace- Office</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Accueil - Labo Geyser</source>
         <comment>167</comment>
         <translation>Dr. Odine&apos;s Laboratory- Lobby</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Laboratoire Geyser</source>
         <comment>168</comment>
         <translation>Dr. Odine&apos;s Laboratory- Lab</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Deleted</source>
         <comment>169</comment>
         <translation>Deleted</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Lunar Gate</source>
         <comment>170</comment>
         <translation>Lunar Gate</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Parvis - Lunar Gate</source>
         <comment>171</comment>
         <translation>Lunar Gate- Concourse</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Glacière - Lunar gate</source>
         <comment>172</comment>
         <translation>Lunar Gate- Deep Freeze</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Mausolée - Esthar</source>
         <comment>173</comment>
         <translation>Esthar Sorceress Memorial</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Entrée - Mausolée</source>
         <comment>174</comment>
         <translation>Sorceress Memorial- Entrance</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="131"/>
+        <location filename="Data.cpp" line="132"/>
         <source>Pod de confinement - Mausolée</source>
         <comment>175</comment>
         <translation>Sorceress Memorial- Pod</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Salle de contrôle - Mausolée</source>
         <comment>176</comment>
         <translation>Sorceress Memorial- Ctrl Room</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Tears Point</source>
         <comment>177</comment>
         <translation>Tears&apos; Point</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Labo Lunatic Pandora</source>
         <comment>178</comment>
         <translation>Lunatic Pandora Laboratory</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Zone d&apos;atterrissage de secours</source>
         <comment>179</comment>
         <translation>Emergency Landing Zone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Zone d&apos;atterrissage officielle</source>
         <comment>180</comment>
         <translation>Spaceship Landing Zone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Lunatic Pandora</source>
         <comment>181</comment>
         <translation>Lunatic Pandora</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Site des fouilles - Centra</source>
         <comment>182</comment>
         <translation>Centra- Excavation Site</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Orphelinat</source>
         <comment>183</comment>
         <translation>Edea&apos;s House</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Salle de jeux - Orphelinat</source>
         <comment>184</comment>
         <translation>Edea&apos;s House- Playroom</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Dortoir - Orphelinat</source>
         <comment>185</comment>
         <translation>Edea&apos;s House- Bedroom</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Jardin - Orphelinat</source>
         <comment>186</comment>
         <translation>Edea&apos;s House- Backyard</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Front de mer - Orphelinat</source>
         <comment>187</comment>
         <translation>Edea&apos;s House- Oceanside</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Champ - Orphelinat</source>
         <comment>188</comment>
         <translation>Edea&apos;s House- Flower Field</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Ruines de Centra</source>
         <comment>189</comment>
         <translation>Centra Ruins</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Entrée - Fac de Trabia</source>
         <comment>190</comment>
         <translation>Trabia Garden- Front Gate</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="132"/>
+        <location filename="Data.cpp" line="133"/>
         <source>Cimetière - Fac de Trabia</source>
         <comment>191</comment>
         <translation>T-Garden- Cemetery</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Garage - Fac de Trabia</source>
         <comment>192</comment>
         <translation>T-Garden- Garage</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Campus - Fac Trabia</source>
         <comment>193</comment>
         <translation>T-Garden- Festival Stage</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Amphithéatre - Fac de Trabia</source>
         <comment>194</comment>
         <translation>T-Garden- Classroom</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Stade - Fac de Trabia</source>
         <comment>195</comment>
         <translation>T-Garden- Athletic Ground</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Dôme mystérieux</source>
         <comment>196</comment>
         <translation>Mystery Dome</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Ville du désert - Shumi Village</source>
         <comment>197</comment>
         <translation>Shumi Village- Desert Village</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Ascenseur - Shumi Village</source>
         <comment>198</comment>
         <translation>Shumi Village- Elevator</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Shumi Village</source>
         <comment>199</comment>
         <translation>Shumi Village- Village</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Habitation - Shumi Village</source>
         <comment>200</comment>
         <translation>Shumi Village- Residence</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Résidence - Shumi Village</source>
         <comment>201</comment>
         <translation>Shumi Village- Residence</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Habitat - Shumi Village</source>
         <comment>202</comment>
         <translation>Shumi Village- Residence</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Hôtel - Shumi Village</source>
         <comment>203</comment>
         <translation>Shumi Village- Hotel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Trabia canyon</source>
         <comment>204</comment>
         <translation>Trabia Canyon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Vaisseau des Seeds blancs</source>
         <comment>205</comment>
         <translation>White SeeD Ship</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Navire des Seeds Blancs</source>
         <comment>206</comment>
         <translation>White SeeD Ship</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="133"/>
+        <location filename="Data.cpp" line="134"/>
         <source>Cabine - Navire Seeds blancs</source>
         <comment>207</comment>
         <translation>White SeeD Ship- Cabin</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Cockpit - Hydre</source>
         <comment>208</comment>
         <translation>Ragnarok- Cockpit</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Siège passager - Hydre</source>
         <comment>209</comment>
         <translation>Ragnarok- Passenger Seat</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Couloir - Hydre</source>
         <comment>210</comment>
         <translation>Ragnarok- Aisle</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Hangar - Hydre</source>
         <comment>211</comment>
         <translation>Ragnarok- Hangar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Accès - Hydre</source>
         <comment>212</comment>
         <translation>Ragnarok- Entrance</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Air Room - Hydre</source>
         <comment>213</comment>
         <translation>Ragnarok- Air Room</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Salle de pression - Hydre</source>
         <comment>214</comment>
         <translation>Ragnarok- Space Hatch</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Centre de recherches Deep Sea</source>
         <comment>215</comment>
         <translation>Deep Sea Research Center</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Laboratoire - Deep Sea</source>
         <comment>216</comment>
         <translation>Deep Sea Research Center- Lb</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Salle de travail - Deep Sea</source>
         <comment>217</comment>
         <translation>Deep Sea Research Center- Lv</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Fouilles - Deep Sea</source>
         <comment>218</comment>
         <translation>Deep Sea Deposit</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Salle de contrôle - Base lunaire</source>
         <comment>219</comment>
         <translation>Lunar Base- Control Room</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Centre médical - Base lunaire</source>
         <comment>220</comment>
         <translation>Lunar Base- Medical Room</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Pod - Base lunaire</source>
         <comment>221</comment>
         <translation>Lunar Base- Pod</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Dock - Base lunaire</source>
         <comment>222</comment>
         <translation>Lunar Base- Dock</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="134"/>
+        <location filename="Data.cpp" line="135"/>
         <source>Passage - Base lunaire</source>
         <comment>223</comment>
         <translation>Lunar Base- Passageway</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Vestiaire - Base lunaire</source>
         <comment>224</comment>
         <translation>Lunar Base- Locker</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Habitats - Base lunaire</source>
         <comment>225</comment>
         <translation>Lunar Base- Residential Zone</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Hyper Espace</source>
         <comment>226</comment>
         <translation>Outer Space</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Forêt Chocobo</source>
         <comment>227</comment>
         <translation>Chocobo Forest</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Jungle</source>
         <comment>228</comment>
         <translation>Wilderness</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Citadelle d&apos;Ultimecia - Vestibule</source>
         <comment>229</comment>
         <translation>Ultimecia Castle- Hall</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Citadelle d&apos;Ultimecia - Hall</source>
         <comment>230</comment>
         <translation>Ultimecia Castle- Grand Hall</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Citadelle d&apos;Ultimecia - Terrasse</source>
         <comment>231</comment>
         <translation>Ultimecia Castle- Terrace</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Citadelle d&apos;Ultimecia - Cave</source>
         <comment>232</comment>
         <translation>Ultimecia Castle- Wine Cellar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Citadelle d&apos;Ultimecia - Couloir</source>
         <comment>233</comment>
         <translation>Ultimecia Castle- Passageway</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Elévateur - Citadelle</source>
         <comment>234</comment>
         <translation>Ultimecia Castle- Elevator Hall</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Escalier - Citadelle d&apos;Ultimecia</source>
         <comment>235</comment>
         <translation>Ultimecia Castle- Stairway Hall</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Salle du trésor - Citadelle</source>
         <comment>236</comment>
         <translation>Ultimecia Castle- Treasure Rm</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Salle de rangement - Citadelle</source>
         <comment>237</comment>
         <translation>Ultimecia Castle- Storage Room</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Citadelle d&apos;Ultimecia - Galerie</source>
         <comment>238</comment>
         <translation>Ultimecia Castle- Art Gallery</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="135"/>
+        <location filename="Data.cpp" line="136"/>
         <source>Citadelle d&apos;Ultimecia - Ecluse</source>
         <comment>239</comment>
         <translation>Ultimecia Castle- Flood Gate</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Citadelle - Armurerie</source>
         <comment>240</comment>
         <translation>Ultimecia Castle- Armory</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Citadelle d&apos;Ultimecia - Prison</source>
         <comment>241</comment>
         <translation>Ultimecia Castle- Prison Cell</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Citadelle d&apos;Ultimecia - Fossé</source>
         <comment>242</comment>
         <translation>Ultimecia Castle- Waterway</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Citadelle d&apos;Ultimecia - Jardin</source>
         <comment>243</comment>
         <translation>Ultimecia Castle- Courtyard</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Citadelle d&apos;Ultimecia - Chapelle</source>
         <comment>244</comment>
         <translation>Ultimecia Castle- Chapel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Clocher - Citadelle d&apos;Ultimecia</source>
         <comment>245</comment>
         <translation>Ultimecia Castle- Clock Tower</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Chambre d&apos;Ultimecia - Citadelle</source>
         <comment>246</comment>
         <translation>Ultimecia Castle- Master Room</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Citadelle d&apos;Ultimecia</source>
         <comment>248</comment>
         <translation>Ultimecia Castle</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Salle d&apos;initiation</source>
         <comment>249</comment>
         <translation>Commencement Room</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="136"/>
+        <location filename="Data.cpp" line="137"/>
         <source>Reine des cartes</source>
         <comment>250</comment>
         <translation>Queen</translation>
     </message>
     <message>
+        <location filename="Data.cpp" line="142"/>
+        <source>Balamb City</source>
+        <translation>Balamb City</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="142"/>
+        <source>Deling City</source>
+        <translation>Deling City</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="142"/>
+        <source>Shumi Village</source>
+        <translation>Shumi Village</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="143"/>
+        <source>Winhill</source>
+        <translation>Winhill</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="143"/>
+        <source>Dollet</source>
+        <translation>Dollet</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="143"/>
+        <source>Horizon</source>
+        <translation>Fishermans Horizon</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="144"/>
+        <source>Lunar Gate</source>
+        <translation>Lunar Gate</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="144"/>
+        <source>Esthar City</source>
+        <translation>Esthar City</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="144"/>
+        <source>Timber</source>
+        <translation>Timber</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="145"/>
+        <source>BGU</source>
+        <translation>Balamb Garden</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="145"/>
+        <source>GGU</source>
+        <translation>Galbadia Garden</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="145"/>
+        <source>TGU</source>
+        <translation>Trabia Garden</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="145"/>
+        <source>Ruines de Centra</source>
+        <translation>Centra Ruins</translation>
+    </message>
+    <message>
         <location filename="Data.cpp" line="146"/>
+        <source>Orphelinat</source>
+        <translation>Edea&apos;s House</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="146"/>
+        <source>Salt Lake</source>
+        <translation>Great Salt Lake</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="146"/>
+        <source>Forêt des novices</source>
+        <translation>Beginner&apos;s Forest</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="147"/>
+        <source>Forêt Classica</source>
+        <translation>Basic Forest</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="147"/>
+        <source>Forêt de l&apos;errance</source>
+        <translation>Roaming Forest</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="147"/>
+        <source>Sanctuaire des chocobos</source>
+        <translation>Chocobo Sanctuary</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="148"/>
+        <source>Forêt clôturée</source>
+        <translation>Enclosed Forest</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="148"/>
+        <source>Forêt fun</source>
+        <translation>Fun Forest</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="148"/>
+        <source>Forêt de la solitude</source>
+        <translation>Forest of Solitude</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="149"/>
+        <source>Pod de secours</source>
+        <translation>Landing site</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="159"/>
         <source>Sagaie</source>
         <translation>Strange Vision</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="154"/>
+        <location filename="Data.cpp" line="167"/>
         <source>Boko</source>
         <translation>Boko</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="167"/>
+        <location filename="Data.cpp" line="180"/>
         <source>Feinte</source>
         <translation>Booya</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="167"/>
+        <location filename="Data.cpp" line="180"/>
         <source>Achille</source>
         <translation>Heel Drop</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="167"/>
+        <location filename="Data.cpp" line="180"/>
         <source>Forcing</source>
         <translation>Mach Kick</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="167"/>
+        <location filename="Data.cpp" line="180"/>
         <source>Delphinium</source>
         <translation>Dolphin Blow</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="168"/>
+        <location filename="Data.cpp" line="181"/>
         <source>Apesanteur</source>
         <translation>Meteor Strike</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="168"/>
+        <location filename="Data.cpp" line="181"/>
         <source>Fahreinheit</source>
         <translation>Burning Rave</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="168"/>
+        <location filename="Data.cpp" line="181"/>
         <source>Stratosphère</source>
         <translation>Meteor Barret</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="168"/>
+        <location filename="Data.cpp" line="181"/>
         <source>Trapèze</source>
         <translation>Different Beat</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="168"/>
+        <location filename="Data.cpp" line="181"/>
         <source>Global Wave</source>
         <translation>My Final Heaven</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="173"/>
+        <location filename="Data.cpp" line="186"/>
         <source>Furioso</source>
         <translation>Normal Shot</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="173"/>
+        <location filename="Data.cpp" line="186"/>
         <source>Fluxion</source>
         <translation>Scatter Shot</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="173"/>
+        <location filename="Data.cpp" line="186"/>
         <source>Fracas</source>
         <translation>Dark Shot</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="173"/>
+        <location filename="Data.cpp" line="186"/>
         <source>Fusion</source>
         <translation>Flame Shot</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="174"/>
+        <location filename="Data.cpp" line="187"/>
         <source>Barbacane</source>
         <translation>Canister Shot</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="174"/>
+        <location filename="Data.cpp" line="187"/>
         <source>Mach 4</source>
         <translation>Quick Shot</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="174"/>
+        <location filename="Data.cpp" line="187"/>
         <source>Apogée</source>
         <translation>Armor Shot</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="174"/>
+        <location filename="Data.cpp" line="187"/>
         <source>Percuteur</source>
         <translation>Hyper Shot</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="179"/>
+        <location filename="Data.cpp" line="192"/>
         <source>Fovéa</source>
         <translation>Laser Eye</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="179"/>
+        <location filename="Data.cpp" line="192"/>
         <source>Ultra Waves</source>
         <translation>Ultra Waves</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="179"/>
+        <location filename="Data.cpp" line="192"/>
         <source>Firmament</source>
         <translation>Electrocute</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="179"/>
+        <location filename="Data.cpp" line="192"/>
         <source>Freak</source>
         <translation>LV?Death</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="180"/>
+        <location filename="Data.cpp" line="193"/>
         <source>Dégénérator</source>
         <translation>Degenerator</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="180"/>
+        <location filename="Data.cpp" line="193"/>
         <source>Fréon</source>
         <translation>Aqua Breath</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="180"/>
+        <location filename="Data.cpp" line="193"/>
         <source>Micro Missiles</source>
         <translation>Micro Missiles</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="180"/>
+        <location filename="Data.cpp" line="193"/>
         <source>Acid</source>
         <translation>Acid</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="181"/>
+        <location filename="Data.cpp" line="194"/>
         <source>Mitraille</source>
         <translation>Gatling Gun</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="181"/>
+        <location filename="Data.cpp" line="194"/>
         <source>Dead Heat</source>
         <translation>Fire Breath</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="181"/>
+        <location filename="Data.cpp" line="194"/>
         <source>Infection</source>
         <translation>Bad Breath</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="181"/>
+        <location filename="Data.cpp" line="194"/>
         <source>Mistral</source>
         <translation>White Wind</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="182"/>
+        <location filename="Data.cpp" line="195"/>
         <source>Laser</source>
         <translation>Homing Laser</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="182"/>
+        <location filename="Data.cpp" line="195"/>
         <source>Mother</source>
         <translation>Mighty Guard</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="182"/>
+        <location filename="Data.cpp" line="195"/>
         <source>Shockwave</source>
         <translation>Ray-Bomb</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="182"/>
+        <location filename="Data.cpp" line="195"/>
         <source>Outerspace</source>
         <translation>Shockwave Pulsar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="187"/>
+        <location filename="Data.cpp" line="200"/>
         <source>Dingo</source>
         <translation>Rush</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="187"/>
+        <location filename="Data.cpp" line="200"/>
         <source>Shepherd</source>
         <translation>Recover</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="187"/>
+        <location filename="Data.cpp" line="200"/>
         <source>Dachshund</source>
         <translation>Reverse</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="187"/>
+        <location filename="Data.cpp" line="200"/>
         <source>Borzoï</source>
         <translation>Search</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="188"/>
+        <location filename="Data.cpp" line="201"/>
         <source>Laïka</source>
         <translation>Cannon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="188"/>
+        <location filename="Data.cpp" line="201"/>
         <source>Nordfolk</source>
         <translation>Strike</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="188"/>
+        <location filename="Data.cpp" line="201"/>
         <source>Sélénium</source>
         <translation>Invincible Moon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="188"/>
+        <location filename="Data.cpp" line="201"/>
         <source>Phantasm</source>
         <translation>Wishing Star</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="193"/>
+        <location filename="Data.cpp" line="206"/>
         <source>Bogomile</source>
         <translation>Geezard</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="193"/>
+        <location filename="Data.cpp" line="206"/>
         <source>Fungus</source>
         <translation>Funguar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="193"/>
+        <location filename="Data.cpp" line="206"/>
         <source>Elmidea</source>
         <translation>Bite Bug</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="193"/>
+        <location filename="Data.cpp" line="206"/>
         <source>Nocturnus</source>
         <translation>Red Bat</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="193"/>
+        <location filename="Data.cpp" line="206"/>
         <source>Incube</source>
         <translation>Blobra</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="193"/>
+        <location filename="Data.cpp" line="206"/>
         <source>Aphide</source>
         <translation>Gayla</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="194"/>
+        <location filename="Data.cpp" line="207"/>
         <source>Elastos</source>
         <translation>Gesper</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="194"/>
+        <location filename="Data.cpp" line="207"/>
         <source>Diodon</source>
         <translation>Fastitocalon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="194"/>
+        <location filename="Data.cpp" line="207"/>
         <source>Carnidéa</source>
         <translation>Blood Soul</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="194"/>
+        <location filename="Data.cpp" line="207"/>
         <source>Larva</source>
         <translation>Caterchipillar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="194"/>
+        <location filename="Data.cpp" line="207"/>
         <source>Gallus</source>
         <translation>Cockatrice</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="194"/>
+        <location filename="Data.cpp" line="207"/>
         <source>Orchida</source>
         <translation>Grat</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="195"/>
+        <location filename="Data.cpp" line="208"/>
         <source>Schizoïd</source>
         <translation>Buel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="195"/>
+        <location filename="Data.cpp" line="208"/>
         <source>Licorne</source>
         <translation>Mesmerize</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="195"/>
+        <location filename="Data.cpp" line="208"/>
         <source>Koatl</source>
         <translation>Belhelmel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="195"/>
+        <location filename="Data.cpp" line="208"/>
         <source>Malaku</source>
         <translation>Thrustaevis</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="195"/>
+        <location filename="Data.cpp" line="208"/>
         <source>Arconada</source>
         <translation>Anacondaur</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="195"/>
+        <location filename="Data.cpp" line="208"/>
         <source>Xylopode</source>
         <translation>Glacial Eye</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="196"/>
+        <location filename="Data.cpp" line="209"/>
         <source>Formicide</source>
         <translation>Creeps</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="196"/>
+        <location filename="Data.cpp" line="209"/>
         <source>Feng</source>
         <translation>Grendel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="196"/>
+        <location filename="Data.cpp" line="209"/>
         <source>Héra</source>
         <translation>Jelleye</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="196"/>
+        <location filename="Data.cpp" line="209"/>
         <source>Selek</source>
         <translation>Grand Mantis</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="196"/>
+        <location filename="Data.cpp" line="209"/>
         <source>Weevil</source>
         <translation>Forbidden</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="196"/>
+        <location filename="Data.cpp" line="209"/>
         <source>Scavenger</source>
         <translation>Armadodo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="197"/>
+        <location filename="Data.cpp" line="210"/>
         <source>Adéphage</source>
         <translation>Tri-Face</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="197"/>
+        <location filename="Data.cpp" line="210"/>
         <source>Phantom</source>
         <translation>Fastitocalon-F</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="197"/>
+        <location filename="Data.cpp" line="210"/>
         <source>Satyrux</source>
         <translation>Snow Lion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="197"/>
+        <location filename="Data.cpp" line="210"/>
         <source>Trogiidae</source>
         <translation>Ochu</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="197"/>
+        <location filename="Data.cpp" line="210"/>
         <source>Barbarian</source>
         <translation>SAM08G</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="198"/>
+        <location filename="Data.cpp" line="211"/>
         <source>Célébis</source>
         <translation>Abyss Worm</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="198"/>
+        <location filename="Data.cpp" line="211"/>
         <source>Eiffel</source>
         <translation>Turtapod</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="198"/>
+        <location filename="Data.cpp" line="211"/>
         <source>Cariatide</source>
         <translation>Vysage</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="198"/>
+        <location filename="Data.cpp" line="211"/>
         <source>Pampa</source>
         <comment>card</comment>
         <translation>Cactuar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="198"/>
+        <location filename="Data.cpp" line="211"/>
         <source>Tomberry</source>
         <comment>card</comment>
         <translation>Tonberry</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="198"/>
+        <location filename="Data.cpp" line="211"/>
         <source>Berserker</source>
         <translation>Death Claw</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="199"/>
+        <location filename="Data.cpp" line="212"/>
         <source>T-rex</source>
         <translation>T-Rexaur</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="199"/>
+        <location filename="Data.cpp" line="212"/>
         <source>Succube</source>
         <translation>Bomb</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="199"/>
+        <location filename="Data.cpp" line="212"/>
         <source>Tikal</source>
         <translation>Blitz</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="199"/>
+        <location filename="Data.cpp" line="212"/>
         <source>Wendigo</source>
         <translation>Wendigo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="199"/>
+        <location filename="Data.cpp" line="212"/>
         <source>Marsupial</source>
         <translation>Torama</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="199"/>
+        <location filename="Data.cpp" line="212"/>
         <source>Draconus</source>
         <translation>Imp</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="200"/>
+        <location filename="Data.cpp" line="213"/>
         <source>Moloch</source>
         <translation>Blue Dragon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="200"/>
+        <location filename="Data.cpp" line="213"/>
         <source>Ao</source>
         <translation>Adamantoise</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="200"/>
+        <location filename="Data.cpp" line="213"/>
         <source>Polyphage</source>
         <translation>Hexadragon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="200"/>
+        <location filename="Data.cpp" line="213"/>
         <source>Ekarissor</source>
         <translation>Iron Giant</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="200"/>
+        <location filename="Data.cpp" line="213"/>
         <source>Kanibal</source>
         <translation>Behemoth</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="200"/>
+        <location filename="Data.cpp" line="213"/>
         <source>Chimaira</source>
         <translation>Chimera</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="201"/>
+        <location filename="Data.cpp" line="214"/>
         <source>Koyo K</source>
         <translation>PuPu</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="201"/>
+        <location filename="Data.cpp" line="214"/>
         <source>Protesis</source>
         <translation>Elastoid</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="201"/>
+        <location filename="Data.cpp" line="214"/>
         <source>Pikasso</source>
         <translation>GIM47N</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="201"/>
+        <location filename="Data.cpp" line="214"/>
         <source>Xylomid</source>
         <translation>Malboro</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="201"/>
+        <location filename="Data.cpp" line="214"/>
         <source>Griffon</source>
         <translation>Ruby Dragon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="201"/>
+        <location filename="Data.cpp" line="214"/>
         <source>Sulfor</source>
         <translation>Elnoyle</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="202"/>
+        <location filename="Data.cpp" line="215"/>
         <source>Tomberry Sr</source>
         <translation>Tonberry King</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="202"/>
+        <location filename="Data.cpp" line="215"/>
         <source>Wedge/Biggs</source>
         <translation>Wedge, Biggs</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="202"/>
+        <location filename="Data.cpp" line="215"/>
         <source>Fujin/Raijin</source>
         <translation>Fujin, Raijin</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="202"/>
+        <location filename="Data.cpp" line="215"/>
         <source>Sulfura</source>
         <translation>Elvoret</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="202"/>
+        <location filename="Data.cpp" line="215"/>
         <source>Goliath</source>
         <translation>X-ATM092</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="203"/>
+        <location filename="Data.cpp" line="216"/>
         <source>Lygus</source>
         <translation>Granaldo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="203"/>
+        <location filename="Data.cpp" line="216"/>
         <source>Écorché</source>
         <translation>Gerogero</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="203"/>
+        <location filename="Data.cpp" line="216"/>
         <source>Iguanor</source>
         <translation>Iguion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="203"/>
+        <location filename="Data.cpp" line="216"/>
         <source>Hornet</source>
         <translation>Abadon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="203"/>
+        <location filename="Data.cpp" line="216"/>
         <source>Flotix</source>
         <translation>Trauma</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="203"/>
+        <location filename="Data.cpp" line="216"/>
         <source>Cyanide</source>
         <translation>Oilboyle</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="204"/>
+        <location filename="Data.cpp" line="217"/>
         <source>Shumi</source>
         <translation>Shumi</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="204"/>
+        <location filename="Data.cpp" line="217"/>
         <source>Krystal</source>
         <translation>Krysta</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="204"/>
+        <location filename="Data.cpp" line="217"/>
         <source>Alienator</source>
         <translation>Propagator</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="204"/>
+        <location filename="Data.cpp" line="217"/>
         <source>Pampa Sr</source>
         <translation>Jumbo Cactuar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="204"/>
+        <location filename="Data.cpp" line="217"/>
         <source>Acron</source>
         <translation>Tri-Point</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="204"/>
+        <location filename="Data.cpp" line="217"/>
         <source>Agamemnon</source>
         <translation>Gargantua</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="205"/>
+        <location filename="Data.cpp" line="218"/>
         <source>Anakronox</source>
         <translation>Mobile Type 8</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="205"/>
+        <location filename="Data.cpp" line="218"/>
         <source>Mithra</source>
         <translation>Sphinxara</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="205"/>
+        <location filename="Data.cpp" line="218"/>
         <source>Acarnan</source>
         <translation>Tiamat</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="205"/>
+        <location filename="Data.cpp" line="218"/>
         <source>Omniborg</source>
         <translation>BGH251F2</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="205"/>
+        <location filename="Data.cpp" line="218"/>
         <source>Attila</source>
         <translation>Red Giant</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="205"/>
+        <location filename="Data.cpp" line="218"/>
         <source>Fabryce</source>
         <translation>Catoblepas</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="206"/>
+        <location filename="Data.cpp" line="219"/>
         <source>Monarch</source>
         <translation>Ultima Weapon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="216"/>
+        <location filename="Data.cpp" line="229"/>
         <source>Dummy</source>
         <comment>Ennemy</comment>
         <translation>Dummy</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="216"/>
+        <location filename="Data.cpp" line="229"/>
         <source>ExoSkelet</source>
         <comment>Ennemy</comment>
         <translation>GIM52A</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="216"/>
+        <location filename="Data.cpp" line="229"/>
         <source>Incube</source>
         <comment>Ennemy</comment>
         <translation>Blobra</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="216"/>
+        <location filename="Data.cpp" line="229"/>
         <source>Malaku</source>
         <comment>Ennemy</comment>
         <translation>Thrustaevis</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="217"/>
+        <location filename="Data.cpp" line="230"/>
         <source>Bogomile</source>
         <comment>Ennemy</comment>
         <translation>Geezard</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="217"/>
+        <location filename="Data.cpp" line="230"/>
         <source>Koatl</source>
         <comment>Ennemy</comment>
         <translation>Belhelmel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="217"/>
+        <location filename="Data.cpp" line="230"/>
         <source>Xylopode</source>
         <comment>Ennemy</comment>
         <translation>Glacial Eye</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="217"/>
+        <location filename="Data.cpp" line="230"/>
         <source>Barbarian</source>
         <comment>Ennemy</comment>
         <translation>SAM08G</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="218"/>
+        <location filename="Data.cpp" line="231"/>
         <source>Pikasso</source>
         <comment>Ennemy</comment>
         <translation>GIM47N</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="218"/>
+        <location filename="Data.cpp" line="231"/>
         <source>Licorne</source>
         <comment>Ennemy</comment>
         <translation>Mesmerize</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="218"/>
+        <location filename="Data.cpp" line="231"/>
         <source>Schizoïd</source>
         <comment>Ennemy</comment>
         <translation>Buel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="218"/>
+        <location filename="Data.cpp" line="231"/>
         <source>Brahman</source>
         <comment>Ennemy</comment>
         <translation>Sphinxaur</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="219"/>
+        <location filename="Data.cpp" line="232"/>
         <source>Shiva</source>
         <comment>Ennemy</comment>
         <translation>Sphinxara</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="219"/>
+        <location filename="Data.cpp" line="232"/>
         <source>Satyrux</source>
         <comment>Ennemy</comment>
         <translation>Snow Lion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="219"/>
+        <location filename="Data.cpp" line="232"/>
         <source>Arconada</source>
         <comment>Ennemy</comment>
         <translation>Anacondaur</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="219"/>
+        <location filename="Data.cpp" line="232"/>
         <source>Orchida</source>
         <comment>Ennemy</comment>
         <translation>Grat</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="220"/>
+        <location filename="Data.cpp" line="233"/>
         <source>Gallus</source>
         <comment>Ennemy</comment>
         <translation>Cockatrice</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="220"/>
+        <location filename="Data.cpp" line="233"/>
         <source>Larva</source>
         <comment>Ennemy</comment>
         <translation>Caterchipillar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="220"/>
+        <location filename="Data.cpp" line="233"/>
         <source>Nocturnus</source>
         <comment>Ennemy</comment>
         <translation>Red Bat</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="220"/>
+        <location filename="Data.cpp" line="233"/>
         <source>Tikal</source>
         <comment>Ennemy</comment>
         <translation>Blitz</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="221"/>
+        <location filename="Data.cpp" line="234"/>
         <source>Diodon</source>
         <comment>Ennemy</comment>
         <translation>Fastitocalon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="221"/>
+        <location filename="Data.cpp" line="234"/>
         <source>Phantom</source>
         <comment>Ennemy</comment>
         <translation>Fastitocalon-F</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="221"/>
+        <location filename="Data.cpp" line="234"/>
         <source>Elastos</source>
         <comment>Ennemy</comment>
         <translation>Gesper</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="221"/>
+        <location filename="Data.cpp" line="234"/>
         <source>Formicide</source>
         <comment>Ennemy</comment>
         <translation>Creeps</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="222"/>
+        <location filename="Data.cpp" line="235"/>
         <source>Polyphage</source>
         <comment>Ennemy</comment>
         <translation>Hexadragon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="222"/>
+        <location filename="Data.cpp" line="235"/>
         <source>Carnidea</source>
         <comment>Ennemy</comment>
         <translation>Blood Soul</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="222"/>
+        <location filename="Data.cpp" line="235"/>
         <source>Protesis</source>
         <comment>Ennemy</comment>
         <translation>Elastoid</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="222"/>
+        <location filename="Data.cpp" line="235"/>
         <source>Scavenger</source>
         <comment>Ennemy</comment>
         <translation>Armadodo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="223"/>
+        <location filename="Data.cpp" line="236"/>
         <source>Elmidea</source>
         <comment>Ennemy</comment>
         <translation>Bite Bug</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="223"/>
+        <location filename="Data.cpp" line="236"/>
         <source>Héra</source>
         <comment>Ennemy</comment>
         <translation>Jelleye</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="223"/>
+        <location filename="Data.cpp" line="236"/>
         <source>Acron</source>
         <comment>Ennemy</comment>
         <translation>Tri-Point</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="223"/>
+        <location filename="Data.cpp" line="236"/>
         <source>Eiffel</source>
         <comment>Ennemy</comment>
         <translation>Turtapod</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="224"/>
+        <location filename="Data.cpp" line="237"/>
         <source>Wendigo</source>
         <comment>Ennemy</comment>
         <translation>Wendigo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="224"/>
+        <location filename="Data.cpp" line="237"/>
         <source>Aphide</source>
         <comment>Ennemy</comment>
         <translation>Gayla</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="224"/>
+        <location filename="Data.cpp" line="237"/>
         <source>Ecorché</source>
         <comment>Ennemy</comment>
         <translation>Gerogero</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="224"/>
+        <location filename="Data.cpp" line="237"/>
         <source>Berserker</source>
         <comment>Ennemy</comment>
         <translation>Death Claw</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="225"/>
+        <location filename="Data.cpp" line="238"/>
         <source>Adéphage</source>
         <comment>Ennemy</comment>
         <translation>Tri-Face</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="225"/>
+        <location filename="Data.cpp" line="238"/>
         <source>Selek</source>
         <comment>Ennemy</comment>
         <translation>Grand Mantis</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="225"/>
+        <location filename="Data.cpp" line="238"/>
         <source>Krystal</source>
         <comment>Ennemy</comment>
         <translation>Krysta</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="225"/>
+        <location filename="Data.cpp" line="238"/>
         <source>Gangrène</source>
         <comment>Ennemy</comment>
         <translation>Lefty</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="226"/>
+        <location filename="Data.cpp" line="239"/>
         <source>Fatima</source>
         <comment>Ennemy</comment>
         <translation>Righty</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="226"/>
+        <location filename="Data.cpp" line="239"/>
         <source>Moloch</source>
         <comment>Ennemy</comment>
         <translation>Blue Dragon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="226"/>
+        <location filename="Data.cpp" line="239"/>
         <source>Weevil</source>
         <comment>Ennemy</comment>
         <translation>Forbidden</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="226"/>
+        <location filename="Data.cpp" line="239"/>
         <source>Succube</source>
         <comment>Ennemy</comment>
         <translation>Bomb</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="227"/>
+        <location filename="Data.cpp" line="240"/>
         <source>Célébis</source>
         <comment>Ennemy</comment>
         <translation>Abyss Worm</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="227"/>
+        <location filename="Data.cpp" line="240"/>
         <source>Trogiidae</source>
         <comment>Ennemy</comment>
         <translation>Ochu</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="227"/>
+        <location filename="Data.cpp" line="240"/>
         <source>Ao</source>
         <comment>Ennemy</comment>
         <translation>Adamantoise</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="227"/>
+        <location filename="Data.cpp" line="240"/>
         <source>Chimaira</source>
         <comment>Ennemy</comment>
         <translation>Chimera</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="228"/>
+        <location filename="Data.cpp" line="241"/>
         <source>Xylomid</source>
         <comment>Ennemy</comment>
         <translation>Malboro</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="228"/>
+        <location filename="Data.cpp" line="241"/>
         <source>Ekarissor</source>
         <comment>Ennemy</comment>
         <translation>Iron Giant</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="228"/>
+        <location filename="Data.cpp" line="241"/>
         <source>Kanibal</source>
         <comment>Ennemy</comment>
         <translation>Behemoth</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="228"/>
+        <location filename="Data.cpp" line="241"/>
         <source>T-Rex</source>
         <comment>Ennemy</comment>
         <translation>T-Rexaur</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="229"/>
+        <location filename="Data.cpp" line="242"/>
         <source>Griffon</source>
         <comment>Ennemy</comment>
         <translation>Ruby Dragon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="229"/>
+        <location filename="Data.cpp" line="242"/>
         <source>Feng</source>
         <comment>Ennemy</comment>
         <translation>Grendel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="229"/>
+        <location filename="Data.cpp" line="242"/>
         <source>Cariatide</source>
         <comment>Ennemy</comment>
         <translation>Vysage</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="229"/>
+        <location filename="Data.cpp" line="242"/>
         <source>Pampa</source>
         <comment>Ennemy</comment>
         <translation>Cactuar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="230"/>
+        <location filename="Data.cpp" line="243"/>
         <source>Tomberry</source>
         <comment>Ennemy</comment>
         <translation>Tonberry</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="230"/>
+        <location filename="Data.cpp" line="243"/>
         <source>Marsupial</source>
         <comment>Ennemy</comment>
         <translation>Torama</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="230"/>
+        <location filename="Data.cpp" line="243"/>
         <source>Fungus</source>
         <comment>Ennemy</comment>
         <translation>Funguar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="230"/>
+        <location filename="Data.cpp" line="243"/>
         <source>Draconus</source>
         <comment>Ennemy</comment>
         <translation>Imp</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="231"/>
+        <location filename="Data.cpp" line="244"/>
         <source>Koyo K</source>
         <comment>Ennemy</comment>
         <translation>PuPu</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="231"/>
+        <location filename="Data.cpp" line="244"/>
         <source>Ifrit</source>
         <comment>Ennemy</comment>
         <translation>Ifrit</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="231"/>
+        <location filename="Data.cpp" line="244"/>
         <source>Taurux</source>
         <comment>Ennemy</comment>
         <translation>Minotaur</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="231"/>
+        <location filename="Data.cpp" line="244"/>
         <source>Tauros</source>
         <comment>Ennemy</comment>
         <translation>Sacred</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="232"/>
+        <location filename="Data.cpp" line="245"/>
         <source>Commandeur</source>
         <comment>Ennemy</comment>
         <translation>Base Leader</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="232"/>
+        <location filename="Data.cpp" line="245"/>
         <source>Cerbères</source>
         <comment>Ennemy</comment>
         <translation>Cerberus</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="232"/>
+        <location filename="Data.cpp" line="245"/>
         <source>Nosferatu</source>
         <comment>Ennemy</comment>
         <translation>Diablos</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="232"/>
+        <location filename="Data.cpp" line="245"/>
         <source>Bahamut</source>
         <comment>Ennemy</comment>
         <translation>Bahamut</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="233"/>
+        <location filename="Data.cpp" line="246"/>
         <source>Odyssey</source>
         <comment>Ennemy</comment>
         <translation>NORG Pod</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="233"/>
+        <location filename="Data.cpp" line="246"/>
         <source>Templier</source>
         <comment>Ennemy</comment>
         <translation>Garden Faculty</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="233"/>
+        <location filename="Data.cpp" line="246"/>
         <source>Odin</source>
         <comment>Ennemy</comment>
         <translation>Odin</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="233"/>
+        <location filename="Data.cpp" line="246"/>
         <source>Galbadien</source>
         <comment>Ennemy</comment>
         <translation>G-Soldier</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="234"/>
+        <location filename="Data.cpp" line="247"/>
         <source>Elite-T</source>
         <comment>Ennemy</comment>
         <translation>Elite Soldier</translation>
@@ -7262,559 +7382,565 @@ By default Hyne attempts to automatically sign saves, but in case of error, you 
         <translation type="obsolete">Biggs</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="234"/>
+        <location filename="Data.cpp" line="247"/>
         <source>Doublure</source>
         <comment>Ennemy</comment>
         <translation>Fake President</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="235"/>
+        <location filename="Data.cpp" line="248"/>
         <source>Trooper</source>
         <comment>Ennemy</comment>
         <translation>Guard</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="235"/>
+        <location filename="Data.cpp" line="248"/>
         <source>Norg</source>
         <comment>Ennemy</comment>
         <translation>NORG</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="235"/>
+        <location filename="Data.cpp" line="248"/>
         <source>S-Borg</source>
         <comment>Ennemy</comment>
         <translation>Esthar Soldier</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="235"/>
+        <location filename="Data.cpp" line="248"/>
         <source>T-Borg</source>
         <comment>Ennemy</comment>
         <translation>Esthar Soldier</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="236"/>
+        <location filename="Data.cpp" line="249"/>
         <source>Tupolev</source>
         <comment>Ennemy</comment>
         <translation>Right Orb</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="236"/>
+        <location filename="Data.cpp" line="249"/>
         <source>Spootnik</source>
         <comment>Ennemy</comment>
         <translation>Left Orb</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="237"/>
+        <location filename="Data.cpp" line="250"/>
         <source>Seifer (1)</source>
         <comment>Ennemy</comment>
         <translation>Seifer (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="237"/>
+        <location filename="Data.cpp" line="250"/>
         <source>Seifer (2)</source>
         <comment>Ennemy</comment>
         <translation>Seifer (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="237"/>
+        <location filename="Data.cpp" line="250"/>
         <source>Seifer (3)</source>
         <comment>Ennemy</comment>
         <translation>Seifer (3)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="236"/>
+        <location filename="Data.cpp" line="249"/>
         <source>Tomberry Sr</source>
         <comment>Ennemy</comment>
         <translation>Tonberry King</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="234"/>
+        <location filename="Data.cpp" line="247"/>
         <source>Wedge (1)</source>
         <comment>Ennemy</comment>
         <translation>Wedge (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="234"/>
+        <location filename="Data.cpp" line="247"/>
         <source>Biggs (1)</source>
         <comment>Ennemy</comment>
         <translation>Biggs (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="236"/>
+        <location filename="Data.cpp" line="249"/>
         <source>Gunblade (1)</source>
         <comment>Ennemy</comment>
         <translation>Gunblade (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="237"/>
+        <location filename="Data.cpp" line="250"/>
         <source>Pampa Senior</source>
         <comment>Ennemy</comment>
         <translation>Jumbo Cactuar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="238"/>
+        <location filename="Data.cpp" line="251"/>
         <source>Edea (1)</source>
         <oldsource>Edea</oldsource>
         <comment>Ennemy</comment>
         <translation>Edea (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="238"/>
+        <location filename="Data.cpp" line="251"/>
         <source>Monarch</source>
         <comment>Ennemy</comment>
         <translation>Ultima Weapon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="238"/>
+        <location filename="Data.cpp" line="251"/>
         <source>Sulfura</source>
         <comment>Ennemy</comment>
         <translation>Elvoret</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="238"/>
+        <location filename="Data.cpp" line="251"/>
         <source>Alienator (violet)</source>
         <comment>Ennemy</comment>
         <translation>Propagator (purple)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="239"/>
+        <location filename="Data.cpp" line="252"/>
         <source>Goliath</source>
         <comment>Ennemy</comment>
         <translation>X-ATM092</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="239"/>
+        <location filename="Data.cpp" line="252"/>
         <source>Iguanor</source>
         <comment>Ennemy</comment>
         <translation>Iguion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="239"/>
+        <location filename="Data.cpp" line="252"/>
         <source>Agamemnon</source>
         <comment>Ennemy</comment>
         <translation>Gargantua</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="239"/>
+        <location filename="Data.cpp" line="252"/>
         <source>Lygus</source>
         <comment>Ennemy</comment>
         <translation>Granaldo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="240"/>
+        <location filename="Data.cpp" line="253"/>
         <source>Cujo</source>
         <comment>Ennemy</comment>
         <translation>Raldo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="240"/>
+        <location filename="Data.cpp" line="253"/>
         <source>Cyanide</source>
         <comment>Ennemy</comment>
         <translation>Oilboyle</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="240"/>
+        <location filename="Data.cpp" line="253"/>
         <source>Alienator (vert)</source>
         <comment>Ennemy</comment>
         <translation>Propagator (green)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="240"/>
+        <location filename="Data.cpp" line="253"/>
         <source>Alienator (jaune)</source>
         <comment>Ennemy</comment>
         <translation>Propagator (yellow)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="241"/>
+        <location filename="Data.cpp" line="254"/>
         <source>Hornet</source>
         <comment>Ennemy</comment>
         <translation>Abadon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="241"/>
+        <location filename="Data.cpp" line="254"/>
         <source>Edea (2)</source>
         <comment>Ennemy</comment>
         <translation>Edea (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="241"/>
+        <location filename="Data.cpp" line="254"/>
         <source>Omniborg (1)</source>
         <comment>Ennemy</comment>
         <translation>BGH251F2 (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="241"/>
+        <location filename="Data.cpp" line="254"/>
         <source>Omniborg (2)</source>
         <comment>Ennemy</comment>
         <translation>BGH251F2 (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="242"/>
+        <location filename="Data.cpp" line="255"/>
         <source>Anakronox</source>
         <comment>Ennemy</comment>
         <translation>Mobile Type 8</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="242"/>
+        <location filename="Data.cpp" line="255"/>
         <source>A-G Pod</source>
         <comment>Ennemy</comment>
         <translation>Left Probe</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="242"/>
+        <location filename="Data.cpp" line="255"/>
         <source>A-D Pod</source>
         <comment>Ennemy</comment>
         <translation>Right Probe</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="242"/>
+        <location filename="Data.cpp" line="255"/>
         <source>Hornet (zombie)</source>
         <comment>Ennemy</comment>
         <translation>Abadon (zombie)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="243"/>
+        <location filename="Data.cpp" line="256"/>
         <source>ParaBorg</source>
         <comment>Ennemy</comment>
         <translation>Paratrooper</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="243"/>
+        <location filename="Data.cpp" line="256"/>
         <source>Flotix</source>
         <comment>Ennemy</comment>
         <translation>Trauma</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="243"/>
+        <location filename="Data.cpp" line="256"/>
         <source>Bibendum</source>
         <comment>Ennemy</comment>
         <translation>Droma</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="243"/>
+        <location filename="Data.cpp" line="256"/>
         <source>Alienator (rouge)</source>
         <comment>Ennemy</comment>
         <translation>Propagator (red)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="244"/>
+        <location filename="Data.cpp" line="257"/>
         <source>Adel</source>
         <comment>Ennemy</comment>
         <translation>Adel</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="244"/>
+        <location filename="Data.cpp" line="257"/>
         <source>Nécromancienne (1)</source>
         <comment>Ennemy</comment>
         <translation>Sorceress</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="245"/>
+        <location filename="Data.cpp" line="258"/>
         <source>Fujin (1)</source>
         <comment>Ennemy</comment>
         <translation>Fujin (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="245"/>
+        <location filename="Data.cpp" line="258"/>
         <source>Nécromancienne (2)</source>
         <comment>Ennemy</comment>
         <translation>Sorceress (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="245"/>
+        <location filename="Data.cpp" line="258"/>
         <source>Nécromancienne (3)</source>
         <comment>Ennemy</comment>
         <translation>Sorceress (3)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="246"/>
+        <location filename="Data.cpp" line="259"/>
         <source>Raijin (1)</source>
         <comment>Ennemy</comment>
         <translation>Raijin (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="246"/>
+        <location filename="Data.cpp" line="259"/>
         <source>(Sans nom)</source>
         <comment>Ennemy</comment>
         <translation>(No name)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="246"/>
+        <location filename="Data.cpp" line="259"/>
         <source>Ultimecia (1)</source>
         <comment>Ennemy</comment>
         <translation>Ultimecia (1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="246"/>
+        <location filename="Data.cpp" line="259"/>
         <source>Ultimecia (2)</source>
         <comment>Ennemy</comment>
         <translation>Ultimecia (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="247"/>
+        <location filename="Data.cpp" line="260"/>
         <source>Seifer (4)</source>
         <comment>Ennemy</comment>
         <translation>Seifer (4)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="247"/>
+        <location filename="Data.cpp" line="260"/>
         <source>Ultimecia (3)</source>
         <comment>Ennemy</comment>
         <translation>Ultimecia (3)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="247"/>
+        <location filename="Data.cpp" line="260"/>
         <source>Ultimecia (4)</source>
         <comment>Ennemy</comment>
         <translation>Ultimecia (4)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="249"/>
+        <location filename="Data.cpp" line="262"/>
         <source>Fujin (2)</source>
         <comment>Ennemy</comment>
         <translation>Fujin (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="249"/>
+        <location filename="Data.cpp" line="262"/>
         <source>Raijin (2)</source>
         <comment>Ennemy</comment>
         <translation>Raijin (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="249"/>
+        <location filename="Data.cpp" line="262"/>
         <source>Biggs (2)</source>
         <comment>Ennemy</comment>
         <translation>Biggs (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="250"/>
+        <location filename="Data.cpp" line="262"/>
+        <source>Wedge (2)</source>
+        <comment>Ennemy</comment>
+        <translation>Wedge (2)</translation>
+    </message>
+    <message>
+        <location filename="Data.cpp" line="263"/>
         <source>UFO (Mandy Beach)</source>
         <comment>Ennemy</comment>
         <translation>UFO (Mandy Beach)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="250"/>
+        <location filename="Data.cpp" line="263"/>
         <source>UFO (Winhill)</source>
         <comment>Ennemy</comment>
         <translation>UFO (Winhill)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="250"/>
+        <location filename="Data.cpp" line="263"/>
         <source>UFO (Trabia)</source>
         <comment>Ennemy</comment>
         <translation>UFO (Trabia)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="250"/>
+        <location filename="Data.cpp" line="263"/>
         <source>UFO (Désert Kashkabald)</source>
         <comment>Ennemy</comment>
         <translation>UFO (Kashkabald Desert)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="251"/>
+        <location filename="Data.cpp" line="264"/>
         <source>Gunblade (2)</source>
         <oldsource>Gunblade 2</oldsource>
         <comment>Ennemy</comment>
         <translation>Gunblade (2)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="811"/>
+        <location filename="Data.cpp" line="825"/>
         <source>Utilisée</source>
         <translation>Used Up</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="816"/>
+        <location filename="Data.cpp" line="830"/>
         <source> (carte %1)</source>
         <translation> (card %1)</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="244"/>
+        <location filename="Data.cpp" line="257"/>
         <source>Minotaure</source>
         <comment>Ennemy</comment>
         <translation>Omega Weapon</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="245"/>
+        <location filename="Data.cpp" line="258"/>
         <source>UFO</source>
         <comment>Ennemy</comment>
         <translation>UFO?</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="247"/>
+        <location filename="Data.cpp" line="260"/>
         <source>Hélix</source>
         <comment>Ennemy</comment>
         <translation>Helix</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="247"/>
+        <location filename="Data.cpp" line="260"/>
         <source>Jason</source>
         <comment>Ennemy</comment>
         <translation>Slapper</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="248"/>
+        <location filename="Data.cpp" line="261"/>
         <source>Attila</source>
         <comment>Ennemy</comment>
         <translation>Red Giant</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="248"/>
+        <location filename="Data.cpp" line="261"/>
         <source>Sulfor</source>
         <comment>Ennemy</comment>
         <translation>Elnoyle</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="248"/>
+        <location filename="Data.cpp" line="261"/>
         <source>Acarnan</source>
         <comment>Ennemy</comment>
         <translation>Tiamat</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="248"/>
+        <location filename="Data.cpp" line="261"/>
         <source>Fabryce</source>
         <comment>Ennemy</comment>
         <translation>Catoblepas</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="251"/>
+        <location filename="Data.cpp" line="264"/>
         <source>Soldat</source>
         <comment>Ennemy</comment>
         <translation>Base Soldier</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="85"/>
+        <location filename="Data.cpp" line="86"/>
         <source>Golgotha</source>
         <comment>item</comment>
         <translation>Phoenix Pinion</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="159"/>
+        <location filename="Data.cpp" line="172"/>
         <source>Shiva</source>
         <comment>gf</comment>
         <translation>Shiva</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="159"/>
+        <location filename="Data.cpp" line="172"/>
         <source>Ifrit</source>
         <comment>gf</comment>
         <translation>Ifrit</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="159"/>
+        <location filename="Data.cpp" line="172"/>
         <source>Ondine</source>
         <comment>gf</comment>
         <translation>Siren</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="160"/>
+        <location filename="Data.cpp" line="173"/>
         <source>Taurus</source>
         <comment>gf</comment>
         <translation>Brothers</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="160"/>
+        <location filename="Data.cpp" line="173"/>
         <source>Nosferatu</source>
         <comment>gf</comment>
         <translation>Diablos</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="160"/>
+        <location filename="Data.cpp" line="173"/>
         <source>Ahuri</source>
         <comment>gf</comment>
         <translation>Carbuncle</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="160"/>
+        <location filename="Data.cpp" line="173"/>
         <source>Leviathan</source>
         <comment>gf</comment>
         <translation>Leviathan</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="161"/>
+        <location filename="Data.cpp" line="174"/>
         <source>Zéphyr</source>
         <comment>gf</comment>
         <translation>Pandemona</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="161"/>
+        <location filename="Data.cpp" line="174"/>
         <source>Cerberus</source>
         <comment>gf</comment>
         <translation>Cerberus</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="161"/>
+        <location filename="Data.cpp" line="174"/>
         <source>Alexander</source>
         <comment>gf</comment>
         <translation>Alexander</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="161"/>
+        <location filename="Data.cpp" line="174"/>
         <source>Helltrain</source>
         <comment>gf</comment>
         <translation>Doomtrain</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="162"/>
+        <location filename="Data.cpp" line="175"/>
         <source>Bahamut</source>
         <comment>gf</comment>
         <translation>Bahamut</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="162"/>
+        <location filename="Data.cpp" line="175"/>
         <source>Pampa</source>
         <comment>gf</comment>
         <translation>Cactuar</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="162"/>
+        <location filename="Data.cpp" line="175"/>
         <source>Tomberry</source>
         <comment>gf</comment>
         <translation>Tonberry</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="162"/>
+        <location filename="Data.cpp" line="175"/>
         <source>Orbital</source>
         <comment>gf</comment>
         <translation>Eden</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="206"/>
+        <location filename="Data.cpp" line="219"/>
         <source>Grochocobo</source>
         <comment>card</comment>
         <translation>Chubby Chocobo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="206"/>
+        <location filename="Data.cpp" line="219"/>
         <source>Angel</source>
         <comment>card</comment>
         <translation>Angelo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="206"/>
+        <location filename="Data.cpp" line="219"/>
         <source>Gilgamesh</source>
         <comment>card</comment>
         <translation>Gilgamesh</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="206"/>
+        <location filename="Data.cpp" line="219"/>
         <source>Minimog</source>
         <comment>card</comment>
         <translation>MiniMog</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="206"/>
+        <location filename="Data.cpp" line="219"/>
         <source>Chicobo</source>
         <comment>card</comment>
         <translation>Chicobo</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="207"/>
+        <location filename="Data.cpp" line="220"/>
         <source>Golgotha</source>
         <comment>card</comment>
         <translation>Quezacotl</translation>
     </message>
     <message>
-        <location filename="Data.cpp" line="208"/>
+        <location filename="Data.cpp" line="221"/>
         <source>Cerbères</source>
         <translation>Cerberus</translation>
     </message>
@@ -7825,75 +7951,81 @@ By default Hyne attempts to automatically sign saves, but in case of error, you 
         <translation>false</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="168"/>
+        <location filename="SavecardData.cpp" line="170"/>
         <source>Sans nom</source>
         <translation>Unnamed</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="222"/>
-        <location filename="SavecardData.cpp" line="276"/>
-        <location filename="SavecardData.cpp" line="530"/>
+        <location filename="SavecardData.cpp" line="224"/>
+        <location filename="SavecardData.cpp" line="280"/>
+        <location filename="SavecardData.cpp" line="559"/>
         <source>Le fichier n&apos;existe plus.
 %1</source>
         <translation>The file no longer exists.
 %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="227"/>
-        <location filename="SavecardData.cpp" line="281"/>
-        <location filename="SavecardData.cpp" line="418"/>
+        <location filename="SavecardData.cpp" line="229"/>
+        <location filename="SavecardData.cpp" line="285"/>
+        <location filename="SavecardData.cpp" line="447"/>
         <source>Le fichier est protégé en lecture.</source>
         <translation>The file is read-protected.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="232"/>
+        <location filename="SavecardData.cpp" line="234"/>
         <source>Fichier trop court</source>
         <translation>File too short</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="292"/>
+        <location filename="SavecardData.cpp" line="296"/>
         <source>Fichier invalide</source>
         <translation>Invalid file</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="394"/>
+        <location filename="SavecardData.cpp" line="423"/>
         <source>Impossible de créer le fichier temporaire.</source>
         <translation>Unable to create the temporary file.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="398"/>
+        <location filename="SavecardData.cpp" line="427"/>
         <source>Impossible de décompresser le fichier.</source>
         <translation>Unable to uncompress the file.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="452"/>
+        <location filename="SavecardData.cpp" line="481"/>
         <source>Format invalide.</source>
         <translation>Invalid format.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="463"/>
+        <location filename="SavecardData.cpp" line="492"/>
         <source>La sauvegarde trouvée n&apos;est pas de Final Fantasy VIII.</source>
         <translation>The found save is not from Final Fantasy VIII.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="535"/>
+        <location filename="SavecardData.cpp" line="564"/>
         <source>Le fichier est protégé en lecture.
 %1</source>
         <translation>The file is read-protected.
 %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="541"/>
-        <location filename="SavecardData.cpp" line="633"/>
-        <location filename="SavecardData.cpp" line="726"/>
-        <location filename="SavecardData.cpp" line="781"/>
+        <location filename="SavecardData.cpp" line="570"/>
+        <location filename="SavecardData.cpp" line="673"/>
+        <location filename="SavecardData.cpp" line="778"/>
+        <location filename="SavecardData.cpp" line="839"/>
         <source>Impossible de créer un fichier temporaire</source>
         <translation>Cannot create temporary file</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="606"/>
-        <location filename="SavecardData.cpp" line="755"/>
-        <location filename="SavecardData.cpp" line="835"/>
+        <location filename="SavecardData.cpp" line="624"/>
+        <source>Type non supporté pour la sauvegarde.
+%1</source>
+        <translation>Unsupported type %1</translation>
+    </message>
+    <message>
+        <location filename="SavecardData.cpp" line="642"/>
+        <location filename="SavecardData.cpp" line="809"/>
+        <location filename="SavecardData.cpp" line="895"/>
         <source>Impossible de supprimer le fichier !
 %1
 Échec de la sauvegarde.
@@ -7904,42 +8036,42 @@ Failed to save.
 Verify that the file is not used by another program.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="612"/>
-        <location filename="SavecardData.cpp" line="703"/>
-        <location filename="SavecardData.cpp" line="761"/>
-        <location filename="SavecardData.cpp" line="844"/>
+        <location filename="SavecardData.cpp" line="650"/>
+        <location filename="SavecardData.cpp" line="753"/>
+        <location filename="SavecardData.cpp" line="817"/>
+        <location filename="SavecardData.cpp" line="906"/>
         <source>Échec de la sauvegarde.</source>
         <translation>Save failed.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="625"/>
+        <location filename="SavecardData.cpp" line="665"/>
         <source>Cette sauvegarde ne provient pas de Final Fantasy VIII.</source>
         <translation>This save is not from Final Fantasy VIII.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="659"/>
+        <location filename="SavecardData.cpp" line="701"/>
         <source>Le fichier &apos;metadata.xml&apos; n&apos;a pas été trouvé dans le dossier &apos;%1&apos;.
 Essayez de signer vos sauvegardes manuellement (Fichier &gt; Signer les sauv. pour le Cloud).</source>
         <translation>The &apos;metadata.xml&apos; file was not found in the directory &apos;%1&apos;.
 Try to sign your saves manually (File &gt; Sign saves for the Cloud).</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="662"/>
+        <location filename="SavecardData.cpp" line="704"/>
         <source>Le fichier &apos;metadata.xml&apos; n&apos;a pas pu être ouvert.
 %1</source>
         <translation>The &apos;metadata.xml&apos; file cannot be opened.
 %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="673"/>
-        <location filename="SavecardData.cpp" line="688"/>
+        <location filename="SavecardData.cpp" line="715"/>
+        <location filename="SavecardData.cpp" line="736"/>
         <source>Le fichier &apos;metadata.xml&apos; n&apos;a pas pu être mis à jour.
 %1</source>
         <translation>The &apos;metadata.xml&apos; file cannot be updated.
 %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="696"/>
+        <location filename="SavecardData.cpp" line="744"/>
         <source>Impossible de supprimer le fichier !
 %1
 Échec de la sauvegarde.
@@ -7962,17 +8094,17 @@ Try to launch %2 as admin.</translation>
         <translation type="obsolete">Cannot load file contents &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="FF8Installation.cpp" line="97"/>
+        <location filename="FF8Installation.cpp" line="110"/>
         <source>FF8 Standard</source>
         <translation>FF8 Standard</translation>
     </message>
     <message>
-        <location filename="FF8Installation.cpp" line="99"/>
+        <location filename="FF8Installation.cpp" line="112"/>
         <source>FF8 Steam</source>
         <translation>FF8 Steam</translation>
     </message>
     <message>
-        <location filename="FF8Installation.cpp" line="101"/>
+        <location filename="FF8Installation.cpp" line="114"/>
         <source>FF8 personnalisé</source>
         <oldsource>FF8 personnalisÃ©</oldsource>
         <translation>FF8 custom</translation>
@@ -8208,39 +8340,39 @@ Would you analyze it to get the right format?</translation>
 <context>
     <name>SavecardView</name>
     <message>
-        <location filename="SavecardView.cpp" line="74"/>
+        <location filename="SavecardView.cpp" line="76"/>
         <source>Fichier supprimé</source>
         <translation>File removed</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="75"/>
+        <location filename="SavecardView.cpp" line="77"/>
         <source>Le fichier &apos;%1&apos; a été supprimé par un programme externe !</source>
         <translation>The file &apos;%1&apos; has been removed by another program!</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="79"/>
+        <location filename="SavecardView.cpp" line="81"/>
         <source>Fichier modifié</source>
         <translation>File modified</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="80"/>
+        <location filename="SavecardView.cpp" line="82"/>
         <source>Le fichier &apos;%1&apos; a été modifié par un programme externe.</source>
         <translation>The file &apos;%1&apos; has been modified by another program.</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="203"/>
+        <location filename="SavecardView.cpp" line="205"/>
         <source>Écraser</source>
         <translation>Overwrite</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="203"/>
+        <location filename="SavecardView.cpp" line="205"/>
         <source>Tout le contenu de la sauvegarde sera écrasé.
 Continuer ?</source>
         <translation>All content of the save will be overwritten.
 Continue?</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="268"/>
+        <location filename="SavecardView.cpp" line="270"/>
         <source>Exporter</source>
         <translation>Export</translation>
     </message>
@@ -8249,51 +8381,51 @@ Continue?</translation>
         <translation type="obsolete">FF8 PC save (*)</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="268"/>
+        <location filename="SavecardView.cpp" line="270"/>
         <source>FF8 PC save (* *.ff8)</source>
         <translation>FF8 PC save (* *.ff8)</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="275"/>
+        <location filename="SavecardView.cpp" line="277"/>
         <source>Échec</source>
         <translation>Failed</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="275"/>
+        <location filename="SavecardView.cpp" line="277"/>
         <source>Enregistrement échoué, vérifiez que le fichier cible n&apos;est pas utilisé.</source>
         <translation>Save failed, verify that the target file is not used.</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="291"/>
+        <location filename="SavecardView.cpp" line="293"/>
         <source>Nouvelle partie</source>
         <translation>New game</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="291"/>
+        <location filename="SavecardView.cpp" line="293"/>
         <source>Tout le contenu de la sauvegarde sera remplacé par une nouvelle partie.
 Continuer ?</source>
         <translation>All content of the save will be replaced with a new game.
 Continue?</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="345"/>
+        <location filename="SavecardView.cpp" line="347"/>
         <source>Vider</source>
         <translation>Empty</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="345"/>
+        <location filename="SavecardView.cpp" line="347"/>
         <source>Tout le contenu de la sauvegarde sera vidé.
 Continuer ?</source>
         <translation>All content of the save will be emptied.
 Continue?</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="385"/>
+        <location filename="SavecardView.cpp" line="387"/>
         <source>Sauvegarde supprimée</source>
         <translation>Save deleted</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="385"/>
+        <location filename="SavecardView.cpp" line="387"/>
         <source>Cette sauvegarde a été supprimée, voulez-vous tenter de la réparer ? (succès non garanti)</source>
         <translation>This save has been deleted, do you try to repair it? (Success not guaranteed)</translation>
     </message>
@@ -8306,42 +8438,42 @@ Continue?</translation>
         <translation type="obsolete">No</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="496"/>
+        <location filename="SavecardView.cpp" line="498"/>
         <source>NV%1</source>
         <translation>LV%1</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="544"/>
+        <location filename="SavecardView.cpp" line="546"/>
         <source>Bloc occupé</source>
         <translation>Used block</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="549"/>
+        <location filename="SavecardView.cpp" line="551"/>
         <source>Bloc Disponible</source>
         <translation>unused block</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="831"/>
+        <location filename="SavecardView.cpp" line="833"/>
         <source>&amp;Modifier...</source>
         <translation>&amp;Edit...</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="832"/>
+        <location filename="SavecardView.cpp" line="834"/>
         <source>&amp;Exporter en sauv. PC...</source>
         <translation>&amp;Convert to PC Save...</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="834"/>
+        <location filename="SavecardView.cpp" line="836"/>
         <source>&amp;Nouvelle partie</source>
         <translation>&amp;New game</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="836"/>
+        <location filename="SavecardView.cpp" line="838"/>
         <source>&amp;Vider</source>
         <translation>E&amp;mpty</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="838"/>
+        <location filename="SavecardView.cpp" line="840"/>
         <source>&amp;Propriétés...</source>
         <translation>&amp;Properties...</translation>
     </message>
@@ -8527,7 +8659,6 @@ Continue?</translation>
         <translation>Cards</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="40"/>
         <location filename="PageWidgets/TTriadEditor.cpp" line="253"/>
         <source>Règles</source>
         <translation>Rules</translation>
@@ -8575,19 +8706,16 @@ Continue?</translation>
     </message>
     <message>
         <location filename="PageWidgets/TTriadEditor.cpp" line="239"/>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="296"/>
         <source>Dollet</source>
         <translation>Dollet</translation>
     </message>
     <message>
         <location filename="PageWidgets/TTriadEditor.cpp" line="240"/>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="296"/>
         <source>Horizon</source>
         <translation>F. Horizon</translation>
     </message>
     <message>
         <location filename="PageWidgets/TTriadEditor.cpp" line="240"/>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="296"/>
         <source>Lunar Gate</source>
         <translation>Lunar Gate</translation>
     </message>
@@ -8673,108 +8801,183 @@ Continue?</translation>
     </message>
     <message>
         <location filename="PageWidgets/TTriadEditor.cpp" line="269"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="281"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="325"/>
         <source>Aucune</source>
         <translation>None</translation>
     </message>
     <message>
         <location filename="PageWidgets/TTriadEditor.cpp" line="278"/>
+        <source>Quêtes</source>
+        <translation>Quests</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="294"/>
+        <source>-</source>
+        <translation>-</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="294"/>
+        <source>Valet</source>
+        <translation>Jack</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="294"/>
+        <source>Trèfle</source>
+        <translation>Clover</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="294"/>
+        <source>Carreaux</source>
+        <translation>Diamonds</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="294"/>
+        <source>Pique</source>
+        <translation>Spade</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="294"/>
+        <source>Reine de coeur</source>
+        <translation>Queen of heart</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="304"/>
+        <source>Nulle part</source>
+        <translation>Nowhere</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="326"/>
+        <source>Kiros</source>
+        <translation>Kiros</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="327"/>
+        <source>Irvine</source>
+        <translation>Irvine</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="328"/>
+        <source>GroChocobo</source>
+        <translation>Chubby Chocobo</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="330"/>
+        <source>Phénix</source>
+        <translation>Phoenix</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="335"/>
+        <source>Quête du Groupe CC :</source>
+        <translation>CC Group quest:</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="339"/>
+        <source>Règle du vainqueur de la reine :</source>
+        <translation>Trade rule of the queen:</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="343"/>
+        <source>Région règle du vainqueur :</source>
+        <translation>Trade rule location:</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="347"/>
+        <source>Dernière carte créée :</source>
+        <translation>Last created card:</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="350"/>
         <source>Divers</source>
         <translation>Miscellaneous</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="296"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="369"/>
+        <source>Nombre de victoires à la BGU :</source>
+        <translation>BGU Victory Count:</translation>
+    </message>
+    <message>
         <source>Balamb City</source>
-        <translation>Balamb City</translation>
+        <translation type="vanished">Balamb City</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="296"/>
         <source>Deling City</source>
-        <translation>Deling City</translation>
+        <translation type="vanished">Deling City</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="296"/>
         <source>Shumi village</source>
-        <translation>Shumi village</translation>
+        <translation type="vanished">Shumi village</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="296"/>
         <source>Winhill</source>
-        <translation>Winhill</translation>
+        <translation type="vanished">Winhill</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="296"/>
         <source>Esthar City</source>
-        <translation>Esthar City</translation>
+        <translation type="vanished">Esthar City</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="315"/>
         <source>MiniMog</source>
-        <translation>MiniMog</translation>
+        <translation type="vanished">MiniMog</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="316"/>
         <source>Tauros</source>
-        <translation>Sacred</translation>
+        <translation type="vanished">Sacred</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="317"/>
         <source>Chicobo</source>
-        <translation>Chicobo</translation>
+        <translation type="vanished">Chicobo</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="318"/>
         <source>Alexander</source>
-        <translation>Alexander</translation>
+        <translation type="vanished">Alexander</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="319"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="329"/>
         <source>Helltrain</source>
         <translation>Doomtrain</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="320"/>
         <source>Toutes</source>
-        <translation>All</translation>
+        <translation type="vanished">All</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="322"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="358"/>
         <source>Inconnu 1 :</source>
         <translation>Unknown 1:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="324"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="360"/>
         <source>Inconnu 2 :</source>
         <translation>Unknown 2:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="327"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="332"/>
         <source>Dernières régions visitées :</source>
         <translation>Last region visited:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="332"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="341"/>
         <source>Nombre de joueurs règle du vainqueur :</source>
         <translation>Trade rating:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="336"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="345"/>
         <source>Dégénération :</source>
         <translation>Degeneration:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="338"/>
         <source>Cartes créées :</source>
-        <translation>Cards created:</translation>
+        <translation type="vanished">Cards created:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="330"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="337"/>
         <source>Emplacement reine des cartes :</source>
         <translation>Card Queen location:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="334"/>
         <source>Région :</source>
-        <translation>Region:</translation>
+        <translation type="vanished">Region:</translation>
     </message>
     <message>
         <location filename="PageWidgets/TTriadEditor.cpp" line="81"/>
@@ -8792,23 +8995,23 @@ Continue?</translation>
         <translation>Location</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="340"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="363"/>
         <source>Nombre de victoires :</source>
         <translation>Victory Count:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="342"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="365"/>
         <source>Nombre de défaites :</source>
         <translation>Defeat Count:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="344"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="367"/>
         <source>Nombre d&apos;égalités :</source>
         <translation>Egality Count:</translation>
     </message>
     <message>
         <location filename="PageWidgets/TTriadEditor.cpp" line="179"/>
-        <location filename="PageWidgets/TTriadEditor.cpp" line="544"/>
+        <location filename="PageWidgets/TTriadEditor.cpp" line="576"/>
         <source>Squall</source>
         <translation>Squall</translation>
     </message>
@@ -8851,28 +9054,28 @@ Continue?</translation>
         <translation type="obsolete">&amp;Recent Files</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="78"/>
-        <location filename="Window.cpp" line="918"/>
+        <location filename="Window.cpp" line="82"/>
+        <location filename="Window.cpp" line="934"/>
         <source>&amp;Fermer</source>
         <translation>&amp;Close</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="80"/>
+        <location filename="Window.cpp" line="84"/>
         <source>&amp;Quitter</source>
         <translation>&amp;Exit</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="85"/>
+        <location filename="Window.cpp" line="89"/>
         <source>Fente &amp;1</source>
         <translation>Slot &amp;1</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="86"/>
+        <location filename="Window.cpp" line="90"/>
         <source>Fente &amp;2</source>
         <translation>Slot &amp;2</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="91"/>
+        <location filename="Window.cpp" line="95"/>
         <source>&amp;Paramètres</source>
         <translation>&amp;Settings</translation>
     </message>
@@ -8885,14 +9088,14 @@ Continue?</translation>
         <translation type="obsolete">High Res. font</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="116"/>
+        <location filename="Window.cpp" line="120"/>
         <source>&amp;Langue</source>
         <oldsource>&amp;Langues</oldsource>
         <translation>&amp;Language</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="138"/>
-        <location filename="Window.cpp" line="140"/>
+        <location filename="Window.cpp" line="142"/>
+        <location filename="Window.cpp" line="144"/>
         <source>&amp;?</source>
         <oldsource>?</oldsource>
         <translation>&amp;?</translation>
@@ -8942,7 +9145,7 @@ Translators:
  - Japanese: Asa</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="294"/>
+        <location filename="Window.cpp" line="298"/>
         <source>Ouvrir</source>
         <translation>Open</translation>
     </message>
@@ -8955,7 +9158,7 @@ Translators:
         <translation type="obsolete">PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="435"/>
+        <location filename="Window.cpp" line="439"/>
         <source>VGS memorycard (*.vgs *.mem)</source>
         <oldsource>PS memorycard (*.mcr;*.ddf;*.mc;*.mcd;*.mci;*.ps;*.psm)</oldsource>
         <translation>VGS memorycard (*.vgs *.mem)</translation>
@@ -8966,28 +9169,28 @@ Translators:
         <translation type="obsolete">FF8 PC save (*)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="474"/>
+        <location filename="Window.cpp" line="481"/>
         <source>Les formats VMP et PSV sont protégés, l&apos;enregistrement sera partiel et risque de ne pas fonctionner.
 Continuer quand même ?</source>
         <translation>VMP and PSV formats are protected, save will be partial and might not work.
 Continue anyway?</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="262"/>
-        <location filename="Window.cpp" line="346"/>
-        <location filename="Window.cpp" line="356"/>
-        <location filename="Window.cpp" line="580"/>
-        <location filename="Window.cpp" line="868"/>
+        <location filename="Window.cpp" line="266"/>
+        <location filename="Window.cpp" line="350"/>
+        <location filename="Window.cpp" line="360"/>
+        <location filename="Window.cpp" line="594"/>
+        <location filename="Window.cpp" line="883"/>
         <source>Erreur</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="582"/>
+        <location filename="Window.cpp" line="596"/>
         <source>Attention</source>
         <translation>Warning</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="868"/>
+        <location filename="Window.cpp" line="883"/>
         <source>Final Fantasy VIII n&apos;a pas pu être lancé.
 %1</source>
         <translation>Final Fantasy VIII could not be launched.
@@ -9025,7 +9228,7 @@ Continue anyway?</translation>
         <translation type="vanished">English</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="221"/>
+        <location filename="Window.cpp" line="225"/>
         <source> - save %1</source>
         <translation> - save %1</translation>
     </message>
@@ -9051,17 +9254,17 @@ Continue anyway?</translation>
         <translation>S&amp;ign saves for the Cloud...</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="63"/>
+        <location filename="Window.cpp" line="64"/>
         <source>&amp;Lancer Final Fantasy VIII</source>
         <translation>&amp;Launch Final Fantasy VIII</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="70"/>
+        <location filename="Window.cpp" line="74"/>
         <source>Nou&amp;velle fenêtre</source>
         <translation>Ne&amp;w window</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="71"/>
+        <location filename="Window.cpp" line="75"/>
         <source>Ple&amp;in écran</source>
         <translation>&amp;Fullscreen</translation>
     </message>
@@ -9075,62 +9278,67 @@ Continue anyway?</translation>
         <translation type="obsolete">New window</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="93"/>
+        <location filename="Window.cpp" line="97"/>
         <source>&amp;Mode Avancé</source>
         <translation>Advanced &amp;Mode</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="97"/>
+        <location filename="Window.cpp" line="101"/>
         <source>&amp;Images par seconde</source>
         <translation>&amp;FPS</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="98"/>
+        <location filename="Window.cpp" line="102"/>
         <source>&amp;Auto</source>
         <translation>&amp;Auto</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="102"/>
+        <location filename="Window.cpp" line="106"/>
         <source>&amp;NTSC/PC (60 images/s)</source>
         <translation>&amp;NTSC/PC (60 fps)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="106"/>
+        <location filename="Window.cpp" line="110"/>
         <source>&amp;PAL (50 images/s)</source>
         <translation>&amp;PAL (50 fps)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="112"/>
+        <location filename="Window.cpp" line="116"/>
         <source>&amp;Police haute résolution</source>
         <translation>&amp;High Res. font</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="126"/>
+        <location filename="Window.cpp" line="130"/>
         <source>Version PC</source>
         <translation>PC Version</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="234"/>
+        <location filename="Window.cpp" line="238"/>
         <source>Nouveau</source>
         <translation>New</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="236"/>
+        <location filename="Window.cpp" line="240"/>
         <source>Sans nom</source>
         <translation>Unnamed</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="238"/>
+        <location filename="Window.cpp" line="242"/>
         <source>1 sauvegarde</source>
         <translation>1 save</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="239"/>
+        <location filename="Window.cpp" line="243"/>
         <source>15 sauvegardes</source>
         <translation>15 saves</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="904"/>
+        <location filename="Window.cpp" line="443"/>
+        <source>PS4 Remaster save (*.ff8 *)</source>
+        <translation>PS4 Remaster save (*.ff8 *)</translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="920"/>
         <source>Par myst6re&lt;br/&gt;&lt;a href=&quot;https://sourceforge.net/projects/hyne/&quot;&gt;https://sourceforge.net/projects/hyne/&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;75% modifiable&lt;br/&gt;&lt;br/&gt;Merci à :&lt;br/&gt; - Qhimm&lt;br/&gt; - Cyberman&lt;br/&gt; - sithlord48&lt;br/&gt; - Aladore384&lt;br/&gt; - suloku&lt;br/&gt;&lt;br/&gt;Traducteurs :&lt;br/&gt; - Anglais : myst6re, Vgr&lt;br/&gt; - Japonais : Asa, Sharleen</source>
         <translation>By myst6re&lt;br/&gt;&lt;a href=&quot;https://sourceforge.net/projects/hyne/&quot;&gt;https://sourceforge.net/projects/hyne/&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;75% editable&lt;br/&gt;&lt;br/&gt;Thanks to:&lt;br/&gt; - Qhimm&lt;br/&gt; - Cyberman&lt;br/&gt; - sithlord48&lt;br/&gt; - Aladore384&lt;br/&gt; - suloku&lt;br/&gt;&lt;br/&gt;Translators:&lt;br/&gt; - English: myst6re, Vgr&lt;br/&gt; - Japanese: Asa, Sharleen</translation>
     </message>
@@ -9140,72 +9348,72 @@ Continue anyway?</translation>
         <translation type="obsolete">Compatible files (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;All files (*)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="316"/>
+        <location filename="Window.cpp" line="320"/>
         <source>Enregistrer ?</source>
         <translation>Save?</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="317"/>
+        <location filename="Window.cpp" line="321"/>
         <source>Voulez-vous enregistrer &apos;%1&apos; avant de fermer ?</source>
         <translation>Save file &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="319"/>
+        <location filename="Window.cpp" line="323"/>
         <source>fente</source>
         <translation>slot</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="346"/>
+        <location filename="Window.cpp" line="350"/>
         <source>Fichier de type inconnu.
 Voulez-vous l&apos;analyser pour obtenir le bon format ?</source>
         <translation>Unknown file type.
 Would you analyze it to get the right format?</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="366"/>
+        <location filename="Window.cpp" line="370"/>
         <source>Le format %1 est protégé, l&apos;enregistrement sera partiel et risque de ne pas fonctionner.</source>
         <translation>The format %1 is protected, save will be partial and might not work.</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="434"/>
+        <location filename="Window.cpp" line="438"/>
         <source>PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm)</source>
         <oldsource>PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1)</oldsource>
         <translation>PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="436"/>
+        <location filename="Window.cpp" line="440"/>
         <source>GME memorycard (*.gme)</source>
         <oldsource>VGS memorycard (*.vgs;*.mem)</oldsource>
         <translation>GME memorycard (*.gme)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="437"/>
+        <location filename="Window.cpp" line="441"/>
         <source>PSN memorycard (*.vmp)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="438"/>
+        <location filename="Window.cpp" line="442"/>
         <source>FF8 PC save (*.ff8 *)</source>
         <translation>FF8 PC save (*.ff8 *)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="439"/>
+        <location filename="Window.cpp" line="444"/>
         <source>PSN save (*.psv)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="458"/>
+        <location filename="Window.cpp" line="464"/>
         <source>Exporter</source>
         <translation>Export</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="365"/>
-        <location filename="Window.cpp" line="473"/>
+        <location filename="Window.cpp" line="369"/>
+        <location filename="Window.cpp" line="480"/>
         <source>Sauvegarde hasardeuse</source>
         <translation>Save hazardous</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="295"/>
+        <location filename="Window.cpp" line="299"/>
         <source>Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm);;FF8 PC save (save?? *.ff8);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;Tous les fichiers (*)</source>
         <oldsource>Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.ff8 *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1);;FF8 PC save (save?? *.ff8);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;Tous les fichiers (*)</oldsource>
         <translation>Compatible files (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm);;FF8 PC save (save?? *.ff8);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;All files (*)</translation>
@@ -9219,27 +9427,27 @@ Would you analyze it to get the right format?</translation>
         <translation type="obsolete">No</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="593"/>
+        <location filename="Window.cpp" line="607"/>
         <source>Commentaire</source>
         <translation>Comment</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="662"/>
+        <location filename="Window.cpp" line="676"/>
         <source>%1 : %2</source>
         <translation>%1: %2</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="845"/>
+        <location filename="Window.cpp" line="859"/>
         <source>Paramètres modifiés</source>
         <translation>Settings changed</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="846"/>
+        <location filename="Window.cpp" line="860"/>
         <source>Relancez le programme pour que les paramètres prennent effet.</source>
         <translation>Restart the program for the settings to take effect.</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="888"/>
+        <location filename="Window.cpp" line="904"/>
         <source>À propos</source>
         <translation>About</translation>
     </message>
