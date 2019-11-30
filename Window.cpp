@@ -910,14 +910,17 @@ void Window::about()
 	image.setPixmap(QPixmap(":/images/about.png"));
 	image.move(about.width()-20-image.sizeHint().height(), 80);
 	
-	QLabel desc1(QString("%1 %2").arg(PROG_NAME, PROG_VERSION), &about);
+	QLabel desc1(QString("%1 %2 <a href=\"https://www.ff8.fr/\">FF8.fr</a> Edition").arg(PROG_NAME, PROG_VERSION), &about);
+	desc1.setTextInteractionFlags(Qt::LinksAccessibleByMouse | Qt::LinksAccessibleByKeyboard);
+	desc1.setTextFormat(Qt::RichText);
+	desc1.setOpenExternalLinks(true);
 	desc1.setFont(font);
 	desc1.setFixedWidth(about.width());
 	desc1.setAlignment(Qt::AlignHCenter);
 
 	font.setPointSize(8);
 
-	QLabel desc2(tr("Par myst6re<br/><a href=\"https://sourceforge.net/projects/hyne/\">https://sourceforge.net/projects/hyne/</a><br/><br/>75% modifiable<br/><br/>Merci à :<br/> - Qhimm<br/> - Cyberman<br/> - sithlord48<br/> - Aladore384<br/> - suloku<br/><br/>Traducteurs :<br/> - Anglais : myst6re, Vgr<br/> - Japonais : Asa, Sharleen"), &about);
+	QLabel desc2(tr("Par myst6re<br/><a href=\"https://github.com/myst6re/hyne/\">github.com/myst6re/hyne</a><br/><br/>75% modifiable<br/><br/>Merci à :<br/> - Qhimm<br/> - Cyberman<br/> - sithlord48<br/> - Aladore384<br/> - suloku<br/><br/>Traducteurs :<br/> - Anglais : myst6re, Vgr<br/> - Japonais : Asa, Sharleen"), &about);
 	desc2.setTextInteractionFlags(Qt::LinksAccessibleByMouse | Qt::LinksAccessibleByKeyboard);
 	desc2.setTextFormat(Qt::RichText);
 	desc2.setOpenExternalLinks(true);
