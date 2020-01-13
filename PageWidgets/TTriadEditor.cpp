@@ -291,9 +291,9 @@ QWidget *TTriadEditor::buildPage2()
 		last2_regionE->addItem(region, i++);
 
 	QStringList cc_names;
-	cc_names << tr("-") << tr("Valet") << tr("Trèfle") << tr("Carreaux") << tr("Pique") << tr("Reine de coeur");
+	cc_names << tr("-") << tr("Valet") << tr("Trèfle") << tr("Carreaux") << tr("Pique") << tr("Reine de coeur") << tr("Kadowaki") << tr("Roi des cartes");
 	QList<int> cc_values;
-	cc_values << 0 << 0x1 << 0x3 << 0x13 << 0x17 << 0x1F;
+	cc_values << 0 << 0x1 << 0x3 << 0x13 << 0x17 << 0x1F << 0x021F << 0x221F;
 
 	ccE = new QComboBox(group3);
 	i=0;
@@ -416,7 +416,7 @@ void TTriadEditor::fillPage()
 	setCurrentIndex(last2_regionE, data->field.tt_lastregion[1]);
 	setCurrentIndex(queenE, data->field.tt_cardqueen_location);
 	setCurrentIndex(traderule_queenE, data->field.tt_curtraderulequeen);
-	setCurrentIndex(ccE, data->field.tt_cc_quest);
+	setCurrentIndex(ccE, ((data->field.tt_players_bgu_dialogs2 & 0x22) << 8) | (data->field.tt_cc_quest & 0x1F));
 	traderatingE->setValue(data->field.tt_traderating);
 	setCurrentIndex(traderating_regionE, data->field.tt_traderating_region);
 	ttvictorycountE->setValue(data->ttcards.tt_victory_count);
@@ -485,7 +485,9 @@ void TTriadEditor::savePage()
 	data->field.tt_lastregion[0] = quint8(last_regionE->itemData(last_regionE->currentIndex()).toInt());
 	data->field.tt_lastregion[1] = quint8(last2_regionE->itemData(last2_regionE->currentIndex()).toInt());
 	data->field.tt_cardqueen_location = quint8(queenE->itemData(queenE->currentIndex()).toInt());
-	data->field.tt_cc_quest = quint8(ccE->itemData(ccE->currentIndex()).toInt());
+	quint16 cc_quest = quint16(ccE->itemData(ccE->currentIndex()).toInt());
+	data->field.tt_cc_quest |= cc_quest & 0xFF;
+	data->field.tt_players_bgu_dialogs2 |= cc_quest >> 8;
 	data->field.tt_curtraderulequeen = quint8(traderule_queenE->itemData(traderule_queenE->currentIndex()).toInt());
 	data->field.tt_traderating = quint8(traderatingE->value());
 	data->field.tt_traderating_region = quint8(traderating_regionE->itemData(traderating_regionE->currentIndex()).toInt());
