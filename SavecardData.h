@@ -28,8 +28,12 @@ class SavecardData
 {
 public:
 	enum Type {
-		Pc, PcUncompressed, Ps, Vgs, Gme, Vmp, Psv, PcSlot, Unknown, Undefined
+		Pc, PcUncompressed, Switch, Ps, Vgs, Gme, Vmp, Psv, PcSlot, Unknown, Undefined
 	};
+
+	inline static bool isOne(Type type) {
+		return type == Pc || type == PcUncompressed || type == Switch;
+	}
 
 	explicit SavecardData(const QString &path, quint8 slot=0, const FF8Installation &ff8Installation=FF8Installation());
 	explicit SavecardData(int saveCount);
@@ -51,7 +55,7 @@ public:
 	void moveSave(int sourceID, int targetID);
 	SaveData *getSave(int id) const;
 	int saveCount() const;
-	bool save2PC(const quint8 id, const QString &saveAs, bool compress);
+	bool save2PC(const quint8 id, const QString &saveAs, Type newType);
 	bool save2PSV(const quint8 id, const QString &saveAs, const QByteArray &MCHeader);
 	bool save2PS(const QList<int> &ids, const QString &path, const Type newType, const QByteArray &MCHeader);
 	bool saveDirectory();

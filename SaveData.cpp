@@ -456,7 +456,8 @@ bool SaveData::setData(const QByteArray &data)
 	//ff8
 	quint16 ff8;
 	memcpy(&ff8, &access_data[386], 2);
-	if(ff8 != 0x8FF)		return false;
+	// PC Demo is 0xFF8
+	if(ff8 != 0x8FF && ff8 != 0xFF8)		return false;
 
 	if(sizeof(_descData)!=76) {
 		qWarning() << "error desc structure" << sizeof(_descData);
