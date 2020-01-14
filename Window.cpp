@@ -41,8 +41,10 @@ Window::Window(bool isNew) :
 	QMenu *fileMenu = menu;
 #endif
 
-	bool isInstalled = !Config::ff8Installations().isEmpty();
-	
+	bool isInstalled, hasSlots;
+
+	isInstalled = Config::ff8IsInstalled(hasSlots);
+
 	QAction *actionNew = menu->addAction(tr("&Nouveau..."), this, SLOT(newFile()), QKeySequence::New);
 	QAction *actionOpen = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("&Ouvrir..."), this, SLOT(open()), QKeySequence::Open);
 	actionReload = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_BrowserReload), tr("&Recharger depuis le disque"), this, SLOT(reload()), QKeySequence::Refresh);
@@ -85,7 +87,7 @@ Window::Window(bool isNew) :
 	
 	/* MENU 'SLOT' */
 	
-	if(isInstalled) {
+	if(hasSlots) {
 		actionSlot1 = menuBar->addAction(tr("Fente &1"), this, SLOT(slot1()));
 		actionSlot2 = menuBar->addAction(tr("Fente &2"), this, SLOT(slot2()));
 	}
@@ -147,7 +149,7 @@ Window::Window(bool isNew) :
 	startWidget = new StartWidget(this);
 	startWidget->addAction(actionNew);
 	startWidget->addAction(actionOpen);
-	if(isInstalled) {
+	if(hasSlots) {
 		startWidget->addAction(actionSlot1);
 		startWidget->addAction(actionSlot2);
 	}
@@ -284,7 +286,7 @@ void Window::open(OpenType slot)
 	if(slot == Slot1 || slot == Slot2)
 	{
 		installation = Config::ff8Installation();
-		if(!installation.isValid())	return;
+		if(!installation.hasSlots())	return;
 
 		path = installation.savePath(int(slot));
 	}
@@ -878,9 +880,13 @@ void Window::restartNow()
 #ifndef Q_OS_WINRT
 void Window::runFF8()
 {
-	QString appPath = Config::ff8Installation().appPath(), exeFilename = appPath % "/" % Config::ff8Installation().exeFilename();
-	if(!QProcess::startDetached(QString("\"%1\"").arg(exeFilename), QStringList(), appPath)) {
-		QMessageBox::warning(this, tr("Erreur"), tr("Final Fantasy VIII n'a pas pu être lancé.\n%1").arg(exeFilename));
+	if (Config::ff8Installation().isValid()) {
+		QString appPath = Config::ff8Installation().appPath(), exeFilename = appPath % "/" % Config::ff8Installation().exeFilename();
+		if(!QProcess::startDetached(QString("\"%1\"").arg(exeFilename), QStringList(), appPath)) {
+			QMessageBox::warning(this, tr("Erreur"), tr("Final Fantasy VIII n'a pas pu être lancé.\n%1").arg(exeFilename));
+		}
+	} else {
+		QMessageBox::warning(this, tr("Erreur"), tr("Final Fantasy VIII n'a pas pu être lancé.\nImpossible de trouver le chemin du jeu."));
 	}
 }
 #endif

@@ -27,7 +27,7 @@ const char *Config::keys[KEYS_SIZE] = {
 
 QTranslator *Config::translator;
 QStringList Config::recentFiles;
-QSettings *Config::settings = 0;
+QSettings *Config::settings = nullptr;
 QMap<FF8Installation::Type, FF8Installation> Config::_ff8Installations;
 FF8Installation::Type Config::_selectedFF8Installation = FF8Installation::Standard;
 bool Config::_ff8InstallationsSearched = false;
@@ -177,6 +177,29 @@ const QMap<FF8Installation::Type, FF8Installation> &Config::ff8Installations()
 		_ff8InstallationsSearched = true;
 	}
 	return _ff8Installations;
+}
+
+bool Config::ff8IsInstalled(bool &hasSlots)
+{
+	bool ret = false;
+
+	hasSlots = false;
+
+	foreach(const FF8Installation &installation, Config::ff8Installations()) {
+		if (installation.isValid()) {
+			ret = true;
+		}
+
+		if (installation.hasSlots()) {
+			hasSlots = true;
+		}
+
+		if (hasSlots && ret) {
+			break;
+		}
+	}
+
+	return ret;
 }
 
 FF8Installation Config::ff8Installation()

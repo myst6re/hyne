@@ -24,14 +24,15 @@ class FF8Installation
 {
 public:
 	enum Type {
-		Standard, Steam, Custom
+		Standard, Demo, Steam, Remaster, Custom
 	};
 
 	FF8Installation();
 	explicit FF8Installation(Type type);
-	FF8Installation(const QString &appPath, const QString &savePath);
+	FF8Installation(const QString &appPath, const QStringList &savePaths);
 
 	bool isValid() const;
+	bool hasSlots() const;
 	QString savePath(int slot) const;
 	QString exeFilename() const;
 	QString typeString() const;
@@ -61,9 +62,12 @@ public:
 
 	static QMap<FF8Installation::Type, FF8Installation> installations();
 private:
-	static QString standardFF8AppPath();
+	static QStringList standardFF8DataPaths(const QString &appPath);
+	static QString standardFF8AppPath(const QString &path);
 	static QString steamFF8AppPath();
+	static QString steamFF8RemasterAppPath();
 	static QStringList steamFF8UserDataPaths(int max=-1);
+	static QStringList steamFF8RemasterUserDataPaths(int max=-1);
 	static QString regValue(const QString &regPath, const QString &regKey);
 	static QStringList searchInstalledApps(const QString &appName, const QString &publisher, int max=-1);
 
