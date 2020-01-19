@@ -40,6 +40,8 @@ win32 {
 
 # Input
 HEADERS += PageWidgets/ConfigEditor.h \
+    Aes.h \
+    CryptographicHash.h \
     PageWidgets/MiscEditor.h \
     PageWidgets/GfEditor.h \
     PageWidgets/ItemEditor.h \
@@ -53,6 +55,7 @@ HEADERS += PageWidgets/ConfigEditor.h \
     LZS.h \
     SavecardWidget.h \
     SaveIcon.h \
+    Sha1.h \
     Window.h \
     HeaderDialog.h \
     Config.h \
@@ -86,6 +89,8 @@ HEADERS += PageWidgets/ConfigEditor.h \
     MetadataDialog.h \
     SpinBox.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
+    Aes.cpp \
+    CryptographicHash.cpp \
     PageWidgets/MiscEditor.cpp \
     PageWidgets/GfEditor.cpp \
     PageWidgets/ItemEditor.cpp \
@@ -97,6 +102,7 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     Editor.cpp \
     FF8Text.cpp \
     LZS.cpp \
+    Sha1.cpp \
     main.cpp \
     SavecardWidget.cpp \
     SaveIcon.cpp \

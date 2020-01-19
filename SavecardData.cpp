@@ -20,6 +20,7 @@
 #include "GZIP.h"
 #include "Parameters.h"
 #include "LZS.h"
+#include "CryptographicHash.h"
 
 SavecardData::SavecardData(const QString &path, quint8 slot, const FF8Installation &ff8Installation) :
 	_ok(true), start(0), _isModified(false), _slot(slot), _ff8Installation(ff8Installation)
@@ -297,15 +298,20 @@ bool SavecardData::ps3()
 		return false;
 	}
 
+	fic.seek(8);
+	QByteArray seed = fic.read(20);
+
 	fic.seek(100);
 	QByteArray MCHeader("\x51\x00\x00\x00\x00\x20\x00\x00\xff\xff", 10);
-	MCHeader.append(fic.read(20));
+	MCHeader.append(fic.read(32));
 
 	fic.seek(132);
 
 	addSave(fic.read(SAVE_SIZE), MCHeader);
 
 	if(saves.first()->isDelete())	return false;
+
+	_hashSeed = seed;
 
 #ifndef Q_OS_WINRT
 	if(fileWatcher.files().size()<30)
@@ -559,7 +565,7 @@ void SavecardData::moveSave(int sourceID, int targetID)
 
 SaveData *SavecardData::getSave(int id) const
 {
-	return saves.value(id, 0);
+	return saves.value(id, nullptr);
 }
 
 int SavecardData::saveCount() const
@@ -567,7 +573,7 @@ int SavecardData::saveCount() const
 	return saves.size();
 }
 
-bool SavecardData::save(const QString &saveAs, Type newType)
+bool SavecardData::saveMemoryCard(const QString &saveAs, Type newType)
 {
 	const QString path = saveAs.isEmpty() ? _path : saveAs;
 	QTemporaryFile temp;
@@ -595,16 +601,7 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 		return false;
 	}
 
-	if(_type == Psv)
-	{
-		temp.write(fic.read(100));
-		temp.write(saves.first()->MCHeader().mid(10, 20));// B + country + code + id
-		fic.seek(120);
-		temp.write(fic.read(12));
-//		compare(fic.peek(FF8SAVE_SIZE), saves.first()->save());
-		temp.write(saves.first()->save());
-	}
-	else if(!isOne(_type) && _type != PcSlot)
+	if(!isOne(_type) && _type != PcSlot)
 	{
 		quint8 i;
 		SaveData *save;
@@ -612,10 +609,10 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 		temp.write(header(&fic, newType, !saveAs.isEmpty()));
 
 		temp.write("MC", 2);//MC
-		temp.write(QByteArray(125,'\x00'));
+		temp.write(QByteArray(125,'\0'));
 		temp.putChar('\x0E');//xor byte
 
-		fic.seek(start+128);
+		fic.seek(start + 128);
 
 		for(i=0 ; i<15 ; ++i)
 		{
@@ -640,7 +637,12 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 
 //			compare(fic.peek(FF8SAVE_SIZE), save->save());
 			temp.write(save->save());
-			fic.seek(fic.pos() + SAVE_SIZE);
+		}
+
+		if(newType == Vmp) {
+			temp.reset();
+			// Rehash
+			temp.write(CryptographicHash::hashVmp(temp.readAll()));
 		}
 	}
 	else
@@ -680,15 +682,9 @@ bool SavecardData::save(const QString &saveAs, Type newType)
 	return true;
 }
 
-bool SavecardData::save2PC(const quint8 id, const QString &saveAs, Type newType)
+bool SavecardData::saveOne(const SaveData *save, const QString &saveAs, Type newType)
 {
-	const SaveData *save = saves.at(id);
 	setErrorString(QString());
-
-	if(!save->isFF8() && !save->isDelete()) {
-		setErrorString(QObject::tr("Cette sauvegarde ne provient pas de Final Fantasy VIII."));
-		return false;
-	}
 
 	const QString path = saveAs.isEmpty() ? _path : saveAs;
 
@@ -705,48 +701,71 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs, Type newType)
 		fileWatcher.removePath(path);
 	}
 #endif
-
-	// Rerelease 2013
 	UserDirectory userDirectory;
 	quint8 slot=0, num=0;
 
-	QString filename = path.mid(path.lastIndexOf('/') + 1);
-	QRegExp regExp("slot([12])_save(\\d\\d).ff8");
+	if(newType == Pc) {
+		// Rerelease 2013
 
-	if(regExp.exactMatch(filename)) {
-		QString dirname = path.left(path.lastIndexOf('/'));
-		userDirectory.setDirname(dirname);
+		QString filename = path.mid(path.lastIndexOf('/') + 1);
+		QRegExp regExp("slot([12])_save(\\d\\d).ff8");
 
-		if(userDirectory.hasMetadata() && userDirectory.openMetadata()) {
-			QStringList capturedTexts = regExp.capturedTexts();
-			slot = capturedTexts.at(1).toInt();
-			num = capturedTexts.at(2).toInt();
-		} else if(!userDirectory.hasMetadata()) {
-			setErrorString(QObject::tr("Le fichier 'metadata.xml' n'a pas été trouvé dans le dossier '%1'.\n"
-									   "Essayez de signer vos sauvegardes manuellement (Fichier > Signer les sauv. pour le Cloud).").arg(dirname));
-		} else {
-			setErrorString(QObject::tr("Le fichier 'metadata.xml' n'a pas pu être ouvert.\n%1").arg(userDirectory.errorString()));
-		}
-	}
+		if(regExp.exactMatch(filename)) {
+			QString dirname = path.left(path.lastIndexOf('/'));
+			userDirectory.setDirname(dirname);
 
-	if(save->isDelete()) {
-		QFile::remove(path);
-
-		// Rerelease 2013: removing from metadata file
-		if(slot > 0) {
-			userDirectory.updateMetadata(slot, num);
-			if(!userDirectory.saveMetadata()) {
-				setErrorString(QObject::tr("Le fichier 'metadata.xml' n'a pas pu être mis à jour.\n%1").arg(userDirectory.errorString()));
+			if(userDirectory.hasMetadata() && userDirectory.openMetadata()) {
+				QStringList capturedTexts = regExp.capturedTexts();
+				slot = quint8(capturedTexts.at(1).toInt());
+				num = quint8(capturedTexts.at(2).toInt());
+			} else if(!userDirectory.hasMetadata()) {
+				setErrorString(QObject::tr("Le fichier 'metadata.xml' n'a pas été trouvé dans le dossier '%1'.\n"
+										   "Essayez de signer vos sauvegardes manuellement (Fichier > Signer les sauv. pour le Cloud).").arg(dirname));
+			} else {
+				setErrorString(QObject::tr("Le fichier 'metadata.xml' n'a pas pu être ouvert.\n%1").arg(userDirectory.errorString()));
 			}
 		}
 
-		return true;
+		if(save->isDelete()) {
+			QFile::remove(path);
+
+			// Rerelease 2013: removing from metadata file
+			if(slot > 0) {
+				userDirectory.updateMetadata(slot, num);
+				if(!userDirectory.saveMetadata()) {
+					setErrorString(QObject::tr("Le fichier 'metadata.xml' n'a pas pu être mis à jour.\n%1").arg(userDirectory.errorString()));
+				}
+			}
+
+			return true;
+		}
 	}
 
 	QByteArray result;
 
 	if(newType == PcUncompressed) {
 		result = save->save();
+	} else if(newType == Psv) {
+		if(!save->hasMCHeader()) {
+			setErrorString(QObject::tr("Pas de MC Header défini."));
+			return false;
+		}
+		QByteArray result;
+		result.append("\0VSP\0\0\0\0", 8);
+		if(!_hashSeed.isEmpty()) {
+			result.append(_hashSeed.leftJustified(20, '\0', true));
+			result.append(QByteArray(20, '\0')); // Hash
+		} else {
+			result.append(QByteArray(40, '\0')); // Seed + hash
+		}
+		result.append("\x00\x00\x00\x00\x00\x00\x00\x00\x14\x00\x00\x00"
+					  "\x01\x00\x00\x00\x00\x20\x00\x00\x84\x00\x00\x00"
+					  "\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
+					  "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x20\x00\x00"
+					  "\x03\x90\x00\x00", 52); // unknown (type 1 = PS1 or 2 = PS2 at offset 12)
+		result.append(save->MCHeader().mid(10, 32).leftJustified(32, '\0')); // Country + prod code + identifier
+		result.append(save->save());
+		temp.write(CryptographicHash::hashPsv(result));
 	} else {
 		result = LZS::compress(save->save());
 		int size = result.size();
@@ -762,11 +781,13 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs, Type newType)
 		}
 	}
 
-	// Rerelease 2013: updating signature in metadata file
-	if(slot > 0) {
-		userDirectory.updateMetadata(slot, num, result);
-		if(!userDirectory.saveMetadata()) {
-			setErrorString(QObject::tr("Le fichier 'metadata.xml' n'a pas pu être mis à jour.\n%1").arg(userDirectory.errorString()));
+	if(newType == Pc) {
+		// Rerelease 2013: updating signature in metadata file
+		if(slot > 0) {
+			userDirectory.updateMetadata(slot, num, result);
+			if(!userDirectory.saveMetadata()) {
+				setErrorString(QObject::tr("Le fichier 'metadata.xml' n'a pas pu être mis à jour.\n%1").arg(userDirectory.errorString()));
+			}
 		}
 	}
 
@@ -797,70 +818,6 @@ bool SavecardData::save2PC(const quint8 id, const QString &saveAs, Type newType)
 	return true;
 }
 
-bool SavecardData::save2PSV(const quint8 id, const QString &saveAs, const QByteArray &MCHeader)
-{
-	const SaveData *save = saves.at(id);
-	const QString path = saveAs.isEmpty()
-			? _path
-			: saveAs;
-	setErrorString(QString());
-
-	QTemporaryFile temp;
-	if(!temp.open())
-	{
-		setErrorString(QObject::tr("Impossible de créer un fichier temporaire"));
-		return false;
-	}
-
-#ifndef Q_OS_WINRT
-	bool readdPath = false;
-	if(fileWatcher.files().contains(path))
-	{
-		readdPath = true;
-		fileWatcher.removePath(path);
-	}
-#endif
-
-	if(save->isDelete()) {
-		return QFile::remove(path);
-	}
-
-	QByteArray result;
-	result.append("\0VSP\0\0\0\0", 8);
-	result.append(QByteArray(40, '\0')); // TODO: checksum
-	result.append("\x00\x00\x00\x00\x00\x00\x00\x00\x14\x00\x00\x00"
-				  "\x01\x00\x00\x00\x00\x20\x00\x00\x84\x00\x00\x00"
-				  "\x00\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
-				  "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x20\x00\x00"
-				  "\x03\x90\x00\x00", 52); // unknown
-	result.append(MCHeader.mid(10, 32)); // Country + prod code + identifier
-	result.append(save->save());
-	temp.write(result);
-
-	if(QFile::exists(path) && !QFile::remove(path))
-	{
-		setErrorString(QObject::tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nVérifiez que le fichier n'est pas utilisé par un autre programme.").arg(path));
-#ifndef Q_OS_WINRT
-		if(readdPath)	fileWatcher.addPath(path);
-#endif
-		return false;
-	}
-	if(!temp.copy(path))
-	{
-		setErrorString(QObject::tr("Échec de la sauvegarde."));
-	}
-#ifndef Q_OS_WINRT
-	if(readdPath)	fileWatcher.addPath(path);
-#endif
-
-	if(_type == Undefined) {
-		setPath(path);
-		setType(Psv);
-	}
-
-	return true;
-}
-
 bool SavecardData::save2PS(const QList<int> &ids, const QString &path, const Type newType, const QByteArray &MCHeader)
 {
 	QTemporaryFile temp;
@@ -873,10 +830,10 @@ bool SavecardData::save2PS(const QList<int> &ids, const QString &path, const Typ
 		return false;
 	}
 
-	temp.write(header(0, newType, true));
+	temp.write(header(nullptr, newType, true));
 
 	temp.write("MC", 2);//MC
-	temp.write(QByteArray(125,'\x00'));
+	temp.write(QByteArray(125,'\0'));
 	temp.putChar('\x0E');//xor byte
 
 	for(i=0 ; i<15 ; ++i)
@@ -891,7 +848,7 @@ bool SavecardData::save2PS(const QList<int> &ids, const QString &path, const Typ
 			if(!MCHeader.isEmpty()) {
 				QByteArray MCHeaderCpy = MCHeader;
 				MCHeaderCpy.replace(26, 2, QString("%1").arg(i, 2, 10, QChar('0')).toLatin1());
-				MCHeaderCpy[127] = (char)SaveData::xorByte(MCHeaderCpy.constData());
+				MCHeaderCpy[127] = char(SaveData::xorByte(MCHeaderCpy.constData()));
 				temp.write(MCHeaderCpy);
 			} else {
 				temp.write(saves.at(ids.at(i))->saveMCHeader());
@@ -899,19 +856,25 @@ bool SavecardData::save2PS(const QList<int> &ids, const QString &path, const Typ
 		}
 	}
 
-	temp.write(QByteArray(6144, '\x00'));//Padding
+	temp.write(QByteArray(6144, '\0'));//Padding
 
 	for(i=0 ; i<15 ; ++i)
 	{
 		// 8192 bytes
 		if(i >= ids.size() || !saves.at(ids.at(i))->isFF8())
 		{
-			temp.write(QByteArray(SAVE_SIZE, '\x00'));
+			temp.write(QByteArray(SAVE_SIZE, '\0'));
 		}
 		else
 		{
 			temp.write(saves.at(ids.at(i))->save());
 		}
+	}
+
+	if(newType == Vmp) {
+		temp.reset();
+		// Rehash
+		temp.write(CryptographicHash::hashVmp(temp.readAll()));
 	}
 
 #ifndef Q_OS_WINRT
@@ -977,7 +940,7 @@ QByteArray SavecardData::header(QFile *srcFile, Type newType, bool saveAs)
 		{
 			return QByteArray("\x56\x67\x73\x4d\x01\x00\x00\x00\x01\x00\x00\x00"
 							  "\x01\x00\x00\x00\x00\x02", 18)
-					.append(QByteArray(46, '\x00'));
+					.append(QByteArray(46, '\0'));
 		}
 	}
 	else if(newType==Gme)
@@ -1016,12 +979,9 @@ QByteArray SavecardData::header(QFile *srcFile, Type newType, bool saveAs)
 		{
 			return srcFile->read(128);
 		}
-		else
-		{
-			//TODO: Unknown crc
-			return QByteArray("\x00\x50\x4d\x56\x80", 5)
-					.append(QByteArray(123, '\x00'));
-		}
+		// Empty CRC
+		return QByteArray("\x00\x50\x4d\x56\x80", 5)
+				.append(QByteArray(123, '\0'));
 	}
 	else if(newType==_type)
 	{
@@ -1031,9 +991,9 @@ QByteArray SavecardData::header(QFile *srcFile, Type newType, bool saveAs)
 		return QByteArray();
 }
 
-bool SavecardData::saveDirectory()
+bool SavecardData::saveDirectory(const QString &dir)
 {
-	QString dirname = this->dirname(), filePattern;
+	QString dirname = dir.isEmpty() ? this->dirname() : dir, filePattern;
 	bool ok = true;
 	int i = 0;
 
@@ -1044,7 +1004,7 @@ bool SavecardData::saveDirectory()
 			QString num = QString("%1").arg(i + 1, 2, 10, QChar('0'));
 			QString path = filePattern;
 
-			if(!save2PC(i, dirname + path.replace("{num}", num), SavecardData::Pc)) {
+			if(!saveOne(save, dirname + path.replace("{num}", num), SavecardData::Pc)) {
 				ok = false;
 			}
 		}
