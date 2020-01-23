@@ -53,6 +53,7 @@ HEADERS += PageWidgets/ConfigEditor.h \
     Editor.h \
     FF8Text.h \
     LZS.h \
+    SCHeaderDialog.h \
     SavecardWidget.h \
     SaveIcon.h \
     Sha1.h \
@@ -102,6 +103,7 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     Editor.cpp \
     FF8Text.cpp \
     LZS.cpp \
+    SCHeaderDialog.cpp \
     Sha1.cpp \
     main.cpp \
     SavecardWidget.cpp \

@@ -132,6 +132,16 @@ void SavecardData::setDescription(const QString &desc)
 	_description = desc.toLatin1();
 }
 
+const QByteArray &SavecardData::hashSeed() const
+{
+	return _hashSeed;
+}
+
+void SavecardData::setHashSeed(const QByteArray &hashSeed)
+{
+	_hashSeed = hashSeed;
+}
+
 QString SavecardData::dirname() const
 {
 	int index = _path.lastIndexOf('/');
@@ -239,6 +249,9 @@ bool SavecardData::ps()
 	if(_type == Gme) {
 		fic.seek(64);
 		_description = fic.read(3840);
+	} else if(_type == Vmp) {
+		fic.seek(12);
+		_hashSeed = fic.read(20);
 	}
 
 	fic.seek(start+128);
@@ -606,11 +619,11 @@ bool SavecardData::saveMemoryCard(const QString &saveAs, Type newType)
 		quint8 i;
 		SaveData *save;
 
-		temp.write(header(&fic, newType, !saveAs.isEmpty()));
+		QByteArray data = header(&fic, newType, !saveAs.isEmpty());
 
-		temp.write("MC", 2);//MC
-		temp.write(QByteArray(125,'\0'));
-		temp.putChar('\x0E');//xor byte
+		data.append("MC", 2);//MC
+		data.append(125, '\0');
+		data.append('\x0E');//xor byte
 
 		fic.seek(start + 128);
 
@@ -620,30 +633,31 @@ bool SavecardData::saveMemoryCard(const QString &saveAs, Type newType)
 
 			if(save->hasMCHeader())
 			{
-				temp.write(save->saveMCHeader());//128
+				data.append(save->saveMCHeader());//128
 				fic.seek(fic.pos() + 128);
 			}
 			else
 			{
-				temp.write(fic.read(128));//Main header
+				data.append(fic.read(128));//Main header
 			}
 		}
 
-		temp.write(fic.read(6144));//Padding (8192-16*128)
+		data.append(fic.read(6144));//Padding (8192-16*128)
 
 		for(i=0 ; i<15 ; ++i)
 		{
 			save = saves.at(i);
 
 //			compare(fic.peek(FF8SAVE_SIZE), save->save());
-			temp.write(save->save());
+			data.append(save->save());
 		}
 
 		if(newType == Vmp) {
-			temp.reset();
 			// Rehash
-			temp.write(CryptographicHash::hashVmp(temp.readAll()));
+			data = CryptographicHash::hashVmp(data);
 		}
+
+		temp.write(data);
 	}
 	else
 	{
@@ -830,18 +844,20 @@ bool SavecardData::save2PS(const QList<int> &ids, const QString &path, const Typ
 		return false;
 	}
 
-	temp.write(header(nullptr, newType, true));
+	QByteArray data;
 
-	temp.write("MC", 2);//MC
-	temp.write(QByteArray(125,'\0'));
-	temp.putChar('\x0E');//xor byte
+	data.append(header(nullptr, newType, true));
+
+	data.append("MC", 2);//MC
+	data.append(125, '\0');
+	data.append('\x0E');//xor byte
 
 	for(i=0 ; i<15 ; ++i)
 	{
 		// 128 bytes
 		if(i >= ids.size())
 		{
-			temp.write(SaveData::emptyMCHeader());
+			data.append(SaveData::emptyMCHeader());
 		}
 		else
 		{
@@ -849,33 +865,34 @@ bool SavecardData::save2PS(const QList<int> &ids, const QString &path, const Typ
 				QByteArray MCHeaderCpy = MCHeader;
 				MCHeaderCpy.replace(26, 2, QString("%1").arg(i, 2, 10, QChar('0')).toLatin1());
 				MCHeaderCpy[127] = char(SaveData::xorByte(MCHeaderCpy.constData()));
-				temp.write(MCHeaderCpy);
+				data.append(MCHeaderCpy);
 			} else {
-				temp.write(saves.at(ids.at(i))->saveMCHeader());
+				data.append(saves.at(ids.at(i))->saveMCHeader());
 			}
 		}
 	}
 
-	temp.write(QByteArray(6144, '\0'));//Padding
+	data.append(6144, '\0');//Padding
 
 	for(i=0 ; i<15 ; ++i)
 	{
 		// 8192 bytes
 		if(i >= ids.size() || !saves.at(ids.at(i))->isFF8())
 		{
-			temp.write(QByteArray(SAVE_SIZE, '\0'));
+			data.append(SAVE_SIZE, '\0');
 		}
 		else
 		{
-			temp.write(saves.at(ids.at(i))->save());
+			data.append(saves.at(ids.at(i))->save());
 		}
 	}
 
 	if(newType == Vmp) {
-		temp.reset();
 		// Rehash
-		temp.write(CryptographicHash::hashVmp(temp.readAll()));
+		data = CryptographicHash::hashVmp(data);
 	}
+
+	temp.write(data);
 
 #ifndef Q_OS_WINRT
 	bool readdPath = false;

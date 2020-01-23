@@ -20,6 +20,7 @@
 #include "Parameters.h"
 #include "SelectSavesDialog.h"
 #include "HeaderDialog.h"
+#include "SCHeaderDialog.h"
 #include "MetadataDialog.h"
 
 Window::Window(bool isNew) :
@@ -517,18 +518,20 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 			return false;
 		}
 	} else {
+		// Need hash seed
+		if(newType == SavecardData::Psv || newType == SavecardData::Vmp) {
+			SCHeaderDialog dialog(saves, this);
+			if(dialog.exec() != QDialog::Accepted) return false;
+		}
+
 		if(!SavecardData::isOne(newType)) {
 			if(type == SavecardData::PcSlot
 					|| type == SavecardData::Undefined
 			        || SavecardData::isOne(type)
 			        || type == SavecardData::Psv) {
-				QList<int> selected_files;
-
-				if(saves->saveCount() == 1) {
-					selected_files.append(0);
-				} else {
-					selected_files = selectSavesDialog(true);
-					if(selected_files.isEmpty())	return false;
+				QList<int> selectedFiles = selectSavesDialog(true);
+				if(selectedFiles.isEmpty()) {
+					return false;
 				}
 
 				QByteArray MCHeader;
@@ -541,29 +544,27 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 					MCHeader = saves->getSaves().first()->saveMCHeader();
 				}
 
-				ok = saves->save2PS(selected_files, path, newType, MCHeader);
+				ok = saves->save2PS(selectedFiles, path, newType, MCHeader);
 			} else {
 				ok = saves->saveMemoryCard(path, newType);
 			}
 		} else { // saveOne (PC & PSV)
-			int id;
-
-			if(saves->saveCount() == 1) {
-				id = 0;
-			} else {
-				// Need selection by user
-				QList<int> selected_files = selectSavesDialog(false, newType == SavecardData::Pc);
-				if(selected_files.isEmpty())	return false;
-				id = selected_files.first();
+			// Need selection by user
+			QList<int> selectedFiles = selectSavesDialog(false, newType == SavecardData::Pc);
+			if(selectedFiles.isEmpty()) {
+				return false;
 			}
+			int id = selectedFiles.first();
 
-			SaveData *save = saves->getSaves().first();
+			SaveData *save = saves->getSaves().at(id);
 
 			if(newType == SavecardData::Psv) {
 				QByteArray MCHeader;
 				if(!save->hasMCHeader()) {
 					HeaderDialog dialog(save, this, HeaderDialog::CreateView);
-					if(dialog.exec() != QDialog::Accepted) return false;
+					if(dialog.exec() != QDialog::Accepted) {
+						return false;
+					}
 				}
 			}
 
@@ -631,21 +632,29 @@ void Window::properties()
 		return;
 	}
 
-	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), false, false, this);
+	QList<int> selectedFiles = selectSavesDialog(false, false);
 
-	if(dialog->exec() == QDialog::Accepted) {
-		QList<int> selected_files = dialog->selectedSaves();
-		saveList->view()->properties(selected_files.first());
+	if(!selectedFiles.isEmpty()) {
+		saveList->view()->properties(selectedFiles.first());
 	}
 }
 
 QList<int> Window::selectSavesDialog(bool multiSelection, bool onlyFF8)
 {
+	if (saves->saveCount() == 1) {
+		return QList<int>() << 0;
+	}
+
+	if (saves->saveCount() < 1) {
+		return QList<int>();
+	}
+
 	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), multiSelection, onlyFF8, this);
 
 	if(dialog->exec() == QDialog::Accepted) {
 		return dialog->selectedSaves();
 	}
+
 	return QList<int>();
 }
 

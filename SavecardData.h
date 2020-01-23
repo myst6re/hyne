@@ -48,6 +48,8 @@ public:
 	}
 	QString description() const;
 	void setDescription(const QString &desc);
+	const QByteArray &hashSeed() const;
+	void setHashSeed(const QByteArray &hashSeed);
 	void setIsTheLastEdited(int saveID);
 	inline const QList<SaveData *> &getSaves() const {
 		return saves;
