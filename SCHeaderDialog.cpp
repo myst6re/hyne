@@ -17,6 +17,7 @@
  ****************************************************************************/
 
 #include "SCHeaderDialog.h"
+#include "HelpWidget.h"
 
 SCHeaderDialog::SCHeaderDialog(SavecardData *savecardData, QWidget *parent)
 	: QDialog(parent, Qt::Dialog | Qt::WindowCloseButtonHint),
@@ -25,23 +26,33 @@ SCHeaderDialog::SCHeaderDialog(SavecardData *savecardData, QWidget *parent)
 	setWindowTitle(tr("Signature du fichier"));
 
 	seed = new QHexEdit(this);
+	seed->setOverwriteMode(true);
+	seed->setAsciiArea(false);
+	HelpWidget *helpWidget =
+	        new HelpWidget(32,
+	                       tr("Pour fonctionner sur votre console, le fichier doit être signé.\n"
+	                          "Pour cela vous devez fournir la clé de diversification (seed key) "
+	                          "associée à votre console."));
 
-	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Close);
+	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
 
 	QGridLayout *layout = new QGridLayout(this);
-	layout->addWidget(seed, 0, 0);
-	layout->setRowStretch(1, 1);
-	layout->addWidget(buttonBox, 2, 0);
+	layout->addWidget(helpWidget, 0, 0);
+	layout->addWidget(seed, 1, 0);
+	layout->setRowStretch(2, 1);
+	layout->addWidget(buttonBox, 3, 0);
 
 	connect(buttonBox, SIGNAL(accepted()), SLOT(accept()));
 	connect(buttonBox, SIGNAL(rejected()), SLOT(reject()));
 
 	fill();
+
+	resize(640, height());
 }
 
 void SCHeaderDialog::fill()
 {
-	seed->setData(savecardData->hashSeed());
+	seed->setData(savecardData->hashSeed().leftJustified(20, '\0'));
 }
 
 void SCHeaderDialog::accept()
