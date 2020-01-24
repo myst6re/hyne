@@ -1,3 +1,14 @@
+hyne (1.11.0) precise; urgency=low
+
+  * Adding compatibility with Switch saves
+  * Improve compatibility with PC 2013 and PC Remaster detection
+  * Fixing format detection algorithm (for PC like saves)
+  * Adding VMP (PSP) and PSV (PS3/PSVita) signatures
+  * Adding the end of the CC quest
+  * Fixing Chocobo World Icon saving
+
+ -- Jérôme Arzel <myst6re@gmail.com> Sat, 30 Nov 2019 22:46:13 +0200
+
 hyne (1.10.0) precise; urgency=low
 
   * Fixing slot detection on modern Windows (2000 version)
