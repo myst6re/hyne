@@ -20,6 +20,7 @@
 #include "Parameters.h"
 #include "SelectSavesDialog.h"
 #include "HeaderDialog.h"
+#include "SCHeaderDialog.h"
 #include "MetadataDialog.h"
 
 Window::Window(bool isNew) :
@@ -41,8 +42,10 @@ Window::Window(bool isNew) :
 	QMenu *fileMenu = menu;
 #endif
 
-	bool isInstalled = !Config::ff8Installations().isEmpty();
-	
+	bool isInstalled, hasSlots;
+
+	isInstalled = Config::ff8IsInstalled(hasSlots);
+
 	QAction *actionNew = menu->addAction(tr("&Nouveau..."), this, SLOT(newFile()), QKeySequence::New);
 	QAction *actionOpen = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("&Ouvrir..."), this, SLOT(open()), QKeySequence::Open);
 	actionReload = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_BrowserReload), tr("&Recharger depuis le disque"), this, SLOT(reload()), QKeySequence::Refresh);
@@ -85,7 +88,7 @@ Window::Window(bool isNew) :
 	
 	/* MENU 'SLOT' */
 	
-	if(isInstalled) {
+	if(hasSlots) {
 		actionSlot1 = menuBar->addAction(tr("Fente &1"), this, SLOT(slot1()));
 		actionSlot2 = menuBar->addAction(tr("Fente &2"), this, SLOT(slot2()));
 	}
@@ -147,7 +150,7 @@ Window::Window(bool isNew) :
 	startWidget = new StartWidget(this);
 	startWidget->addAction(actionNew);
 	startWidget->addAction(actionOpen);
-	if(isInstalled) {
+	if(hasSlots) {
 		startWidget->addAction(actionSlot1);
 		startWidget->addAction(actionSlot2);
 	}
@@ -284,7 +287,7 @@ void Window::open(OpenType slot)
 	if(slot == Slot1 || slot == Slot2)
 	{
 		installation = Config::ff8Installation();
-		if(!installation.isValid())	return;
+		if(!installation.hasSlots())	return;
 
 		path = installation.savePath(int(slot));
 	}
@@ -366,13 +369,6 @@ void Window::openFile(const QString &path, OpenType openType, const FF8Installat
 		saveView();
 		saveList->setSavecard(saves);
 
-		if(saves->type() == SavecardData::Psv || saves->type() == SavecardData::Vmp) {
-			QMessageBox::information(this, tr("Sauvegarde hasardeuse"),
-									 tr("Le format %1 est protégé, "
-										"l'enregistrement sera partiel "
-										"et risque de ne pas fonctionner.")
-									 .arg(saves->extension()));
-		}
 		setIsOpen(true);
 		setModified(saves->isModified());
 
@@ -479,16 +475,6 @@ bool Window::exportAs()
 		qWarning() << "Bad selected filter!" << selectedFilter;
 		return false;
 	}
-
-	if(newType == SavecardData::Vmp || newType == SavecardData::Psv) {
-		QMessageBox::StandardButton reponse = QMessageBox::information(this, tr("Sauvegarde hasardeuse"),
-											   tr("Les formats VMP et PSV sont protégés, "
-												  "l'enregistrement sera partiel et risque "
-												  "de ne pas fonctionner.\n"
-												  "Continuer quand même ?"),
-											   QMessageBox::Yes | QMessageBox::No);
-		if(reponse != QMessageBox::Yes)  return exportAs();
-	}
 	
 	int index = path.lastIndexOf('/');
 	Config::setValue(Config::SavePath, index == -1 ? path : path.left(index));
@@ -514,17 +500,17 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 		case SavecardData::Pc:
 		case SavecardData::PcUncompressed:
 		case SavecardData::Switch:
-			ok = saves->save2PC(0, path, newType);
+		case SavecardData::Psv:
+			ok = saves->saveOne(saves->getSave(0), path, newType);
 			break;
 		case SavecardData::PcSlot:
 			ok = saves->saveDirectory();
 			break;
-		case SavecardData::Psv:
 		case SavecardData::Ps:
 		case SavecardData::Vgs:
 		case SavecardData::Gme:
 		case SavecardData::Vmp:
-			ok = saves->save(path, newType);
+			ok = saves->saveMemoryCard(path, newType);
 			break;
 		case SavecardData::Unknown:
 		case SavecardData::Undefined:
@@ -532,19 +518,20 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 			return false;
 		}
 	} else {
-		if(!SavecardData::isOne(newType) && newType != SavecardData::Psv) {
+		// Need hash seed
+		if(newType == SavecardData::Psv || newType == SavecardData::Vmp) {
+			SCHeaderDialog dialog(saves, this);
+			if(dialog.exec() != QDialog::Accepted) return false;
+		}
 
+		if(!SavecardData::isOne(newType)) {
 			if(type == SavecardData::PcSlot
 					|| type == SavecardData::Undefined
 			        || SavecardData::isOne(type)
 			        || type == SavecardData::Psv) {
-				QList<int> selected_files;
-
-				if(saves->saveCount() == 1) {
-					selected_files.append(0);
-				} else {
-					selected_files = selectSavesDialog(true);
-					if(selected_files.isEmpty())	return false;
+				QList<int> selectedFiles = selectSavesDialog(true);
+				if(selectedFiles.isEmpty()) {
+					return false;
 				}
 
 				QByteArray MCHeader;
@@ -557,36 +544,31 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 					MCHeader = saves->getSaves().first()->saveMCHeader();
 				}
 
-				ok = saves->save2PS(selected_files, path, newType, MCHeader);
+				ok = saves->save2PS(selectedFiles, path, newType, MCHeader);
 			} else {
-				ok = saves->save(path, newType);
+				ok = saves->saveMemoryCard(path, newType);
 			}
 		} else { // saveOne (PC & PSV)
-			int id;
-
-			if(saves->saveCount() == 1) {
-				id = 0;
-			} else {
-				// Need selection by user
-				QList<int> selected_files = selectSavesDialog(false, newType == SavecardData::Pc);
-				if(selected_files.isEmpty())	return false;
-				id = selected_files.first();
+			// Need selection by user
+			QList<int> selectedFiles = selectSavesDialog(false, newType == SavecardData::Pc);
+			if(selectedFiles.isEmpty()) {
+				return false;
 			}
+			int id = selectedFiles.first();
+
+			SaveData *save = saves->getSaves().at(id);
 
 			if(newType == SavecardData::Psv) {
 				QByteArray MCHeader;
-				if(!saves->getSaves().first()->hasMCHeader()) {
-					SaveData tempSave;
-					HeaderDialog dialog(&tempSave, this, HeaderDialog::CreateView);
-					if(dialog.exec() != QDialog::Accepted) return false;
-					MCHeader = tempSave.saveMCHeader();
-				} else {
-					MCHeader = saves->getSaves().first()->saveMCHeader();
+				if(!save->hasMCHeader()) {
+					HeaderDialog dialog(save, this, HeaderDialog::CreateView);
+					if(dialog.exec() != QDialog::Accepted) {
+						return false;
+					}
 				}
-				ok = saves->save2PSV(id, path, MCHeader);
-			} else {
-				ok = saves->save2PC(id, path, newType);
 			}
+
+			ok = saves->saveOne(save, path, newType);
 		}
 	}
 
@@ -650,21 +632,29 @@ void Window::properties()
 		return;
 	}
 
-	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), false, false, this);
+	QList<int> selectedFiles = selectSavesDialog(false, false);
 
-	if(dialog->exec() == QDialog::Accepted) {
-		QList<int> selected_files = dialog->selectedSaves();
-		saveList->view()->properties(selected_files.first());
+	if(!selectedFiles.isEmpty()) {
+		saveList->view()->properties(selectedFiles.first());
 	}
 }
 
 QList<int> Window::selectSavesDialog(bool multiSelection, bool onlyFF8)
 {
+	if (saves->saveCount() == 1) {
+		return QList<int>() << 0;
+	}
+
+	if (saves->saveCount() < 1) {
+		return QList<int>();
+	}
+
 	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), multiSelection, onlyFF8, this);
 
 	if(dialog->exec() == QDialog::Accepted) {
 		return dialog->selectedSaves();
 	}
+
 	return QList<int>();
 }
 
@@ -719,16 +709,15 @@ void Window::saveView()
 
 void Window::save()
 {
-	bool saved = true, hasPath = saves->hasPath();
-	SavecardData::Type type = saves->type();
+	bool saved = true;
 
-	if(!hasPath || type == SavecardData::Vmp || type == SavecardData::Psv) {
+	if(!saves->hasPath()) {
 		saved = exportAs();
-		if(!hasPath && saved) {
+		if(saved) {
 			setTitle();
 		}
 	} else {
-		saved = exportAs(type, saves->path());
+		saved = exportAs(saves->type(), saves->path());
 	}
 
 	if(saved) {
@@ -878,9 +867,13 @@ void Window::restartNow()
 #ifndef Q_OS_WINRT
 void Window::runFF8()
 {
-	QString appPath = Config::ff8Installation().appPath(), exeFilename = appPath % "/" % Config::ff8Installation().exeFilename();
-	if(!QProcess::startDetached(QString("\"%1\"").arg(exeFilename), QStringList(), appPath)) {
-		QMessageBox::warning(this, tr("Erreur"), tr("Final Fantasy VIII n'a pas pu être lancé.\n%1").arg(exeFilename));
+	if (Config::ff8Installation().isValid()) {
+		QString appPath = Config::ff8Installation().appPath(), exeFilename = appPath % "/" % Config::ff8Installation().exeFilename();
+		if(!QProcess::startDetached(QString("\"%1\"").arg(exeFilename), QStringList(), appPath)) {
+			QMessageBox::warning(this, tr("Erreur"), tr("Final Fantasy VIII n'a pas pu être lancé.\n%1").arg(exeFilename));
+		}
+	} else {
+		QMessageBox::warning(this, tr("Erreur"), tr("Final Fantasy VIII n'a pas pu être lancé.\nImpossible de trouver le chemin du jeu."));
 	}
 }
 #endif

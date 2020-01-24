@@ -218,14 +218,14 @@ void SaveData::setMCHeader(bool exists, char country, const QString &code, const
 	id8 = id8.leftJustified(8, '\0', true);
 
 	if(MCHeader.isEmpty()) {
-		MCHeader.append(exists ? 0x51 : 0xa1);//1
+		MCHeader.append(exists ? '\x51' : '\xa1');//1
 		MCHeader.append("\x00\x00\x00\x00\x20\x00\x00\xff\xff", 9);//Main header (9)
 		MCHeader.append('B');//1
 		MCHeader.append(country);//1
 		MCHeader.append(code10);//10
 		MCHeader.append(id8);//8
 	} else {
-		MCHeader[0] = exists ? 0x51 : 0xa1;
+		MCHeader[0] = exists ? '\x51' : '\xa1';
 		MCHeader[10] = 'B';
 		MCHeader[11] = country;
 		MCHeader.replace(12, 10, code10);

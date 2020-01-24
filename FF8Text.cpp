@@ -531,7 +531,7 @@ QByteArray FF8Text::numToBiosText(quint32 num, quint8 width)
 	for(int i=0 ; i<width ; ++i)
 	{
 		ret.append('\x82');
-		ret.append((char)(chaine.at(i).digitValue()+0x4f));
+		ret.append(char(chaine.at(i).digitValue() + 0x4f));
 	}
 	return ret;
 }
