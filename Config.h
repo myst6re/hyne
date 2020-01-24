@@ -55,6 +55,7 @@ public:
 	static void set();
 	static const QMap<FF8Installation::Type, FF8Installation> &ff8Installations();
 	static FF8Installation ff8Installation();
+	static bool ff8IsInstalled(bool &hasSlots);
 	static void setSelectedFF8Installation(FF8Installation::Type id);
 
 	static QTranslator *translator;

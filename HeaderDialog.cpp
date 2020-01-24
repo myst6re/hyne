@@ -219,7 +219,7 @@ void HeaderDialog::fill()
 			}
 		}
 		if(currentIndex == -1) {
-			icon1->addItem(QIcon(QPixmap::fromImage(pix)), QString(), QByteArray());
+			icon1->addItem(QIcon(QPixmap::fromImage(pix)), QString(), saveData->saveIcon().data().left(160));
 			currentIndex = icon1->count()-1;
 		}
 		icon1->setCurrentIndex(currentIndex);
@@ -233,8 +233,8 @@ void HeaderDialog::fill()
 				}
 			}
 			if(currentIndex == -1) {
-				icon2->addItem(QIcon(QPixmap::fromImage(pix)), QString(), QByteArray());
-				currentIndex = icon1->count()-1;
+				icon2->addItem(QIcon(QPixmap::fromImage(pix)), QString(), saveData->saveIcon().data().mid(160));
+				currentIndex = icon2->count()-1;
 			}
 			icon2->setCurrentIndex(currentIndex);
 		}
@@ -314,7 +314,7 @@ void HeaderDialog::accept()
 	// Edit icon 1
 	SaveIconData saveIcon = saveData->saveIcon();
 	QByteArray itemData = icon1->itemData(icon1->currentIndex()).toByteArray();
-	if(!itemData.isEmpty()) {
+	if(!itemData.isEmpty() && itemData != saveIcon.data().left(160)) {
 		saveIcon.setData(itemData + saveIcon.data().mid(itemData.size()));
 		saveData->setSaveIcon(saveIcon);
 	}
@@ -322,7 +322,7 @@ void HeaderDialog::accept()
 	if(saveData->isFF8()) {
 		// Edit icon 2
 		itemData = icon2->itemData(icon2->currentIndex()).toByteArray();
-		if(!itemData.isEmpty()) {
+		if(!itemData.isEmpty() && itemData != saveIcon.data().mid(160)) {
 			saveIcon.setData(saveIcon.data().left(160) + itemData);
 			saveData->setSaveIcon(saveIcon);
 		}

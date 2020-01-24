@@ -4,7 +4,7 @@ if(win32|macx) {
 } else {
     TARGET = hyne
 }
-VERSION = 1.10.0
+VERSION = 1.11.0
 
 DEFINES += PROGVERSION=$$VERSION PROGNAME=Hyne
 
@@ -40,6 +40,8 @@ win32 {
 
 # Input
 HEADERS += PageWidgets/ConfigEditor.h \
+    Aes.h \
+    CryptographicHash.h \
     PageWidgets/MiscEditor.h \
     PageWidgets/GfEditor.h \
     PageWidgets/ItemEditor.h \
@@ -51,8 +53,10 @@ HEADERS += PageWidgets/ConfigEditor.h \
     Editor.h \
     FF8Text.h \
     LZS.h \
+    SCHeaderDialog.h \
     SavecardWidget.h \
     SaveIcon.h \
+    Sha1.h \
     Window.h \
     HeaderDialog.h \
     Config.h \
@@ -86,6 +90,8 @@ HEADERS += PageWidgets/ConfigEditor.h \
     MetadataDialog.h \
     SpinBox.h
 SOURCES += PageWidgets/ConfigEditor.cpp \
+    Aes.cpp \
+    CryptographicHash.cpp \
     PageWidgets/MiscEditor.cpp \
     PageWidgets/GfEditor.cpp \
     PageWidgets/ItemEditor.cpp \
@@ -97,6 +103,8 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     Editor.cpp \
     FF8Text.cpp \
     LZS.cpp \
+    SCHeaderDialog.cpp \
+    Sha1.cpp \
     main.cpp \
     SavecardWidget.cpp \
     SaveIcon.cpp \

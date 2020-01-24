@@ -28,8 +28,12 @@ class SavecardData
 {
 public:
 	enum Type {
-		Pc, PcUncompressed, Ps, Vgs, Gme, Vmp, Psv, PcSlot, Unknown, Undefined
+		Pc, PcUncompressed, Switch, Ps, Vgs, Gme, Vmp, Psv, PcSlot, Unknown, Undefined
 	};
+
+	inline static bool isOne(Type type) {
+		return type == Pc || type == PcUncompressed || type == Switch || type == Psv;
+	}
 
 	explicit SavecardData(const QString &path, quint8 slot=0, const FF8Installation &ff8Installation=FF8Installation());
 	explicit SavecardData(int saveCount);
@@ -44,6 +48,8 @@ public:
 	}
 	QString description() const;
 	void setDescription(const QString &desc);
+	const QByteArray &hashSeed() const;
+	void setHashSeed(const QByteArray &hashSeed);
 	void setIsTheLastEdited(int saveID);
 	inline const QList<SaveData *> &getSaves() const {
 		return saves;
@@ -51,10 +57,10 @@ public:
 	void moveSave(int sourceID, int targetID);
 	SaveData *getSave(int id) const;
 	int saveCount() const;
-	bool save2PC(const quint8 id, const QString &saveAs, bool compress);
-	bool save2PSV(const quint8 id, const QString &saveAs, const QByteArray &MCHeader);
+	bool saveMemoryCard(const QString &saveAs, Type newType);
+	bool saveOne(const SaveData *save, const QString &saveAs, Type newType);
 	bool save2PS(const QList<int> &ids, const QString &path, const Type newType, const QByteArray &MCHeader);
-	bool saveDirectory();
+	bool saveDirectory(const QString &dir = QString());
 
 	QString dirname() const;
 	QString name() const;
@@ -83,7 +89,6 @@ public:
 	static void compare(const QByteArray &oldData, const QByteArray &newData);
 
 	bool getFormatFromRaw();
-	bool save(const QString &saveAs=QString(), Type newType=Pc);
 private:
 	inline void setPath(const QString &path) {
 		_path = path;
@@ -113,6 +118,7 @@ private:
 	bool _isModified;
 	QByteArray _description;
 	quint8 _slot;
+	QByteArray _hashSeed;
 	const FF8Installation _ff8Installation;
 };
 
