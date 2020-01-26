@@ -61,7 +61,7 @@ bool SavecardData::open(const QString &path, quint8 slot)
 		if(extension.isEmpty() || extension == "ff8")
 		{
 			setType(Pc);
-			if(!pc()) addSave();
+			_ok = pc();
 		}
 		else if(extension == "mcr" || extension == "ddf" || extension == "mc"
 		   || extension == "mcd"|| extension == "mci" || extension == "ps"
@@ -151,6 +151,16 @@ QString SavecardData::dirname() const
 QString SavecardData::name() const
 {
 	return _path.mid(_path.lastIndexOf('/') + 1);
+}
+
+QString SavecardData::nameNoExtension() const
+{
+	QString n = name();
+	int index = n.lastIndexOf('.');
+	if (index < 0) {
+		return n;
+	}
+	return n.left(index);
 }
 
 QString SavecardData::extension() const
@@ -344,19 +354,18 @@ bool SavecardData::pc(const QString &path)
 	}
 
 	f.read((char *)&sizeC, 4);
-	if(f.size() == SWITCH_SAVE_SIZE && sizeC < SWITCH_SAVE_SIZE) {
-		qint32 sizeC2;
-		f.read((char *)&sizeC2, 4);
+	qint32 sizeC2;
+	f.read((char *)&sizeC2, 4);
 
-		if(sizeC == sizeC2 + 4) {
-			setType(Switch);
-		} else {
-			// Revert previous move
-			f.seek(f.pos() - 4);
-		}
+	if(sizeC == sizeC2 + 4) {
+		setType(Switch);
+		_switchSaveSize = f.size();
+	} else {
+		// Revert previous move
+		f.seek(f.pos() - 4);
 	}
 
-	if(sizeC != f.size()-4) {
+	if(type() != Switch && sizeC != f.size()-4) {
 		quint16 header = sizeC & 0xFFFF;
 		if(header == 0x4353) { // SC
 			f.reset();
@@ -789,8 +798,8 @@ bool SavecardData::saveOne(const SaveData *save, const QString &saveAs, Type new
 			size += 4;
 			result.prepend((char *)&size, 4);
 			// Padding at the end
-			if (result.size() < SWITCH_SAVE_SIZE) {
-				result.append(SWITCH_SAVE_SIZE - result.size(), '\0');
+			if (result.size() < _switchSaveSize) {
+				result.append(_switchSaveSize - result.size(), '\0');
 			}
 		}
 	}

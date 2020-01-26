@@ -246,7 +246,7 @@ void SavecardView::edit(int saveID)
 		emit released(saveData);
 }
 
-void SavecardView::exportPC(int saveID)
+void SavecardView::exportOne(int saveID)
 {
 	if(!_data)	return;
 
@@ -257,23 +257,47 @@ void SavecardView::exportPC(int saveID)
 	SaveData *saveData = _data->getSave(saveID);
 	if(!saveData)	return;
 
+	QString selectedFilter,
+	        pc = tr("FF8 PC save (*.ff8 *)"),
+	        ps4 = tr("PS4 Remaster save (*.ff8 *)"),
+	        swi = tr("Switch save (ff8slot*)"),
+	        psv = tr("PSN save (*.psv)");
+	SavecardData::Type type = _data->type();
+	QStringList types;
+	types << pc << ps4 << swi << psv;
+
+	if(type == SavecardData::PcUncompressed)    selectedFilter = ps4;
+	else if(type == SavecardData::Switch)       selectedFilter = swi;
+	else if(type == SavecardData::Psv)          selectedFilter = psv;
+	else                                        selectedFilter = pc;
+
 	QString path, savePath = Config::value(Config::SavePath);
-	int index;
 
-	if(savePath.isEmpty()) {
-		index = _data->path().lastIndexOf('/');
-		if(index != -1)		path = _data->path().left(index+1);
-	} else {
-		path = savePath % "/";
-	}
+	path = savePath.isEmpty() ? _data->dirname() : savePath % "/";
+	QString name = _data->nameNoExtension();
+	name = (name.isEmpty() ? "save" : name) % QString("%1").arg(saveData->id() + 1, 2, 10, QChar('0'));
 
-	path = QFileDialog::getSaveFileName(this, tr("Exporter"), path % QString("save%1").arg(saveData->id()+1, 2, 10, QChar('0')), tr("FF8 PC save (* *.ff8)"));
+	path = QFileDialog::getSaveFileName(
+	           this, tr("Exporter"),
+	           path % name,
+	           types.join(";;"),
+	           &selectedFilter
+	);
 	if(path.isEmpty())		return;
 
-	index = path.lastIndexOf('/');
+	if(selectedFilter == pc)          type = SavecardData::Pc;
+	else if(selectedFilter == ps4)    type = SavecardData::PcUncompressed;
+	else if(selectedFilter == swi)    type = SavecardData::Switch;
+	else if(selectedFilter == psv)    type = SavecardData::Psv;
+	else {
+		qWarning() << "Bad selected filter!" << selectedFilter;
+		return;
+	}
+
+	int index = path.lastIndexOf('/');
 	Config::setValue(Config::SavePath, index == -1 ? path : path.left(index));
 
-	if(!saveData->exportPC(path)) {
+	if(!_data->saveOne(saveData, path, type)) {
 		QMessageBox::warning(this, tr("Échec"), tr("Enregistrement échoué, vérifiez que le fichier cible n'est pas utilisé."));
 	}
 }
@@ -831,7 +855,7 @@ void SavecardView::contextMenuEvent(QContextMenuEvent *event)
 	QMenu menu(this);
 	if(!saveData->isDelete() && saveData->isFF8()) {
 		menu.setDefaultAction(menu.addAction(tr("&Modifier..."), this, SLOT(edit())));
-		menu.addAction(tr("&Exporter en sauv. PC..."), this, SLOT(exportPC()));
+		menu.addAction(tr("&Exporter cette sauvegarde..."), this, SLOT(exportOne()));
 	}
 	menu.addAction(tr("&Nouvelle partie"), this, SLOT(newGame()));
 	if(!saveData->isDelete()) {

@@ -209,12 +209,8 @@ void Window::dropEvent(QDropEvent *event)
 	{
 		QList<QUrl> urlList = mimeData->urls();
 		if(!urlList.isEmpty()) {
-			QString path = QDir::cleanPath(urlList.first().path());
-			if(!path.startsWith(QDir::rootPath()))
-				path = path.mid(1);
-			if(path.startsWith(QDir::rootPath())) {
-				openFile(path);
-			}
+			QString path = QDir::cleanPath(urlList.first().path().mid(1));
+			openFile(path);
 		}
 	}
 
@@ -455,7 +451,7 @@ bool Window::exportAs()
 	else									selectedFilter = ps;
 	
 	path = Config::value(Config::SavePath).isEmpty() ? saves->dirname() : Config::value(Config::SavePath)+"/";
-	if(saves->type() == SavecardData::Undefined) {
+	if(type == SavecardData::Undefined) {
 		path = path+saves->name()+".mcr";
 	} else {
 		path = path+saves->name();

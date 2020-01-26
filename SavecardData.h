@@ -64,6 +64,7 @@ public:
 
 	QString dirname() const;
 	QString name() const;
+	QString nameNoExtension() const;
 	QString extension() const;
 	inline const QString &path() const {
 		return _path;
@@ -119,6 +120,7 @@ private:
 	QByteArray _description;
 	quint8 _slot;
 	QByteArray _hashSeed;
+	qint64 _switchSaveSize;
 	const FF8Installation _ff8Installation;
 };
 

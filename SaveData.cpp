@@ -476,21 +476,6 @@ bool SaveData::setData(const QByteArray &data)
 	return true;
 }
 
-bool SaveData::exportPC(const QString &path) const
-{
-	QFile fic(path);
-	if(!fic.open(QIODevice::WriteOnly))	return false;
-
-	QByteArray data = LZS::compress(save());
-	quint32 size = data.size();
-
-	fic.write((char *)&size, 4);
-	fic.write(data);
-	fic.close();
-
-	return true;
-}
-
 QString SaveData::perso(quint8 index) const
 {
 	switch(index) {

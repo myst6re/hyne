@@ -67,7 +67,7 @@ public slots:
 private slots:
 	void notifyFileChanged(const QString &path);
 	void edit(int saveID=-1);
-	void exportPC(int saveID=-1);
+	void exportOne(int saveID=-1);
 	void newGame(int saveID=-1);
 	void removeSave(int saveID=-1);
 	void refreshIcon(SaveData *saveData);
