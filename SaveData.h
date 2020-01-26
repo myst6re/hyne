@@ -28,7 +28,6 @@
 #define COUNTRY_EU	'E'
 #define FF8SAVE_SIZE		5408
 #define SAVE_SIZE			8192
-#define SWITCH_SAVE_SIZE	10224
 
 #include <QtCore>
 #include "SaveIcon.h"
@@ -503,7 +502,6 @@ public:
 	void setPerso(quint8 index, const QString &name);
 	QString gf(quint8 index) const;
 	void setGf(quint8 index, const QString &name);
-	bool exportPC(const QString &path) const;
 	HEADER &descData();
 	const HEADER &constDescData() const;
 	MAIN &mainData();
