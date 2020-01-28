@@ -96,7 +96,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	icon1_lbl->setTextFormat(Qt::PlainText);
 	icon1 = new QComboBox();
 	icon1->setIconSize(QSize(16, 16));
-	foreach(const SaveIconData &saveIcon, saveIcons) {
+	for(const SaveIconData &saveIcon : qAsConst(saveIcons)) {
 		icon1->addItem(QIcon(saveIcon.icon()), QString(), saveIcon.data().left(160));
 	}
 	QPushButton *icon1_saveButton = new QPushButton();
@@ -107,7 +107,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	icon2_lbl->setTextFormat(Qt::PlainText);
 	icon2 = new QComboBox();
 	icon2->setIconSize(QSize(32, 32));
-	foreach(const SaveIconData &saveIcon, saveIcons) {
+	for(const SaveIconData &saveIcon : qAsConst(saveIcons)) {
 		icon2->addItem(QIcon(saveIcon.icon(0, true)), QString(), saveIcon.data().mid(160));
 	}
 	icon2_saveButton = new QPushButton();

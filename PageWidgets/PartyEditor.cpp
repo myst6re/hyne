@@ -109,14 +109,14 @@ void PartyEditor::buildWidget()
 	mapE->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	QStringList mapList = Data::maplist();
 	i=0;
-	foreach(const QString &mapName, mapList) {
+	for(const QString &mapName : qAsConst(mapList)) {
 		mapE->addItem(mapName, i++);
 	}
 
 	lastMapE = new QComboBox(positionGBE);
 	lastMapE->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	i=0;
-	foreach(const QString &mapName, mapList) {
+	for(const QString &mapName : qAsConst(mapList)) {
 		lastMapE->addItem(mapName, i++);
 	}
 

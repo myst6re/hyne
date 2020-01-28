@@ -103,7 +103,7 @@ void SavecardView::updateSaves(const QList<int> &saveIDs, bool withCursor)
 
 	int minID=_data->saveCount(), maxID=-1;
 
-	foreach(int id, saveIDs) {
+	for(int id : saveIDs) {
 		if(id < 0 || id > _data->saveCount()) {
 			continue;
 		}
@@ -346,7 +346,7 @@ void SavecardView::newGame(int saveID)
 	saveData->setPerso(BOKO, Data::names().at(BOKO));
 	saveData->setPerso(ANGELO, Data::names().at(ANGELO));
 	int gfID=0;
-	foreach(const QString &gfName, Data::gfnames().list()) {
+	for(const QString &gfName : Data::gfnames().list()) {
 		saveData->setGf(gfID++, gfName);
 	}
 	saveData->setModified(true);
@@ -455,7 +455,7 @@ void SavecardView::nextIcon()
 	if(!_data) return;
 
 	++currentSaveIconFrame;
-	foreach(SaveData *saveData, _data->getSaves()) {
+	for(SaveData *saveData : qAsConst(_data->getSaves())) {
 		refreshIcon(saveData);
 	}
 }

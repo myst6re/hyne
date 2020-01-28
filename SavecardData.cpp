@@ -40,7 +40,7 @@ SavecardData::SavecardData(int saveCount) :
 
 SavecardData::~SavecardData()
 {
-	foreach(SaveData *save, saves)	delete save;
+	for(SaveData *save : qAsConst(saves))	delete save;
 }
 
 bool SavecardData::open(const QString &path, quint8 slot)
@@ -208,7 +208,7 @@ bool SavecardData::isModified() const
 {
 	if(_isModified)	return true;
 
-	foreach(SaveData *save, saves) {
+	for(SaveData *save : qAsConst(saves)) {
 		if(save->isModified())	return true;
 	}
 	return false;
@@ -219,7 +219,7 @@ void SavecardData::setModified(bool modified)
 	_isModified = modified;
 
 	if(modified == false) {
-		foreach(SaveData *save, saves) {
+		for(SaveData *save : qAsConst(saves)) {
 			save->setModified(false);
 		}
 	}
@@ -227,7 +227,7 @@ void SavecardData::setModified(bool modified)
 
 void SavecardData::setIsTheLastEdited(int saveID)
 {
-	foreach(SaveData *save, saves) {
+	for(SaveData *save : qAsConst(saves)) {
 		if(save->isTheLastEdited()) {
 			save->setIsTheLastEdited(false);
 		}
@@ -577,8 +577,8 @@ void SavecardData::moveSave(int sourceID, int targetID)
 
 	// Rebuild ids
 	int saveID = 0;
-	foreach(saveData, saves) {
-		saveData->setId(saveID);
+	for(SaveData *save : qAsConst(saves)) {
+		save->setId(saveID);
 		saveID++;
 	}
 
@@ -938,7 +938,7 @@ bool SavecardData::save2PS(const QList<int> &ids, const QString &path, const Typ
 			addSave();
 		}
 		i=0;
-		foreach(SaveData *save, saves) {
+		for(SaveData *save : qAsConst(saves)) {
 			if(save->isFF8()) {
 				if(!MCHeader.isEmpty()) {
 					QByteArray MCHeaderCpy = MCHeader;
@@ -1025,7 +1025,7 @@ bool SavecardData::saveDirectory(const QString &dir)
 
 	filePattern = _ff8Installation.saveNamePattern(_slot);
 
-	foreach(const SaveData *save, saves) {
+	for(const SaveData *save : qAsConst(saves)) {
 		if(save->isModified()) {
 			QString num = QString("%1").arg(i + 1, 2, 10, QChar('0'));
 			QString path = filePattern;

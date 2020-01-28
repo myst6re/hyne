@@ -100,7 +100,7 @@ QString SelectSavesDialog::infoText(bool warn)
 QList<int> SelectSavesDialog::selectedSaves() const
 {
 	QList<int> selected_saves;
-	foreach(QListWidgetItem *item, list->selectedItems())
+	for(const QListWidgetItem *item : list->selectedItems())
 		selected_saves.append(list->row(item));
 	return selected_saves;
 }

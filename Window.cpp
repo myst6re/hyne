@@ -121,7 +121,7 @@ Window::Window(bool isNew) :
 	actionFont->setChecked(!Config::value(Config::Font).isEmpty());
 	
 	menuLang = menu->addMenu(tr("&Langue"));
-	foreach(const QLocale &locale, availableLanguages()) {
+	for(const QLocale &locale : availableLanguages()) {
 		action = menuLang->addAction(QLocale::languageToString(locale.language()));
 		action->setData(locale.bcp47Name());
 		action->setCheckable(true);
@@ -131,7 +131,7 @@ Window::Window(bool isNew) :
 
 	if(Config::ff8Installations().size() > 1) {
 		menuVersion = menu->addMenu(tr("Version PC"));
-		foreach(const FF8Installation &installation, Config::ff8Installations()) {
+		for(const FF8Installation &installation : Config::ff8Installations()) {
 			action = menuVersion->addAction(installation.typeString());
 			action->setCheckable(true);
 			action->setChecked(Config::ff8Installation() == installation);
@@ -611,7 +611,7 @@ void Window::properties()
 
 	int saveCount = 0, firstSaveID = -1, saveID = 0;
 
-	foreach(const SaveData *saveData, saves->getSaves()) {
+	for(const SaveData *saveData : saves->getSaves()) {
 		if(!saveData->isDelete()) {
 			saveCount++;
 			if(firstSaveID == -1) {
@@ -740,7 +740,7 @@ void Window::changeFrame(QAction *action)
 		Config::setValue(Config::FreqAuto, false);
 	}
 
-	foreach(QAction *act, menuFrame->actions())
+	for(QAction *act : menuFrame->actions())
 		act->setChecked(false);
 	action->setChecked(true);
 
@@ -769,7 +769,7 @@ QList<QLocale> Window::availableLanguages()
 
 	languages.append(QLocale(QLocale::French));
 
-	foreach(const QString &qmFile, qmFiles) {
+	for(const QString &qmFile : qAsConst(qmFiles)) {
 		QString language = qmFile.mid(5, qmFile.size() - 5 - 3);
 		languages.append(QLocale(language));
 	}
@@ -790,7 +790,7 @@ QLocale Window::chooseLangDialog()
 	dialog->setWindowTitle(chooseStr);
 	QLabel *label = new QLabel(chooseStr + ":", dialog);
 	QComboBox *comboBox = new QComboBox(dialog);
-	foreach(const QLocale &lang, langs)
+	for(const QLocale &lang : qAsConst(langs))
 		comboBox->addItem(QLocale::languageToString(lang.language()), lang.bcp47Name());
 
 	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal, dialog);
@@ -813,7 +813,7 @@ void Window::changeLanguage(QAction *action)
 {
 	if(Config::value(Config::Lang) != action->data()) {
 		Config::setValue(Config::Lang, action->data());
-		foreach(QAction *act, menuLang->actions())
+		for(QAction *act : menuLang->actions())
 			act->setChecked(false);
 		action->setChecked(true);
 
@@ -826,7 +826,7 @@ void Window::changeLanguage(QAction *action)
 void Window::changeFF8Version(QAction *action)
 {
 	Config::setSelectedFF8Installation(FF8Installation::Type(menuVersion->actions().indexOf(action)));
-	foreach(QAction *act, menuVersion->actions())
+	for(QAction *act : menuVersion->actions())
 		act->setChecked(false);
 	action->setChecked(true);
 }
