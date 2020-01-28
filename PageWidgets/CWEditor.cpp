@@ -234,7 +234,7 @@ void CWEditor::savePage()
 
 void CWEditor::setCWEnabled(bool enabled)
 {
-	foreach(QObject *child, enabledE->findChildren<QWidget *>()) {
+	for(QObject *child : enabledE->findChildren<QWidget *>()) {
 		((QWidget *)child)->setEnabled(enabled);
 	}
 }

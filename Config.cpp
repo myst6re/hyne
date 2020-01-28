@@ -106,7 +106,7 @@ void Config::saveRecentFiles()
 	QStringList rf;
 	int i=0;
 
-	foreach(const QString &recentFile, recentFiles) {
+	for(const QString &recentFile : qAsConst(recentFiles)) {
 		if(QFile::exists(recentFile)) {
 			rf.append(QDir::cleanPath(recentFile));
 			++i;
@@ -185,7 +185,7 @@ bool Config::ff8IsInstalled(bool &hasSlots)
 
 	hasSlots = false;
 
-	foreach(const FF8Installation &installation, Config::ff8Installations()) {
+	for(const FF8Installation &installation : Config::ff8Installations()) {
 		if (installation.isValid()) {
 			ret = true;
 		}

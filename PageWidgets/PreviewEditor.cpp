@@ -46,7 +46,7 @@ void PreviewEditor::buildWidget()
 
 	locationIDE = new QComboBox(this);
 	int i=0;
-	foreach(const QString &loc, Data::locations().list())
+	for(const QString &loc : Data::locations().list())
 		locationIDE->addItem(loc, i++);
 	saveCountE = new SpinBox16(this);
 	curSaveE = new SpinBox32(this);
@@ -117,7 +117,7 @@ void PreviewEditor::buildWidget()
 	connect(timeE, SIGNAL(valueChanged()), SLOT(updatePreview()));
 	connect(discE, SIGNAL(valueChanged(double)), SLOT(updatePreview()));
 	connect(locationIDE, SIGNAL(currentIndexChanged(int)), SLOT(updatePreview()));
-	foreach(QComboBox *cb, partyE) {
+	for(QComboBox *cb : qAsConst(partyE)) {
 		connect(cb, SIGNAL(currentIndexChanged(int)), SLOT(updatePreview()));
 	}
 }
@@ -130,7 +130,7 @@ void PreviewEditor::fillPage()
 	timeE->blockSignals(true);
 	discE->blockSignals(true);
 	locationIDE->blockSignals(true);
-	foreach(QComboBox *cb, partyE) {
+	for(QComboBox *cb : qAsConst(partyE)) {
 		cb->blockSignals(true);
 	}
 
@@ -156,7 +156,7 @@ void PreviewEditor::fillPage()
 	timeE->blockSignals(false);
 	discE->blockSignals(false);
 	locationIDE->blockSignals(false);
-	foreach(QComboBox *cb, partyE) {
+	for(QComboBox *cb : qAsConst(partyE)) {
 		cb->blockSignals(false);
 	}
 }
@@ -180,7 +180,7 @@ void PreviewEditor::savePage()
 
 void PreviewEditor::setGroupDisabled(bool disable)
 {
-	foreach(QWidget *o, autoGroup->findChildren<QWidget *>()) {
+	for(QWidget *o : autoGroup->findChildren<QWidget *>()) {
 		o->setDisabled(disable);
 	}
 }

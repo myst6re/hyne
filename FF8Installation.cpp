@@ -203,10 +203,10 @@ QStringList FF8Installation::steamFF8UserDataPaths(int max)
 {
 	QStringList ff8UserDataPaths;
 
-	foreach (const QString &documentsPath, QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation)) {
+	for (const QString &documentsPath : QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation)) {
 		QDir ff8UserDataDir(QString("%1/Square Enix").arg(documentsPath));
 
-		foreach(const QString &dir, ff8UserDataDir.entryList(QStringList("FINAL FANTASY VIII*"), QDir::Dirs)) {
+		for(const QString &dir : ff8UserDataDir.entryList(QStringList("FINAL FANTASY VIII*"), QDir::Dirs)) {
 			QDirIterator it(ff8UserDataDir.absoluteFilePath(dir),
 							QStringList("user_*"),
 							QDir::Dirs,
@@ -231,10 +231,10 @@ QStringList FF8Installation::steamFF8RemasterUserDataPaths(int max)
 {
 	QStringList ff8UserDataPaths;
 
-	foreach (const QString &documentsPath, QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation)) {
+	for (const QString &documentsPath : QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation)) {
 		QDir ff8UserDataDir(documentsPath + "/My Games");
 
-		foreach(const QString &dir, ff8UserDataDir.entryList(QStringList("FINAL FANTASY VIII*"), QDir::Dirs)) {
+		for(const QString &dir : ff8UserDataDir.entryList(QStringList("FINAL FANTASY VIII*"), QDir::Dirs)) {
 			QDirIterator it(ff8UserDataDir.absoluteFilePath(dir + "/Steam"),
 							QStringList("*"),
 							QDir::Dirs,

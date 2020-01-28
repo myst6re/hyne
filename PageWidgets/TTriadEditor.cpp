@@ -282,12 +282,12 @@ QWidget *TTriadEditor::buildPage2()
 
 	last_regionE = new QComboBox(group3);
 	int i=0;
-	foreach(const QString &region, regions)
+	for(const QString &region : qAsConst(regions))
 		last_regionE->addItem(region, i++);
 
 	last2_regionE = new QComboBox(group3);
 	i=0;
-	foreach(const QString &region, regions)
+	for(const QString &region : qAsConst(regions))
 		last2_regionE->addItem(region, i++);
 
 	QStringList cc_names;
@@ -297,26 +297,26 @@ QWidget *TTriadEditor::buildPage2()
 
 	ccE = new QComboBox(group3);
 	i=0;
-	foreach(const QString &name, cc_names)
+	for(const QString &name : qAsConst(cc_names))
 		ccE->addItem(name, cc_values.at(i++));
 
 	queenE = new QComboBox(group3);
 	queenE->addItem(tr("Nulle part"), 0);
 	QStringList queenCities = Data::cities().list().mid(0, 8);
 	i=1;
-	foreach(const QString &queenCity, queenCities)
+	for(const QString &queenCity : qAsConst(queenCities))
 		queenE->addItem(queenCity, i++);
 
 	traderule_queenE = new QComboBox(group3);
 
 	i=0;
-	foreach(const QString &name, traderules_names)
+	for(const QString &name : qAsConst(traderules_names))
 		traderule_queenE->addItem(name, i++);
 
 	traderatingE = new SpinBox8(group3);
 	traderating_regionE = new QComboBox(group3);
 	i=0;
-	foreach(const QString &region, regions)
+	for(const QString &region : qAsConst(regions))
 		traderating_regionE->addItem(region, i++);
 
 	ttdegenerationE = new SpinBox8(group3);

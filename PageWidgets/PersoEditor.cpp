@@ -434,7 +434,7 @@ QWidget *PersoEditor::buildPage5()
 	{
 		aptitude_E.append(comboBox = new QComboBox(apt_E));
 		int j=0;
-		foreach(const QString &mag, Data::magics().list())
+		for(const QString &mag : Data::magics().list())
 			comboBox->addItem(mag, j++);
 	}
 	QGridLayout *apt_L = new QGridLayout(apt_E);
@@ -463,7 +463,7 @@ QWidget *PersoEditor::buildPage5()
 	{
 		element_E.append(comboBox = new QComboBox(ele_E));
 		int j=0;
-		foreach(const QString &mag, Data::magics().list())
+		for(const QString &mag : Data::magics().list())
 			comboBox->addItem(mag, j++);
 	}
 	QGridLayout *ele_L = new QGridLayout(ele_E);
@@ -483,7 +483,7 @@ QWidget *PersoEditor::buildPage5()
 	{
 		mental_E.append(comboBox = new QComboBox(mtl_E));
 		int j=0;
-		foreach(const QString &mag, Data::magics().list())
+		for(const QString &mag : Data::magics().list())
 			comboBox->addItem(mag, j++);
 	}
 	QGridLayout *mtl_L = new QGridLayout(mtl_E);
@@ -509,7 +509,7 @@ QWidget *PersoEditor::buildPage5()
 
 void PersoEditor::buildPage6()
 {
-	foreach(QObject *child, lbWidget->children())	delete child;
+	for(QObject *child : lbWidget->children())	delete child;
 	//Cette fonction varie en fonction du personnage, elle est appelée lors du remplissage et pas lors de l'initialisation
 	QGridLayout *grid = new QGridLayout(lbWidget);
 	
@@ -923,7 +923,7 @@ void PersoEditor::updateCompAllLabel()
 
 void PersoEditor::selectAllGFs(bool all)
 {
-	foreach(QCheckBox *poss, poss_E) {
+	for(QCheckBox *poss : qAsConst(poss_E)) {
 		poss->setChecked(all);
 	}
 }
@@ -931,7 +931,7 @@ void PersoEditor::selectAllGFs(bool all)
 void PersoEditor::updateAllCompatibilities()
 {
 	int val = compAll_E->value();
-	foreach(QSpinBox *comp, comp_E) {
+	for(QSpinBox *comp : qAsConst(comp_E)) {
 		comp->setValue(val);
 	}
 }

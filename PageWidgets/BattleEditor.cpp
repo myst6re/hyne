@@ -123,7 +123,7 @@ void BattleEditor::buildWidget()
 		firstscanE_list->addTopLevelItem(item);
 	}
 
-	foreach(QString ennemy, Data::ennemies().list()) {
+	for(const QString &ennemy : Data::ennemies().list()) {
 		item = new QTreeWidgetItem(QStringList(ennemy));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstscanE_list->addTopLevelItem(item);

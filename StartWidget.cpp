@@ -76,7 +76,7 @@ void StartWidget::paintEvent(QPaintEvent *)
 
 	painter.setBrush(QPixmap(QString(":/images/menu-fond%1.png").arg(enabledState ? "" : "2")));
 
-	foreach(const QAction *act, actions()) {
+	for(const QAction *act : actions()) {
 		if(act->isEnabled() != enabledState) {
 			enabledState = act->isEnabled();
 			painter.setBrush(QPixmap(QString(":/images/menu-fond%1.png").arg(enabledState ? "" : "2")));
