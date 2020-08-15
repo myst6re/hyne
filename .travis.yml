@@ -1,65 +1,73 @@
 language: cpp
 sudo: required
-dist: trusty
+dist: xenial
 
 os:
-  - linux
-  - osx
+ - linux
+ - osx
+
+before_install: 
+- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+    sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y;
+    sudo add-apt-repository ppa:beineri/opt-qt-5.15.0-xenial -y;
+    sudo apt-get update -qq;
+    fi
+
+#MAC OS
+- if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
+    brew update > /dev/null;
+    fi
 
 install:
-  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-         lsb_release -a
-      && sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
-      && sudo apt-add-repository -y ppa:beineri/opt-qt-5.10.1-trusty
-      && sudo apt-get -qq update
-      && sudo apt-get -qq install -y g++-4.8 libc6-i386 qt510tools qt510base qt510translations qt510imageformats
-      && export CXX="g++-4.8"
-      && export CC="gcc-4.8"
-      ;
-    else
-         brew update > /dev/null
-      && brew install qt5
-      && chmod -R 755 /usr/local/opt/qt5/*
-      ;
+- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+    sudo apt-get -y install build-essential qt5-default qt515tools qt515base qt515translations qt515imageformats g++-8 zsync;
+    sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90;
+    source /opt/qt*/bin/qt*-env.sh;
     fi
 
-before_script:
-  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-      source /opt/qt*/bin/qt*-env.sh;
-    else
-      QTDIR="/usr/local/opt/qt5";
+#MAC OS
+- if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
+    brew upgrade qt;
+    chmod -R 755 /usr/local/opt/qt5/*;
     fi
-  - export PATH="$QTDIR/bin:$PATH"
-  - mkdir -p build
-  - cd build
-  - qmake -config release ..
+
 
 script:
 
-  - make -j2
-
-before_deploy:
-  - DEPLOY_DIR="hyne-$(git describe --tags)-${TRAVIS_OS_NAME}64"
-  - export DEPLOY_ARCHIVE="$DEPLOY_DIR.tar.gz"
-  - mkdir -p "$DEPLOY_DIR"
-  - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
-         DEPLOY_BINARY="hyne.app"
-      && cp -r "$DEPLOY_BINARY" "$DEPLOY_DIR"
-      && cp ../*.qm "$DEPLOY_DIR/$DEPLOY_BINARY/Contents/MacOS"
-      && "$QTDIR/bin/macdeployqt" "$DEPLOY_DIR/$DEPLOY_BINARY"
-      ;
-    else
-         cp hyne "$DEPLOY_DIR"
-      && cp ../*.qm "$DEPLOY_DIR"
-      ;
+- if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+    qmake Hyne.pro;
+    make -j4;
+    make INSTALL_ROOT=appdir install; find appdir/;
+    mv appdir/usr/share/hyne/*.qm appdir/usr/bin;
+    rm -rf appdir/usr/share/hyne appdir/usr/share/menu;
+    wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage";
+    chmod a+x linuxdeployqt*.AppImage;
+    unset QTDIR; unset QT_PLUGIN_PATH; unset LD_LIBRARY_PATH;
+    export VERSION=continuous;
+    ./linuxdeployqt*.AppImage ./appdir/usr/share/applications/*.desktop -appimage;
     fi
-  - tar -czf "$DEPLOY_ARCHIVE" "$DEPLOY_DIR"
+- if [ "${TRAVIS_OS_NAME}" = "osx" ]; then
+    export QTDIR="/usr/local/opt/qt5";
+    export PATH="$QTDIR/bin:$PATH";
+    qmake Hyne.pro;
+    make -j4;
+    mv *.qm Hyne.app/Contents/MacOS/;
+    cp /usr/lib/libz.dylib Hyne.app/Contents/MacOS/;
+    macdeployqt Hyne.app/ -dmg;
+    fi
 
-deploy:
-  provider: releases
-  api_key:
-    secure: UQJJAo09niMe3BSNGqs42pHaVwdNACBk2JM1OW6rGszk/Ia4aTFPBDZ43tsdTQSemfYyziT0D9xtJekaOsqXg0crHNdxr5aM4ey3Xz2+iQf/oKRw4kmeYnOTzyTCUg5RiUDi7XXjL6URd7rDwY9uYObhl0q43O09dRNegCjUSAg=
-  file: "$DEPLOY_ARCHIVE"
-  skip_cleanup: true
-  on:
-    tags: true
+after_success:
+- wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+- if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+    find ./appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq ;
+    bash ./upload.sh Hyne*.AppImage*;
+    fi
+- if [ "$TRAVIS_OS_NAME" = "osx" ]; then
+    mv Hyne*.dmg* Hyne-continuous*.dmg*;
+    bash ./upload.sh Hyne*.dmg*;
+    fi
+
+branches:
+  except:
+    - # Do not build tags that we create when we upload to GitHub Releases
+    - /^(?i:continuous)$/
