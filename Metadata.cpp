@@ -152,6 +152,7 @@ bool Metadata::save()
 		xml.writeEndElement(); // savefile
 	}
 
+	xml.writeEndElement(); // gamestatus
 	xml.writeEndDocument();
 
 	if (xml.hasError()) {
