@@ -24,8 +24,8 @@ class HelpWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	HelpWidget(int iconExtent, const QString &text, QWidget *parent=0);
-	explicit HelpWidget(int iconExtent, QWidget *parent=0);
+	HelpWidget(int iconExtent, const QString &text, QWidget *parent = nullptr);
+	explicit HelpWidget(int iconExtent, QWidget *parent = nullptr);
 	QString text() const;
 	void setText(const QString &text);
 private:

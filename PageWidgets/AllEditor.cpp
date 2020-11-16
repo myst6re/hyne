@@ -57,7 +57,7 @@ void AllEditor::fillPage()
 {
 	char *cur;
 
-	switch(tabBar->currentIndex()) {
+	switch (tabBar->currentIndex()) {
 //	case 1:// Header
 //		hexEdit->setData(QByteArray((char *)descData, sizeof(*descData)));
 //		break;
@@ -119,7 +119,7 @@ void AllEditor::savePage()
 	const char *hexdata = hexEdit->data().constData();
 	char *cur;
 
-	switch(tabBar->currentIndex()) {
+	switch (tabBar->currentIndex()) {
 //	case 1:// Header
 //		memcpy(descData, hexdata, sizeof(*descData));
 //		break;

@@ -65,10 +65,10 @@ void CWEditor::buildWidget()
 		  << tr("MiniMog trouvé") << tr("MiniMog obtenu")
 		  << tr("MiniMog en attente") << tr("Roi démon vaincu")
 		  << tr("Événement courant vu") << tr("Event wait OFF");
-	for(int i=0 ; i<7 ; ++i) {
+	for (int i = 0; i < 7; ++i) {
 		QCheckBox *questCheckBox = new QCheckBox(texts.at(i));
 		questE.append(questCheckBox);
-		if(i >= 1) {
+		if (i >= 1) {
 			questL->addWidget(questCheckBox, (i - 1) / 3, (i - 1) % 3);
 		}
 	}
@@ -79,7 +79,7 @@ void CWEditor::buildWidget()
 	texts.clear();
 	texts << tr("Chocobraise") << tr("Chocoflammes")
 		  << tr("Chocométéore") << tr("Grochocobo");
-	for(int i=0 ; i<4 ; ++i) {
+	for (int i = 0; i < 4; ++i) {
 		QRadioButton *starCountRadio = new QRadioButton(texts.at(i));
 		starCountE.append(starCountRadio);
 		starCountL->addWidget(starCountRadio, i / 2, i % 2);
@@ -130,12 +130,12 @@ void CWEditor::fillPage()
 	bokoE->setText(saveData->perso(BOKO));
 
 	enabledE->setChecked(data->chocobo.enabled & 1);
-	for(int i=0 ; i<7 ; ++i) {
+	for (int i = 0; i < 7; ++i) {
 		questE.at(i)->setChecked((data->chocobo.enabled >> (i + 1)) & 1);
 	}
 
-	for(int i=0 ; i<4 ; ++i) {
-		if(data->chocobo.boko_attack == i) {
+	for (int i = 0; i < 4; ++i) {
+		if (data->chocobo.boko_attack == i) {
 			starCountE.at(i)->setChecked(true);
 			break;
 		}
@@ -149,15 +149,15 @@ void CWEditor::fillPage()
 	int ID2 = (data->chocobo.id_related >> 4) & 0xF;
 	int ID3 = (data->chocobo.id_related >> 8) & 0xF;
 
-	if(ID1 > 9) {
+	if (ID1 > 9) {
 		qWarning() << "CWEditor::fillPage invalid ID1";
 		ID1 = 9;
 	}
-	if(ID2 > 9) {
+	if (ID2 > 9) {
 		qWarning() << "CWEditor::fillPage invalid ID2";
 		ID2 = 9;
 	}
-	if(ID3 > 9) {
+	if (ID3 > 9) {
 		qWarning() << "CWEditor::fillPage invalid ID3";
 		ID3 = 9;
 	}
@@ -169,19 +169,19 @@ void CWEditor::fillPage()
 	int W3 = (data->chocobo.weapon >> 8) & 0xF;
 	int W4 = (data->chocobo.weapon >> 12) & 0xF;
 
-	if(W1 > 9) {
+	if (W1 > 9) {
 		qWarning() << "CWEditor::fillPage invalid W1";
 		W1 = 9;
 	}
-	if(W2 > 9) {
+	if (W2 > 9) {
 		qWarning() << "CWEditor::fillPage invalid W2";
 		W2 = 9;
 	}
-	if(W3 > 9) {
+	if (W3 > 9) {
 		qWarning() << "CWEditor::fillPage invalid W3";
 		W3 = 9;
 	}
-	if(W4 > 9) {
+	if (W4 > 9) {
 		qWarning() << "CWEditor::fillPage invalid W4";
 		W4 = 9;
 	}
@@ -202,12 +202,12 @@ void CWEditor::savePage()
 	saveData->setPerso(BOKO, bokoE->text());
 
 	data->chocobo.enabled = enabledE->isChecked();
-	for(int i=0 ; i<7 ; ++i) {
+	for (int i = 0; i < 7; ++i) {
 		data->chocobo.enabled |= questE.at(i)->isChecked() << (i + 1);
 	}
 
-	for(int i=0 ; i<4 ; ++i) {
-		if(starCountE.at(i)->isChecked()) {
+	for (int i = 0; i < 4; ++i) {
+		if (starCountE.at(i)->isChecked()) {
 			data->chocobo.boko_attack = i;
 			break;
 		}
@@ -234,7 +234,7 @@ void CWEditor::savePage()
 
 void CWEditor::setCWEnabled(bool enabled)
 {
-	for(QObject *child : enabledE->findChildren<QWidget *>()) {
+	for (QObject *child : enabledE->findChildren<QWidget *>()) {
 		((QWidget *)child)->setEnabled(enabled);
 	}
 }

@@ -28,21 +28,21 @@ class SpinBox8 : public QSpinBox
 {
 	Q_OBJECT
 public:
-	explicit SpinBox8(QWidget *parent = 0);
+	explicit SpinBox8(QWidget *parent = nullptr);
 };
 
 class SpinBox16 : public QSpinBox
 {
 	Q_OBJECT
 public:
-	explicit SpinBox16(QWidget *parent = 0);
+	explicit SpinBox16(QWidget *parent = nullptr);
 };
 
 class SpinBox32 : public QDoubleSpinBox
 {
 	Q_OBJECT
 public:
-	explicit SpinBox32(QWidget *parent = 0);
+	explicit SpinBox32(QWidget *parent = nullptr);
 };
 
 #endif // SPINBOX_H

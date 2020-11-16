@@ -25,7 +25,7 @@ class MapWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit MapWidget(QWidget *parent = 0);
+	explicit MapWidget(QWidget *parent = nullptr);
 	
 signals:
 	void positionChanged(const QPoint &pos);

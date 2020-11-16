@@ -29,7 +29,7 @@ class PageWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit PageWidget(QWidget *parent = 0);
+	explicit PageWidget(QWidget *parent = nullptr);
 	virtual QString name()=0;
 	void load(SaveData *saveData, bool pc);
 	void unload();

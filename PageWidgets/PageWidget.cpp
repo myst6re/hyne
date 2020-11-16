@@ -26,7 +26,7 @@ PageWidget::PageWidget(QWidget *parent) :
 
 void PageWidget::load(SaveData *saveData, bool pc)
 {
-	if(!builded) {
+	if (!builded) {
 		buildWidget();
 		builded = true;
 	}
@@ -71,7 +71,7 @@ void PageWidget::updateTime()
 void PageWidget::selectAll(QTreeWidget *list, bool selected)
 {
 	int count = list->topLevelItemCount();
-	for(int i=0 ; i<count ; ++i) {
+	for (int i = 0; i < count; ++i) {
 		list->topLevelItem(i)->setCheckState(0, selected ? Qt::Checked : Qt::Unchecked);
 	}
 }
@@ -79,7 +79,7 @@ void PageWidget::selectAll(QTreeWidget *list, bool selected)
 void PageWidget::setCurrentIndex(QComboBox *comboBox, int value)
 {
 	int index = comboBox->findData(value);
-	if(index != -1) {
+	if (index != -1) {
 		comboBox->setCurrentIndex(index);
 	} else {
 		comboBox->addItem(QString::number(value), value);
@@ -90,7 +90,7 @@ void PageWidget::setCurrentIndex(QComboBox *comboBox, int value)
 QMap<int, QIcon> PageWidget::abilityIcons()
 {
 	QMap<int, QIcon> icons;
-	for(int i=0 ; i<6 ; ++i)
+	for (int i = 0; i < 6; ++i)
 		icons.insert(i, QIcon(QString(":/images/icons/capacity%1.png").arg(i)));
 	return icons;
 }
@@ -98,9 +98,9 @@ QMap<int, QIcon> PageWidget::abilityIcons()
 void PageWidget::fillAbilities(QComboBox *comboBox, const QMap<int, QIcon> &icons, const QList<qint8> &typeFilter)
 {
 	int abilityCount = Data::abilities().size();
-	for(int i=1 ; i<abilityCount ; ++i) {
+	for (int i = 1; i < abilityCount; ++i) {
 		qint8 type = Data::abilityType(i);
-		if(typeFilter.isEmpty() || typeFilter.contains(type)) {
+		if (typeFilter.isEmpty() || typeFilter.contains(type)) {
 			comboBox->addItem(icons.value(type), Data::abilities().at(i), i);
 		}
 	}
@@ -108,7 +108,7 @@ void PageWidget::fillAbilities(QComboBox *comboBox, const QMap<int, QIcon> &icon
 
 //void PageWidget::changeEvent(QEvent *e)
 //{
-//	if(e->type() == QEvent::LanguageChange) {
+//	if (e->type() == QEvent::LanguageChange) {
 //
 //	} else {
 //		QWidget::changeEvent(e);

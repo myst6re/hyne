@@ -284,27 +284,27 @@ void Data::reload()
 
 qint8 Data::abilityType(quint8 abilityID)
 {
-	if(abilityID >= 01 && abilityID <= 19)	return 0;
-	if(abilityID >= 20 && abilityID <= 38)	return 1;
-	if(abilityID >= 39 && abilityID <= 77)	return 2;
-	if(abilityID >= 78 && abilityID <= 82)	return 3;
-	if(abilityID >= 83 && abilityID <= 91)	return 4;
-	if(abilityID >= 92 && abilityID <= 120)	return 5;
+	if (abilityID >= 01 && abilityID <= 19)	return 0;
+	if (abilityID >= 20 && abilityID <= 38)	return 1;
+	if (abilityID >= 39 && abilityID <= 77)	return 2;
+	if (abilityID >= 78 && abilityID <= 82)	return 3;
+	if (abilityID >= 83 && abilityID <= 91)	return 4;
+	if (abilityID >= 92 && abilityID <= 120)	return 5;
 	return 0;
 }
 
 quint8 Data::itemType(quint8 itemID)
 {
-	if(itemID >= 01 && itemID <= 17)	return 0;
-	if((itemID >= 18 && itemID <= 21)
+	if (itemID >= 01 && itemID <= 17)	return 0;
+	if ((itemID >= 18 && itemID <= 21)
 			|| (itemID >= 30 && itemID <= 32)
 			|| (itemID >= 165 && itemID <= 168))	return 1;
-	if((itemID >= 22 && itemID <= 29)
+	if ((itemID >= 22 && itemID <= 29)
 			|| (itemID >= 109 && itemID <= 164)
 			|| (itemID >= 169 && itemID <= 176))	return 2;
-	if(itemID >= 33 && itemID <= 35)	return 5;
-	if(itemID >= 36 && itemID <= 100)	return 4;
-	if(itemID >= 101 && itemID <= 108)	return 3;
+	if (itemID >= 33 && itemID <= 35)	return 5;
+	if (itemID >= 36 && itemID <= 100)	return 4;
+	if (itemID >= 101 && itemID <= 108)	return 3;
 	return 6;
 }
 
@@ -822,11 +822,11 @@ QString Data::getCardsLocation(int i)
 {
 	QString location;
 	int locID = cardsLocation[i];
-	if(locID==-1)		location = QObject::tr("Utilisée");
-	else if(locID==-2)	location = QObject::tr("Squall");
+	if (locID==-1)		location = QObject::tr("Utilisée");
+	else if (locID==-2)	location = QObject::tr("Squall");
 	else {
 		location = _locations.at(locID);
-		if(i>=200 && i<233)
+		if (i>=200 && i<233)
 			location.append(QObject::tr(" (carte %1)").arg(_cards.at(77+(i-200))));
 	}
 	return location;
@@ -950,7 +950,7 @@ const Point Data::wmLocation[21] =
 QStringList Data::maplist()
 {
 	QStringList maps;
-	for(int i=0 ; i<MAP_COUNT ; ++i) {
+	for (int i = 0; i < MAP_COUNT; ++i) {
 		maps.append(_maplist[i]);
 	}
 	return maps;

@@ -79,9 +79,9 @@ void MetadataDialog::build()
 
 void MetadataDialog::fill(const QMap<FF8Installation::Type, FF8Installation> &ff8Installations)
 {
-	if(ff8Installations.contains(FF8Installation::Steam)) {
+	if (ff8Installations.contains(FF8Installation::Steam)) {
 		FF8Installation installation = ff8Installations.value(FF8Installation::Steam);
-		if(installation.hasMetadata()) {
+		if (installation.hasMetadata()) {
 			QString savePath = installation.savePath(1);
 			_path->setText(QDir::toNativeSeparators(savePath + "/metadata.xml"));
 			UserDirectory userDir(savePath);
@@ -93,7 +93,7 @@ void MetadataDialog::fill(const QMap<FF8Installation::Type, FF8Installation> &ff
 void MetadataDialog::accept()
 {
 	UserDirectory userDir(metadataPath(), userID());
-	if(!userDir.updateSignatures()) {
+	if (!userDir.updateSignatures()) {
 		QMessageBox::warning(this, tr("Erreur"), tr("Impossible de mettre à jour les signatures.\n") +
 													userDir.errorString());
 	} else {
@@ -105,12 +105,12 @@ void MetadataDialog::setMetadataPath(const QString &path)
 {
 	QString metadataPath;
 
-	if(path.isNull()) {
+	if (path.isNull()) {
 		QStringList filter = QStringList()
 				<< tr("Fichiers XML (*.xml)")
 				<< tr("Tous les fichiers (*)");
 		metadataPath = QFileDialog::getOpenFileName(this, tr("Rechercher metadata.xml"), _path->text(), filter.join(";;"));
-		if(metadataPath.isNull()) {
+		if (metadataPath.isNull()) {
 			return;
 		}
 	} else {
@@ -118,7 +118,7 @@ void MetadataDialog::setMetadataPath(const QString &path)
 	}
 
 	_path->setText(QDir::toNativeSeparators(metadataPath));
-	if(_userID->text().isEmpty()) {
+	if (_userID->text().isEmpty()) {
 		UserDirectory userDir(metadataPath.left(metadataPath.lastIndexOf('/')));
 		_userID->setText(userDir.userID());
 	}

@@ -43,10 +43,10 @@ void MapWidget::paintEvent(QPaintEvent *)
 {
 	QPainter p(this);
 	QPixmap pxm = QPixmap(":/images/worldmap.png");
-	if(!pxm.isNull()) {
+	if (!pxm.isNull()) {
 		pxm = pxm.scaled(width(), height(), Qt::KeepAspectRatio);
 		p.drawPixmap(0, 0, pxm);
-		if(entered) {
+		if (entered) {
 			p.setPen(Qt::red);
 			p.drawLine(mousePos.x(), 0, mousePos.x(), pxm.height());
 			p.drawLine(0, mousePos.y(), pxm.width(), mousePos.y());
@@ -69,7 +69,7 @@ void MapWidget::leaveEvent(QEvent *)
 
 void MapWidget::mouseMoveEvent(QMouseEvent *event)
 {
-	if(isActiveWindow()) {
+	if (isActiveWindow()) {
 		mousePos = event->pos();
 		update();
 	}

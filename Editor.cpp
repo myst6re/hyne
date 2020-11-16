@@ -50,18 +50,18 @@ Editor::Editor(QWidget *parent) :
 
 	// Set default icon if needed
 	QStyle *style = this->style();
-	if(style->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons))
+	if (style->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons))
 		apply->setIcon(style->standardIcon(QStyle::SP_DialogOkButton, 0, this));
-	if(style != QApplication::style()) // Propagate style
+	if (style != QApplication::style()) // Propagate style
 		apply->setStyle(style);
 
 
 	QPushButton *cancel = new QPushButton(tr("&Annuler"), this);
 	
 	// Set default icon if needed
-	if(style->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons))
+	if (style->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons))
 		cancel->setIcon(style->standardIcon(QStyle::SP_DialogCancelButton, 0, this));
-	if(style != QApplication::style()) // Propagate style
+	if (style != QApplication::style()) // Propagate style
 		cancel->setStyle(style);
 
 	stackedLayout = new QStackedLayout;
@@ -89,7 +89,7 @@ Editor::Editor(QWidget *parent) :
 	stackedLayout->addWidget(new PreviewEditor(this));
 	stackedLayout->addWidget(new AllEditor(this));
 
-	for(int i=0 ; i<stackedLayout->count() ; ++i)
+	for (int i = 0; i < stackedLayout->count(); ++i)
 		liste->addItem(static_cast<PageWidget *>(stackedLayout->widget(i))->name());
 
 	liste->item(liste->count()-1)->setHidden(!Config::mode());
@@ -104,14 +104,14 @@ void Editor::setCurrentSection(QListWidgetItem *current, QListWidgetItem *previo
 {
 	PageWidget *pageWidget;
 
-	if(current == NULL) {
+	if (current == nullptr) {
 		liste->setCurrentRow(0);
 		return;
 	}
 
-	if(previous != NULL) {
+	if (previous != nullptr) {
 		pageWidget = static_cast<PageWidget *>(stackedLayout->widget(liste->row(previous)));
-		if(pageWidget->isLoaded()) {
+		if (pageWidget->isLoaded()) {
 			pageWidget->savePage();
 		}
 	}
@@ -119,12 +119,13 @@ void Editor::setCurrentSection(QListWidgetItem *current, QListWidgetItem *previo
 	int id = liste->currentRow();
 
 	pageWidget = static_cast<PageWidget *>(stackedLayout->widget(id));
-	if(!pageWidget->isLoaded()) {
+	if (!pageWidget->isLoaded()) {
 		pageWidget->load(&saveDataCopy, pc);
 	}
 	// AllEditor exception
-	if(id == liste->count()-1)
+	if (id == liste->count()-1) {
 		pageWidget->fillPage();
+	}
 	stackedLayout->setCurrentIndex(id);
 }
 
@@ -135,7 +136,7 @@ void Editor::load(SaveData *saveData, bool pc)
 	this->saveDataCopy = *saveData;
 
 	int pageCount = stackedLayout->count();
-	for(int i=0 ; i<pageCount ; ++i) {
+	for (int i = 0; i < pageCount; ++i) {
 		static_cast<PageWidget *>(stackedLayout->widget(i))->unload();
 	}
 
@@ -146,15 +147,15 @@ void Editor::save()
 {
 	bool saveOneAtLeast = false;
 	int pageCount = stackedLayout->count();
-	for(int i=0 ; i<pageCount ; ++i) {
+	for (int i = 0; i < pageCount; ++i) {
 		PageWidget *pageWidget = static_cast<PageWidget *>(stackedLayout->widget(i));
-		if(pageWidget->isLoaded()) {
+		if (pageWidget->isLoaded()) {
 			pageWidget->savePage();
 			saveOneAtLeast = true;
 		}
 	}
 
-	if(saveOneAtLeast) {
+	if (saveOneAtLeast) {
 		*saveData = saveDataCopy;
 		saveData->updateDescData();
 		saveData->setModified(true);
@@ -167,13 +168,14 @@ void Editor::updateMode(bool mode)
 {
 	int lastRow = liste->count()-1;
 	liste->item(lastRow)->setHidden(!mode);
-	if(liste->currentRow()==lastRow && !mode)
+	if (liste->currentRow()==lastRow && !mode) {
 		liste->setCurrentRow(0);
+	}
 
 	int pageCount = stackedLayout->count();
-	for(int i=0 ; i<pageCount ; ++i) {
+	for (int i = 0; i < pageCount; ++i) {
 		PageWidget *pageWidget = static_cast<PageWidget *>(stackedLayout->widget(i));
-		if(pageWidget->isBuilded()) {
+		if (pageWidget->isBuilded()) {
 			pageWidget->updateMode(mode);
 			pageWidget->updateModeAfter(mode);
 		}
@@ -183,9 +185,9 @@ void Editor::updateMode(bool mode)
 void Editor::updateTime()
 {
 	int pageCount = stackedLayout->count();
-	for(int i=0 ; i<pageCount ; ++i) {
+	for (int i = 0; i < pageCount; ++i) {
 		PageWidget *pageWidget = static_cast<PageWidget *>(stackedLayout->widget(i));
-		if(pageWidget->isLoaded()) {
+		if (pageWidget->isLoaded()) {
 			pageWidget->updateTime();
 		}
 	}

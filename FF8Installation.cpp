@@ -31,7 +31,7 @@ FF8Installation::FF8Installation() :
 FF8Installation::FF8Installation(Type type) :
 	_type(type)
 {
-	switch(type) {
+	switch (type) {
 	case Standard:
 		_appPath = standardFF8AppPath("Square Soft, Inc/Final Fantasy VIII/1.00");
 		_savePaths = standardFF8DataPaths(_appPath);
@@ -70,11 +70,11 @@ bool FF8Installation::hasSlots() const
 
 QString FF8Installation::savePath(int slot) const
 {
-	if(_savePaths.isEmpty()) {
+	if (_savePaths.isEmpty()) {
 		return QString();
 	}
 	QString path = _savePaths.first();
-	switch(_type) {
+	switch (_type) {
 	case Standard:
 	case Demo:
 		return QString("%1/Slot%2").arg(path).arg(slot);
@@ -90,7 +90,7 @@ QString FF8Installation::savePath(int slot) const
 
 QString FF8Installation::exeFilename() const
 {
-	switch(_type) {
+	switch (_type) {
 	case Standard:
 	case Demo:
 		return "FF8.exe";
@@ -107,7 +107,7 @@ QString FF8Installation::exeFilename() const
 
 QString FF8Installation::typeString() const
 {
-	switch(_type) {
+	switch (_type) {
 	case Standard:
 		return QObject::tr("FF8 Standard");
 	case Demo:
@@ -125,7 +125,7 @@ QString FF8Installation::typeString() const
 
 QString FF8Installation::saveNamePattern(quint8 slot) const
 {
-	switch(_type) {
+	switch (_type) {
 	case Standard:
 	case Demo:
 		return "save{num}";
@@ -153,9 +153,9 @@ QMap<FF8Installation::Type, FF8Installation> FF8Installation::installations()
 	ret[Remaster] = FF8Installation(Remaster);
 
 	QMutableMapIterator<FF8Installation::Type, FF8Installation> it(ret);
-	while(it.hasNext()) {
+	while (it.hasNext()) {
 		const FF8Installation &inst = it.next().value();
-		if(!inst.isValid() && !inst.hasSlots()) {
+		if (!inst.isValid() && !inst.hasSlots()) {
 			it.remove();
 		}
 	}
@@ -206,18 +206,18 @@ QStringList FF8Installation::steamFF8UserDataPaths(int max)
 	for (const QString &documentsPath : QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation)) {
 		QDir ff8UserDataDir(QString("%1/Square Enix").arg(documentsPath));
 
-		for(const QString &dir : ff8UserDataDir.entryList(QStringList("FINAL FANTASY VIII*"), QDir::Dirs)) {
+		for (const QString &dir : ff8UserDataDir.entryList(QStringList("FINAL FANTASY VIII*"), QDir::Dirs)) {
 			QDirIterator it(ff8UserDataDir.absoluteFilePath(dir),
 							QStringList("user_*"),
 							QDir::Dirs,
 							QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
 
-			while(it.hasNext()) {
+			while (it.hasNext()) {
 				it.next();
 
 				ff8UserDataPaths.append(it.filePath());
 
-				if(max > 0 && ff8UserDataPaths.size() >= max) {
+				if (max > 0 && ff8UserDataPaths.size() >= max) {
 					return ff8UserDataPaths;
 				}
 			}
@@ -234,13 +234,13 @@ QStringList FF8Installation::steamFF8RemasterUserDataPaths(int max)
 	for (const QString &documentsPath : QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation)) {
 		QDir ff8UserDataDir(documentsPath + "/My Games");
 
-		for(const QString &dir : ff8UserDataDir.entryList(QStringList("FINAL FANTASY VIII*"), QDir::Dirs)) {
+		for (const QString &dir : ff8UserDataDir.entryList(QStringList("FINAL FANTASY VIII*"), QDir::Dirs)) {
 			QDirIterator it(ff8UserDataDir.absoluteFilePath(dir + "/Steam"),
 							QStringList("*"),
 							QDir::Dirs,
 							QDirIterator::Subdirectories | QDirIterator::FollowSymlinks);
 
-			while(it.hasNext()) {
+			while (it.hasNext()) {
 				it.next();
 
 				QString path = it.filePath() + "/game_data/user/saves";
@@ -248,7 +248,7 @@ QStringList FF8Installation::steamFF8RemasterUserDataPaths(int max)
 				if (QFile::exists(path)) {
 					ff8UserDataPaths.append(path);
 
-					if(max > 0 && ff8UserDataPaths.size() >= max) {
+					if (max > 0 && ff8UserDataPaths.size() >= max) {
 						return ff8UserDataPaths;
 					}
 				}
@@ -272,13 +272,13 @@ QString FF8Installation::regValue(const QString &regPath, const QString &regKey)
 
 	// Open regPath relative to HKEY_LOCAL_MACHINE
 	error = RegOpenKeyEx(HKEY_LOCAL_MACHINE, (wchar_t *)QDir::toNativeSeparators("SOFTWARE/" + regPath).utf16(), 0, flags, &phkResult);
-	if(ERROR_SUCCESS == error) {
+	if (ERROR_SUCCESS == error) {
 		BYTE value[MAX_PATH];
 		DWORD cValue = MAX_PATH, type;
 
 		// Open regKey which must is a string value (REG_SZ)
 		RegQueryValueEx(phkResult, (wchar_t *)regKey.utf16(), nullptr, &type, value, &cValue);
-		if(ERROR_SUCCESS == error && type == REG_SZ) {
+		if (ERROR_SUCCESS == error && type == REG_SZ) {
 			RegCloseKey(phkResult);
 			return QString::fromUtf16((ushort *)value);
 		}
@@ -305,40 +305,40 @@ QStringList FF8Installation::searchInstalledApps(const QString &appName, const Q
 
 	error = RegOpenKeyEx(HKEY_LOCAL_MACHINE, TEXT("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\"), 0, flags, &phkResult);
 
-	if(ERROR_SUCCESS == error) {
+	if (ERROR_SUCCESS == error) {
 		DWORD index = 0;
 		WCHAR subKeyName[MAX_PATH];
 		DWORD subKeyCName = MAX_PATH;
 
-		while(ERROR_SUCCESS == (error = RegEnumKeyEx(phkResult, index, subKeyName, &subKeyCName, nullptr, nullptr, nullptr, nullptr))) {
+		while (ERROR_SUCCESS == (error = RegEnumKeyEx(phkResult, index, subKeyName, &subKeyCName, nullptr, nullptr, nullptr, nullptr))) {
 			QString subKeyNameStr = QString::fromUtf16((ushort *)subKeyName);
 			error = RegOpenKeyEx(phkResult, (LPCWSTR)QString("%1\\").arg(subKeyNameStr).utf16(), 0, KEY_READ, &phkResult2);
 
-			if(ERROR_SUCCESS == error) {
+			if (ERROR_SUCCESS == error) {
 				BYTE value[MAX_PATH];
 				DWORD cValue = MAX_PATH, type;
 				error = RegQueryValueEx(phkResult2, TEXT("DisplayName"), nullptr, &type, value, &cValue);
 
-				if(ERROR_SUCCESS == error && REG_SZ == type) {
+				if (ERROR_SUCCESS == error && REG_SZ == type) {
 					QString softwareNameStr = QString::fromUtf16((ushort *)value);
 
-					if(softwareNameStr.compare(appName, Qt::CaseInsensitive) == 0) {
+					if (softwareNameStr.compare(appName, Qt::CaseInsensitive) == 0) {
 						error = RegQueryValueEx(phkResult2, TEXT("Publisher"), nullptr, &type, value, &cValue);
 
-						if(ERROR_SUCCESS == error && REG_SZ == type) {
+						if (ERROR_SUCCESS == error && REG_SZ == type) {
 							QString publisherStr = QString::fromUtf16((ushort *)value);
 
-							if(publisherStr.compare(publisher, Qt::CaseInsensitive) == 0) {
+							if (publisherStr.compare(publisher, Qt::CaseInsensitive) == 0) {
 								cValue = MAX_PATH;
 								error = RegQueryValueEx(phkResult2, TEXT("InstallLocation"), nullptr, &type, value, &cValue);
 
-								if(ERROR_SUCCESS == error && REG_SZ == type) {
+								if (ERROR_SUCCESS == error && REG_SZ == type) {
 									QString appPath = QDir::fromNativeSeparators(QDir::cleanPath(QString::fromUtf16((ushort *)value)));
 
 									if (QFile::exists(appPath)) {
 										ret.append(appPath);
 
-										if(max > 0 && ret.size() >= max) {
+										if (max > 0 && ret.size() >= max) {
 											RegCloseKey(phkResult2);
 											RegCloseKey(phkResult);
 											return ret;

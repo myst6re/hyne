@@ -49,8 +49,8 @@ void ConfigEditor::buildWidget()
 	QGridLayout *keysL = new QGridLayout(manetteGroupE);
 	SpinBox8 *curSpinBox;
 	quint8 i, j;
-	for(i=0 ; i<3 ; ++i) {
-		for(j=0 ; j<4 ; ++j) {
+	for (i = 0; i < 3; ++i) {
+		for (j = 0; j < 4; ++j) {
 			curSpinBox = new SpinBox8(manetteGroupE);
 			keysE.append(curSpinBox);
 			keysL->addWidget(new QLabel(keyNames.at(i*4+j), manetteGroupE), i, j*2);
@@ -167,28 +167,28 @@ void ConfigEditor::buildWidget()
 
 void ConfigEditor::fillPage()
 {
-	if(!((data->config.divers >> 1) & 1))
+	if (!((data->config.divers >> 1) & 1))
 		son1E->setChecked(true);
 	else
 		son2E->setChecked(true);
 	manetteGroupE->setChecked((data->config.divers >> 5) & 1);
-	if(!((data->config.divers >> 2) & 1))
+	if (!((data->config.divers >> 2) & 1))
 		pointeur1E->setChecked(true);
 	else
 		pointeur2E->setChecked(true);
-	if(!(data->config.divers & 1))
+	if (!(data->config.divers & 1))
 		ATB1E->setChecked(true);
 	else
 		ATB2E->setChecked(true);
-	if(!data->config.scan)
+	if (!data->config.scan)
 		scan1E->setChecked(true);
 	else
 		scan2E->setChecked(true);
-	if(!((data->config.divers >> 4) & 1))
+	if (!((data->config.divers >> 4) & 1))
 		targetMenu1E->setChecked(true);
 	else
 		targetMenu2E->setChecked(true);
-	if(!((data->config.divers >> 6) & 1))
+	if (!((data->config.divers >> 6) & 1))
 		vibration1E->setChecked(true);
 	else
 		vibration2E->setChecked(true);
@@ -258,7 +258,7 @@ void ConfigEditor::joystickS()
 
 void ConfigEditor::defaultKeys()
 {
-	for(quint8 i=0 ; i<13 ; ++i)
+	for (quint8 i = 0; i < 13; ++i)
 		keysE.at(i)->setValue(i);
 	data->config.divers &= 0x7F;// joystick=0
 	setJoystickLbl();

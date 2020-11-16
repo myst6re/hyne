@@ -24,13 +24,13 @@ SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, bool mu
 	msg = new HelpWidget(16, this);
 	fillList(saveFiles);
 
-	for(int i=0 ; i<list->count() ; ++i) {
-		if(!saveFiles.at(i)->isFF8() &&
+	for (int i = 0; i < list->count(); ++i) {
+		if (!saveFiles.at(i)->isFF8() &&
 				(onlyFF8 || saveFiles.at(i)->isRaw() || saveFiles.at(i)->isDelete()))
 			list->item(i)->setFlags(Qt::NoItemFlags);
 	}
 
-	if(multiSelection) {
+	if (multiSelection) {
 		msg->setText(infoText());
 		list->setSelectionMode(QAbstractItemView::MultiSelection);
 	}
@@ -48,7 +48,7 @@ SelectSavesDialog::SelectSavesDialog(const QList<SaveData *> &saveFiles, bool mu
 	layout->addWidget(list);
 	layout->addWidget(buttonBox);
 
-	if(multiSelection)
+	if (multiSelection)
 		connect(list, SIGNAL(itemSelectionChanged()), SLOT(controlSelection()));
 }
 
@@ -78,7 +78,7 @@ void SelectSavesDialog::fillList(const QList<SaveData *> &saveFiles)
 
 	SaveData *save;
 	QString shortDescription;
-	for(int i=0 ; i<saveFiles.size() ; ++i) {
+	for (int i = 0; i < saveFiles.size(); ++i) {
 		save = saveFiles.at(i);
 		shortDescription = save->shortDescription();
 		QListWidgetItem *item = new QListWidgetItem(tr("Save %1 (%2)").arg(i+1)
@@ -100,7 +100,7 @@ QString SelectSavesDialog::infoText(bool warn)
 QList<int> SelectSavesDialog::selectedSaves() const
 {
 	QList<int> selected_saves;
-	for(const QListWidgetItem *item : list->selectedItems())
+	for (const QListWidgetItem *item : list->selectedItems())
 		selected_saves.append(list->row(item));
 	return selected_saves;
 }
@@ -109,7 +109,7 @@ QList<int> SelectSavesDialog::order() const
 {
 	QList<int> order;
 	int count = list->count();
-	for(int row=0 ; row<count ; ++row)
+	for (int row = 0; row < count; ++row)
 		order.append(list->item(row)->data(Qt::UserRole).toInt());
 	return order;
 }
@@ -118,12 +118,12 @@ void SelectSavesDialog::controlSelection()
 {
 	QList<QListWidgetItem *> selectedItems = list->selectedItems();
 	int count = selectedItems.size();
-	if(count > 15) {
+	if (count > 15) {
 		msg->setText(infoText(true));
-		for(int i=15 ; i<count ; ++i) {
+		for (int i = 15; i < count; ++i) {
 			selectedItems.at(i)->setSelected(false);
 		}
-	} else if(count < 15) {
+	} else if (count < 15) {
 		msg->setText(infoText());
 	}
 }

@@ -26,7 +26,7 @@ class Editor : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit Editor(QWidget *parent=0);
+	explicit Editor(QWidget *parent = nullptr);
 	void load(SaveData *saveData, bool pc);
 	void updateMode(bool mode);
 	void updateTime();
@@ -42,7 +42,7 @@ signals:
 public slots:
 	void save();
 private slots:
-	void setCurrentSection(QListWidgetItem *current, QListWidgetItem *previous=NULL);
+	void setCurrentSection(QListWidgetItem *current, QListWidgetItem *previous = nullptr);
 };
 
 #endif

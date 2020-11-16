@@ -45,17 +45,17 @@ void SaveData::open(const QByteArray &data, const QByteArray &MCHeader)
 
 	_MCHeader = MCHeader;
 	setMCHeader(MCHeader);
-	if(data.isEmpty())	_isDelete = true;
+	if (data.isEmpty())	_isDelete = true;
 
-	if(!_isRaw) {
-		if(data.size() >= FF8SAVE_SIZE && data.startsWith("SC")) {
+	if (!_isRaw) {
+		if (data.size() >= FF8SAVE_SIZE && data.startsWith("SC")) {
 			_isFF8 = setData(data);
 
-			if(_isFF8 || !_isDelete) {
+			if (_isFF8 || !_isDelete) {
 				_header = data.left(96);
 				_icon.setData(data.mid(96, 416));
 
-				switch((quint8)data.at(2)) {
+				switch ((quint8)data.at(2)) {
 				case 0x11:
 					_icon.setNbFrames(1);
 					break;
@@ -72,7 +72,7 @@ void SaveData::open(const QByteArray &data, const QByteArray &MCHeader)
 		}
 	}
 
-	if(!_isFF8) {
+	if (!_isFF8) {
 		_saveData = hasSCHeader() ? data.mid(512) : data;
 	}
 }
@@ -81,7 +81,7 @@ QByteArray SaveData::save() const
 {
 	QByteArray ret;
 
-	if(!_isFF8) {
+	if (!_isFF8) {
 		ret.append(_header).append(_icon.data()).append(_saveData);
 		return ret.leftJustified(SAVE_SIZE, '\x00', true);
 	}
@@ -91,7 +91,7 @@ QByteArray SaveData::save() const
 	ret.append("SC", 2);
 	ret.append(_header.at(2));// icon frames
 	ret.append('\x01');// slot count
-	if(_descriptionAuto) {
+	if (_descriptionAuto) {
 		ret.append("\x82\x65\x82\x65\x82\x57\x81\x6D", 8);// FF8[
 		ret.append(FF8Text::numToBiosText(_id+1, 2));// II
 		ret.append("\x81\x6E\x81\x5E", 4);// ]/
@@ -110,7 +110,7 @@ QByteArray SaveData::save() const
 	ret.append((char *)&checksum, 2);
 	ret.append(QByteArray(2782,'\x00'));
 
-	if(ret.size() != SAVE_SIZE) {
+	if (ret.size() != SAVE_SIZE) {
 		ret = ret.leftJustified(SAVE_SIZE, '\x00', true);
 		qWarning() << "Error saved save size" << ret.size() << SAVE_SIZE;
 		Q_ASSERT(false);
@@ -165,7 +165,7 @@ QString SaveData::MCHeaderId() const
 
 QByteArray SaveData::saveMCHeader()
 {
-	if(hasMCHeader()) {
+	if (hasMCHeader()) {
 		_MCHeader = _MCHeader.leftJustified(127, '\x00', true);
 		return _MCHeader + (char)xorByte(_MCHeader.constData());
 	}
@@ -182,12 +182,12 @@ QByteArray SaveData::emptyMCHeader()
 
 void SaveData::setMCHeader(const QByteArray &MCHeader)
 {
-	if(_MCHeader != MCHeader) {
+	if (_MCHeader != MCHeader) {
 		_isModified = true;
 		_MCHeader = MCHeader;
 	}
 
-	if(hasMCHeader()) {
+	if (hasMCHeader()) {
 		_isDelete = (quint8)MCHeader.at(0) >> 4 != 0x5;// 0xa1-0xa2-0xa3 : deleted | 0xa0 : formated | 0x51 : has data
 		_freqValue = MCHeaderCountry()==COUNTRY_EU ? 50 : 60;
 	}
@@ -201,10 +201,10 @@ void SaveData::setMCHeader(bool exists, char country, const QString &code, const
 {
 	QByteArray id8, code10, MCHeader = _MCHeader;
 
-	if(id.isEmpty()) {
-		if(country == COUNTRY_EU)
+	if (id.isEmpty()) {
+		if (country == COUNTRY_EU)
 			id8 = "0520";
-		else if(country == COUNTRY_US)
+		else if (country == COUNTRY_US)
 			id8 = "0426";
 		else
 			id8 = "FF08";
@@ -217,7 +217,7 @@ void SaveData::setMCHeader(bool exists, char country, const QString &code, const
 	code10 = code.toLatin1().leftJustified(10, '\0', true);
 	id8 = id8.leftJustified(8, '\0', true);
 
-	if(MCHeader.isEmpty()) {
+	if (MCHeader.isEmpty()) {
 		MCHeader.append(exists ? '\x51' : '\xa1');//1
 		MCHeader.append("\x00\x00\x00\x00\x20\x00\x00\xff\xff", 9);//Main header (9)
 		MCHeader.append('B');//1
@@ -257,23 +257,23 @@ const MAIN &SaveData::constMainData() const
 
 void SaveData::updateDescData()
 {
-	if(_previewAuto) {
+	if (_previewAuto) {
 		quint8 leader;
 		quint8 perso1 = _mainData.misc1.party[0];
 		quint8 perso2 = _mainData.misc1.party[1];
 		quint8 perso3 = _mainData.misc1.party[2];
 
-		if(perso1 != 0xFF && perso1 < 8)
+		if (perso1 != 0xFF && perso1 < 8)
 			leader = perso1;
-		else if(perso2 != 0xFF && perso2 < 8)
+		else if (perso2 != 0xFF && perso2 < 8)
 			leader = perso2;
-		else if(perso3 != 0xFF && perso3 < 8)
+		else if (perso3 != 0xFF && perso3 < 8)
 			leader = perso3;
 		else
 			leader = 0;
-		if(perso1 != 0xFF && perso1 < 8)	perso1 = _mainData.persos[perso1].ID;
-		if(perso2 != 0xFF && perso2 < 8)	perso2 = _mainData.persos[perso2].ID;
-		if(perso3 != 0xFF && perso3 < 8)	perso3 = _mainData.persos[perso3].ID;
+		if (perso1 != 0xFF && perso1 < 8)	perso1 = _mainData.persos[perso1].ID;
+		if (perso2 != 0xFF && perso2 < 8)	perso2 = _mainData.persos[perso2].ID;
+		if (perso3 != 0xFF && perso3 < 8)	perso3 = _mainData.persos[perso3].ID;
 
 		_descData.party[0] = perso1;
 		_descData.party[1] = perso2;
@@ -292,7 +292,7 @@ void SaveData::updateDescData()
 
 void SaveData::setSaveData(const HEADER &descData, const MAIN &data)
 {
-	if(memcmp(&descData, &_descData, sizeof(HEADER)) != 0 || memcmp(&data, &_mainData, sizeof(MAIN)) != 0) {
+	if (memcmp(&descData, &_descData, sizeof(HEADER)) != 0 || memcmp(&data, &_mainData, sizeof(MAIN)) != 0) {
 		_isModified = true;
 		_descData = descData;
 		_mainData = data;
@@ -312,7 +312,7 @@ bool SaveData::wasModified() const
 
 void SaveData::setModified(bool modified)
 {
-	if(_isModified && !modified) {
+	if (_isModified && !modified) {
 		_wasModified = true;
 	}
 	_isModified = modified;
@@ -370,7 +370,7 @@ quint8 SaveData::blockCount() const
 
 void SaveData::setBlockCount(quint8 blockCount)
 {
-	if(hasSCHeader()) {
+	if (hasSCHeader()) {
 		_header[3] = blockCount;
 		_isModified = true;
 	}
@@ -378,13 +378,13 @@ void SaveData::setBlockCount(quint8 blockCount)
 
 QString SaveData::shortDescription() const
 {
-	if(hasSCHeader()) {
+	if (hasSCHeader()) {
 		try {
 			QTextCodec *codec = QTextCodec::codecForName("Shift-JIS");
-			if(codec) {
+			if (codec) {
 				QByteArray desc_array = _header.mid(4, 64);
 				int index;
-				if((index = desc_array.indexOf('\x00')) != -1) {
+				if ((index = desc_array.indexOf('\x00')) != -1) {
 					desc_array.truncate(index);
 				}
 				return codec->toUnicode(desc_array);
@@ -397,13 +397,13 @@ QString SaveData::shortDescription() const
 
 void SaveData::setShortDescription(const QString &desc)
 {
-	if(hasSCHeader()) {
+	if (hasSCHeader()) {
 		QByteArray desc_data;
 
-		if(!desc.isEmpty()) {
+		if (!desc.isEmpty()) {
 			try {
 				QTextCodec *codec = QTextCodec::codecForName("Shift-JIS");
-				if(codec) {
+				if (codec) {
 					desc_data = codec->fromUnicode(desc);
 				} else {
 					return;
@@ -415,7 +415,7 @@ void SaveData::setShortDescription(const QString &desc)
 
 		desc_data = desc_data.leftJustified(64, '\0', true);
 
-		if(_header.mid(4, 64) != desc_data) {
+		if (_header.mid(4, 64) != desc_data) {
 			_header.replace(4, 64, desc_data);
 			_isModified = true;
 		}
@@ -439,7 +439,7 @@ const SaveIconData &SaveData::saveIcon() const
 
 void SaveData::setSaveIcon(const SaveIconData &saveIconData)
 {
-	if(_icon.data() != saveIconData.data()) {
+	if (_icon.data() != saveIconData.data()) {
 		_icon = saveIconData;
 		_isModified = true;
 	}
@@ -457,16 +457,16 @@ bool SaveData::setData(const QByteArray &data)
 	quint16 ff8;
 	memcpy(&ff8, &access_data[386], 2);
 	// PC Demo is 0xFF8
-	if(ff8 != 0x8FF && ff8 != 0xFF8)		return false;
+	if (ff8 != 0x8FF && ff8 != 0xFF8)		return false;
 
-	if(sizeof(_descData)!=76) {
+	if (sizeof(_descData)!=76) {
 		qWarning() << "error desc structure" << sizeof(_descData);
 		return false;
 	}
 
 	memcpy(&_descData, &access_data[388], sizeof(_descData));
 
-	if(sizeof(_mainData)!=4944) {
+	if (sizeof(_mainData)!=4944) {
 		qWarning() << "error main structure" << sizeof(_mainData);
 		return false;
 	}
@@ -478,14 +478,14 @@ bool SaveData::setData(const QByteArray &data)
 
 QString SaveData::perso(quint8 index) const
 {
-	switch(index) {
+	switch (index) {
 	case SQUALL:		return FF8Text::toString((char *)_descData.squall, isJp());
 	case RINOA:			return FF8Text::toString((char *)_descData.rinoa, isJp());
 	case GRIEVER:		return FF8Text::toString((char *)_mainData.misc1.griever, isJp());
 	case BOKO:			return FF8Text::toString((char *)_descData.boko, isJp());
 	case ANGELO:		return FF8Text::toString((char *)_descData.angelo, isJp());
 	default:
-		if(index < 16)	return Data::names().at(index);
+		if (index < 16)	return Data::names().at(index);
 		return QString();
 	}
 }
@@ -510,7 +510,7 @@ void SaveData::setPerso(quint8 index, const QString &name)
 			.leftJustified(11, '\x00', true)
 			.append('\x00').constData();
 
-	switch(index) {
+	switch (index) {
 	case SQUALL:		memcpy(_descData.squall, persoName, 12);		break;
 	case RINOA:			memcpy(_descData.rinoa, persoName, 12);			break;
 	case GRIEVER:		memcpy(_mainData.misc1.griever, persoName, 12);	break;
@@ -533,7 +533,7 @@ void SaveData::setPreviewAuto(bool prevAuto)
 quint8 SaveData::xorByte(const char *data)
 {
 	register quint8 xorByte=0;
-	for(int i=0 ; i<127 ; ++i)
+	for (int i = 0; i < 127; ++i)
 		xorByte ^= data[i];
 	return xorByte;
 }
@@ -542,7 +542,7 @@ quint16 SaveData::calcChecksum(const char *data)
 {
 	register quint16 crc = 0xFFFF, cur;
 
-	for(cur=0 ; cur<4944 ; ++cur)
+	for (cur = 0; cur < 4944; ++cur)
 		crc = crcTab[(crc >> 8) ^ (quint8)*data++] ^ (crc << 8);
 
 	return ~crc;

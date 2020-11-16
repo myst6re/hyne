@@ -25,23 +25,23 @@ QString FF8Text::toString(const QByteArray &ff8str, bool jp)
 	QString ret, character;
 	const int size = ff8str.size();
 
-	for(int i=0 ; i<size ; ++i) {
+	for (int i = 0; i < size; ++i) {
 		quint8 index = (quint8)ff8str.at(i);
-		if(index==0x00)						break;
-		/*else if(index==0x01)
+		if (index==0x00)						break;
+		/*else if (index==0x01)
 			ret.append("\n{NewPage}\n");
-		else if(index==0x02)
+		else if (index==0x02)
 			ret.append('\n');
-		else if(index==0x03) {//{Name}
-			if((++i) < size) {
+		else if (index==0x03) {//{Name}
+			if ((++i) < size) {
 				index = (quint8)ff8str.at(i);
-				if(index>=0x30 && index<=0x3a)
+				if (index>=0x30 && index<=0x3a)
 					ret.append(names[index-0x30]);
-				else if(index==0x40)
+				else if (index==0x40)
 					ret.append(names[11]);
-				else if(index==0x50)
+				else if (index==0x50)
 					ret.append(names[12]);
-				else if(index==0x60)
+				else if (index==0x60)
 					ret.append(names[13]);
 				else
 					ret.append(QString("{x03%1}").arg(index, 2, 16, QChar('0')));
@@ -49,14 +49,14 @@ QString FF8Text::toString(const QByteArray &ff8str, bool jp)
 			else
 				ret.append("{x03}");
 		}
-		else if(index==0x04) {//{Var0}, {Var00} et {Varb0}
-			if((++i) < size) {
+		else if (index==0x04) {//{Var0}, {Var00} et {Varb0}
+			if ((++i) < size) {
 				index = (quint8)ff8str.at(i);
-				if(index>=0x20 && index<=0x27)
+				if (index>=0x20 && index<=0x27)
 					ret.append(QString("{Var%1}").arg(index-0x20));
-				else if(index>=0x30 && index<=0x37)
+				else if (index>=0x30 && index<=0x37)
 					ret.append(QString("{Var0%1}").arg(index-0x30));
-				else if(index>=0x40 && index<=0x47)
+				else if (index>=0x40 && index<=0x47)
 					ret.append(QString("{Varb%1}").arg(index-0x40));
 				else
 					ret.append(QString("{x04%1}").arg(index, 2, 16, QChar('0')));
@@ -64,10 +64,10 @@ QString FF8Text::toString(const QByteArray &ff8str, bool jp)
 			else
 				ret.append("{x04}");
 		}
-		else if(index==0x06) {//{Color}
-			if((++i) < size) {
+		else if (index==0x06) {//{Color}
+			if ((++i) < size) {
 				index = (quint8)ff8str.at(i);
-				if(index>=0x20 && index<=0x2f)
+				if (index>=0x20 && index<=0x2f)
 					ret.append(colors[index-0x20]);
 				else
 					ret.append(QString("{x06%1}").arg(index, 2, 16, QChar('0')));
@@ -75,10 +75,10 @@ QString FF8Text::toString(const QByteArray &ff8str, bool jp)
 			else
 				ret.append("{x06}");
 		}
-		else if(index==0x09) {//{Wait000}
-			if((++i) < size) {
+		else if (index==0x09) {//{Wait000}
+			if ((++i) < size) {
 				index = (quint8)ff8str.at(i);
-				if(index>=0x20)
+				if (index>=0x20)
 					ret.append(QString("{Wait%1}").arg(index-0x20, 3, 10, QChar('0')));
 				else
 					ret.append(QString("{x09%1}").arg(index, 2, 16, QChar('0')));
@@ -86,10 +86,10 @@ QString FF8Text::toString(const QByteArray &ff8str, bool jp)
 			else
 				ret.append("{x09}");
 		}
-		else if(index==0x0e) {//{Location}
-			if((++i) < size) {
+		else if (index==0x0e) {//{Location}
+			if ((++i) < size) {
 				index = (quint8)ff8str.at(i);
-				if(index>=0x20 && index<=0x27)
+				if (index>=0x20 && index<=0x27)
 					ret.append(locations[index-0x20]);
 				else
 					ret.append(QString("{x0e%1}").arg(index, 2, 16, QChar('0')));
@@ -97,16 +97,16 @@ QString FF8Text::toString(const QByteArray &ff8str, bool jp)
 			else
 				ret.append("{x0e}");
 		}*/
-		else if(jp && index>=0x19 && index<=0x1b) {//jp19, jp1a, jp1b
-			if((++i) < size) {
+		else if (jp && index>=0x19 && index<=0x1b) {//jp19, jp1a, jp1b
+			if ((++i) < size) {
 				quint8 oldIndex = index;
 				index = (quint8)ff8str.at(i);
-				if(index>=0x20) {
+				if (index>=0x20) {
 					character = caract(index, oldIndex-0x17);
 				} else {
 					character = QString();
 				}
-				if(character.isEmpty()) {
+				if (character.isEmpty()) {
 					character = QString("{x%1%2}").arg(oldIndex, 2, 16, QChar('0')).arg(index, 2, 16, QChar('0'));
 				}
 				ret.append(character);
@@ -114,15 +114,15 @@ QString FF8Text::toString(const QByteArray &ff8str, bool jp)
 				ret.append(QString("{x%1}").arg(index, 2, 16, QChar('0')));
 			}
 		}
-		else if(index>=0x01 && index<=0x1f) {
-			if((++i) < size)
+		else if (index>=0x01 && index<=0x1f) {
+			if ((++i) < size)
 				ret.append(QString("{x%1%2}").arg(index, 2, 16, QChar('0')).arg((quint8)ff8str.at(i), 2, 16, QChar('0')));
 			else
 				ret.append(QString("{x%1}").arg(index, 2, 16, QChar('0')));
 		}
 		else {
 			character = caract(index, jp);
-			if(character.isEmpty()) {
+			if (character.isEmpty()) {
 				character = QString("{x%1}").arg(index, 2, 16, QChar('0'));
 			}
 			ret.append(character);
@@ -140,11 +140,11 @@ QByteArray FF8Text::toByteArray(const QString &string, bool jp)
 	bool ok, ok2;
 	ushort value, value2;
 
-	for(int c=0 ; c<stringSize ; ++c)
+	for (int c = 0; c < stringSize; ++c)
 	{
 		comp = string.at(c);
-		if(comp=='\n') {//\n{NewPage}\n,\n
-			if(string.mid(c+1, 10).compare("{NewPage}\n", Qt::CaseInsensitive) == 0) {
+		if (comp=='\n') {//\n{NewPage}\n,\n
+			if (string.mid(c+1, 10).compare("{NewPage}\n", Qt::CaseInsensitive) == 0) {
 				ff8str.append('\x01');
 				c += 10;
 			}
@@ -152,11 +152,11 @@ QByteArray FF8Text::toByteArray(const QString &string, bool jp)
 				ff8str.append('\x02');
 			continue;
 		}
-		else if(comp=='{') {
+		else if (comp=='{') {
 			QString rest = string.mid(c, 4);
-			for(i=0xe8 ; i<=0xff ; ++i)
+			for (i = 0xe8; i <= 0xff; ++i)
 			{
-				if(QString::compare(rest, caract(i))==0)
+				if (QString::compare(rest, caract(i))==0)
 				{
 					ff8str.append((char)i);
 					c += 3;
@@ -164,19 +164,19 @@ QByteArray FF8Text::toByteArray(const QString &string, bool jp)
 				}
 			}
 
-			if(string.at(c+1)=='x') {
-				if(string.at(c+4)=='}') {//{xff}
+			if (string.at(c+1)=='x') {
+				if (string.at(c+4)=='}') {//{xff}
 					value = string.mid(c+2,2).toUShort(&ok,16);
-					if(ok) {
+					if (ok) {
 						ff8str.append((char)value);
 						c += 4;
 						continue;
 					}
 				}
-				else if(string.at(c+6)=='}') {//{xffff}
+				else if (string.at(c+6)=='}') {//{xffff}
 					value = string.mid(c+2,2).toUShort(&ok,16);
 					value2 = string.mid(c+4,2).toUShort(&ok2,16);
-					if(ok && ok2) {
+					if (ok && ok2) {
 						ff8str.append((char)value);
 						ff8str.append((char)value2);
 						c += 6;
@@ -188,19 +188,19 @@ QByteArray FF8Text::toByteArray(const QString &string, bool jp)
 			continue;// character '{' is not in ff8 table
 		}
 
-		for(i=0x20 ; i<=0xff ; ++i)
+		for (i = 0x20; i <= 0xff; ++i)
 		{
-			if(QString::compare(comp, caract(i, jp))==0)
+			if (QString::compare(comp, caract(i, jp))==0)
 			{
 				ff8str.append((char)i);
 				goto end;
 			}
 		}
-		if(jp) {
+		if (jp) {
 			// Latin conversion
-			if(comp.isLetter()) {
+			if (comp.isLetter()) {
 				int shift;
-				if(comp.isLower()) {
+				if (comp.isLower()) {
 					shift = comp.toLatin1() - 'a';
 				} else {
 					shift = comp.toLatin1() - 'A';
@@ -209,88 +209,88 @@ QByteArray FF8Text::toByteArray(const QString &string, bool jp)
 				goto end;
 			}
 
-			if(comp.isDigit()) {
+			if (comp.isDigit()) {
 				int shift = comp.toLatin1() - '0';
 				ff8str.append((char)(0x53 + shift));
 				goto end;
 			}
 
-			if(comp == ' ') {
+			if (comp == ' ') {
 				ff8str.append((char)(0x5F));
 				goto end;
 			}
-			if(comp == '!') {
+			if (comp == '!') {
 				ff8str.append((char)(0xE8));
 				goto end;
 			}
-			if(comp == '?') {
+			if (comp == '?') {
 				ff8str.append((char)(0xE9));
 				goto end;
 			}
-			if(comp == '+') {
+			if (comp == '+') {
 				ff8str.append((char)(0xEB));
 				goto end;
 			}
-			if(comp == '-') {
+			if (comp == '-') {
 				ff8str.append((char)(0xEC));
 				goto end;
 			}
-			if(comp == '=') {
+			if (comp == '=') {
 				ff8str.append((char)(0xED));
 				goto end;
 			}
-			if(comp == '*') {
+			if (comp == '*') {
 				ff8str.append((char)(0xEE));
 				goto end;
 			}
-			if(comp == '/') {
+			if (comp == '/') {
 				ff8str.append((char)(0xEF));
 				goto end;
 			}
-			if(comp == '%') {
+			if (comp == '%') {
 				ff8str.append((char)(0xF0));
 				goto end;
 			}
-			if(comp == '&') {
+			if (comp == '&') {
 				ff8str.append((char)(0xF1));
 				goto end;
 			}
-			if(comp == '(') {
+			if (comp == '(') {
 				ff8str.append((char)(0xF4));
 				goto end;
 			}
-			if(comp == ')') {
+			if (comp == ')') {
 				ff8str.append((char)(0xF5));
 				goto end;
 			}
-			if(QString::compare(comp, "·") == 0) {
+			if (QString::compare(comp, "·") == 0) {
 				ff8str.append((char)(0xFA));
 				goto end;
 			}
-			if(comp == '.') {
+			if (comp == '.') {
 				ff8str.append((char)(0xFB));
 				goto end;
 			}
-			if(comp == ',') {
+			if (comp == ',') {
 				ff8str.append((char)(0xFC));
 				goto end;
 			}
-			if(comp == ':') {
+			if (comp == ':') {
 				ff8str.append((char)(0xFD));
 				goto end;
 			}
-			if(comp == '~') {
+			if (comp == '~') {
 				ff8str.append((char)(0xFE));
 				goto end;
 			}
 
-			for(table=2 ; table<5 ; ++table)
+			for (table = 2; table < 5; ++table)
 			{
-				for(i=0x20 ; i<=0xff ; ++i)
+				for (i = 0x20; i <= 0xff; ++i)
 				{
-					if(QString::compare(comp, caract(i, table))==0)
+					if (QString::compare(comp, caract(i, table))==0)
 					{
-						switch(table) {
+						switch (table) {
 						case 2:
 							ff8str.append('\x19');
 							break;
@@ -316,7 +316,7 @@ QByteArray FF8Text::toByteArray(const QString &string, bool jp)
 
 QString FF8Text::caract(quint8 ord, quint8 table)
 {
-	switch(table) {
+	switch (table) {
 	case 1:
 		return QString::fromUtf8(_caractJp[ord-0x20]);
 	case 2:
@@ -428,7 +428,7 @@ const quint8 FF8Text::charWidth[5][224] =
 
 void FF8Text::reloadFont()
 {
-	if(fontImage) {
+	if (fontImage) {
 		delete fontImage;
 	}
 	fontImage = new QImage(QString(":/images/font%1.png").arg(Config::value(Config::Font)));
@@ -438,36 +438,36 @@ void FF8Text::drawTextArea(QPainter *painter, const QPoint &point, const QString
 {
 	bool jp = forceLang==2 || (forceLang==0 && QObject::tr("false", "Use Japanese Encoding")=="true");
 	QByteArray ff8Text = FF8Text::toByteArray(text, jp);
-	if(ff8Text.isEmpty())	return;
+	if (ff8Text.isEmpty())	return;
 
 	/* Text */
 
 	int x = point.x(), y = point.y(), size = ff8Text.size();
 
-	for(int i=0 ; i<size ; ++i)
+	for (int i = 0; i < size; ++i)
 	{
 		quint8 charId = (quint8)ff8Text.at(i);
 
-		if(charId>=32)
+		if (charId>=32)
 		{
-			if(jp) {
+			if (jp) {
 				letter(&x, &y, charId-32, painter, 1);// 210-32
 			} else {
-				if(charId<227) {
+				if (charId<227) {
 					letter(&x, &y, charId-32, painter);
-				} else if(charId>=232) {
+				} else if (charId>=232) {
 					letter(&x, &y, optimisedDuo[charId-232][0], painter);
 					letter(&x, &y, optimisedDuo[charId-232][1], painter);
 				}
 			}
 		}
-		else if(charId<=2)//NewPage \n
+		else if (charId<=2)//NewPage \n
 			break;
-		else if(charId<32)
+		else if (charId<32)
 		{
 			++i;
-			if(jp) {
-				switch(charId)
+			if (jp) {
+				switch (charId)
 				{
 				case 0x19: // Jap 1
 					letter(&x, &y, (quint8)ff8Text.at(i)-0x20, painter, 2);
@@ -489,8 +489,9 @@ void FF8Text::letter(int *x, int *y, int charId, QPainter *painter, quint8 table
 	int charIdImage = charId + 231*tableId;
 	int charSrcWidth = Config::value(Config::Font).isEmpty() ? 12 : 24;
 
-	if(!fontImage)
+	if (!fontImage) {
 		reloadFont();
+	}
 
 	painter->drawImage(QRect(*x, *y, 24, 24), fontImage->copy((charIdImage%21)*charSrcWidth, (charIdImage/21)*charSrcWidth, charSrcWidth, charSrcWidth));
 	*x += charWidth[tableId][charId]*2;
@@ -528,7 +529,7 @@ QByteArray FF8Text::numToBiosText(quint32 num, quint8 width)
 {
 	QString chaine = QString("%1").arg(num, width, 10, QChar('0')).right(width);
 	QByteArray ret;
-	for(int i=0 ; i<width ; ++i)
+	for (int i = 0; i < width; ++i)
 	{
 		ret.append('\x82');
 		ret.append(char(chaine.at(i).digitValue() + 0x4f));

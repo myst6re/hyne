@@ -27,8 +27,8 @@ class SelectSavesDialog : public QDialog
 {
     Q_OBJECT
 public:
-	SelectSavesDialog(const QList<SaveData *> &saveFiles, bool multiSelection, bool onlyFF8, QWidget *parent=0);
-	explicit SelectSavesDialog(const QList<SaveData *> &saveFiles, QWidget *parent=0);
+	SelectSavesDialog(const QList<SaveData *> &saveFiles, bool multiSelection, bool onlyFF8, QWidget *parent = nullptr);
+	explicit SelectSavesDialog(const QList<SaveData *> &saveFiles, QWidget *parent = nullptr);
 	QList<int> selectedSaves() const;
 	QList<int> order() const;
 signals:
@@ -37,7 +37,7 @@ private slots:
 	void controlSelection();
 private:
 	void fillList(const QList<SaveData *> &saveFiles);
-	static QString infoText(bool warn=false);
+	static QString infoText(bool warn = false);
 
 	QListWidget *list;
 	HelpWidget *msg;

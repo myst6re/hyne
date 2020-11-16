@@ -113,13 +113,13 @@ QWidget *ItemEditor::buildPage3()
 	weaponsE_list->setIndentation(0);
 	weaponsE_list->setUniformRowHeights(true);
 
-	for(int i=0 ; i<28 ; ++i) {
+	for (int i = 0; i < 28; ++i) {
 		item = new QTreeWidgetItem(QStringList(Data::weapons().value(i)));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		item->setIcon(0, QIcon(QString(":/images/icons/weapon%1.png").arg(i,2,10,QChar('0'))));
 		weaponsE_list->addTopLevelItem(item);
 	}
-	for(int i=28 ; i<32 ; ++i) {
+	for (int i = 28; i < 32; ++i) {
 		item = new QTreeWidgetItem(QStringList(tr("Inutilisé")));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		weaponsE_list->addTopLevelItem(item);
@@ -140,7 +140,7 @@ QWidget *ItemEditor::buildPage3()
 						 << tr("Hôtel d'Horizon") << tr("Université de Trabia - Cimetière") << tr("Ruines de Centra (automatique)") << tr("Village Shumi : Maison du bricoleur")
 						 << tr("Orphelinat d'Edea") << tr("Bateau des seeds blancs") << tr("Inutilisé") << tr("Inutilisé");
 
-	for(const QString &timbermaniacsString : qAsConst(timbermaniacsStrings)) {
+	for (const QString &timbermaniacsString : qAsConst(timbermaniacsStrings)) {
 		item = new QTreeWidgetItem(QStringList(timbermaniacsString));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		timbermaniacsE_list->addTopLevelItem(item);
@@ -171,11 +171,11 @@ void ItemEditor::fillPage()
 	itemE_model->clear();
 	itemE_model->setHorizontalHeaderLabels(QStringList() << tr("Nom") << tr("Qté"));
 	int i;
-	for(i=0 ; i<198 ; ++i)
+	for (i = 0; i < 198; ++i)
 	{
 		itemID = data->items.items[i] & 0xFF;
 
-		if(itemID != 0)		items.append(itemID);
+		if (itemID != 0)		items.append(itemID);
 		
 		QList<QStandardItem *> items;
 		QStandardItem *standardItem = new QStandardItem(Data::items().value(itemID, QString::number(itemID)));
@@ -194,17 +194,17 @@ void ItemEditor::fillPage()
 	itemE_view->header()->setSectionResizeMode(0, QHeaderView::Stretch);
 	itemE_view->header()->setSectionResizeMode(1, QHeaderView::ResizeToContents);
 
-	for(itemID=0 ; itemID<32 ; ++itemID)
+	for (itemID = 0; itemID < 32; ++itemID)
 	{
 		// (pos, id)
 		battleOrder.insert(data->items.battle_order[itemID], itemID+1);
 	}
 
-	for(int itemID2 : qAsConst(battleOrder))
+	for (int itemID2 : qAsConst(battleOrder))
 	{
 		QListWidgetItem *item = new QListWidgetItem(QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(itemID2))),
 								   itemID2 < 33 ? Data::items().value(itemID2) : QString::number(itemID2));
-		if(!items.contains(itemID2))
+		if (!items.contains(itemID2))
 			item->setForeground(Qt::darkGray);
 		item->setData(Qt::UserRole, itemID2);
 		item->setFlags(Qt::ItemIsSelectable | Qt::ItemIsDragEnabled | Qt::ItemIsEnabled);
@@ -212,13 +212,13 @@ void ItemEditor::fillPage()
 		battle_itemE_list->addItem(item);
 	}
 
-	for(i=0 ; i<32 ; ++i) {
+	for (i = 0; i < 32; ++i) {
 		weaponsE_list->topLevelItem(i)
 		        ->setCheckState(0, ((data->misc1.unlocked_weapons>>i) & 1)
 		                        ? Qt::Checked : Qt::Unchecked);
 	}
 
-	for(i=0 ; i<16 ; ++i) {
+	for (i = 0; i < 16; ++i) {
 		timbermaniacsE_list->topLevelItem(i)
 		        ->setCheckState(0, ((data->field.timber_maniacs>>i) & 1)
 		                        ? Qt::Checked : Qt::Unchecked);
@@ -227,26 +227,26 @@ void ItemEditor::fillPage()
 
 void ItemEditor::savePage()
 {
-	for(int i=0 ; i<198 ; ++i)
+	for (int i = 0; i < 198; ++i)
 	{
 		data->items.items[i] = (quint8)itemE_model->item(i, 0)->data().toInt();
 		data->items.items[i] |= (quint8)itemE_model->item(i, 1)->text().toUInt() << 8;
 	}
 
-	for(int pos=0 ; pos<32 ; ++pos)
+	for (int pos = 0; pos < 32; ++pos)
 	{
 		int itemID = battle_itemE_list->item(pos)->data(Qt::UserRole).toInt()-1;
 		data->items.battle_order[itemID] = pos;
 	}
 
 	quint32 unlocked_weapons=0;
-	for(int i=0 ; i<32 ; ++i) {
+	for (int i = 0; i < 32; ++i) {
 		unlocked_weapons |= (weaponsE_list->topLevelItem(i)->checkState(0)==Qt::Checked)<<i;
 	}
 	data->misc1.unlocked_weapons = unlocked_weapons;
 
 	quint16 timber_maniacs=0;
-	for(int i=0 ; i<16 ; ++i) {
+	for (int i = 0; i < 16; ++i) {
 		timber_maniacs |= (timbermaniacsE_list->topLevelItem(i)->checkState(0)==Qt::Checked)<<i;
 	}
 	data->field.timber_maniacs = timber_maniacs;
@@ -254,7 +254,7 @@ void ItemEditor::savePage()
 
 void ItemEditor::allItems()
 {
-	for(int itemID=1 ; itemID<199 ; ++itemID)
+	for (int itemID = 1; itemID < 199; ++itemID)
 	{
 		QStandardItem *item = itemE_model->item(itemID-1, 0);
 		item->setData(itemID);
@@ -269,20 +269,20 @@ void ItemEditor::sortByType()
 	QMultiMap<int, quint8> items;
 	int i;
 
-	for(i=0 ; i<198 ; ++i)
+	for (i = 0; i < 198; ++i)
 	{
 		int itemID = itemE_model->item(i, 0)->data().toInt();
-		if(itemID == 0)		itemID = 256;
+		if (itemID == 0)		itemID = 256;
 		items.insert(itemID, itemE_model->item(i, 1)->text().toUInt());
 	}
 
 	QMultiMap<int, quint8>::const_iterator it = items.constBegin();
 
 	i = 0;
-	while(it != items.constEnd())
+	while (it != items.constEnd())
 	{
 		int itemID = it.key();
-		if(itemID == 256)		itemID = 0;
+		if (itemID == 256)		itemID = 0;
 		data->items.items[i++] = itemID | (it.value() << 8);
 		++it;
 	}
@@ -297,16 +297,16 @@ void ItemEditor::sortByAlpha()
 	int i;
 	QString text;
 
-	for(i=0 ; i<198 ; ++i)
+	for (i = 0; i < 198; ++i)
 	{
 		item = itemE_model->item(i, 0);
 		text = item->text();
-		if(text.isEmpty())	text = "zzzzzzzzzzzzzzzzzz";
+		if (text.isEmpty())	text = "zzzzzzzzzzzzzzzzzz";
 		items.insert(text, item->data().toInt() | (itemE_model->item(i, 1)->text().toUInt() << 8));
 	}
 
 	i = 0;
-	for(quint16 value : qAsConst(items)) {
+	for (quint16 value : qAsConst(items)) {
 		data->items.items[i++] = value;
 	}
 	fillPage();
