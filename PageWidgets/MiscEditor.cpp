@@ -195,7 +195,7 @@ QWidget *MiscEditor::buildPage2()
 			<< tr("Freud") << tr("Créa-Mgi-Max") << tr("Créa-Mgi-Max 2")
 			<< tr("Inutilisé") << tr("Diplôme Minotaure");
 
-	foreach(QString tutoString, tutoStrings) {
+	for (const QString &tutoString : qAsConst(tutoStrings)) {
 		QTreeWidgetItem *item = new QTreeWidgetItem(QStringList(tutoString));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		tutoE_list->addTopLevelItem(item);
@@ -236,8 +236,8 @@ void MiscEditor::fillPage()
 	unknown9E->setValue(data->misc3.u8);
 
 	int i, j;
-	for(i=0 ; i<16 ; ++i) {
-		for(j=0 ; j<8 ; ++j) {
+	for (i = 0; i < 16; ++i) {
+		for (j = 0; j < 8; ++j) {
 			tutoE_list->topLevelItem(i*8+j)
 					->setCheckState(0, ((data->misc2.tutorial_infos[i]>>j) & 1) ? Qt::Checked : Qt::Unchecked);
 		}
@@ -270,9 +270,9 @@ void MiscEditor::savePage()
 	data->misc3.music_related = unknown8E->value();
 	data->misc3.u8 = unknown9E->value();
 
-	for(quint8 i=0 ; i<16 ; ++i) {
+	for (quint8 i = 0; i < 16; ++i) {
 		quint8 curTutoInfo = 0;
-		for(quint8 j=0 ; j<8 ; ++j) {
+		for (quint8 j = 0; j < 8; ++j) {
 			curTutoInfo |= (tutoE_list->topLevelItem(i*8+j)->checkState(0) == Qt::Checked) << j;
 		}
 		data->misc2.tutorial_infos[i] = curTutoInfo;
@@ -282,7 +282,7 @@ void MiscEditor::savePage()
 void MiscEditor::expS(int value)
 {
 	quint16 niv = value/100;
-	if(seedLvlE->value() != niv)
+	if (seedLvlE->value() != niv)
 	{
 		seedLvlE->setValue(niv);
 	}
@@ -291,7 +291,7 @@ void MiscEditor::expS(int value)
 void MiscEditor::nivS(int value)
 {
 	quint16 exp = value*100;
-	if(exp > seedExpE->value() || exp + 100 <= seedExpE->value())
+	if (exp > seedExpE->value() || exp + 100 <= seedExpE->value())
 	{
 		seedExpE->setValue(exp);
 	}

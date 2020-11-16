@@ -89,13 +89,13 @@ void BattleEditor::buildWidget()
 
 	QTreeWidgetItem *item;
 	int i, size = Data::magics().size();
-	for(i=1 ; i<size ; ++i) {
+	for (i = 1; i < size; ++i) {
 		item = new QTreeWidgetItem(QStringList(Data::magics().at(i)));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstdrawE_list->addTopLevelItem(item);
 	}
 
-	for(i=size ; i<65 ; ++i) {
+	for (i = size; i < 65; ++i) {
 		item = new QTreeWidgetItem(QStringList(tr("Inutilisé")));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstdrawE_list->addTopLevelItem(item);
@@ -110,26 +110,26 @@ void BattleEditor::buildWidget()
 	firstscanE_list->setIndentation(0);
 	firstscanE_list->setUniformRowHeights(true);
 
-	for(i=SQUALL ; i<=WARD ; ++i) {
+	for (i = SQUALL; i <= WARD; ++i) {
 		item = new QTreeWidgetItem(QStringList(Data::names().at(i)));
 		item->setIcon(0, QIcon(QString(":/images/icons/perso%1.png").arg(i)));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstscanE_list->addTopLevelItem(item);
 	}
 
-	for(i=WARD+1 ; i<16 ; ++i) {
+	for (i = WARD+1; i < 16; ++i) {
 		item = new QTreeWidgetItem(QStringList(tr("Inutilisé")));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstscanE_list->addTopLevelItem(item);
 	}
 
-	foreach(QString ennemy, Data::ennemies().list()) {
+	for (const QString &ennemy : Data::ennemies().list()) {
 		item = new QTreeWidgetItem(QStringList(ennemy));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstscanE_list->addTopLevelItem(item);
 	}
 
-	for(i=16+Data::ennemies().size() ; i<160 ; ++i) {
+	for (i = 16+Data::ennemies().size(); i < 160; ++i) {
 		item = new QTreeWidgetItem(QStringList(tr("Inutilisé")));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		firstscanE_list->addTopLevelItem(item);
@@ -173,12 +173,12 @@ void BattleEditor::fillPage()
 	unknown1E->setValue(data->misc2.u3);
 	unknown2E->setValue(data->misc2.u4);
 
-	for(int i=0 ; i<64 ; ++i) {
+	for (int i = 0; i < 64; ++i) {
 		firstdrawE_list->topLevelItem(i)->setCheckState(0, ((data->misc2.magic_drawn_once[i/8] >> (i%8)) & 1)
 		        ? Qt::Checked : Qt::Unchecked);
 	}
 
-	for(int i=0 ; i<160 ; ++i) {
+	for (int i = 0; i < 160; ++i) {
 		firstscanE_list->topLevelItem(i)->setCheckState(0, ((data->misc2.ennemy_scanned_once[i/8] >> (i%8)) & 1)
 		        ? Qt::Checked : Qt::Unchecked);
 	}
@@ -187,9 +187,9 @@ void BattleEditor::fillPage()
 void BattleEditor::savePage()
 {
 	quint32 monster_kills;
-	if(monsterkillsAuto->isChecked()) {
+	if (monsterkillsAuto->isChecked()) {
 		monster_kills = 0;
-		for(int i=0 ; i<8 ; ++i) {
+		for (int i = 0; i < 8; ++i) {
 			monster_kills += data->persos[i].kills;
 		}
 	} else {
@@ -213,17 +213,17 @@ void BattleEditor::savePage()
 	int i, j;
 	quint8 cur;
 
-	for(i=0 ; i<8 ; ++i) {
+	for (i = 0; i < 8; ++i) {
 		cur = 0;
-		for(j=0 ; j<8 ; ++j) {
+		for (j = 0; j < 8; ++j) {
 			cur |= (firstdrawE_list->topLevelItem(i*8+j)->checkState(0)==Qt::Checked)<<j;
 		}
 		data->misc2.magic_drawn_once[i] = cur;
 	}
 
-	for(i=0 ; i<20 ; ++i) {
+	for (i = 0; i < 20; ++i) {
 		cur = 0;
-		for(j=0 ; j<8 ; ++j) {
+		for (j = 0; j < 8; ++j) {
 			cur |= (firstscanE_list->topLevelItem(i*8+j)->checkState(0)==Qt::Checked)<<j;
 		}
 		data->misc2.ennemy_scanned_once[i] = cur;

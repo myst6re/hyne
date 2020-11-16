@@ -71,7 +71,7 @@ public:
 		SpinBox100, SpinBox127, SpinBox255, ComboBoxMagics, ComboBoxItems, ComboBoxLocations, ComboBoxDraw
 	};
 
-	explicit SpinBoxDelegate(QObject *parent = 0);
+	explicit SpinBoxDelegate(QObject *parent = nullptr);
 	virtual QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 	virtual void setEditorData(QWidget *editor, const QModelIndex &index) const;
 	virtual void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;

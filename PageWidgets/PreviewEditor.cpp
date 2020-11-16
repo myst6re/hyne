@@ -25,7 +25,7 @@ PreviewWidget::PreviewWidget(QWidget *parent) :
 
 void PreviewWidget::paintEvent(QPaintEvent *event)
 {
-	if(!_saveData)	return;
+	if (!_saveData)	return;
 	QPainter p(this);
 
 	QTransform transform;
@@ -46,7 +46,7 @@ void PreviewEditor::buildWidget()
 
 	locationIDE = new QComboBox(this);
 	int i=0;
-	foreach(const QString &loc, Data::locations().list())
+	for (const QString &loc : Data::locations().list())
 		locationIDE->addItem(loc, i++);
 	saveCountE = new SpinBox16(this);
 	curSaveE = new SpinBox32(this);
@@ -64,16 +64,16 @@ void PreviewEditor::buildWidget()
 
 	QList<QIcon> icons;
 
-	for(int i=0 ; i<16 ; ++i) {
+	for (int i = 0; i < 16; ++i) {
 		icons.append(QIcon(QString(":/images/icons/perso%1.png").arg(i)));
 	}
 
-	for(int i=0 ; i<3 ; ++i) {
+	for (int i = 0; i < 3; ++i) {
 		QComboBox *comboBox;
 		partyE.append(comboBox = new QComboBox(autoGroup));
 		comboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 		comboBox->addItem("-", 255);
-		for(int j=0 ; j<16 ; ++j) {
+		for (int j = 0; j < 16; ++j) {
 			comboBox->addItem(icons.at(j), Data::names().at(j), j);
 		}
 	}
@@ -117,7 +117,7 @@ void PreviewEditor::buildWidget()
 	connect(timeE, SIGNAL(valueChanged()), SLOT(updatePreview()));
 	connect(discE, SIGNAL(valueChanged(double)), SLOT(updatePreview()));
 	connect(locationIDE, SIGNAL(currentIndexChanged(int)), SLOT(updatePreview()));
-	foreach(QComboBox *cb, partyE) {
+	for (QComboBox *cb : qAsConst(partyE)) {
 		connect(cb, SIGNAL(currentIndexChanged(int)), SLOT(updatePreview()));
 	}
 }
@@ -130,7 +130,7 @@ void PreviewEditor::fillPage()
 	timeE->blockSignals(true);
 	discE->blockSignals(true);
 	locationIDE->blockSignals(true);
-	foreach(QComboBox *cb, partyE) {
+	for (QComboBox *cb : qAsConst(partyE)) {
 		cb->blockSignals(true);
 	}
 
@@ -146,7 +146,7 @@ void PreviewEditor::fillPage()
 	timeE->setTime(descData->time, saveData->freqValue());
 	nivLeaderE->setValue(descData->nivLeader);
 	discE->setValue(descData->disc + 1);
-	for(int i=0 ; i<3 ; ++i) {
+	for (int i = 0; i < 3; ++i) {
 		setCurrentIndex(partyE.at(i), descData->party[i]);
 	}
 
@@ -156,7 +156,7 @@ void PreviewEditor::fillPage()
 	timeE->blockSignals(false);
 	discE->blockSignals(false);
 	locationIDE->blockSignals(false);
-	foreach(QComboBox *cb, partyE) {
+	for (QComboBox *cb : qAsConst(partyE)) {
 		cb->blockSignals(false);
 	}
 }
@@ -173,14 +173,14 @@ void PreviewEditor::savePage()
 	descData->time = timeE->time(saveData->freqValue());
 	descData->nivLeader = nivLeaderE->value();
 	descData->disc = discE->value() - 1;
-	for(int i=0 ; i<3 ; ++i) {
+	for (int i = 0; i < 3; ++i) {
 		descData->party[i] = partyE.at(i)->itemData(partyE.at(i)->currentIndex()).toUInt();
 	}
 }
 
 void PreviewEditor::setGroupDisabled(bool disable)
 {
-	foreach(QWidget *o, autoGroup->findChildren<QWidget *>()) {
+	for (QWidget *o : autoGroup->findChildren<QWidget *>()) {
 		o->setDisabled(disable);
 	}
 }

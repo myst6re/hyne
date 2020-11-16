@@ -41,7 +41,7 @@ void DrawPointEditor::buildWidget()
 	drawE_list->setUniformRowHeights(true);
 	drawE_list->setAllColumnsShowFocus(true);
 
-	for(int i=0 ; i<256 ; ++i)
+	for (int i = 0; i < 256; ++i)
 	{
 		QList<QStandardItem *> items;
 		QStandardItem *item = new QStandardItem(Data::drawPoints[i] != -1 ? Data::magics().value(Data::drawPoints[i]) : QString::number(i));
@@ -55,7 +55,7 @@ void DrawPointEditor::buildWidget()
 			location.prepend(tr("Terrain - "));
 		}
 		item = new QStandardItem(location);
-		if(i == 12) { // Exception for "Cure", "escavation site - centra"
+		if (i == 12) { // Exception for "Cure", "escavation site - centra"
 			item->setText(item->text().append("/" + Data::locations().at(182)));
 		}
 		item->setEditable(false);
@@ -103,7 +103,7 @@ void DrawPointEditor::fillPage()
 	QStringList drawStates;
 	drawStates << tr("Pleine") << tr("Moitié pleine") << tr("Vide") << tr("Épuisée");
 
-	for(int i=0 ; i<256 ; ++i)
+	for (int i = 0; i < 256; ++i)
 	{
 		QStandardItem *item = drawE_model->item(i, 2);
 		int drawState = (data->misc3.draw_points[i/4] >> ((i % 4)*2)) & 0x3;
@@ -116,10 +116,10 @@ void DrawPointEditor::savePage()
 {
 	QStandardItem *item;
 
-	for(int i=0 ; i<64 ; ++i)
+	for (int i = 0; i < 64; ++i)
 	{
 		quint8 drawState = 0;
-		for(int j=0 ; j<4 ; ++j)
+		for (int j = 0; j < 4; ++j)
 		{
 			item = drawE_model->item(i*4 + j, 2);
 			drawState |= item->data().toInt() << (j*2);
@@ -130,7 +130,7 @@ void DrawPointEditor::savePage()
 
 void DrawPointEditor::setItemColor(QStandardItem *item)
 {
-	switch(item->data().toInt()) {
+	switch (item->data().toInt()) {
 	case 0:		item->setForeground(DRAWPOINT_COLOR_FILLED);		break;
 	case 1:		item->setForeground(DRAWPOINT_COLOR_HALFFILLED);	break;
 	case 2:		item->setForeground(DRAWPOINT_COLOR_EMPTY);			break;
@@ -145,7 +145,7 @@ void DrawPointEditor::all()
 	drawStates << tr("Pleine") << tr("Moitié pleine") << tr("Vide") << tr("Épuisée");
 	QString allText = drawStates.at(all);
 
-	for(int i=0 ; i<256 ; ++i) {
+	for (int i = 0; i < 256; ++i) {
 		QStandardItem *item = drawE_model->item(i, 2);
 		item->setData(all);
 		item->setText(allText);

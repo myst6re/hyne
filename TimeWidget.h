@@ -24,7 +24,7 @@ class TimeWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit TimeWidget(QWidget *parent = 0);
+	explicit TimeWidget(QWidget *parent = nullptr);
 	int hour() const;
 	int min() const;
 	int sec() const;

@@ -52,15 +52,15 @@ QPixmap SaveIconData::icon(int curFrame, bool showCW) const
 {
 	quint16 i;
 
-	if(_data.isEmpty())	return QPixmap();
+	if (_data.isEmpty())	return QPixmap();
 
-	if(!showCW)
+	if (!showCW)
 	{
 		//palette
 		const char *access_data = _data.constData();
 		QVector<QRgb> colors;
 		quint16 color;
-		for(i=0 ; i<16 ; ++i)
+		for (i = 0; i < 16; ++i)
 		{
 			memcpy(&color, access_data, 2);
 			colors.append(qRgb(qRound((color & 31)*COEFF_COLOR), qRound((color>>5 & 31)*COEFF_COLOR), qRound((color>>10 & 31)*COEFF_COLOR)));
@@ -73,9 +73,9 @@ QPixmap SaveIconData::icon(int curFrame, bool showCW) const
 
 		image.setColorTable(colors);
 
-		if(_data.size() < lastPos)	return QPixmap();
+		if (_data.size() < lastPos)	return QPixmap();
 
-		for(i=firstPos ; i<lastPos ; ++i)
+		for (i = firstPos; i < lastPos; ++i)
 		{
 			quint8 index = _data.at(i);
 			pixels[curPx++] = index & 0xF;
@@ -85,13 +85,13 @@ QPixmap SaveIconData::icon(int curFrame, bool showCW) const
 		return QPixmap::fromImage(image);
 	}
 
-	if(_data.size() != 288)	return QPixmap();
+	if (_data.size() != 288)	return QPixmap();
 
 	QImage image(32, 32, QImage::Format_MonoLSB);
 	uchar *pixels = image.bits();
 	quint16 curPx = 0;
 
-	for(i=160 ; i<288 ; ++i)
+	for (i = 160; i < 288; ++i)
 	{
 		pixels[curPx++] = ~_data.at(i);
 	}
@@ -116,10 +116,10 @@ void SaveIcon::setData(const SaveIconData &data)
 {
 	_data = data;
 
-	if(_data.nbFrames() > 1)
+	if (_data.nbFrames() > 1)
 	{
 		connect(&timer, SIGNAL(timeout()), SLOT(nextFrame()));
-		if(!timer.isActive()) {
+		if (!timer.isActive()) {
 			timer.start();
 		}
 	}
@@ -152,11 +152,11 @@ bool SaveIcon::CWIsVisible() const
 
 void SaveIcon::nextFrame()
 {
-	if(_data.nbFrames() == 0)	return;
+	if (_data.nbFrames() == 0)	return;
 
 	_curFrame = (_curFrame + 1) % _data.nbFrames();
 	QPixmap pix = pixmap();
-	if(!pix.isNull())
+	if (!pix.isNull())
 		emit nextIcon(pix);
 }
 

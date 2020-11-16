@@ -51,13 +51,13 @@ QRect SavecardWidget::visualRect() const
 {
 	int visualX, visualY;
 
-	if(horizontalScrollBar() && horizontalScrollBar()->maximum() - horizontalScrollBar()->minimum() != 0) {
+	if (horizontalScrollBar() && horizontalScrollBar()->maximum() - horizontalScrollBar()->minimum() != 0) {
 		visualX = (horizontalScrollBar()->value() - horizontalScrollBar()->minimum()) *
 				(view()->width() - width()) / (horizontalScrollBar()->maximum() - horizontalScrollBar()->minimum());
 	} else {
 		visualX = 0;
 	}
-	if(verticalScrollBar() && verticalScrollBar()->maximum() - verticalScrollBar()->minimum() != 0) {
+	if (verticalScrollBar() && verticalScrollBar()->maximum() - verticalScrollBar()->minimum() != 0) {
 		visualY = (verticalScrollBar()->value() - verticalScrollBar()->minimum()) *
 				(view()->height() - height()) / (verticalScrollBar()->maximum() - verticalScrollBar()->minimum());
 	} else {
@@ -73,16 +73,16 @@ void SavecardWidget::scrollToDrag(const QPoint &pos)
 	const int locationHeight = view()->saveHeight() / 2;
 	const int posYInView = pos.y() - visualRect.y();
 
-	if(posYInView >= height() - locationHeight) {
-		if(verticalScrollBar()->value() >= verticalScrollBar()->maximum()) {
+	if (posYInView >= height() - locationHeight) {
+		if (verticalScrollBar()->value() >= verticalScrollBar()->maximum()) {
 			return;
 		}
 
 		const int posYInBottomLocation = locationHeight - (height() - posYInView);
 
 		verticalScrollBar()->setValue(verticalScrollBar()->value() + (verticalScrollBar()->maximum() / 15) * posYInBottomLocation / locationHeight);
-	} else if(posYInView <= locationHeight) {
-		if(verticalScrollBar()->value() <= verticalScrollBar()->minimum()) {
+	} else if (posYInView <= locationHeight) {
+		if (verticalScrollBar()->value() <= verticalScrollBar()->minimum()) {
 			return;
 		}
 

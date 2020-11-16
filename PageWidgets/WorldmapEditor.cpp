@@ -54,7 +54,7 @@ QWidget *WorldmapEditor::buildPage1()
 
 	QStringList texts;
 	texts << tr("Voiture") << tr("???") << tr("BGU") << tr("Chocobo") << tr("Hydre") << tr("???") << tr("???") << tr("???");
-	for(int i=0 ; i<8 ; ++i)
+	for (int i = 0; i < 8; ++i)
 	{
 		QCheckBox *controlCheckBox = new QCheckBox(texts.at(i), controlGroupE);
 		controlE.append(controlCheckBox);
@@ -66,7 +66,7 @@ QWidget *WorldmapEditor::buildPage1()
 
 	texts.clear();
 	texts << tr("???") << tr("???") << tr("Mandy Beach") << tr("Winhill") << tr("Trabia") << tr("Désert Kashkabald") << tr("UFO battu") << tr("Koyo-K battu");
-	for(int i=0 ; i<8 ; ++i)
+	for (int i = 0; i < 8; ++i)
 	{
 		QCheckBox *koyokCheckBox = new QCheckBox(texts.at(i), koyokGroupE);
 		koyokE.append(koyokCheckBox);
@@ -78,7 +78,7 @@ QWidget *WorldmapEditor::buildPage1()
 
 	texts.clear();
 	texts << tr("Avoir parlé à l'ombre une 1ère fois") << tr("Avoir fredonné un air 2 fois") << tr("Accepter de chercher Ryo") << tr("Avoir vu Ryo") << tr("Ne pas avoir dit à l'ombre où se trouve Ryo") << tr("L'ombre a donné indice Balamb") << tr("Pierre plage Balamb") << tr("Ryo vous dit qu'il est plus fort que vous") << tr("Vous avez fait des ricochets") << tr("Vous avez fait un nombre incalculable de ricochets") << tr("Pierre Ryo") << tr("Pierre montagne Galbadia") << tr("Pierre île Timber") << tr("Toutes les pierres") << tr("L'ombre a donné indice Eldbeak") << tr("Pilier vu à Eldbeak") << tr("Trésor île Minde trouvé") << tr("Trésor Mordor trouvé");
-	for(int i=0 ; i<texts.size() ; ++i)
+	for (int i = 0; i < texts.size(); ++i)
 	{
 		QCheckBox *obelCheckBox = new QCheckBox(texts.at(i), obelGroupE);
 		obelE.append(obelCheckBox);
@@ -211,7 +211,7 @@ void WorldmapEditor::fillPage()
 	quint8 disp_map_config, v_instr, koyok_quest;
 	quint8 *obel_quest;
 
-	if(!fix->isChecked())
+	if (!fix->isChecked())
 	{
 		disp_map_config = data->worldmap.disp_map_config;
 		car_steps_related = data->worldmap.car_steps_related;
@@ -235,11 +235,11 @@ void WorldmapEditor::fillPage()
 
 	setCurrentIndex(currentMapE, disp_map_config);
 
-	for(int i=0 ; i<8 ; ++i) {
+	for (int i = 0; i < 8; ++i) {
 		controlE.at(i)->setChecked((v_instr >> i) & 1);
 	}
 
-	for(int i=0 ; i<8 ; ++i) {
+	for (int i = 0; i < 8; ++i) {
 		koyokE.at(i)->setChecked((koyok_quest >> i) & 1);
 	}
 
@@ -272,7 +272,7 @@ void WorldmapEditor::fillPositions()
 {
 	qint16 *tab = *(&data->worldmap.char_pos + vehiclesList->currentRow());
 
-	for(int i=0 ; i<6 ; ++i) {
+	for (int i = 0; i < 6; ++i) {
 		coord.at(i)->setValue(tab[i]);
 	}
 }
@@ -287,12 +287,12 @@ void WorldmapEditor::savePage()
 	quint8 disp_map_config = currentMapE->itemData(currentMapE->currentIndex()).toInt();
 
 	quint8 v_instr = 0;
-	for(int i=0 ; i<8 ; ++i) {
+	for (int i = 0; i < 8; ++i) {
 		v_instr |= controlE.at(i)->isChecked() << i;
 	}
 
 	quint8 koyok_quest = 0;
-	for(int i=0 ; i<8 ; ++i) {
+	for (int i = 0; i < 8; ++i) {
 		koyok_quest |= koyokE.at(i)->isChecked() << i;
 	}
 
@@ -322,7 +322,7 @@ void WorldmapEditor::savePage()
 			| (obelE.at(2)->isChecked() << 1)
 			| (obelE.at(3)->isChecked() << 2);
 
-	if(!fix->isChecked())
+	if (!fix->isChecked())
 	{
 		data->worldmap.disp_map_config = disp_map_config;
 		data->worldmap.car_steps_related = car_steps_related;
@@ -337,7 +337,7 @@ void WorldmapEditor::savePage()
 		// 1000 0001
 		data->worldmap.obel_quest[3] = (data->worldmap.obel_quest[3] & 0x81) | obel_quest[3];
 		// 1010 1111
-//		if(!blockLunaticE->isChecked())
+//		if (!blockLunaticE->isChecked())
 //			data->worldmap.obel_quest[5] &= 0xAF;
 		// 1111 1000
 		data->worldmap.obel_quest[6] = (data->worldmap.obel_quest[6] & 0xF8) | obel_quest[6];
@@ -355,7 +355,7 @@ void WorldmapEditor::savePage()
 		wmFix.obel_quest[1] = (wmFix.obel_quest[1] & 0x3F) | obel_quest[1];
 		wmFix.obel_quest[2] = (wmFix.obel_quest[2] & 0xFC) | obel_quest[2];
 		wmFix.obel_quest[3] = (wmFix.obel_quest[3] & 0x81) | obel_quest[3];
-//		if(!blockLunaticE->isChecked())
+//		if (!blockLunaticE->isChecked())
 //			wmFix.obel_quest[5] &= 0xAF;
 		wmFix.obel_quest[6] = (wmFix.obel_quest[6] & 0xF8) | obel_quest[6];
 
@@ -363,7 +363,7 @@ void WorldmapEditor::savePage()
 	}
 
 	/* Page 2 */
-//	for(int i=0 ; i<6 ; ++i) {
+//	for (int i = 0; i < 6; ++i) {
 //		data->worldmap.char_pos[i] = coord.at(i)->value();
 //	}
 }

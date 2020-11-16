@@ -33,12 +33,12 @@ void PersoEditor::updateMode(bool mode)
 	unknown1E->setVisible(mode);
 	unknown1LabelE->setVisible(mode);
 	qtyAllSpin->setMaximum(mode ? MAX_INT8 : 100);
-	for(int i=0 ; i<32 ; ++i) {
+	for (int i = 0; i < 32; ++i) {
 		magie_E_model->item(i, 1)->setData(mode ? SpinBoxDelegate::SpinBox255 : SpinBoxDelegate::SpinBox100, Qt::UserRole);
 	}
 
 	QList<qint8> abilityFilter;
-	if(!mode) {
+	if (!mode) {
 		abilityFilter << 1; // Command ability
 	}
 	commande1_E->clear();
@@ -53,7 +53,7 @@ void PersoEditor::updateMode(bool mode)
 	fillAbilities(commande3_E, icons, abilityFilter);
 
 	abilityFilter.clear();
-	if(!mode) {
+	if (!mode) {
 		abilityFilter << 2 << 3; // Character ability, Team ability
 	}
 	ability1_E->clear();
@@ -72,7 +72,7 @@ void PersoEditor::updateMode(bool mode)
 
 void PersoEditor::updateModeAfter(bool mode)
 {
-	if(LBindicator_E) {
+	if (LBindicator_E) {
 		LBindicator_E->setVisible(mode);
 		indicatorlabel->setVisible(mode);
 	}
@@ -103,7 +103,7 @@ void PersoEditor::buildWidget()
 	layout->addWidget(persoListe);
 	layout->addWidget(tabWidget);
 	
-	for(quint8 i=0 ; i<8 ; ++i)
+	for (quint8 i = 0; i < 8; ++i)
 	{
 		QListWidgetItem *item = new QListWidgetItem(persoListe);
 		QIcon icon = QIcon(QString(":/images/icons/perso%1.png").arg(i));
@@ -157,14 +157,14 @@ QWidget *PersoEditor::buildPage1()
 	
 	id_E = new QComboBox(ret);
 	id_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
-	for(quint8 i=0 ; i<11 ; ++i)
+	for (quint8 i = 0; i < 11; ++i)
 		id_E->addItem(QIcon(QString(":/images/icons/perso%1.png").arg(i)), Data::names().at(i), i);
 
 	weapon_E = new QComboBox(ret);
 	weapon_E->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
-	for(quint8 i=0 ; i<28 ; ++i)
+	for (quint8 i = 0; i < 28; ++i)
 		weapon_E->addItem(QIcon(QString(":/images/icons/weapon%1.png").arg(i,2,10,QChar('0'))), Data::weapons().at(i), i);
-	for(quint8 i=28 ; i<33 ; ++i)
+	for (quint8 i = 28; i < 33; ++i)
 		weapon_E->addItem(Data::weapons().at(i), i);
 	
 	QHBoxLayout *statsEdit2_l = new QHBoxLayout;
@@ -179,7 +179,7 @@ QWidget *PersoEditor::buildPage1()
 	QStringList status;
 	status << tr("Mort") << tr("Poison") << tr("Fossile") << tr("Darkness") << tr("Aphasie") << tr("Trouble") << tr("Zombie");
 	QCheckBox *status_checkBox;
-	for(int i=0 ; i<7 ; ++i)
+	for (int i = 0; i < 7; ++i)
 	{
 		status_checkBox = new QCheckBox(status.at(i), status_E);
 		status_checkBox->setIcon(QIcon(QString(":/images/icons/mtl0%1.png").arg(i)));
@@ -266,7 +266,7 @@ QWidget *PersoEditor::buildPage2()
 {
 	QWidget *ret = new QWidget(this);
 
-	for(int i=0 ; i<16 ; ++i) {
+	for (int i = 0; i < 16; ++i) {
 		QCheckBox *curCheckBox;
 		QSpinBox *curSpinBox;
 		QLabel *curLabel;
@@ -291,8 +291,8 @@ QWidget *PersoEditor::buildPage2()
 	QGridLayout *grid = new QGridLayout(ret);
 	grid->addWidget(new QLabel(tr("Compatibilité"), ret), 0, 1, Qt::AlignRight);
 	grid->addWidget(new QLabel(tr("Compatibilité"), ret), 0, 4, Qt::AlignRight);
-	for(int i=0 ; i<8 ; ++i) {
-		for(int j=0 ; j<2 ; j++) {
+	for (int i = 0; i < 8; ++i) {
+		for (int j = 0; j < 2; j++) {
 			grid->addWidget(poss_E.at(i), i+1, 0);
 			grid->addWidget(comp_E.at(i), i+1, 1, Qt::AlignRight);
 			grid->addWidget(compLabel_E.at(i), i+1, 2, Qt::AlignLeft);
@@ -331,7 +331,7 @@ QWidget *PersoEditor::buildPage3()
 	magie_E_view->setUniformRowHeights(true);
 	magie_E_view->setAllColumnsShowFocus(true);
 
-	for(int i=0 ; i<32 ; ++i)
+	for (int i = 0; i < 32; ++i)
 	{
 		QList<QStandardItem *> items;
 		QStandardItem *standardItem = new QStandardItem();
@@ -430,11 +430,11 @@ QWidget *PersoEditor::buildPage5()
 	QWidget *ret = new QWidget(this);
 	QComboBox *comboBox;
 	QGroupBox *apt_E = new QGroupBox(tr("Aptitudes"), ret);
-	for(int i=0 ; i<9 ; ++i)
+	for (int i = 0; i < 9; ++i)
 	{
 		aptitude_E.append(comboBox = new QComboBox(apt_E));
 		int j=0;
-		foreach(const QString &mag, Data::magics().list())
+		for (const QString &mag : Data::magics().list())
 			comboBox->addItem(mag, j++);
 	}
 	QGridLayout *apt_L = new QGridLayout(apt_E);
@@ -453,17 +453,17 @@ QWidget *PersoEditor::buildPage5()
 	apt_L->addWidget(aptitude_E[5], 1, 3);
 	apt_L->addWidget(new QLabel(tr("Esquive :"), apt_E), 2, 2);
 	apt_L->addWidget(aptitude_E[6], 2, 3);
-	apt_L->addWidget(new QLabel(tr("Protection :"), apt_E), 3, 2);
+	apt_L->addWidget(new QLabel(tr("Précision :"), apt_E), 3, 2);
 	apt_L->addWidget(aptitude_E[7], 3, 3);
 	apt_L->addWidget(new QLabel(tr("Chance :"), apt_E), 4, 2);
 	apt_L->addWidget(aptitude_E[8], 4, 3);
 	
 	QGroupBox *ele_E = new QGroupBox(tr("Élémental"), ret);
-	for(int i=0 ; i<5 ; ++i)
+	for (int i = 0; i < 5; ++i)
 	{
 		element_E.append(comboBox = new QComboBox(ele_E));
 		int j=0;
-		foreach(const QString &mag, Data::magics().list())
+		for (const QString &mag : Data::magics().list())
 			comboBox->addItem(mag, j++);
 	}
 	QGridLayout *ele_L = new QGridLayout(ele_E);
@@ -479,11 +479,11 @@ QWidget *PersoEditor::buildPage5()
 	ele_L->addWidget(element_E[4], 4, 1);
 	
 	QGroupBox *mtl_E = new QGroupBox(tr("Mental"), ret);
-	for(int i=0 ; i<5 ; ++i)
+	for (int i = 0; i < 5; ++i)
 	{
 		mental_E.append(comboBox = new QComboBox(mtl_E));
 		int j=0;
-		foreach(const QString &mag, Data::magics().list())
+		for (const QString &mag : Data::magics().list())
 			comboBox->addItem(mag, j++);
 	}
 	QGridLayout *mtl_L = new QGridLayout(mtl_E);
@@ -509,7 +509,7 @@ QWidget *PersoEditor::buildPage5()
 
 void PersoEditor::buildPage6()
 {
-	foreach(QObject *child, lbWidget->children())	delete child;
+	for (QObject *child : lbWidget->children())	delete child;
 	//Cette fonction varie en fonction du personnage, elle est appelée lors du remplissage et pas lors de l'initialisation
 	QGridLayout *grid = new QGridLayout(lbWidget);
 	
@@ -520,7 +520,7 @@ void PersoEditor::buildPage6()
 	QLabel *angeloPix;
 	HelpWidget *info;
 
-	switch(id)
+	switch (id)
 	{
 	case SQUALL:
 		LB_E << new QCheckBox(tr("Gunblade auto"), lbWidget);
@@ -548,9 +548,9 @@ void PersoEditor::buildPage6()
 		LB_E.first()->setChecked((data->misc2.renzokuken_auto >> 1) & 1);
 		grid->addWidget(LB_E.first(), 0, 0);
 		cur++;
-		for(int i=0 ; i<2 ; ++i)
+		for (int i = 0; i < 2; ++i)
 		{
-			for(int j=0 ; j<5 ; ++j)
+			for (int j = 0; j < 5; ++j)
 			{
 				LB_E << new QCheckBox(Data::zellLBs().at(cur - 1), lbWidget);
 				grid->addWidget(LB_E.at(cur), 1 + i, j);
@@ -561,9 +561,9 @@ void PersoEditor::buildPage6()
 		grid->setRowStretch(3, 1);
 		return;
 	case IRVINE:
-		for(int i=0 ; i<2 ; ++i)
+		for (int i = 0; i < 2; ++i)
 		{
-			for(int j=0 ; j<4 ; ++j)
+			for (int j = 0; j < 4; ++j)
 			{
 				LB_E << new QCheckBox(Data::irvineLBs().at(cur), lbWidget);
 				grid->addWidget(LB_E.at(cur), i, j);
@@ -574,9 +574,9 @@ void PersoEditor::buildPage6()
 		grid->setRowStretch(2, 1);
 		return;
 	case QUISTIS:
-		for(int i=0 ; i<4 ; ++i)
+		for (int i = 0; i < 4; ++i)
 		{
-			for(int j=0 ; j<4 ; ++j)
+			for (int j = 0; j < 4; ++j)
 			{
 				LB_E << new QCheckBox(Data::quistisLBs().at(cur), lbWidget);
 				grid->addWidget(LB_E.at(cur), i, j);
@@ -604,9 +604,9 @@ void PersoEditor::buildPage6()
 		grid->addWidget(info, 1, 0, 1, 7);
 		grid->addWidget(angeloPix, 0, 7, 3, 1, Qt::AlignRight);
 
-		for(int i=2 ; i<4 ; ++i)
+		for (int i = 2; i < 4; ++i)
 		{
-			for(int j=0 ; j<4 ; ++j)
+			for (int j = 0; j < 4; ++j)
 			{
 				LB_E << new QCheckBox(Data::rinoaLBs().at(cur), lbWidget);
 				LB_E.at(cur)->setTristate(true);
@@ -616,7 +616,7 @@ void PersoEditor::buildPage6()
 				grid->addWidget(linoaLB_E.at(cur), i, j*2+1);
 
 				LB_E.at(cur)->setCheckState(((data->limitb.angel_known >> cur) & 1) ? Qt::PartiallyChecked : Qt::Unchecked);
-				if((data->limitb.angel_completed >> cur) & 1)	LB_E.at(cur)->setCheckState(Qt::Checked);
+				if ((data->limitb.angel_completed >> cur) & 1)	LB_E.at(cur)->setCheckState(Qt::Checked);
 				linoaLB_E.at(cur)->setValue(data->limitb.angel_pts[cur]);
 
 				++cur;
@@ -627,9 +627,9 @@ void PersoEditor::buildPage6()
 		grid->setRowStretch(6, 1);
 		return;
 	case SELPHIE:
-		for(int i=0 ; i<2 ; ++i)
+		for (int i = 0; i < 2; ++i)
 		{
-			for(int j=0 ; j<3 ; ++j)
+			for (int j = 0; j < 3; ++j)
 			{
 				LB_E << new QCheckBox(Data::magics().at(cur+51), lbWidget);
 				grid->addWidget(LB_E.at(cur), i, j);
@@ -649,9 +649,9 @@ void PersoEditor::fillPage()
 {
 	savePage();
 
-	if(persoListe->currentRow()<0)	return;
+	if (persoListe->currentRow()<0)	return;
 
-	for(quint8 i=0 ; i<8 ; ++i)
+	for (quint8 i = 0; i < 8; ++i)
 	{
 		persoListe->item(i)->setIcon(persoIcons.at(i).pixmap(32, 48, (data->persos[i].exists & 1)
 		                                                     ? QIcon::Normal : QIcon::Disabled));
@@ -692,12 +692,12 @@ void PersoEditor::fillPage()
 	setCurrentIndex(id_E, perso_data->ID);
 	setCurrentIndex(weapon_E, perso_data->weaponID);
 
-	for(int i=0 ; i<8 ; ++i)
+	for (int i = 0; i < 8; ++i)
 		status_list_E.at(i)->setChecked((perso_data->status >> i) & 1);
 
 	/* PAGE 2 */
 	
-	for(int i=0 ; i<16 ; ++i)
+	for (int i = 0; i < 16; ++i)
 	{
 		poss_E[i]->setChecked((perso_data->gfs >> i) & 1);
 		comp_E[i]->setValue(6000-perso_data->compatibility[i]);
@@ -705,7 +705,7 @@ void PersoEditor::fillPage()
 
 	/* PAGE 3 */
 	
-	for(int i=0 ; i<32 ; ++i)
+	for (int i = 0; i < 32; ++i)
 	{
 		quint8 magID = perso_data->magies[i] & 0xFF;
 		QStandardItem *standardItem = magie_E_model->item(i);
@@ -739,10 +739,10 @@ void PersoEditor::fillPage()
 	setCurrentIndex(aptitude_E[8], perso_data->j_CHC);
 
 	setCurrentIndex(element_E[0], perso_data->j_attEle);
-	for(int i=0 ; i<4 ; ++i)	setCurrentIndex(element_E[i+1], perso_data->j_defEle[i]);
+	for (int i = 0; i < 4; ++i)	setCurrentIndex(element_E[i+1], perso_data->j_defEle[i]);
 
 	setCurrentIndex(mental_E[0], perso_data->j_attMtl);
-	for(int i=0 ; i<4 ; ++i)	setCurrentIndex(mental_E[i+1], perso_data->j_defMtl[i]);
+	for (int i = 0; i < 4; ++i)	setCurrentIndex(mental_E[i+1], perso_data->j_defMtl[i]);
 
 	/* PAGE 6 */
 
@@ -751,13 +751,13 @@ void PersoEditor::fillPage()
 
 void PersoEditor::savePage()
 {
-	if(!loaded)	return;
+	if (!loaded)	return;
 
 	/* PAGE 1 */
 
 	perso_data->exists = (unknown6E->value() << 3) | (lock2E->isChecked() << 2) | (lock1E->isChecked() << 1) | int(existsE->isChecked());
 
-	if(id == SQUALL || id == RINOA) {
+	if (id == SQUALL || id == RINOA) {
 		saveData->setPerso(id, nameE->text());
 	}
 
@@ -778,7 +778,7 @@ void PersoEditor::savePage()
 	perso_data->weaponID = weapon_E->itemData(weapon_E->currentIndex()).toInt();
 
 	perso_data->status = 0;
-	for(int i=0 ; i<8 ; ++i)
+	for (int i = 0; i < 8; ++i)
 		perso_data->status |= status_list_E.at(i)->isChecked()<<i;
 
 	perso_data->u1 = unknown1E->value();
@@ -790,7 +790,7 @@ void PersoEditor::savePage()
 
 	/* PAGE 2 */
 
-	for(int i=0 ; i<16 ; ++i)
+	for (int i = 0; i < 16; ++i)
 	{
 		perso_data->gfs = (poss_E.at(i)->isChecked() ? perso_data->gfs | (1 << i) : perso_data->gfs & ~(1 << i));
 		perso_data->compatibility[i] = 6000-comp_E.at(i)->value();
@@ -798,7 +798,7 @@ void PersoEditor::savePage()
 
 	/* PAGE 3 */
 
-	for(int i=0 ; i<32 ; ++i)
+	for (int i = 0; i < 32; ++i)
 	{
 		perso_data->magies[i] = magie_E_model->item(i, 0)->data().toInt() & 0xFF;
 		perso_data->magies[i] |= (magie_E_model->item(i, 1)->text().toInt() & 0xFF) << 8;
@@ -827,14 +827,14 @@ void PersoEditor::savePage()
 	perso_data->j_CHC = aptitude_E[8]->itemData(aptitude_E[8]->currentIndex()).toInt();
 
 	perso_data->j_attEle = element_E[0]->itemData(element_E[0]->currentIndex()).toInt();
-	for(int i=0 ; i<4 ; ++i)	perso_data->j_defEle[i] = element_E[i+1]->itemData(element_E[i+1]->currentIndex()).toInt();
+	for (int i = 0; i < 4; ++i)	perso_data->j_defEle[i] = element_E[i+1]->itemData(element_E[i+1]->currentIndex()).toInt();
 
 	perso_data->j_attMtl = mental_E[0]->itemData(mental_E[0]->currentIndex()).toInt();
-	for(int i=0 ; i<4 ; ++i)	perso_data->j_defMtl[i] = mental_E[i+1]->itemData(mental_E[i+1]->currentIndex()).toInt();
+	for (int i = 0; i < 4; ++i)	perso_data->j_defMtl[i] = mental_E[i+1]->itemData(mental_E[i+1]->currentIndex()).toInt();
 
 	/* PAGE 6 */
 
-	switch(id)
+	switch (id)
 	{
 	case SQUALL:
 		data->misc2.renzokuken_auto = (data->misc2.renzokuken_auto & 0xFE) | int(LB_E.first()->isChecked());
@@ -843,23 +843,23 @@ void PersoEditor::savePage()
 	case ZELL:
 		data->misc2.renzokuken_auto = (data->misc2.renzokuken_auto & 0xFD) | (LB_E.first()->isChecked() << 1);
 		data->limitb.zell = 0;
-		for(int i=0 ; i<10 ; ++i)
+		for (int i = 0; i < 10; ++i)
 			data->limitb.zell |= LB_E.at(i + 1)->isChecked() << i;
 		break;
 	case IRVINE:
 		data->limitb.irvine = 0;
-		for(int i=0 ; i<8 ; ++i)
+		for (int i = 0; i < 8; ++i)
 			data->limitb.irvine |= LB_E.at(i)->isChecked() << i;
 		break;
 	case QUISTIS:
 		data->limitb.quistis = 0;
-		for(int i=0 ; i<16 ; ++i)
+		for (int i = 0; i < 16; ++i)
 			data->limitb.quistis |= LB_E.at(i)->isChecked() << i;
 		break;
 	case RINOA:
 		saveData->setPerso(ANGELO, angel_E->text());
 		data->limitb.angel_known = data->limitb.angel_completed = 0;
-		for(int i=0 ; i<8 ; ++i)
+		for (int i = 0; i < 8; ++i)
 		{
 			data->limitb.angel_known |= (LB_E.at(i)->checkState() != Qt::Unchecked) << i;
 			data->limitb.angel_completed |= (LB_E.at(i)->checkState() == Qt::Checked) << i;
@@ -869,7 +869,7 @@ void PersoEditor::savePage()
 		break;
 	case SELPHIE:
 		data->limitb.selphie = 0;
-		for(int i=0 ; i<6 ; ++i)
+		for (int i = 0; i < 6; ++i)
 			data->limitb.selphie |= LB_E.at(i)->isChecked() << i;
 		break;
 	}
@@ -878,8 +878,8 @@ void PersoEditor::savePage()
 void PersoEditor::exp_S(double value)
 {
 	int niv = ((quint32)value/1000)+1;
-	if(niv>100)	niv = 100;
-	if(nivE->value() != niv)
+	if (niv>100)	niv = 100;
+	if (nivE->value() != niv)
 	{
 		nivE->setValue(niv);
 	}
@@ -888,7 +888,7 @@ void PersoEditor::exp_S(double value)
 void PersoEditor::niv_S(int value)
 {
 	qint32 exp = (value-1)*1000;
-	if(exp > expE->value() || exp + 1000 <= expE->value())
+	if (exp > expE->value() || exp + 1000 <= expE->value())
 	{
 		expE->setValue(exp);
 	}
@@ -923,7 +923,7 @@ void PersoEditor::updateCompAllLabel()
 
 void PersoEditor::selectAllGFs(bool all)
 {
-	foreach(QCheckBox *poss, poss_E) {
+	for (QCheckBox *poss : qAsConst(poss_E)) {
 		poss->setChecked(all);
 	}
 }
@@ -931,14 +931,14 @@ void PersoEditor::selectAllGFs(bool all)
 void PersoEditor::updateAllCompatibilities()
 {
 	int val = compAll_E->value();
-	foreach(QSpinBox *comp, comp_E) {
+	for (QSpinBox *comp : qAsConst(comp_E)) {
 		comp->setValue(val);
 	}
 }
 
 void PersoEditor::removeAllMagic()
 {
-	for(int i=0 ; i<32 ; ++i)
+	for (int i = 0; i < 32; ++i)
 	{
 		QStandardItem *standardItem = magie_E_model->item(i);
 		standardItem->setText(Data::magics().at(0));
@@ -951,9 +951,9 @@ void PersoEditor::removeAllMagic()
 void PersoEditor::qtyAllMagic()
 {
 	int qty = qtyAllSpin->value();
-	for(quint8 i=0 ; i<32 ; ++i)
+	for (quint8 i = 0; i < 32; ++i)
 	{
-		if(qty==0 || magie_E_model->item(i)->data().toInt() != 0)
+		if (qty==0 || magie_E_model->item(i)->data().toInt() != 0)
 			magie_E_model->item(i, 1)->setText(QString::number(qty));
 	}
 }

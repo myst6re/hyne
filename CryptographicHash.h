@@ -1,6 +1,6 @@
 /****************************************************************************
  ** Hyne Final Fantasy VIII Save Editor
- ** Copyright (C) 2009-2013 Arzel Jérôme <myst6re@gmail.com>
+ ** Copyright (C) 2009-2020 Arzel Jérôme <myst6re@gmail.com>
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -15,34 +15,23 @@
  ** You should have received a copy of the GNU General Public License
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
+#ifndef CRYPTOGRAPHICHASH_H
+#define CRYPTOGRAPHICHASH_H
 
-#ifndef DEF_EDITOR
-#define DEF_EDITOR
+#include <QtCore>
 
-#include <QtWidgets>
-#include "SaveData.h"
-
-class Editor : public QWidget
+class CryptographicHash
 {
-	Q_OBJECT
 public:
-	explicit Editor(QWidget *parent = nullptr);
-	void load(SaveData *saveData, bool pc);
-	void updateMode(bool mode);
-	void updateTime();
+	static QByteArray hashVmp(const QByteArray &data);
+	static QByteArray hashPsv(const QByteArray &data);
 private:
-	QStackedLayout *stackedLayout;
-	QListWidget *liste;
-	SaveData *saveData;
-	SaveData saveDataCopy;
-	bool pc;
-signals:
-	void accepted();
-	void rejected();
-public slots:
-	void save();
-private slots:
-	void setCurrentSection(QListWidgetItem *current, QListWidgetItem *previous = nullptr);
+	static uint8_t vmp_key[0x10];
+	static uint8_t vmp_iv[0x10];
+	static uint8_t psv_key[2][0x10];
+	static uint8_t psv_iv[0x10];
+	static void xorWithByte(quint8 *buf, quint8 byte, quint8 length);
+	static void generateHash(const char *input, char *dest, size_t sz, int type);
 };
 
-#endif
+#endif // CRYPTOGRAPHICHASH_H

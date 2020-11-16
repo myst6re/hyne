@@ -27,7 +27,7 @@ class PersoEditor : public PageWidget
 {
 	Q_OBJECT
 public:
-	explicit PersoEditor(QWidget *parent=0);
+	explicit PersoEditor(QWidget *parent = nullptr);
 	inline QString name() { return tr("Personnages"); }
 	void updateMode(bool mode);
 	void updateModeAfter(bool mode);

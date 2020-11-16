@@ -30,7 +30,7 @@ Metadata::Metadata(const QString &filename) :
 bool Metadata::open()
 {
 	QFile f(_filename);
-	if(!f.open(QIODevice::ReadOnly)) {
+	if (!f.open(QIODevice::ReadOnly)) {
 		setErrorString(f.errorString());
 		return false;
 	}
@@ -43,17 +43,17 @@ bool Metadata::open()
 
 	_hasChocoFile = false;
 
-	while(!xml.atEnd()) {
-		switch(xml.readNext()) {
+	while (!xml.atEnd()) {
+		switch (xml.readNext()) {
 
 		case QXmlStreamReader::StartElement:
 
-			if(!isInSaveFile && xml.name().compare(QLatin1String("savefile"), Qt::CaseInsensitive) == 0) {
+			if (!isInSaveFile && xml.name().compare(QLatin1String("savefile"), Qt::CaseInsensitive) == 0) {
 				isInSaveFile = true;
 				saveFile = MetadataSaveFile();
 				QXmlStreamAttributes attrs = xml.attributes();
 				type = attrs.value("type").toString();
-				if(type.compare("ff8", Qt::CaseInsensitive) == 0) {
+				if (type.compare("ff8", Qt::CaseInsensitive) == 0) {
 					num = attrs.value("num").toString().toUInt(&ok);
 					if (!ok) {
 						setErrorString(QObject::tr("Attribut 'num' invalide"));
@@ -65,10 +65,10 @@ bool Metadata::open()
 						return false;
 					}
 				}
-			} else if(isInSaveFile) {
-				if(xml.name().compare(QLatin1String("timestamp"), Qt::CaseInsensitive) == 0) {
+			} else if (isInSaveFile) {
+				if (xml.name().compare(QLatin1String("timestamp"), Qt::CaseInsensitive) == 0) {
 					QString timestamp = xml.readElementText();
-					if(!timestamp.isEmpty()) {
+					if (!timestamp.isEmpty()) {
 						saveFile.timestamp = timestamp.toLongLong(&ok);
 						if (!ok) {
 							saveFile.timestamp = TIMESTAMP_INVALID;
@@ -76,7 +76,7 @@ bool Metadata::open()
 					} else {
 						saveFile.timestamp = TIMESTAMP_EMPTY;
 					}
-				} else if(xml.name().compare(QLatin1String("signature"), Qt::CaseInsensitive) == 0) {
+				} else if (xml.name().compare(QLatin1String("signature"), Qt::CaseInsensitive) == 0) {
 					saveFile.signature = xml.readElementText();
 				}
 			}
@@ -84,12 +84,12 @@ bool Metadata::open()
 
 		case QXmlStreamReader::EndElement:
 
-			if(isInSaveFile && xml.name().compare(QLatin1String("savefile"), Qt::CaseInsensitive) == 0) {
+			if (isInSaveFile && xml.name().compare(QLatin1String("savefile"), Qt::CaseInsensitive) == 0) {
 				isInSaveFile = false;
-				if(type.compare("ff8", Qt::CaseInsensitive) == 0) {
+				if (type.compare("ff8", Qt::CaseInsensitive) == 0) {
 					_saveFiles.insert(SAVE_FILES_KEY(slot, num),
 									  saveFile);
-				} else if(type.compare("choco", Qt::CaseInsensitive) == 0) {
+				} else if (type.compare("choco", Qt::CaseInsensitive) == 0) {
 					_chocoFile = saveFile; // FIXME: several choco elements?
 					_hasChocoFile = true;
 				}
@@ -112,7 +112,7 @@ bool Metadata::open()
 bool Metadata::save()
 {
 	QFile f(_filename);
-	if(!f.open(QIODevice::WriteOnly)) {
+	if (!f.open(QIODevice::WriteOnly)) {
 		setErrorString(f.errorString());
 		return false;
 	}
@@ -125,7 +125,7 @@ bool Metadata::save()
 	xml.writeStartElement("gamestatus");
 
 	QMapIterator<quint16, MetadataSaveFile> it(_saveFiles);
-	while(it.hasNext()) {
+	while (it.hasNext()) {
 		it.next();
 		const MetadataSaveFile &saveFile = it.value();
 
@@ -141,7 +141,7 @@ bool Metadata::save()
 		xml.writeEndElement(); // savefile
 	}
 
-	if(_hasChocoFile) {
+	if (_hasChocoFile) {
 		xml.writeStartElement("savefile");
 		QXmlStreamAttributes attrs;
 		attrs.append("type", "choco");
@@ -152,6 +152,7 @@ bool Metadata::save()
 		xml.writeEndElement(); // savefile
 	}
 
+	xml.writeEndElement(); // gamestatus
 	xml.writeEndDocument();
 
 	if (xml.hasError()) {
@@ -165,7 +166,7 @@ bool Metadata::save()
 void Metadata::writeSavefileContents(QXmlStreamWriter *xml, const MetadataSaveFile &saveFile)
 {
 	QString timestamp;
-	if(saveFile.timestamp > 0) {
+	if (saveFile.timestamp > 0) {
 		timestamp = QString::number(saveFile.timestamp);
 	}
 	xml->writeTextElement("timestamp", timestamp);
@@ -209,7 +210,7 @@ QString Metadata::signature() const
 
 void Metadata::updateSignature(const QByteArray &saveData, const QString &userID)
 {
-	if(_hasChocoFile) {
+	if (_hasChocoFile) {
 		_chocoFile.signature = md5sum(saveData, userID);
 	}
 }
@@ -221,7 +222,7 @@ qint64 Metadata::timestamp() const
 
 void Metadata::setTimestamp(qint64 timestamp)
 {
-	if(_hasChocoFile) {
+	if (_hasChocoFile) {
 		_chocoFile.timestamp = timestamp;
 	}
 }

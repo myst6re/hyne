@@ -28,7 +28,7 @@ class StartWidget : public QWidget
 {
 	Q_OBJECT
 public:
-	explicit StartWidget(QWidget *parent = 0);
+	explicit StartWidget(QWidget *parent = nullptr);
 	void addAction(QAction *action);
 	QAction *addAction(const QString &text);
 	QAction *addAction(const QString &text, const QObject *receiver, const char *method);

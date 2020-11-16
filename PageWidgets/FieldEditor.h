@@ -25,7 +25,7 @@ class FieldEditor : public PageWidget
 {
 	Q_OBJECT
 public:
-	explicit FieldEditor(QWidget *parent=0);
+	explicit FieldEditor(QWidget *parent = nullptr);
 	inline QString name() { return tr("Terrain"); }
 public slots:
 	void fillPage();

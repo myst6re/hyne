@@ -32,17 +32,17 @@ void PartyEditor::buildWidget()
 	partyGBL->addWidget(new QLabel(tr("À l'écran :")), 1, 0);
 	QList<QIcon> icons;
 	int i, j;
-	for(j=0 ; j<11 ; ++j) {
+	for (j = 0; j < 11; ++j) {
 		icons.append(QIcon(QString(":/images/icons/perso%1.png").arg(j)));
 	}
 
-	for(i=0 ; i<3 ; ++i)
+	for (i = 0; i < 3; ++i)
 	{
 		QComboBox *comboBox;
 		partyE.append(comboBox = new QComboBox(partyGBE));
 		comboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 		comboBox->addItem("-", 255);
-		for(j=0 ; j<8 ; ++j) {
+		for (j = 0; j < 8; ++j) {
 			comboBox->addItem(icons.at(j), Data::names().at(j), j);
 		}
 		partyGBL->addWidget(comboBox, 0, i+1);
@@ -50,7 +50,7 @@ void PartyEditor::buildWidget()
 		partySortE.append(comboBox = new QComboBox(partyGBE));
 		comboBox->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 		comboBox->addItem("-", 255);
-		for(j=0 ; j<11 ; ++j) {
+		for (j = 0; j < 11; ++j) {
 			comboBox->addItem(icons.at(j), Data::names().at(j), j);
 		}
 		partyGBL->addWidget(comboBox, 1, i+1);
@@ -63,7 +63,7 @@ void PartyEditor::buildWidget()
 
 	presetPosE = new QComboBox(positionGBE);
 	presetPosE->addItem(tr("Position prédéfinie"));
-	for(i=0 ; i<21 ; ++i) {
+	for (i = 0; i < 21; ++i) {
 		Point p = Data::wmLocation[i];
 		presetPosE->addItem(Data::cities().at(p.city), quint32(p.x) | quint32(p.y) << 16);
 		presetPosE->setItemData(i + 1, quint32(p.z) | quint32(p.dir) << 16, Qt::UserRole + 1);
@@ -78,7 +78,7 @@ void PartyEditor::buildWidget()
 	positionGBL->addWidget(new QLabel(tr("Triangle ID :")), 0, 3);
 	positionGBL->addWidget(new QLabel(tr("Direction :")), 0, 4);
 
-	for(i=0 ; i<3 ; ++i) {
+	for (i = 0; i < 3; ++i) {
 		QSpinBox *spinBox;
 		positionGBL->addWidget(new QLabel(tr("Membre %1 :").arg(i+1)), i+1, 0);
 
@@ -109,14 +109,14 @@ void PartyEditor::buildWidget()
 	mapE->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	QStringList mapList = Data::maplist();
 	i=0;
-	foreach(const QString &mapName, mapList) {
+	for (const QString &mapName : qAsConst(mapList)) {
 		mapE->addItem(mapName, i++);
 	}
 
 	lastMapE = new QComboBox(positionGBE);
 	lastMapE->setSizeAdjustPolicy(QComboBox::AdjustToMinimumContentsLengthWithIcon);
 	i=0;
-	foreach(const QString &mapName, mapList) {
+	for (const QString &mapName : qAsConst(mapList)) {
 		lastMapE->addItem(mapName, i++);
 	}
 
@@ -135,7 +135,7 @@ void PartyEditor::buildWidget()
 
 void PartyEditor::fillPage()
 {
-	for(quint8 i=0 ; i<3 ; ++i)
+	for (quint8 i = 0; i < 3; ++i)
 	{
 		setCurrentIndex(partyE.at(i), data->misc1.party[i]);
 		setCurrentIndex(partySortE.at(i), data->misc2.party[i]);
@@ -148,21 +148,21 @@ void PartyEditor::fillPage()
 	dreamE->setChecked(data->misc2.dream & 1);
 
 	int index = moduleE->findData(data->misc2.module);
-	if(index != -1) {
+	if (index != -1) {
 		moduleE->setCurrentIndex(index);
 	} else {
 		moduleE->addItem(tr("Inconnu (%1)").arg(data->misc2.module), data->misc2.module);
 	}
 
 	index = mapE->findData(data->misc2.location);
-	if(index != -1) {
+	if (index != -1) {
 		mapE->setCurrentIndex(index);
 	} else {
 		mapE->addItem(tr("Inconnu (%1)").arg(data->misc2.location), data->misc2.location);
 	}
 
 	index = lastMapE->findData(data->misc2.location_last);
-	if(index != -1) {
+	if (index != -1) {
 		lastMapE->setCurrentIndex(index);
 	} else {
 		lastMapE->addItem(tr("Inconnu (%1)").arg(data->misc2.location_last), data->misc2.location_last);
@@ -171,7 +171,7 @@ void PartyEditor::fillPage()
 
 void PartyEditor::savePage()
 {
-	for(quint8 i=0 ; i<3 ; ++i)
+	for (quint8 i = 0; i < 3; ++i)
 	{
 		data->misc1.party[i] = partyE.at(i)->itemData(partyE.at(i)->currentIndex()).toUInt();
 		data->misc2.party[i] = partySortE.at(i)->itemData(partySortE.at(i)->currentIndex()).toUInt();
@@ -203,7 +203,7 @@ void PartyEditor::setPosPresetFromIndex(int index)
 	idE.first()->setValue(z);
 	dirE.first()->setValue(dir);
 
-	for (int i=1 ; i < xE.size(); ++i) {
+	for (int i = 1 ; i < xE.size(); ++i) {
 		xE.at(i)->setValue(0);
 		yE.at(i)->setValue(0);
 		idE.at(i)->setValue(0);

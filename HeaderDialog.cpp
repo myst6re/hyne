@@ -48,7 +48,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	fillCode(code);
 
 	QString lastGameCode = Config::value(Config::LastGameCode);
-	if(!lastGameCode.isEmpty()) {
+	if (!lastGameCode.isEmpty()) {
 		setCode(lastGameCode);
 	}
 
@@ -84,9 +84,9 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	desc_lbl->setTextFormat(Qt::PlainText);
 
 	QList<SaveIconData> saveIcons;
-	for(int i=0 ; i<16 ; ++i) {
+	for (int i = 0; i < 16; ++i) {
 		QFile iconFile(QString(":/data/icon%1.psico").arg(i));
-		if(iconFile.open(QIODevice::ReadOnly)) {
+		if (iconFile.open(QIODevice::ReadOnly)) {
 			saveIcons.append(SaveIconData(iconFile.readAll()));
 			iconFile.close();
 		}
@@ -96,7 +96,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	icon1_lbl->setTextFormat(Qt::PlainText);
 	icon1 = new QComboBox();
 	icon1->setIconSize(QSize(16, 16));
-	foreach(const SaveIconData &saveIcon, saveIcons) {
+	for (const SaveIconData &saveIcon : qAsConst(saveIcons)) {
 		icon1->addItem(QIcon(saveIcon.icon()), QString(), saveIcon.data().left(160));
 	}
 	QPushButton *icon1_saveButton = new QPushButton();
@@ -107,7 +107,7 @@ HeaderDialog::HeaderDialog(SaveData *saveData, QWidget *parent, ViewType viewTyp
 	icon2_lbl->setTextFormat(Qt::PlainText);
 	icon2 = new QComboBox();
 	icon2->setIconSize(QSize(32, 32));
-	foreach(const SaveIconData &saveIcon, saveIcons) {
+	for (const SaveIconData &saveIcon : qAsConst(saveIcons)) {
 		icon2->addItem(QIcon(saveIcon.icon(0, true)), QString(), saveIcon.data().mid(160));
 	}
 	icon2_saveButton = new QPushButton();
@@ -169,13 +169,13 @@ void HeaderDialog::fill()
 {
 	setWindowIcon(QIcon(saveData->saveIcon().icon()));
 
-	if(viewType == NormalView && !saveData->hasMCHeader()) {
+	if (viewType == NormalView && !saveData->hasMCHeader()) {
 		group1->hide();
 	}
 	else {
 		// Fill group1 (MCHeader)
 
-		if(viewType != NormalView) {
+		if (viewType != NormalView) {
 			exists->setChecked(true);
 		}
 		else {
@@ -183,18 +183,18 @@ void HeaderDialog::fill()
 			setId(saveData->MCHeaderId());
 		}
 
-		if(viewType != CreateView || saveData->hasMCHeader()) {
+		if (viewType != CreateView || saveData->hasMCHeader()) {
 			setCountry(saveData->MCHeaderCountry());
 			setCode(saveData->MCHeaderCode());
 		}
 	}
 
-	if(!saveData->hasExistsInfos()) {
+	if (!saveData->hasExistsInfos()) {
 		exists->hide();
 		exists_lbl->hide();
 	}
 
-	if(viewType == RestoreView || viewType == CreateView) {
+	if (viewType == RestoreView || viewType == CreateView) {
 		group2->hide();
 
 		exists->hide();
@@ -212,27 +212,27 @@ void HeaderDialog::fill()
 		bloc->setText(QString::number(saveData->blockCount()));
 		QImage pix = saveData->saveIcon().icon().toImage();
 		int currentIndex = -1;
-		for(int i=0 ; i<icon1->count() ; ++i) {
-			if(icon1->itemIcon(i).pixmap(16).toImage() == pix) {
+		for (int i = 0; i < icon1->count(); ++i) {
+			if (icon1->itemIcon(i).pixmap(16).toImage() == pix) {
 				currentIndex = i;
 				break;
 			}
 		}
-		if(currentIndex == -1) {
+		if (currentIndex == -1) {
 			icon1->addItem(QIcon(QPixmap::fromImage(pix)), QString(), saveData->saveIcon().data().left(160));
 			currentIndex = icon1->count()-1;
 		}
 		icon1->setCurrentIndex(currentIndex);
-		if(saveData->isFF8()) {
+		if (saveData->isFF8()) {
 			pix = saveData->saveIcon().icon(0, true).toImage();
 			currentIndex = -1;
-			for(int i=0 ; i<icon2->count() ; ++i) {
-				if(icon2->itemIcon(i).pixmap(32).toImage() == pix) {
+			for (int i = 0; i < icon2->count(); ++i) {
+				if (icon2->itemIcon(i).pixmap(32).toImage() == pix) {
 					currentIndex = i;
 					break;
 				}
 			}
-			if(currentIndex == -1) {
+			if (currentIndex == -1) {
 				icon2->addItem(QIcon(QPixmap::fromImage(pix)), QString(), saveData->saveIcon().data().mid(160));
 				currentIndex = icon2->count()-1;
 			}
@@ -249,14 +249,14 @@ void HeaderDialog::fill()
 void HeaderDialog::setCountry(char c)
 {
 	int index;
-	if((index=country->findData(c)) != -1)
+	if ((index=country->findData(c)) != -1)
 	{
 		country->setCurrentIndex(index);
-		if(index != 3)		country->setMaxCount(3);
+		if (index != 3)		country->setMaxCount(3);
 	}
 	else
 	{
-		if(viewType == RestoreView) {
+		if (viewType == RestoreView) {
 			country->setCurrentIndex(0);
 		}
 		else {
@@ -269,11 +269,11 @@ void HeaderDialog::setCountry(char c)
 void HeaderDialog::setCode(const QString &codestr)
 {
 	int index;
-	if(codestr.size()==10 && (index=code->findText(codestr)) != -1)
+	if (codestr.size()==10 && (index=code->findText(codestr)) != -1)
 	{
 		code->setCurrentIndex(index);
 	}
-	else if(viewType == NormalView) {
+	else if (viewType == NormalView) {
 		code->insertItem(0, codestr);
 		code->setCurrentIndex(0);
 	}
@@ -281,11 +281,11 @@ void HeaderDialog::setCode(const QString &codestr)
 
 void HeaderDialog::setId(const QString &idStr)
 {
-	if(idStr.startsWith("FF08")) {
+	if (idStr.startsWith("FF08")) {
 		id->setCurrentIndex(0);
-	} else if(idStr.startsWith("0426")) {
+	} else if (idStr.startsWith("0426")) {
 		id->setCurrentIndex(1);
-	} else if(idStr.startsWith("0520")) {
+	} else if (idStr.startsWith("0520")) {
 		id->setCurrentIndex(2);
 	} else {
 		id->addItem(idStr);
@@ -296,7 +296,7 @@ void HeaderDialog::setId(const QString &idStr)
 
 void HeaderDialog::accept()
 {
-	if(viewType != NormalView || saveData->hasMCHeader()) {
+	if (viewType != NormalView || saveData->hasMCHeader()) {
 		Config::setValue(Config::LastCountry, country->currentIndex());
 		Config::setValue(Config::LastGameCode, code->currentText());
 
@@ -314,15 +314,15 @@ void HeaderDialog::accept()
 	// Edit icon 1
 	SaveIconData saveIcon = saveData->saveIcon();
 	QByteArray itemData = icon1->itemData(icon1->currentIndex()).toByteArray();
-	if(!itemData.isEmpty() && itemData != saveIcon.data().left(160)) {
+	if (!itemData.isEmpty() && itemData != saveIcon.data().left(160)) {
 		saveIcon.setData(itemData + saveIcon.data().mid(itemData.size()));
 		saveData->setSaveIcon(saveIcon);
 	}
 
-	if(saveData->isFF8()) {
+	if (saveData->isFF8()) {
 		// Edit icon 2
 		itemData = icon2->itemData(icon2->currentIndex()).toByteArray();
-		if(!itemData.isEmpty() && itemData != saveIcon.data().mid(160)) {
+		if (!itemData.isEmpty() && itemData != saveIcon.data().mid(160)) {
 			saveIcon.setData(saveIcon.data().left(160) + itemData);
 			saveData->setSaveIcon(saveIcon);
 		}
@@ -337,12 +337,12 @@ void HeaderDialog::saveIcon(bool chocobo_world_icon)
 
 	path = savePathIcon.isEmpty() ? QString() : savePathIcon % "/";
 	path = QFileDialog::getSaveFileName(this, tr("Enregistrer sous"), path % QString("icon%1%2.png").arg(saveData->id()+1).arg(chocobo_world_icon ? "b" : ""), tr("Image PNG (*.png);;Image JPG (*.jpg *.jpeg);;Image BMP (*.bmp)"));
-	if(path.isEmpty())		return;
+	if (path.isEmpty())		return;
 
 	int index = path.lastIndexOf('/');
 	Config::setValue(Config::SavePathIcon, index == -1 ? path : path.left(index));
 
-	if(!saveData->saveIcon().icon(0, chocobo_world_icon).save(path)) {
+	if (!saveData->saveIcon().icon(0, chocobo_world_icon).save(path)) {
 		QMessageBox::warning(this, tr("Erreur"), tr("Format incorrect."));
 	}
 }

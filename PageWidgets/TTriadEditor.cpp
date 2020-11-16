@@ -81,9 +81,9 @@ QWidget *TTriadEditor::buildPage1()
 	labels << tr("Nom") << tr("Qté");
 	cardE_model->setHorizontalHeaderLabels(labels);
 
-	for(quint8 i=0 ; i<77 ; ++i)
+	for (quint8 i = 0; i < 77; ++i)
 	{
-		if(i % 11 == 0) {
+		if (i % 11 == 0) {
 			QList<QStandardItem *> items;
 
 			standardItem = new QStandardItem(tr("Niveau %1").arg(i/11 + 1));
@@ -126,9 +126,9 @@ QWidget *TTriadEditor::buildPage1()
 	labels.replace(1, tr("Possesseur"));
 	cardE_model2->setHorizontalHeaderLabels(labels);
 
-	for(quint8 i=0 ; i<33 ; ++i)
+	for (quint8 i = 0; i < 33; ++i)
 	{
-		if(i % 11 == 0) {
+		if (i % 11 == 0) {
 			QList<QStandardItem *> items;
 
 			standardItem = new QStandardItem(tr("Niveau %1").arg(i/11 + 8));
@@ -215,20 +215,20 @@ QWidget *TTriadEditor::buildPage1()
 void TTriadEditor::changeCardPreview()
 {
 	int row = cardE_model->itemFromIndex(cardE_view->currentIndex())->data(Qt::UserRole+2).toInt();
-	if(row != -1)
+	if (row != -1)
 		setCardPreview(row);
 }
 
 void TTriadEditor::changeCardPreview2()
 {
 	int row = cardE_model2->itemFromIndex(cardE_view2->currentIndex())->data(Qt::UserRole+2).toInt();
-	if(row != -1)
+	if (row != -1)
 		setCardPreview(77 + row);
 }
 
 void TTriadEditor::setCardPreview(int i)
 {
-	if(i<0 || i>110)	return;
+	if (i<0 || i>110)	return;
 	cardPreview->setPixmap(QPixmap(":/images/cards.png").copy((i%14) * 62, (i/14) * 62, 62, 62));
 }
 
@@ -255,7 +255,7 @@ QWidget *TTriadEditor::buildPage2()
 	QStringList rules_names;
 	rules_names << tr("Open") << tr("Identique") << tr("Plus") << tr("Aléatoire") << tr("Mort subite") << tr("(Essai)") << tr("Même mur") << tr("Élémentaire");
 
-	for(int i=0 ; i<8 ; ++i) {
+	for (int i = 0; i < 8; ++i) {
 		QCheckBox *rule = new QCheckBox(rules_names.at(i), group1);
 		group1L->addWidget(rule);
 		rules.append(rule);
@@ -268,7 +268,7 @@ QWidget *TTriadEditor::buildPage2()
 	QStringList traderules_names;
 	traderules_names << tr("Aucune") << tr("One") << tr("Change") << tr("Direct") << tr("Totale") << "???" << "???" << "???";
 
-	for(int i=0 ; i<8 ; ++i) {
+	for (int i = 0; i < 8; ++i) {
 		QRadioButton *tradeRule = new QRadioButton(traderules_names.at(i), group2);
 		group2L->addWidget(tradeRule);
 		trade_rules.append(tradeRule);
@@ -282,12 +282,12 @@ QWidget *TTriadEditor::buildPage2()
 
 	last_regionE = new QComboBox(group3);
 	int i=0;
-	foreach(const QString &region, regions)
+	for (const QString &region : qAsConst(regions))
 		last_regionE->addItem(region, i++);
 
 	last2_regionE = new QComboBox(group3);
 	i=0;
-	foreach(const QString &region, regions)
+	for (const QString &region : qAsConst(regions))
 		last2_regionE->addItem(region, i++);
 
 	QStringList cc_names;
@@ -297,26 +297,26 @@ QWidget *TTriadEditor::buildPage2()
 
 	ccE = new QComboBox(group3);
 	i=0;
-	foreach(const QString &name, cc_names)
+	for (const QString &name : qAsConst(cc_names))
 		ccE->addItem(name, cc_values.at(i++));
 
 	queenE = new QComboBox(group3);
 	queenE->addItem(tr("Nulle part"), 0);
 	QStringList queenCities = Data::cities().list().mid(0, 8);
 	i=1;
-	foreach(const QString &queenCity, queenCities)
+	for (const QString &queenCity : qAsConst(queenCities))
 		queenE->addItem(queenCity, i++);
 
 	traderule_queenE = new QComboBox(group3);
 
 	i=0;
-	foreach(const QString &name, traderules_names)
+	for (const QString &name : qAsConst(traderules_names))
 		traderule_queenE->addItem(name, i++);
 
 	traderatingE = new SpinBox8(group3);
 	traderating_regionE = new QComboBox(group3);
 	i=0;
-	foreach(const QString &region, regions)
+	for (const QString &region : qAsConst(regions))
 		traderating_regionE->addItem(region, i++);
 
 	ttdegenerationE = new SpinBox8(group3);
@@ -389,20 +389,20 @@ void TTriadEditor::fillPage()
 {
 	QStandardItem *standardItem;
 	
-	for(quint8 i=0 ; i<cardE_model->rowCount() ; ++i)
+	for (quint8 i = 0; i < cardE_model->rowCount(); ++i)
 	{
 		int row = cardE_model->item(i)->data(Qt::UserRole+2).toInt();
-		if(row != -1) {
+		if (row != -1) {
 			cardE_model->item(i)->setCheckState((data->ttcards.cards[row] >> 7)
 			                                    ? Qt::Checked : Qt::Unchecked);
 			cardE_model->item(i, 1)->setText(QString::number(data->ttcards.cards[row] & 0x7F));
 		}
 	}
 	
-	for(quint8 i=0 ; i<cardE_model2->rowCount() ; ++i)
+	for (quint8 i = 0; i < cardE_model2->rowCount(); ++i)
 	{
 		int row = cardE_model2->item(i)->data(Qt::UserRole+2).toInt();
-		if(row != -1) {
+		if (row != -1) {
 			cardE_model2->item(i)->setCheckState((data->ttcards.cards_rare[row/8] & (1 << (row%8)))
 			        ? Qt::Checked : Qt::Unchecked);
 			standardItem = cardE_model2->item(i, 1);
@@ -435,23 +435,23 @@ void TTriadEditor::fillRules(QListWidgetItem *, QListWidgetItem *previous)
 	saveRules(ruleE_list->row(previous));
 	quint8 tt_rules;
 
-	if(id<8)
+	if (id<8)
 	{
 		tt_rules = data->field.tt_rules[id];
-		for(i=0 ; i<8 ; ++i) {
+		for (i = 0; i < 8; ++i) {
 			rules.at(i)->setChecked((tt_rules >> i) & 1);
 		}
 
 		tt_rules = data->field.tt_traderules[id];
-		for(i=0 ; i<8 ; ++i) {
+		for (i = 0; i < 8; ++i) {
 			trade_rules.at(i)->setChecked(tt_rules == i);
 		}
 		group2->show();
 	}
-	else if(id<10)
+	else if (id<10)
 	{
 		tt_rules = data->field.tt_lastrules[id-8];
-		for(i=0 ; i<8 ; ++i) {
+		for (i = 0; i < 8; ++i) {
 			rules.at(i)->setChecked((tt_rules >> i) & 1);
 		}
 		group2->hide();
@@ -463,22 +463,22 @@ void TTriadEditor::savePage()
 	quint8 value;
 	quint8 exists;
 	bool ok;
-	for(quint8 i=0 ; i<cardE_model->rowCount() ; ++i)
+	for (quint8 i = 0; i < cardE_model->rowCount(); ++i)
 	{
 		int row = cardE_model->item(i)->data(Qt::UserRole+2).toInt();
-		if(row != -1) {
+		if (row != -1) {
 			value = cardE_model->item(i, 1)->text().toUInt() & 0x7F;
 			exists = (cardE_model->item(i, 0)->checkState() == Qt::Checked) << 7;
 			data->ttcards.cards[row] = exists | value;
 		}
 	}
-	for(quint8 i=0 ; i<cardE_model2->rowCount() ; ++i)
+	for (quint8 i = 0; i < cardE_model2->rowCount(); ++i)
 	{
 		int row = cardE_model2->item(i)->data(Qt::UserRole+2).toInt();
-		if(row != -1) {
+		if (row != -1) {
 			data->ttcards.cards_rare[row/8] = cardE_model2->item(i, 0)->checkState() == Qt::Checked ? ( data->ttcards.cards_rare[row/8] | (1 << (row%8)) ) : ( data->ttcards.cards_rare[row/8] & ~(1 << (row%8)) );
 			value = cardE_model2->item(i, 1)->data().toUInt(&ok);
-			if(ok)	data->ttcards.card_locations[row] = value;
+			if (ok)	data->ttcards.card_locations[row] = value;
 		}
 	}
 	saveRules(ruleE_list->currentRow());
@@ -506,20 +506,20 @@ void TTriadEditor::saveRules(int id)
 	quint8 tt_rules;
 	int i;
 
-	if(id<0)	return;
+	if (id<0)	return;
 
-	if(id<8)
+	if (id<8)
 	{
 		tt_rules = 0;
-		for(i=0 ; i<8 ; ++i) {
+		for (i = 0; i < 8; ++i) {
 			tt_rules |= rules.at(i)->isChecked() << i;
 		}
 
 		data->field.tt_rules[id] = tt_rules;
 
 		tt_rules = 0;
-		for(i=0 ; i<8 ; ++i) {
-			if(trade_rules.at(i)->isChecked()) {
+		for (i = 0; i < 8; ++i) {
+			if (trade_rules.at(i)->isChecked()) {
 				tt_rules = i;
 				break;
 			}
@@ -527,10 +527,10 @@ void TTriadEditor::saveRules(int id)
 		// Change 3 bit only
 		data->field.tt_traderules[id] = (data->field.tt_traderules[id] & 0xF8) | tt_rules;
 	}
-	else if(id<10)
+	else if (id<10)
 	{
 		tt_rules = 0;
-		for(i=0 ; i<8 ; ++i) {
+		for (i = 0; i < 8; ++i) {
 			tt_rules |= rules.at(i)->isChecked() << i;
 		}
 
@@ -540,9 +540,9 @@ void TTriadEditor::saveRules(int id)
 
 void TTriadEditor::selectAll1(bool checked)
 {
-	for(quint8 i=0 ; i<cardE_model->rowCount() ; ++i)
+	for (quint8 i = 0; i < cardE_model->rowCount(); ++i)
 	{
-		if(cardE_model->item(i)->data(Qt::UserRole+2).toInt() != -1) {
+		if (cardE_model->item(i)->data(Qt::UserRole+2).toInt() != -1) {
 			cardE_model->item(i)->setCheckState(checked ? Qt::Checked : Qt::Unchecked);
 		}
 	}
@@ -551,9 +551,9 @@ void TTriadEditor::selectAll1(bool checked)
 void TTriadEditor::qtyAll()
 {
 	int qty = qtyAllSpin->value();
-	for(quint8 i=0 ; i<cardE_model->rowCount() ; ++i)
+	for (quint8 i = 0; i < cardE_model->rowCount(); ++i)
 	{
-		if(cardE_model->item(i)->data(Qt::UserRole+2).toInt() != -1) {
+		if (cardE_model->item(i)->data(Qt::UserRole+2).toInt() != -1) {
 			cardE_model->item(i, 1)->setText(QString::number(qty));
 		}
 	}
@@ -561,9 +561,9 @@ void TTriadEditor::qtyAll()
 
 void TTriadEditor::selectAll2(bool checked)
 {
-	for(quint8 i=0 ; i<cardE_model2->rowCount() ; ++i)
+	for (quint8 i = 0; i < cardE_model2->rowCount(); ++i)
 	{
-		if(cardE_model2->item(i)->data(Qt::UserRole+2).toInt() != -1) {
+		if (cardE_model2->item(i)->data(Qt::UserRole+2).toInt() != -1) {
 			cardE_model2->item(i)->setCheckState(checked ? Qt::Checked : Qt::Unchecked);
 		}
 	}
@@ -571,9 +571,9 @@ void TTriadEditor::selectAll2(bool checked)
 
 void TTriadEditor::squallAll()
 {
-	for(quint8 i=0 ; i<cardE_model2->rowCount() ; ++i)
+	for (quint8 i = 0; i < cardE_model2->rowCount(); ++i)
 	{
-		if(cardE_model2->item(i)->data(Qt::UserRole+2).toInt() != -1) {
+		if (cardE_model2->item(i)->data(Qt::UserRole+2).toInt() != -1) {
 			cardE_model2->item(i, 1)->setData(240);
 			cardE_model2->item(i, 1)->setText(tr("Squall"));
 		}

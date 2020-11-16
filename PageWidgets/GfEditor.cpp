@@ -47,7 +47,7 @@ void GfEditor::buildWidget()
 
 	gfIcons.clear();
 
-	for(quint8 i=0 ; i<17 ; ++i)
+	for (quint8 i = 0; i < 17; ++i)
 	{
 		QListWidgetItem *item = new QListWidgetItem(gfListe);
 		QIcon icon = QIcon(QString(":/images/icons/gf%1.png").arg(i));
@@ -214,12 +214,12 @@ void GfEditor::fillPage()
 	savePage();
 	this->id = quint8(gfListe->currentRow());
 
-	for(quint8 i=0 ; i<16 ; ++i)
+	for (quint8 i = 0; i < 16; ++i)
 	{
 		gfListe->item(i)->setIcon(gfIcons.at(i).pixmap(32, 48, data->gfs[i].exists ? QIcon::Normal : QIcon::Disabled));
 	}
 
-	if(id==16)
+	if (id==16)
 	{
 		stackedWidget->setCurrentIndex(1);
 
@@ -228,13 +228,13 @@ void GfEditor::fillPage()
 		phoenixE->setChecked((data->misc2.dream >> 2) & 1);
 		gilgameshE->setChecked((data->misc2.dream >> 3) & 1);
 	}
-	else if(id < 16)
+	else if (id < 16)
 	{
 		stackedWidget->setCurrentIndex(0);
 
 		this->gf_data = &data->gfs[id];
 
-		switch(id) {
+		switch (id) {
 		case 15:// Orbital
 			this->nivSup = 1000;
 			break;
@@ -265,9 +265,9 @@ void GfEditor::fillPage()
 		QMap<int, QIcon> icons = abilityIcons();
 
 		//Listage des capacités aquises
-		for(abilityID=0 ; abilityID<116 ; ++abilityID)
+		for (abilityID = 0; abilityID < 116; ++abilityID)
 		{
-			if(getCompleteAbility(abilityID))
+			if (getCompleteAbility(abilityID))
 			{
 				addItem(abilityID, 1, 0, icons);
 
@@ -280,13 +280,13 @@ void GfEditor::fillPage()
 		quint32 forgotten = GF_GET_FORGOTTEN(*gf_data);
 
 		//Listage des capacités en apprentissage et des capacités oubliées
-		for(quint8 i=0 ; i<22 ; ++i)
+		for (quint8 i = 0; i < 22; ++i)
 		{
 			abilityID = Data::innateAbilities[id][i];
 
-			if(!capacitesEnPlace.contains(abilityID))//Si pas déjà listé précédemment dans les capacités aquises
+			if (!capacitesEnPlace.contains(abilityID))//Si pas déjà listé précédemment dans les capacités aquises
 			{
-				if(!((forgotten >> i) & 1))//En apprentissage
+				if (!((forgotten >> i) & 1))//En apprentissage
 				{
 					addItem(abilityID, 0, i, icons);
 				}
@@ -308,13 +308,13 @@ void GfEditor::fillPage()
 
 void GfEditor::savePage()
 {
-	if(!loaded)	return;
+	if (!loaded)	return;
 
-	if(id==16) {
+	if (id==16) {
 		saveData->setPerso(GRIEVER, grieverE->text());
 		data->misc2.dream = (odinE->isChecked() << 1) | (phoenixE->isChecked() << 2) | (gilgameshE->isChecked() << 3) | (data->misc2.dream & 0xF1);
 	}
-	else if(id < 16) {
+	else if (id < 16) {
 		gf_data->exists = (quint8)existsE->isChecked();
 		saveData->setGf(id, nameEdit->text());
 		gf_data->exp = expEdit->value();
@@ -329,17 +329,17 @@ QTreeWidgetItem *GfEditor::addItem(quint8 abilityID, quint8 type, quint8 innateA
 {
 	QTreeWidgetItem *item;
 	QIcon icon;
-	if(abilityIcons.isEmpty()) {
+	if (abilityIcons.isEmpty()) {
 		icon = QIcon(QString(":/images/icons/capacity%1.png").arg(Data::abilityType(abilityID)));
 	} else {
 		icon = abilityIcons.value(Data::abilityType(abilityID));
 	}
 	
-	switch(type)
+	switch (type)
 	{
 	case 0://Capacités de la GF non acquises (vert=Apprentissage en cours, noir sinon)
 		item = new QTreeWidgetItem(liste, QStringList() << QString("%1").arg(abilityID,3) << Data::abilities().value(abilityID) << QString("%1/%2").arg(gf_data->APs[innateAbID]).arg(Data::apsTab[abilityID]));
-		if(gf_data->learning == abilityID)
+		if (gf_data->learning == abilityID)
 		{
 			item->setForeground(1, Qt::darkGreen);
 			item->setForeground(2, Qt::darkGreen);
@@ -353,13 +353,13 @@ QTreeWidgetItem *GfEditor::addItem(quint8 abilityID, quint8 type, quint8 innateA
 		
 	case 1://Capacités acquises de la GF (noir) et capacités acquises en plus (gris)
 		item = new QTreeWidgetItem(liste, QStringList() << QString("%1").arg(abilityID,3) << Data::abilities().value(abilityID) << tr("Acquis!"));
-		if(posAbility(abilityID) == -1)
+		if (posAbility(abilityID) == -1)
 		{
 			item->setForeground(1, Qt::darkGray);
 			item->setForeground(2, Qt::darkGray);
 			item->setIcon(1, icon);
 		}
-		else if(gf_data->learning == abilityID)
+		else if (gf_data->learning == abilityID)
 		{
 			item->setForeground(1, Qt::darkGreen);
 			item->setForeground(2, Qt::darkGreen);
@@ -384,19 +384,19 @@ QTreeWidgetItem *GfEditor::addItem(quint8 abilityID, quint8 type, quint8 innateA
 void GfEditor::remove_C()
 {
 	QList<QTreeWidgetItem *> selectedItems = liste->selectedItems();
-	if(selectedItems.isEmpty())	return;
+	if (selectedItems.isEmpty())	return;
 	quint8 abilityID = selectedItems.first()->text(0).toInt();
 
 	delete selectedItems.first();
 	
-	if(abilityID == gf_data->learning)
+	if (abilityID == gf_data->learning)
 	{
 		gf_data->learning = 0;
 	}
 	
 	quint32 forgotten = GF_GET_FORGOTTEN(*gf_data);
 	qint8 pos;
-	if((pos = posAbility(abilityID)) != -1)
+	if ((pos = posAbility(abilityID)) != -1)
 	{
 		QTreeWidgetItem *item = addItem(abilityID, 2, pos);
 		forgotten |= 1 << pos;
@@ -434,14 +434,14 @@ void GfEditor::add_C()
 
 void GfEditor::edit_C(QTreeWidgetItem *item)
 {
-	if(posAbility(item->text(0).toInt()) != -1)
+	if (posAbility(item->text(0).toInt()) != -1)
 		edit_C();
 }
 
 void GfEditor::edit_C()
 {
 	QList<QTreeWidgetItem *> selectedItems = liste->selectedItems();
-	if(selectedItems.isEmpty())	return;
+	if (selectedItems.isEmpty())	return;
 
 	quint8 abilityID = selectedItems.first()->text(0).toInt();
 	
@@ -451,7 +451,7 @@ void GfEditor::edit_C()
 	APsEdit = new SpinBox8(dialog);
 
 	qint8 pos = posAbility(abilityID);
-	if(pos != -1) {
+	if (pos != -1) {
 		APsEdit->setValue(gf_data->APs[pos]);
 	}
 	
@@ -477,7 +477,7 @@ void GfEditor::edit_C()
 void GfEditor::restore_C()
 {
 	QList<QTreeWidgetItem *> selectedItems = liste2->selectedItems();
-	if(selectedItems.isEmpty())	return;
+	if (selectedItems.isEmpty())	return;
 
 	quint8 abilityID = selectedItems.first()->text(0).toInt();
 	delete selectedItems.first();
@@ -485,7 +485,7 @@ void GfEditor::restore_C()
 	
 	QTreeWidgetItem *item;
 	
-	if(gf_data->APs[pos] < Data::apsTab[abilityID])
+	if (gf_data->APs[pos] < Data::apsTab[abilityID])
 	{
 		setCompleteAbility(abilityID, false);
 		item = addItem(abilityID, 0, pos);
@@ -510,7 +510,7 @@ void GfEditor::restore_C()
 void GfEditor::enableButtons()
 {
 	QList<QTreeWidgetItem *> selectedItems = liste->selectedItems();
-	if(selectedItems.isEmpty())
+	if (selectedItems.isEmpty())
 	{
 		removeC->setEnabled(false);
 		learnC->setEnabled(false);
@@ -532,8 +532,8 @@ void GfEditor::enableButtons2()
 void GfEditor::changeExp(double value)
 {
 	int niv = ((quint32)value/nivSup)+1;
-	if(niv>100)	niv = 100;
-	if(nivEdit->value() != niv)
+	if (niv>100)	niv = 100;
+	if (nivEdit->value() != niv)
 	{
 		nivEdit->setValue(niv);
 	}
@@ -542,7 +542,7 @@ void GfEditor::changeExp(double value)
 void GfEditor::changeNiv(int value)
 {
 	quint32 exp = (value-1)*nivSup;
-	if(exp > expEdit->value() || exp + nivSup <= expEdit->value())
+	if (exp > expEdit->value() || exp + nivSup <= expEdit->value())
 	{
 		expEdit->setValue(exp);
 	}
@@ -550,7 +550,7 @@ void GfEditor::changeNiv(int value)
 
 void GfEditor::changeExists(bool exists)
 {
-	if(gfListe->currentRow() < 16)
+	if (gfListe->currentRow() < 16)
 		gfListe->currentItem()->setIcon(gfIcons.at(gfListe->currentRow()).pixmap(32, 48, exists ? QIcon::Normal : QIcon::Disabled));
 }
 
@@ -562,7 +562,7 @@ void GfEditor::changeCapacity(int index)
 void GfEditor::addCapacity()
 {
 	quint8 abilityID = selection->currentIndex()+1;
-	if(!getCompleteAbility(abilityID))
+	if (!getCompleteAbility(abilityID))
 	{
 		QTreeWidgetItem *item = addItem(abilityID, 1);
 		liste->sortByColumn(0, Qt::AscendingOrder);
@@ -578,15 +578,15 @@ void GfEditor::addCapacity()
 void GfEditor::changeAPs()
 {
 	QList<QTreeWidgetItem *> selectedItems = liste->selectedItems();
-	if(selectedItems.isEmpty())	return;
+	if (selectedItems.isEmpty())	return;
 	
 	quint8 abilityID = selectedItems.first()->text(0).toInt();
 	qint8 pos;
-	if((pos = posAbility(abilityID)) != -1)
+	if ((pos = posAbility(abilityID)) != -1)
 	{
 		int value = APsEdit->value();
 		gf_data->APs[pos] = (char)value;
-		if(!abilityCompleted->isChecked())
+		if (!abilityCompleted->isChecked())
 		{
 			setCompleteAbility(abilityID, false);
 			selectedItems.first()->setText(2, QString("%1/%2").arg(value).arg(Data::apsTab[abilityID]));
@@ -603,7 +603,7 @@ void GfEditor::changeAPs()
 void GfEditor::fullAPs()
 {
 	QList<QTreeWidgetItem *> selectedItems = liste->selectedItems();
-	if(selectedItems.isEmpty())	return;
+	if (selectedItems.isEmpty())	return;
 	
 	APsEdit->setValue(Data::apsTab[selectedItems.first()->text(0).toInt()]);
 }
@@ -611,10 +611,10 @@ void GfEditor::fullAPs()
 void GfEditor::changeLearning()
 {
 	QList<QTreeWidgetItem *> selectedItems = liste->selectedItems();
-	if(selectedItems.isEmpty())	return;
+	if (selectedItems.isEmpty())	return;
 	
 	QList<QTreeWidgetItem *> findItems = liste->findItems(QString("%1").arg(gf_data->learning,3), Qt::MatchExactly);
-	if(!findItems.isEmpty())
+	if (!findItems.isEmpty())
 	{
 		quint8 abilityID = findItems.first()->text(0).toInt();
 		findItems.first()->setIcon(1, QIcon(QString(":/images/icons/capacity%1.png").arg(Data::abilityType(abilityID))));
@@ -623,7 +623,7 @@ void GfEditor::changeLearning()
 		findItems.first()->setForeground(2, QColor(color));
 	}
 	
-	if(gf_data->learning != selectedItems.first()->text(0).toInt())
+	if (gf_data->learning != selectedItems.first()->text(0).toInt())
 	{
 		gf_data->learning = selectedItems.first()->text(0).toInt();
 		selectedItems.first()->setIcon(1, QIcon(":/images/icons/learning.png"));
@@ -642,23 +642,23 @@ void GfEditor::acquireAll()
 {
 	int itemCount = liste->topLevelItemCount();
 
-	for(int i=0 ; i<itemCount ; ++i) {
+	for (int i = 0; i < itemCount; ++i) {
 		QTreeWidgetItem *item = liste->topLevelItem(i);
 		quint8 abilityID = item->text(0).toInt();
 		setCompleteAbility(abilityID, true);
 		item->setText(2, tr("Acquis!"));
 		// optionnal
 		qint8 pos;
-		if((pos = posAbility(abilityID)) != -1)
+		if ((pos = posAbility(abilityID)) != -1)
 			gf_data->APs[pos] = Data::apsTab[abilityID];
 	}
 }
 
 qint8 GfEditor::posAbility(quint8 abilityID)
 {
-	for(quint8 i=0 ; i<22 ; ++i)
+	for (quint8 i = 0; i < 22; ++i)
 	{
-		if(Data::innateAbilities[id][i] == abilityID)
+		if (Data::innateAbilities[id][i] == abilityID)
 			return i;
 	}
 	return -1;

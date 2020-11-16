@@ -27,7 +27,7 @@ class HeaderDialog : public QDialog
 	Q_OBJECT
 public:
 	enum ViewType { NormalView, RestoreView, CreateView };
-	HeaderDialog(SaveData *saveData, QWidget *parent=0, ViewType viewType=NormalView);
+	HeaderDialog(SaveData *saveData, QWidget *parent = nullptr, ViewType viewType = NormalView);
 	void setCountry(char c);
 	void setCode(const QString &codestr);
 	void setId(const QString &idStr);
@@ -41,7 +41,7 @@ private:
 	static void fillId(QComboBox *id, int saveId);
 
 	void fill();
-	void saveIcon(bool chocobo_world_icon=false);
+	void saveIcon(bool chocobo_world_icon = false);
 
 	QGroupBox *group1;
 	QLabel *exists_lbl;

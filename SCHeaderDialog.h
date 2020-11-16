@@ -27,7 +27,7 @@ class SCHeaderDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	SCHeaderDialog(SavecardData *savecardData, QWidget *parent=nullptr);
+	SCHeaderDialog(SavecardData *savecardData, QWidget *parent = nullptr);
 public slots:
 	virtual void accept();
 private:

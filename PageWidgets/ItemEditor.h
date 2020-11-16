@@ -26,7 +26,7 @@ class ItemEditor : public PageWidget
 {
 	Q_OBJECT
 public:
-	explicit ItemEditor(QWidget *parent=0);
+	explicit ItemEditor(QWidget *parent = nullptr);
 	inline QString name() { return tr("Objets"); }
 public slots:
 	void fillPage();

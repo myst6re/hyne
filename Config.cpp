@@ -68,10 +68,10 @@ void Config::loadRecentFiles()
 {
 	recentFiles = settings->value(keyToStr(RecentFiles)).toStringList();
 	// Compatibility with old version (< 1.6)
-	if(recentFiles.isEmpty()) {
-		for(int i=0 ; i<20 ; ++i) {
+	if (recentFiles.isEmpty()) {
+		for (int i = 0; i < 20; ++i) {
 			QString filePath = settings->value(QString("recentFile%1").arg(i), QString()).toString();
-			if(!filePath.isEmpty()) {
+			if (!filePath.isEmpty()) {
 				recentFiles.append(QDir::cleanPath(filePath));
 			}
 		}
@@ -81,9 +81,9 @@ void Config::loadRecentFiles()
 void Config::addRecentFile(const QString &filePath)
 {
 	int index = recentFiles.indexOf(filePath);
-	if(index != -1)					recentFiles.removeAt(index);
+	if (index != -1)					recentFiles.removeAt(index);
 	recentFiles.prepend(filePath);
-	if(recentFiles.size() > 20)		recentFiles.removeLast();
+	if (recentFiles.size() > 20)		recentFiles.removeLast();
 }
 
 const QString &Config::recentFile(const uint &index)
@@ -106,17 +106,17 @@ void Config::saveRecentFiles()
 	QStringList rf;
 	int i=0;
 
-	foreach(const QString &recentFile, recentFiles) {
-		if(QFile::exists(recentFile)) {
+	for (const QString &recentFile : qAsConst(recentFiles)) {
+		if (QFile::exists(recentFile)) {
 			rf.append(QDir::cleanPath(recentFile));
 			++i;
 		}
-		if(i > 20)	break;
+		if (i > 20)	break;
 	}
 
 	setValue(RecentFiles, rf);
 	// Compatibility with old version (< 1.6)
-	for(i=0 ; i<20 ; ++i)
+	for (i = 0; i < 20; ++i)
 		settings->remove(QString("recentFile%1").arg(i));
 }
 
@@ -127,7 +127,7 @@ void Config::set()
 #else
 	settings = new QSettings(PROG_NAME);
 #endif
-	if(int(_KeysSize) != KEYS_SIZE) {
+	if (int(_KeysSize) != KEYS_SIZE) {
 		qWarning() << "Config: invalid keys size!";
 		Q_ASSERT(false);
 	}
@@ -140,7 +140,7 @@ bool Config::mode()
 
 int Config::freq(const int freq_value)
 {
-	if(freq_auto())	return freq_value;
+	if (freq_auto())	return freq_value;
 	return settings->value(keyToStr(Freq), 60).toUInt() == 50 ? 50 : 60;
 }
 
@@ -171,7 +171,7 @@ void Config::sync()
 
 const QMap<FF8Installation::Type, FF8Installation> &Config::ff8Installations()
 {
-	if(!_ff8InstallationsSearched) {
+	if (!_ff8InstallationsSearched) {
 		_ff8Installations = FF8Installation::installations();
 		_selectedFF8Installation = FF8Installation::Type(settings->value(keyToStr(SelectedFF8Installation)).toInt());
 		_ff8InstallationsSearched = true;
@@ -185,7 +185,7 @@ bool Config::ff8IsInstalled(bool &hasSlots)
 
 	hasSlots = false;
 
-	foreach(const FF8Installation &installation, Config::ff8Installations()) {
+	for (const FF8Installation &installation : Config::ff8Installations()) {
 		if (installation.isValid()) {
 			ret = true;
 		}
@@ -204,7 +204,7 @@ bool Config::ff8IsInstalled(bool &hasSlots)
 
 FF8Installation Config::ff8Installation()
 {
-	if(!_ff8InstallationsSearched) {
+	if (!_ff8InstallationsSearched) {
 		ff8Installations();
 	}
 	return _ff8Installations.value(_selectedFF8Installation, _ff8Installations.constBegin().value());

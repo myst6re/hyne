@@ -26,8 +26,8 @@ class MetadataDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	explicit MetadataDialog(QWidget *parent = 0);
-	explicit MetadataDialog(const QMap<FF8Installation::Type, FF8Installation> &ff8Installations, QWidget *parent = 0);
+	explicit MetadataDialog(QWidget *parent = nullptr);
+	explicit MetadataDialog(const QMap<FF8Installation::Type, FF8Installation> &ff8Installations, QWidget *parent = nullptr);
 	void fill(const QMap<FF8Installation::Type, FF8Installation> &ff8Installations);
 	inline QString metadataPath() const {
 		return QDir::fromNativeSeparators(_path->text());

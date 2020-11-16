@@ -26,12 +26,12 @@ class SaveIconData
 {
 public:
 	SaveIconData();
-	explicit SaveIconData(const QByteArray &data, quint8 nbFrames=1);
+	explicit SaveIconData(const QByteArray &data, quint8 nbFrames = 1);
 	void setData(const QByteArray &data);
 	void setNbFrames(quint8 nbFrames);
 	const QByteArray &data() const;
 	quint8 nbFrames() const;
-	QPixmap icon(int curFrame=0, bool showCW=false) const;
+	QPixmap icon(int curFrame = 0, bool showCW = false) const;
 private:
 	QByteArray _data;
 	quint8 _nbFrames;
@@ -39,7 +39,7 @@ private:
 
 struct SaveIconTimer : public QTimer
 {
-	explicit SaveIconTimer(QObject *parent=0) :
+	explicit SaveIconTimer(QObject *parent = nullptr) :
 		QTimer(parent) {
 		setInterval(160);
 	}
@@ -49,8 +49,8 @@ class SaveIcon : public QObject
 {
 	Q_OBJECT
 public:
-	explicit SaveIcon(bool showCW=false, QObject *parent=0);
-	explicit SaveIcon(const SaveIconData &data, bool showCW=false, QObject *parent=0);
+	explicit SaveIcon(bool showCW=false, QObject *parent = nullptr);
+	explicit SaveIcon(const SaveIconData &data, bool showCW=false, QObject *parent = nullptr);
 	void setData(const SaveIconData &data);
 	void setCurFrame(quint8 curFrame);
 	void setCWIsVisible(bool showCW);

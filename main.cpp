@@ -35,17 +35,17 @@ int main(int argc, char *argv[])
 
 	lang = Config::value(Config::Lang, lang.left(lang.indexOf("_")));
 
-	if(translator_qt.load("qt_" % lang, translationPath)
+	if (translator_qt.load("qt_" % lang, translationPath)
 	        || translator_qt.load("qt_" % lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
 		app.installTranslator(&translator_qt);
 	}
 
-	if(translator.load("hyne_" + lang, translationPath)) {
+	if (translator.load("hyne_" + lang, translationPath)) {
 		app.installTranslator(&translator);
-	} else if(lang != "fr") {
+	} else if (lang != "fr") {
 		QLocale locale = Window::chooseLangDialog();
 		lang = locale.bcp47Name();
-		if(translator.load("hyne_" + lang, translationPath)) {
+		if (translator.load("hyne_" + lang, translationPath)) {
 			app.installTranslator(&translator);
 			Config::setValue(Config::Lang, lang);
 		} else {
@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
 	Window window;
 	window.show();
 
-	if(argc > 1) {
+	if (argc > 1) {
 		window.openFile(argv[1]);
 	}
 

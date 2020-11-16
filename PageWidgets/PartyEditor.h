@@ -26,7 +26,7 @@ class PartyEditor : public PageWidget
 {
 	Q_OBJECT
 public:
-	explicit PartyEditor(QWidget *parent=0);
+	explicit PartyEditor(QWidget *parent = nullptr);
 	inline QString name() { return tr("Équipe"); }
 public slots:
 	void fillPage();

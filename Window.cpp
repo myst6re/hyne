@@ -24,16 +24,16 @@
 #include "MetadataDialog.h"
 
 Window::Window(bool isNew) :
-	QWidget(), taskbarButton(0), saves(0), saveList(0), editor(0)
+	QWidget(), taskbarButton(nullptr), saves(nullptr), saveList(nullptr), editor(nullptr)
 {
 	setTitle();
 	setMinimumSize(768, 502);
 	resize(768, 502);
 	setAcceptDrops(true);
 
-	menuBar = new QMenuBar(0);
+	menuBar = new QMenuBar(nullptr);
 	QMenu *menu;
-	QAction *action, *actionSlot1=0, *actionSlot2=0;
+	QAction *action, *actionSlot1=nullptr, *actionSlot2=nullptr;
 
 	/* MENU 'FICHIER' */
 	
@@ -63,9 +63,9 @@ Window::Window(bool isNew) :
 	action = menu->addAction(tr("S&igner des sauv. pour le Cloud..."), this, SLOT(updateMetadata()));
 	addAction(action);
 #ifndef Q_OS_WINRT
-	if(isInstalled) {
+	if (isInstalled) {
 		action = menu->addAction(QIcon(":/images/ff8.png"), tr("&Lancer Final Fantasy VIII"), this, SLOT(runFF8()));
-		if(!isNew) {
+		if (!isNew) {
 			action->setShortcut(Qt::Key_F8);
 			action->setShortcutContext(Qt::ApplicationShortcut);
 		}
@@ -76,7 +76,7 @@ Window::Window(bool isNew) :
 #endif
 	menu->addAction(tr("Nou&velle fenêtre"), this, SLOT(newWindow()));
 	action = menu->addAction(tr("Ple&in écran"), this, SLOT(fullScreen()));
-	if(!isNew) {
+	if (!isNew) {
 		action->setShortcut(Qt::Key_F11);
 		action->setShortcutContext(Qt::ApplicationShortcut);
 	}
@@ -88,7 +88,7 @@ Window::Window(bool isNew) :
 	
 	/* MENU 'SLOT' */
 	
-	if(hasSlots) {
+	if (hasSlots) {
 		actionSlot1 = menuBar->addAction(tr("Fente &1"), this, SLOT(slot1()));
 		actionSlot2 = menuBar->addAction(tr("Fente &2"), this, SLOT(slot2()));
 	}
@@ -121,7 +121,7 @@ Window::Window(bool isNew) :
 	actionFont->setChecked(!Config::value(Config::Font).isEmpty());
 	
 	menuLang = menu->addMenu(tr("&Langue"));
-	foreach(const QLocale &locale, availableLanguages()) {
+	for (const QLocale &locale : availableLanguages()) {
 		action = menuLang->addAction(QLocale::languageToString(locale.language()));
 		action->setData(locale.bcp47Name());
 		action->setCheckable(true);
@@ -129,9 +129,9 @@ Window::Window(bool isNew) :
 	}
 	connect(menuLang, SIGNAL(triggered(QAction*)), SLOT(changeLanguage(QAction*)));
 
-	if(Config::ff8Installations().size() > 1) {
+	if (Config::ff8Installations().size() > 1) {
 		menuVersion = menu->addMenu(tr("Version PC"));
-		foreach(const FF8Installation &installation, Config::ff8Installations()) {
+		for (const FF8Installation &installation : Config::ff8Installations()) {
 			action = menuVersion->addAction(installation.typeString());
 			action->setCheckable(true);
 			action->setChecked(Config::ff8Installation() == installation);
@@ -150,7 +150,7 @@ Window::Window(bool isNew) :
 	startWidget = new StartWidget(this);
 	startWidget->addAction(actionNew);
 	startWidget->addAction(actionOpen);
-	if(hasSlots) {
+	if (hasSlots) {
 		startWidget->addAction(actionSlot1);
 		startWidget->addAction(actionSlot2);
 	}
@@ -173,7 +173,7 @@ void Window::showEvent(QShowEvent *event)
 {
 	event->accept();
 #ifdef Q_OS_WIN
-	if(!taskbarButton && QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
+	if (!taskbarButton && QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
 		taskbarButton = new QTaskbarButton(windowHandle());
 	}
 #endif
@@ -181,11 +181,11 @@ void Window::showEvent(QShowEvent *event)
 
 void Window::closeEvent(QCloseEvent *event)
 {
-	if(stackedLayout->currentWidget() == editor) {
+	if (stackedLayout->currentWidget() == editor) {
 		saveView();
 		event->ignore();
 	}
-	else if(!closeFile(true))
+	else if (!closeFile(true))
 		event->ignore();
 	else
 		event->accept();
@@ -193,7 +193,7 @@ void Window::closeEvent(QCloseEvent *event)
 
 void Window::dragEnterEvent(QDragEnterEvent *event)
 {
-	if(event->mimeData()->hasUrls() &&
+	if (event->mimeData()->hasUrls() &&
 			(stackedLayout->currentWidget() == startWidget
 			 || (saveList && stackedLayout->currentWidget() == saveList)))
 		event->acceptProposedAction();
@@ -201,14 +201,14 @@ void Window::dragEnterEvent(QDragEnterEvent *event)
 
 void Window::dropEvent(QDropEvent *event)
 {
-	if(stackedLayout->currentWidget() == editor)	return;
+	if (stackedLayout->currentWidget() == editor)	return;
 
 	const QMimeData *mimeData = event->mimeData();
 
-	if(mimeData->hasUrls())
+	if (mimeData->hasUrls())
 	{
 		QList<QUrl> urlList = mimeData->urls();
-		if(!urlList.isEmpty()) {
+		if (!urlList.isEmpty()) {
 			QString path = QDir::cleanPath(urlList.first().path().mid(1));
 			openFile(path);
 		}
@@ -252,15 +252,15 @@ void Window::newFile()
 	connect(&buttonBox, SIGNAL(accepted()), &dialog, SLOT(accept()));
 	connect(&buttonBox, SIGNAL(rejected()), &dialog, SLOT(reject()));
 
-	if(dialog.exec() == QDialog::Accepted) {
-		if(!closeFile())	return;
+	if (dialog.exec() == QDialog::Accepted) {
+		if (!closeFile())	return;
 
 		saves = new SavecardData(oneSave.isChecked() ? 1 : 15);
-		if(!name.text().isEmpty()) {
+		if (!name.text().isEmpty()) {
 			saves->setName(name.text());
 		}
 
-		if(!saves->isOpen())
+		if (!saves->isOpen())
 		{
 			QMessageBox::warning(this, tr("Erreur"), saves->errorString());
 			closeFile();
@@ -280,19 +280,19 @@ void Window::open(OpenType slot)
 	QString path;
 	FF8Installation installation;
 
-	if(slot == Slot1 || slot == Slot2)
+	if (slot == Slot1 || slot == Slot2)
 	{
 		installation = Config::ff8Installation();
-		if(!installation.hasSlots())	return;
+		if (!installation.hasSlots())	return;
 
 		path = installation.savePath(int(slot));
 	}
 	else
 	{
 		QString loadPath = Config::value(Config::LoadPath);
-		if(!loadPath.isEmpty())
+		if (!loadPath.isEmpty())
 			path = loadPath;
-		else if(!path.isEmpty())
+		else if (!path.isEmpty())
 			path.append("/Save");
 		path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path,
 		                                    tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 ff8slot* *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;"
@@ -305,7 +305,7 @@ void Window::open(OpenType slot)
 		                                       "FF8 PS3 memorycard/pSX save state (*.psv);;"
 		                                       "ePSXe save state (*.000 *.001 *.002 *.003 *.004);;"
 		                                       "Tous les fichiers (*)"));
-		if(path.isNull())		return;
+		if (path.isNull())		return;
 
 		int index = path.lastIndexOf('/');
 		Config::setValue(Config::LoadPath, index == -1 ? path : path.left(index));
@@ -316,14 +316,14 @@ void Window::open(OpenType slot)
 
 bool Window::closeFile(bool quit)
 {
-	if(saves && saves->isModified()) {
+	if (saves && saves->isModified()) {
 		QMessageBox::StandardButton b = QMessageBox::question(this, tr("Enregistrer ?"),
 															  tr("Voulez-vous enregistrer '%1' avant de fermer ?")
 															  .arg(saves->type() == SavecardData::PcSlot
 																   ? tr("fente")
 																   : saves->name()),
 															  QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
-		switch(b) {
+		switch (b) {
 		case QMessageBox::Yes:
 			save();
 			break;
@@ -334,7 +334,7 @@ bool Window::closeFile(bool quit)
 		}
 	}
 
-	if(quit)	return true;
+	if (quit)	return true;
 
 	setIsOpen(false);
 
@@ -343,19 +343,19 @@ bool Window::closeFile(bool quit)
 
 void Window::openFile(const QString &path, OpenType openType, const FF8Installation &installation)
 {
-	if(!closeFile())	return;
+	if (!closeFile())	return;
 
 	saves = new SavecardData(path, quint8(openType), installation);
-	if(saves->type() == SavecardData::Unknown) {
+	if (saves->type() == SavecardData::Unknown) {
 		QMessageBox::StandardButton rep = QMessageBox::question(this, tr("Erreur"), tr("Fichier de type inconnu.\nVoulez-vous l'analyser pour obtenir le bon format ?"), QMessageBox::Yes | QMessageBox::No);
-		if(rep != QMessageBox::Yes) {
+		if (rep != QMessageBox::Yes) {
 			return;
 		}
 
 		saves->getFormatFromRaw();
 	}
 
-	if(!saves->isOpen())
+	if (!saves->isOpen())
 	{
 		QMessageBox::warning(this, tr("Erreur"), saves->errorString());
 		setIsOpen(false);
@@ -368,7 +368,7 @@ void Window::openFile(const QString &path, OpenType openType, const FF8Installat
 		setIsOpen(true);
 		setModified(saves->isModified());
 
-		if(openType == File) {
+		if (openType == File) {
 			Config::addRecentFile(saves->path());
 			fillMenuRecent();
 		}
@@ -377,7 +377,7 @@ void Window::openFile(const QString &path, OpenType openType, const FF8Installat
 
 void Window::setIsOpen(bool open)
 {
-	if(open) {
+	if (open) {
 		stackedLayout->setCurrentWidget(saveList);
 		actionSaveAs->setEnabled(true);
 		actionProperties->setEnabled(true);
@@ -387,13 +387,13 @@ void Window::setIsOpen(bool open)
 		setTitle();
 	} else {
 		stackedLayout->setCurrentWidget(startWidget);
-		if(editor)	editor->hide();
+		if (editor)	editor->hide();
 
-		if(saves)
+		if (saves)
 		{
-			if(saveList)	saveList->setSavecard(0);
+			if (saveList)	saveList->setSavecard(nullptr);
 			delete saves;
-			saves = 0;
+			saves = nullptr;
 		}
 
 		actionSaveAs->setEnabled(false);
@@ -413,9 +413,9 @@ void Window::openRecentFile(QAction *action)
 
 void Window::reload()
 {
-	if(saves) {
+	if (saves) {
 		OpenType openType;
-		if(saves->type() == SavecardData::PcSlot) {
+		if (saves->type() == SavecardData::PcSlot) {
 			openType = saves->slotNumber() == 1 ? Slot1 : Slot2;
 		} else {
 			openType = File;
@@ -440,33 +440,33 @@ bool Window::exportAs()
 
 	types = pc+";;"+ps+";;"+ps4+";;"+swi+";;"+vgs+";;"+gme+";;"+vmp+";;"+psv;
 
-	if(type == SavecardData::PcSlot
+	if (type == SavecardData::PcSlot
 	        || type == SavecardData::Pc)	selectedFilter = pc;
-	else if(type == SavecardData::PcUncompressed)	selectedFilter = ps4;
-	else if(type == SavecardData::Switch)	selectedFilter = swi;
-	else if(type == SavecardData::Psv)		selectedFilter = psv;
-	else if(type == SavecardData::Vgs)		selectedFilter = vgs;
-	else if(type == SavecardData::Gme)		selectedFilter = gme;
-	else if(type == SavecardData::Vmp)		selectedFilter = vmp;
+	else if (type == SavecardData::PcUncompressed)	selectedFilter = ps4;
+	else if (type == SavecardData::Switch)	selectedFilter = swi;
+	else if (type == SavecardData::Psv)		selectedFilter = psv;
+	else if (type == SavecardData::Vgs)		selectedFilter = vgs;
+	else if (type == SavecardData::Gme)		selectedFilter = gme;
+	else if (type == SavecardData::Vmp)		selectedFilter = vmp;
 	else									selectedFilter = ps;
 	
 	path = Config::value(Config::SavePath).isEmpty() ? saves->dirname() : Config::value(Config::SavePath)+"/";
-	if(type == SavecardData::Undefined) {
+	if (type == SavecardData::Undefined) {
 		path = path+saves->name()+".mcr";
 	} else {
 		path = path+saves->name();
 	}
 	path = QFileDialog::getSaveFileName(this, tr("Exporter"), path, types, &selectedFilter);
-	if(path.isNull())		return false;
+	if (path.isNull())		return false;
 
-	if(selectedFilter == ps)			newType = SavecardData::Ps;
-	else if(selectedFilter == vgs)		newType = SavecardData::Vgs;
-	else if(selectedFilter == gme)		newType = SavecardData::Gme;
-	else if(selectedFilter == vmp)		newType = SavecardData::Vmp;
-	else if(selectedFilter == pc)		newType = SavecardData::Pc;
-	else if(selectedFilter == ps4)		newType = SavecardData::PcUncompressed;
-	else if(selectedFilter == swi)		newType = SavecardData::Switch;
-	else if(selectedFilter == psv)		newType = SavecardData::Psv;
+	if (selectedFilter == ps)			newType = SavecardData::Ps;
+	else if (selectedFilter == vgs)		newType = SavecardData::Vgs;
+	else if (selectedFilter == gme)		newType = SavecardData::Gme;
+	else if (selectedFilter == vmp)		newType = SavecardData::Vmp;
+	else if (selectedFilter == pc)		newType = SavecardData::Pc;
+	else if (selectedFilter == ps4)		newType = SavecardData::PcUncompressed;
+	else if (selectedFilter == swi)		newType = SavecardData::Switch;
+	else if (selectedFilter == psv)		newType = SavecardData::Psv;
 	else {
 		qWarning() << "Bad selected filter!" << selectedFilter;
 		return false;
@@ -482,17 +482,17 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 {
 	SavecardData::Type type = saves->type();
 
-	if(newType == SavecardData::Gme) {
+	if (newType == SavecardData::Gme) {
 		bool abort;
 		QByteArray desc = descGme(saves->description(), &abort);
-		if(abort)	return false;
+		if (abort)	return false;
 		saves->setDescription(desc);
 	}
 
 	bool ok = true;
 
-	if(type == newType) {
-		switch(type) {
+	if (type == newType) {
+		switch (type) {
 		case SavecardData::Pc:
 		case SavecardData::PcUncompressed:
 		case SavecardData::Switch:
@@ -515,26 +515,26 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 		}
 	} else {
 		// Need hash seed
-		if(newType == SavecardData::Psv || newType == SavecardData::Vmp) {
+		if (newType == SavecardData::Psv || newType == SavecardData::Vmp) {
 			SCHeaderDialog dialog(saves, this);
-			if(dialog.exec() != QDialog::Accepted) return false;
+			if (dialog.exec() != QDialog::Accepted) return false;
 		}
 
-		if(!SavecardData::isOne(newType)) {
-			if(type == SavecardData::PcSlot
+		if (!SavecardData::isOne(newType)) {
+			if (type == SavecardData::PcSlot
 					|| type == SavecardData::Undefined
 			        || SavecardData::isOne(type)
 			        || type == SavecardData::Psv) {
 				QList<int> selectedFiles = selectSavesDialog(true);
-				if(selectedFiles.isEmpty()) {
+				if (selectedFiles.isEmpty()) {
 					return false;
 				}
 
 				QByteArray MCHeader;
-				if(type != SavecardData::Psv) {
+				if (type != SavecardData::Psv) {
 					SaveData tempSave;
 					HeaderDialog dialog(&tempSave, this, HeaderDialog::CreateView);
-					if(dialog.exec() != QDialog::Accepted) return false;
+					if (dialog.exec() != QDialog::Accepted) return false;
 					MCHeader = tempSave.saveMCHeader();
 				} else {
 					MCHeader = saves->getSaves().first()->saveMCHeader();
@@ -547,18 +547,18 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 		} else { // saveOne (PC & PSV)
 			// Need selection by user
 			QList<int> selectedFiles = selectSavesDialog(false, newType == SavecardData::Pc);
-			if(selectedFiles.isEmpty()) {
+			if (selectedFiles.isEmpty()) {
 				return false;
 			}
 			int id = selectedFiles.first();
 
 			SaveData *save = saves->getSaves().at(id);
 
-			if(newType == SavecardData::Psv) {
+			if (newType == SavecardData::Psv) {
 				QByteArray MCHeader;
-				if(!save->hasMCHeader()) {
+				if (!save->hasMCHeader()) {
 					HeaderDialog dialog(save, this, HeaderDialog::CreateView);
-					if(dialog.exec() != QDialog::Accepted) {
+					if (dialog.exec() != QDialog::Accepted) {
 						return false;
 					}
 				}
@@ -568,9 +568,9 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 		}
 	}
 
-	if(!ok) {
+	if (!ok) {
 		QMessageBox::critical(this, tr("Erreur"), saves->errorString());
-	} else if(!saves->errorString().isEmpty()) {
+	} else if (!saves->errorString().isEmpty()) {
 		QMessageBox::warning(this, tr("Attention"), saves->errorString());
 	}
 
@@ -596,7 +596,7 @@ QByteArray Window::descGme(const QString &desc, bool *abort)
 	connect(buttonBox, SIGNAL(accepted()), &dialog, SLOT(accept()));
 	connect(buttonBox, SIGNAL(rejected()), &dialog, SLOT(reject()));
 
-	if(dialog.exec() != QDialog::Accepted) {
+	if (dialog.exec() != QDialog::Accepted) {
 		*abort = true;
 		return QByteArray();
 	}
@@ -607,30 +607,30 @@ QByteArray Window::descGme(const QString &desc, bool *abort)
 
 void Window::properties()
 {
-	if(!saves)		return;
+	if (!saves)		return;
 
 	int saveCount = 0, firstSaveID = -1, saveID = 0;
 
-	foreach(const SaveData *saveData, saves->getSaves()) {
-		if(!saveData->isDelete()) {
+	for (const SaveData *saveData : saves->getSaves()) {
+		if (!saveData->isDelete()) {
 			saveCount++;
-			if(firstSaveID == -1) {
+			if (firstSaveID == -1) {
 				firstSaveID = saveID;
 			}
 		}
-		if(saveCount > 1)	break;
+		if (saveCount > 1)	break;
 		++saveID;
 	}
 
-	if(saveCount == 0)	return;
-	if(saveCount == 1) {
+	if (saveCount == 0)	return;
+	if (saveCount == 1) {
 		saveList->view()->properties(firstSaveID);
 		return;
 	}
 
 	QList<int> selectedFiles = selectSavesDialog(false, false);
 
-	if(!selectedFiles.isEmpty()) {
+	if (!selectedFiles.isEmpty()) {
 		saveList->view()->properties(selectedFiles.first());
 	}
 }
@@ -647,7 +647,7 @@ QList<int> Window::selectSavesDialog(bool multiSelection, bool onlyFF8)
 
 	SelectSavesDialog *dialog = new SelectSavesDialog(saves->getSaves(), multiSelection, onlyFF8, this);
 
-	if(dialog->exec() == QDialog::Accepted) {
+	if (dialog->exec() == QDialog::Accepted) {
 		return dialog->selectedSaves();
 	}
 
@@ -658,7 +658,7 @@ void Window::fillMenuRecent()
 {
 	menuRecent->clear();
 	
-	for(int i=0 ; i<Config::recentFilesSize() ; ++i)
+	for (int i = 0; i < Config::recentFilesSize(); ++i)
 		menuRecent->addAction(tr("%1 : %2").arg(i+1,2,10).arg(QDir::toNativeSeparators(Config::recentFile(i))))->setData(i);
 
 	menuRecent->setEnabled(Config::hasRecentFiles());
@@ -668,7 +668,7 @@ void Window::editView(SaveData *saveData)
 {
 	menuBar->hide();
 	menuBar->setEnabled(false);
-	if(!editor) {
+	if (!editor) {
 		editor = new Editor(this);
 		connect(editor, SIGNAL(accepted()), SLOT(saveView()));
 		connect(editor, SIGNAL(rejected()), SLOT(saveView()));
@@ -679,23 +679,23 @@ void Window::editView(SaveData *saveData)
 	stackedLayout->setCurrentWidget(editor);
 	setTitle(saveData->id());
 	saves->setIsTheLastEdited(saveData->id());
-	if(taskbarButton)	taskbarButton->setOverlayIcon(saveData->saveIcon().icon());
+	if (taskbarButton)	taskbarButton->setOverlayIcon(saveData->saveIcon().icon());
 	else				setWindowIcon(QIcon(saveData->saveIcon().icon()));
 }
 
 void Window::saveView()
 {
-	if(!saveList) {
+	if (!saveList) {
 		saveList = new SavecardWidget(this);
 		connect(saveList->view(), SIGNAL(changed()), SLOT(setModified()));
 		connect(saveList->view(), SIGNAL(released(SaveData*)), SLOT(editView(SaveData*)));
 		stackedLayout->addWidget(saveList);
 	} else {
 		stackedLayout->setCurrentWidget(saveList);
-		if(editor)	editor->hide();
+		if (editor)	editor->hide();
 		menuBar->show();
 		menuBar->setEnabled(true);
-		if(taskbarButton)	taskbarButton->setOverlayIcon(QPixmap());
+		if (taskbarButton)	taskbarButton->setOverlayIcon(QPixmap());
 		else				setWindowIcon(qApp->windowIcon());
 		setTitle();
 		setModified(saves->isModified());
@@ -707,16 +707,16 @@ void Window::save()
 {
 	bool saved = true;
 
-	if(!saves->hasPath()) {
+	if (!saves->hasPath()) {
 		saved = exportAs();
-		if(saved) {
+		if (saved) {
 			setTitle();
 		}
 	} else {
 		saved = exportAs(saves->type(), saves->path());
 	}
 
-	if(saved) {
+	if (saved) {
 		setModified(false);
 		saves->setModified(false);
 		saveList->view()->update();
@@ -726,26 +726,26 @@ void Window::save()
 void Window::mode(bool mode)
 {
 	Config::setValue(Config::Mode, mode);
-	if(saves && editor) {
+	if (saves && editor) {
 		editor->updateMode(mode);
 	}
 }
 
 void Window::changeFrame(QAction *action)
 {
-	if(action->data().toInt()==0)
+	if (action->data().toInt()==0)
 		Config::setValue(Config::FreqAuto, true);
 	else {
 		Config::setValue(Config::Freq, action->data());
 		Config::setValue(Config::FreqAuto, false);
 	}
 
-	foreach(QAction *act, menuFrame->actions())
+	for (QAction *act : menuFrame->actions())
 		act->setChecked(false);
 	action->setChecked(true);
 
-	if(saves) {
-		if(editor)	editor->updateTime();
+	if (saves) {
+		if (editor)	editor->updateTime();
 		saveList->view()->update();
 	}
 }
@@ -754,7 +754,7 @@ void Window::font(bool font)
 {
 	Config::setValue(Config::Font, font ? "hr" : "");
 	FF8Text::reloadFont();
-	if(saves) {
+	if (saves) {
 		saveList->view()->update();
 	} else {
 		startWidget->update();
@@ -769,7 +769,7 @@ QList<QLocale> Window::availableLanguages()
 
 	languages.append(QLocale(QLocale::French));
 
-	foreach(const QString &qmFile, qmFiles) {
+	for (const QString &qmFile : qAsConst(qmFiles)) {
 		QString language = qmFile.mid(5, qmFile.size() - 5 - 3);
 		languages.append(QLocale(language));
 	}
@@ -780,7 +780,7 @@ QList<QLocale> Window::availableLanguages()
 QLocale Window::chooseLangDialog()
 {
 	QList<QLocale> langs = availableLanguages();
-	if(langs.size() <= 1) {
+	if (langs.size() <= 1) {
 		// Doesn't ask for language if there is just one available
 		return langs.isEmpty() ? QLocale() : langs.first();
 	}
@@ -790,7 +790,7 @@ QLocale Window::chooseLangDialog()
 	dialog->setWindowTitle(chooseStr);
 	QLabel *label = new QLabel(chooseStr + ":", dialog);
 	QComboBox *comboBox = new QComboBox(dialog);
-	foreach(const QLocale &lang, langs)
+	for (const QLocale &lang : qAsConst(langs))
 		comboBox->addItem(QLocale::languageToString(lang.language()), lang.bcp47Name());
 
 	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal, dialog);
@@ -802,7 +802,7 @@ QLocale Window::chooseLangDialog()
 
 	connect(buttonBox, SIGNAL(accepted()), dialog, SLOT(accept()));
 
-	if(dialog->exec() == QDialog::Accepted) {
+	if (dialog->exec() == QDialog::Accepted) {
 		return QLocale(comboBox->itemData(comboBox->currentIndex()).toString());
 	}
 
@@ -811,9 +811,9 @@ QLocale Window::chooseLangDialog()
 
 void Window::changeLanguage(QAction *action)
 {
-	if(Config::value(Config::Lang) != action->data()) {
+	if (Config::value(Config::Lang) != action->data()) {
 		Config::setValue(Config::Lang, action->data());
-		foreach(QAction *act, menuLang->actions())
+		for (QAction *act : menuLang->actions())
 			act->setChecked(false);
 		action->setChecked(true);
 
@@ -826,7 +826,7 @@ void Window::changeLanguage(QAction *action)
 void Window::changeFF8Version(QAction *action)
 {
 	Config::setSelectedFF8Installation(FF8Installation::Type(menuVersion->actions().indexOf(action)));
-	foreach(QAction *act, menuVersion->actions())
+	for (QAction *act : menuVersion->actions())
 		act->setChecked(false);
 	action->setChecked(true);
 }
@@ -840,7 +840,7 @@ void Window::restartNow()
 {
 	QString title, text;
 
-	if(Config::translator->load("hyne_" + Config::value(Config::Lang), qApp->applicationDirPath())) {
+	if (Config::translator->load("hyne_" + Config::value(Config::Lang), qApp->applicationDirPath())) {
 		title = Config::translator->translate("Window", "Paramètres modifiés");
 		text = Config::translator->translate("Window", "Relancez le programme pour que les paramètres prennent effet.");
 	} else {
@@ -853,7 +853,7 @@ void Window::restartNow()
 
 /*void Window::changeEvent(QEvent *e)
 {
-	if(e->type() == QEvent::LanguageChange) {
+	if (e->type() == QEvent::LanguageChange) {
 
 	} else {
 		QWidget::changeEvent(e);
@@ -865,7 +865,7 @@ void Window::runFF8()
 {
 	if (Config::ff8Installation().isValid()) {
 		QString appPath = Config::ff8Installation().appPath(), exeFilename = appPath % "/" % Config::ff8Installation().exeFilename();
-		if(!QProcess::startDetached(QString("\"%1\"").arg(exeFilename), QStringList(), appPath)) {
+		if (!QProcess::startDetached(QString("\"%1\"").arg(exeFilename), QStringList(), appPath)) {
 			QMessageBox::warning(this, tr("Erreur"), tr("Final Fantasy VIII n'a pas pu être lancé.\n%1").arg(exeFilename));
 		}
 	} else {
@@ -882,7 +882,7 @@ void Window::updateMetadata()
 
 void Window::fullScreen()
 {
-	if(isFullScreen())	showNormal();
+	if (isFullScreen())	showNormal();
 	else				showFullScreen();
 }
 
@@ -929,9 +929,9 @@ void Window::about()
 	
 	// Set default icon if needed
 	QStyle *style = about.style();
-	if(style->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons))
+	if (style->styleHint(QStyle::SH_DialogButtonBox_ButtonsHaveIcons))
 		button.setIcon(style->standardIcon(QStyle::SP_DialogCloseButton, 0, &about));
-	if(style != QApplication::style()) // Propagate style
+	if (style != QApplication::style()) // Propagate style
 		button.setStyle(style);
 
 	about.exec();

@@ -30,7 +30,7 @@ class SavecardView : public QWidget
 	Q_OBJECT
 
 public:
-	explicit SavecardView(SavecardWidget *parent=0);
+	explicit SavecardView(SavecardWidget *parent = nullptr);
 	virtual ~SavecardView();
 
 	void clear();

@@ -67,7 +67,7 @@ void ShopEditor::buildWidget()
 		  << tr("Librairie d'Esthar") << tr("Magasin d'Esthar!");
 
 	shopList->addItems(shops);
-	for(int i=0 ; i<20 ; ++i) {
+	for (int i = 0; i < 20; ++i) {
 		shopList->item(i)->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 	}
 
@@ -81,7 +81,7 @@ void ShopEditor::buildWidget()
 	itemList->setFont(font);
 	itemList->setUniformItemSizes(true);
 
-	for(int i=0 ; i<16 ; ++i) {
+	for (int i = 0; i < 16; ++i) {
 		QListWidgetItem *item = new QListWidgetItem();
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		itemList->addItem(item);
@@ -106,7 +106,7 @@ void ShopEditor::fillPage()
 
 	int row = shopList->currentRow();
 
-	if(row < 0) 	return;
+	if (row < 0) 	return;
 
 	shops_data = &data->shops[row];
 
@@ -114,13 +114,13 @@ void ShopEditor::fillPage()
 
 	QListWidgetItem *item;
 
-	for(int i=0 ; i<20 ; ++i) {
+	for (int i = 0; i < 20; ++i) {
 		shopList->item(i)->setForeground(data->shops[i].visited ? normalItemColor : QColor(0x50,0x50,0x50));
 	}
 
 	int magType = getMagType();
 
-	for(int i=0 ; i<16 ; ++i) {
+	for (int i = 0; i < 16; ++i) {
 		item = itemList->item(i);
 		item->setText(Data::items().value(items[magType][i]));
 		item->setIcon(QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(items[magType][i]))));
@@ -134,17 +134,17 @@ void ShopEditor::fillPage()
 
 void ShopEditor::savePage()
 {
-	if(!loaded)	return;
+	if (!loaded)	return;
 
 	shops_data->visited = (shops_data->visited & 0xFE) | int(shopEnabledE->isChecked());
 
-	if(shops_data->visited) {
-		for(int i=0 ; i<16 ; ++i) {
+	if (shops_data->visited) {
+		for (int i = 0; i < 16; ++i) {
 			shops_data->items[i] = itemList->item(i)->checkState() == Qt::Checked;
 		}
 	} else {
 		QByteArray its("\x64\x64\x32\x28\x1e\x14\x05\x03\x32\x32\x1e\x14\x0a\x05\x04\x01", 16);
-		for(int i=0 ; i<16 ; ++i) {
+		for (int i = 0; i < 16; ++i) {
 			shops_data->items[i] = its[i];
 		}
 	}
@@ -154,7 +154,7 @@ void ShopEditor::setShopEnabled(bool enabled)
 {
 	int magType = getMagType();
 	itemList->setEnabled(enabled);
-	for(int i=0 ; i<16 ; ++i) {
+	for (int i = 0; i < 16; ++i) {
 		itemList->item(i)->setCheckState(enabled && !rareItems[magType].contains(i) ? Qt::Checked : Qt::Unchecked);
 	}
 	shopList->currentItem()->setForeground(enabled ? normalItemColor : QColor(0x40,0x40,0x40));
@@ -162,7 +162,7 @@ void ShopEditor::setShopEnabled(bool enabled)
 
 int ShopEditor::getMagType()
 {
-	switch(shopList->currentRow()) {
+	switch (shopList->currentRow()) {
 	case 0:		return 0;
 	case 8:		return 2;
 	case 17:	return 3;

@@ -27,7 +27,7 @@ class TTriadEditor : public PageWidget
 {
 	Q_OBJECT
 public:
-	explicit TTriadEditor(QWidget *parent=0);
+	explicit TTriadEditor(QWidget *parent = nullptr);
 	inline QString name() { return tr("Triple Triad"); }
 	void updateMode(bool mode);
 public slots:

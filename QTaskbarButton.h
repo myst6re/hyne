@@ -33,7 +33,7 @@ class QTaskbarButton : public QObject
 {
 	Q_OBJECT
 public:
-	explicit QTaskbarButton(QObject *parent = 0) :
+	explicit QTaskbarButton(QObject *parent = nullptr) :
 		QObject(parent) {
 	}
 	virtual ~QTaskbarButton() {

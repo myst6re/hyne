@@ -51,7 +51,7 @@ void StartWidget::setCursorPosition(int actionID)
 
 int StartWidget::actionID(const QPoint &pos) const
 {
-	if(pos.x() < actionsPosition().x()
+	if (pos.x() < actionsPosition().x()
 			|| pos.x() >= actionsPosition().x() + sizeHint().width()
 			|| pos.y() < actionsPosition().y()
 			|| pos.y() >= actionsPosition().y() + sizeHint().height())
@@ -62,7 +62,7 @@ int StartWidget::actionID(const QPoint &pos) const
 
 void StartWidget::paintEvent(QPaintEvent *)
 {
-	if(actions().isEmpty())	return;
+	if (actions().isEmpty())	return;
 
 	QRegExp remAnd("&([^&])");
 	bool enabledState = actions().first()->isEnabled();
@@ -76,8 +76,8 @@ void StartWidget::paintEvent(QPaintEvent *)
 
 	painter.setBrush(QPixmap(QString(":/images/menu-fond%1.png").arg(enabledState ? "" : "2")));
 
-	foreach(const QAction *act, actions()) {
-		if(act->isEnabled() != enabledState) {
+	for (const QAction *act : actions()) {
+		if (act->isEnabled() != enabledState) {
 			enabledState = act->isEnabled();
 			painter.setBrush(QPixmap(QString(":/images/menu-fond%1.png").arg(enabledState ? "" : "2")));
 		}
@@ -88,7 +88,7 @@ void StartWidget::paintEvent(QPaintEvent *)
 		SavecardView::drawFrame(&painter, OPTION_WIDTH, OPTION_HEIGHT);
 		FF8Text::drawTextArea(&painter, QPoint(12, 12), text);
 
-		if(actionID == _cursorPosition) {
+		if (actionID == _cursorPosition) {
 			painter.drawPixmap(-38, 12, QPixmap(":/images/cursor.png"));
 		}
 
@@ -103,9 +103,9 @@ void StartWidget::mouseMoveEvent(QMouseEvent *event)
 {
 	int actionID = this->actionID(event->pos());
 
-	if(actionID >= 0 && actionID < actions().size()) {
+	if (actionID >= 0 && actionID < actions().size()) {
 		QAction *act = actions().at(actionID);
-		if(act->isEnabled()) {
+		if (act->isEnabled()) {
 			act->hover();
 			setCursorPosition(actionID);
 		} else {
@@ -118,9 +118,9 @@ void StartWidget::mouseReleaseEvent(QMouseEvent *event)
 {
 	int actionID = this->actionID(event->pos());
 
-	if(actionID >= 0 && actionID < actions().size()) {
+	if (actionID >= 0 && actionID < actions().size()) {
 		QAction *act = actions().at(actionID);
-		if(act->isEnabled()) {
+		if (act->isEnabled()) {
 			act->trigger();
 			emit actionTriggered(act);
 		}

@@ -49,19 +49,19 @@ class DataList
 public:
 	DataList() {}
 	const QStringList &list() {
-		if(_list.isEmpty())		fillList();
+		if (_list.isEmpty())		fillList();
 		return _list;
 	}
 	const QString &at(int id) {
-		if(_list.isEmpty())		fillList();
+		if (_list.isEmpty())		fillList();
 		return _list.at(id);
 	}
 	QString value(int id, const QString &defaultValue=QString()) {
-		if(_list.isEmpty())		fillList();
+		if (_list.isEmpty())		fillList();
 		return _list.value(id, defaultValue);
 	}
 	int size() {
-		if(_list.isEmpty())		fillList();
+		if (_list.isEmpty())		fillList();
 		return _list.size();
 	}
 	inline void clear() {

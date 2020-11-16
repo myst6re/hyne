@@ -35,14 +35,14 @@ void FieldEditor::buildWidget()
 	gameMomentList->setIndentation(0);
 	gameMomentList->setHeaderLabels(QStringList() << tr("Valeur") << tr("Moment du jeu"));
 
-	for(int i=0 ; i<403 ; ++i) {
+	for (int i = 0; i < 403; ++i) {
 		cInt couple = Data::momentLocation[i];
 
 		int moment = couple.one, loc = couple.two;
 		QTreeWidgetItem *item = new QTreeWidgetItem(QStringList() << QString::number(moment) << (loc >=0 ? Data::locations().value(loc) : tr("Disque %1").arg(-loc)));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		item->setData(0, Qt::UserRole, moment);
-		if(loc < 0) {
+		if (loc < 0) {
 			item->setForeground(0, Qt::gray);
 			item->setForeground(1, Qt::gray);
 		}
@@ -59,7 +59,7 @@ void FieldEditor::buildWidget()
 	autoDiscE = new QCheckBox(tr("Auto."), this);
 
 	discE = new QComboBox(this);
-	for(int i=0 ; i<4 ; ++i) {
+	for (int i = 0; i < 4; ++i) {
 		discE->addItem(tr("Disque %1").arg(i+1), i);
 	}
 
@@ -89,15 +89,15 @@ void FieldEditor::fillPage()
 	bool valueFound = false;
 	const int itemCount = gameMomentList->topLevelItemCount();
 
-	for(int i=0 ; i<itemCount ; ++i) {
+	for (int i = 0; i < itemCount; ++i) {
 		QTreeWidgetItem *item = gameMomentList->topLevelItem(i);
 
-		if(item->data(0, Qt::UserRole).toInt() == data->field.game_moment)
+		if (item->data(0, Qt::UserRole).toInt() == data->field.game_moment)
 			valueFound = true;
 
-		if(item->data(0, Qt::UserRole).toInt() <= data->field.game_moment)
+		if (item->data(0, Qt::UserRole).toInt() <= data->field.game_moment)
 			item->setCheckState(0, Qt::Checked);
-		else if(!valueFound) {
+		else if (!valueFound) {
 			item = new QTreeWidgetItem(QStringList() << QString::number(data->field.game_moment) << tr("???"));
 			item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 			item->setData(0, Qt::UserRole, data->field.game_moment);
@@ -127,19 +127,19 @@ void FieldEditor::adjustCheck(QTreeWidgetItem *itemChanged)
 	Qt::CheckState checkState = Qt::Checked;
 	const int itemCount = gameMomentList->topLevelItemCount();
 
-	for(int i=0 ; i<itemCount ; ++i) {
+	for (int i = 0; i < itemCount; ++i) {
 		QTreeWidgetItem *item = gameMomentList->topLevelItem(i);
 
 		item->setCheckState(0, checkState);
 
-		if(item == itemChanged) {
+		if (item == itemChanged) {
 			checkState = Qt::Unchecked;
 		}
 	}
 
 	data->field.game_moment = itemChanged->data(0, Qt::UserRole).toInt();
 
-	if(autoDiscE->isChecked()) {
+	if (autoDiscE->isChecked()) {
 		setCurrentIndex(discE, int(data->field.game_moment>=395) + int(data->field.game_moment>=901) + int(data->field.game_moment>=3860));
 	}
 
