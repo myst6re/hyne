@@ -46,6 +46,7 @@ void BattleEditor::buildWidget()
 	tombyE = new SpinBox32(statsE);
 
 	tombySrE = new QCheckBox(tr("Tomberry Sr vaincu"), statsE);
+	ufoE = new QCheckBox(tr("UFO vaincu"), statsE);
 
 	firstr1E = new QCheckBox(tr("Premier Elmidea"), statsE);
 	firsteleE = new QCheckBox(tr("Premier Succube"), statsE);
@@ -66,17 +67,15 @@ void BattleEditor::buildWidget()
 	statsL->addWidget(firsteleE, 2, 8, 1, 4);
 	statsL->addWidget(firstmtlE, 3, 0, 1, 4);
 	statsL->addWidget(firstirvinelbE, 3, 4, 1, 4);
+	statsL->addWidget(ufoE, 3, 8, 1, 4);
 
 	unknownGroupE = new QGroupBox(tr("Inconnu"), this);
 
 	unknown1E = new SpinBox32(unknownGroupE);
-	unknown2E = new SpinBox32(unknownGroupE);
 
 	QGridLayout *unknownL = new QGridLayout(unknownGroupE);
 	unknownL->addWidget(new QLabel(tr("Inconnu 1 :"),statsE), 0, 0);
 	unknownL->addWidget(unknown1E, 0, 1);
-	unknownL->addWidget(new QLabel(tr("Inconnu 2 :"),statsE), 0, 2);
-	unknownL->addWidget(unknown2E, 0, 3);
 
 	QFont font;
 	font.setPointSize(10);
@@ -166,12 +165,12 @@ void BattleEditor::fillPage()
 	monsterkillsE->setValue(data->misc3.monster_kills);
 	tombyE->setValue(data->misc2.tomberry_vaincus);
 	tombySrE->setChecked(data->misc2.tomberry_sr_vaincu & 1);
+	ufoE->setChecked(data->misc2.ufo_battle_encountered & 1);
 	firstr1E->setChecked(data->misc2.elmidea_battle_r1 & 1);
 	firsteleE->setChecked(data->misc2.succube_battle_elemental & 1);
 	firstmtlE->setChecked(data->misc2.trex_battle_mental & 1);
 	firstirvinelbE->setChecked(data->misc2.battle_irvine & 1);
 	unknown1E->setValue(data->misc2.u3);
-	unknown2E->setValue(data->misc2.u4);
 
 	for (int i = 0; i < 64; ++i) {
 		firstdrawE_list->topLevelItem(i)->setCheckState(0, ((data->misc2.magic_drawn_once[i/8] >> (i%8)) & 1)
@@ -201,14 +200,13 @@ void BattleEditor::savePage()
 	data->misc2.battle_escaped				= battleescE->value();
 	data->misc3.battle_escaped				= battleescE->value();
 	data->misc3.monster_kills				= monster_kills;
-	data->misc2.tomberry_vaincus			= tombyE->value();
 	data->misc2.tomberry_sr_vaincu			= (data->misc2.tomberry_sr_vaincu & 0xFFFE) | int(tombySrE->isChecked());
+	data->misc2.ufo_battle_encountered		= (data->misc2.ufo_battle_encountered & 0xFFFE) | int(ufoE->isChecked());
 	data->misc2.elmidea_battle_r1			= (data->misc2.elmidea_battle_r1 & 0xFFFE) | int(firstr1E->isChecked());
 	data->misc2.succube_battle_elemental	= (data->misc2.succube_battle_elemental & 0xFFFE) | int(firsteleE->isChecked());
 	data->misc2.trex_battle_mental			= (data->misc2.trex_battle_mental & 0xFFFE) | int(firstmtlE->isChecked());
 	data->misc2.battle_irvine				= (data->misc2.battle_irvine & 0xFFFE) | int(firstirvinelbE->isChecked());
 	data->misc2.u3							= unknown1E->value();
-	data->misc2.u4							= unknown2E->value();
 
 	int i, j;
 	quint8 cur;
