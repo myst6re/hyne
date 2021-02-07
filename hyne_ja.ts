@@ -71,94 +71,98 @@
         <translation>トンベリキングに勝利</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="50"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="49"/>
+        <source>UFO vaincu</source>
+        <translation type="unfinished">UFO Killed</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/BattleEditor.cpp" line="51"/>
         <source>Premier Elmidea</source>
         <translatorcomment>First Bite Bug</translatorcomment>
         <translation>最初のバイトバグ戦 (w. キスティス)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="51"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="52"/>
         <source>Premier Succube</source>
         <translatorcomment>First Bomb</translatorcomment>
         <translation>最初のボム戦 (w. キスティス)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="52"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="53"/>
         <source>Premier T-Rex</source>
         <translatorcomment>First T-Rexaur</translatorcomment>
         <translation>最初のアルケノダイオス戦 (w. キスティス)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="53"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="54"/>
         <source>Premier combat avec Irvine</source>
         <translatorcomment>First Battle with Irvine</translatorcomment>
         <translation>アーヴァインの加わった最初のバトル</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="56"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="57"/>
         <source>Combats gagnés :</source>
         <translatorcomment>Battles won:</translatorcomment>
         <translation>勝った回数 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="58"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="59"/>
         <source>Combats fuis :</source>
         <translatorcomment>Battles escaped:</translatorcomment>
         <translation>逃げた回数 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="60"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="61"/>
         <source>Monstres tués :</source>
         <translatorcomment>Monsters killed:</translatorcomment>
         <translation>倒した敵の数 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="62"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="63"/>
         <source>Tomberry tués :</source>
         <translatorcomment>Tonberry killed:</translatorcomment>
         <translation>倒したトンベリの数 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="70"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="72"/>
         <source>Inconnu</source>
         <translatorcomment>Unknown</translatorcomment>
         <translation>不明</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="76"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="77"/>
         <source>Inconnu 1 :</source>
         <translatorcomment>Unknown 1:</translatorcomment>
         <translation>詳細不明 1 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="78"/>
         <source>Inconnu 2 :</source>
         <translatorcomment>Unknown 2:</translatorcomment>
-        <translation>詳細不明 2 :</translation>
+        <translation type="vanished">詳細不明 2 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="86"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="85"/>
         <source>Magies vues au moins une fois</source>
         <translatorcomment>Magic seen once</translatorcomment>
         <translation>既知の魔法</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="99"/>
-        <location filename="PageWidgets/BattleEditor.cpp" line="121"/>
-        <location filename="PageWidgets/BattleEditor.cpp" line="133"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="98"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="120"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="132"/>
         <source>Inutilisé</source>
         <translatorcomment>Unused</translatorcomment>
         <translation>未使用</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="104"/>
-        <location filename="PageWidgets/BattleEditor.cpp" line="138"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="103"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="137"/>
         <source>Sélectionner tout</source>
         <translatorcomment>Select all</translatorcomment>
         <translation>すべてチェック</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="109"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="108"/>
         <source>Scannés au moins une fois</source>
         <translatorcomment>Scanned Once</translatorcomment>
         <translation>ライブラで確認済み</translation>
@@ -2644,7 +2648,8 @@ By default Hyne attempts to automatically sign saves, but in case of error, you 
     </message>
     <message>
         <location filename="PageWidgets/PersoEditor.cpp" line="456"/>
-        <source>Protection :</source>
+        <source>Précision :</source>
+        <oldsource>Protection :</oldsource>
         <translatorcomment>Hit%:</translatorcomment>
         <translation>命中 :</translation>
     </message>
@@ -9159,20 +9164,20 @@ Diodon = Fastitocalon-F = フォカロルフェイク</translatorcomment>
     </message>
     <message>
         <location filename="SavecardData.cpp" line="622"/>
-        <location filename="SavecardData.cpp" line="716"/>
-        <location filename="SavecardData.cpp" line="852"/>
+        <location filename="SavecardData.cpp" line="725"/>
+        <location filename="SavecardData.cpp" line="861"/>
         <source>Impossible de créer un fichier temporaire</source>
         <translation>一時ファイルが作成できません</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="673"/>
+        <location filename="SavecardData.cpp" line="682"/>
         <source>Type non supporté pour la sauvegarde.
 %1</source>
         <translation type="unfinished">Unsupported type %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="691"/>
-        <location filename="SavecardData.cpp" line="917"/>
+        <location filename="SavecardData.cpp" line="700"/>
+        <location filename="SavecardData.cpp" line="926"/>
         <source>Impossible de supprimer le fichier !
 %1
 Échec de la sauvegarde.
@@ -9183,9 +9188,9 @@ Vérifiez que le fichier n&apos;est pas utilisé par un autre programme.</source
 他のプログラムがファイルを使用していないか確認してください。</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="699"/>
-        <location filename="SavecardData.cpp" line="830"/>
-        <location filename="SavecardData.cpp" line="928"/>
+        <location filename="SavecardData.cpp" line="708"/>
+        <location filename="SavecardData.cpp" line="839"/>
+        <location filename="SavecardData.cpp" line="937"/>
         <source>Échec de la sauvegarde.</source>
         <translation>保存に失敗しました。</translation>
     </message>
@@ -9194,34 +9199,34 @@ Vérifiez que le fichier n&apos;est pas utilisé par un autre programme.</source
         <translation type="obsolete">そのセーブはファイナルファンタジーVIIIからきません。</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="745"/>
+        <location filename="SavecardData.cpp" line="754"/>
         <source>Le fichier &apos;metadata.xml&apos; n&apos;a pas été trouvé dans le dossier &apos;%1&apos;.
 Essayez de signer vos sauvegardes manuellement (Fichier &gt; Signer les sauv. pour le Cloud).</source>
         <translation type="unfinished">The &apos;metadata.xml&apos; file was not found in the directory &apos;%1&apos;.
 Try to sign your saves manually (File &gt; Sign saves for the Cloud).</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="748"/>
+        <location filename="SavecardData.cpp" line="757"/>
         <source>Le fichier &apos;metadata.xml&apos; n&apos;a pas pu être ouvert.
 %1</source>
         <translation type="unfinished">The &apos;metadata.xml&apos; file cannot be opened.
 %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="759"/>
-        <location filename="SavecardData.cpp" line="812"/>
+        <location filename="SavecardData.cpp" line="768"/>
+        <location filename="SavecardData.cpp" line="821"/>
         <source>Le fichier &apos;metadata.xml&apos; n&apos;a pas pu être mis à jour.
 %1</source>
         <translation type="unfinished">The &apos;metadata.xml&apos; file cannot be updated.
 %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="773"/>
+        <location filename="SavecardData.cpp" line="782"/>
         <source>Pas de MC Header défini.</source>
         <translation type="unfinished">Undefined MC Header.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="821"/>
+        <location filename="SavecardData.cpp" line="830"/>
         <source>Impossible de supprimer le fichier !
 %1
 Échec de la sauvegarde.
@@ -9280,7 +9285,7 @@ Try to launch %2 as admin.</translation>
         <translation type="unfinished">Invalid &apos;slot&apos; attribute</translation>
     </message>
     <message>
-        <location filename="Metadata.cpp" line="158"/>
+        <location filename="Metadata.cpp" line="159"/>
         <source>Erreur inconnue</source>
         <translation type="unfinished">Unknown error</translation>
     </message>
