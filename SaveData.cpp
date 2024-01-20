@@ -86,7 +86,12 @@ QByteArray SaveData::save(bool convertAnalogConfig) const
 		return ret.leftJustified(SAVE_SIZE, '\x00', true);
 	}
 
-	quint16 checksum = calcChecksum((char *)&_mainData);//On calcule le checksum à partir de la partie gf
+	MAIN mainData;
+	memcpy(&mainData, &_mainData, sizeof(_mainData));
+	if (convertAnalogConfig) {
+		mainData.config.analog_volume = (mainData.config.analog_volume & 0x80) | 100;
+	}
+	quint16 checksum = calcChecksum((char *)&mainData);//On calcule le checksum à partir de la partie gf
 
 	ret.append("SC", 2);
 	ret.append(_header.at(2));// icon frames
@@ -95,9 +100,9 @@ QByteArray SaveData::save(bool convertAnalogConfig) const
 		ret.append("\x82\x65\x82\x65\x82\x57\x81\x6D", 8);// FF8[
 		ret.append(FF8Text::numToBiosText(_id+1, 2));// II
 		ret.append("\x81\x6E\x81\x5E", 4);// ]/
-		ret.append(FF8Text::numToBiosText(Config::hour(_mainData.misc2.game_time, _freqValue), 2));// HH
+		ret.append(FF8Text::numToBiosText(Config::hour(mainData.misc2.game_time, _freqValue), 2));// HH
 		ret.append("\x81\x46", 2);// :
-		ret.append(FF8Text::numToBiosText(Config::min(_mainData.misc2.game_time, _freqValue), 2));// MM
+		ret.append(FF8Text::numToBiosText(Config::min(mainData.misc2.game_time, _freqValue), 2));// MM
 		ret.append(_header.right(66));
 	} else {
 		ret.append(_header.right(92));
@@ -106,11 +111,6 @@ QByteArray SaveData::save(bool convertAnalogConfig) const
 	ret.append((char *)&checksum, 2);
 	ret.append("\xFF\x08", 2);
 	ret.append((char *)&_descData, sizeof(_descData));
-    MAIN mainData;
-    memcpy(&mainData, &_mainData, sizeof(_mainData));
-    if (convertAnalogConfig) {
-        mainData.config.analog_volume = (mainData.config.analog_volume & 0x80) | 100;
-    }
 	ret.append((char *)&mainData, sizeof(mainData));
 	ret.append((char *)&checksum, 2);
 	ret.append(QByteArray(2782,'\x00'));
