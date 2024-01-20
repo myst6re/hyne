@@ -76,6 +76,7 @@ private slots:
 signals:
 	void changed();
 	void released(SaveData *saveData);
+	void externalFileChanged(const QString &path);
 private:
 	void moveDraggedSave(int saveID);
 	void replaceSaveData(int saveID, const QByteArray &mimeData);

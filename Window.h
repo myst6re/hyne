@@ -29,7 +29,7 @@ class Window : public QWidget
 {
     Q_OBJECT
 public:
-	enum OpenType { File, Slot1, Slot2 };
+	enum OpenType { File, Slot1, Slot2, Dir };
 
 	explicit Window(bool isNew = false);
 	virtual ~Window();
@@ -45,9 +45,11 @@ private slots:
 	void newFile();
 	inline void slot1() { open(Slot1); }
 	inline void slot2() { open(Slot2); }
+	inline void openDir() { open(Dir); }
 	void open(OpenType=File);
 	bool closeFile(bool quit=false);
 	void reload();
+	void notifyFileChanged(const QString &path);
 	void openRecentFile(QAction *);
 	void save();
 	bool exportAs();

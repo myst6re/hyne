@@ -77,7 +77,7 @@ void SaveData::open(const QByteArray &data, const QByteArray &MCHeader)
 	}
 }
 
-QByteArray SaveData::save() const
+QByteArray SaveData::save(bool convertAnalogConfig) const
 {
 	QByteArray ret;
 
@@ -106,7 +106,12 @@ QByteArray SaveData::save() const
 	ret.append((char *)&checksum, 2);
 	ret.append("\xFF\x08", 2);
 	ret.append((char *)&_descData, sizeof(_descData));
-	ret.append((char *)&_mainData, sizeof(_mainData));
+    MAIN mainData;
+    memcpy(&mainData, &_mainData, sizeof(_mainData));
+    if (convertAnalogConfig) {
+        mainData.config.analog_volume = (mainData.config.analog_volume & 0x80) | 100;
+    }
+	ret.append((char *)&mainData, sizeof(mainData));
 	ret.append((char *)&checksum, 2);
 	ret.append(QByteArray(2782,'\x00'));
 

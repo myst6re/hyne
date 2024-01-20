@@ -58,7 +58,7 @@ public:
 	SaveData *getSave(int id) const;
 	int saveCount() const;
 	bool saveMemoryCard(const QString &saveAs, Type newType);
-	bool saveOne(const SaveData *save, const QString &saveAs, Type newType);
+	bool saveOne(const SaveData *save, const QString &saveAs, Type newType, bool convertAnalogConfig = false);
 	bool save2PS(const QList<int> &ids, const QString &path, const Type newType, const QByteArray &MCHeader);
 	bool saveDirectory(const QString &dir = QString());
 
@@ -101,7 +101,8 @@ private:
 	bool sstate_ePSXe();
 	bool sstate_pSX();
 	bool sstate(const QByteArray &fdata, const QByteArray &MCHeader);
-	void directory(const QString &filePattern);
+	void slot(const QString &filePattern);
+	void directory();
 	void addSave(const QByteArray &data=QByteArray(), const QByteArray &header=QByteArray(), bool occupied=false);
 	QByteArray header(QFile *srcFile, Type newType, bool saveAs);
 	inline void setErrorString(const QString &errorString) {
@@ -116,6 +117,7 @@ private:
 	QFileSystemWatcher fileWatcher;
 #endif
 	QList<SaveData *> saves;
+	QStringList _savePaths;
 	bool _isModified;
 	QByteArray _description;
 	quint8 _slot;

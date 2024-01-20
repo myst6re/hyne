@@ -48,6 +48,7 @@ Window::Window(bool isNew) :
 
 	QAction *actionNew = menu->addAction(tr("&Nouveau..."), this, SLOT(newFile()), QKeySequence::New);
 	QAction *actionOpen = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("&Ouvrir..."), this, SLOT(open()), QKeySequence::Open);
+	QAction *actionOpenDir = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DirOpenIcon), tr("&Ouvrir un dossier..."), this, SLOT(openDir()), QKeySequence::Open);
 	actionReload = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_BrowserReload), tr("&Recharger depuis le disque"), this, SLOT(reload()), QKeySequence::Refresh);
 	actionReload->setEnabled(false);
 	actionSave = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton), tr("&Enregistrer"), this, SLOT(save()), QKeySequence::Save);
@@ -150,6 +151,7 @@ Window::Window(bool isNew) :
 	startWidget = new StartWidget(this);
 	startWidget->addAction(actionNew);
 	startWidget->addAction(actionOpen);
+	startWidget->addAction(actionOpenDir);
 	if (hasSlots) {
 		startWidget->addAction(actionSlot1);
 		startWidget->addAction(actionSlot2);
@@ -294,17 +296,25 @@ void Window::open(OpenType slot)
 			path = loadPath;
 		else if (!path.isEmpty())
 			path.append("/Save");
-		path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path,
-		                                    tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 ff8slot* *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;"
-		                                       "FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm);;"
-		                                       "FF8 PC save (save?? *.ff8);;"
-		                                       "FF8 Switch save (ff8slot*);;"
-		                                       "FF8 vgs memorycard (*.mem *.vgs);;"
-		                                       "FF8 gme memorycard (*.gme);;"
-		                                       "FF8 PSN memorycard (*.vmp);;"
-		                                       "FF8 PS3 memorycard/pSX save state (*.psv);;"
-		                                       "ePSXe save state (*.000 *.001 *.002 *.003 *.004);;"
-		                                       "Tous les fichiers (*)"));
+
+		if (slot == Dir)
+		{
+			path = QFileDialog::getExistingDirectory(this, tr("Ouvrir"), path);
+		}
+		else
+		{
+			path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path,
+			                                    tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 ff8slot* *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;"
+			                                       "FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm);;"
+			                                       "FF8 PC save (save?? *.ff8);;"
+			                                       "FF8 Switch save (ff8slot*);;"
+			                                       "FF8 vgs memorycard (*.mem *.vgs);;"
+			                                       "FF8 gme memorycard (*.gme);;"
+			                                       "FF8 PSN memorycard (*.vmp);;"
+			                                       "FF8 PS3 memorycard/pSX save state (*.psv);;"
+			                                       "ePSXe save state (*.000 *.001 *.002 *.003 *.004);;"
+			                                       "Tous les fichiers (*)"));
+		}
 		if (path.isNull())		return;
 
 		int index = path.lastIndexOf('/');
@@ -564,7 +574,7 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 				}
 			}
 
-			ok = saves->saveOne(save, path, newType);
+			ok = saves->saveOne(save, path, newType, true);
 		}
 	}
 
@@ -688,6 +698,7 @@ void Window::saveView()
 	if (!saveList) {
 		saveList = new SavecardWidget(this);
 		connect(saveList->view(), SIGNAL(changed()), SLOT(setModified()));
+		connect(saveList->view(), SIGNAL(externalFileChanged(const QString&)), SLOT(notifyFileChanged(const QString&)));
 		connect(saveList->view(), SIGNAL(released(SaveData*)), SLOT(editView(SaveData*)));
 		stackedLayout->addWidget(saveList);
 	} else {
@@ -849,6 +860,24 @@ void Window::restartNow()
 	}
 	Data::reload();
     QMessageBox::information(this, title, text);
+}
+
+void Window::notifyFileChanged(const QString &path)
+{
+	if (!QFile::exists(path))
+	{
+		QMessageBox::warning(this, tr("Fichier supprimé"),
+		                     tr("Le fichier '%1' a été supprimé par un programme externe !").arg(path));
+	}
+	else
+	{
+		QMessageBox::StandardButton button = QMessageBox::warning(this, tr("Fichier modifié"),
+		                                                          tr("Le fichier '%1' a été modifié par un programme externe.").arg(path),
+		                                                          QMessageBox::Ok | QMessageBox::Reset);
+		if (button == QMessageBox::Reset) {
+			reload();
+		}
+	}
 }
 
 /*void Window::changeEvent(QEvent *e)

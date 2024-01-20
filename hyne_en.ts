@@ -2362,7 +2362,8 @@ By default Hyne attempts to automatically sign saves, but in case of error, you 
     </message>
     <message>
         <location filename="PageWidgets/PersoEditor.cpp" line="456"/>
-        <source>Protection :</source>
+        <source>Précision :</source>
+        <oldsource>Protection :</oldsource>
         <translation>Hit%:</translation>
     </message>
     <message>
@@ -8020,20 +8021,20 @@ By default Hyne attempts to automatically sign saves, but in case of error, you 
     </message>
     <message>
         <location filename="SavecardData.cpp" line="622"/>
-        <location filename="SavecardData.cpp" line="716"/>
-        <location filename="SavecardData.cpp" line="852"/>
+        <location filename="SavecardData.cpp" line="725"/>
+        <location filename="SavecardData.cpp" line="861"/>
         <source>Impossible de créer un fichier temporaire</source>
         <translation>Cannot create temporary file</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="673"/>
+        <location filename="SavecardData.cpp" line="682"/>
         <source>Type non supporté pour la sauvegarde.
 %1</source>
         <translation>Unsupported type %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="691"/>
-        <location filename="SavecardData.cpp" line="917"/>
+        <location filename="SavecardData.cpp" line="700"/>
+        <location filename="SavecardData.cpp" line="926"/>
         <source>Impossible de supprimer le fichier !
 %1
 Échec de la sauvegarde.
@@ -8044,9 +8045,9 @@ Failed to save.
 Verify that the file is not used by another program.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="699"/>
-        <location filename="SavecardData.cpp" line="830"/>
-        <location filename="SavecardData.cpp" line="928"/>
+        <location filename="SavecardData.cpp" line="708"/>
+        <location filename="SavecardData.cpp" line="839"/>
+        <location filename="SavecardData.cpp" line="937"/>
         <source>Échec de la sauvegarde.</source>
         <translation>Save failed.</translation>
     </message>
@@ -8055,34 +8056,34 @@ Verify that the file is not used by another program.</translation>
         <translation type="vanished">This save is not from Final Fantasy VIII.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="745"/>
+        <location filename="SavecardData.cpp" line="754"/>
         <source>Le fichier &apos;metadata.xml&apos; n&apos;a pas été trouvé dans le dossier &apos;%1&apos;.
 Essayez de signer vos sauvegardes manuellement (Fichier &gt; Signer les sauv. pour le Cloud).</source>
         <translation>The &apos;metadata.xml&apos; file was not found in the directory &apos;%1&apos;.
 Try to sign your saves manually (File &gt; Sign saves for the Cloud).</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="748"/>
+        <location filename="SavecardData.cpp" line="757"/>
         <source>Le fichier &apos;metadata.xml&apos; n&apos;a pas pu être ouvert.
 %1</source>
         <translation>The &apos;metadata.xml&apos; file cannot be opened.
 %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="759"/>
-        <location filename="SavecardData.cpp" line="812"/>
+        <location filename="SavecardData.cpp" line="768"/>
+        <location filename="SavecardData.cpp" line="821"/>
         <source>Le fichier &apos;metadata.xml&apos; n&apos;a pas pu être mis à jour.
 %1</source>
         <translation>The &apos;metadata.xml&apos; file cannot be updated.
 %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="773"/>
+        <location filename="SavecardData.cpp" line="782"/>
         <source>Pas de MC Header défini.</source>
         <translation>Undefined MC Header.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="821"/>
+        <location filename="SavecardData.cpp" line="830"/>
         <source>Impossible de supprimer le fichier !
 %1
 Échec de la sauvegarde.
@@ -8141,7 +8142,7 @@ Try to launch %2 as admin.</translation>
         <translation>Invalid &apos;slot&apos; attribute</translation>
     </message>
     <message>
-        <location filename="Metadata.cpp" line="158"/>
+        <location filename="Metadata.cpp" line="159"/>
         <source>Erreur inconnue</source>
         <translation>Unknown error</translation>
     </message>
