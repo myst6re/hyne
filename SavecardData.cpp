@@ -47,10 +47,15 @@ bool SavecardData::open(const QString &path, quint8 slot)
 {
 	if (slot)
 	{
+		_slot = slot;
 		setPath(QDir::fromNativeSeparators(QDir::cleanPath(path)) + "/");
 		setType(PcSlot);
 
-		directory(_ff8Installation.saveNamePattern(_slot));
+		if (slot == 3) {
+			directory();
+		} else {
+			this->slot(_ff8Installation.saveNamePattern(slot));
+		}
 		_ok = !saves.isEmpty();
 	}
 	else
@@ -549,7 +554,7 @@ bool SavecardData::sstate(const QByteArray &fdata, const QByteArray &MCHeader)
 	return true;
 }
 
-void SavecardData::directory(const QString &filePattern)
+void SavecardData::slot(const QString &filePattern)
 {
 	QString dirname = this->dirname();
 
@@ -559,6 +564,20 @@ void SavecardData::directory(const QString &filePattern)
 		path = dirname + path.replace("{num}", num);
 		if (!pc(path)) {
 			addSave(); // Empty save
+		}
+	}
+
+	LZS::clear();
+}
+
+void SavecardData::directory()
+{
+	QDir dir(this->dirname());
+	QStringList files = dir.entryList(QStringList("*save??*"), QDir::Files);
+
+	for (const QString &file: qAsConst(files)) {
+		if (pc(dir.filePath(file))) {
+			_savePaths.append(file);
 		}
 	}
 
@@ -714,7 +733,7 @@ bool SavecardData::saveMemoryCard(const QString &saveAs, Type newType)
 	return true;
 }
 
-bool SavecardData::saveOne(const SaveData *save, const QString &saveAs, Type newType)
+bool SavecardData::saveOne(const SaveData *save, const QString &saveAs, Type newType, bool convertAnalogConfig)
 {
 	setErrorString(QString());
 
@@ -776,7 +795,7 @@ bool SavecardData::saveOne(const SaveData *save, const QString &saveAs, Type new
 	QByteArray result;
 
 	if (newType == PcUncompressed) {
-		result = save->save();
+		result = save->save(convertAnalogConfig);
 	} else if (newType == Psv) {
 		if (!save->hasMCHeader()) {
 			setErrorString(QObject::tr("Pas de MC Header défini."));
@@ -796,10 +815,10 @@ bool SavecardData::saveOne(const SaveData *save, const QString &saveAs, Type new
 					  "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x20\x00\x00"
 					  "\x03\x90\x00\x00", 52); // unknown (type 1 = PS1 or 2 = PS2 at offset 12)
 		result.append(save->MCHeader().mid(10, 32).leftJustified(32, '\0')); // Country + prod code + identifier
-		result.append(save->save());
+		result.append(save->save(convertAnalogConfig));
 		temp.write(CryptographicHash::hashPsv(result));
 	} else {
-		result = LZS::compress(save->save());
+		result = LZS::compress(save->save(convertAnalogConfig));
 		int size = result.size();
 		result.prepend((char *)&size, 4);
 		if (newType == Switch) {
@@ -1034,12 +1053,23 @@ bool SavecardData::saveDirectory(const QString &dir)
 
 	filePattern = _ff8Installation.saveNamePattern(_slot);
 
+	QDir directory(dirname);
+	if (!directory.exists()) {
+		directory.mkpath(".");
+	}
+
 	for (const SaveData *save : qAsConst(saves)) {
 		if (save->isModified()) {
-			QString num = QString("%1").arg(i + 1, 2, 10, QChar('0'));
-			QString path = filePattern;
+			QString path;
 
-			if (!saveOne(save, dirname + path.replace("{num}", num), SavecardData::Pc)) {
+			if (i < _savePaths.size()) {
+				path = _savePaths.at(i);
+			} else {
+				QString num = QString("%1").arg(i + 1, 2, 10, QChar('0'));
+				path = filePattern.replace("{num}", num);
+			}
+
+			if (!saveOne(save, dirname + path, SavecardData::Pc)) {
 				ok = false;
 			}
 		}

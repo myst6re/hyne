@@ -41,9 +41,9 @@ protected:
 private:
 	QGroupBox *unknownGroupE;
 	QCheckBox *monsterkillsAuto;
-	SpinBox32 *battlewinE, *tombyE, *monsterkillsE, *unknown1E, *unknown2E;
+	SpinBox32 *battlewinE, *tombyE, *monsterkillsE, *unknown1E;
 	SpinBox16 *battleescE;
-	QCheckBox *tombySrE, *firstr1E, *firsteleE, *firstmtlE, *firstirvinelbE;
+	QCheckBox *tombySrE, *ufoE, *firstr1E, *firsteleE, *firstmtlE, *firstirvinelbE;
 	QTreeWidget *firstdrawE_list, *firstscanE_list;
 };
 

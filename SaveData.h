@@ -186,7 +186,7 @@ struct ITEMS//428
 PACK(
 struct MISC2//144
 {
-    quint32 game_time; // var75 (in battle scripts)
+	quint32 game_time; // var75 (in battle scripts)
 	quint32 countdown;
 	// Battle vars (75)
 	quint32 u1;
@@ -196,7 +196,7 @@ struct MISC2//144
 	quint32 u3;
 	quint32 tomberry_vaincus; // var81 (in battle scripts)
 	quint32 tomberry_sr_vaincu; // var82 (in battle scripts)
-	quint32 u4;
+	quint32 ufo_battle_encountered;
 	quint32 elmidea_battle_r1; // var84 (in battle scripts)
 	quint32 succube_battle_elemental; // var85 (in battle scripts)
 	quint32 trex_battle_mental; // var86 (in battle scripts)
@@ -418,15 +418,15 @@ struct CHOCOBO//64
 PACK(
 struct MAIN//4944 (~4242 used)
 {
-	GFORCES gfs[16];//			(pos=464|ar_pos_fr=pos + 489104)	[1088/1088 editable]
-	PERSONNAGES persos[8];//	(pos=1552)		[1216/1216 editable]
+	GFORCES gfs[16];//			(pos=464|ar_pos_fr=pos + 489104)	[1088/1088 editable] 0x1CFD980 FR PC 1.02?
+	PERSONNAGES persos[8];//	(pos=1552)		[1216/1216 editable] 0x1CFDDC0 FR PC 1.02
 	SHOP shops[20];//			(pos=2768)		[400/400 editable]
-	CONFIG config;//			(pos=3168)		[20/20 editable]
+	CONFIG config;//			(pos=3168)		[20/20 editable] 0x1CFE410 FR PC 1.02 ?
 	MISC1 misc1;//				(pos=3188)		[32/32 editable]
 	LIMITB limitb;//			(pos=3220)		[16/16 editable]
 	ITEMS items;//				(pos=3236)		[428/428 editable]
 	MISC2 misc2;//				(pos=3664)		[104/144 editable]
-	MISC3 misc3;//				(pos=3808)		[138/256 editable]
+	MISC3 misc3;//				(pos=3808)		[138/256 editable] 0x1CFE690 FR PC 1.02
 	FIELD field;//				(pos=4064)		[30/1024 editable] (702 unused)
 	WORLDMAP worldmap;//		(pos=5088)		[13/128 editable]
 	TTCARDS ttcards;//			(pos=5216)		[128/128 editable]
@@ -459,7 +459,7 @@ public:
 	SaveData(int id, const QByteArray &data, const QByteArray &MCHeader, bool hasExistsInfos, bool isRaw);
 	// Operations
 	void open(const QByteArray &data, const QByteArray &MCHeader);
-	QByteArray save() const;
+	QByteArray save(bool convertAnalogConfig = false) const;
 	void remove();
 	void restore();
 	// Informations

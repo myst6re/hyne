@@ -71,16 +71,7 @@ void SavecardView::notifyFileChanged(const QString &path)
 {
 	if (!notify)	return;
 	notify = false;
-	if (!QFile::exists(path))
-	{
-		QMessageBox::warning(this->parentWidget(), tr("Fichier supprimé"),
-							 tr("Le fichier '%1' a été supprimé par un programme externe !").arg(path));
-	}
-	else
-	{
-		QMessageBox::warning(this->parentWidget(), tr("Fichier modifié"),
-							 tr("Le fichier '%1' a été modifié par un programme externe.").arg(path));
-	}
+	emit externalFileChanged(path);
 	notify = true;
 }
 
@@ -297,7 +288,7 @@ void SavecardView::exportOne(int saveID)
 	int index = path.lastIndexOf('/');
 	Config::setValue(Config::SavePath, index == -1 ? path : path.left(index));
 
-	if (!_data->saveOne(saveData, path, type)) {
+    if (!_data->saveOne(saveData, path, type, _data->type() != type && (type == SavecardData::Pc || type == SavecardData::PcUncompressed))) {
 		QMessageBox::warning(this, tr("Échec"), tr("Enregistrement échoué, vérifiez que le fichier cible n'est pas utilisé."));
 	}
 }
