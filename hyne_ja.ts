@@ -71,94 +71,98 @@
         <translation>トンベリキングに勝利</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="50"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="49"/>
+        <source>UFO vaincu</source>
+        <translation type="unfinished">UFO Killed</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/BattleEditor.cpp" line="51"/>
         <source>Premier Elmidea</source>
         <translatorcomment>First Bite Bug</translatorcomment>
         <translation>最初のバイトバグ戦 (w. キスティス)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="51"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="52"/>
         <source>Premier Succube</source>
         <translatorcomment>First Bomb</translatorcomment>
         <translation>最初のボム戦 (w. キスティス)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="52"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="53"/>
         <source>Premier T-Rex</source>
         <translatorcomment>First T-Rexaur</translatorcomment>
         <translation>最初のアルケノダイオス戦 (w. キスティス)</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="53"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="54"/>
         <source>Premier combat avec Irvine</source>
         <translatorcomment>First Battle with Irvine</translatorcomment>
         <translation>アーヴァインの加わった最初のバトル</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="56"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="57"/>
         <source>Combats gagnés :</source>
         <translatorcomment>Battles won:</translatorcomment>
         <translation>勝った回数 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="58"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="59"/>
         <source>Combats fuis :</source>
         <translatorcomment>Battles escaped:</translatorcomment>
         <translation>逃げた回数 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="60"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="61"/>
         <source>Monstres tués :</source>
         <translatorcomment>Monsters killed:</translatorcomment>
         <translation>倒した敵の数 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="62"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="63"/>
         <source>Tomberry tués :</source>
         <translatorcomment>Tonberry killed:</translatorcomment>
         <translation>倒したトンベリの数 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="70"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="72"/>
         <source>Inconnu</source>
         <translatorcomment>Unknown</translatorcomment>
         <translation>不明</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="76"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="77"/>
         <source>Inconnu 1 :</source>
         <translatorcomment>Unknown 1:</translatorcomment>
         <translation>詳細不明 1 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="78"/>
         <source>Inconnu 2 :</source>
         <translatorcomment>Unknown 2:</translatorcomment>
-        <translation>詳細不明 2 :</translation>
+        <translation type="vanished">詳細不明 2 :</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="86"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="85"/>
         <source>Magies vues au moins une fois</source>
         <translatorcomment>Magic seen once</translatorcomment>
         <translation>既知の魔法</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="99"/>
-        <location filename="PageWidgets/BattleEditor.cpp" line="121"/>
-        <location filename="PageWidgets/BattleEditor.cpp" line="133"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="98"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="120"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="132"/>
         <source>Inutilisé</source>
         <translatorcomment>Unused</translatorcomment>
         <translation>未使用</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="104"/>
-        <location filename="PageWidgets/BattleEditor.cpp" line="138"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="103"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="137"/>
         <source>Sélectionner tout</source>
         <translatorcomment>Select all</translatorcomment>
         <translation>すべてチェック</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="109"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="108"/>
         <source>Scannés au moins une fois</source>
         <translatorcomment>Scanned Once</translatorcomment>
         <translation>ライブラで確認済み</translation>

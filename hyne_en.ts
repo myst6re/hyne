@@ -62,80 +62,84 @@
         <translation>Tonberry Sr killed</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="50"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="49"/>
+        <source>UFO vaincu</source>
+        <translation>UFO Killed</translation>
+    </message>
+    <message>
+        <location filename="PageWidgets/BattleEditor.cpp" line="51"/>
         <source>Premier Elmidea</source>
         <translation>First Bite Bug</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="51"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="52"/>
         <source>Premier Succube</source>
         <translation>First Bomb</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="52"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="53"/>
         <source>Premier T-Rex</source>
         <translation>First T-Rexaur</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="53"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="54"/>
         <source>Premier combat avec Irvine</source>
         <translation>First Battle with Irvine</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="56"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="57"/>
         <source>Combats gagnés :</source>
         <translation>Battles won:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="58"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="59"/>
         <source>Combats fuis :</source>
         <translation>Battles escaped:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="60"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="61"/>
         <source>Monstres tués :</source>
         <translation>Monsters killed:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="62"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="63"/>
         <source>Tomberry tués :</source>
         <translation>Tonberry killed:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="70"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="72"/>
         <source>Inconnu</source>
         <translation>Unknown</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="76"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="77"/>
         <source>Inconnu 1 :</source>
         <translation>Unknown 1:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="78"/>
         <source>Inconnu 2 :</source>
-        <translation>Unknown 2:</translation>
+        <translation type="vanished">Unknown 2:</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="86"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="85"/>
         <source>Magies vues au moins une fois</source>
         <translation>Magic seen once</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="99"/>
-        <location filename="PageWidgets/BattleEditor.cpp" line="121"/>
-        <location filename="PageWidgets/BattleEditor.cpp" line="133"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="98"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="120"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="132"/>
         <source>Inutilisé</source>
         <translation>Unused</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="104"/>
-        <location filename="PageWidgets/BattleEditor.cpp" line="138"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="103"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="137"/>
         <source>Sélectionner tout</source>
         <translation>Select all</translation>
     </message>
     <message>
-        <location filename="PageWidgets/BattleEditor.cpp" line="109"/>
+        <location filename="PageWidgets/BattleEditor.cpp" line="108"/>
         <source>Scannés au moins une fois</source>
         <translation>Scanned Once</translation>
     </message>
