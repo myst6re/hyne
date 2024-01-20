@@ -56,5 +56,3 @@ deploy new versions (tagged in the repository).
 ## How to contribute
 
 Pull requests are welcome on [GitHub](https://github.com/myst6re/hyne).
-Ensure that you have commited in `develop` branch, otherwise I will not accept
-your request.
