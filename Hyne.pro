@@ -7,31 +7,20 @@ if(win32|macx) {
 VERSION = 1.11.4
 
 DEFINES += PROGVERSION=$$VERSION PROGNAME=Hyne
+DEFINES += QT_DISABLE_DEPRECATED_UP_TO=0x050F00
 
-QT += core gui widgets
+QT += core core5compat gui widgets
 
 # include zlib
 !win32 {
     LIBS += -lz
 } else {
-    exists($$[QT_INSTALL_PREFIX]/include/QtZlib) {
-        INCLUDEPATH += $$[QT_INSTALL_PREFIX]/include/QtZlib
-    } else {
-        # INCLUDEPATH += zlib
-        LIBS += -lz
-    }
+    LIBS += -lzlibstatic -L"C:\Program Files (x86)\zlib\lib" -L"C:\Program Files\zlib\lib"
+    INCLUDEPATH += "C:\Program Files (x86)\zlib\include" "C:\Program Files\zlib\include"
 }
 
 # QTaskbarButton
-qtHaveModule(winextras) {
-    QT += winextras
-} else {
-    DEFINES += HYNE_TASKBAR_FAKE
-
-    win32 {
-        message(Hyne: Taskbar button overlay icon is only available with Qt Windows Extras)
-    }
-}
+DEFINES += HYNE_TASKBAR_FAKE
 
 win32 {
     # Regedit features

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en" sourcelanguage="fr">
+<TS version="2.1" language="en_US" sourcelanguage="fr_FR">
 <context>
     <name>AllEditor</name>
     <message>
@@ -7956,89 +7956,91 @@ By default Hyne attempts to automatically sign saves, but in case of error, you 
         <translation>false</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="191"/>
+        <location filename="SavecardData.cpp" line="202"/>
         <source>Sans nom</source>
         <translation>Unnamed</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="245"/>
-        <location filename="SavecardData.cpp" line="304"/>
-        <location filename="SavecardData.cpp" line="611"/>
+        <location filename="SavecardData.cpp" line="256"/>
+        <location filename="SavecardData.cpp" line="315"/>
+        <location filename="SavecardData.cpp" line="354"/>
+        <location filename="SavecardData.cpp" line="675"/>
         <source>Le fichier n&apos;existe plus.
 %1</source>
         <translation>The file no longer exists.
 %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="250"/>
-        <location filename="SavecardData.cpp" line="309"/>
-        <location filename="SavecardData.cpp" line="499"/>
+        <location filename="SavecardData.cpp" line="261"/>
+        <location filename="SavecardData.cpp" line="320"/>
+        <location filename="SavecardData.cpp" line="359"/>
+        <location filename="SavecardData.cpp" line="549"/>
         <source>Le fichier est protégé en lecture.</source>
         <translation>The file is read-protected.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="255"/>
+        <location filename="SavecardData.cpp" line="266"/>
         <source>Fichier trop court</source>
         <translation>File too short</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="320"/>
+        <location filename="SavecardData.cpp" line="370"/>
         <source>Fichier invalide</source>
         <translation>Invalid file</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="399"/>
+        <location filename="SavecardData.cpp" line="449"/>
         <source>Impossible d&apos;ouvrir le fichier</source>
         <translation>Cannot open the file</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="464"/>
+        <location filename="SavecardData.cpp" line="514"/>
         <source>Rien trouvé</source>
         <translation>Nothing found</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="475"/>
+        <location filename="SavecardData.cpp" line="525"/>
         <source>Impossible de créer le fichier temporaire.</source>
         <translation>Unable to create the temporary file.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="479"/>
+        <location filename="SavecardData.cpp" line="529"/>
         <source>Impossible de décompresser le fichier.</source>
         <translation>Unable to uncompress the file.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="533"/>
+        <location filename="SavecardData.cpp" line="583"/>
         <source>Format invalide.</source>
         <translation>Invalid format.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="544"/>
+        <location filename="SavecardData.cpp" line="594"/>
         <source>La sauvegarde trouvée n&apos;est pas de Final Fantasy VIII.</source>
         <translation>The found save is not from Final Fantasy VIII.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="616"/>
+        <location filename="SavecardData.cpp" line="680"/>
         <source>Le fichier est protégé en lecture.
 %1</source>
         <translation>The file is read-protected.
 %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="622"/>
-        <location filename="SavecardData.cpp" line="725"/>
-        <location filename="SavecardData.cpp" line="861"/>
+        <location filename="SavecardData.cpp" line="686"/>
+        <location filename="SavecardData.cpp" line="789"/>
+        <location filename="SavecardData.cpp" line="927"/>
         <source>Impossible de créer un fichier temporaire</source>
         <translation>Cannot create temporary file</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="682"/>
+        <location filename="SavecardData.cpp" line="746"/>
         <source>Type non supporté pour la sauvegarde.
 %1</source>
         <translation>Unsupported type %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="700"/>
-        <location filename="SavecardData.cpp" line="926"/>
+        <location filename="SavecardData.cpp" line="764"/>
+        <location filename="SavecardData.cpp" line="992"/>
         <source>Impossible de supprimer le fichier !
 %1
 Échec de la sauvegarde.
@@ -8049,9 +8051,9 @@ Failed to save.
 Verify that the file is not used by another program.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="708"/>
-        <location filename="SavecardData.cpp" line="839"/>
-        <location filename="SavecardData.cpp" line="937"/>
+        <location filename="SavecardData.cpp" line="772"/>
+        <location filename="SavecardData.cpp" line="905"/>
+        <location filename="SavecardData.cpp" line="1003"/>
         <source>Échec de la sauvegarde.</source>
         <translation>Save failed.</translation>
     </message>
@@ -8060,34 +8062,34 @@ Verify that the file is not used by another program.</translation>
         <translation type="vanished">This save is not from Final Fantasy VIII.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="754"/>
+        <location filename="SavecardData.cpp" line="818"/>
         <source>Le fichier &apos;metadata.xml&apos; n&apos;a pas été trouvé dans le dossier &apos;%1&apos;.
 Essayez de signer vos sauvegardes manuellement (Fichier &gt; Signer les sauv. pour le Cloud).</source>
         <translation>The &apos;metadata.xml&apos; file was not found in the directory &apos;%1&apos;.
 Try to sign your saves manually (File &gt; Sign saves for the Cloud).</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="757"/>
+        <location filename="SavecardData.cpp" line="821"/>
         <source>Le fichier &apos;metadata.xml&apos; n&apos;a pas pu être ouvert.
 %1</source>
         <translation>The &apos;metadata.xml&apos; file cannot be opened.
 %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="768"/>
-        <location filename="SavecardData.cpp" line="821"/>
+        <location filename="SavecardData.cpp" line="832"/>
+        <location filename="SavecardData.cpp" line="887"/>
         <source>Le fichier &apos;metadata.xml&apos; n&apos;a pas pu être mis à jour.
 %1</source>
         <translation>The &apos;metadata.xml&apos; file cannot be updated.
 %1</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="782"/>
+        <location filename="SavecardData.cpp" line="846"/>
         <source>Pas de MC Header défini.</source>
         <translation>Undefined MC Header.</translation>
     </message>
     <message>
-        <location filename="SavecardData.cpp" line="830"/>
+        <location filename="SavecardData.cpp" line="896"/>
         <source>Impossible de supprimer le fichier !
 %1
 Échec de la sauvegarde.
@@ -8381,64 +8383,60 @@ Would you analyze it to get the right format?</translation>
 <context>
     <name>SavecardView</name>
     <message>
-        <location filename="SavecardView.cpp" line="76"/>
         <source>Fichier supprimé</source>
-        <translation>File removed</translation>
+        <translation type="vanished">File removed</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="77"/>
         <source>Le fichier &apos;%1&apos; a été supprimé par un programme externe !</source>
-        <translation>The file &apos;%1&apos; has been removed by another program!</translation>
+        <translation type="vanished">The file &apos;%1&apos; has been removed by another program!</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="81"/>
         <source>Fichier modifié</source>
-        <translation>File modified</translation>
+        <translation type="vanished">File modified</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="82"/>
         <source>Le fichier &apos;%1&apos; a été modifié par un programme externe.</source>
-        <translation>The file &apos;%1&apos; has been modified by another program.</translation>
+        <translation type="vanished">The file &apos;%1&apos; has been modified by another program.</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="205"/>
+        <location filename="SavecardView.cpp" line="196"/>
         <source>Écraser</source>
         <translation>Overwrite</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="205"/>
+        <location filename="SavecardView.cpp" line="196"/>
         <source>Tout le contenu de la sauvegarde sera écrasé.
 Continuer ?</source>
         <translation>All content of the save will be overwritten.
 Continue?</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="261"/>
+        <location filename="SavecardView.cpp" line="252"/>
         <source>FF8 PC save (*.ff8 *)</source>
         <translation>FF8 PC save (*.ff8 *)</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="262"/>
+        <location filename="SavecardView.cpp" line="253"/>
         <source>PS4 Remaster save (*.ff8 *)</source>
         <translation>PS4 Remaster save (*.ff8 *)</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="263"/>
+        <location filename="SavecardView.cpp" line="254"/>
         <source>Switch save (ff8slot*)</source>
         <translation>Switch save (ff8slot*)</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="264"/>
+        <location filename="SavecardView.cpp" line="255"/>
         <source>PSN save (*.psv)</source>
         <translation>PSN save (*.psv)</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="281"/>
+        <location filename="SavecardView.cpp" line="272"/>
         <source>Exporter</source>
         <translation>Export</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="858"/>
+        <location filename="SavecardView.cpp" line="849"/>
         <source>&amp;Exporter cette sauvegarde...</source>
         <translation>&amp;Export this save...</translation>
     </message>
@@ -8451,46 +8449,46 @@ Continue?</translation>
         <translation type="vanished">FF8 PC save (* *.ff8)</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="301"/>
+        <location filename="SavecardView.cpp" line="292"/>
         <source>Échec</source>
         <translation>Failed</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="301"/>
+        <location filename="SavecardView.cpp" line="292"/>
         <source>Enregistrement échoué, vérifiez que le fichier cible n&apos;est pas utilisé.</source>
         <translation>Save failed, verify that the target file is not used.</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="317"/>
+        <location filename="SavecardView.cpp" line="308"/>
         <source>Nouvelle partie</source>
         <translation>New game</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="317"/>
+        <location filename="SavecardView.cpp" line="308"/>
         <source>Tout le contenu de la sauvegarde sera remplacé par une nouvelle partie.
 Continuer ?</source>
         <translation>All content of the save will be replaced with a new game.
 Continue?</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="371"/>
+        <location filename="SavecardView.cpp" line="362"/>
         <source>Vider</source>
         <translation>Empty</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="371"/>
+        <location filename="SavecardView.cpp" line="362"/>
         <source>Tout le contenu de la sauvegarde sera vidé.
 Continuer ?</source>
         <translation>All content of the save will be emptied.
 Continue?</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="411"/>
+        <location filename="SavecardView.cpp" line="402"/>
         <source>Sauvegarde supprimée</source>
         <translation>Save deleted</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="411"/>
+        <location filename="SavecardView.cpp" line="402"/>
         <source>Cette sauvegarde a été supprimée, voulez-vous tenter de la réparer ? (succès non garanti)</source>
         <translation>This save has been deleted, do you try to repair it? (Success not guaranteed)</translation>
     </message>
@@ -8503,22 +8501,22 @@ Continue?</translation>
         <translation type="obsolete">No</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="522"/>
+        <location filename="SavecardView.cpp" line="513"/>
         <source>NV%1</source>
         <translation>LV%1</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="570"/>
+        <location filename="SavecardView.cpp" line="561"/>
         <source>Bloc occupé</source>
         <translation>Used block</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="575"/>
+        <location filename="SavecardView.cpp" line="566"/>
         <source>Bloc Disponible</source>
         <translation>unused block</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="857"/>
+        <location filename="SavecardView.cpp" line="848"/>
         <source>&amp;Modifier...</source>
         <translation>&amp;Edit...</translation>
     </message>
@@ -8527,17 +8525,17 @@ Continue?</translation>
         <translation type="vanished">&amp;Convert to PC Save...</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="860"/>
+        <location filename="SavecardView.cpp" line="851"/>
         <source>&amp;Nouvelle partie</source>
         <translation>&amp;New game</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="862"/>
+        <location filename="SavecardView.cpp" line="853"/>
         <source>&amp;Vider</source>
         <translation>E&amp;mpty</translation>
     </message>
     <message>
-        <location filename="SavecardView.cpp" line="864"/>
+        <location filename="SavecardView.cpp" line="855"/>
         <source>&amp;Propriétés...</source>
         <translation>&amp;Properties...</translation>
     </message>
@@ -9133,28 +9131,28 @@ Continue?</translation>
         <translation type="obsolete">&amp;Recent Files</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="85"/>
-        <location filename="Window.cpp" line="926"/>
+        <location filename="Window.cpp" line="86"/>
+        <location filename="Window.cpp" line="970"/>
         <source>&amp;Fermer</source>
         <translation>&amp;Close</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="87"/>
+        <location filename="Window.cpp" line="88"/>
         <source>&amp;Quitter</source>
         <translation>&amp;Exit</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="92"/>
+        <location filename="Window.cpp" line="93"/>
         <source>Fente &amp;1</source>
         <translation>Slot &amp;1</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="93"/>
+        <location filename="Window.cpp" line="94"/>
         <source>Fente &amp;2</source>
         <translation>Slot &amp;2</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="98"/>
+        <location filename="Window.cpp" line="99"/>
         <source>&amp;Paramètres</source>
         <translation>&amp;Settings</translation>
     </message>
@@ -9167,14 +9165,14 @@ Continue?</translation>
         <translation type="obsolete">High Res. font</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="123"/>
+        <location filename="Window.cpp" line="124"/>
         <source>&amp;Langue</source>
         <oldsource>&amp;Langues</oldsource>
         <translation>&amp;Language</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="145"/>
-        <location filename="Window.cpp" line="147"/>
+        <location filename="Window.cpp" line="146"/>
+        <location filename="Window.cpp" line="148"/>
         <source>&amp;?</source>
         <oldsource>?</oldsource>
         <translation>&amp;?</translation>
@@ -9224,7 +9222,8 @@ Translators:
  - Japanese: Asa</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="297"/>
+        <location filename="Window.cpp" line="302"/>
+        <location filename="Window.cpp" line="306"/>
         <source>Ouvrir</source>
         <translation>Open</translation>
     </message>
@@ -9237,7 +9236,7 @@ Translators:
         <translation type="obsolete">PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="432"/>
+        <location filename="Window.cpp" line="453"/>
         <source>VGS memorycard (*.vgs *.mem)</source>
         <oldsource>PS memorycard (*.mcr;*.ddf;*.mc;*.mcd;*.mci;*.ps;*.psm)</oldsource>
         <translation>VGS memorycard (*.vgs *.mem)</translation>
@@ -9254,34 +9253,83 @@ Continuer quand même ?</source>
 Continue anyway?</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="265"/>
-        <location filename="Window.cpp" line="350"/>
-        <location filename="Window.cpp" line="360"/>
-        <location filename="Window.cpp" line="572"/>
-        <location filename="Window.cpp" line="869"/>
-        <location filename="Window.cpp" line="872"/>
+        <location filename="Window.cpp" line="267"/>
+        <location filename="Window.cpp" line="361"/>
+        <location filename="Window.cpp" line="381"/>
+        <location filename="Window.cpp" line="597"/>
+        <location filename="Window.cpp" line="913"/>
+        <location filename="Window.cpp" line="916"/>
         <source>Erreur</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="574"/>
+        <location filename="Window.cpp" line="307"/>
+        <source>Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 ff8slot* *.mem *.vgs *.vmp *.out *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm);;FF8 PC save (save?? *.ff8);;FF8 Switch save (ff8slot*);;FF8 init.out (*.out);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;Tous les fichiers (*)</source>
+        <translation>Compatible files (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 ff8slot* *.mem *.vgs *.vmp *.out *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm);;FF8 PC save (save?? *.ff8);;FF8 Switch save (ff8slot*);;FF8 init.out (*.out);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;All files (*)</translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="368"/>
+        <location filename="Window.cpp" line="599"/>
         <source>Attention</source>
         <translation>Warning</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="869"/>
+        <location filename="Window.cpp" line="368"/>
+        <source>Le format init.out ne permet de modifier que les fonctionnalités suivantes :
+- Les G-Forces
+- Les personnages (sauf leurs noms)
+- Les boutiques
+- La configuration
+- L&apos;ordre des objets en combat, les 8 premiers objets de l&apos;inventaire, et les armes connues
+- L&apos;équipe initiale
+- Les gils
+- Le nom de Cronos
+</source>
+        <translation>The init.out format only allow to modify the following features:
+- G-Forces
+- Main characters (except their names)
+- Shops
+- Game configuration
+- Battle item order, the 8th first items in the inventory, and the known weapons
+- The initial party
+- Money (gils)
+- The Griever name
+</translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="884"/>
+        <source>Fichier supprimé</source>
+        <translation>File removed</translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="885"/>
+        <source>Le fichier &apos;%1&apos; a été supprimé par un programme externe !</source>
+        <translation>The file &apos;%1&apos; has been removed by another program!</translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="889"/>
+        <source>Fichier modifié</source>
+        <translation>File modified</translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="890"/>
+        <source>Le fichier &apos;%1&apos; a été modifié par un programme externe.</source>
+        <translation>The file &apos;%1&apos; has been modified by another program.</translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="913"/>
         <source>Final Fantasy VIII n&apos;a pas pu être lancé.
 %1</source>
         <translation>Final Fantasy VIII could not be launched.
 %1</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="51"/>
+        <location filename="Window.cpp" line="52"/>
         <source>&amp;Recharger depuis le disque</source>
         <translation>&amp;Reload from Disk</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="55"/>
+        <location filename="Window.cpp" line="56"/>
         <source>E&amp;xporter...</source>
         <translation>E&amp;xport...</translation>
     </message>
@@ -9307,7 +9355,7 @@ Continue anyway?</translation>
         <translation type="vanished">English</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="224"/>
+        <location filename="Window.cpp" line="226"/>
         <source> - save %1</source>
         <translation> - save %1</translation>
     </message>
@@ -9317,38 +9365,43 @@ Continue anyway?</translation>
         <translation>&amp;New...</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="53"/>
+        <location filename="Window.cpp" line="51"/>
+        <source>&amp;Ouvrir un dossier...</source>
+        <translation>&amp;Open a directory...</translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="54"/>
         <source>&amp;Enregistrer</source>
         <translation>&amp;Save</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="61"/>
+        <location filename="Window.cpp" line="62"/>
         <source>&amp;Propriétés...</source>
         <translation>&amp;Properties...</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="63"/>
+        <location filename="Window.cpp" line="64"/>
         <source>S&amp;igner des sauv. pour le Cloud...</source>
         <oldsource>Signer des sauv. pour le Cloud...</oldsource>
         <translation>S&amp;ign saves for the Cloud...</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="67"/>
+        <location filename="Window.cpp" line="68"/>
         <source>&amp;Lancer Final Fantasy VIII</source>
         <translation>&amp;Launch Final Fantasy VIII</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="77"/>
+        <location filename="Window.cpp" line="78"/>
         <source>Nou&amp;velle fenêtre</source>
         <translation>Ne&amp;w window</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="78"/>
+        <location filename="Window.cpp" line="79"/>
         <source>Ple&amp;in écran</source>
         <translation>&amp;Fullscreen</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="57"/>
+        <location filename="Window.cpp" line="58"/>
         <source>O&amp;uverts récemment</source>
         <translation>Recen&amp;t Files</translation>
     </message>
@@ -9357,84 +9410,83 @@ Continue anyway?</translation>
         <translation type="obsolete">New window</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="100"/>
+        <location filename="Window.cpp" line="101"/>
         <source>&amp;Mode Avancé</source>
         <translation>Advanced &amp;Mode</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="104"/>
+        <location filename="Window.cpp" line="105"/>
         <source>&amp;Images par seconde</source>
         <translation>&amp;FPS</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="105"/>
+        <location filename="Window.cpp" line="106"/>
         <source>&amp;Auto</source>
         <translation>&amp;Auto</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="109"/>
+        <location filename="Window.cpp" line="110"/>
         <source>&amp;NTSC/PC (60 images/s)</source>
         <translation>&amp;NTSC/PC (60 fps)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="113"/>
+        <location filename="Window.cpp" line="114"/>
         <source>&amp;PAL (50 images/s)</source>
         <translation>&amp;PAL (50 fps)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="119"/>
+        <location filename="Window.cpp" line="120"/>
         <source>&amp;Police haute résolution</source>
         <translation>&amp;High Res. font</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="133"/>
+        <location filename="Window.cpp" line="134"/>
         <source>Version PC</source>
         <translation>PC Version</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="237"/>
+        <location filename="Window.cpp" line="239"/>
         <source>Nouveau</source>
         <translation>New</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="239"/>
+        <location filename="Window.cpp" line="241"/>
         <source>Sans nom</source>
         <translation>Unnamed</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="241"/>
+        <location filename="Window.cpp" line="243"/>
         <source>1 sauvegarde</source>
         <translation>1 save</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="242"/>
+        <location filename="Window.cpp" line="244"/>
         <source>15 sauvegardes</source>
         <translation>15 saves</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="298"/>
         <source>Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 ff8slot* *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm);;FF8 PC save (save?? *.ff8);;FF8 Switch save (ff8slot*);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;Tous les fichiers (*)</source>
-        <translation>Compatible files (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 ff8slot* *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm);;FF8 PC save (save?? *.ff8);;FF8 Switch save (ff8slot*);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;All files (*)</translation>
+        <translation type="vanished">Compatible files (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 ff8slot* *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm);;FF8 PC save (save?? *.ff8);;FF8 Switch save (ff8slot*);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;All files (*)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="436"/>
+        <location filename="Window.cpp" line="458"/>
         <source>PS4 Remaster save (*.ff8 *)</source>
         <translation>PS4 Remaster save (*.ff8 *)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="437"/>
+        <location filename="Window.cpp" line="459"/>
         <source>Switch save (ff8slot*)</source>
         <translation>Switch save (ff8slot*)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="872"/>
+        <location filename="Window.cpp" line="916"/>
         <source>Final Fantasy VIII n&apos;a pas pu être lancé.
 Impossible de trouver le chemin du jeu.</source>
         <translation>Final Fantasy VIII cannot be started.
 Unable to find the path of the game executable.</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="912"/>
+        <location filename="Window.cpp" line="956"/>
         <source>Par myst6re&lt;br/&gt;&lt;a href=&quot;https://github.com/myst6re/hyne/&quot;&gt;github.com/myst6re/hyne&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;75% modifiable&lt;br/&gt;&lt;br/&gt;Merci à :&lt;br/&gt; - Qhimm&lt;br/&gt; - Cyberman&lt;br/&gt; - sithlord48&lt;br/&gt; - Aladore384&lt;br/&gt; - suloku&lt;br/&gt;&lt;br/&gt;Traducteurs :&lt;br/&gt; - Anglais : myst6re, Vgr&lt;br/&gt; - Japonais : Asa, Sharleen</source>
         <translation>By myst6re&lt;br/&gt;&lt;a href=&quot;https://github.com/myst6re/hyne/&quot;&gt;github.com/myst6re/hyne&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;75% editable&lt;br/&gt;&lt;br/&gt;Thanks to:&lt;br/&gt; - Qhimm&lt;br/&gt; - Cyberman&lt;br/&gt; - sithlord48&lt;br/&gt; - Aladore384&lt;br/&gt; - suloku&lt;br/&gt;&lt;br/&gt;Translators:&lt;br/&gt; - English: myst6re, Vgr&lt;br/&gt; - Japanese: Asa, Sharleen</translation>
     </message>
@@ -9448,22 +9500,22 @@ Unable to find the path of the game executable.</translation>
         <translation type="obsolete">Compatible files (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.psv save?? *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm);;FF8 PC save (save??);;FF8 vgs memorycard (*.mem *.vgs);;FF8 gme memorycard (*.gme);;FF8 PSN memorycard (*.vmp);;FF8 PS3 memorycard/pSX save state (*.psv);;ePSXe save state (*.000 *.001 *.002 *.003 *.004);;All files (*)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="320"/>
+        <location filename="Window.cpp" line="331"/>
         <source>Enregistrer ?</source>
         <translation>Save?</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="321"/>
+        <location filename="Window.cpp" line="332"/>
         <source>Voulez-vous enregistrer &apos;%1&apos; avant de fermer ?</source>
         <translation>Save file &apos;%1&apos;?</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="323"/>
+        <location filename="Window.cpp" line="334"/>
         <source>fente</source>
         <translation>slot</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="350"/>
+        <location filename="Window.cpp" line="361"/>
         <source>Fichier de type inconnu.
 Voulez-vous l&apos;analyser pour obtenir le bon format ?</source>
         <translation>Unknown file type.
@@ -9474,34 +9526,39 @@ Would you analyze it to get the right format?</translation>
         <translation type="vanished">The format %1 is protected, save will be partial and might not work.</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="431"/>
+        <location filename="Window.cpp" line="452"/>
         <source>PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm)</source>
         <oldsource>PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1)</oldsource>
         <translation>PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="433"/>
+        <location filename="Window.cpp" line="454"/>
         <source>GME memorycard (*.gme)</source>
         <oldsource>VGS memorycard (*.vgs;*.mem)</oldsource>
         <translation>GME memorycard (*.gme)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="434"/>
+        <location filename="Window.cpp" line="455"/>
         <source>PSN memorycard (*.vmp)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="435"/>
+        <location filename="Window.cpp" line="456"/>
         <source>FF8 PC save (*.ff8 *)</source>
         <translation>FF8 PC save (*.ff8 *)</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="438"/>
+        <location filename="Window.cpp" line="457"/>
+        <source>FF8 init.out (*.out)</source>
+        <translation>FF8 init.out (*.out)</translation>
+    </message>
+    <message>
+        <location filename="Window.cpp" line="460"/>
         <source>PSN save (*.psv)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="459"/>
+        <location filename="Window.cpp" line="482"/>
         <source>Exporter</source>
         <translation>Export</translation>
     </message>
@@ -9523,27 +9580,27 @@ Would you analyze it to get the right format?</translation>
         <translation type="obsolete">No</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="585"/>
+        <location filename="Window.cpp" line="610"/>
         <source>Commentaire</source>
         <translation>Comment</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="662"/>
+        <location filename="Window.cpp" line="687"/>
         <source>%1 : %2</source>
         <translation>%1: %2</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="844"/>
+        <location filename="Window.cpp" line="870"/>
         <source>Paramètres modifiés</source>
         <translation>Settings changed</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="845"/>
+        <location filename="Window.cpp" line="871"/>
         <source>Relancez le programme pour que les paramètres prennent effet.</source>
         <translation>Restart the program for the settings to take effect.</translation>
     </message>
     <message>
-        <location filename="Window.cpp" line="893"/>
+        <location filename="Window.cpp" line="937"/>
         <source>À propos</source>
         <translation>About</translation>
     </message>

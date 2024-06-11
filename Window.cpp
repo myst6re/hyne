@@ -175,7 +175,7 @@ void Window::showEvent(QShowEvent *event)
 {
 	event->accept();
 #ifdef Q_OS_WIN
-	if (!taskbarButton && QSysInfo::windowsVersion() >= QSysInfo::WV_WINDOWS7) {
+	if (!taskbarButton) {
 		taskbarButton = new QTaskbarButton(windowHandle());
 	}
 #endif
@@ -304,10 +304,11 @@ void Window::open(OpenType slot)
 		else
 		{
 			path = QFileDialog::getOpenFileName(this, tr("Ouvrir"), path,
-			                                    tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 ff8slot* *.mem *.vgs *.vmp *.000 *.001 *.002 *.003 *.004);;"
+			                                    tr("Fichiers compatibles (*.mcr *.ddf *.gme *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm *.psv save?? *.ff8 ff8slot* *.mem *.vgs *.vmp *.out *.000 *.001 *.002 *.003 *.004);;"
 			                                       "FF8 PS memorycard (*.mcr *.ddf *.mc *.mcd *.mci *.ps *.psm *.vm1 *.srm);;"
 			                                       "FF8 PC save (save?? *.ff8);;"
 			                                       "FF8 Switch save (ff8slot*);;"
+			                                       "FF8 init.out (*.out);;"
 			                                       "FF8 vgs memorycard (*.mem *.vgs);;"
 			                                       "FF8 gme memorycard (*.gme);;"
 			                                       "FF8 PSN memorycard (*.vmp);;"
@@ -363,6 +364,16 @@ void Window::openFile(const QString &path, OpenType openType, const FF8Installat
 		}
 
 		saves->getFormatFromRaw();
+	} else if (saves->type() == SavecardData::InitOut) {
+		QMessageBox::warning(this, tr("Attention"), tr("Le format init.out ne permet de modifier que les fonctionnalités suivantes :\n"
+		                                               "- Les G-Forces\n"
+		                                               "- Les personnages (sauf leurs noms)\n"
+		                                               "- Les boutiques\n"
+		                                               "- La configuration\n"
+		                                               "- L'ordre des objets en combat, les 8 premiers objets de l'inventaire, et les armes connues\n"
+		                                               "- L'équipe initiale\n"
+		                                               "- Les gils\n"
+		                                               "- Le nom de Cronos\n"));
 	}
 
 	if (!saves->isOpen())
@@ -443,12 +454,13 @@ bool Window::exportAs()
 	        gme = tr("GME memorycard (*.gme)"),
 	        vmp = tr("PSN memorycard (*.vmp)"),
 	        pc = tr("FF8 PC save (*.ff8 *)"),
+	        initOut = tr("FF8 init.out (*.out)"),
 	        ps4 = tr("PS4 Remaster save (*.ff8 *)"),
 	        swi = tr("Switch save (ff8slot*)"),
 	        psv = tr("PSN save (*.psv)");
 	SavecardData::Type type = saves->type(), newType;
 
-	types = pc+";;"+ps+";;"+ps4+";;"+swi+";;"+vgs+";;"+gme+";;"+vmp+";;"+psv;
+	types = pc+";;"+ps+";;"+ps4+";;"+swi+";;"+vgs+";;"+gme+";;"+vmp+";;"+psv+";;"+initOut;
 
 	if (type == SavecardData::PcSlot
 	        || type == SavecardData::Pc)	selectedFilter = pc;
@@ -458,6 +470,7 @@ bool Window::exportAs()
 	else if (type == SavecardData::Vgs)		selectedFilter = vgs;
 	else if (type == SavecardData::Gme)		selectedFilter = gme;
 	else if (type == SavecardData::Vmp)		selectedFilter = vmp;
+	else if (type == SavecardData::InitOut)	selectedFilter = initOut;
 	else									selectedFilter = ps;
 	
 	path = Config::value(Config::SavePath).isEmpty() ? saves->dirname() : Config::value(Config::SavePath)+"/";
@@ -477,6 +490,7 @@ bool Window::exportAs()
 	else if (selectedFilter == ps4)		newType = SavecardData::PcUncompressed;
 	else if (selectedFilter == swi)		newType = SavecardData::Switch;
 	else if (selectedFilter == psv)		newType = SavecardData::Psv;
+	else if (selectedFilter == initOut)	newType = SavecardData::InitOut;
 	else {
 		qWarning() << "Bad selected filter!" << selectedFilter;
 		return false;
@@ -507,6 +521,7 @@ bool Window::exportAs(SavecardData::Type newType, const QString &path)
 		case SavecardData::PcUncompressed:
 		case SavecardData::Switch:
 		case SavecardData::Psv:
+		case SavecardData::InitOut:
 			ok = saves->saveOne(saves->getSave(0), path, newType);
 			break;
 		case SavecardData::PcSlot:

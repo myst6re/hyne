@@ -21,6 +21,7 @@
 #include "Parameters.h"
 #include "LZS.h"
 #include "CryptographicHash.h"
+#include <QRegExp>
 
 SavecardData::SavecardData(const QString &path, quint8 slot, const FF8Installation &ff8Installation) :
 	_ok(true), start(0), _isModified(false), _slot(slot), _ff8Installation(ff8Installation)
@@ -107,6 +108,11 @@ bool SavecardData::open(const QString &path, quint8 slot)
 		{
 			_ok = sstate_ePSXe();
 			setType(Undefined);
+		}
+		else if (extension == "out")
+		{
+			setType(InitOut);
+			_ok = initOut();
 		}
 		else
 		{
@@ -293,6 +299,45 @@ bool SavecardData::ps()
 
 #ifndef Q_OS_WINRT
 	if (fileWatcher.files().size()<30)
+		fileWatcher.addPath(_path);
+#endif
+
+	return true;
+}
+
+bool SavecardData::initOut()
+{
+	QFile fic(_path);
+	setErrorString(QString());
+
+	if (!fic.exists())
+	{
+		setErrorString(QObject::tr("Le fichier n'existe plus.\n%1").arg(_path));
+		return false;
+	}
+	if (!fic.open(QIODevice::ReadOnly))
+	{
+		setErrorString(QObject::tr("Le fichier est protégé en lecture."));
+		return false;
+	}
+
+	QFile newGameFile(":/data/newGame");
+	if (!newGameFile.open(QIODevice::ReadOnly)) {
+		qWarning() << "failed to open data/newGame" << newGameFile.errorString();
+		return false;
+	}
+
+	QByteArray data = newGameFile.readAll();
+	QByteArray initOut = fic.read(0xAFC);
+
+	data.replace(0x1D0, initOut.size(), initOut);
+
+	addSave(data);
+
+	if (saves.first()->isDelete())	return false;
+
+#ifndef Q_OS_WINRT
+	if (fileWatcher.files().size() < 30)
 		fileWatcher.addPath(_path);
 #endif
 
@@ -817,6 +862,8 @@ bool SavecardData::saveOne(const SaveData *save, const QString &saveAs, Type new
 		result.append(save->MCHeader().mid(10, 32).leftJustified(32, '\0')); // Country + prod code + identifier
 		result.append(save->save(convertAnalogConfig));
 		temp.write(CryptographicHash::hashPsv(result));
+	} else if (newType == InitOut) {
+		result = save->save(convertAnalogConfig).mid(0x1D0, 0xAFC);
 	} else {
 		result = LZS::compress(save->save(convertAnalogConfig));
 		int size = result.size();

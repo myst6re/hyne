@@ -818,7 +818,7 @@ void SavecardView::mouseReleaseEvent(QMouseEvent *event)
 			}
 		}
 	}
-	else if (event->button() == Qt::MidButton)
+	else if (event->button() == Qt::MiddleButton)
 	{
 		if (saveData->isDelete()) {
 			contextMenuEvent(new QContextMenuEvent(QContextMenuEvent::Other, event->pos(), event->globalPos(), event->modifiers()));

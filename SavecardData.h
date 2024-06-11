@@ -28,11 +28,11 @@ class SavecardData
 {
 public:
 	enum Type {
-		Pc, PcUncompressed, Switch, Ps, Vgs, Gme, Vmp, Psv, PcSlot, Unknown, Undefined
+		Pc, PcUncompressed, Switch, Ps, Vgs, Gme, Vmp, Psv, PcSlot, InitOut, Unknown, Undefined
 	};
 
 	inline static bool isOne(Type type) {
-		return type == Pc || type == PcUncompressed || type == Switch || type == Psv;
+		return type == Pc || type == PcUncompressed || type == Switch || type == Psv || type == InitOut;
 	}
 
 	explicit SavecardData(const QString &path, quint8 slot=0, const FF8Installation &ff8Installation=FF8Installation());
@@ -96,6 +96,7 @@ private:
 	}
 	void setType(Type type);
 	bool ps();
+	bool initOut();
 	bool ps3();
 	bool pc(const QString &path = QString());
 	bool sstate_ePSXe();

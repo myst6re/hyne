@@ -64,7 +64,7 @@ void StartWidget::paintEvent(QPaintEvent *)
 {
 	if (actions().isEmpty())	return;
 
-	QRegExp remAnd("&([^&])");
+	QRegularExpression remAnd("&([^&])");
 	bool enabledState = actions().first()->isEnabled();
 	int actionID = 0;
 	QPainter painter(this);

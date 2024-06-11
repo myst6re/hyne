@@ -20,6 +20,7 @@
 #include "FF8Text.h"
 #include "Data.h"
 #include "LZS.h"
+#include <QTextCodec>
 
 SaveData::SaveData() :
 	_freqValue(60), _id(0), _isFF8(false), _isDelete(false),
@@ -537,7 +538,7 @@ void SaveData::setPreviewAuto(bool prevAuto)
 
 quint8 SaveData::xorByte(const char *data)
 {
-	register quint8 xorByte=0;
+	quint8 xorByte=0;
 	for (int i = 0; i < 127; ++i)
 		xorByte ^= data[i];
 	return xorByte;
@@ -545,7 +546,7 @@ quint8 SaveData::xorByte(const char *data)
 
 quint16 SaveData::calcChecksum(const char *data)
 {
-	register quint16 crc = 0xFFFF, cur;
+	quint16 crc = 0xFFFF, cur;
 
 	for (cur = 0; cur < 4944; ++cur)
 		crc = crcTab[(crc >> 8) ^ (quint8)*data++] ^ (crc << 8);

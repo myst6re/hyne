@@ -169,7 +169,7 @@ QStringList FF8Installation::standardFF8DataPaths(const QString &appPath)
 	QStringList appDataLocations = QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation);
 
 	if (!appDataLocations.isEmpty()) {
-		path = appDataLocations.first().append("/VirtualStore/").append(QString(appPath).replace(QRegExp("^\\w+:/"), ""));
+		path = appDataLocations.first().append("/VirtualStore/").append(QString(appPath).replace(QRegularExpression("^\\w+:/"), ""));
 		if (!QFile::exists(path)) {
 			path = QString();
 		}
