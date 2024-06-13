@@ -135,7 +135,7 @@ const QFileSystemWatcher *SavecardData::watcher() const
 
 QString SavecardData::description() const
 {
-	return QString(_description);
+	return QString::fromLatin1(_description.constData());
 }
 
 void SavecardData::setDescription(const QString &desc)

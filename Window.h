@@ -23,7 +23,7 @@
 #include "SavecardWidget.h"
 #include "Editor.h"
 #include "StartWidget.h"
-#include "QTaskbarButton.h"
+#include "QTaskBarButton.h"
 
 class Window : public QWidget
 {
@@ -77,7 +77,7 @@ private:
 	void setTitle(const int currentSaveEdited=-1);
 	QList<int> selectSavesDialog(bool multiSelection=false, bool onlyFF8=false);
 	
-	QTaskbarButton *taskbarButton; // Windows 7+
+	QTaskBarButton *taskbarButton;
 	QMenuBar *menuBar;
 	QAction *actionReload, *actionSave, *actionSaveAs;
 	QAction *actionProperties, *actionClose, *actionMode, *actionFont;

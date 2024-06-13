@@ -31,7 +31,7 @@ QByteArray GZIP::decompress(const QByteArray &data, int/* decSize*/)
 	}
 	temp.write(data);
 	temp.close();
-	gzFile file = gzopen(temp.fileName().toLatin1(), "rb");
+	gzFile file = gzopen(temp.fileName().toLatin1().constData(), "rb");
 	if (!file) {
 		return QByteArray();
 	}
@@ -49,7 +49,7 @@ QByteArray GZIP::compress(const QByteArray &ungzip)
 {
 	QString tempPath = QDir::tempPath()+"/qt_temp.gz";
 
-	gzFile file2 = gzopen(tempPath.toLatin1(), "wb9");
+	gzFile file2 = gzopen(tempPath.toLatin1().constData(), "wb9");
 	if (!file2) {
 		return QByteArray();
 	}
@@ -73,7 +73,7 @@ bool GZIP::decompress(const QString &pathFrom, const QString &pathTo)
 		return false;
 	}
 
-	gzFile file = gzopen(pathFrom.toLatin1(), "rb");
+	gzFile file = gzopen(pathFrom.toLatin1().constData(), "rb");
 	if (!file) {
 		return false;
 	}
@@ -95,7 +95,7 @@ bool GZIP::compress(const QString &pathFrom, const QString &pathTo)
 		return false;
 	}
 
-	gzFile file = gzopen(pathTo.toLatin1(), "wb9");
+	gzFile file = gzopen(pathTo.toLatin1().constData(), "wb9");
 	if (!file) {
 		return false;
 	}

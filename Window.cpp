@@ -174,11 +174,9 @@ Window::~Window()
 void Window::showEvent(QShowEvent *event)
 {
 	event->accept();
-#ifdef Q_OS_WIN
 	if (!taskbarButton) {
-		taskbarButton = new QTaskbarButton(windowHandle());
+		taskbarButton = new QTaskBarButton(this);
 	}
-#endif
 }
 
 void Window::closeEvent(QCloseEvent *event)
@@ -704,7 +702,7 @@ void Window::editView(SaveData *saveData)
 	stackedLayout->setCurrentWidget(editor);
 	setTitle(saveData->id());
 	saves->setIsTheLastEdited(saveData->id());
-	if (taskbarButton)	taskbarButton->setOverlayIcon(saveData->saveIcon().icon());
+	if (taskbarButton)	taskbarButton->setOverlayIcon(saveData->saveIcon().icon().toImage());
 	else				setWindowIcon(QIcon(saveData->saveIcon().icon()));
 }
 
@@ -721,7 +719,7 @@ void Window::saveView()
 		if (editor)	editor->hide();
 		menuBar->show();
 		menuBar->setEnabled(true);
-		if (taskbarButton)	taskbarButton->setOverlayIcon(QPixmap());
+		if (taskbarButton)	taskbarButton->setOverlayIcon(QImage());
 		else				setWindowIcon(qApp->windowIcon());
 		setTitle();
 		setModified(saves->isModified());
@@ -933,7 +931,7 @@ void Window::fullScreen()
 void Window::about()
 {
 	QDialog about(this, Qt::Dialog | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
-	about.setFixedSize(224, 272);
+	about.setFixedSize(224, 312);
 	about.setWindowTitle(tr("À propos"));
 	
 	QFont font;

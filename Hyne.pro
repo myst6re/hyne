@@ -20,11 +20,13 @@ QT += core core5compat gui widgets
 }
 
 # QTaskbarButton
-DEFINES += HYNE_TASKBAR_FAKE
+DEFINES += TASKBAR_BUTTON
 
 win32 {
     # Regedit features
     LIBS += -ladvapi32 -lshell32
+    # taskbar features
+    LIBS += -luser32 -lole32
 }
 
 # Input
@@ -69,7 +71,7 @@ HEADERS += PageWidgets/ConfigEditor.h \
     GZIP.h \
     SavecardData.h \
     SavecardView.h \
-    QTaskbarButton.h \
+    QTaskBarButton.h \
     PageWidgets/PreviewEditor.h \
     TimeWidget.h \
     HelpWidget.h \
@@ -120,6 +122,7 @@ SOURCES += PageWidgets/ConfigEditor.cpp \
     GZIP.cpp \
     SavecardData.cpp \
     SavecardView.cpp \
+    QTaskBarButton.cpp \
     PageWidgets/PreviewEditor.cpp \
     TimeWidget.cpp \
     HelpWidget.cpp \
