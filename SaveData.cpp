@@ -20,7 +20,9 @@
 #include "FF8Text.h"
 #include "Data.h"
 #include "LZS.h"
-#include <QTextCodec>
+#include <QStringEncoder>
+#include <QStringDecoder>
+
 
 SaveData::SaveData() :
 	_freqValue(60), _id(0), _isFF8(false), _isDelete(false),
@@ -386,15 +388,13 @@ QString SaveData::shortDescription() const
 {
 	if (hasSCHeader()) {
 		try {
-			QTextCodec *codec = QTextCodec::codecForName("Shift-JIS");
-			if (codec) {
-				QByteArray desc_array = _header.mid(4, 64);
-				int index;
-				if ((index = desc_array.indexOf('\x00')) != -1) {
-					desc_array.truncate(index);
-				}
-				return codec->toUnicode(desc_array);
+			QStringDecoder decoder("Shift-JIS");
+			QByteArray desc_array = _header.mid(4, 64);
+			int index;
+			if ((index = desc_array.indexOf('\x00')) != -1) {
+				desc_array.truncate(index);
 			}
+			return decoder(desc_array);
 		} catch(...) {
 		}
 	}
@@ -408,12 +408,11 @@ void SaveData::setShortDescription(const QString &desc)
 
 		if (!desc.isEmpty()) {
 			try {
-				QTextCodec *codec = QTextCodec::codecForName("Shift-JIS");
-				if (codec) {
-					desc_data = codec->fromUnicode(desc);
-				} else {
+				QStringEncoder encoder("Shift-JIS");
+				if (!encoder.isValid()) {
 					return;
 				}
+				desc_data = encoder(desc);
 			} catch(...) {
 				return;
 			}

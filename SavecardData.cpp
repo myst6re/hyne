@@ -21,7 +21,7 @@
 #include "Parameters.h"
 #include "LZS.h"
 #include "CryptographicHash.h"
-#include <QRegExp>
+#include <QRegularExpression>
 
 SavecardData::SavecardData(const QString &path, quint8 slot, const FF8Installation &ff8Installation) :
 	_ok(true), start(0), _isModified(false), _slot(slot), _ff8Installation(ff8Installation)
@@ -802,18 +802,15 @@ bool SavecardData::saveOne(const SaveData *save, const QString &saveAs, Type new
 
 	if (newType == Pc) {
 		// Rerelease 2013
-
 		QString filename = path.mid(path.lastIndexOf('/') + 1);
-		QRegExp regExp("slot([12])_save(\\d\\d).ff8");
-
-		if (regExp.exactMatch(filename)) {
+		QRegularExpression regExp("slot([12])_save(\\d\\d).ff8");
+		QRegularExpressionMatch match = regExp.match(filename);
+		if (match.hasMatch()) {
 			QString dirname = path.left(path.lastIndexOf('/'));
 			userDirectory.setDirname(dirname);
-
 			if (userDirectory.hasMetadata() && userDirectory.openMetadata()) {
-				QStringList capturedTexts = regExp.capturedTexts();
-				slot = quint8(capturedTexts.at(1).toInt());
-				num = quint8(capturedTexts.at(2).toInt());
+				slot = quint8(match.captured(1).toInt());
+				num = quint8(match.captured(2).toInt());
 			} else if (!userDirectory.hasMetadata()) {
 				setErrorString(QObject::tr("Le fichier 'metadata.xml' n'a pas été trouvé dans le dossier '%1'.\n"
 										   "Essayez de signer vos sauvegardes manuellement (Fichier > Signer les sauv. pour le Cloud).").arg(dirname));

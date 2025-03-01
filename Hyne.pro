@@ -9,7 +9,7 @@ VERSION = 1.11.4
 DEFINES += PROGVERSION=$$VERSION PROGNAME=Hyne
 DEFINES += QT_DISABLE_DEPRECATED_UP_TO=0x050F00
 
-QT += core core5compat gui widgets
+QT += core gui widgets
 
 # include zlib
 !win32 {
