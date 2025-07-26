@@ -7,6 +7,9 @@ on:
     branches: [ master ]
   create: null
 
+env:
+  debianRequirements: "build-essential git zlib1g-dev cmake qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools qt6-declarative-dev qt6-base-dev libqt6svg6-dev qt6-base-dev-tools qt6-translations-l10n libqt6core5compat6-dev libqt6opengl6-dev libgl1-mesa-dev wget curl devscripts"
+
 jobs:
   main_build:
     name: ${{ matrix.package_suffix }} ${{ matrix.interface }}
@@ -167,9 +170,67 @@ jobs:
         name: artifact-${{ matrix.package_suffix }}-${{ matrix.interface }}
         path: ${{ github.workspace }}/hyne-continuous-*.*
 
+  deb_builder:
+    name: debianBuilder-${{matrix.config.name}}-${{matrix.config.arch}}
+    runs-on: ${{matrix.config.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - {
+             name: noble , os: ubuntu-24.04
+             , arch: x86_64
+          }
+        - {
+             name: noble , os: ubuntu-24.04-arm
+             , arch: aarch64
+          }
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        fetch-depth: 0
+
+    - name: Setup NuGet.exe
+      uses: nuget/setup-nuget@v2
+      if: runner.os == 'Linux'
+      with:
+        nuget-version: latest
+
+    - name: Install Mono
+      shell: bash
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt install mono-runtime
+        sudo apt install mono-complete
+
+    - name: Enable vcpkg Github packages registry
+      shell: bash
+      run: |
+        nuget sources add -Name github -Source "https://nuget.pkg.github.com/${GITHUB_REPOSITORY_OWNER}/index.json" -Username ${GITHUB_REPOSITORY_OWNER} -Password ${{secrets.GITHUB_TOKEN}} -StorePasswordInClearText
+        nuget setApiKey ${{secrets.GITHUB_TOKEN}} -Source "https://nuget.pkg.github.com/${GITHUB_REPOSITORY_OWNER}/index.json"
+        nuget sources list
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install -qqq ${{env.debianRequirements}}
+
+    - name: Build
+      run: |
+        cmake -S. -Bbuild --preset=Release -DCMAKE_INSTALL_PREFIX=/usr -DCPACK_DEBIAN_PACKAGE_RELEASE=${{github.run_attempt}}~${{matrix.config.name}}
+        cmake --build build
+        cpack -G DEB -C Release --config build/CPackConfig.cmake
+
+    - name: Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: debian-artifacts-${{ matrix.config.name }}-${{matrix.config.arch}}
+        path: hyne*.deb
+
   pre_release_assets:
     name: Pre-Release
-    needs: [main_build]
+    needs: [main_build, deb_builder]
     if: (github.event.ref_type != 'tag') && (github.ref == 'refs/heads/master')
     concurrency: pre-release-${{ github.ref }}
     runs-on: ubuntu-latest
@@ -186,10 +247,11 @@ jobs:
        title: "Unstable Build"
        files: |
          artifact-*/*
+         debian-artifacts-*/*
 
   release_assets:
     name: Release
-    needs: [main_build]
+    needs: [main_build, deb_builder]
     if: github.event.ref_type == 'tag'
     concurrency: release-${{ github.ref }}
     runs-on: ubuntu-latest
@@ -211,4 +273,4 @@ jobs:
        title: ${{ github.event.ref }}
        files: |
          artifact-*/*
-
+         debian-artifacts-*/*
