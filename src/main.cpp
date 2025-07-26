@@ -25,7 +25,7 @@
 int main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
-	app.setWindowIcon(QIcon(":/images/hyne.png"));
+	app.setWindowIcon(QIcon(":/images/Hyne.png"));
 
 	Config::set();
 

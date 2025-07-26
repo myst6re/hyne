@@ -152,7 +152,7 @@ jobs:
         export VERSION=continuous
         export PATH=$PATH:${{ env.qt_installation_path }}/Qt/${{ matrix.qt }}/gcc_64/libexec
         linuxdeploy --appdir="${{ env.hyne_appbundle_path }}" --plugin=qt --output appimage \
-          -e "${{ env.hyne_installation_path }}"/bin/hyne \
+          -e "${{ env.hyne_installation_path }}"/bin/Hyne \
           -d "${{ env.hyne_installation_path }}"/share/applications/io.github.myst6re.hyne.desktop \
           -i "${{ env.hyne_installation_path }}"/share/icons/hicolor/256x256/apps/io.github.myst6re.hyne.png
         mv *.AppImage hyne-continuous-${{ matrix.interface }}-${{ matrix.package_suffix }}.AppImage
