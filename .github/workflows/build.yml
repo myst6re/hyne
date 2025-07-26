@@ -21,14 +21,12 @@ jobs:
           - macos-latest
           - windows-latest
         interface:
-          - cli
           - gui
         build_type:
           - Release
         include:
         - qt_tools: tools_ninja
           qt_modules:
-          cmake_cli_arg: 'OFF'
         - os: ubuntu-latest
           package_extension: 'tar.xz'
           package_suffix: 'linux64'
@@ -43,11 +41,7 @@ jobs:
           qt_arch: win64_msvc2022_64
           qt_tools: tools_ninja, tools_cmake
         - interface: gui
-          cmake_cli_arg: 'OFF'
           cmake_gui_arg: 'ON'
-        - interface: cli
-          cmake_cli_arg: 'ON'
-          cmake_gui_arg: 'OFF'
 
     env:
       qt_installation_path: ${{ github.workspace }}
@@ -136,7 +130,7 @@ jobs:
     - name: Build hyne
       id: main_build
       run: |
-        cmake -B ${{ env.hyne_build_path }} --preset ${{ env.CMAKE_BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.hyne_installation_path }} -DCLI:BOOL=${{ matrix.cmake_cli_arg }} -DGUI:BOOL=${{ matrix.cmake_gui_arg }} -DPRERELEASE_STRING="$PRERELEASE_STRING" ${{ matrix.cmake_extra_args }}
+        cmake -B ${{ env.hyne_build_path }} --preset ${{ env.CMAKE_BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.hyne_installation_path }} -DGUI:BOOL=${{ matrix.cmake_gui_arg }} -DPRERELEASE_STRING="$PRERELEASE_STRING" ${{ matrix.cmake_extra_args }}
         cmake --build ${{ env.hyne_build_path }} --target package -j3
 
     - name: Upload vcpkg build logs
