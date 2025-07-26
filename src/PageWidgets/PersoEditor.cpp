@@ -923,7 +923,7 @@ void PersoEditor::updateCompAllLabel()
 
 void PersoEditor::selectAllGFs(bool all)
 {
-	for (QCheckBox *poss : qAsConst(poss_E)) {
+	for (QCheckBox *poss : std::as_const(poss_E)) {
 		poss->setChecked(all);
 	}
 }
@@ -931,7 +931,7 @@ void PersoEditor::selectAllGFs(bool all)
 void PersoEditor::updateAllCompatibilities()
 {
 	int val = compAll_E->value();
-	for (QSpinBox *comp : qAsConst(comp_E)) {
+	for (QSpinBox *comp : std::as_const(comp_E)) {
 		comp->setValue(val);
 	}
 }

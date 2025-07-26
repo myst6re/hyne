@@ -446,7 +446,7 @@ void SavecardView::nextIcon()
 	if (!_data) return;
 
 	++currentSaveIconFrame;
-	for (SaveData *saveData : qAsConst(_data->getSaves())) {
+	for (SaveData *saveData : std::as_const(_data->getSaves())) {
 		refreshIcon(saveData);
 	}
 }
@@ -738,7 +738,7 @@ void SavecardView::mousePressEvent(QMouseEvent *event)
 	int xStart = horizontalMargin();
 	int xEnd = width()-xStart;
 
-	if (event->x() < xStart || event->x() > xEnd) {
+	if (event->position().x() < xStart || event->position().x() > xEnd) {
 		return;
 	}
 
@@ -793,11 +793,11 @@ void SavecardView::mouseReleaseEvent(QMouseEvent *event)
 	int xStart = horizontalMargin();
 	int xEnd = width()-xStart;
 
-	if (event->x() < xStart || event->x() > xEnd) {
+	if (event->position().x() < xStart || event->position().x() > xEnd) {
 		return;
 	}
 
-	SaveData *saveData = _data->getSave(saveID(event->pos()));
+	SaveData *saveData = _data->getSave(saveID(event->position().toPoint()));
 	if (!saveData)	return;
 
 	if (event->button() == Qt::LeftButton)
@@ -811,7 +811,7 @@ void SavecardView::mouseReleaseEvent(QMouseEvent *event)
 		else
 		{
 			if (saveData->isDelete()) {
-				contextMenuEvent(new QContextMenuEvent(QContextMenuEvent::Other, event->pos(), event->globalPos(), event->modifiers()));
+				contextMenuEvent(new QContextMenuEvent(QContextMenuEvent::Other, event->position().toPoint(), event->globalPosition().toPoint(), event->modifiers()));
 				return;
 			} else if (!saveData->isRaw()) {
 				properties(saveData->id());
@@ -821,7 +821,7 @@ void SavecardView::mouseReleaseEvent(QMouseEvent *event)
 	else if (event->button() == Qt::MiddleButton)
 	{
 		if (saveData->isDelete()) {
-			contextMenuEvent(new QContextMenuEvent(QContextMenuEvent::Other, event->pos(), event->globalPos(), event->modifiers()));
+			contextMenuEvent(new QContextMenuEvent(QContextMenuEvent::Other, event->position().toPoint(), event->globalPosition().toPoint(), event->modifiers()));
 			return;
 		} else if (!saveData->isRaw()) {
 			properties(saveData->id());
@@ -881,10 +881,10 @@ void SavecardView::dragEnterEvent(QDragEnterEvent *event)
 
 void SavecardView::dragMoveEvent(QDragMoveEvent *event)
 {
-	int saveID = this->saveID(event->pos());
+	int saveID = this->saveID(event->position().toPoint());
 	if (saveID >= 0) {
-		setDropIndicator(saveID + int(event->pos().y() % saveHeight() > saveHeight()/2));
-		_parent->scrollToDrag(event->pos());
+		setDropIndicator(saveID + int(event->position().toPoint().y() % saveHeight() > saveHeight()/2));
+		_parent->scrollToDrag(event->position().toPoint());
 	}
 }
 

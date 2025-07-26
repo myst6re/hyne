@@ -17,7 +17,6 @@
  ****************************************************************************/
 
 #include "Window.h"
-#include "Parameters.h"
 #include "SelectSavesDialog.h"
 #include "HeaderDialog.h"
 #include "SCHeaderDialog.h"
@@ -46,14 +45,14 @@ Window::Window(bool isNew) :
 
 	isInstalled = Config::ff8IsInstalled(hasSlots);
 
-	QAction *actionNew = menu->addAction(tr("&Nouveau..."), this, SLOT(newFile()), QKeySequence::New);
-	QAction *actionOpen = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("&Ouvrir..."), this, SLOT(open()), QKeySequence::Open);
-	QAction *actionOpenDir = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DirOpenIcon), tr("&Ouvrir un dossier..."), this, SLOT(openDir()), QKeySequence::Open);
-	actionReload = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_BrowserReload), tr("&Recharger depuis le disque"), this, SLOT(reload()), QKeySequence::Refresh);
+	QAction *actionNew = menu->addAction(tr("&Nouveau..."), QKeySequence::New, this, SLOT(newFile()));
+	QAction *actionOpen = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("&Ouvrir..."), QKeySequence::Open, this, SLOT(open()));
+	QAction *actionOpenDir = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DirOpenIcon), tr("&Ouvrir un dossier..."), QKeySequence::Open, this, SLOT(openDir()));
+	actionReload = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_BrowserReload), tr("&Recharger depuis le disque"), QKeySequence::Refresh, this, SLOT(reload()));
 	actionReload->setEnabled(false);
-	actionSave = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton), tr("&Enregistrer"), this, SLOT(save()), QKeySequence::Save);
+	actionSave = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton), tr("&Enregistrer"), QKeySequence::Save, this, SLOT(save()));
 	actionSave->setEnabled(false);
-	actionSaveAs = menu->addAction(tr("E&xporter..."), this, SLOT(exportAs()), QKeySequence::SaveAs);
+	actionSaveAs = menu->addAction(tr("E&xporter..."), QKeySequence::SaveAs, this, SLOT(exportAs()));
 	actionSaveAs->setEnabled(false);
 	menuRecent = menu->addMenu(tr("O&uverts récemment"));
 	fillMenuRecent();
@@ -83,9 +82,9 @@ Window::Window(bool isNew) :
 	}
 	addAction(action);
 	menu->addSeparator();
-	actionClose = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogCloseButton), tr("&Fermer"), this, SLOT(closeFile()), QKeySequence::Close);
+	actionClose = menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogCloseButton), tr("&Fermer"), QKeySequence::Close, this, SLOT(closeFile()));
 	actionClose->setEnabled(false);
-	menu->addAction(tr("&Quitter"), this, SLOT(close()), QKeySequence::Quit)->setMenuRole(QAction::QuitRole);
+	menu->addAction(tr("&Quitter"), QKeySequence::Quit, this, SLOT(close()))->setMenuRole(QAction::QuitRole);
 	
 	/* MENU 'SLOT' */
 	
@@ -219,7 +218,7 @@ void Window::dropEvent(QDropEvent *event)
 
 void Window::setTitle(const int currentSaveEdited)
 {
-	setWindowTitle(PROG_NAME %
+	setWindowTitle(QLatin1String(HYNE_NAME) %
 				   (!saves ? QString() : " - [*]" % QDir::toNativeSeparators(saves->path())) %
 				   (currentSaveEdited >= 0 ? tr(" - save %1").arg(currentSaveEdited+1, 2, 10, QChar('0')) : QString())
 				   );
@@ -793,7 +792,7 @@ QList<QLocale> Window::availableLanguages()
 
 	languages.append(QLocale(QLocale::French));
 
-	for (const QString &qmFile : qAsConst(qmFiles)) {
+	for (const QString &qmFile : std::as_const(qmFiles)) {
 		QString language = qmFile.mid(5, qmFile.size() - 5 - 3);
 		languages.append(QLocale(language));
 	}
@@ -814,7 +813,7 @@ QLocale Window::chooseLangDialog()
 	dialog->setWindowTitle(chooseStr);
 	QLabel *label = new QLabel(chooseStr + ":", dialog);
 	QComboBox *comboBox = new QComboBox(dialog);
-	for (const QLocale &lang : qAsConst(langs))
+	for (const QLocale &lang : std::as_const(langs))
 		comboBox->addItem(QLocale::languageToString(lang.language()), lang.bcp47Name());
 
 	QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok, Qt::Horizontal, dialog);
@@ -941,7 +940,7 @@ void Window::about()
 	image.setPixmap(QPixmap(":/images/about.png"));
 	image.move(about.width()-20-image.sizeHint().height(), 80);
 	
-	QLabel desc1(QString("%1 %2 <a href=\"https://www.ff8.fr/\">FF8.fr</a> Edition").arg(PROG_NAME, PROG_VERSION), &about);
+	QLabel desc1(QString("%1 %2 <a href=\"https://www.ff8.fr/\">FF8.fr</a> Edition").arg(QLatin1String(HYNE_NAME), QLatin1String(HYNE_VERSION)), &about);
 	desc1.setTextInteractionFlags(Qt::LinksAccessibleByMouse | Qt::LinksAccessibleByKeyboard);
 	desc1.setTextFormat(Qt::RichText);
 	desc1.setOpenExternalLinks(true);

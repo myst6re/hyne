@@ -280,7 +280,7 @@ QString FF8Installation::regValue(const QString &regPath, const QString &regKey)
 		RegQueryValueEx(phkResult, (wchar_t *)regKey.utf16(), nullptr, &type, value, &cValue);
 		if (ERROR_SUCCESS == error && type == REG_SZ) {
 			RegCloseKey(phkResult);
-			return QString::fromUtf16((ushort *)value);
+			return QString::fromUtf16((const char16_t *)value);
 		}
 		RegCloseKey(phkResult);
 	}
@@ -311,7 +311,7 @@ QStringList FF8Installation::searchInstalledApps(const QString &appName, const Q
 		DWORD subKeyCName = MAX_PATH;
 
 		while (ERROR_SUCCESS == (error = RegEnumKeyEx(phkResult, index, subKeyName, &subKeyCName, nullptr, nullptr, nullptr, nullptr))) {
-			QString subKeyNameStr = QString::fromUtf16((ushort *)subKeyName);
+			QString subKeyNameStr = QString::fromUtf16((const char16_t *)subKeyName);
 			error = RegOpenKeyEx(phkResult, (LPCWSTR)QString("%1\\").arg(subKeyNameStr).utf16(), 0, KEY_READ, &phkResult2);
 
 			if (ERROR_SUCCESS == error) {
@@ -320,20 +320,20 @@ QStringList FF8Installation::searchInstalledApps(const QString &appName, const Q
 				error = RegQueryValueEx(phkResult2, TEXT("DisplayName"), nullptr, &type, value, &cValue);
 
 				if (ERROR_SUCCESS == error && REG_SZ == type) {
-					QString softwareNameStr = QString::fromUtf16((ushort *)value);
+					QString softwareNameStr = QString::fromUtf16((const char16_t *)value);
 
 					if (softwareNameStr.compare(appName, Qt::CaseInsensitive) == 0) {
 						error = RegQueryValueEx(phkResult2, TEXT("Publisher"), nullptr, &type, value, &cValue);
 
 						if (ERROR_SUCCESS == error && REG_SZ == type) {
-							QString publisherStr = QString::fromUtf16((ushort *)value);
+							QString publisherStr = QString::fromUtf16((const char16_t *)value);
 
 							if (publisherStr.compare(publisher, Qt::CaseInsensitive) == 0) {
 								cValue = MAX_PATH;
 								error = RegQueryValueEx(phkResult2, TEXT("InstallLocation"), nullptr, &type, value, &cValue);
 
 								if (ERROR_SUCCESS == error && REG_SZ == type) {
-									QString appPath = QDir::fromNativeSeparators(QDir::cleanPath(QString::fromUtf16((ushort *)value)));
+									QString appPath = QDir::fromNativeSeparators(QDir::cleanPath(QString::fromUtf16((const char16_t *)value)));
 
 									if (QFile::exists(appPath)) {
 										ret.append(appPath);

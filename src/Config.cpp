@@ -17,7 +17,6 @@
  ****************************************************************************/
 
 #include "Config.h"
-#include "Parameters.h"
 
 const char *Config::keys[KEYS_SIZE] = {
 	"recentFiles", "lang", "geometry",
@@ -106,7 +105,7 @@ void Config::saveRecentFiles()
 	QStringList rf;
 	int i=0;
 
-	for (const QString &recentFile : qAsConst(recentFiles)) {
+	for (const QString &recentFile : std::as_const(recentFiles)) {
 		if (QFile::exists(recentFile)) {
 			rf.append(QDir::cleanPath(recentFile));
 			++i;
@@ -123,9 +122,9 @@ void Config::saveRecentFiles()
 void Config::set()
 {
 #ifdef Q_OS_WIN
-	settings = new QSettings(QString("%1/%2.ini").arg(qApp->applicationDirPath(), PROG_NAME), QSettings::IniFormat);
+	settings = new QSettings(QString("%1/%2.ini").arg(qApp->applicationDirPath(), QLatin1String(HYNE_NAME)), QSettings::IniFormat);
 #else
-	settings = new QSettings(PROG_NAME);
+	settings = new QSettings(QLatin1String(HYNE_NAME));
 #endif
 	if (int(_KeysSize) != KEYS_SIZE) {
 		qWarning() << "Config: invalid keys size!";

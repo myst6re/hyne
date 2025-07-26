@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 	lang = Config::value(Config::Lang, lang.left(lang.indexOf("_")));
 
 	if (translator_qt.load("qt_" % lang, translationPath)
-	        || translator_qt.load("qt_" % lang, QLibraryInfo::location(QLibraryInfo::TranslationsPath))) {
+	        || translator_qt.load("qt_" % lang, QLibraryInfo::path(QLibraryInfo::TranslationsPath))) {
 		app.installTranslator(&translator_qt);
 	}
 

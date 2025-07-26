@@ -18,7 +18,6 @@
 
 #include "SavecardData.h"
 #include "GZIP.h"
-#include "Parameters.h"
 #include "LZS.h"
 #include "CryptographicHash.h"
 #include <QRegExp>
@@ -219,7 +218,7 @@ bool SavecardData::isModified() const
 {
 	if (_isModified)	return true;
 
-	for (SaveData *save : qAsConst(saves)) {
+	for (SaveData *save : std::as_const(saves)) {
 		if (save->isModified())	return true;
 	}
 	return false;
@@ -230,7 +229,7 @@ void SavecardData::setModified(bool modified)
 	_isModified = modified;
 
 	if (modified == false) {
-		for (SaveData *save : qAsConst(saves)) {
+		for (SaveData *save : std::as_const(saves)) {
 			save->setModified(false);
 		}
 	}
@@ -238,7 +237,7 @@ void SavecardData::setModified(bool modified)
 
 void SavecardData::setIsTheLastEdited(int saveID)
 {
-	for (SaveData *save : qAsConst(saves)) {
+	for (SaveData *save : std::as_const(saves)) {
 		if (save->isTheLastEdited()) {
 			save->setIsTheLastEdited(false);
 		}
@@ -620,7 +619,7 @@ void SavecardData::directory()
 	QDir dir(this->dirname());
 	QStringList files = dir.entryList(QStringList("*save??*"), QDir::Files);
 
-	for (const QString &file: qAsConst(files)) {
+	for (const QString &file: std::as_const(files)) {
 		if (pc(dir.filePath(file))) {
 			_savePaths.append(file);
 		}
@@ -641,7 +640,7 @@ void SavecardData::moveSave(int sourceID, int targetID)
 
 	// Rebuild ids
 	int saveID = 0;
-	for (SaveData *save : qAsConst(saves)) {
+	for (SaveData *save : std::as_const(saves)) {
 		save->setId(saveID);
 		saveID++;
 	}
@@ -894,7 +893,7 @@ bool SavecardData::saveOne(const SaveData *save, const QString &saveAs, Type new
 	if (QFile::exists(path) && !QFile::remove(path))
 	{
 		setErrorString(QObject::tr("Impossible de supprimer le fichier !\n%1\nÉchec de la sauvegarde.\nEssayez de lancer %2 en tant qu'administrateur.")
-				.arg(path).arg(PROG_NAME));
+				.arg(path).arg(QLatin1String(HYNE_NAME)));
 #ifndef Q_OS_WINRT
 		if (readdPath)	fileWatcher.addPath(path);
 #endif
@@ -1013,7 +1012,7 @@ bool SavecardData::save2PS(const QList<int> &ids, const QString &path, const Typ
 			addSave();
 		}
 		i=0;
-		for (SaveData *save : qAsConst(saves)) {
+		for (SaveData *save : std::as_const(saves)) {
 			if (save->isFF8()) {
 				if (!MCHeader.isEmpty()) {
 					QByteArray MCHeaderCpy = MCHeader;
@@ -1105,7 +1104,7 @@ bool SavecardData::saveDirectory(const QString &dir)
 		directory.mkpath(".");
 	}
 
-	for (const SaveData *save : qAsConst(saves)) {
+	for (const SaveData *save : std::as_const(saves)) {
 		if (save->isModified()) {
 			QString path;
 

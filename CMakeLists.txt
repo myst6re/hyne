@@ -72,7 +72,7 @@ add_compile_definitions(
     HYNE_VERSION_TWEAK=0
 )
 
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets OpenGLWidgets OpenGL LinguistTools REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets OpenGLWidgets OpenGL LinguistTools Core5Compat REQUIRED)
 find_package(ZLIB REQUIRED)
 
 set(LANGS
@@ -143,7 +143,6 @@ set(PROJECT_SOURCES
     "src/PageWidgets/TTriadEditor.h"
     "src/PageWidgets/WorldmapEditor.cpp"
     "src/PageWidgets/WorldmapEditor.h"
-    "src/Parameters.h"
     "src/QHexEdit/commands.cpp"
     "src/QHexEdit/commands.h"
     "src/QHexEdit/qhexedit.cpp"
@@ -213,10 +212,13 @@ if(GUI)
 	)
 
 	if(${QT_VERSION_MAJOR} EQUAL 6)
-		target_compile_definitions(${GUI_TARGET}
-			PRIVATE TASKBAR_BUTTON=1
-		)
-	endif()
+        target_link_libraries(${GUI_TARGET} PRIVATE Qt6::Core5Compat)
+
+        target_compile_definitions(${GUI_TARGET}
+            PRIVATE TASKBAR_BUTTON=1
+            GUI=1
+        )
+    endif()
 
 	set_target_properties(${GUI_TARGET} PROPERTIES
 		MACOSX_BUNDLE_BUNDLE_NAME "Hyne"

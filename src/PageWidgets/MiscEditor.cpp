@@ -195,7 +195,7 @@ QWidget *MiscEditor::buildPage2()
 			<< tr("Freud") << tr("Créa-Mgi-Max") << tr("Créa-Mgi-Max 2")
 			<< tr("Inutilisé") << tr("Diplôme Minotaure");
 
-	for (const QString &tutoString : qAsConst(tutoStrings)) {
+	for (const QString &tutoString : std::as_const(tutoStrings)) {
 		QTreeWidgetItem *item = new QTreeWidgetItem(QStringList(tutoString));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		tutoE_list->addTopLevelItem(item);

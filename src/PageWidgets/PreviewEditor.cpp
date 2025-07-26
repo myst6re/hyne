@@ -117,7 +117,7 @@ void PreviewEditor::buildWidget()
 	connect(timeE, SIGNAL(valueChanged()), SLOT(updatePreview()));
 	connect(discE, SIGNAL(valueChanged(double)), SLOT(updatePreview()));
 	connect(locationIDE, SIGNAL(currentIndexChanged(int)), SLOT(updatePreview()));
-	for (QComboBox *cb : qAsConst(partyE)) {
+	for (QComboBox *cb : std::as_const(partyE)) {
 		connect(cb, SIGNAL(currentIndexChanged(int)), SLOT(updatePreview()));
 	}
 }
@@ -130,7 +130,7 @@ void PreviewEditor::fillPage()
 	timeE->blockSignals(true);
 	discE->blockSignals(true);
 	locationIDE->blockSignals(true);
-	for (QComboBox *cb : qAsConst(partyE)) {
+	for (QComboBox *cb : std::as_const(partyE)) {
 		cb->blockSignals(true);
 	}
 
@@ -156,7 +156,7 @@ void PreviewEditor::fillPage()
 	timeE->blockSignals(false);
 	discE->blockSignals(false);
 	locationIDE->blockSignals(false);
-	for (QComboBox *cb : qAsConst(partyE)) {
+	for (QComboBox *cb : std::as_const(partyE)) {
 		cb->blockSignals(false);
 	}
 }

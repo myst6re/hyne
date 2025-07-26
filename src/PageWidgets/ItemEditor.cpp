@@ -140,7 +140,7 @@ QWidget *ItemEditor::buildPage3()
 						 << tr("Hôtel d'Horizon") << tr("Université de Trabia - Cimetière") << tr("Ruines de Centra (automatique)") << tr("Village Shumi : Maison du bricoleur")
 						 << tr("Orphelinat d'Edea") << tr("Bateau des seeds blancs") << tr("Inutilisé") << tr("Inutilisé");
 
-	for (const QString &timbermaniacsString : qAsConst(timbermaniacsStrings)) {
+	for (const QString &timbermaniacsString : std::as_const(timbermaniacsStrings)) {
 		item = new QTreeWidgetItem(QStringList(timbermaniacsString));
 		item->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
 		timbermaniacsE_list->addTopLevelItem(item);
@@ -200,7 +200,7 @@ void ItemEditor::fillPage()
 		battleOrder.insert(data->items.battle_order[itemID], itemID+1);
 	}
 
-	for (int itemID2 : qAsConst(battleOrder))
+	for (int itemID2 : std::as_const(battleOrder))
 	{
 		QListWidgetItem *item = new QListWidgetItem(QIcon(QString(":/images/icons/objet%1.png").arg(Data::itemType(itemID2))),
 								   itemID2 < 33 ? Data::items().value(itemID2) : QString::number(itemID2));
@@ -306,7 +306,7 @@ void ItemEditor::sortByAlpha()
 	}
 
 	i = 0;
-	for (quint16 value : qAsConst(items)) {
+	for (quint16 value : std::as_const(items)) {
 		data->items.items[i++] = value;
 	}
 	fillPage();
