@@ -26,7 +26,7 @@ jobs:
           - Release
         include:
         - qt_tools: tools_ninja
-          qt_modules:
+          qt_modules: qt5compat
         - os: ubuntu-latest
           package_extension: 'tar.xz'
           package_suffix: 'linux64'
