@@ -69,7 +69,7 @@ add_compile_definitions(
     HYNE_VERSION_TWEAK=0
 )
 
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets OpenGLWidgets OpenGL LinguistTools Core5Compat REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Core5Compat REQUIRED)
 find_package(ZLIB REQUIRED)
 
 set(LANGS
@@ -201,9 +201,7 @@ endif()
 qt_add_executable(${RELEASE_NAME} MANUAL_FINALIZATION MACOSX_BUNDLE WIN32 ${PROJECT_SOURCES} ${QM_FILES} ${RESOURCES} ${EXTRA_RESOURCES_GUI})
 target_include_directories(${RELEASE_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/src")
 target_link_libraries(${RELEASE_NAME} PRIVATE
-    Qt::OpenGL
     Qt::Widgets
-    Qt::OpenGLWidgets
     ZLIB::ZLIB
 )
 
