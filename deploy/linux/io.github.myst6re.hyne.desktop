@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Hyne
+GenericName=FF8 Save Game Editor
+GenericName[fr]=Éditeur de sauvegarde FF8
+Comment=Can edit saves from Final Fantasy VIII (PS & PC)
+Comment[fr]=Permet de modifier les sauvegardes de Final Fantasy VIII (PS et PC)
+Icon=io.github.myst6re.hyne
+Exec=Hyne
+Terminal=false
+Categories=Game;
+Keywords=Memory Card;PlayStation;Final Fantasy;
+StartupNotify=false

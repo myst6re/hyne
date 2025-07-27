@@ -1,9 +1,0 @@
-#!/bin/sh
-#DEBHELPER#
-echo "Checking for and removing old install"
-if [ -d /usr/bin/hyne ];then #check to see if older version installed.
-rm -r /usr/bin/hyne/
-elif [ -d /opt/hyne ];then 
-rm -r /opt/hyne/
-else exit 0
-fi

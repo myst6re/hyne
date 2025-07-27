@@ -1,0 +1,272 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  create: null
+
+env:
+  debianRequirements: "build-essential git zlib1g-dev cmake qt6-tools-dev qt6-tools-dev-tools qt6-l10n-tools qt6-declarative-dev qt6-base-dev libqt6svg6-dev qt6-base-dev-tools qt6-translations-l10n libqt6core5compat6-dev libqt6opengl6-dev libgl1-mesa-dev wget curl devscripts"
+
+jobs:
+  main_build:
+    name: ${{ matrix.package_suffix }} ${{ matrix.interface }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        qt:
+          - 6.8.2
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+        build_type:
+          - Release
+        include:
+        - qt_tools: tools_ninja
+          qt_modules: qt5compat
+        - os: ubuntu-latest
+          package_extension: 'tar.xz'
+          package_suffix: 'linux64'
+        - os: macos-latest
+          package_extension: 'dmg'
+          package_suffix: 'macos'
+          cmake_extra_args: "-DCMAKE_OSX_ARCHITECTURES=\"arm64;x86_64\" -DVCPKG_TARGET_TRIPLET=\"universal-osx\""
+        - os: windows-latest
+          package_extension: 'zip'
+          package_suffix: 'win64'
+          win_arch: "x64"
+          qt_arch: win64_msvc2022_64
+          qt_tools: tools_ninja, tools_cmake
+
+    env:
+      qt_installation_path: ${{ github.workspace }}
+      hyne_build_path: ${{ github.workspace }}/../build-hyne
+      hyne_installation_path: ${{ github.workspace }}/../installation-hyne
+      hyne_appbundle_path: ${{ github.workspace }}/../appbundle-hyne
+      CMAKE_GENERATOR: Ninja
+      CMAKE_BUILD_TYPE: ${{ matrix.build_type }}
+      VCPKG_KEEP_ENV_VARS: PATH
+
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        fetch-depth: 0
+
+    - name: Env Script (Windows)
+      uses: ilammy/msvc-dev-cmd@v1
+      if: runner.os == 'Windows'
+      with:
+        arch: ${{ matrix.win_arch }}
+
+    - name: Add universal-osx triplet
+      shell: bash
+      if: runner.os == 'macOS'
+      run: |
+        cd ${{ github.workspace }}/vcpkg/triplets
+        cp arm64-osx.cmake universal-osx.cmake
+        sed -i '' 's|set(VCPKG_OSX_ARCHITECTURES arm64)|set(VCPKG_OSX_ARCHITECTURES "arm64;x86_64")|' universal-osx.cmake
+
+    - name: Setup NuGet.exe
+      uses: nuget/setup-nuget@v2
+      if: runner.os == 'Linux'
+      with:
+        nuget-version: latest
+
+    - name: Install Mono
+      shell: bash
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt install mono-runtime
+        sudo apt install mono-complete
+
+    - name: Enable vcpkg Github packages registry
+      shell: bash
+      run: |
+        nuget sources add -Name github -Source "https://nuget.pkg.github.com/${GITHUB_REPOSITORY_OWNER}/index.json" -Username ${GITHUB_REPOSITORY_OWNER} -Password ${{secrets.GITHUB_TOKEN}} -StorePasswordInClearText
+        nuget setApiKey ${{secrets.GITHUB_TOKEN}} -Source "https://nuget.pkg.github.com/${GITHUB_REPOSITORY_OWNER}/index.json"
+        nuget sources list
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+       dir: ${{ env.qt_installation_path }}
+       arch: ${{ matrix.qt_arch }}
+       version: ${{ matrix.qt }}
+       cache: true
+       tools: ${{ matrix.qt_tools }}
+       modules: ${{ matrix.qt_modules }}
+
+    - name: Configure env
+      shell: bash
+      run: |
+        QT_MAJOR_VERSION=$(echo "${{ matrix.qt }}" | sed -E 's/^([0-9]+)\..*/\1/')
+        echo "$IQTA_TOOLS/Ninja" >> $GITHUB_PATH
+        echo "$IQTA_TOOLS/CMake_64/bin" >> $GITHUB_PATH
+        echo "QT_MAJOR_VERSION=$QT_MAJOR_VERSION" >> $GITHUB_ENV
+
+    - name: Set prerelease string
+      if: github.event.ref_type != 'tag'
+      shell: bash
+      run: |
+        echo "PRERELEASE_STRING= unstable build" >> $GITHUB_ENV
+
+    - name: Download linuxdeployqt
+      if: runner.os == 'Linux'
+      run: |
+        wget -qc "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
+        wget -qc "https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage"
+        export VERSION=continuous
+        chmod a+x linuxdeploy*.AppImage
+        mv linuxdeploy-plugin-qt-*.AppImage $QT_ROOT_DIR/bin/linuxdeploy-plugin-qt
+        mv linuxdeploy-*.AppImage $QT_ROOT_DIR/bin/linuxdeploy
+
+    - name: Build hyne
+      id: main_build
+      run: |
+        cmake -B ${{ env.hyne_build_path }} --preset ${{ env.CMAKE_BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.hyne_installation_path }} -DPRERELEASE_STRING="$PRERELEASE_STRING" ${{ matrix.cmake_extra_args }}
+        cmake --build ${{ env.hyne_build_path }} --target package -j3
+
+    - name: Upload vcpkg build logs
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: vcpkg-logs-${{ matrix.package_suffix }}-${{ matrix.interface }}-${{ matrix.build_type }}
+        path: ${{ github.workspace }}/vcpkg/buildtrees/**/*.log
+
+    - name: Build AppImage (Linux)
+      if: runner.os == 'Linux'
+      run: |
+        sudo add-apt-repository -y universe
+        sudo apt install -y libfuse2 libxkbcommon-x11-0 libxcb-cursor0
+        cmake --build ${{ env.hyne_build_path }} --target install -j3
+        mkdir -p ${{env.hyne_appbundle_path}}/usr/share/hyne/translations
+        cp ${{env.hyne_installation_path}}/share/hyne/translations/*.qm ${{env.hyne_appbundle_path}}/usr/share/hyne/translations/
+
+        export VERSION=continuous
+        export PATH=$PATH:${{ env.qt_installation_path }}/Qt/${{ matrix.qt }}/gcc_64/libexec
+        linuxdeploy --appdir="${{ env.hyne_appbundle_path }}" --plugin=qt --output appimage \
+          -e "${{ env.hyne_installation_path }}"/bin/Hyne \
+          -d "${{ env.hyne_installation_path }}"/share/applications/io.github.myst6re.hyne.desktop \
+          -i "${{ env.hyne_installation_path }}"/share/icons/hicolor/256x256/apps/io.github.myst6re.hyne.png
+        mv *.AppImage hyne-continuous-${{ matrix.interface }}-${{ matrix.package_suffix }}.AppImage
+
+    - name: Prepare Upload
+      shell: bash
+      run: mv ../build-hyne/*.${{ matrix.package_extension }} hyne-continuous-${{ matrix.interface }}-${{ matrix.package_suffix }}.${{ matrix.package_extension }}
+
+    - name: Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: artifact-${{ matrix.package_suffix }}-${{ matrix.interface }}
+        path: ${{ github.workspace }}/hyne-continuous-*.*
+
+  deb_builder:
+    name: debianBuilder-${{matrix.config.name}}-${{matrix.config.arch}}
+    runs-on: ${{matrix.config.os}}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - {
+             name: noble , os: ubuntu-24.04
+             , arch: x86_64
+          }
+        - {
+             name: noble , os: ubuntu-24.04-arm
+             , arch: aarch64
+          }
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: recursive
+        fetch-depth: 0
+
+    - name: Setup NuGet.exe
+      uses: nuget/setup-nuget@v2
+      if: runner.os == 'Linux'
+      with:
+        nuget-version: latest
+
+    - name: Install Mono
+      shell: bash
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt install mono-runtime
+        sudo apt install mono-complete
+
+    - name: Enable vcpkg Github packages registry
+      shell: bash
+      run: |
+        nuget sources add -Name github -Source "https://nuget.pkg.github.com/${GITHUB_REPOSITORY_OWNER}/index.json" -Username ${GITHUB_REPOSITORY_OWNER} -Password ${{secrets.GITHUB_TOKEN}} -StorePasswordInClearText
+        nuget setApiKey ${{secrets.GITHUB_TOKEN}} -Source "https://nuget.pkg.github.com/${GITHUB_REPOSITORY_OWNER}/index.json"
+        nuget sources list
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install -qqq ${{env.debianRequirements}}
+
+    - name: Build
+      run: |
+        cmake -S. -Bbuild --preset=Release -DCMAKE_INSTALL_PREFIX=/usr -DCPACK_DEBIAN_PACKAGE_RELEASE=${{github.run_attempt}}~${{matrix.config.name}}
+        cmake --build build
+        cpack -G DEB -C Release --config build/CPackConfig.cmake
+
+    - name: Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: debian-artifacts-${{ matrix.config.name }}-${{matrix.config.arch}}
+        path: hyne*.deb
+
+  pre_release_assets:
+    name: Pre-Release
+    needs: [main_build, deb_builder]
+    if: (github.event.ref_type != 'tag') && (github.ref == 'refs/heads/master')
+    concurrency: pre-release-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Files
+      uses: actions/download-artifact@v4
+
+    - name: Deploy Package
+      uses: crowbarmaster/GH-Automatic-Releases@latest
+      with:
+       repo_token: "${{ secrets.GITHUB_TOKEN }}"
+       automatic_release_tag: "continuous"
+       prerelease: true
+       title: "Unstable Build"
+       files: |
+         artifact-*/*
+         debian-artifacts-*/*
+
+  release_assets:
+    name: Release
+    needs: [main_build, deb_builder]
+    if: github.event.ref_type == 'tag'
+    concurrency: release-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download Files
+      uses: actions/download-artifact@v4
+
+    - name: Prepare Upload
+      shell: bash
+      run: find . -type f -name 'hyne-continuous-*' -exec bash -c 'mv "{}" $(echo {} | sed 's/continuous-//')' ';'
+
+    - name: Deploy Package
+      uses: crowbarmaster/GH-Automatic-Releases@latest
+      with:
+       repo_token: "${{ secrets.GITHUB_TOKEN }}"
+       prerelease: false
+       generate_notes: false
+       automatic_release_tag: ${{ github.event.ref }}
+       title: ${{ github.event.ref }}
+       files: |
+         artifact-*/*
+         debian-artifacts-*/*
