@@ -12,7 +12,7 @@ env:
 
 jobs:
   main_build:
-    name: ${{ matrix.package_suffix }} ${{ matrix.interface }}
+    name: ${{ matrix.package_suffix }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -136,7 +136,7 @@ jobs:
       if: failure()
       uses: actions/upload-artifact@v4
       with:
-        name: vcpkg-logs-${{ matrix.package_suffix }}-${{ matrix.interface }}-${{ matrix.build_type }}
+        name: vcpkg-logs-${{ matrix.package_suffix }}-${{ matrix.build_type }}
         path: ${{ github.workspace }}/vcpkg/buildtrees/**/*.log
 
     - name: Build AppImage (Linux)
@@ -154,16 +154,16 @@ jobs:
           -e "${{ env.hyne_installation_path }}"/bin/Hyne \
           -d "${{ env.hyne_installation_path }}"/share/applications/io.github.myst6re.hyne.desktop \
           -i "${{ env.hyne_installation_path }}"/share/icons/hicolor/256x256/apps/io.github.myst6re.hyne.png
-        mv *.AppImage hyne-continuous-${{ matrix.interface }}-${{ matrix.package_suffix }}.AppImage
+        mv *.AppImage hyne-continuous-${{ matrix.package_suffix }}.AppImage
 
     - name: Prepare Upload
       shell: bash
-      run: mv ../build-hyne/*.${{ matrix.package_extension }} hyne-continuous-${{ matrix.interface }}-${{ matrix.package_suffix }}.${{ matrix.package_extension }}
+      run: mv ../build-hyne/*.${{ matrix.package_extension }} hyne-continuous-${{ matrix.package_suffix }}.${{ matrix.package_extension }}
 
     - name: Upload
       uses: actions/upload-artifact@v4
       with:
-        name: artifact-${{ matrix.package_suffix }}-${{ matrix.interface }}
+        name: artifact-${{ matrix.package_suffix }}
         path: ${{ github.workspace }}/hyne-continuous-*.*
 
   deb_builder:
