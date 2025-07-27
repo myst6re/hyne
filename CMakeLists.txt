@@ -31,7 +31,7 @@ if(NOT PRERELEASE_STRING)
     set(PRERELEASE_STRING "")
 endif()
 
-project("Hyne" VERSION 1.0.0 LANGUAGES CXX
+project("Hyne" VERSION 1.11.4 LANGUAGES CXX
     DESCRIPTION "Final Fantasy VIII savegame editor"
     HOMEPAGE_URL "https://github.com/myst6re/hyne"
 )
