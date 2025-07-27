@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         qt:
-          - 6.8.2
+          - 6.8.3
         os:
           - ubuntu-latest
           - ubuntu-24.04-arm
