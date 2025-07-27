@@ -27,7 +27,6 @@ set(VCPKG_INSTALL_OPTIONS "--clean-after-build")
 set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
 
 set(RELEASE_NAME "Hyne")
-set(GUI_TARGET "${RELEASE_NAME}")
 if(NOT PRERELEASE_STRING)
     set(PRERELEASE_STRING "")
 endif()
@@ -55,8 +54,6 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC OFF)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-option(GUI "Build the gui executable" ON)
 
 add_compile_definitions(
     QT_DISABLE_DEPRECATED_UP_TO=0x060000
@@ -201,50 +198,47 @@ elseif (WIN32)
     set(EXTRA_RESOURCES_GUI "src/qt/${RELEASE_NAME}.rc")
 endif()
 
-if(GUI)
-	qt_add_executable(${GUI_TARGET} MANUAL_FINALIZATION MACOSX_BUNDLE WIN32 ${PROJECT_SOURCES} ${QM_FILES} ${RESOURCES} ${EXTRA_RESOURCES_GUI})
-	target_include_directories(${GUI_TARGET} PRIVATE "${CMAKE_SOURCE_DIR}/src")
-	target_link_libraries(${GUI_TARGET} PRIVATE
-		Qt::OpenGL
-		Qt::Widgets
-		Qt::OpenGLWidgets
-		ZLIB::ZLIB
-	)
+qt_add_executable(${RELEASE_NAME} MANUAL_FINALIZATION MACOSX_BUNDLE WIN32 ${PROJECT_SOURCES} ${QM_FILES} ${RESOURCES} ${EXTRA_RESOURCES_GUI})
+target_include_directories(${RELEASE_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/src")
+target_link_libraries(${RELEASE_NAME} PRIVATE
+    Qt::OpenGL
+    Qt::Widgets
+    Qt::OpenGLWidgets
+    ZLIB::ZLIB
+)
 
-	if(${QT_VERSION_MAJOR} EQUAL 6)
-        target_link_libraries(${GUI_TARGET} PRIVATE Qt6::Core5Compat)
+if(${QT_VERSION_MAJOR} EQUAL 6)
+    target_link_libraries(${RELEASE_NAME} PRIVATE Qt6::Core5Compat)
 
-        target_compile_definitions(${GUI_TARGET}
-            PRIVATE TASKBAR_BUTTON=1
-            GUI=1
-        )
-    endif()
-
-	set_target_properties(${GUI_TARGET} PROPERTIES
-		MACOSX_BUNDLE_BUNDLE_NAME "Hyne"
-		MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-		MACOSX_BUNDLE_LONG_VERSION_STRING ${PROJECT_VERSION}
-		MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
-		MACOSX_BUNDLE_GUI_IDENTIFIER org.myst6re.hyne
-		MACOSX_BUNDLE_ICON_FILE ${RELEASE_NAME}.icns
-	)
-
-	if(APPLE OR WIN32)
-		set_target_properties(${GUI_TARGET} PROPERTIES OUTPUT_NAME "${PROJECT_NAME}")
-	endif()
-
-    if (WIN32)
-        target_compile_options(
-            ${GUI_TARGET}
-            PRIVATE /Qpar
-            PRIVATE /MP
-        )
-    endif()
-
-    qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR}/src ${TS_FILES} OPTIONS -no-ui-lines -locations none)
-    # Force lupdate
-    add_custom_target(app_translations ALL DEPENDS ${QM_FILES})
+    target_compile_definitions(${RELEASE_NAME}
+        PRIVATE TASKBAR_BUTTON=1
+    )
 endif()
+
+set_target_properties(${RELEASE_NAME} PROPERTIES
+    MACOSX_BUNDLE_BUNDLE_NAME "Hyne"
+    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+    MACOSX_BUNDLE_LONG_VERSION_STRING ${PROJECT_VERSION}
+    MACOSX_BUNDLE_SHORT_VERSION_STRING "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
+    MACOSX_BUNDLE_GUI_IDENTIFIER org.myst6re.hyne
+    MACOSX_BUNDLE_ICON_FILE ${RELEASE_NAME}.icns
+)
+
+if(APPLE OR WIN32)
+    set_target_properties(${RELEASE_NAME} PROPERTIES OUTPUT_NAME "${PROJECT_NAME}")
+endif()
+
+if (WIN32)
+    target_compile_options(
+        ${RELEASE_NAME}
+        PRIVATE /Qpar
+        PRIVATE /MP
+    )
+endif()
+
+qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR}/src ${TS_FILES} OPTIONS -no-ui-lines -locations none)
+# Force lupdate
+add_custom_target(app_translations ALL DEPENDS ${QM_FILES})
 
 include(GNUInstallDirs)
 
@@ -263,35 +257,25 @@ elseif(WIN32)
     if(NOT QT_DEPLOY_TMP_DIR)
         set(QT_DEPLOY_TMP_DIR "${CMAKE_BINARY_DIR}/win32-deploy" CACHE PATH "Directory to run deployqt scripts")
     endif()
-    if(GUI)
-        install(TARGETS ${GUI_TARGET} DESTINATION "${QT_DEPLOY_TMP_DIR}")
-    endif()
+    install(TARGETS ${RELEASE_NAME} DESTINATION "${QT_DEPLOY_TMP_DIR}")
 endif()
 
 add_subdirectory(deploy)
 
 if(APPLE)
-    if(GUI)
-        install(TARGETS ${GUI_TARGET} BUNDLE DESTINATION ".")
-    endif()
+    install(TARGETS ${RELEASE_NAME} BUNDLE DESTINATION ".")
 elseif(WIN32)
-    if(GUI)
-        install(TARGETS ${GUI_TARGET} RUNTIME DESTINATION ".")
-    endif()
+    install(TARGETS ${RELEASE_NAME} RUNTIME DESTINATION ".")
     install(DIRECTORY "${QT_DEPLOY_TMP_DIR}/" DESTINATION ".")
     install(CODE "file(REMOVE_RECURSE \"${QT_DEPLOY_TMP_DIR}\")")
 else()
     install(FILES ${CMAKE_SOURCE_DIR}/src/qt/images/Hyne.png DESTINATION share/icons/hicolor/256x256/apps RENAME io.github.myst6re.hyne.png)
     install(FILES ${CMAKE_SOURCE_DIR}/deploy/linux/io.github.myst6re.hyne.desktop DESTINATION share/applications)
     install(FILES ${QM_FILES} DESTINATION share/hyne/translations)
-    if(GUI)
-        install(TARGETS ${GUI_TARGET} RUNTIME)
-    endif()
+    install(TARGETS ${RELEASE_NAME} RUNTIME)
 endif()
 
-if(GUI)
-    qt_finalize_executable(${GUI_TARGET})
-endif()
+qt_finalize_executable(${RELEASE_NAME})
 
 if(CMAKE_SYSTEM_NAME MATCHES "Darwin")
     set(CPACK_SYSTEM_NAME "macos")

@@ -23,8 +23,6 @@ jobs:
           - ubuntu-latest
           - macos-latest
           - windows-latest
-        interface:
-          - gui
         build_type:
           - Release
         include:
@@ -43,8 +41,6 @@ jobs:
           win_arch: "x64"
           qt_arch: win64_msvc2022_64
           qt_tools: tools_ninja, tools_cmake
-        - interface: gui
-          cmake_gui_arg: 'ON'
 
     env:
       qt_installation_path: ${{ github.workspace }}
@@ -133,7 +129,7 @@ jobs:
     - name: Build hyne
       id: main_build
       run: |
-        cmake -B ${{ env.hyne_build_path }} --preset ${{ env.CMAKE_BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.hyne_installation_path }} -DGUI:BOOL=${{ matrix.cmake_gui_arg }} -DPRERELEASE_STRING="$PRERELEASE_STRING" ${{ matrix.cmake_extra_args }}
+        cmake -B ${{ env.hyne_build_path }} --preset ${{ env.CMAKE_BUILD_TYPE }} -DCMAKE_INSTALL_PREFIX=${{ env.hyne_installation_path }} -DPRERELEASE_STRING="$PRERELEASE_STRING" ${{ matrix.cmake_extra_args }}
         cmake --build ${{ env.hyne_build_path }} --target package -j3
 
     - name: Upload vcpkg build logs
@@ -144,7 +140,7 @@ jobs:
         path: ${{ github.workspace }}/vcpkg/buildtrees/**/*.log
 
     - name: Build AppImage (Linux)
-      if: runner.os == 'Linux' && matrix.interface == 'gui'
+      if: runner.os == 'Linux'
       run: |
         sudo add-apt-repository -y universe
         sudo apt install -y libfuse2 libxkbcommon-x11-0 libxcb-cursor0
