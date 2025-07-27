@@ -21,8 +21,10 @@ jobs:
           - 6.8.2
         os:
           - ubuntu-latest
+          - ubuntu-24.04-arm
           - macos-latest
           - windows-latest
+          - windows-11-arm
         build_type:
           - Release
         include:
@@ -30,16 +32,25 @@ jobs:
           qt_modules: qt5compat
         - os: ubuntu-latest
           package_extension: 'tar.xz'
-          package_suffix: 'linux64'
+          package_suffix: 'linux_x64'
+        - os: ubuntu-24.04-arm
+          package_extension: 'tar.xz'
+          package_suffix: 'linux_arm64'
         - os: macos-latest
           package_extension: 'dmg'
           package_suffix: 'macos'
           cmake_extra_args: "-DCMAKE_OSX_ARCHITECTURES=\"arm64;x86_64\" -DVCPKG_TARGET_TRIPLET=\"universal-osx\""
         - os: windows-latest
           package_extension: 'zip'
-          package_suffix: 'win64'
+          package_suffix: 'win_x64'
           win_arch: "x64"
           qt_arch: win64_msvc2022_64
+          qt_tools: tools_ninja, tools_cmake
+        - os: windows-11-arm
+          package_extension: 'zip'
+          package_suffix: 'win_arm64'
+          win_arch: "arm64"
+          qt_arch: win64_msvc2022_arm64
           qt_tools: tools_ninja, tools_cmake
 
     env:
@@ -116,11 +127,21 @@ jobs:
       run: |
         echo "PRERELEASE_STRING= unstable build" >> $GITHUB_ENV
 
-    - name: Download linuxdeployqt
-      if: runner.os == 'Linux'
+    - name: Download linuxdeployqt (x64)
+      if: runner.os == 'Linux' && runner.arch == 'X64'
       run: |
         wget -qc "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
         wget -qc "https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage"
+        export VERSION=continuous
+        chmod a+x linuxdeploy*.AppImage
+        mv linuxdeploy-plugin-qt-*.AppImage $QT_ROOT_DIR/bin/linuxdeploy-plugin-qt
+        mv linuxdeploy-*.AppImage $QT_ROOT_DIR/bin/linuxdeploy
+
+    - name: Download linuxdeployqt (ARM64)
+      if: runner.os == 'Linux' && runner.arch == 'ARM64'
+      run: |
+        wget -qc "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-aarch64.AppImage"
+        wget -qc "https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-aarch64.AppImage"
         export VERSION=continuous
         chmod a+x linuxdeploy*.AppImage
         mv linuxdeploy-plugin-qt-*.AppImage $QT_ROOT_DIR/bin/linuxdeploy-plugin-qt
