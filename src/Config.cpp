@@ -33,13 +33,27 @@ bool Config::_ff8InstallationsSearched = false;
 
 QString Config::translationDir()
 {
-#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
-	return qApp->applicationDirPath().startsWith("/usr/bin")
-			? "/usr/share/hyne"
-			: qApp->applicationDirPath();
-#else
-	return qApp->applicationDirPath();
-#endif
+	QDir translationDir(QStringLiteral("%1").arg(QCoreApplication::applicationDirPath()));
+	QStringList nameFilter{QStringLiteral("hyne_*.qm")};
+	if (translationDir.entryList(nameFilter, QDir::Files, QDir::Name).isEmpty()) {
+		translationDir.setPath(QStringLiteral("%1/%2").arg(QCoreApplication::applicationDirPath(), QStringLiteral("translations")));
+		if (translationDir.entryList(nameFilter, QDir::Files, QDir::Name).isEmpty()) {
+			translationDir.setPath(QStringLiteral("%1/../translations").arg(QCoreApplication::applicationDirPath()));
+			if (translationDir.entryList(nameFilter, QDir::Files, QDir::Name).isEmpty()) {
+				translationDir.setPath(QStringLiteral("%1/../share/hyne/translations").arg(QCoreApplication::applicationDirPath()));
+				if (translationDir.entryList(nameFilter, QDir::Files, QDir::Name).isEmpty()) {
+					translationDir.setPath(QStringLiteral("%1/%2").arg(QDir::homePath(), QStringLiteral(".local/share/hyne/translations")));
+					if (translationDir.entryList(nameFilter, QDir::Files, QDir::Name).isEmpty()) {
+						translationDir.setPath(QStringLiteral("/usr/local/share/hyne/translations"));
+						if (translationDir.entryList(nameFilter, QDir::Files, QDir::Name).isEmpty()) {
+							translationDir.setPath(QStringLiteral("/usr/share/hyne/translations"));
+						}
+					}
+				}
+			}
+		}
+	}
+	return translationDir.absolutePath();
 }
 
 quint32 Config::sec(quint32 time, int freq_value)

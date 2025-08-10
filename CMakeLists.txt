@@ -74,7 +74,8 @@ find_package(ZLIB REQUIRED)
 
 set(LANGS
     en
-    ja)
+    ja
+    zh)
 list(TRANSFORM LANGS REPLACE ".+" "translations/${RELEASE_NAME}_\\0.ts" OUTPUT_VARIABLE TS_FILES)
 
 set(PROJECT_SOURCES

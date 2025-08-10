@@ -74,6 +74,8 @@ void PersoEditor::updateModeAfter(bool mode)
 {
 	if (LBindicator_E) {
 		LBindicator_E->setVisible(mode);
+	}
+	if (indicatorlabel) {
 		indicatorlabel->setVisible(mode);
 	}
 }

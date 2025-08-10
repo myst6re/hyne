@@ -40,14 +40,17 @@ int main(int argc, char *argv[])
 		app.installTranslator(&translator_qt);
 	}
 
-	if (translator.load("hyne_" + lang, translationPath)) {
+	if (translator.load("hyne_" + lang, translationPath) || translator.load("hyne_" + lang)) {
 		app.installTranslator(&translator);
 	} else if (lang != "fr") {
 		QLocale locale = Window::chooseLangDialog();
 		lang = locale.bcp47Name();
-		if (translator.load("hyne_" + lang, translationPath)) {
+		if (translator.load("hyne_" + lang, translationPath) || translator.load("hyne_" + lang)) {
 			app.installTranslator(&translator);
 			Config::setValue(Config::Lang, lang);
+		} else if (translator.load("hyne_en", translationPath) || translator.load("hyne_en")) {
+			app.installTranslator(&translator);
+			Config::setValue(Config::Lang, "en");
 		} else {
 			Config::setValue(Config::Lang, "fr");
 		}
