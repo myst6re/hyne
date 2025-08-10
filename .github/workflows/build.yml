@@ -96,6 +96,12 @@ jobs:
         sudo apt install mono-runtime
         sudo apt install mono-complete
 
+    - name: Install Mono (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        brew update
+        brew install mono
+
     - name: Enable vcpkg Github packages registry
       shell: bash
       run: |
