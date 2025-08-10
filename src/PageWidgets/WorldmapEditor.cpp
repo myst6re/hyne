@@ -210,6 +210,7 @@ void WorldmapEditor::fillPage()
 	quint32 car_steps_related;
 	quint8 disp_map_config, v_instr, koyok_quest;
 	quint8 *obel_quest;
+	WORLDMAP_PC wmFix;
 
 	if (!fix->isChecked())
 	{
@@ -221,7 +222,6 @@ void WorldmapEditor::fillPage()
 	}
 	else
 	{
-		WORLDMAP_PC wmFix;
 		memcpy(&wmFix, &data->worldmap.disp_map_config, sizeof(WORLDMAP_PC));
 
 		disp_map_config = wmFix.disp_map_config;
