@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_DATA
-#define DEF_DATA
+#pragma once
 
 #define SQUALL		0
 #define ZELL		1
@@ -280,5 +279,3 @@ private:
 	static const char *_maplist[MAP_COUNT];
 	static const int cardsLocation[256];
 };
-
-#endif

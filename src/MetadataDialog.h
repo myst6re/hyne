@@ -15,8 +15,7 @@
  ** You should have received a copy of the GNU General Public License
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
-#ifndef METADATADIALOG_H
-#define METADATADIALOG_H
+#pragma once
 
 #include <QtGui>
 #include "HelpWidget.h"
@@ -47,5 +46,3 @@ private:
 	QLineEdit *_path, *_userID;
 	QPushButton *_pathButton;
 };
-
-#endif // METADATADIALOG_H

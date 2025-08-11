@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_PARTYEDITOR
-#define DEF_PARTYEDITOR
+#pragma once
 
 #include "PageWidget.h"
 #include "../SpinBox.h"
@@ -41,5 +40,3 @@ private:
 	QList<QSpinBox *> xE, yE, idE, dirE;
 	QComboBox *moduleE, *mapE, *lastMapE, *presetPosE;
 };
-
-#endif // DEF_PARTYEDITOR

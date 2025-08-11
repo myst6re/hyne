@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_WORLDMAPEDITOR
-#define DEF_WORLDMAPEDITOR
+#pragma once
 
 #include "PageWidget.h"
 #include "../MapWidget.h"
@@ -52,5 +51,3 @@ private:
 	QListWidget *vehiclesList;
 	QList<QSpinBox *> coord;
 };
-
-#endif

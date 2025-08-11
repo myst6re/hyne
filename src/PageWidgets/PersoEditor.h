@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_PERSOEDITOR
-#define DEF_PERSOEDITOR
+#pragma once
 
 #include "../SpinBoxDelegate.h"
 #include "PageWidget.h"
@@ -106,5 +105,3 @@ private:
 	QLabel *indicatorlabel;
 	QSlider *LBindicator_E;
 };
-
-#endif

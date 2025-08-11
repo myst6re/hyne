@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef MAPWIDGET_H
-#define MAPWIDGET_H
+#pragma once
 
 #include <QtWidgets>
 
@@ -26,7 +25,7 @@ class MapWidget : public QWidget
 	Q_OBJECT
 public:
 	explicit MapWidget(QWidget *parent = nullptr);
-	
+
 signals:
 	void positionChanged(const QPoint &pos);
 public slots:
@@ -44,5 +43,3 @@ protected:
 	virtual void mouseMoveEvent(QMouseEvent *event);
 	virtual void mouseReleaseEvent(QMouseEvent *event);
 };
-
-#endif // MAPWIDGET_H

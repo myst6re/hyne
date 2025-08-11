@@ -802,7 +802,7 @@ bool SavecardData::saveOne(const SaveData *save, const QString &saveAs, Type new
 	if (newType == Pc) {
 		// Rerelease 2013
 		QString filename = path.mid(path.lastIndexOf('/') + 1);
-		QRegularExpression regExp("slot([12])_save(\\d\\d).ff8");
+		QRegularExpression regExp("^slot([12])_save(\\d\\d).ff8$");
 		QRegularExpressionMatch match = regExp.match(filename);
 		if (match.hasMatch()) {
 			QString dirname = path.left(path.lastIndexOf('/'));

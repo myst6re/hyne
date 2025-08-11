@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_GFEDITOR
-#define DEF_GFEDITOR
+#pragma once
 
 #include "PageWidget.h"
 #include "../SpinBox.h"
@@ -63,7 +62,7 @@ private:
 	quint16 nivSup;
 	quint8 id;
 	GFORCES *gf_data;
-	
+
 	QTreeWidgetItem *addItem(quint8 abilityID, quint8 type, quint8 innateAbID, const QMap<int, QIcon> &abilityIcons);
 	inline QTreeWidgetItem *addItem(quint8 abilityID, quint8 type, quint8 innateAbID=0) {
 		return addItem(abilityID, type, innateAbID, QMap<int, QIcon>());
@@ -91,5 +90,3 @@ private:
 	QLineEdit *grieverE;
 	QCheckBox *odinE, *gilgameshE, *phoenixE;
 };
-
-#endif

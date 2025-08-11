@@ -1,5 +1,4 @@
-#ifndef COMMANDS_H
-#define COMMANDS_H
+#pragma once
 
 /** \cond docNever */
 
@@ -66,5 +65,3 @@ private:
 };
 
 /** \endcond docNever */
-
-#endif // COMMANDS_H

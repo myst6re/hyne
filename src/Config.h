@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef CONFIG_H
-#define CONFIG_H
+#pragma once
 
 #include <QtCore>
 #include "FF8Installation.h"
@@ -70,5 +69,3 @@ private:
 	static QStringList recentFiles;
 	static const char *keys[KEYS_SIZE];
 };
-
-#endif // CONFIG_H

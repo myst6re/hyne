@@ -56,8 +56,7 @@
  **
  ****************************************************************************/
 
-#ifndef DELEGATE_H
-#define DELEGATE_H
+#pragma once
 
 #include <QItemDelegate>
 #include <QModelIndex>
@@ -79,5 +78,3 @@ public:
 private:
 	static int spinBoxMax(EditorType type);
 };
-
-#endif

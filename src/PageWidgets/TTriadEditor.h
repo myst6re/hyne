@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_TTEDITOR
-#define DEF_TTEDITOR
+#pragma once
 
 #include "../SpinBoxDelegate.h"
 #include "PageWidget.h"
@@ -67,5 +66,3 @@ private:
 	QList<QCheckBox *> rules;
 	QList<QRadioButton *> trade_rules;
 };
-
-#endif

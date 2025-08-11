@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_ALLEDITOR
-#define DEF_ALLEDITOR
+#pragma once
 
 #include "../QHexEdit/qhexedit.h"
 #include "PageWidget.h"
@@ -37,5 +36,3 @@ private:
 	QHexEdit *hexEdit;
 	QTabBar *tabBar;
 };
-
-#endif

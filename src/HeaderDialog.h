@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef HEADERDIALOG_H
-#define HEADERDIALOG_H
+#pragma once
 
 #include <QtWidgets>
 #include "SaveData.h"
@@ -58,5 +57,3 @@ private:
 	SaveData *saveData;
 	ViewType viewType;
 };
-
-#endif // HEADERDIALOG_H

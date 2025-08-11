@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_CONFIGEDITOR
-#define DEF_CONFIGEDITOR
+#pragma once
 
 #include "PageWidget.h"
 #include "../SpinBox.h"
@@ -55,5 +54,3 @@ private:
 	QGroupBox *manetteGroupE;
 	QCheckBox *inconnu1E;
 };
-
-#endif

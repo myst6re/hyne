@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_SAVEICON
-#define DEF_SAVEICON
+#pragma once
 
 #include <QtGui>
 #define COEFF_COLOR	8.2258064516129032258064516129032 // 255/31
@@ -68,5 +67,3 @@ private:
 	quint8 _curFrame;
 	bool _showCW;
 };
-
-#endif

@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_SAVECARDWIDGET
-#define DEF_SAVECARDWIDGET
+ #pragma once
 
 #include <QtWidgets>
 #include "SavecardView.h"
@@ -40,5 +39,3 @@ public:
 	QRect visualRect() const;
 	void scrollToDrag(const QPoint &pos);
 };
-
-#endif // DEF_SAVECARDWIDGET

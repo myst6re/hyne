@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_OBJETEDITOR
-#define DEF_OBJETEDITOR
+#pragma once
 
 #include "../SpinBoxDelegate.h"
 #include "PageWidget.h"
@@ -49,5 +48,3 @@ private:
 	QListWidget *battle_itemE_list;
 	QTreeWidget *weaponsE_list, *timbermaniacsE_list;
 };
-
-#endif

@@ -22,6 +22,8 @@ cmake_policy(SET CMP0042 NEW)
 cmake_policy(SET CMP0074 NEW)
 cmake_policy(SET CMP0091 NEW)
 
+option(ENABLE_JP_ENCODING "Enable JP encoding (needs QtCore5Compat)" ON)
+
 set(VCPKG_DISABLE_COMPILER_TRACKING 1)
 set(VCPKG_INSTALL_OPTIONS "--clean-after-build")
 set(X_VCPKG_APPLOCAL_DEPS_INSTALL ON)
@@ -69,7 +71,10 @@ add_compile_definitions(
     HYNE_VERSION_TWEAK=0
 )
 
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools Core5Compat REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
+if(ENABLE_JP_ENCODING)
+    find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core5Compat REQUIRED)
+endif()
 find_package(ZLIB REQUIRED)
 
 set(LANGS
@@ -207,7 +212,13 @@ target_link_libraries(${RELEASE_NAME} PRIVATE
 )
 
 if(${QT_VERSION_MAJOR} EQUAL 6)
-    target_link_libraries(${RELEASE_NAME} PRIVATE Qt6::Core5Compat)
+    if(ENABLE_JP_ENCODING)
+        target_link_libraries(${RELEASE_NAME} PRIVATE Qt6::Core5Compat)
+
+        target_compile_definitions(${RELEASE_NAME}
+            PRIVATE HYNE_ENABLE_JP_ENCODING=1
+        )
+    endif()
 
     target_compile_definitions(${RELEASE_NAME}
         PRIVATE TASKBAR_BUTTON=1

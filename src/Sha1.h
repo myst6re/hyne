@@ -1,5 +1,4 @@
-#ifndef SHA1_H
-#define SHA1_H
+#pragma once
 
 /*
    SHA-1 in C
@@ -40,5 +39,3 @@ void SHA1(
     char *hash_out,
     const char *str,
     unsigned int len);
-
-#endif /* SHA1_H */

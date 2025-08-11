@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_SHOPEDITOR
-#define DEF_SHOPEDITOR
+#pragma once
 
 #include "PageWidget.h"
 
@@ -45,5 +44,3 @@ private:
 
 	QBrush normalItemColor;
 };
-
-#endif

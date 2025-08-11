@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_MISCEDITOR
-#define DEF_MISCEDITOR
+#pragma once
 
 #include "PageWidget.h"
 #include "../TimeWidget.h"
@@ -60,5 +59,3 @@ private:
 	// Page 2
 	QTreeWidget *tutoE_list;
 };
-
-#endif

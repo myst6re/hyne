@@ -1,5 +1,4 @@
-#ifndef XBYTEARRAY_H
-#define XBYTEARRAY_H
+#pragma once
 
 /** \cond docNever */
 
@@ -64,4 +63,3 @@ private:
 };
 
 /** \endcond docNever */
-#endif // XBYTEARRAY_H

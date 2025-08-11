@@ -24,8 +24,7 @@
 		CompuServe	74050,1022
 **************************************************************/
 
-#ifndef DEF_LZS
-#define DEF_LZS
+#pragma once
 
 #include <QtCore>
 
@@ -47,5 +46,3 @@ private:
 	static unsigned char text_buf[4113];//ring buffer of size 4096, with extra 17 bytes to facilitate string comparison
 	static QByteArray result;
 };
-
-#endif

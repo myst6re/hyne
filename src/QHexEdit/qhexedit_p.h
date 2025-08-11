@@ -1,5 +1,4 @@
-#ifndef QHEXEDIT_P_H
-#define QHEXEDIT_P_H
+#pragma once
 
 /** \cond docNever */
 
@@ -114,6 +113,3 @@ private:
 };
 
 /** \endcond docNever */
-
-#endif
-

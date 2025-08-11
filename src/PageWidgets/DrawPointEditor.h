@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_DRAWPOINTEDITOR
-#define DEF_DRAWPOINTEDITOR
+#pragma once
 
 #include "../SpinBoxDelegate.h"
 #include "PageWidget.h"
@@ -45,5 +44,3 @@ private:
 	QStandardItemModel *drawE_model;
 	QComboBox *listAll;
 };
-
-#endif

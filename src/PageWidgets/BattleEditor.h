@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_BATTLEEDITOR
-#define DEF_BATTLEEDITOR
+#pragma once
 
 #include "PageWidget.h"
 #include "../SpinBox.h"
@@ -46,5 +45,3 @@ private:
 	QCheckBox *tombySrE, *ufoE, *firstr1E, *firsteleE, *firstmtlE, *firstirvinelbE;
 	QTreeWidget *firstdrawE_list, *firstscanE_list;
 };
-
-#endif

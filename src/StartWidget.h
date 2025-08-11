@@ -15,8 +15,7 @@
  ** You should have received a copy of the GNU General Public License
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
-#ifndef STARTWIDGET_H
-#define STARTWIDGET_H
+#pragma once
 
 #include <QtWidgets>
 #include "FF8Text.h"
@@ -38,7 +37,7 @@ public:
 signals:
 	void actionTriggered(QAction *action);
 public slots:
-	
+
 protected:
 	virtual void paintEvent(QPaintEvent *event);
 	virtual void mouseMoveEvent(QMouseEvent *event);
@@ -49,5 +48,3 @@ private:
 	int actionID(const QPoint &pos) const;
 	int _cursorPosition;
 };
-
-#endif // STARTWIDGET_H

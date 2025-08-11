@@ -20,7 +20,9 @@
 #include "FF8Text.h"
 #include "Data.h"
 #include "LZS.h"
-#include <QTextCodec>
+#ifdef HYNE_ENABLE_JP_ENCODING
+#	include <QTextCodec>
+#endif
 
 SaveData::SaveData() :
 	_freqValue(60), _id(0), _isFF8(false), _isDelete(false),
@@ -384,6 +386,7 @@ void SaveData::setBlockCount(quint8 blockCount)
 
 QString SaveData::shortDescription() const
 {
+#ifdef HYNE_ENABLE_JP_ENCODING
 	if (hasSCHeader()) {
 		try {
 			QTextCodec *codec = QTextCodec::codecForName("Shift-JIS");
@@ -398,6 +401,7 @@ QString SaveData::shortDescription() const
 		} catch(...) {
 		}
 	}
+#endif
 	return QString();
 }
 
@@ -406,6 +410,7 @@ void SaveData::setShortDescription(const QString &desc)
 	if (hasSCHeader()) {
 		QByteArray desc_data;
 
+#ifdef HYNE_ENABLE_JP_ENCODING
 		if (!desc.isEmpty()) {
 			try {
 				QTextCodec *codec = QTextCodec::codecForName("Shift-JIS");
@@ -418,6 +423,9 @@ void SaveData::setShortDescription(const QString &desc)
 				return;
 			}
 		}
+#else
+		desc_data = _header.mid(4, 64);
+#endif
 
 		desc_data = desc_data.leftJustified(64, '\0', true);
 

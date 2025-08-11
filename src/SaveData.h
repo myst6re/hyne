@@ -20,8 +20,7 @@
  ** Source code available at http://qhimm.com/
  ****************************************************************************/
 
-#ifndef DEF_SAVEDATA
-#define DEF_SAVEDATA
+#pragma once
 
 #define COUNTRY_JP	'I'
 #define COUNTRY_US	'A'
@@ -527,5 +526,3 @@ private:
 	bool _descriptionAuto, _previewAuto;
 	QByteArray _saveData;
 };
-
-#endif

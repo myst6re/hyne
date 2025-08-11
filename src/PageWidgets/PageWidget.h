@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef PAGEWIDGET_H
-#define PAGEWIDGET_H
+#pragma once
 
 #include <QtWidgets>
 #include "../Data.h"
@@ -53,5 +52,3 @@ protected:
 	SaveData *saveData;
 	bool pc;
 };
-
-#endif // PAGEWIDGET_H

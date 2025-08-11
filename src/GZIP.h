@@ -15,8 +15,7 @@
  ** You should have received a copy of the GNU General Public License
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
-#ifndef GZIP_H
-#define GZIP_H
+#pragma once
 
 #include <QtCore>
 
@@ -28,5 +27,3 @@ public:
 	static bool decompress(const QString &pathFrom, const QString &pathTo);
 	static bool compress(const QString &pathFrom, const QString &pathTo);
 };
-
-#endif // GZIP_H

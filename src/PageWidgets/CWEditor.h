@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_CWEDITOR
-#define DEF_CWEDITOR
+#pragma once
 
 #include "../FF8Text.h"
 #include "PageWidget.h"
@@ -47,5 +46,3 @@ private:
 	QList<QCheckBox *> questE;
 	QList<QRadioButton *> starCountE;
 };
-
-#endif

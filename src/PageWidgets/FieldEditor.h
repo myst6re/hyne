@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef FIELDEDITOR_H
-#define FIELDEDITOR_H
+#pragma once
 
 #include "PageWidget.h"
 
@@ -39,5 +38,3 @@ private:
 	QComboBox *discE;
 	QCheckBox *autoDiscE;
 };
-
-#endif // FIELDEDITOR_H

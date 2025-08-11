@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef SCHEADERDIALOG_H
-#define SCHEADERDIALOG_H
+#pragma once
 
 #include <QtWidgets>
 #include "SavecardData.h"
@@ -36,5 +35,3 @@ private:
 	QHexEdit *seed;
 	SavecardData *savecardData;
 };
-
-#endif // SCHEADERDIALOG_H

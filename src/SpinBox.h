@@ -15,8 +15,7 @@
  ** You should have received a copy of the GNU General Public License
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
-#ifndef SPINBOX_H
-#define SPINBOX_H
+#pragma once
 
 #include <QSpinBox>
 
@@ -44,5 +43,3 @@ class SpinBox32 : public QDoubleSpinBox
 public:
 	explicit SpinBox32(QWidget *parent = nullptr);
 };
-
-#endif // SPINBOX_H

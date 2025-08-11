@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_EDITOR
-#define DEF_EDITOR
+#pragma once
 
 #include <QtWidgets>
 #include "SaveData.h"
@@ -44,5 +43,3 @@ public slots:
 private slots:
 	void setCurrentSection(QListWidgetItem *current, QListWidgetItem *previous = nullptr);
 };
-
-#endif

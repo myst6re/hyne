@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_SAVECARDVIEW
-#define DEF_SAVECARDVIEW
+#pragma once
 
 #include <QtWidgets>
 #include "SavecardData.h"
@@ -110,5 +109,3 @@ protected:
 	virtual void dragLeaveEvent(QDragLeaveEvent *event);
 	virtual void dropEvent(QDropEvent *event);
 };
-
-#endif // DEF_SAVECARDVIEW

@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_FF8TEXT
-#define DEF_FF8TEXT
+#pragma once
 
 #include <QtCore>
 #include <QPainter>
@@ -48,5 +47,3 @@ private:
 	static const char *colors[16];
 	static const char *locations[8];
 };
-
-#endif

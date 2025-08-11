@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef PREVIEWEDITOR_H
-#define PREVIEWEDITOR_H
+#pragma once
 
 #include "PageWidget.h"
 #include "../SavecardView.h"
@@ -69,5 +68,3 @@ private:
 	PreviewWidget *previewWidget;
 	QList<QComboBox *> partyE;
 };
-
-#endif // PREVIEWEDITOR_H

@@ -15,8 +15,7 @@
  ** You should have received a copy of the GNU General Public License
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
-#ifndef FF8INSTALLATION_H
-#define FF8INSTALLATION_H
+#pragma once
 
 #include <QtCore>
 
@@ -75,5 +74,3 @@ private:
 	QString _appPath;
 	QStringList _savePaths;
 };
-
-#endif // FF8INSTALLATION_H

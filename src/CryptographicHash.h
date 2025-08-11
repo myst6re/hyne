@@ -15,8 +15,7 @@
  ** You should have received a copy of the GNU General Public License
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
-#ifndef CRYPTOGRAPHICHASH_H
-#define CRYPTOGRAPHICHASH_H
+#pragma once
 
 #include <QtCore>
 
@@ -33,5 +32,3 @@ private:
 	static void xorWithByte(quint8 *buf, quint8 byte, quint8 length);
 	static void generateHash(const char *input, char *dest, size_t sz, int type);
 };
-
-#endif // CRYPTOGRAPHICHASH_H

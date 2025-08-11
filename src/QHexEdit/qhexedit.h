@@ -1,5 +1,4 @@
-#ifndef QHEXEDIT_H
-#define QHEXEDIT_H
+#pragma once
 
 #include <QtWidgets>
 #include "qhexedit_p.h"
@@ -200,6 +199,3 @@ private:
     QScrollArea *scrollArea;
     /*! \endcond docNever */
 };
-
-#endif
-

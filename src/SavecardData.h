@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_SAVECARDDATA
-#define DEF_SAVECARDDATA
+#pragma once
 
 #include <QtCore>
 #include "SaveData.h"
@@ -126,5 +125,3 @@ private:
 	qint64 _switchSaveSize;
 	const FF8Installation _ff8Installation;
 };
-
-#endif

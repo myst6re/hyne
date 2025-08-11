@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef DEF_WINDOW
-#define DEF_WINDOW
+#pragma once
 
 #include <QtWidgets>
 #include "SavecardWidget.h"
@@ -76,7 +75,7 @@ private:
 
 	void setTitle(const int currentSaveEdited=-1);
 	QList<int> selectSavesDialog(bool multiSelection=false, bool onlyFF8=false);
-	
+
 	QTaskBarButton *taskbarButton;
 	QMenuBar *menuBar;
 	QAction *actionReload, *actionSave, *actionSaveAs;
@@ -95,5 +94,3 @@ protected:
 	virtual void dropEvent(QDropEvent *event);
 //	virtual void changeEvent(QEvent *event);
 };
-
-#endif

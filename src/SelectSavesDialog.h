@@ -16,8 +16,7 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  ****************************************************************************/
 
-#ifndef SELECTSAVESDIALOG_H
-#define SELECTSAVESDIALOG_H
+#pragma once
 
 #include <QtWidgets>
 #include "SaveData.h"
@@ -42,5 +41,3 @@ private:
 	QListWidget *list;
 	HelpWidget *msg;
 };
-
-#endif // SELECTSAVESDIALOG_H
