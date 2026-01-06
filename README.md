@@ -91,9 +91,9 @@ $ pacman -S --needed base-devel cmake qt6
 > **Please note**: You can choose other build profiles if you want. See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html for more information.
 
 ```sh
-$ mkdir -p .dist/build .dist/install
-$ cmake --preset=vcpkg -S . -B .dist/build -DCMAKE_INSTALL_PREFIX=.dist/install -DCMAKE_BUILD_TYPE=Debug
-$ cmake --build .dist/build --config Debug
+$ mkdir build install
+$ cmake -S . -B build -DCMAKE_INSTALL_PREFIX=install -DCMAKE_BUILD_TYPE=Debug
+$ cmake --build build --config Debug
 ```
 
 ## How to contribute
